@@ -1,0 +1,14 @@
+{
+  "name": "embed_html",
+  "type": "htl",
+  "contentType": "html",
+  "cgi": false,
+  "entryFile": "D:\\code\\2020\\github\\helix_adobe-io-website\\.hlx\\pages\\master\\src\\embed_html.htl",
+  "main": "D:\\code\\2020\\github\\helix_adobe-io-website\\.hlx\\build\\src\\embed_html.js",
+  "buildDir": "D:\\code\\2020\\github\\helix_adobe-io-website\\.hlx\\build\\src",
+  "infoFile": "D:\\code\\2020\\github\\helix_adobe-io-website\\.hlx\\build\\src\\embed_html.info.json",
+  "pre": "..\\..\\pages\\master\\src\\embed_html.pre.js",
+  "pipe": "@adobe/helix-pipeline/src/defaults/html.pipe.js",
+  "sourceMap": "D:\\code\\2020\\github\\helix_adobe-io-website\\.hlx\\build\\src\\embed_html.script.js.map",
+  "scriptFile": "D:\\code\\2020\\github\\helix_adobe-io-website\\.hlx\\build\\src\\embed_html.script.js"
+}

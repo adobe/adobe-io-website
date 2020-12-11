@@ -1,0 +1,13 @@
+{
+  "name": "idx_json",
+  "type": "js",
+  "contentType": "json",
+  "cgi": false,
+  "entryFile": "D:\\code\\2020\\github\\helix_adobe-io-website\\.hlx\\pages\\master\\src\\idx_json.js",
+  "main": "D:\\code\\2020\\github\\helix_adobe-io-website\\.hlx\\build\\src\\idx_json.js",
+  "buildDir": "D:\\code\\2020\\github\\helix_adobe-io-website\\.hlx\\build\\src",
+  "infoFile": "D:\\code\\2020\\github\\helix_adobe-io-website\\.hlx\\build\\src\\idx_json.info.json",
+  "pre": "@adobe/helix-pipeline/src/defaults/json.pre.js",
+  "pipe": "..\\..\\pages\\master\\src\\idx_json.pipe.js",
+  "scriptFile": "D:\\code\\2020\\github\\helix_adobe-io-website\\.hlx\\pages\\master\\src\\idx_json.js"
+}
