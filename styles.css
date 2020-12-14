@@ -13,7 +13,47 @@ img {
     box-sizing: border-box;
 }
 
-main .section-wrapper > div {
+header {
+    padding: 16px;
+    display: flex;
+
+}
+
+header .icon {
+    height: 48px;
+    width: 48px;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+}
+
+header ul li {
+    padding: 16px;
+}
+
+header p {
+    padding: 16px;
+}
+
+footer>div:first-of-type div > ul {
+    display: flex;
+    list-style: none;
+
+}
+
+footer>div:nth-of-type(2) div > ul {
+    display: flex;
+}
+
+footer>div:nth-of-type(2) div > ul > li {
+    padding: 16px;
+    list-style: none;
+}
+
+
+footer .section-wrapper > div, main .section-wrapper > div {
     margin: auto;
     max-width: 780px;
     padding: 16px;
