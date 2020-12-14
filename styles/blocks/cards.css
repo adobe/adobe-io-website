@@ -1,0 +1,14 @@
+main div.cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+} 
+
+main div.cards > div{
+    
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    padding: 32px;
+} 

@@ -63,11 +63,39 @@ function decorateTables() {
 function decorateBlocks() {
     document.querySelectorAll('main>div.section-wrapper>div>div').forEach($block => {
         const classes=Array.from($block.classList.values());
-        console.log(classes);
         if (classes[0]) {
             loadCSS(`/styles/blocks/${classes[0]}.css`);
         }
     })
+}
+
+function decorateEmbeds() {
+
+    document.querySelectorAll('a[href]').forEach(($a) => {
+      const url=new URL($a.href);
+      const usp=new URLSearchParams(url.search);
+      let embedHTML='';
+      let type='';
+
+      if ($a.href.startsWith('https://www.youtube.com/watch')) {
+        const vid=usp.get('v');
+        
+        type='youtube';
+        embedHTML=`<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+          <iframe src="https://www.youtube.com/embed/${vid}?rel=0&amp;v=${vid}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen="" scrolling="no" allow="encrypted-media; accelerometer; gyroscope; picture-in-picture" title="content from youtube" loading="lazy"></iframe>
+          </div>
+        `;
+      }
+  
+      if (type) {
+        const $embed=createTag('div', {class: `embed embed-oembed embed-${type}`});
+        const $div=$a.closest('div');
+        $embed.innerHTML=embedHTML;
+        $div.parentElement.replaceChild($embed, $div);
+      }
+
+    })
+
 }
   
 function decorateButtons() {
@@ -97,6 +125,7 @@ async function decoratePage() {
     wrapSections('main>div');
     decorateBlocks();
     wrapSections('header>div, footer>div');
+    decorateEmbeds();
     decorateButtons();
 }
 
