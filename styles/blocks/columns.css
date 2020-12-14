@@ -8,7 +8,18 @@ main div.columns > div{
     display: flex;
 } 
 
-main div.columns > div > div {
-    width: 50%;
-    padding: 16px;
+main div.columns > div{
+    flex-direction: column;
 } 
+
+
+@media (min-width:600px) {
+    main div.columns > div{
+        flex-direction: row;
+    } 
+    
+    main div.columns > div > div {
+        width: 50%;
+        padding: 16px;
+    }     
+}

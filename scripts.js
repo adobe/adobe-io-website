@@ -65,6 +65,7 @@ function decorateBlocks() {
         const classes=Array.from($block.classList.values());
         if (classes[0]) {
             loadCSS(`/styles/blocks/${classes[0]}.css`);
+            $block.closest('.section-wrapper').classList.add(`${classes[0]}-container`);
         }
     })
 }

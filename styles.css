@@ -1,5 +1,7 @@
 body{
     background-color: lightgrey;
+    margin: 0;
+    padding: 0;
 } 
 
 img {
@@ -13,6 +15,7 @@ img {
 main .section-wrapper > div {
     margin: auto;
     max-width: 780px;
+    padding: 16px;
 }
 
 main a:any-link {
