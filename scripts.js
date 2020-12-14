@@ -69,6 +69,25 @@ function decorateBlocks() {
     })
 }
 
+function decorateBackgroundImageBlocks() {
+    document.querySelectorAll('main div.background-image').forEach($bgImgDiv => {
+      const $images=$bgImgDiv.querySelectorAll('img');
+      const $lastImage=$images[$images.length-1];
+  
+      const $section=$bgImgDiv.closest('.section-wrapper');
+      if ($section && $lastImage) {
+        $section.style.backgroundImage=`url(${$lastImage.src})`;
+        let $caption=$lastImage.nextElementSibling;
+        if ($caption) {
+          if ($caption.textContent=='') $caption=$caption.nextElementSibling;
+          if ($caption) $caption.classList.add('background-image-caption');
+        }
+        $lastImage.remove();
+      } 
+    }) 
+  }
+  
+
 function decorateEmbeds() {
 
     document.querySelectorAll('a[href]').forEach(($a) => {
@@ -127,6 +146,7 @@ async function decoratePage() {
     wrapSections('header>div, footer>div');
     decorateEmbeds();
     decorateButtons();
+    decorateBackgroundImageBlocks();
 }
 
 decoratePage();
