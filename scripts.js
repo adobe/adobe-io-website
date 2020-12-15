@@ -130,12 +130,24 @@ function decorateButtons() {
         $a.className='button primary';
         }
     })
+
+    document.querySelectorAll('.hero a').forEach($a => {
+      const $up=$a.parentElement;
+      const $twoup=$a.parentElement.parentElement;
+      if ($up.childNodes.length==1 && $up.tagName=='P') {
+      $a.className='button secondary';
+      }
+      if ($up.childNodes.length==1 && $up.tagName=='STRONG' && 
+      $twoup.childNodes.length==1 && $twoup.tagName=='P') {
+      $a.className='button primary';
+      }
+  })
 }
 
 function decorateHeros() {
   document.querySelectorAll('main div.hero').forEach($a => {
     console.log('hero')
-    
+
   })
 }
 
