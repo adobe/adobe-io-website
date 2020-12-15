@@ -104,3 +104,14 @@ main .button.secondary:hover {
 	border-color: #505050;
 	color: #fff;
 }
+
+.hero h1 {
+	margin-top: 0;
+	margin-bottom: 16px;
+	margin-inline-start: 0px;
+  margin-inline-end: 0px;
+	font-family: adobe-clean-serif, "Source Serif Pro", Georgia, serif;
+	font-size: 45px;
+	font-weight: 700;
+	font-style: normal;
+}
