@@ -131,7 +131,14 @@ function decorateButtons() {
         }
     })
 }
-  
+
+function decorateHeros() {
+  document.querySelectorAll('main div.hero').forEach($a => {
+    console.log('hero')
+    
+  })
+}
+
 function wrapSections(element) {
     document.querySelectorAll(element).forEach(($div) => {
         const $wrapper=createTag('div', { class: 'section-wrapper'});
@@ -145,6 +152,7 @@ async function decoratePage() {
     wrapSections('main>div');
     decorateBlocks();
     wrapSections('header>div, footer>div');
+    decorateHero();
     decorateEmbeds();
     decorateButtons();
     decorateBackgroundImageBlocks();
