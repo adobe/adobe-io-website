@@ -1,7 +1,15 @@
 main div.hero {
 	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+main div.hero>div {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
 }
 
 main div.hero h1 {
