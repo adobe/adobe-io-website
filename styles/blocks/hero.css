@@ -26,3 +26,27 @@ main div.hero p {
 	letter-spacing: normal;
 
 }
+
+hero .button.primary {
+	background-color: #1473e6;
+	border-color: #1473e6;
+	color: #fff;
+}
+
+hero .button.primary:hover {
+	background-color: #0d66d0;
+	border-color: #0d66d0;
+	color: #fff;
+}
+
+hero .button.secondary {
+	background-color: transparent;
+	border-color: #505050;
+	color: #505050;
+}
+
+hero .button.secondary:hover {
+	background-color: #505050;
+	border-color: #505050;
+	color: #fff;
+}
