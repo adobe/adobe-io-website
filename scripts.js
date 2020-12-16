@@ -151,7 +151,6 @@ function decorateHero() {
     $heroImg.remove();
   }
   $heroSection.classList.add('hero');
-  loadCSS(`/styles/blocks/hero.css`);
 }
   
 async function decoratePage() {
