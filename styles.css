@@ -64,6 +64,11 @@ main a:any-link {
 	text-decoration: none;
 }
 
+main .icon {
+	height: 40px;
+	width: 40px;
+}
+
 main .button {
 	border-width: 2px;
 	border-style: solid;

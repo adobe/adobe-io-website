@@ -162,6 +162,7 @@ async function decoratePage() {
     decorateEmbeds();
     decorateButtons();
     decorateBackgroundImageBlocks();
+    decorateColumns();
 }
 
 decoratePage();
