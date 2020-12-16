@@ -5,6 +5,14 @@ main div.hero {
   width: 100%;
 }
 
+main div.hero {
+	color: white;
+	background-size: cover;
+	text-align: center;
+	padding: 1em;
+	background-position: center center;
+}
+
 main div.hero>div {
   display: flex;
   flex-direction: column;
@@ -13,30 +21,16 @@ main div.hero>div {
 }
 
 main div.hero h1 {
-	margin-top: 0;
-	margin-bottom: 16px;
-	margin-inline-start: 0px;
-  margin-inline-end: 0px;
 	font-family: adobe-clean-serif, "Source Serif Pro", Georgia, serif;
 	font-size: 45px;
 	font-weight: 700;
-	font-style: normal;
 }
 
 main div.hero p {
 	display: block;
-	margin-block-start: 1em;
-	margin-block-end: 1em;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
-	margin-top: 0;
-	margin-bottom: 0;
-	color: rgb(80,80,80);
 	font-family: adobe-clean-ux, adobe-clean, "Source Sans Pro", -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
 	font-size: 18px;
-	font-style: normal;
 	font-weight: 400;
 	line-height: 27px;
-	letter-spacing: normal;
 
 }
