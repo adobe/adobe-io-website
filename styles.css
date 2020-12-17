@@ -45,7 +45,6 @@ header p {
 
 header p:last-child {
   margin-left: auto;
-  text-decoration: none;
 }
 
 header p:last-child a {
