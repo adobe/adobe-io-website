@@ -25,6 +25,8 @@ header {
     font-weight: 700;
     color: #505050;
     text-decoration: none;
+    background-color: #fff;
+    z-index: 10;
 }
 
 header .icon {
