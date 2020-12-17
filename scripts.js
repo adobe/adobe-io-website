@@ -132,17 +132,8 @@ function decorateButtons() {
         }
     })
 
-    document.querySelectorAll('header p:last-child a').forEach($a => {
-        const $up=$a.parentElement;
-        const $twoup=$a.parentElement.parentElement;
-        if ($up.childNodes.length==1 && $up.tagName=='P') {
-        $a.className='button secondary';
-        }
-        if ($up.childNodes.length==1 && $up.tagName=='STRONG' && 
-        $twoup.childNodes.length==1 && $twoup.tagName=='P') {
-        $a.className='button primary';
-        }
-    })
+    const $consoleButton = document.querySelector('header p:last-child a');
+    $consoleButton.className='button secondary';
 }
   
 function wrapSections(element) {

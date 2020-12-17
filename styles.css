@@ -45,6 +45,7 @@ header p {
 
 header p:last-child {
   margin-left: auto;
+  text-decoration: none;
 }
 
 header ul {
@@ -105,7 +106,7 @@ main .icon {
 	width: 40px;
 }
 
-main .button {
+.button {
 	border-width: 2px;
 	border-style: solid;
 	border-radius: 16px;
@@ -122,25 +123,25 @@ main .button {
   -webkit-appearance: none;
 }
 
-main .button.primary {
+.button.primary {
 	background-color: #1473e6;
 	border-color: #1473e6;
 	color: #fff;
 }
 
-main .button.primary:hover {
+.button.primary:hover {
 	background-color: #0d66d0;
 	border-color: #0d66d0;
 	color: #fff;
 }
 
-main .button.secondary {
+.button.secondary {
 	background-color: transparent;
 	border-color: #505050;
 	color: #505050;
 }
 
-main .button.secondary:hover {
+.button.secondary:hover {
 	background-color: #505050;
 	border-color: #505050;
 	color: #fff;
