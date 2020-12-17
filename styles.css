@@ -58,6 +58,10 @@ header ul li {
     height: calc(100% + 1px);
 }
 
+header ul li:last-child {
+  border-right: 1px solid #eaeaea;
+}
+
 header ul li a {
     font-size: 14px;
     font-weight: 400;
