@@ -131,6 +131,14 @@ function decorateButtons() {
         $a.className='button primary';
         }
     })
+
+    document.querySelectorAll('header p:last-child').forEach($a => {
+      if ($up.childNodes.length==1 && $up.tagName=='STRONG' && 
+      $twoup.childNodes.length==1 && $twoup.tagName=='P') {
+      $a.className='button primary';
+      }
+  })
+
 }
   
 function wrapSections(element) {

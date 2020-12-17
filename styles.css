@@ -43,6 +43,10 @@ header p {
     margin-bottom: 0;
 }
 
+header p:last-child {
+  margin-left: auto;
+}
+
 header ul {
     display: flex;
     list-style: none;
