@@ -55,7 +55,7 @@ footer>div:nth-of-type(2) div > ul > li {
 
 footer .section-wrapper > div, main .section-wrapper > div {
     margin: auto;
-    max-width: 780px;
+
     padding: 16px;
 }
 

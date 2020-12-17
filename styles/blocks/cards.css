@@ -6,9 +6,12 @@ main div.cards {
 } 
 
 main div.cards > div{
-    
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 33%;
     padding: 32px;
+} 
+
+main div.cards > div img{
+    height: 80px;
 } 
