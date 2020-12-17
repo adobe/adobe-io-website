@@ -19,11 +19,13 @@ header {
     height: 64px;
     margin-left: 32px;
     margin-right: 32px;
+    border-bottom: 1px solid #eaeaea;
 }
 
 header .icon {
     height: 24px;
     width: 20px;
+    margin-right: 8px;
 }
 
 header ul {
@@ -32,6 +34,8 @@ header ul {
 }
 
 header ul li {
+    display: flex;
+    align-items: center;
     padding: 16px;
 }
 
