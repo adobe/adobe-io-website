@@ -32,9 +32,19 @@ header .icon {
     margin-right: 8px;
 }
 
+header p {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 header ul {
     display: flex;
     list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 header ul li {
@@ -46,16 +56,10 @@ header ul li {
 }
 
 header ul li a {
-  font-size: 14px;
-  font-weight: 400;
-  color: #505050;
-  text-decoration: none;
-}
-
-header p {
-    padding: 16px;
-    display: flex;
-    align-items: center;
+    font-size: 14px;
+    font-weight: 400;
+    color: #505050;
+    text-decoration: none;
 }
 
 footer>div:first-of-type div > ul {
