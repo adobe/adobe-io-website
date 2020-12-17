@@ -48,6 +48,10 @@ header p:last-child {
   text-decoration: none;
 }
 
+header p:last-child a {
+  text-decoration: none;
+}
+
 header ul {
     display: flex;
     list-style: none;
