@@ -14,14 +14,16 @@ img {
 }
 
 header {
-    padding: 16px;
-    display: flex;
-
+		position: sticky;
+		display: flex;
+    height: 64px;
+    margin-left: 32px;
+    margin-right: 32px;
 }
 
 header .icon {
-    height: 48px;
-    width: 48px;
+    height: 24px;
+    width: 20px;
 }
 
 header ul {
@@ -35,6 +37,8 @@ header ul li {
 
 header p {
     padding: 16px;
+    display: flex;
+    align-items: center;
 }
 
 footer>div:first-of-type div > ul {
