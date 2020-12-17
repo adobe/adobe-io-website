@@ -36,7 +36,11 @@ header ul {
 header ul li {
     display: flex;
     align-items: center;
-    padding: 16px;
+    padding: 16px 24px 24px;
+    border-left: 1px solid #eaeaea;
+    border-right: 1px solid #eaeaea;
+    margin-left: 24px;
+    height: calc(100% + 1px);
 }
 
 header p {
