@@ -132,13 +132,12 @@ function decorateButtons() {
         }
     })
 
-    document.querySelectorAll('header p:last-child').forEach($a => {
+    document.querySelectorAll('header p:last-child a').forEach($a => {
       if ($up.childNodes.length==1 && $up.tagName=='STRONG' && 
       $twoup.childNodes.length==1 && $twoup.tagName=='P') {
       $a.className='button primary';
       }
   })
-
 }
   
 function wrapSections(element) {
