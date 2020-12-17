@@ -45,6 +45,13 @@ header ul li {
     height: calc(100% + 1px);
 }
 
+header ul li a {
+  font-size: 14px;
+  font-weight: 400;
+  color: #505050;
+  text-decoration: none;
+}
+
 header p {
     padding: 16px;
     display: flex;
