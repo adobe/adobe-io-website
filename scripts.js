@@ -64,8 +64,10 @@ function decorateBlocks() {
     document.querySelectorAll('main>div.section-wrapper>div>div').forEach($block => {
         const classes=Array.from($block.classList.values());
         if (classes[0]) {
-            loadCSS(`/styles/blocks/${classes[0]}.css`);
-            $block.closest('.section-wrapper').classList.add(`${classes[0]}-container`);
+            if (!classes.includes('embed')) {
+              loadCSS(`/styles/blocks/${classes[0]}.css`);
+              $block.closest('.section-wrapper').classList.add(`${classes[0]}-container`);  
+            }
         }
     })
 }
@@ -155,6 +157,45 @@ function decorateHero() {
   }
   $heroSection.classList.add('hero');
 }
+
+function decorateColumns() {
+  document.querySelectorAll('main > .section-wrapper').forEach(($section) => {
+    if ($section.className == 'section-wrapper' && ($section.querySelector('p > img[src^="/hlx_"]') || $section.querySelector('div.embed'))) {
+      const $columns=createTag('div', {class: 'columns'});
+      const $children=Array.from($section.children[0].children);
+      let $currentRow;
+      let $secondCol=createTag('div');
+      $children.forEach(($child) => {
+        console.log($child.innerHTML);
+
+        if (($child.tagName=='P' && $child.querySelector('img[src^="/hlx_"]')) || 
+        ($child.tagName=='DIV' && $child.classList.contains('embed'))) {
+          if ($currentRow) {
+            $currentRow.append($secondCol);
+            $columns.append($currentRow);
+            $secondCol=createTag('div');
+          }
+          $currentRow=createTag('div');
+          const $firstCol=createTag('div');
+          $firstCol.append($child);
+          $currentRow.append($firstCol);
+        } else {
+          console.log('other');
+          $secondCol.append($child);
+        }
+        if ($currentRow) {
+          $currentRow.append($secondCol);
+          $columns.append($currentRow);
+        }
+        console.log($child.tagName);
+      })  
+      $section.firstChild.append($columns);
+      $section.classList.add('columns-container');
+      loadCSS(`/styles/blocks/columns.css`);
+    }
+  })
+}
+
   
 async function decoratePage() {
     decorateTables();

@@ -8,6 +8,11 @@ main div.columns > div{
     display: flex;
 } 
 
+main div.columns > div:nth-child(even){
+    flex-direction: row-reverse;
+} 
+
+
 main div.columns > div{
     flex-direction: column;
 } 
