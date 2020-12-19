@@ -99,6 +99,7 @@ footer>div:first-of-type div > ul {
 }
 
 footer>div:first-of-type div > ul > li > p {
+  margin-top: 0;
   font-family: adobe-clean-ux,adobe-clean,Source Sans Pro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;
   font-size: 16px;
   font-weight: 700;
@@ -106,13 +107,37 @@ footer>div:first-of-type div > ul > li > p {
   color: rgb(44,44,44);
 }
 
+footer>div:first-of-type div > ul > li:nth-child(n+1):nth-child(-n+3) {
+  border-right: 2px solid #e1e1e1;
+}
+
 footer>div:first-of-type div > ul > li > ul {
   list-style: none;
   padding-inline-start: 0;
+
+}
+
+footer>div:first-of-type div > ul > li:first-of-type ul  {
+  column-count: 2;
+}
+
+footer>div:first-of-type div > ul > li > ul li {
+  /*padding-top: 16px; */
 }
 
 footer>div:first-of-type div > ul > li > ul li a {
   text-decoration: none;
+  font-size: 14px;
+  color: rgb(75, 75, 75);
+  cursor: pointer;
+  font-family: adobe-clean-ux,adobe-clean,Source Sans Pro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+footer>div:first-of-type div > ul > li > ul li a:hover {
+  text-decoration: underline;
+  text-decoration-color: rgb(75, 75, 75);
 }
 
 footer>div:nth-of-type(2) div > ul {
