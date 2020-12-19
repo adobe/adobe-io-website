@@ -1,0 +1,35 @@
+main .api-browser {
+    display: flex;
+}
+
+main .api-browser .api-cards {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(100% - 320px);
+}
+
+main .api-browser .api-cards .api-card {
+    width: 300px;
+    padding: 16px;
+    margin: 16px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+
+}
+
+main .api-browser .api-cards .api-card .api-card-buttons {
+    border-top: 1px solid #ddd;
+}
+
+main .api-browser .api-cards .api-card .api-card-body {
+    height: 250px;
+    overflow-y: scroll;
+}
+
+main .api-browser .api-cards .api-card .api-icon {
+    height: 2em;
+}
+
+main .api-browser .filters {
+    width: 300px;
+}

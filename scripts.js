@@ -166,7 +166,6 @@ function decorateColumns() {
       let $currentRow;
       let $secondCol=createTag('div');
       $children.forEach(($child) => {
-        console.log($child.innerHTML);
 
         if (($child.tagName=='P' && $child.querySelector('img[src^="/hlx_"]')) || 
         ($child.tagName=='DIV' && $child.classList.contains('embed'))) {
@@ -180,20 +179,107 @@ function decorateColumns() {
           $firstCol.append($child);
           $currentRow.append($firstCol);
         } else {
-          console.log('other');
           $secondCol.append($child);
         }
         if ($currentRow) {
           $currentRow.append($secondCol);
           $columns.append($currentRow);
         }
-        console.log($child.tagName);
       })  
       $section.firstChild.append($columns);
       $section.classList.add('columns-container');
       loadCSS(`/styles/blocks/columns.css`);
     }
   })
+}
+
+function readBlockConfig($block) {
+  const config={};
+  $block.querySelectorAll(':scope>div').forEach(($row) => {
+    if ($row.children && $row.children[1]) {
+      const name=toClassName($row.children[0].textContent);
+      const $a=$row.children[1].querySelector('a');
+      let value='';
+      if ($a) value=$a.href;
+      else value=$row.children[1].textContent;
+      config[name]=value;  
+    }
+  });
+  return config;
+}
+
+function displayFilteredCards(catalog,$cards,buttons,limit,filters) {
+  $cards.innerHTML='';
+  let counter=0;
+  catalog.forEach((card) => {
+    let show=true;
+    if (filters && filters[0]) {
+      if (!filters.includes(card.Category)) show=false;
+    }
+
+    if (counter>=limit) show=false;
+    if (show) {
+      const $card=createTag('div', {class: 'api-card'});
+      const icon=card.Icon?`<img class="api-icon" src="/icons/${card.Icon}.svg">`:'';
+      let buttonsHtml='';
+      buttons.forEach((b,i) => {
+        if (card[b]) {
+          buttonsHtml+=`<a class="button" href="${card[b]} ${i==(buttons.length-1)?'primary':'secondary'}">${b}</a>`;
+        }
+      });
+      $card.innerHTML=`<div class="api-card-body">
+        ${icon}
+        <h4>${card.Title}</h4>
+        <p>${card.Description}</p>
+        </div>
+        <div class="api-card-buttons">
+          <p>${buttonsHtml}</p>
+        </div>          
+      `;
+      console.log(card);
+      $cards.append($card);
+      counter++;  
+    }
+  })
+}
+
+function decorateAPIBrowser() {
+  document.querySelectorAll('.api-browser').forEach(async $apiBrowser => {
+    const config=readBlockConfig($apiBrowser);
+    window.aio = window.aio||{};
+    const resp=await fetch('/api-catalog.json');
+    window.aio.apiCatalog=(await resp.json()).data;
+    const catalog=window.aio.apiCatalog;
+    let buttons=['Learn More','View Docs'];
+    if (config.display) buttons=config.display.split(',').map(e => e.trim());
+
+    $apiBrowser.innerHTML='';
+    if (config.filters == "Show") {
+      const categories=catalog.map(e => e.Category).filter((v, i, self) => {
+        return self.indexOf(v) === i;
+      });
+
+      const $cards=createTag('div', {class:'api-cards'});
+      const $filters=createTag('div', {class:'filters'});
+      $filters.innerHTML=`<strong>Filter by</strong>`;
+      categories.forEach((c) => {
+        const $filter=createTag('div');
+        const id=toClassName(c);
+        $filter.innerHTML=`<input type="checkbox" id="${id}" name="${id}" value="${c}">
+        <label for="${id}"> ${c}</label><br>`;
+        $filter.addEventListener('click', (evt) => {
+          const filters=[];
+          $filters.querySelectorAll(`:checked`).forEach($cb => filters.push($cb.value));
+          displayFilteredCards(catalog, $cards, buttons, config.limit, filters);
+        })
+        $filters.append($filter);
+      })
+      $apiBrowser.append($filters);
+
+      $apiBrowser.append($cards);
+      displayFilteredCards(catalog, $cards, buttons, config.limit);
+    }
+  });
 }
 
   
@@ -206,7 +292,8 @@ async function decoratePage() {
     decorateEmbeds();
     decorateButtons();
     decorateBackgroundImageBlocks();
+    decorateAPIBrowser()
     decorateColumns();
 }
 
-decoratePage();
+decoratePage(); 
