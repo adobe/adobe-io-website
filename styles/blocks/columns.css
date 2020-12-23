@@ -2,16 +2,53 @@ main div.columns {
     display: flex;
     flex-direction: column;
     width: 100%;
+    max-width: 1280px;
 } 
 
 main div.columns > div{
     display: flex;
 } 
 
+main div.columns > div p {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(75, 75, 75);
+    line-height: 24px;
+} 
+
 main div.columns > div:nth-child(even){
     flex-direction: row-reverse;
 } 
 
+main div.columns > div:nth-child(odd) > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main div.columns > div:nth-child(odd) > div:first-child p {
+    text-align: center;
+}
+
+main div.columns > div:nth-child(odd) > div:first-child img {
+    max-height: 350px;
+    min-width: 467px;
+}
+
+main div.columns > div:nth-child(even) > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main div.columns > div:nth-child(even) > div:first-child p {
+    text-align: center;
+}
+
+main div.columns > div:nth-child(even) > div:first-child img {
+    max-height: 350px;
+    min-width: 467px;
+}
 
 main div.columns > div{
     flex-direction: column;
@@ -28,3 +65,9 @@ main div.columns > div{
         padding: 16px;
     }     
 }
+
+main .columns-container {
+    background-color: #f5f5f5;
+    padding-left: 16.5px;
+    padding-right: 16.5px;
+  }
