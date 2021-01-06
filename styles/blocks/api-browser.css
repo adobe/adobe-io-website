@@ -33,3 +33,7 @@ main .api-browser .api-cards .api-card .api-icon {
 main .api-browser .filters {
     width: 300px;
 }
+
+main .api-browser h2{
+    text-align: center;
+}

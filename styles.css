@@ -288,3 +288,12 @@ main div.embed-container {
 	max-width: 640px;
 	margin: auto;
 }
+
+main div.api-browser-container h2 {
+  text-align: center;
+  color: rgb(50,50,50);
+  font-family: adobe-clean-ux,adobe-clean,Source Sans Pro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;
+  font-size: 28px;
+	font-weight: 700;
+	line-height: 36.4px;
+}
