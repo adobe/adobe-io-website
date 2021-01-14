@@ -138,6 +138,32 @@ function decorateButtons() {
     $consoleButton.className='button secondary';
 }
   
+function decorateIframe() {
+  document.querySelectorAll(".iframe a").forEach(($a) => {
+
+    if ($a.textContent.startsWith("https://")) {
+      const url = new URL($a.href);
+
+      let embedHTML = `<div>
+      <iframe src="${$a.href}" style="border: 0; width: 100%; height: 100%; position: absolute;"></iframe>
+      </div>
+      `;
+
+      let type = "iframe";
+
+      if (type) {
+        const $embed = createTag("div", {
+          class: `embed embed-oembed embed-${type}`,
+        });
+        const $div = $a.closest("div");
+        $embed.innerHTML = embedHTML;
+        $div.parentElement.replaceChild($embed, $div);
+      }
+    }
+
+  });
+}
+
 function wrapSections(element) {
     document.querySelectorAll(element).forEach(($div) => {
         const $wrapper=createTag('div', { class: 'section-wrapper'});
@@ -290,6 +316,7 @@ async function decoratePage() {
     decorateBlocks();
     wrapSections('header>div, footer>div');
     decorateEmbeds();
+    decorateIframe();
     decorateButtons();
     decorateBackgroundImageBlocks();
     decorateAPIBrowser()
