@@ -65,7 +65,7 @@ function decorateBlocks() {
         const classes=Array.from($block.classList.values());
         if (classes[0]) {
             if (!classes.includes('embed')) {
-              loadCSS(`/styles/blocks/${classes[0]}.css`);
+              loadCSS(`/hlx_statics/blocks/${classes[0]}.css`);
               $block.closest('.section-wrapper').classList.add(`${classes[0]}-container`);  
             }
         }
@@ -214,7 +214,7 @@ function decorateColumns() {
       })  
       $section.firstChild.append($columns);
       $section.classList.add('columns-container');
-      loadCSS(`/styles/blocks/columns.css`);
+      loadCSS(`/hlx_statics/blocks/columns.css`);
     }
   })
 }
