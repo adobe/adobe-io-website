@@ -182,12 +182,25 @@ function decorateHero() {
 
   const $innerDiv = $heroSection.firstElementChild;
   const $firstChild = $innerDiv.firstElementChild;
-  const $heroImg = $firstChild.querySelector("img");
-  if ($heroImg) {
-    $heroSection.style.backgroundImage = `url('${$heroImg.src}')`;
-    $heroImg.remove();
-  }
+
+  // take everything but the img and put it in the five columnn
+  const $heroNonImgContent = $firstChild.querySelectorAll(":not(img)");
+  const $heroNonImgContentContainer = createTag('div', { class: 'five-columns'}); 
+
+  // take the img and put it in the seven column
+  const $heroImgOnly = $firstChild.querySelector("img:not(.icon)");
+
+  const $heroImgOnlyContainer = createTag('div', { class: 'seven-columns'}); 
+  $heroImgOnlyContainer.append($heroImgOnly);
+
+
+  $heroNonImgContentContainer.append(...$heroNonImgContent);
+
+  $firstChild.append($heroNonImgContentContainer);
+  $firstChild.append($heroImgOnlyContainer);
+
   $heroSection.classList.add("hero");
+  loadCSS(`/hlx_statics/blocks/hero.css`);
 }
 
 function decorateColumns() {
