@@ -1,32 +1,32 @@
 main div.cards {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     background-color: #fff;
 } 
 
-main div.cards > div{
+main div.cards > div {
     display: flex;
     flex-direction: column;
-    width: 33%;
-    padding: 32px;
-    min-width: 432px;
     text-align: center;
+    width: 25%;
 } 
 
-main div.cards > div img{
+main div.cards > div img {
     height: 80px;
 } 
 
-main div.cards > div p{
-    color: rgb(80,80,80);
-    line-height: 24px;
-} 
-
 main div.cards > div h3 {
-    color: rgb(50,50,50);
+    color: #2c2c2c;
     font-weight: 700;
     font-size: 22px;
-    line-height: 28.6px;
+    line-height: 33px;
 } 
+
+main div.cards > div p {
+    color: #4b4b4b;
+    line-height: 24px;
+    font-size: 16px;
+} 
+
+
