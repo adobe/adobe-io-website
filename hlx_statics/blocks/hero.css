@@ -10,9 +10,8 @@ main div.hero {
 	color: #fff;
 }
 
-main div.hero > div > div {
+main div.hero > div {
   display: flex;
-  align-items: center;
 }
 
 main div.hero .five-columns {
@@ -36,6 +35,7 @@ main div.hero .heroIconContainer {
   width: 48px;
   height: 48px;
 }
+
 main div.hero .icon {
   width: 48px;
   height: 48px;

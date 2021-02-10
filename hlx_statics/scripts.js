@@ -191,30 +191,39 @@ function decorateHero() {
   const $heroSection = document.querySelector(".hero");
 
   const $innerDiv = $heroSection.firstElementChild;
-  const $firstChild = $innerDiv.firstElementChild;
+  const $firstHeroSection = $innerDiv.firstElementChild;
 
-  // fix up img icon 
-  const $heroIconElement = $firstChild.querySelector('.icon');
+  let $secondHeroSection;
+  if($heroSection.childNodes.length > 1) {
+    $secondHeroSection = $heroSection.childNodes[1].firstElementChild;
+  }
+
+  $firstHeroSection.classList.add('five-columns');
+  $secondHeroSection.classList.add('seven-columns');
+
+  // fix up img icon and add a class to it
+  const $heroIconElement = $firstHeroSection.querySelector('.icon');
   if ($heroIconElement) {
     $heroIconElement.parentElement.classList.add('heroIconContainer');
   }
 
-  // take everything but the img and put it in the five columnn
-  const $heroNonImgContent = $firstChild.querySelectorAll(":not(img)");
-  const $heroNonImgContentContainer = createTag('div', { class: 'five-columns'}); 
+  //flatten structure to consolidate first and second hero sections into one div
+  $innerDiv.append($secondHeroSection);
+  // take everything but the hero img and put it in the five columnn
+  // const $heroNonImgContent = $firstChild.querySelectorAll(":not(img)");
+  // const $heroNonImgContentContainer = createTag('div', { class: 'five-columns'}); 
 
   // take the img and put it in the seven column
-  const $heroImgOnly = $firstChild.querySelector("img:not(.icon)");
-  const $heroImgOnlyContainer = createTag('div', { class: 'seven-columns'}); 
-  $heroImgOnlyContainer.append($heroImgOnly);
+  // const $heroImgOnly = $firstChild.querySelector("img:not(.icon)");
+  // const $heroImgOnlyContainer = createTag('div', { class: 'seven-columns'}); 
+  // $heroImgOnlyContainer.append($heroImgOnly);
 
+  // $heroNonImgContentContainer.append(...$heroNonImgContent);
 
-  $heroNonImgContentContainer.append(...$heroNonImgContent);
+  // $firstChild.append($heroNonImgContentContainer);
+  // $firstChild.append($heroImgOnlyContainer);
 
-  $firstChild.append($heroNonImgContentContainer);
-  $firstChild.append($heroImgOnlyContainer);
-
-  removeEmptyPTags($firstChild);
+  removeEmptyPTags($firstHeroSection);
 
   $heroSection.classList.add("hero");
   loadCSS(`/hlx_statics/blocks/hero.css`);
