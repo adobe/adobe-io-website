@@ -315,12 +315,13 @@ async function decoratePage() {
     decorateHero();
     decorateBlocks();
     wrapSections('header>div, footer>div');
-    decorateEmbeds();
-    decorateIframe();
-    decorateButtons();
-    decorateBackgroundImageBlocks();
-    decorateAPIBrowser()
-    decorateColumns();
+    
+    // decorateEmbeds();
+    // decorateIframe();
+    // decorateButtons();
+    // decorateBackgroundImageBlocks();
+    // decorateAPIBrowser()
+    // decorateColumns();
 }
 
 decoratePage(); 
