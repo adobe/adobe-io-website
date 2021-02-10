@@ -1,36 +1,60 @@
 
 main div.hero {
-	display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   width: 100%;
+  max-height: 500px;
+  padding: 0;
+  margin: 0;
 }
 
 main div.hero {
-	color: white;
-	background-size: cover;
-	text-align: center;
-	padding: 1em;
-	background-position: center center;
+	color: #fff;
 }
 
-main div.hero>div {
+main div.hero > div > div {
   display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 1;
+  align-items: center;
+}
+
+main div.hero .five-columns {
+  padding-left: 64px;
+  flex-grow: 5;
+  flex-shrink: 5;
+  flex-basis: 0;
+  max-height: 500px
+}
+
+main div.hero .seven-columns {
+  flex-grow: 7;
+  flex-shrink: 7;
+  flex-basis: 0;
+  max-height: 500px
+}
+
+main div.hero .heroIconContainer {
+  padding: 0;
+  margin: 0;
+  width: 48px;
+  height: 48px;
+}
+main div.hero .icon {
+  width: 48px;
+  height: 48px;
 }
 
 main div.hero h1 {
   font-family: "Adobe Clean Serif", "adobe-clean-serif", serif;
-	font-size: 45px;
-	font-weight: 700;
+  font-size: 45px;
+  line-height: 54px;
+  color: #323232;
+  font-weight: 900;
+  margin: 0;
+  padding: 24px 0 16px 0;
 }
 
 main div.hero p {
-	display: block;
 	font-size: 18px;
-	font-weight: 400;
-	line-height: 27px;
-
+  line-height: 27px;
+  color: #323232;
+  margin: 0;
+  padding: 0 0 24px 0;
 }

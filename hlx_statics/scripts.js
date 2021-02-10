@@ -50,6 +50,16 @@ function tableToDivs($table) {
   return $block;
 }
 
+function removeEmptyPTags($theElement){
+  const $pElements = $theElement.querySelectorAll('p');
+  $pElements.forEach(function($theElement){
+    // get rid of empty p tags
+    if(!$theElement.hasChildNodes()){
+      $theElement.remove();
+    }
+  })
+}
+
 function decorateTables() {
   document.querySelectorAll("main div>table").forEach(($table) => {
     const $div = tableToDivs($table);
@@ -183,13 +193,18 @@ function decorateHero() {
   const $innerDiv = $heroSection.firstElementChild;
   const $firstChild = $innerDiv.firstElementChild;
 
+  // fix up img icon 
+  const $heroIconElement = $firstChild.querySelector('.icon');
+  if ($heroIconElement) {
+    $heroIconElement.parentElement.classList.add('heroIconContainer');
+  }
+
   // take everything but the img and put it in the five columnn
   const $heroNonImgContent = $firstChild.querySelectorAll(":not(img)");
   const $heroNonImgContentContainer = createTag('div', { class: 'five-columns'}); 
 
   // take the img and put it in the seven column
   const $heroImgOnly = $firstChild.querySelector("img:not(.icon)");
-
   const $heroImgOnlyContainer = createTag('div', { class: 'seven-columns'}); 
   $heroImgOnlyContainer.append($heroImgOnly);
 
@@ -198,6 +213,8 @@ function decorateHero() {
 
   $firstChild.append($heroNonImgContentContainer);
   $firstChild.append($heroImgOnlyContainer);
+
+  removeEmptyPTags($firstChild);
 
   $heroSection.classList.add("hero");
   loadCSS(`/hlx_statics/blocks/hero.css`);
