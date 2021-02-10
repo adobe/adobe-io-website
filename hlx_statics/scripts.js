@@ -196,6 +196,8 @@ function decorateHero() {
   let $secondHeroSection;
   if($heroSection.childNodes.length > 1) {
     $secondHeroSection = $heroSection.childNodes[1].firstElementChild;
+  } else {
+    // TODO: handle not having an image in table gracefully
   }
 
   $firstHeroSection.classList.add('five-columns');
@@ -207,23 +209,15 @@ function decorateHero() {
     $heroIconElement.parentElement.classList.add('heroIconContainer');
   }
 
-  //flatten structure to consolidate first and second hero sections into one div
+  // flatten structure to consolidate first and second hero sections into one div
   $innerDiv.append($secondHeroSection);
-  // take everything but the hero img and put it in the five columnn
-  // const $heroNonImgContent = $firstChild.querySelectorAll(":not(img)");
-  // const $heroNonImgContentContainer = createTag('div', { class: 'five-columns'}); 
 
-  // take the img and put it in the seven column
-  // const $heroImgOnly = $firstChild.querySelector("img:not(.icon)");
-  // const $heroImgOnlyContainer = createTag('div', { class: 'seven-columns'}); 
-  // $heroImgOnlyContainer.append($heroImgOnly);
-
-  // $heroNonImgContentContainer.append(...$heroNonImgContent);
-
-  // $firstChild.append($heroNonImgContentContainer);
-  // $firstChild.append($heroImgOnlyContainer);
-
-  removeEmptyPTags($firstHeroSection);
+  // find the primary link and apply style
+  const primaryLink = $firstHeroSection.querySelector('p > strong');
+  if(primaryLink) {
+    primaryLink.parentElement.classList.add('heroPrimaryLink')
+  }
+  removeEmptyPTags($heroSection);
 
   $heroSection.classList.add("hero");
   loadCSS(`/hlx_statics/blocks/hero.css`);
@@ -376,7 +370,7 @@ async function decoratePage() {
   wrapSections("header>div, footer>div");
   // decorateEmbeds();
   // decorateIframe();
-  // decorateButtons();
+  decorateButtons();
   // decorateBackgroundImageBlocks();
   // decorateAPIBrowser()
   // decorateColumns();

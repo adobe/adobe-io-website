@@ -232,7 +232,7 @@ main .icon {
 
 .button.secondary {
 	background-color: transparent;
-	border-color: #505050;
+  border-style: none;
 	color: #505050;
 }
 

@@ -58,3 +58,8 @@ main div.hero p {
   margin: 0;
   padding: 0 0 24px 0;
 }
+
+main div.hero .heroPrimaryLink {
+  float: left;
+  padding-right: 16px;
+}
