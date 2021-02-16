@@ -10,6 +10,7 @@ main div.cards > div {
     flex-direction: column;
     text-align: center;
     width: 25%;
+    height: 250px;
 } 
 
 main div.cards > div img {

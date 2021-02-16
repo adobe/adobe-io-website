@@ -72,14 +72,10 @@ function decorateBlocks() {
     .querySelectorAll("main>div.section-wrapper>div>div")
     .forEach(($block) => {
       const classes = Array.from($block.classList.values());
-      if (classes[0]) {
-        if (!classes.includes("embed")) {
-          loadCSS(`/hlx_statics/blocks/${classes[0]}.css`);
-          $block
-            .closest(".section-wrapper")
-            .classList.add(`${classes[0]}-container`);
-        }
-      }
+      loadCSS(`/hlx_statics/blocks/${classes[0]}.css`);
+      $block
+        .closest(".section-wrapper")
+        .classList.add(`${classes[0]}-container`);
     });
 }
 
@@ -105,32 +101,8 @@ function decorateBackgroundImageBlocks() {
 }
 
 function decorateEmbeds() {
-  document.querySelectorAll("a[href]").forEach(($a) => {
-    if ($a.textContent.startsWith("https://")) {
-      const url = new URL($a.href);
-      const usp = new URLSearchParams(url.search);
-      let embedHTML = "";
-      let type = "";
-
-      if ($a.href.startsWith("https://www.youtube.com/watch")) {
-        const vid = usp.get("v");
-
-        type = "youtube";
-        embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-          <iframe src="https://www.youtube.com/embed/${vid}?rel=0&amp;v=${vid}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen="" scrolling="no" allow="encrypted-media; accelerometer; gyroscope; picture-in-picture" title="content from youtube" loading="lazy"></iframe>
-          </div>
-        `;
-      }
-
-      if (type) {
-        const $embed = createTag("div", {
-          class: `embed embed-oembed embed-${type}`,
-        });
-        const $div = $a.closest("div");
-        $embed.innerHTML = embedHTML;
-        $div.parentElement.replaceChild($embed, $div);
-      }
-    }
+  document.querySelectorAll("div.embed > iframe").forEach(($a) => {
+    // TODO: figure out height. iframe comes in with a set height/width
   });
 }
 
@@ -311,7 +283,6 @@ function displayFilteredCards(catalog, $cards, buttons, limit, filters) {
         <p>${buttonsHtml}</p>
       </div>          
     `;
-      console.log(card);
       $cards.append($card);
       counter++;
     }
@@ -368,12 +339,12 @@ async function decoratePage() {
   decorateHero();
   decorateBlocks();
   wrapSections("header>div, footer>div");
-  // decorateEmbeds();
+  decorateEmbeds();
   // decorateIframe();
   decorateButtons();
   // decorateBackgroundImageBlocks();
   // decorateAPIBrowser()
-  // decorateColumns();
+  decorateColumns();
 }
 
 decoratePage();
