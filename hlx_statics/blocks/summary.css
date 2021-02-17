@@ -1,0 +1,7 @@
+main div.summary {
+  width: 100%;
+  min-height: 500px;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+}

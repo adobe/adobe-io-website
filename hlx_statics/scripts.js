@@ -312,7 +312,6 @@ function displayFilteredCards(catalog, $cards, buttons, limit, filters) {
 }
 
 function decorateAPIBrowser() {
-  console.log('fetch api')
   document.querySelectorAll(".api-browser").forEach(async ($apiBrowser) => {
     const config = readBlockConfig($apiBrowser);
     window.aio = window.aio || {};
@@ -356,6 +355,14 @@ function decorateAPIBrowser() {
   });
 }
 
+function decorateSummary() {
+  document.querySelectorAll(".summary").forEach(($summary) => {
+    $backgroundImg = $summary.querySelector('img');
+    $summary.style.backgroundImage = 'url('+ $backgroundImg.src + ')';
+    $backgroundImg.remove();
+  });
+}
+
 async function decoratePage() {
   decorateTables();
   wrapSections("main>div");
@@ -367,7 +374,7 @@ async function decoratePage() {
   decorateButtons();
   // decorateBackgroundImageBlocks();
   decorateAPIBrowser()
-  //decorateColumns();
+  decorateSummary();
 }
 
 decoratePage();
