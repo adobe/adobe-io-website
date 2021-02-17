@@ -7,13 +7,16 @@ main div.columns {
 main div.columns > div{
     display: flex;
     flex-direction: row;
+    padding-left: 60px;
+    padding-right: 60px;
 } 
 
 main div.columns > div > div{
     flex-grow: 6;
     flex-shrink: 6;
     flex-basis: 0;
-    max-height: 350px;
+    padding-left: 32px;
+    padding-right: 32px;
 } 
 
 main div.columns > div p {
@@ -24,7 +27,7 @@ main div.columns > div p {
 } 
 
 
-main div.columns > div h3 {
+main div.columns-dark > div h3 {
     font-size: 22px;
     color: rgb(44, 44, 44);
     font-weight: 700;
@@ -32,54 +35,40 @@ main div.columns > div h3 {
 
 }
 
-
-/* 
-main div.columns > div:nth-child(odd) > div:first-child p {
-    text-align: center;
-}
-
-main div.columns > div:nth-child(odd) > div:first-child img {
-    max-height: 350px;
-    min-width: 467px;
-}
-
-main div.columns > div:nth-child(even) > div {
+main div.columns-dark {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-}
-
-main div.columns > div:nth-child(even) > div:first-child p {
-    text-align: center;
-}
-
-main div.columns > div:nth-child(even) > div:first-child img {
-    max-height: 350px;
-    min-width: 467px;
-}
-
-main div.columns > div{
-    flex-direction: column;
+    width: 100%;
 } 
 
-@media (min-width:1000px) {
-    main div.columns > div{
-        flex-direction: row;
-    } 
+main div.columns-dark > div{
+    display: flex;
+    flex-direction: row;
+    padding-left: 60px;
+    padding-right: 60px;
+} 
 
-    main div.columns > div > div {
-        width: 50%;
-        padding: 16px;
-    }
+main div.columns-dark > div > div{
+    flex-grow: 6;
+    flex-shrink: 6;
+    flex-basis: 0;
+    padding-left: 32px;
+    padding-right: 32px;
+} 
 
-    main div.columns > div:nth-child(even){
-        flex-direction: row-reverse;
-    } 
+main div.columns-dark > div p {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(75, 75, 75);
+    line-height: 24px;
+} 
+
+
+main div.columns-dark > div h3 {
+    font-size: 22px;
+    color: rgb(44, 44, 44);
+    font-weight: 700;
+    line-height: 28.6px;
 
 }
 
-main .columns-container {
-    background-color: #f5f5f5;
-    padding-left: 16.5px;
-    padding-right: 16.5px;
-  } */

@@ -189,7 +189,15 @@ footer>div:nth-of-type(2) div > ul > li a {
 
 main .section-wrapper > div {
     margin: auto;
-    margin-top: 12px;
+    padding-top: 60px;
+}
+
+main .section-wrapper > div > h3 {
+  text-align: center
+}
+
+main .section-wrapper > div > p {
+  text-align: center
 }
 
 main a:any-link {

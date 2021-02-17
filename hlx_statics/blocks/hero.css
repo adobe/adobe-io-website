@@ -16,6 +16,7 @@ main div.hero > div {
 
 main div.hero .five-columns {
   padding-left: 64px;
+  padding-right: 32px;
   flex-grow: 5;
   flex-shrink: 5;
   flex-basis: 0;
