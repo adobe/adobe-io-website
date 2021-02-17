@@ -1,0 +1,20 @@
+main div.embed-container {
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  display: flex;
+  text-align: center;
+}
+
+main div.embed-container > div h3 {
+  color: #2c2c2c;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 33px;
+} 
+
+main div.embed-container > div p {
+  color: #4b4b4b;
+  line-height: 24px;
+  font-size: 16px;
+} 

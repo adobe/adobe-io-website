@@ -189,6 +189,7 @@ footer>div:nth-of-type(2) div > ul > li a {
 
 main .section-wrapper > div {
     margin: auto;
+    margin-top: 12px;
 }
 
 main a:any-link {
