@@ -145,8 +145,9 @@ function decorateButtons() {
     }
   });
 
-  const $consoleButton = document.querySelector("header p:last-child a");
-  $consoleButton.className = "button secondary";
+  // TODO: move this in header decoration
+  // const $consoleButton = document.querySelector("header p:last-child a");
+  // $consoleButton.className = "button secondary";
 }
 
 function decorateIframe() {
@@ -311,6 +312,40 @@ function displayFilteredCards(catalog, $cards, buttons, limit, filters) {
   });
 }
 
+function decorateHeader() {
+  //   <p><img class="icon icon-adobe" src="/icons/adobe.svg" alt="adobe icon"> Adobe I/O</p>
+  // <ul>
+  // <li><a href="https://www.adobe.io/apis">Discover</a></li>
+  // <li><a href="https://www.adobe.io/open">Open Source</a></li>
+  // <li><a href="https://medium.com/adobetech">Blog</a></li>
+  // </ul>
+  // <p><strong><a href="https://console.adobe.io/" class="button secondary">Console</a></strong></p>
+  let $header = document.querySelector('header');
+
+
+  let $pContainer = document.createElement('p');
+  let $pContent = document.createTextNode('Adobe I/O');
+  let $imgContainer = document.createElement('img');
+
+  $imgContainer.classList.add('icon', 'icon-adobe');
+  $imgContainer.src = '/icons/adobe.svg';
+  $imgContainer.alt = 'adobe icon';
+
+  $pContainer.appendChild($imgContainer);
+  $pContainer.appendChild($pContent);
+
+  let $ulContainer = document.createElement('ul');
+
+  document.querySelectorAll(".nav a").forEach(($item) => {
+    let $liContainer = document.createElement('li');
+    $liContainer.appendChild($item);
+    $ulContainer.appendChild($liContainer);
+  });
+
+  $header.appendChild($pContainer);
+  $header.appendChild($ulContainer);
+}
+
 function decorateAPIBrowser() {
   document.querySelectorAll(".api-browser").forEach(async ($apiBrowser) => {
     const config = readBlockConfig($apiBrowser);
@@ -371,11 +406,12 @@ function decorateResourceCards() {
       const $newResourceSmallContainer = $resourceSmallChildParent.appendChild(document.createElement('div'));
       for(var i =0;i<$resourceSmallChildren.length;i++){
         $newResourceSmallContainer.appendChild($resourceSmallChildren[i]);
-        //$resourceSmallChildren[i].remove();
       }
-      $newResourceSmallContainer.classList.add('.resource-card-small-container-inner');
+      $newResourceSmallContainer.classList.add('resource-card-small-container-inner');
     }
   });
+
+
 }
 
 function decorateSummary() {
@@ -392,6 +428,7 @@ async function decoratePage() {
   decorateHero();
   decorateBlocks();
   wrapSections("header>div, footer>div");
+  decorateHeader();
   decorateEmbeds();
   // decorateIframe();
   decorateButtons();
