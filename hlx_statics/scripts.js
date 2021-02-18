@@ -355,6 +355,29 @@ function decorateAPIBrowser() {
   });
 }
 
+function decorateResourceCards() {
+  document.querySelectorAll('.resource-card-large').forEach(($resourceLarge) => {
+    removeEmptyPTags($resourceLarge);
+  });
+
+  document.querySelectorAll('.resource-card-small').forEach(($resourceSmall) => {
+    removeEmptyPTags($resourceSmall);
+  });
+
+  document.querySelectorAll('.resource-card-small-container').forEach(($resourceSmallContainers) => {
+    $resourceSmallChildren = $resourceSmallContainers.querySelectorAll('.resource-card-small');
+    if($resourceSmallChildren.length > 0) {
+      const $resourceSmallChildParent = $resourceSmallChildren[0].parentElement;
+      const $newResourceSmallContainer = $resourceSmallChildParent.appendChild(document.createElement('div'));
+      for(var i =0;i<$resourceSmallChildren.length;i++){
+        $newResourceSmallContainer.appendChild($resourceSmallChildren[i]);
+        //$resourceSmallChildren[i].remove();
+      }
+      $newResourceSmallContainer.classList.add('.resource-card-small-container-inner');
+    }
+  });
+}
+
 function decorateSummary() {
   document.querySelectorAll(".summary").forEach(($summary) => {
     $backgroundImg = $summary.querySelector('img');
@@ -374,6 +397,7 @@ async function decoratePage() {
   decorateButtons();
   // decorateBackgroundImageBlocks();
   decorateAPIBrowser()
+  decorateResourceCards();
   decorateSummary();
 }
 

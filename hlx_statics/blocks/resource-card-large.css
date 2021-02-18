@@ -1,0 +1,5 @@
+main div.resource-card-large > div{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #eaeaea;
+} 
