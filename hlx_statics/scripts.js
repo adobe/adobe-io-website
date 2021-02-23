@@ -133,7 +133,7 @@ function decorateButtons() {
     const $up = $a.parentElement;
     const $twoup = $a.parentElement.parentElement;
     if ($up.childNodes.length == 1 && $up.tagName == "P") {
-      $a.className = "button secondary";
+      $a.classList.add('button', 'secondary');
     }
     if (
       $up.childNodes.length == 1 &&
@@ -218,11 +218,18 @@ function decorateHero() {
   $secondHeroSectionDivContainer.append(...$secondHeroSection.childNodes);
   $secondHeroSection.append($secondHeroSectionDivContainer);
 
-  // find the primary link and apply style
-  const primaryLink = $firstHeroSection.querySelector('p > strong');
-  if(primaryLink) {
-    primaryLink.parentElement.classList.add('heroPrimaryLink')
+  // fix up button styling
+  const $primaryLink = $firstHeroSection.querySelector('p > strong');
+  if($primaryLink) {
+    $primaryLink.parentElement.classList.add('heroPrimaryLink')
   }
+
+  const $secondaryLink = $firstHeroSection.querySelector('p > a');
+  if($secondaryLink) {
+    console.log($secondaryLink)
+    $secondaryLink.classList.add('quiet');
+  }
+
   removeEmptyPTags($heroSection);
 
   // remove padding top applied to sections
@@ -326,13 +333,7 @@ function displayFilteredCards(catalog, $cards, buttons, limit, filters) {
 }
 
 function decorateHeader() {
-  //   <p><img class="icon icon-adobe" src="/icons/adobe.svg" alt="adobe icon"> Adobe I/O</p>
-  // <ul>
-  // <li><a href="https://www.adobe.io/apis">Discover</a></li>
-  // <li><a href="https://www.adobe.io/open">Open Source</a></li>
-  // <li><a href="https://medium.com/adobetech">Blog</a></li>
-  // </ul>
-  // <p><strong><a href="https://console.adobe.io/" class="button secondary">Console</a></strong></p>
+  // TODO need to implement top level nav
   let $header = document.querySelector('header');
 
 
@@ -369,6 +370,15 @@ function decorateHeader() {
   $pContainer.appendChild($strong);
 
   $header.appendChild($pContainer);
+}
+
+function decorateAnnouncement() {
+  document.querySelectorAll(".announcement").forEach(($announcement) => {
+    removeEmptyPTags($announcement);
+    $announcement.querySelectorAll('br').forEach(($br) => {
+      $br.remove();
+    });
+  });
 }
 
 function decorateAPIBrowser() {
@@ -458,6 +468,7 @@ async function decoratePage() {
   // decorateIframe();
   decorateButtons();
   // decorateBackgroundImageBlocks();
+  decorateAnnouncement();
   decorateAPIBrowser()
   decorateResourceCards();
   decorateSummary();

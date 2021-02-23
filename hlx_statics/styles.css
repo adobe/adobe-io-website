@@ -233,6 +233,12 @@ main .icon {
 
 .button.secondary {
 	background-color: transparent;
+  border-color: #505050;
+	color: #505050;
+}
+
+.button.secondary.quiet {
+	background-color: transparent;
   border-style: none;
 	color: #505050;
 }
