@@ -145,9 +145,9 @@ function decorateButtons() {
     }
   });
 
-  // TODO: move this in header decoration
-  // const $consoleButton = document.querySelector("header p:last-child a");
-  // $consoleButton.className = "button secondary";
+
+  const $consoleButton = document.querySelector("header p:last-child a");
+  $consoleButton.className = "button secondary";
 }
 
 function decorateIframe() {
@@ -207,6 +207,17 @@ function decorateHero() {
   // flatten structure to consolidate first and second hero sections into one div
   $innerDiv.append($secondHeroSection);
 
+  // put all content within their columns inner container
+  let $firstHeroSectionDivContainer = document.createElement('div');
+  $firstHeroSectionDivContainer.classList.add('five-columns-inner');
+  $firstHeroSectionDivContainer.append(...$firstHeroSection.childNodes);
+  $firstHeroSection.append($firstHeroSectionDivContainer);
+
+  let $secondHeroSectionDivContainer = document.createElement('div');
+  $secondHeroSectionDivContainer.classList.add('seven-columns-inner');
+  $secondHeroSectionDivContainer.append(...$secondHeroSection.childNodes);
+  $secondHeroSection.append($secondHeroSectionDivContainer);
+
   // find the primary link and apply style
   const primaryLink = $firstHeroSection.querySelector('p > strong');
   if(primaryLink) {
@@ -214,6 +225,8 @@ function decorateHero() {
   }
   removeEmptyPTags($heroSection);
 
+  // remove padding top applied to sections
+  $heroSection.parentElement.style.paddingTop = 0;
   $heroSection.classList.add("hero");
   loadCSS(`/hlx_statics/blocks/hero.css`);
 }
@@ -344,6 +357,18 @@ function decorateHeader() {
 
   $header.appendChild($pContainer);
   $header.appendChild($ulContainer);
+
+  let $aLink = document.createElement('a');
+  $aLink.href = 'https://console.adobe.io/';
+  $aLink.textContent = 'Console';
+
+  let $strong = document.createElement('strong');
+  $strong.appendChild($aLink);
+
+  $pContainer = document.createElement('p');
+  $pContainer.appendChild($strong);
+
+  $header.appendChild($pContainer);
 }
 
 function decorateAPIBrowser() {

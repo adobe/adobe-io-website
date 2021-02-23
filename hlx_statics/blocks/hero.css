@@ -1,7 +1,6 @@
 
 main div.hero {
   width: 100%;
-  max-height: 500px;
   padding: 0;
   margin: 0;
 }
@@ -17,17 +16,15 @@ main div.hero > div {
 main div.hero .five-columns {
   padding-left: 64px;
   padding-right: 32px;
-  flex-grow: 5;
-  flex-shrink: 5;
-  flex-basis: 0;
-  max-height: 500px
+  flex-basis: 41.6666%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+
 main div.hero .seven-columns {
-  flex-grow: 7;
-  flex-shrink: 7;
-  flex-basis: 0;
-  max-height: 500px
+  flex-basis: 58.3333%;
 }
 
 main div.hero .heroIconContainer {
