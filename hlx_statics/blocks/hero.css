@@ -55,6 +55,7 @@ main div.hero p {
   color: #323232;
   margin: 0;
   padding: 0 0 24px 0;
+  text-align: left;
 }
 
 main div.hero .heroPrimaryLink {

@@ -333,9 +333,7 @@ function displayFilteredCards(catalog, $cards, buttons, limit, filters) {
 }
 
 function decorateHeader() {
-  // TODO need to implement top level nav
   let $header = document.querySelector('header');
-
 
   let $pContainer = document.createElement('p');
   let $pContent = document.createTextNode('Adobe I/O');
@@ -370,6 +368,9 @@ function decorateHeader() {
   $pContainer.appendChild($strong);
 
   $header.appendChild($pContainer);
+  
+  const $navContainer = document.querySelector('.nav');
+  $navContainer.remove();
 }
 
 function decorateAnnouncement() {
@@ -425,6 +426,36 @@ function decorateAPIBrowser() {
   });
 }
 
+function decorateCards() {
+  document.querySelectorAll('.cards').forEach(($card) => {
+    removeEmptyPTags($card);
+  });
+}
+
+function decorateColumns() {
+  document.querySelectorAll('.columns').forEach(($column) => {
+    removeEmptyPTags($column);
+
+    $column.querySelectorAll('img + a').forEach(($productLink) => {
+      // this is annoying - sometimes it's wrapper is in p and sometimes not?
+      // is it when gdoc has two icons in a row that p will be used?
+      if($productLink.parentElement.tagName === 'P') {
+        $productLink.parentElement.classList.add('product-link');
+      } else {
+        let $pContainer = createTag('p', { class: 'product-link'});
+
+        let $newImg = $productLink.previousSibling.previousSibling.cloneNode(true);
+        let $newP = $productLink.cloneNode(true);
+
+        $pContainer.append($newImg);
+        $pContainer.append($newP);
+        $productLink.previousSibling.previousSibling.remove();
+        $productLink.parentNode.replaceChild($pContainer, $productLink);
+      }
+    });
+  });
+}
+
 function decorateResourceCards() {
   document.querySelectorAll('.resource-card-large').forEach(($resourceLarge) => {
     removeEmptyPTags($resourceLarge);
@@ -467,7 +498,8 @@ async function decoratePage() {
   decorateEmbeds();
   // decorateIframe();
   decorateButtons();
-  // decorateBackgroundImageBlocks();
+  decorateCards();
+  decorateColumns();
   decorateAnnouncement();
   decorateAPIBrowser()
   decorateResourceCards();
