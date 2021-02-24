@@ -238,47 +238,6 @@ function decorateHero() {
   loadCSS(`/hlx_statics/blocks/hero.css`);
 }
 
-function decorateColumns() {
-  document.querySelectorAll("main > .section-wrapper").forEach(($section) => {
-    if (
-      $section.className == "section-wrapper" &&
-      ($section.querySelector('p > img[src^="/hlx_"]') ||
-        $section.querySelector("div.embed"))
-    ) {
-      const $columns = createTag("div", { class: "columns" });
-      const $children = Array.from($section.children[0].children);
-      let $currentRow;
-      let $secondCol = createTag("div");
-      $children.forEach(($child) => {
-        if (
-          ($child.tagName == "P" &&
-            $child.querySelector('img[src^="/hlx_"]')) ||
-          ($child.tagName == "DIV" && $child.classList.contains("embed"))
-        ) {
-          if ($currentRow) {
-            $currentRow.append($secondCol);
-            $columns.append($currentRow);
-            $secondCol = createTag("div");
-          }
-          $currentRow = createTag("div");
-          const $firstCol = createTag("div");
-          $firstCol.append($child);
-          $currentRow.append($firstCol);
-        } else {
-          $secondCol.append($child);
-        }
-        if ($currentRow) {
-          $currentRow.append($secondCol);
-          $columns.append($currentRow);
-        }
-      });
-      $section.firstChild.append($columns);
-      $section.classList.add("columns-container");
-      loadCSS(`/hlx_statics/blocks/columns.css`);
-    }
-  });
-}
-
 function readBlockConfig($block) {
   const config = {};
   $block.querySelectorAll(":scope>div").forEach(($row) => {
@@ -453,6 +412,34 @@ function decorateColumns() {
         $productLink.parentNode.replaceChild($pContainer, $productLink);
       }
     });
+
+    $column.childNodes.forEach(($row) => {
+      if($row.childNodes.length > 1) {
+        let $textColumnContainer = createTag('div', { class : 'columns-text'});
+
+        // find the text column in the row and wrap it
+        let $cloneNodes;
+        if($row.childNodes[0].textContent.length > 0) {
+          $cloneNodes = $row.childNodes[0].cloneNode(true);
+          $textColumnContainer.append($cloneNodes); 
+          $row.replaceChild($textColumnContainer, $row.childNodes[0]);
+        } else if($row.childNodes[1].textContent.length > 0) {
+          $cloneNodes = $row.childNodes[1].cloneNode(true);
+          $textColumnContainer.append($cloneNodes); 
+          $row.replaceChild($textColumnContainer, $row.childNodes[1]);
+        }
+      } 
+    });
+  });
+
+  document.querySelectorAll('.columns-dark').forEach(($column) => {
+    removeEmptyPTags($column);
+
+    // re-wrap second container so it's easier to vertically align
+    let $secondColumn = $column.querySelector('div > div:nth-child(2)');
+    let $secondColumnContainer = createTag('div', { class : 'columns-dark-second-column'});
+    $secondColumnContainer.append($secondColumn);
+    $column.querySelector('div').append($secondColumnContainer);
   });
 }
 

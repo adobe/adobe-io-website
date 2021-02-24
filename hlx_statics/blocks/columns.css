@@ -17,11 +17,14 @@ main div.columns div:last-child {
 } 
 
 main div.columns > div > div{
-    flex-grow: 6;
-    flex-shrink: 6;
-    flex-basis: 0;
+    flex-basis: 50%;
     padding-left: 32px;
     padding-right: 32px;
+}
+
+main div.columns .columns-text{
+    display: flex;
+    align-items: center;
 } 
 
 main div.columns > div h3 {
@@ -61,35 +64,4 @@ main div.columns-dark {
     background-color: #252525;
     width: 100%;
 } 
-
-main div.columns-dark > div{
-    display: flex;
-    flex-direction: row;
-    padding-left: 60px;
-    padding-right: 60px;
-} 
-
-main div.columns-dark > div > div{
-    flex-grow: 6;
-    flex-shrink: 6;
-    flex-basis: 0;
-    padding-left: 32px;
-    padding-right: 32px;
-} 
-
-main div.columns-dark > div p {
-    font-size: 16px;
-    font-weight: 400;
-    color:#fff;
-    line-height: 24px;
-} 
-
-
-main div.columns-dark > div h3 {
-    font-size: 22px;
-    color:#fff;
-    font-weight: 700;
-    line-height: 28.6px;
-
-}
 
