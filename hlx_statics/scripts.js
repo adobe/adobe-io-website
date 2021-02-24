@@ -119,13 +119,23 @@ function decorateEmbeds() {
       }
   
       if (type) {
-        const $embed=createTag('div', {class: `embed embed-oembed embed-${type}`});
+        const $embed=createTag('div', {class: `embed embed-oembed embed-${type} column-embed`});
         const $div=$a.closest('div');
         $embed.innerHTML=embedHTML;
         $div.parentElement.replaceChild($embed, $div);
       }  
     }
   })
+
+  // helix auto injects youtube vids as a small thumbnail - make sure
+  // to take only the embeds not in the column view
+  document.querySelectorAll('.embed-youtube > iframe').forEach(($embed) => {
+    if(!$embed.parentElement.classList.contains('column-embed')){
+
+      $embed.setAttribute('height', '350px');
+      $embed.setAttribute('width', '100%');
+    }
+  });
 }
 
 function decorateButtons() {
@@ -417,7 +427,7 @@ function decorateColumns() {
       if($row.childNodes.length > 1) {
         let $textColumnContainer = createTag('div', { class : 'columns-text'});
 
-        // find the text column in the row and wrap it
+        // find the text column in the row and wrap it then insert it 
         let $cloneNodes;
         if($row.childNodes[0].textContent.length > 0) {
           $cloneNodes = $row.childNodes[0].cloneNode(true);
@@ -472,6 +482,7 @@ function decorateSummary() {
     $backgroundImg = $summary.querySelector('img');
     $summary.style.backgroundImage = 'url('+ $backgroundImg.src + ')';
     $backgroundImg.remove();
+    removeEmptyPTags($summary);
   });
 }
 

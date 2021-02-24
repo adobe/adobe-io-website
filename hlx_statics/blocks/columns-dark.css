@@ -26,6 +26,7 @@ main div.columns-dark .columns-dark-second-column p {
   color:#fff;
   line-height: 24px;
   text-align: left;
+  padding-bottom: 0;
 } 
 
 
@@ -36,3 +37,11 @@ main div.columns-dark .columns-dark-second-column h3 {
   line-height: 28.6px;
   text-align: left;
 }
+
+main div.columns-dark {
+  display: flex;
+  flex-direction: column;
+  background-color: #323232;
+  width: 100%;
+} 
+

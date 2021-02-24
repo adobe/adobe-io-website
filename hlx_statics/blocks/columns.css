@@ -57,11 +57,3 @@ main div.columns p.product-link {
 main div.columns p.product-link a {
     padding-left: 16px;
 }
-
-main div.columns-dark {
-    display: flex;
-    flex-direction: column;
-    background-color: #252525;
-    width: 100%;
-} 
-

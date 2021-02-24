@@ -37,3 +37,8 @@ main .api-browser .filters {
 main .api-browser h2{
     text-align: center;
 }
+
+main .api-browser p{
+    text-align: left;
+    padding-bottom: 0;
+}
