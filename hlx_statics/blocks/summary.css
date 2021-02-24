@@ -1,14 +1,16 @@
+main div.summary-container {
+  padding-top: 60px;
+}
+main div.summary-container > div {
+  padding-top: 0;
+}
+
 main div.summary {
   width: 100%;
-
   background-repeat: no-repeat;
   padding-left: 64px;
   padding-right: 32px;
   display: flex;
-}
-
-main div.summary-container > div {
-  padding-top: 0;
 }
 
 main div.summary > div {

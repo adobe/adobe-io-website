@@ -478,7 +478,7 @@ function decorateResourceCards() {
 }
 
 function decorateSummary() {
-  document.querySelectorAll(".summary").forEach(($summary) => {
+  document.querySelectorAll(".summary-container").forEach(($summary) => {
     $backgroundImg = $summary.querySelector('img');
     $summary.style.backgroundImage = 'url('+ $backgroundImg.src + ')';
     $backgroundImg.remove();
