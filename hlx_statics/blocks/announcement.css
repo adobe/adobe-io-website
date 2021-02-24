@@ -1,14 +1,14 @@
-main div.announcement {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  height: 170px;
+main div.announcement-container {
   background-color: #f5f5f5;
+}
+
+main div.announcement-container > div {
+  padding-top: 0 !important;
 } 
 
-main div.announcement > div {
-  margin-top: 32px;
-  margin-bottom: 32px; 
+main div.announcement {
+  padding-top: 32px;
+  padding-bottom: 32px;
 } 
 
 main div.announcement h3 {
@@ -25,5 +25,8 @@ main div.announcement p {
   line-height: 24px;
   color: #2c2c2c;
   margin: 0;
-  padding-bottom: 32px;
-} 
+}
+
+main div.announcement p.announce-link {
+  padding-bottom: 0;
+}

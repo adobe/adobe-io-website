@@ -231,12 +231,12 @@ function decorateHero() {
   // fix up button styling
   const $primaryLink = $firstHeroSection.querySelector('p > strong');
   if($primaryLink) {
-    $primaryLink.parentElement.classList.add('heroPrimaryLink')
+    $primaryLink.parentElement.classList.add('heroPrimaryLink');
   }
 
   const $secondaryLink = $firstHeroSection.querySelector('p > a');
   if($secondaryLink) {
-    console.log($secondaryLink)
+    $secondaryLink.parentElement.classList.add('heroSecondaryLink');
     $secondaryLink.classList.add('quiet');
   }
 
@@ -347,6 +347,9 @@ function decorateAnnouncement() {
     removeEmptyPTags($announcement);
     $announcement.querySelectorAll('br').forEach(($br) => {
       $br.remove();
+    });
+    $announcement.querySelectorAll('p a').forEach(($link) => {
+      $link.parentElement.classList.add('announce-link');
     });
   });
 }
