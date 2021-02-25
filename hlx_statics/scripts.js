@@ -486,7 +486,26 @@ function decorateSummary() {
     $summary.style.backgroundImage = 'url('+ $backgroundImg.src + ')';
     $backgroundImg.remove();
     removeEmptyPTags($summary);
+
+    // fix up button styling
+    const $primaryLink = $summary.querySelector('p > strong');
+    if($primaryLink) {
+      $primaryLink.parentElement.classList.add('summaryPrimaryLink');
+    }
+
+    const $secondaryLink = $summary.querySelector('p > a');
+    if($secondaryLink) {
+      $secondaryLink.parentElement.classList.add('summarySecondaryLink');
+    }
+
+    let $textContainer = $summary.querySelector('.summary > div > div')
+    let $linkContainer = createTag('div', {class: 'summary-link-container'});
+    $linkContainer.append($primaryLink.parentElement);
+    $linkContainer.append($secondaryLink.parentElement);
+    $textContainer.append($linkContainer);
   });
+
+
 }
 
 async function decoratePage() {

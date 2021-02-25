@@ -1,9 +1,11 @@
 main div.summary-container {
-  padding-top: 60px;
-  background-repeat: no-repeat-y;
+  background-repeat: no-repeat;
 }
+
+
 main div.summary-container > div {
-  padding-top: 0;
+  padding-top: 32px;
+  padding-bottom: 32px;
 }
 
 main div.summary {
@@ -30,4 +32,37 @@ main div.summary p {
   font-size: 16px;
   line-height: 27px;
   padding-bottom: 24px;
+}
+
+main div.summary .summary-link-container {
+  display: flex;
+}
+
+
+main div.summary .summaryPrimaryLink {
+  padding-bottom: 0;
+  padding-right: 16px;
+}
+
+main div.summary .summarySecondaryLink {
+  padding-bottom: 0;
+}
+
+
+main div.summary .summarySecondaryLink .button.secondary {
+	background-color: transparent;
+  border-color: #fff;
+	color: #fff;
+}
+
+main div.summary .summarySecondaryLink .button.secondary.quiet {
+	background-color: transparent;
+  border-style: none;
+	color: #fff;
+}
+
+main div.summary .summarySecondaryLink .button.secondary:hover {
+	background-color: #fff;
+	border-color: #fff;
+  color: #323232;
 }
