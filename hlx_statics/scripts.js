@@ -488,20 +488,20 @@ function decorateSummary() {
     removeEmptyPTags($summary);
 
     // fix up button styling
+    let $linkContainer = createTag('div', {class: 'summary-link-container'});
     const $primaryLink = $summary.querySelector('p > strong');
     if($primaryLink) {
       $primaryLink.parentElement.classList.add('summaryPrimaryLink');
+      $linkContainer.append($primaryLink.parentElement);
     }
 
     const $secondaryLink = $summary.querySelector('p > a');
     if($secondaryLink) {
       $secondaryLink.parentElement.classList.add('summarySecondaryLink');
+      $linkContainer.append($secondaryLink.parentElement);
     }
 
     let $textContainer = $summary.querySelector('.summary > div > div')
-    let $linkContainer = createTag('div', {class: 'summary-link-container'});
-    $linkContainer.append($primaryLink.parentElement);
-    $linkContainer.append($secondaryLink.parentElement);
     $textContainer.append($linkContainer);
   });
 

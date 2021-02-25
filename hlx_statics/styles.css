@@ -273,3 +273,14 @@ main div p {
   padding-bottom: 32px;
 } 
 
+.section-wrapper > div > p > img {
+  width: 75%;
+}
+
+.section-wrapper > div > p {
+  width: 75%;
+  margin: 0 auto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+}
