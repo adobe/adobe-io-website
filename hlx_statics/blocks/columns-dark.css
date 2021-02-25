@@ -12,7 +12,7 @@ main div.columns-dark > div > div {
   padding-right: 32px;
 } 
 
-main div.columns-dark .columns-dark-second-column {
+main div.columns-dark div.columns-text  {
   display: flex;
   align-items: center;
   flex-basis: 50%;
@@ -20,7 +20,7 @@ main div.columns-dark .columns-dark-second-column {
   padding-right: 32px;
 } 
 
-main div.columns-dark .columns-dark-second-column p {
+main div.columns-dark p {
   font-size: 16px;
   font-weight: 400;
   color:#fff;
@@ -30,7 +30,7 @@ main div.columns-dark .columns-dark-second-column p {
 } 
 
 
-main div.columns-dark .columns-dark-second-column h3 {
+main div.columns-dark div.columns-text h3 {
   font-size: 22px;
   color:#fff;
   font-weight: 700;

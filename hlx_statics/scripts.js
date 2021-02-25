@@ -449,10 +449,25 @@ function decorateColumns() {
     removeEmptyPTags($column);
 
     // re-wrap second container so it's easier to vertically align
-    let $secondColumn = $column.querySelector('div > div:nth-child(2)');
-    let $secondColumnContainer = createTag('div', { class : 'columns-dark-second-column'});
-    $secondColumnContainer.append($secondColumn);
-    $column.querySelector('div').append($secondColumnContainer);
+    $column.childNodes.forEach(($row) => {
+      if($row.childNodes.length > 1) {
+        let $textColumnContainer = createTag('div', { class : 'columns-text'});
+
+        // find the text column in the row and wrap it then insert it 
+        // may have to expand search to allow all media types instead of just iframe
+        let $cloneNodes;
+        if(!$row.childNodes[0].querySelector('iframe')) {
+          $cloneNodes = $row.childNodes[0].cloneNode(true);
+          $textColumnContainer.append($cloneNodes); 
+          $row.replaceChild($textColumnContainer, $row.childNodes[0]);
+
+        } else if(!$row.childNodes[1].querySelector('iframe')) {
+          $cloneNodes = $row.childNodes[1].cloneNode(true);
+          $textColumnContainer.append($cloneNodes); 
+          $row.replaceChild($textColumnContainer, $row.childNodes[1]);
+        }
+      } 
+    });
   });
 }
 
@@ -516,7 +531,6 @@ async function decoratePage() {
   wrapSections("header>div, footer>div");
   decorateHeader();
   decorateEmbeds();
-  // decorateIframe();
   decorateButtons();
   decorateCards();
   decorateColumns();
