@@ -9,7 +9,9 @@ main div.cards > div {
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 25%;
+    flex-basis: 25%;
+    margin-left: 32px;
+    margin-right: 32px;
     height: 250px;
 } 
 

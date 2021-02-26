@@ -119,13 +119,23 @@ function decorateEmbeds() {
       }
   
       if (type) {
-        const $embed=createTag('div', {class: `embed embed-oembed embed-${type}`});
+        const $embed=createTag('div', {class: `embed embed-oembed embed-${type} column-embed`});
         const $div=$a.closest('div');
         $embed.innerHTML=embedHTML;
         $div.parentElement.replaceChild($embed, $div);
       }  
     }
   })
+
+  // helix auto injects youtube vids as a small thumbnail - make sure
+  // to take only the embeds not in the column view
+  document.querySelectorAll('.embed-youtube > iframe').forEach(($embed) => {
+    if(!$embed.parentElement.classList.contains('column-embed')){
+
+      $embed.setAttribute('height', '350px');
+      $embed.setAttribute('width', '100%');
+    }
+  });
 }
 
 function decorateButtons() {
@@ -133,7 +143,7 @@ function decorateButtons() {
     const $up = $a.parentElement;
     const $twoup = $a.parentElement.parentElement;
     if ($up.childNodes.length == 1 && $up.tagName == "P") {
-      $a.className = "button secondary";
+      $a.classList.add('button', 'secondary');
     }
     if (
       $up.childNodes.length == 1 &&
@@ -145,9 +155,9 @@ function decorateButtons() {
     }
   });
 
-  // TODO: move this in header decoration
-  // const $consoleButton = document.querySelector("header p:last-child a");
-  // $consoleButton.className = "button secondary";
+
+  const $consoleButton = document.querySelector("header p:last-child a");
+  $consoleButton.className = "button secondary";
 }
 
 function decorateIframe() {
@@ -207,56 +217,35 @@ function decorateHero() {
   // flatten structure to consolidate first and second hero sections into one div
   $innerDiv.append($secondHeroSection);
 
-  // find the primary link and apply style
-  const primaryLink = $firstHeroSection.querySelector('p > strong');
-  if(primaryLink) {
-    primaryLink.parentElement.classList.add('heroPrimaryLink')
+  // put all content within their columns inner container
+  let $firstHeroSectionDivContainer = document.createElement('div');
+  $firstHeroSectionDivContainer.classList.add('five-columns-inner');
+  $firstHeroSectionDivContainer.append(...$firstHeroSection.childNodes);
+  $firstHeroSection.append($firstHeroSectionDivContainer);
+
+  let $secondHeroSectionDivContainer = document.createElement('div');
+  $secondHeroSectionDivContainer.classList.add('seven-columns-inner');
+  $secondHeroSectionDivContainer.append(...$secondHeroSection.childNodes);
+  $secondHeroSection.append($secondHeroSectionDivContainer);
+
+  // fix up button styling
+  const $primaryLink = $firstHeroSection.querySelector('p > strong');
+  if($primaryLink) {
+    $primaryLink.parentElement.classList.add('heroPrimaryLink');
   }
+
+  const $secondaryLink = $firstHeroSection.querySelector('p > a');
+  if($secondaryLink) {
+    $secondaryLink.parentElement.classList.add('heroSecondaryLink');
+    $secondaryLink.classList.add('quiet');
+  }
+
   removeEmptyPTags($heroSection);
 
+  // remove padding top applied to sections
+  $heroSection.parentElement.style.paddingTop = 0;
   $heroSection.classList.add("hero");
   loadCSS(`/hlx_statics/blocks/hero.css`);
-}
-
-function decorateColumns() {
-  document.querySelectorAll("main > .section-wrapper").forEach(($section) => {
-    if (
-      $section.className == "section-wrapper" &&
-      ($section.querySelector('p > img[src^="/hlx_"]') ||
-        $section.querySelector("div.embed"))
-    ) {
-      const $columns = createTag("div", { class: "columns" });
-      const $children = Array.from($section.children[0].children);
-      let $currentRow;
-      let $secondCol = createTag("div");
-      $children.forEach(($child) => {
-        if (
-          ($child.tagName == "P" &&
-            $child.querySelector('img[src^="/hlx_"]')) ||
-          ($child.tagName == "DIV" && $child.classList.contains("embed"))
-        ) {
-          if ($currentRow) {
-            $currentRow.append($secondCol);
-            $columns.append($currentRow);
-            $secondCol = createTag("div");
-          }
-          $currentRow = createTag("div");
-          const $firstCol = createTag("div");
-          $firstCol.append($child);
-          $currentRow.append($firstCol);
-        } else {
-          $secondCol.append($child);
-        }
-        if ($currentRow) {
-          $currentRow.append($secondCol);
-          $columns.append($currentRow);
-        }
-      });
-      $section.firstChild.append($columns);
-      $section.classList.add("columns-container");
-      loadCSS(`/hlx_statics/blocks/columns.css`);
-    }
-  });
 }
 
 function readBlockConfig($block) {
@@ -313,15 +302,7 @@ function displayFilteredCards(catalog, $cards, buttons, limit, filters) {
 }
 
 function decorateHeader() {
-  //   <p><img class="icon icon-adobe" src="/icons/adobe.svg" alt="adobe icon"> Adobe I/O</p>
-  // <ul>
-  // <li><a href="https://www.adobe.io/apis">Discover</a></li>
-  // <li><a href="https://www.adobe.io/open">Open Source</a></li>
-  // <li><a href="https://medium.com/adobetech">Blog</a></li>
-  // </ul>
-  // <p><strong><a href="https://console.adobe.io/" class="button secondary">Console</a></strong></p>
   let $header = document.querySelector('header');
-
 
   let $pContainer = document.createElement('p');
   let $pContent = document.createTextNode('Adobe I/O');
@@ -344,6 +325,33 @@ function decorateHeader() {
 
   $header.appendChild($pContainer);
   $header.appendChild($ulContainer);
+
+  let $aLink = document.createElement('a');
+  $aLink.href = 'https://console.adobe.io/';
+  $aLink.textContent = 'Console';
+
+  let $strong = document.createElement('strong');
+  $strong.appendChild($aLink);
+
+  $pContainer = document.createElement('p');
+  $pContainer.appendChild($strong);
+
+  $header.appendChild($pContainer);
+  
+  const $navContainer = document.querySelector('.nav');
+  $navContainer.remove();
+}
+
+function decorateAnnouncement() {
+  document.querySelectorAll(".announcement").forEach(($announcement) => {
+    removeEmptyPTags($announcement);
+    $announcement.querySelectorAll('br').forEach(($br) => {
+      $br.remove();
+    });
+    $announcement.querySelectorAll('p a').forEach(($link) => {
+      $link.parentElement.classList.add('announce-link');
+    });
+  });
 }
 
 function decorateAPIBrowser() {
@@ -390,6 +398,79 @@ function decorateAPIBrowser() {
   });
 }
 
+function decorateCards() {
+  document.querySelectorAll('.cards').forEach(($card) => {
+    removeEmptyPTags($card);
+  });
+}
+
+function decorateColumns() {
+  document.querySelectorAll('.columns').forEach(($column) => {
+    removeEmptyPTags($column);
+
+    $column.querySelectorAll('img + a').forEach(($productLink) => {
+      // this is annoying - sometimes it's wrapper is in p and sometimes not?
+      // is it when gdoc has two icons in a row that p will be used?
+      if($productLink.parentElement.tagName === 'P') {
+        $productLink.parentElement.classList.add('product-link');
+      } else {
+        let $pContainer = createTag('p', { class: 'product-link'});
+
+        let $newImg = $productLink.previousSibling.previousSibling.cloneNode(true);
+        let $newP = $productLink.cloneNode(true);
+
+        $pContainer.append($newImg);
+        $pContainer.append($newP);
+        $productLink.previousSibling.previousSibling.remove();
+        $productLink.parentNode.replaceChild($pContainer, $productLink);
+      }
+    });
+
+    $column.childNodes.forEach(($row) => {
+      if($row.childNodes.length > 1) {
+        let $textColumnContainer = createTag('div', { class : 'columns-text'});
+
+        // find the text column in the row and wrap it then insert it 
+        let $cloneNodes;
+        if($row.childNodes[0].textContent.length > 0) {
+          $cloneNodes = $row.childNodes[0].cloneNode(true);
+          $textColumnContainer.append($cloneNodes); 
+          $row.replaceChild($textColumnContainer, $row.childNodes[0]);
+        } else if($row.childNodes[1].textContent.length > 0) {
+          $cloneNodes = $row.childNodes[1].cloneNode(true);
+          $textColumnContainer.append($cloneNodes); 
+          $row.replaceChild($textColumnContainer, $row.childNodes[1]);
+        }
+      } 
+    });
+  });
+
+  document.querySelectorAll('.columns-dark').forEach(($column) => {
+    removeEmptyPTags($column);
+
+    // re-wrap second container so it's easier to vertically align
+    $column.childNodes.forEach(($row) => {
+      if($row.childNodes.length > 1) {
+        let $textColumnContainer = createTag('div', { class : 'columns-text'});
+
+        // find the text column in the row and wrap it then insert it 
+        // may have to expand search to allow all media types instead of just iframe
+        let $cloneNodes;
+        if(!$row.childNodes[0].querySelector('iframe')) {
+          $cloneNodes = $row.childNodes[0].cloneNode(true);
+          $textColumnContainer.append($cloneNodes); 
+          $row.replaceChild($textColumnContainer, $row.childNodes[0]);
+
+        } else if(!$row.childNodes[1].querySelector('iframe')) {
+          $cloneNodes = $row.childNodes[1].cloneNode(true);
+          $textColumnContainer.append($cloneNodes); 
+          $row.replaceChild($textColumnContainer, $row.childNodes[1]);
+        }
+      } 
+    });
+  });
+}
+
 function decorateResourceCards() {
   document.querySelectorAll('.resource-card-large').forEach(($resourceLarge) => {
     removeEmptyPTags($resourceLarge);
@@ -415,11 +496,31 @@ function decorateResourceCards() {
 }
 
 function decorateSummary() {
-  document.querySelectorAll(".summary").forEach(($summary) => {
+  document.querySelectorAll(".summary-container").forEach(($summary) => {
     $backgroundImg = $summary.querySelector('img');
     $summary.style.backgroundImage = 'url('+ $backgroundImg.src + ')';
     $backgroundImg.remove();
+    removeEmptyPTags($summary);
+
+    // fix up button styling
+    let $linkContainer = createTag('div', {class: 'summary-link-container'});
+    const $primaryLink = $summary.querySelector('p > strong');
+    if($primaryLink) {
+      $primaryLink.parentElement.classList.add('summaryPrimaryLink');
+      $linkContainer.append($primaryLink.parentElement);
+    }
+
+    const $secondaryLink = $summary.querySelector('p > a');
+    if($secondaryLink) {
+      $secondaryLink.parentElement.classList.add('summarySecondaryLink');
+      $linkContainer.append($secondaryLink.parentElement);
+    }
+
+    let $textContainer = $summary.querySelector('.summary > div > div')
+    $textContainer.append($linkContainer);
   });
+
+
 }
 
 async function decoratePage() {
@@ -430,9 +531,10 @@ async function decoratePage() {
   wrapSections("header>div, footer>div");
   decorateHeader();
   decorateEmbeds();
-  // decorateIframe();
   decorateButtons();
-  // decorateBackgroundImageBlocks();
+  decorateCards();
+  decorateColumns();
+  decorateAnnouncement();
   decorateAPIBrowser()
   decorateResourceCards();
   decorateSummary();

@@ -4,63 +4,56 @@ main div.columns {
     width: 100%;
 } 
 
-main div.columns > div{
+main div.columns > div {
     display: flex;
     flex-direction: row;
     padding-left: 60px;
     padding-right: 60px;
+    padding-bottom: 60px;
+} 
+
+main div.columns div:last-child {
+    padding-bottom: 0px;
 } 
 
 main div.columns > div > div{
-    flex-grow: 6;
-    flex-shrink: 6;
-    flex-basis: 0;
+    flex-basis: 50%;
     padding-left: 32px;
     padding-right: 32px;
+}
+
+main div.columns .columns-text{
+    display: flex;
+    align-items: center;
+} 
+
+main div.columns > div h3 {
+    margin-top: 0;
+    text-align: left;
 } 
 
 main div.columns > div p {
+    margin-top: 0;
     font-size: 16px;
     font-weight: 400;
     color: rgb(75, 75, 75);
     line-height: 24px;
+    text-align: left;
+    padding-top: 0;
 } 
 
-main div.columns-dark {
-    display: flex;
-    flex-direction: column;
-    background-color: #252525;
-    width: 100%;
-} 
-
-main div.columns-dark > div{
-    display: flex;
-    flex-direction: row;
-    padding-left: 60px;
-    padding-right: 60px;
-} 
-
-main div.columns-dark > div > div{
-    flex-grow: 6;
-    flex-shrink: 6;
-    flex-basis: 0;
-    padding-left: 32px;
-    padding-right: 32px;
-} 
-
-main div.columns-dark > div p {
+main div.columns p.product-link {
+    margin-top: 0;
     font-size: 16px;
     font-weight: 400;
-    color:#fff;
+    color: rgb(75, 75, 75);
     line-height: 24px;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
 } 
 
-
-main div.columns-dark > div h3 {
-    font-size: 22px;
-    color:#fff;
-    font-weight: 700;
-    line-height: 28.6px;
-
+main div.columns p.product-link a {
+    padding-left: 16px;
 }
-

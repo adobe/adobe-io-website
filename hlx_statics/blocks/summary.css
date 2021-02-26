@@ -1,7 +1,68 @@
+main div.summary-container {
+  background-repeat: no-repeat;
+}
+
+
+main div.summary-container > div {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
 main div.summary {
   width: 100%;
-  min-height: 500px;
-  background-repeat: no-repeat;
+  padding-left: 64px;
+  padding-right: 32px;
   display: flex;
-  align-items: center;
+}
+
+main div.summary > div {
+  width: 53.61%;
+}
+
+main div.summary h2 { 
+  color: #fff;
+  text-align: left;
+  font-size: 28px;
+  line-height: 36px;
+}
+
+main div.summary p { 
+  color: #fff;
+  text-align: left;
+  font-size: 16px;
+  line-height: 27px;
+  padding-bottom: 24px;
+}
+
+main div.summary .summary-link-container {
+  display: flex;
+}
+
+
+main div.summary .summaryPrimaryLink {
+  padding-bottom: 0;
+  padding-right: 16px;
+}
+
+main div.summary .summarySecondaryLink {
+  padding-bottom: 0;
+}
+
+
+main div.summary .summarySecondaryLink .button.secondary {
+	background-color: transparent;
+  border-color: #fff;
+	color: #fff;
+}
+
+main div.summary .summarySecondaryLink .button.secondary.quiet {
+	background-color: transparent;
+  border-style: none;
+	color: #fff;
+}
+
+main div.summary .summarySecondaryLink .button.secondary:hover {
+	background-color: #fff;
+	border-color: #fff;
+  color: #323232;
 }

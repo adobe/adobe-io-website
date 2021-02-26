@@ -1,0 +1,47 @@
+
+main div.columns-dark > div{
+  display: flex;
+  flex-direction: row;
+  padding-left: 60px;
+  padding-right: 60px;
+} 
+
+main div.columns-dark > div > div {
+  flex-basis: 50%;
+  padding-left: 32px;
+  padding-right: 32px;
+} 
+
+main div.columns-dark div.columns-text  {
+  display: flex;
+  align-items: center;
+  flex-basis: 50%;
+  padding-left: 32px;
+  padding-right: 32px;
+} 
+
+main div.columns-dark p {
+  font-size: 16px;
+  font-weight: 400;
+  color:#fff;
+  line-height: 24px;
+  text-align: left;
+  padding-bottom: 0;
+} 
+
+
+main div.columns-dark div.columns-text h3 {
+  font-size: 22px;
+  color:#fff;
+  font-weight: 700;
+  line-height: 28.6px;
+  text-align: left;
+}
+
+main div.columns-dark {
+  display: flex;
+  flex-direction: column;
+  background-color: #323232;
+  width: 100%;
+} 
+

@@ -189,15 +189,7 @@ footer>div:nth-of-type(2) div > ul > li a {
 
 main .section-wrapper > div {
     margin: auto;
-    padding-top: 80px;
-}
-
-main .section-wrapper > div > h3 {
-  text-align: center
-}
-
-main .section-wrapper > div > p {
-  text-align: center
+    padding-top: 60px;
 }
 
 main a:any-link {
@@ -241,6 +233,12 @@ main .icon {
 
 .button.secondary {
 	background-color: transparent;
+  border-color: #505050;
+	color: #505050;
+}
+
+.button.secondary.quiet {
+	background-color: transparent;
   border-style: none;
 	color: #505050;
 }
@@ -257,4 +255,32 @@ main div.api-browser-container h2 {
   font-size: 28px;
 	font-weight: 700;
 	line-height: 36.4px;
+}
+
+main div h3 {
+  color: #2c2c2c;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 33px;
+  text-align: center;
+} 
+
+main div p {
+  color: #4b4b4b;
+  line-height: 24px;
+  font-size: 16px;
+  text-align: center;
+  padding-bottom: 32px;
+} 
+
+.section-wrapper > div > p > img {
+  width: 75%;
+}
+
+.section-wrapper > div > p {
+  width: 75%;
+  margin: 0 auto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
 }

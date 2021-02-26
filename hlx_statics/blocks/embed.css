@@ -4,6 +4,7 @@ main div.embed-container {
   background-color: #fff;
   display: flex;
   text-align: center;
+  padding-top: 60px;
 }
 
 main div.embed-container > div h3 {
