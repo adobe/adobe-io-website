@@ -276,7 +276,7 @@ function displayFilteredCards(catalog, $cards, buttons, limit, filters) {
     if (show) {
       const $card = createTag("div", { class: "api-card" });
       const icon = card.Icon
-        ? `<img class="api-icon" src="/icons/${card.Icon}.svg">`
+        ? `<img class="api-icon" src="/hlx_statics/icons/${card.Icon}.svg">`
         : "";
       let buttonsHtml = "";
       buttons.forEach((b, i) => {
@@ -309,7 +309,7 @@ function decorateHeader() {
   let $imgContainer = document.createElement('img');
 
   $imgContainer.classList.add('icon', 'icon-adobe');
-  $imgContainer.src = '/icons/adobe.svg';
+  $imgContainer.src = '/hlx_statics/icons/adobe.svg';
   $imgContainer.alt = 'adobe icon';
 
   $pContainer.appendChild($imgContainer);
@@ -519,8 +519,15 @@ function decorateSummary() {
     let $textContainer = $summary.querySelector('.summary > div > div')
     $textContainer.append($linkContainer);
   });
+}
 
-
+function fixIcons() {
+  document.querySelectorAll('img.icon').forEach(($icon) => {
+    // fix up paths for icons that are injected into the doc when using :icon: 
+    if($icon.getAttribute('src').indexOf('hlx_statics') === -1){
+      $icon.setAttribute('src',  '/hlx_statics/' + $icon.getAttribute('src') );
+    }
+  });
 }
 
 async function decoratePage() {
@@ -538,6 +545,7 @@ async function decoratePage() {
   decorateAPIBrowser()
   decorateResourceCards();
   decorateSummary();
+  fixIcons();
 }
 
 decoratePage();
