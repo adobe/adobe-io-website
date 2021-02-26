@@ -525,7 +525,7 @@ function fixIcons() {
   document.querySelectorAll('img.icon').forEach(($icon) => {
     // fix up paths for icons that are injected into the doc when using :icon: 
     if($icon.getAttribute('src').indexOf('hlx_statics') === -1){
-      $icon.setAttribute('src',  '/hlx_statics/' + $icon.getAttribute('src') );
+      $icon.setAttribute('src',  '/hlx_statics' + $icon.getAttribute('src') );
     }
   });
 }
