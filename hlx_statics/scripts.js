@@ -474,24 +474,60 @@ function decorateColumns() {
 function decorateResourceCards() {
   document.querySelectorAll('.resource-card-large').forEach(($resourceLarge) => {
     removeEmptyPTags($resourceLarge);
+    // find the image
+    let $image = $resourceLarge.querySelector('img');
+    if($image) {
+      let $imageContainer = $image.parentElement;
+
+      $imageContainer.style.backgroundImage = 'url('+ $image.src + ')';
+      $imageContainer.classList.add('resource-card-large-image-container');
+
+      $image.remove();
+    }
+
+    let $link = $resourceLarge.querySelector('a');
+    if($link) {
+      $resourceLarge.addEventListener('click', url => {
+        window.open($link.href, '_blank');
+      });
+      $link.remove();
+    }
+
+    let $resourceLargeContainer = createTag('div', { class: 'resource-card-large-container-inner'});
+    let $resourceLargeContainerParent = $resourceLarge.parentElement;
+
+    $resourceLargeContainer.append($resourceLarge);
+    $resourceLargeContainerParent.append($resourceLargeContainer);
+  
   });
 
+  // take two small resource cards and wrap em
+  let $containerParent = document.querySelector('.resource-card-small-container > div');
+  let $resourceSmallContainer = createTag('div', { class: 'resource-card-small-container-inner'});
   document.querySelectorAll('.resource-card-small').forEach(($resourceSmall) => {
     removeEmptyPTags($resourceSmall);
-  });
+    // find the image
+    let $image = $resourceSmall.querySelector('img');
+    if($image) {
+      let $imageContainer = $image.parentElement;
 
-  document.querySelectorAll('.resource-card-small-container').forEach(($resourceSmallContainers) => {
-    $resourceSmallChildren = $resourceSmallContainers.querySelectorAll('.resource-card-small');
-    if($resourceSmallChildren.length > 0) {
-      const $resourceSmallChildParent = $resourceSmallChildren[0].parentElement;
-      const $newResourceSmallContainer = $resourceSmallChildParent.appendChild(document.createElement('div'));
-      for(var i =0;i<$resourceSmallChildren.length;i++){
-        $newResourceSmallContainer.appendChild($resourceSmallChildren[i]);
-      }
-      $newResourceSmallContainer.classList.add('resource-card-small-container-inner');
+      $imageContainer.style.backgroundImage = 'url('+ $image.src + ')';
+      $imageContainer.classList.add('resource-card-small-image-container');
+
+      $image.remove();
     }
-  });
 
+    let $link = $resourceSmall.querySelector('a');
+    if($link) {
+      $resourceSmall.addEventListener('click', url => {
+        window.open($link.href, '_blank');
+      });
+      $link.remove();
+    }
+    
+    $resourceSmallContainer.append($resourceSmall);
+  });
+  $containerParent.append($resourceSmallContainer)
 
 }
 

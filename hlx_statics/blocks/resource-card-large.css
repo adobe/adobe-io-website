@@ -1,5 +1,18 @@
-main div.resource-card-large > div{
+main div.resource-card-large > div{ 
   display: flex;
   flex-direction: column;
   border: 1px solid #eaeaea;
+  border-radius: 4px;
+  padding-left: 32px;
+  padding-right: 32px;
+} 
+
+main div.resource-card-large div.resource-card-large-image-container {
+  height: 230px;
+  background: no-repeat;
+  background-size: contain;
+} 
+
+main div.resource-card-large p {
+  text-align: left;
 } 
