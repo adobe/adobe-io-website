@@ -16,3 +16,7 @@ main div.resource-card-large div.resource-card-large-image-container {
 main div.resource-card-large p {
   text-align: left;
 } 
+
+main div.resource-card-large-container-inner  {
+  flex-basis: 40%;
+} 

@@ -1,1 +1,22 @@
-resource
+main div.resource-card-small> div{ 
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  margin-left: 32px;
+  margin-right: 32px;
+  margin-bottom: 32px;
+} 
+
+main div.resource-card-small div.resource-card-small-image-container {
+  background: no-repeat;
+  background-size: contain;
+} 
+
+main div.resource-card-small p {
+  text-align: left;
+} 
+main div.resource-card-small-container-inner  {
+  flex-basis: 40%;
+} 
+

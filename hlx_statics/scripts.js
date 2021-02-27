@@ -472,63 +472,77 @@ function decorateColumns() {
 }
 
 function decorateResourceCards() {
-  document.querySelectorAll('.resource-card-large').forEach(($resourceLarge) => {
-    removeEmptyPTags($resourceLarge);
-    // find the image
-    let $image = $resourceLarge.querySelector('img');
-    if($image) {
-      let $imageContainer = $image.parentElement;
-
-      $imageContainer.style.backgroundImage = 'url('+ $image.src + ')';
-      $imageContainer.classList.add('resource-card-large-image-container');
-
-      $image.remove();
-    }
-
-    let $link = $resourceLarge.querySelector('a');
-    if($link) {
-      $resourceLarge.addEventListener('click', url => {
-        window.open($link.href, '_blank');
-      });
-      $link.remove();
-    }
-
-    let $resourceLargeContainer = createTag('div', { class: 'resource-card-large-container-inner'});
-    let $resourceLargeContainerParent = $resourceLarge.parentElement;
-
-    $resourceLargeContainer.append($resourceLarge);
-    $resourceLargeContainerParent.append($resourceLargeContainer);
+  document.querySelectorAll('.section-wrapper').forEach(($section) => {
+    $section.querySelectorAll('.resource-card-large').forEach(($resourceLarge) => {
+      removeEmptyPTags($resourceLarge);
+      // find the image
+      let $image = $resourceLarge.querySelector('img');
+      if($image) {
+        let $imageContainer = $image.parentElement;
   
-  });
-
-  // take two small resource cards and wrap em
-  let $containerParent = document.querySelector('.resource-card-small-container > div');
-  let $resourceSmallContainer = createTag('div', { class: 'resource-card-small-container-inner'});
-  document.querySelectorAll('.resource-card-small').forEach(($resourceSmall) => {
-    removeEmptyPTags($resourceSmall);
-    // find the image
-    let $image = $resourceSmall.querySelector('img');
-    if($image) {
-      let $imageContainer = $image.parentElement;
-
-      $imageContainer.style.backgroundImage = 'url('+ $image.src + ')';
-      $imageContainer.classList.add('resource-card-small-image-container');
-
-      $image.remove();
-    }
-
-    let $link = $resourceSmall.querySelector('a');
-    if($link) {
-      $resourceSmall.addEventListener('click', url => {
-        window.open($link.href, '_blank');
-      });
-      $link.remove();
-    }
+        $imageContainer.style.backgroundImage = 'url('+ $image.src + ')';
+        $imageContainer.classList.add('resource-card-large-image-container');
+  
+        $image.remove();
+      }
+  
+      let $link = $resourceLarge.querySelector('a');
+      if($link) {
+        $resourceLarge.addEventListener('click', url => {
+          window.open($link.href, '_blank');
+        });
+        $link.remove();
+      }
+  
+      let $resourceLargeContainer = createTag('div', { class: 'resource-card-large-container-inner'});
+      let $resourceLargeContainerParent = $resourceLarge.parentElement;
+  
+      $resourceLargeContainer.append($resourceLarge);
+      $resourceLargeContainerParent.append($resourceLargeContainer);
     
-    $resourceSmallContainer.append($resourceSmall);
-  });
-  $containerParent.append($resourceSmallContainer)
+    });
+  
+    // take two small resource cards and wrap em
+    let $containerParent = $section.querySelector('.resource-card-small-container > div');
+    let $resourceSmallContainer = createTag('div', { class: 'resource-card-small-container-inner'});
+    $section.querySelectorAll('.resource-card-small').forEach(($resourceSmall) => {
+      removeEmptyPTags($resourceSmall);
+      // find the image
+      let $image = $resourceSmall.querySelector('img');
+      if($image) {
+        let $imageContainer = $image.parentElement;
+  
+        $imageContainer.style.backgroundImage = 'url('+ $image.src + ')';
+        $imageContainer.classList.add('resource-card-small-image-container');
+  
+        $image.remove();
+      }
+  
+      let $link = $resourceSmall.querySelector('a');
+      if($link) {
+        $resourceSmall.addEventListener('click', url => {
+          window.open($link.href, '_blank');
+        });
+        $link.remove();
+      }
+      $resourceSmallContainer.append($resourceSmall);
+    });
+  
+    if($containerParent) {
+      $containerParent.append($resourceSmallContainer);
+    }
+  
+    let $resourceFlexContainer = createTag('div', {class: 'resource-card-flex-container'});
+    $section.querySelectorAll('.resource-card-large-container-inner').forEach(($largeSection) => {
+      $resourceFlexContainer.append($largeSection);
+    });
 
+    $section.querySelectorAll('.resource-card-small-container-inner').forEach(($smallSection) => {
+      $resourceFlexContainer.append($smallSection);
+    });
+    $section.append($resourceFlexContainer);
+  });
+ 
 }
 
 function decorateSummary() {
