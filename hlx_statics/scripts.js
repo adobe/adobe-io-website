@@ -505,7 +505,9 @@ function decorateResourceCards() {
     // take two small resource cards and wrap em
     let $containerParent = $section.querySelector('.resource-card-small-container > div');
     let $resourceSmallContainer = createTag('div', { class: 'resource-card-small-container-inner'});
-    $section.querySelectorAll('.resource-card-small').forEach(($resourceSmall) => {
+
+    let $resourceSmallContainerSecond = createTag('div', { class: 'resource-card-small-container-inner'});
+    $section.querySelectorAll('.resource-card-small').forEach(($resourceSmall, index) => {
       removeEmptyPTags($resourceSmall);
       // find the image
       let $image = $resourceSmall.querySelector('img');
@@ -525,7 +527,15 @@ function decorateResourceCards() {
         });
         $link.remove();
       }
-      $resourceSmallContainer.append($resourceSmall);
+
+      // annoying logic to wrap two small cards vs four
+      if(index <= 1) {
+        $resourceSmallContainer.append($resourceSmall);
+      } else {
+        $resourceSmallContainerSecond.append($resourceSmall);
+        $containerParent.append($resourceSmallContainerSecond);
+      }
+
     });
   
     if($containerParent) {

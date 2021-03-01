@@ -5,6 +5,7 @@ main div.resource-card-large > div{
   border-radius: 4px;
   padding-left: 32px;
   padding-right: 32px;
+  margin-right: 32px;
 } 
 
 main div.resource-card-large div.resource-card-large-image-container {
@@ -18,5 +19,5 @@ main div.resource-card-large p {
 } 
 
 main div.resource-card-large-container-inner  {
-  flex-basis: 40%;
+  flex-basis: 41.666%;
 } 
