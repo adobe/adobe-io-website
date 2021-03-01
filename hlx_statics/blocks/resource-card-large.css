@@ -3,19 +3,24 @@ main div.resource-card-large > div{
   flex-direction: column;
   border: 1px solid #eaeaea;
   border-radius: 4px;
-  padding-left: 32px;
-  padding-right: 32px;
   margin-right: 32px;
 } 
 
 main div.resource-card-large div.resource-card-large-image-container {
-  height: 230px;
+  height: 330px;
   background: no-repeat;
-  background-size: contain;
+  background-size: cover;
 } 
 
-main div.resource-card-large p {
+main div.resource-card-large h4 {
+  padding-left: 32px;
   text-align: left;
+} 
+
+div.resource-card-large p {
+  padding-left: 32px;
+  text-align: left;
+  padding-bottom: 0;
 } 
 
 main div.resource-card-large-container-inner  {

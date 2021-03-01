@@ -51,11 +51,12 @@ function tableToDivs($table) {
 }
 
 function removeEmptyPTags($theElement){
-  const $pElements = $theElement.querySelectorAll('p');
-  $pElements.forEach(function($theElement){
+  console.log('$theElement')
+  console.log($theElement)
+  $theElement.querySelectorAll('p').forEach(($pElement) => {
     // get rid of empty p tags
-    if(!$theElement.hasChildNodes()){
-      $theElement.remove();
+    if(!$pElement.hasChildNodes()){
+      $pElement.remove();
     }
   })
 }
@@ -474,7 +475,7 @@ function decorateColumns() {
 function decorateResourceCards() {
   document.querySelectorAll('.section-wrapper').forEach(($section) => {
     $section.querySelectorAll('.resource-card-large').forEach(($resourceLarge) => {
-      removeEmptyPTags($resourceLarge);
+
       // find the image
       let $image = $resourceLarge.querySelector('img');
       if($image) {
@@ -499,7 +500,7 @@ function decorateResourceCards() {
   
       $resourceLargeContainer.append($resourceLarge);
       $resourceLargeContainerParent.append($resourceLargeContainer);
-    
+      removeEmptyPTags($resourceLarge);
     });
   
     // take two small resource cards and wrap em
@@ -508,7 +509,6 @@ function decorateResourceCards() {
 
     let $resourceSmallContainerSecond = createTag('div', { class: 'resource-card-small-container-inner'});
     $section.querySelectorAll('.resource-card-small').forEach(($resourceSmall, index) => {
-      removeEmptyPTags($resourceSmall);
       // find the image
       let $image = $resourceSmall.querySelector('img');
       if($image) {
@@ -535,7 +535,7 @@ function decorateResourceCards() {
         $resourceSmallContainerSecond.append($resourceSmall);
         $containerParent.append($resourceSmallContainerSecond);
       }
-
+      removeEmptyPTags($resourceSmall);
     });
   
     if($containerParent) {

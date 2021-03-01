@@ -10,11 +10,13 @@ main div.resource-card-small> div{
 
 main div.resource-card-small div.resource-card-small-image-container {
   background: no-repeat;
-  background-size: contain;
+
+  background-size: 100%;
 } 
 
-main div.resource-card-small p {
+div.resource-card-small p {
   text-align: left;
+  padding-bottom: 0;
 } 
 main div.resource-card-small-container-inner  {
   flex-basis: 41.666%;
