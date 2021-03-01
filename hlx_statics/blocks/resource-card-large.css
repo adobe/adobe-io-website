@@ -11,6 +11,7 @@ main div.resource-card-large div.resource-card-large-image-container {
   height: 330px;
   background: no-repeat;
   background-size: cover;
+  background-position-x: center;
 } 
 
 main div.resource-card-large h4 {
