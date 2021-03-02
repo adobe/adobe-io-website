@@ -141,10 +141,16 @@ function decorateEmbeds() {
 
 function decorateButtons() {
   document.querySelectorAll("main a").forEach(($a) => {
+    const $button = createTag('button');
+    $button.addEventListener('click', () => {
+      window.location.href = $a.href;
+    })
+    $button.innerHTML = `<span class="spectrum-Button-label">${$a.innerHTML}</span>`
     const $up = $a.parentElement;
     const $twoup = $a.parentElement.parentElement;
     if ($up.childNodes.length == 1 && $up.tagName == "P") {
-      $a.className('spectrum-Button spectrum-Button--secondary ');
+      $button.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
+      $up.replaceChild($button, $a);
     }
     if (
       $up.childNodes.length == 1 &&
@@ -152,7 +158,8 @@ function decorateButtons() {
       $twoup.childNodes.length == 1 &&
       $twoup.tagName == "P"
     ) {
-      $a.className = 'spectrum-Button spectrum-Button--cta';
+      $button.className = 'spectrum-Button spectrum-Button--cta  spectrum-Button--sizeM';
+      $twoup.replaceChild($button, $up);
     }
   });
 
@@ -591,11 +598,12 @@ function fixIcons() {
 }
 
 function later() {
-  loadCSS('/hlx_statics/vars/dist/spectrum-global.css');
-  loadCSS('/hlx_statics/vars/dist/spectrum-medium.css');
-  loadCSS('/hlx_statics/vars/dist/spectrum-light.css');
-  loadCSS('/hlx_statics/page/dist/index-vars.css');
-  loadCSS('/hlx_statics/button/dist/index-vars.css');
+  document.documentElement.classList.add('spectrum','spectrum--light','spectrum--medium');
+  loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-global.css');
+  loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-medium.css');
+  loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-light.css');
+  loadCSS('/hlx_statics/spectrum/page/dist/index-vars.css');
+  loadCSS('/hlx_statics/spectrum/button/dist/index-vars.css');
 }
 
 async function decoratePage() {
