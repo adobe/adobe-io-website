@@ -144,7 +144,7 @@ function decorateButtons() {
     const $up = $a.parentElement;
     const $twoup = $a.parentElement.parentElement;
     if ($up.childNodes.length == 1 && $up.tagName == "P") {
-      $a.classList.add('button', 'secondary');
+      $a.className('spectrum-Button spectrum-Button--secondary ');
     }
     if (
       $up.childNodes.length == 1 &&
@@ -152,7 +152,7 @@ function decorateButtons() {
       $twoup.childNodes.length == 1 &&
       $twoup.tagName == "P"
     ) {
-      $a.className = "button primary";
+      $a.className = 'spectrum-Button spectrum-Button--cta';
     }
   });
 
@@ -590,6 +590,14 @@ function fixIcons() {
   });
 }
 
+function later() {
+  loadCSS('/hlx_statics/vars/dist/spectrum-global.css');
+  loadCSS('/hlx_statics/vars/dist/spectrum-medium.css');
+  loadCSS('/hlx_statics/vars/dist/spectrum-light.css');
+  loadCSS('/hlx_statics/page/dist/index-vars.css');
+  loadCSS('/hlx_statics/button/dist/index-vars.css');
+}
+
 async function decoratePage() {
   decorateTables();
   wrapSections("main>div");
@@ -606,6 +614,7 @@ async function decoratePage() {
   decorateResourceCards();
   decorateSummary();
   fixIcons();
+  later();
 }
 
 decoratePage();
