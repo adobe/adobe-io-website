@@ -200,8 +200,11 @@ function wrapSections(element) {
 
 function decorateHero() {
   document.querySelectorAll('.hero-container').forEach(($heroSection) => {
-    $heroSection.classList.add('spectrum--lightest');
     removeEmptyPTags($heroSection);
+
+    $heroSection.querySelectorAll('.hero').forEach(($hero) => {
+      $hero.classList.add('spectrum--lightest')
+    });
 
     $heroSection.querySelectorAll('img.icon').forEach(($heroIcon) => {
       $heroIcon.parentElement.classList.add('icon-container');
@@ -222,6 +225,7 @@ function decorateHero() {
      // put buttons into their own div
      const $buttonContainer = createTag('div', {class: 'hero-button-container'});
      $heroSection.querySelectorAll('button').forEach(($button) => {
+      $button.classList.add('spectrum-Button--quiet')
       $buttonContainer.append($button);
      });
 
