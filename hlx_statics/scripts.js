@@ -162,8 +162,8 @@ function decorateButtons() {
   });
 
 
-  const $consoleButton = document.querySelector("header p:last-child a");
-  $consoleButton.className = "button secondary";
+  // const $consoleButton = document.querySelector("header p:last-child a");
+  // $consoleButton.className = "button secondary";
 }
 
 function decorateIframe() {
@@ -199,12 +199,38 @@ function wrapSections(element) {
 }
 
 function decorateHero() {
-  const $heroSection = document.querySelector(".hero-container");
-  const $innerDiv = $heroSection.firstElementChild;
-  $heroSection.classList.add('spectrum--lightest');
+  document.querySelectorAll('.hero-container').forEach(($heroSection) => {
+    $heroSection.classList.add('spectrum--lightest');
+    removeEmptyPTags($heroSection);
 
+    $heroSection.querySelectorAll('img.icon').forEach(($heroIcon) => {
+      $heroIcon.parentElement.classList.add('icon-container');
+     })
 
-  const $firstHeroSection = $innerDiv.firstElementChild;
+     $heroSection.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
+      $header.classList.add('spectrum-Heading-XXL', 'spectrum-Heading--serif');
+     })
+
+     $heroSection.querySelectorAll('p').forEach(($p) => {
+       const $hasLinks = $p.querySelectorAll('a, button');
+       // don't attach to icon container or if p tag contains links
+       if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
+        $p.classList.add('spectrum-Body-L');
+       }
+     });
+
+     // put buttons into their own div
+     const $buttonContainer = createTag('div', {class: 'hero-button-container'});
+     $heroSection.querySelectorAll('button').forEach(($button) => {
+      $buttonContainer.append($button);
+     });
+
+     // have to remove ps after moving buttons
+     removeEmptyPTags($heroSection);
+
+     const $firstSection = $heroSection.querySelector('div.hero>div>div');
+     $firstSection.append($buttonContainer);
+  });
 
 
   // let $secondHeroSection;
@@ -605,6 +631,7 @@ function later() {
   loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-light.css');
   loadCSS('/hlx_statics/spectrum/page/dist/index-vars.css');
   loadCSS('/hlx_statics/spectrum/button/dist/index-vars.css');
+  loadCSS('/hlx_statics/spectrum/typography/dist/index-vars.css');
 }
 
 async function decoratePage() {
@@ -612,10 +639,11 @@ async function decoratePage() {
   wrapSections("main>div");
   decorateBlocks();
   wrapSections("header>div, footer>div");
+  decorateButtons();
    //decorateHeader();
    decorateHero();
   // decorateEmbeds();
-  // decorateButtons();
+
   // decorateCards();
   // decorateColumns();
   // decorateAnnouncement();

@@ -1,0 +1,58 @@
+{
+  "_from": "@spectrum-css/typography",
+  "_id": "@spectrum-css/typography@3.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-90S5ZxV33GaNFNkzpdUJLVtcYOA=",
+  "_location": "/@spectrum-css/typography",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@spectrum-css/typography",
+    "name": "@spectrum-css/typography",
+    "escapedName": "@spectrum-css%2ftypography",
+    "scope": "@spectrum-css",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://artifactory.corp.adobe.com:443/artifactory/api/npm/npm-adobe-release/@spectrum-css/typography/-/typography-3.0.0.tgz",
+  "_shasum": "f744b9671577dc668d14d933a5d5092d5b5c60e0",
+  "_spec": "@spectrum-css/typography",
+  "_where": "/Users/timk/repo/adobe-docs/adobe-io-website",
+  "bugs": {
+    "url": "https://github.com/adobe/spectrum-css/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "The Spectrum CSS typography component",
+  "devDependencies": {
+    "@spectrum-css/component-builder": "^2.0.0",
+    "@spectrum-css/vars": "^3.0.0",
+    "gulp": "^4.0.0"
+  },
+  "gitHead": "2182fd81423587146f3fb1c881536734a7dfe1a4",
+  "homepage": "https://opensource.adobe.com/spectrum-css/",
+  "license": "Apache-2.0",
+  "main": "dist/index-vars.css",
+  "name": "@spectrum-css/typography",
+  "peerDependencies": {
+    "@spectrum-css/vars": "^3.0.0-beta.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adobe/spectrum-css.git",
+    "directory": "components/typography"
+  },
+  "scripts": {
+    "build": "gulp"
+  },
+  "version": "3.0.0"
+}

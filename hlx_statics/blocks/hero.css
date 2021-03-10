@@ -21,3 +21,33 @@ main div.hero-container > div {
     margin: 0;
   }
 }
+
+main .hero .icon-container {
+  height: var(--spectrum-global-dimension-size-600);
+  width: var(--spectrum-global-dimension-size-600);
+  margin-top: 0 !important;
+  margin-bottom: var(--spectrum-global-dimension-size-300) !important;
+}
+
+main .hero .icon {
+  height: 100%;
+  object-fit: contain;
+}
+
+main .hero h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: var(--spectrum-global-dimension-size-200);
+}
+
+/* this is a weird syntax  */
+main .hero h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p {
+  margin-bottom: var(--spectrum-global-dimension-size-200);
+}
+
+main .hero p.spectrum-Body--L {
+  margin-top: 0 !important;
+}
+main .hero p.last-of-type {
+  margin-bottom: 0 !important;
+}
+
