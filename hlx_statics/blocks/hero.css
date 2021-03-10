@@ -4,7 +4,6 @@ main div.hero {
   overflow: hidden;
   display: flex;
   justify-content: center;
-  height: 100%;
 }
 
 @media screen and (max-width: 1280px) {
@@ -74,15 +73,15 @@ main .hero h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--spectrum-global-dimension-size-200);
 }
 
-/* this is a weird syntax  */
-main .hero h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p {
-  margin-bottom: var(--spectrum-global-dimension-size-200);
+
+
+main .hero p.spectrum-Body--sizeL {
+  margin-top: 0 !important;
+  font-size: var(--spectrum-global-dimension-size-225);
+  color: var(--spectrum-global-color-gray-800) !important;
 }
 
-main .hero p.spectrum-Body--L {
-  margin-top: 0 !important;
-}
-main .hero p.last-of-type {
+main .hero h1 + p.last-of-type {
   margin-bottom: 0 !important;
 }
 
@@ -94,3 +93,4 @@ main .hero .hero-button-container {
   margin-top: var(--spectrum-global-dimension-size-300);
   gap: var(--spectrum-global-dimension-size-200, var(--spectrum-alias-size-200));
 }
+
