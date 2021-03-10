@@ -211,14 +211,14 @@ function decorateHero() {
      })
 
      $heroSection.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
-      $header.classList.add('spectrum-Heading-XXL', 'spectrum-Heading--serif');
+      $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
      })
 
      $heroSection.querySelectorAll('p').forEach(($p) => {
        const $hasLinks = $p.querySelectorAll('a, button');
        // don't attach to icon container or if p tag contains links
        if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
-        $p.classList.add('spectrum-Body-L');
+        $p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
        }
      });
 
@@ -633,6 +633,7 @@ function later() {
   loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-global.css');
   loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-medium.css');
   loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-light.css');
+  loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-lightest.css');
   loadCSS('/hlx_statics/spectrum/page/dist/index-vars.css');
   loadCSS('/hlx_statics/spectrum/button/dist/index-vars.css');
   loadCSS('/hlx_statics/spectrum/typography/dist/index-vars.css');
