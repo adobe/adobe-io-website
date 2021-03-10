@@ -51,8 +51,6 @@ function tableToDivs($table) {
 }
 
 function removeEmptyPTags($theElement){
-  console.log('$theElement')
-  console.log($theElement)
   $theElement.querySelectorAll('p').forEach(($pElement) => {
     // get rid of empty p tags
     if(!$pElement.hasChildNodes()){
@@ -201,59 +199,62 @@ function wrapSections(element) {
 }
 
 function decorateHero() {
-  const $heroSection = document.querySelector(".hero");
-
+  const $heroSection = document.querySelector(".hero-container");
   const $innerDiv = $heroSection.firstElementChild;
+  $heroSection.classList.add('spectrum--lightest');
+
+
   const $firstHeroSection = $innerDiv.firstElementChild;
 
-  let $secondHeroSection;
-  if($heroSection.childNodes.length > 1) {
-    $secondHeroSection = $heroSection.childNodes[1].firstElementChild;
-  } else {
-    // TODO: handle not having an image in table gracefully
-  }
 
-  $firstHeroSection.classList.add('five-columns');
-  $secondHeroSection.classList.add('seven-columns');
+  // let $secondHeroSection;
+  // if($heroSection.childNodes.length > 1) {
+  //   $secondHeroSection = $heroSection.childNodes[1].firstElementChild;
+  // } else {
+  //   // TODO: handle not having an image in table gracefully
+  // }
 
-  // fix up img icon and add a class to it
-  const $heroIconElement = $firstHeroSection.querySelector('.icon');
-  if ($heroIconElement) {
-    $heroIconElement.parentElement.classList.add('heroIconContainer');
-  }
+  // $firstHeroSection.classList.add('five-columns');
+  // $secondHeroSection.classList.add('seven-columns');
 
-  // flatten structure to consolidate first and second hero sections into one div
-  $innerDiv.append($secondHeroSection);
+  // // fix up img icon and add a class to it
+  // const $heroIconElement = $firstHeroSection.querySelector('.icon');
+  // if ($heroIconElement) {
+  //   $heroIconElement.parentElement.classList.add('heroIconContainer');
+  // }
 
-  // put all content within their columns inner container
-  let $firstHeroSectionDivContainer = document.createElement('div');
-  $firstHeroSectionDivContainer.classList.add('five-columns-inner');
-  $firstHeroSectionDivContainer.append(...$firstHeroSection.childNodes);
-  $firstHeroSection.append($firstHeroSectionDivContainer);
+  // // flatten structure to consolidate first and second hero sections into one div
+  // $innerDiv.append($secondHeroSection);
 
-  let $secondHeroSectionDivContainer = document.createElement('div');
-  $secondHeroSectionDivContainer.classList.add('seven-columns-inner');
-  $secondHeroSectionDivContainer.append(...$secondHeroSection.childNodes);
-  $secondHeroSection.append($secondHeroSectionDivContainer);
+  // // put all content within their columns inner container
+  // let $firstHeroSectionDivContainer = document.createElement('div');
+  // $firstHeroSectionDivContainer.classList.add('five-columns-inner');
+  // $firstHeroSectionDivContainer.append(...$firstHeroSection.childNodes);
+  // $firstHeroSection.append($firstHeroSectionDivContainer);
 
-  // fix up button styling
-  const $primaryLink = $firstHeroSection.querySelector('p > strong');
-  if($primaryLink) {
-    $primaryLink.parentElement.classList.add('heroPrimaryLink');
-  }
+  // let $secondHeroSectionDivContainer = document.createElement('div');
+  // $secondHeroSectionDivContainer.classList.add('seven-columns-inner');
+  // $secondHeroSectionDivContainer.append(...$secondHeroSection.childNodes);
+  // $secondHeroSection.append($secondHeroSectionDivContainer);
 
-  const $secondaryLink = $firstHeroSection.querySelector('p > a');
-  if($secondaryLink) {
-    $secondaryLink.parentElement.classList.add('heroSecondaryLink');
-    $secondaryLink.classList.add('quiet');
-  }
+  // // fix up button styling
+  // const $primaryLink = $firstHeroSection.querySelector('p > strong');
+  // if($primaryLink) {
+  //   $primaryLink.parentElement.classList.add('heroPrimaryLink');
+  // }
 
-  removeEmptyPTags($heroSection);
+  // const $secondaryLink = $firstHeroSection.querySelector('p > a');
+  // if($secondaryLink) {
+  //   $secondaryLink.parentElement.classList.add('heroSecondaryLink');
+  //   $secondaryLink.classList.add('quiet');
+  // }
 
-  // remove padding top applied to sections
-  $heroSection.parentElement.style.paddingTop = 0;
-  $heroSection.classList.add("hero");
-  loadCSS(`/hlx_statics/blocks/hero.css`);
+  // removeEmptyPTags($heroSection);
+
+  // // remove padding top applied to sections
+  // $heroSection.parentElement.style.paddingTop = 0;
+  // $heroSection.classList.add("hero");
+  // loadCSS(`/hlx_statics/blocks/hero.css`);
 }
 
 function readBlockConfig($block) {
@@ -609,19 +610,19 @@ function later() {
 async function decoratePage() {
   decorateTables();
   wrapSections("main>div");
-  decorateHero();
   decorateBlocks();
   wrapSections("header>div, footer>div");
-  decorateHeader();
-  decorateEmbeds();
-  decorateButtons();
-  decorateCards();
-  decorateColumns();
-  decorateAnnouncement();
-  decorateAPIBrowser()
-  decorateResourceCards();
-  decorateSummary();
-  fixIcons();
+   //decorateHeader();
+   decorateHero();
+  // decorateEmbeds();
+  // decorateButtons();
+  // decorateCards();
+  // decorateColumns();
+  // decorateAnnouncement();
+  // decorateAPIBrowser()
+  // decorateResourceCards();
+  // decorateSummary();
+  // fixIcons();
   later();
 }
 

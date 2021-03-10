@@ -1,69 +1,23 @@
+main div.hero-container {
+  background: var(--spectrum-global-color-gray-50);
+  overflow: hidden;
 
-main div.hero {
-  width: 100%;
-  padding: 0;
-  margin: 0;
+  @media screen and (max-width: 1280px) {
+    height: auto;
+    padding: var(--spectrum-global-dimension-size-400);
+  }
 }
 
-main div.hero {
-	color: #fff;
-}
-
-main div.hero > div {
+main div.hero-container > div {
   display: flex;
-}
-
-main div.hero .five-columns {
-  padding-left: 64px;
-  padding-right: 32px;
-  flex-basis: 41.6666%;
-  display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-}
+  width: calc(5 * 100% / 12);
+  margin-left: var(--spectrum-global-dimension-size-800);
+  margin-right: var(--spectrum-global-dimension-size-400);
 
-
-main div.hero .seven-columns {
-  flex-basis: 58.3333%;
-}
-
-main div.hero .heroIconContainer {
-  padding: 0;
-  margin: 0;
-  width: 48px;
-  height: 48px;
-}
-
-main div.hero .icon {
-  width: 48px;
-  height: 48px;
-}
-
-main div.hero h1 {
-  font-family: "Adobe Clean Serif", "adobe-clean-serif", serif;
-  font-size: 45px;
-  line-height: 54px;
-  color: #323232;
-  font-weight: 900;
-  margin: 0;
-  padding: 24px 0 16px 0;
-}
-
-main div.hero p {
-	font-size: 18px;
-  line-height: 27px;
-  color: #323232;
-  margin: 0;
-  padding: 0 0 24px 0;
-  text-align: left;
-}
-
-main div.hero .heroPrimaryLink {
-  float: left;
-  padding-right: 16px;
-  padding-bottom: 0;
-}
-
-main div.hero .heroSecondaryLink {
-  padding-bottom: 0;
+  @media screen and (max-width: max-width: 1280px) {
+    width: 100%;
+    margin: 0;
+  }
 }
