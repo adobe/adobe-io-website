@@ -73,8 +73,6 @@ main .hero h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--spectrum-global-dimension-size-200);
 }
 
-
-
 main .hero p.spectrum-Body--sizeL {
   margin-top: 0 !important;
   font-size: var(--spectrum-global-dimension-size-225);
