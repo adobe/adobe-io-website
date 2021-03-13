@@ -60,7 +60,7 @@ main .api-card-icon img {
     object-fit: contain;
 }
 
-main .api-card-icon + .api-card-body-inner{
+main .api-card-icon-container + .api-card-body-inner{
     top: var(--spectrum-global-dimension-size-800)
 }
 
@@ -68,6 +68,15 @@ main .api-card-body-inner {
     position: relative;
     z-index: 1;
     background-color: var(--spectrum-global-color-gray-50);
+}
+
+main .api-card-title-container {
+    margin-top: 0 !important;
+    margin-bottom: var(--spectrum-global-dimension-size-100) !important;
+}
+
+main .api-card-title {
+    font-size: var(--spectrum-global-dimension-size-200);
 }
 /* 
 position: relative;

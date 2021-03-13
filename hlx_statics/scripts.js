@@ -281,10 +281,12 @@
 
       if (counter >= limit) show = false;
       if (show) {
+        // TODO: really should use templates...
+
         const $card = createTag("div", { class: "api-card" });
         $card.classList.add('spectrum--lightest');
 
-        const $cardInnerContainer = createTag('div', { class: 'spectrum-Card', role: 'figure', tabIndex: 0 });
+        const $cardInnerContainer = createTag('div', { class: 'spectrum-Card', role: 'figure', tabIndex: 0, dir: 'ltr' });
         $cardInnerContainer.classList.add('api-card-inner');
         $card.append($cardInnerContainer);
 
@@ -303,6 +305,22 @@
         $spectrumCardBody.append($cardIconContainer);
 
         const $cardBodyInner = createTag('div', { class: 'api-card-body-inner'});
+
+        const $titleContainer = createTag('div', { class: 'api-card-title-container'});
+        $titleContainer.classList.add('spectrum-Card-header', 'spectrum-Heading', 'spectrum-Heading--sizeXXS');
+
+        const $title = createTag('div', { class: 'api-card-title'});
+        $title.classList.add('spectrum-Card-title');
+
+        const $titleText = createTag('h4');
+        $titleText.innerText = `${card.Title}`;
+        const $strong = createTag('strong');
+
+        $strong.append($titleText);
+        $title.append($strong);
+        $titleContainer.append($title);
+        $cardBodyInner.append($titleContainer);
+        $spectrumCardBody.append($cardBodyInner);
 
 
         const icon = card.Icon
