@@ -282,10 +282,34 @@
       if (counter >= limit) show = false;
       if (show) {
         const $card = createTag("div", { class: "api-card" });
+        $card.classList.add('spectrum--lightest');
+
+        const $cardInnerContainer = createTag('div', { class: 'spectrum-Card', role: 'figure', tabIndex: 0 });
+        $cardInnerContainer.classList.add('api-card-inner');
+        $card.append($cardInnerContainer);
+
+        const $spectrumCardBody = createTag('div', { class: 'spectrum-Card-body' });
+        $spectrumCardBody.classList.add('api-card-body');
+        $cardInnerContainer.append($spectrumCardBody);
+
+        const $cardIconContainer = createTag('div', { class: 'api-card-icon-container'});
+
+        const $icon = card.Icon ? createTag('img', { class: 'api-card-icon', src: `/hlx_statics/icons/${card.Icon}.svg`}) : null;
+
+        if($icon !== null) {
+          $cardIconContainer.append($icon);
+        }
+
+        $spectrumCardBody.append($cardIconContainer);
+
+        const $cardBodyInner = createTag('div', { class: 'api-card-body-inner'});
+
+
         const icon = card.Icon
           ? `<img class="api-icon" src="/hlx_statics/icons/${card.Icon}.svg">`
           : "";
         let buttonsHtml = "";
+
         buttons.forEach((b, i) => {
           if (card[b]) {
             buttonsHtml += `<a class="button" href="${card[b]} ${
@@ -293,15 +317,15 @@
             }">${b}</a>`;
           }
         });
-        $card.innerHTML = `<div class="api-card-body">
-        ${icon}
-        <h4>${card.Title}</h4>
-        <p>${card.Description}</p>
-        </div>
-        <div class="api-card-buttons">
-          <p>${buttonsHtml}</p>
-        </div>          
-      `;
+      //   $card.innerHTML = `<div class="api-card-body">
+      //   ${icon}
+      //   <h4>${card.Title}</h4>
+      //   <p>${card.Description}</p>
+      //   </div>
+      //   <div class="api-card-buttons">
+      //     <p>${buttonsHtml}</p>
+      //   </div>          
+      // `;
         $cards.append($card);
         counter++;
       }
@@ -373,6 +397,7 @@
       window.aio.apiCatalog = (await resp.json()).data;
       const catalog = window.aio.apiCatalog;
       let buttons = ["Learn More", "View Docs"];
+
       if (config.display)
         buttons = config.display.split(",").map((e) => e.trim());
 
@@ -387,6 +412,7 @@
         const $cards = createTag("div", { class: "api-cards" });
         const $filters = createTag("div", { class: "filters" });
         $filters.innerHTML = `<strong>Filter by</strong>`;
+        
         categories.forEach((c) => {
           const $filter = createTag("div");
           const id = toClassName(c);
@@ -610,6 +636,7 @@
     loadCSS('/hlx_statics/spectrum/page/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/button/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/typography/dist/index-vars.css');
+    loadCSS('/hlx_statics/spectrum/card/dist/index-vars.css');
   }
 
   async function decoratePage() {

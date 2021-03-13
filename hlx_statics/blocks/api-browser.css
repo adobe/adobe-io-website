@@ -2,6 +2,90 @@ main .api-browser-container {
     background-color: #fff;
 }
 
+main .api-card {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: 'center';
+    width: 100%;
+    padding: var(--spectrum-global-dimension-size-400) 0;
+    background: var(--spectrum-global-color-gray-100);
+}
+
+@media screen and (max-width: 1280px) {
+    main .api-card {
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+}
+
+main .api-card-inner {
+    margin: 0 var(--spectrum-global-dimension-size-300);
+    width: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-800));
+    height: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-500));
+}
+
+main .api-card-inner:hover {
+    border-color: var(--spectrum-card-border-color, var(--spectrum-global-color-gray-200));
+}
+
+@media screen and (max-width: 1280px) {
+    main .api-card-inner {
+        width: 0;
+        margin: 0;
+    }
+}
+
+main .api-card-body {
+    height: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-500));
+    overflow: auto;
+    text-align: left;
+}
+
+main .api-card-icon-container {
+    position: absolute;
+    height: var(--spectrum-global-dimension-size-800);
+    z-index: 1;
+}
+
+main .api-card-icon {
+    height: var(--spectrum-global-dimension-size-600);
+    width: var(--spectrum-global-dimension-size-600);
+    margin-top: 0;
+}
+
+main .api-card-icon img {
+    display: block;
+    height: 100%;
+    object-fit: contain;
+}
+
+main .api-card-icon + .api-card-body-inner{
+    top: var(--spectrum-global-dimension-size-800)
+}
+
+main .api-card-body-inner {
+    position: relative;
+    z-index: 1;
+    background-color: var(--spectrum-global-color-gray-50);
+}
+/* 
+position: relative;
+z-index: 1;
+background-color: var(--spectrum-global-color-gray-50);
+${icon ? 'top: var(--spectrum-global-dimension-size-800);' : ''} 
+
+*/
+
+
+          /* &:hover {
+
+          }
+          @media screen and (max-width: ${LARGE_SCREEN_WIDTH}) {
+            width: 0;
+            margin: 0;
+          } */
+/* 
 main .api-browser {
     display: flex;
 }
@@ -46,4 +130,4 @@ main .api-browser h2{
 main .api-browser p{
     text-align: left;
     padding-bottom: 0;
-}
+} */
