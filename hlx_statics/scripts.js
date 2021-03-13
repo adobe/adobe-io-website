@@ -240,7 +240,6 @@
   function decorateTitle($container, $containerClass) {
     // search container for h's and p's not inside a container and apply title block classes
     $container.querySelectorAll('p').forEach(($pTag) => {
-      console.log('div.'+ $containerClass)
       const $mainContainer = $container.querySelector('div.'+ $containerClass);
       if(!$mainContainer.contains($pTag)) {
         $pTag.classList.add('title-body', 'spectrum-Body--sizeL', 'spectrum-Body--light');
@@ -283,19 +282,15 @@
       if (show) {
         // TODO: really should use templates...
 
-        const $card = createTag("div", { class: "api-card" });
-        $card.classList.add('spectrum--lightest');
+        const $card = createTag("div", { class: "api-card spectrum--lightest" });
 
-        const $cardInnerContainer = createTag('div', { class: 'spectrum-Card', role: 'figure', tabIndex: 0, dir: 'ltr' });
-        $cardInnerContainer.classList.add('api-card-inner');
+        const $cardInnerContainer = createTag('div', { class: 'spectrum-Card api-card-inner', role: 'figure', tabIndex: 0, dir: 'ltr' });
         $card.append($cardInnerContainer);
 
-        const $spectrumCardBody = createTag('div', { class: 'spectrum-Card-body' });
-        $spectrumCardBody.classList.add('api-card-body');
+        const $spectrumCardBody = createTag('div', { class: 'spectrum-Card-body api-card-body' });
         $cardInnerContainer.append($spectrumCardBody);
 
         const $cardIconContainer = createTag('div', { class: 'api-card-icon-container'});
-
         const $icon = card.Icon ? createTag('img', { class: 'api-card-icon', src: `/hlx_statics/icons/${card.Icon}.svg`}) : null;
 
         if($icon !== null) {
@@ -306,11 +301,8 @@
 
         const $cardBodyInner = createTag('div', { class: 'api-card-body-inner'});
 
-        const $titleContainer = createTag('div', { class: 'api-card-title-container'});
-        $titleContainer.classList.add('spectrum-Card-header', 'spectrum-Heading', 'spectrum-Heading--sizeXXS');
-
-        const $title = createTag('div', { class: 'api-card-title'});
-        $title.classList.add('spectrum-Card-title');
+        const $titleContainer = createTag('div', { class: 'api-card-title-container spectrum-Card-header spectrum-Heading spectrum-Heading--sizeXXS'});
+        const $title = createTag('div', { class: 'api-card-title spectrum-Card-title'});
 
         const $titleText = createTag('h4');
         $titleText.innerText = `${card.Title}`;
@@ -319,15 +311,19 @@
         $strong.append($titleText);
         $title.append($strong);
         $titleContainer.append($title);
+
+        const $cardContent = createTag('div', { class: 'spectrum-Card-content spectrum-Body spectrum-Body--sizeS api-card-content'});
+        $cardContent.innerText = `${card.Description}`;
+
+        const $cardFooter = createTag('div', { class: 'spectrum-Card-footer' });
+
         $cardBodyInner.append($titleContainer);
+        $cardBodyInner.append($cardContent);
         $spectrumCardBody.append($cardBodyInner);
 
 
-        const icon = card.Icon
-          ? `<img class="api-icon" src="/hlx_statics/icons/${card.Icon}.svg">`
-          : "";
-        let buttonsHtml = "";
 
+        let buttonsHtml = "";
         buttons.forEach((b, i) => {
           if (card[b]) {
             buttonsHtml += `<a class="button" href="${card[b]} ${
@@ -335,15 +331,9 @@
             }">${b}</a>`;
           }
         });
-      //   $card.innerHTML = `<div class="api-card-body">
-      //   ${icon}
-      //   <h4>${card.Title}</h4>
-      //   <p>${card.Description}</p>
-      //   </div>
-      //   <div class="api-card-buttons">
-      //     <p>${buttonsHtml}</p>
-      //   </div>          
-      // `;
+        $cardFooter.innerHTML = buttonsHtml;
+        
+        $cardInnerContainer.append($cardFooter);
         $cards.append($card);
         counter++;
       }

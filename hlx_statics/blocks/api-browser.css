@@ -78,6 +78,12 @@ main .api-card-title-container {
 main .api-card-title {
     font-size: var(--spectrum-global-dimension-size-200);
 }
+
+main .api-card-content {
+    height: auto;
+    margin-bottom: 0 !important;
+}
+
 /* 
 position: relative;
 z-index: 1;
