@@ -280,61 +280,62 @@
 
       if (counter >= limit) show = false;
       if (show) {
-        // TODO: really should use templates...
 
-        const $card = createTag("div", { class: "api-card spectrum--lightest" });
-
-        const $cardInnerContainer = createTag('div', { class: 'spectrum-Card api-card-inner', role: 'figure', tabIndex: 0, dir: 'ltr' });
-        $card.append($cardInnerContainer);
-
-        const $spectrumCardBody = createTag('div', { class: 'spectrum-Card-body api-card-body' });
-        $cardInnerContainer.append($spectrumCardBody);
-
-        const $cardIconContainer = createTag('div', { class: 'api-card-icon-container'});
-        const $icon = card.Icon ? createTag('img', { class: 'api-card-icon', src: `/hlx_statics/icons/${card.Icon}.svg`}) : null;
-
-        if($icon !== null) {
-          $cardIconContainer.append($icon);
+        let iconTemplate = '';
+        if(card.Icon) {
+          iconTemplate = `
+            <div class="api-card-icon-container">
+              <img
+                class="api-card-icon"
+                src="/hlx_statics/icons/${card.Icon}.svg"
+              />
+            </div>
+          `
         }
 
-        $spectrumCardBody.append($cardIconContainer);
-
-        const $cardBodyInner = createTag('div', { class: 'api-card-body-inner'});
-
-        const $titleContainer = createTag('div', { class: 'api-card-title-container spectrum-Card-header spectrum-Heading spectrum-Heading--sizeXXS'});
-        const $title = createTag('div', { class: 'api-card-title spectrum-Card-title'});
-
-        const $titleText = createTag('h4');
-        $titleText.innerText = `${card.Title}`;
-        const $strong = createTag('strong');
-
-        $strong.append($titleText);
-        $title.append($strong);
-        $titleContainer.append($title);
-
-        const $cardContent = createTag('div', { class: 'spectrum-Card-content spectrum-Body spectrum-Body--sizeS api-card-content'});
-        $cardContent.innerText = `${card.Description}`;
-
-        const $cardFooter = createTag('div', { class: 'spectrum-Card-footer' });
-
-        $cardBodyInner.append($titleContainer);
-        $cardBodyInner.append($cardContent);
-        $spectrumCardBody.append($cardBodyInner);
-
-
-
-        let buttonsHtml = "";
+        let buttonTemplate = '';
         buttons.forEach((b, i) => {
           if (card[b]) {
-            buttonsHtml += `<a class="button" href="${card[b]} ${
+            buttonTemplate += `<a class="button" href="${card[b]} ${
               i == buttons.length - 1 ? "primary" : "secondary"
             }">${b}</a>`;
           }
         });
-        $cardFooter.innerHTML = buttonsHtml;
-        
-        $cardInnerContainer.append($cardFooter);
-        $cards.append($card);
+
+        let cardTemplate = `
+<div class="api-card spectrum--lightest">
+  <div
+    class="spectrum-Card api-card-inner"
+    role="figure"
+    tabindex="0"
+    dir="ltr"
+  >
+    <div class="spectrum-Card-body api-card-body">
+      ${iconTemplate}
+      <div class="api-card-body-inner">
+        <div
+          class="api-card-title-container spectrum-Card-header spectrum-Heading spectrum-Heading--sizeXXS"
+        >
+          <div class="api-card-title spectrum-Card-title">
+            <strong><h4>${card.Title}</h4></strong>
+          </div>
+        </div>
+        <div
+          class="spectrum-Card-content spectrum-Body spectrum-Body--sizeS api-card-content"
+        >
+          ${card.Description}
+        </div>
+      </div>
+    </div>
+    <div class="spectrum-Card-footer">
+        ${buttonTemplate}
+    </div>
+  </div>
+</div>
+`;
+
+
+        $cards.innerHTML += cardTemplate;
         counter++;
       }
     });
