@@ -402,9 +402,17 @@
       $announcement.querySelectorAll('br').forEach(($br) => {
         $br.remove();
       });
+
+      $announcement.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($h) => {
+        $h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'announce-heading');
+      });
+
+
       $announcement.querySelectorAll('p a').forEach(($link) => {
         $link.parentElement.classList.add('announce-link');
       });
+
+
     });
   }
 
@@ -700,7 +708,7 @@
 
     // decorateCards();
     // decorateColumns();
-    // decorateAnnouncement();
+    decorateAnnouncement();
     decorateAPIBrowser()
     // decorateResourceCards();
     // decorateSummary();
