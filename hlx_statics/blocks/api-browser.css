@@ -2,6 +2,22 @@ main .api-browser-container {
     background-color: #fff;
 }
 
+main .api-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-800)));
+    grid-auto-rows: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-500));
+    justify-content: center;
+    gap: var(--spectrum-global-dimension-size-400);
+}
+
+@media screen and (max-width: 1280px) {
+    main .api-cards {
+        margin-top: var(--spectrum-global-dimension-size-400);
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 main .api-card {
     display: inline-flex;
     flex-direction: column;
@@ -82,6 +98,26 @@ main .api-card-title {
 main .api-card-content {
     height: auto;
     margin-bottom: 0 !important;
+}
+
+main .api-card-button-container {
+    display: flex;
+    --gap: var(--spectrum-global-dimension-size-200);
+    flex-wrap: wrap;
+    margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
+    width: calc(100% + var(--gap));
+    justify-content: flex-end;
+}
+
+main .api-card-button-container button{
+    margin: var(--gap) 0 0 var(--gap);
+}
+
+
+@media screen and (max-width: 1280px) {
+    main .api-card-button-container {
+        justify-content: center;
+    }
 }
 
 /* 

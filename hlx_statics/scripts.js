@@ -296,9 +296,21 @@
         let buttonTemplate = '';
         buttons.forEach((b, i) => {
           if (card[b]) {
-            buttonTemplate += `<a class="button" href="${card[b]} ${
-              i == buttons.length - 1 ? "primary" : "secondary"
-            }">${b}</a>`;
+            if(i === 0){
+              buttonTemplate += 
+                `<button onClick="location.href=${card[b]}" class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet spectrum-Button--sizeM">
+                  <span class="spectrum-Button-label">${b}</span>
+                </button>`
+            
+            } else {
+              buttonTemplate +=
+              `
+              <button onClick="location.href=${card[b]}" class="spectrum-Button spectrum-Button--primary spectrum-Button--sizeM">
+                <span class="spectrum-Button-label">${b}</span>
+              </button>
+              `
+            
+            }
           }
         });
 
@@ -328,7 +340,9 @@
       </div>
     </div>
     <div class="spectrum-Card-footer">
-        ${buttonTemplate}
+        <div class="api-card-button-container">
+          ${buttonTemplate}
+        </div>
     </div>
   </div>
 </div>
