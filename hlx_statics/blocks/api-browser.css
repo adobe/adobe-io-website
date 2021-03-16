@@ -2,12 +2,18 @@ main .api-browser-container {
     background-color: #fff;
 }
 
+main .api-browser {
+    max-width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
+    margin: var(--spectrum-global-dimension-size-400) auto;
+}
+
 main .api-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-800)));
     grid-auto-rows: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-500));
     justify-content: center;
     gap: var(--spectrum-global-dimension-size-400);
+    flex: 1;
 }
 
 @media screen and (max-width: 1280px) {
@@ -34,6 +40,11 @@ main .api-card {
         align-items: center;
     }
 }
+
+main .api-cards-inner {
+    display: flex;
+}
+
 
 main .api-card-inner {
     margin: 0 var(--spectrum-global-dimension-size-300);
@@ -84,6 +95,7 @@ main .api-card-body-inner {
     position: relative;
     z-index: 1;
     background-color: var(--spectrum-global-color-gray-50);
+
 }
 
 main .api-card-title-container {
@@ -120,6 +132,22 @@ main .api-card-button-container button{
     }
 }
 
+main .api-browser .filters {
+    width: var(--spectrum-global-dimension-size-3000, var(--spectrum-alias-size-3000));
+    align-items: flex-end;
+    flex-direction: column;
+    display: flex;
+}
+
+main .api-browser .filters-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    display: flex;
+}
+
+main .filter-item {
+    margin-bottom: var(--spectrum-global-dimension-size-100, var(--spectrum-alias-size-100));
+}
 /* 
 position: relative;
 z-index: 1;

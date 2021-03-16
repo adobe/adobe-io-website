@@ -414,6 +414,7 @@
     });
 
     document.querySelectorAll(".api-browser").forEach(async ($apiBrowser) => {
+      $apiBrowser.classList.add('spectrum--light');
       const config = readBlockConfig($apiBrowser);
       window.aio = window.aio || {};
       const resp = await fetch("/api-catalog.json");
@@ -433,26 +434,50 @@
           });
 
         const $cards = createTag("div", { class: "api-cards" });
+
+        const $apiCardsInner = createTag("div", { class: 'api-cards-inner' });
+
         const $filters = createTag("div", { class: "filters" });
-        $filters.innerHTML = `<strong>Filter by</strong>`;
+        const $filtersInner = createTag('div', { class: 'filters-inner'});
+         
+        $filtersInner.innerHTML = `<strong><h4 class="spectrum-Heading--XS">Filter by</h4></strong>`;
         
         categories.forEach((c) => {
           const $filter = createTag("div");
           const id = toClassName(c);
-          $filter.innerHTML = `<input type="checkbox" id="${id}" name="${id}" value="${c}">
-        <label for="${id}"> ${c}</label><br>`;
+
+  
+          $filter.innerHTML = `
+          
+            <label class="spectrum-Checkbox spectrum-Checkbox--emphasized spectrum-Checkbox--sizeM" for="${id}">
+              <input type="checkbox" class="spectrum-Checkbox-input" id="${id}" name="${id}" value="${c}">
+              <span class="spectrum-Checkbox-box">
+                <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Checkbox-checkmark" focusable="false" aria-hidden="true">
+                  <use xlink:href="#spectrum-css-icon-Checkmark100" />
+                </svg>
+                <svg class="spectrum-Icon spectrum-UIIcon-Dash100 spectrum-Checkbox-partialCheckmark" focusable="false" aria-hidden="true">
+                  <use xlink:href="#spectrum-css-icon-Dash100" />
+                </svg>
+              </span>
+              <span class="spectrum-Checkbox-label" dir="ltr"> ${c}</span>
+            </label>
+          <br />
+        `;
+
           $filter.addEventListener("click", (evt) => {
             const filters = [];
-            $filters
+            $filtersInner
               .querySelectorAll(`:checked`)
               .forEach(($cb) => filters.push($cb.value));
             displayFilteredCards(catalog, $cards, buttons, config.limit, filters);
           });
-          $filters.append($filter);
+          $filtersInner.append($filter);
         });
-        $apiBrowser.append($filters);
 
-        $apiBrowser.append($cards);
+        $filters.append($filtersInner);
+        $apiCardsInner.append($filters);
+        $apiCardsInner.append($cards);
+        $apiBrowser.append($apiCardsInner);
         displayFilteredCards(catalog, $cards, buttons, config.limit);
       }
     });
@@ -660,6 +685,7 @@
     loadCSS('/hlx_statics/spectrum/button/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/typography/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/card/dist/index-vars.css');
+    loadCSS('/hlx_statics/spectrum/checkbox/dist/index-vars.css');
   }
 
   async function decoratePage() {
