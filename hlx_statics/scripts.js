@@ -1,3 +1,53 @@
+const $FOOTER_LINKS = {
+  "footer": [
+    {
+      "name": "Api",
+        "links": [
+          { "name": "Adobe Creative Cloud", "url": "https://www.adobe.io/apis/creativecloud" },
+          { "name": "Adobe Experience Platform", "url": "https://www.adobe.io/apis/experienceplatform/home" },
+          { "name": "Adobe Document Cloud", "url": "https://www.adobe.io/apis/documentcloud" },
+          { "name": "Adobe Experience Cloud", "url": "https://www.adobe.io/apis/experiencecloud" }
+      ]
+    },
+    {
+      "name": "Service",
+        "links": [
+          { "name": "Adobe XD", "url": "https://www.adobe.io/apis/creativecloud/xd" },
+          { "name": "Adobe Target", "url": "https://www.adobe.io/apis/experiencecloud/target" },
+          { "name": "Adobe Analytics", "url": "https://www.adobe.io/apis/experiencecloud/analytics" },
+          { "name": "Project Firefly", "url": "https://www.adobe.io/apis/experienceplatform/project-firefly" }
+      ]
+    },
+    {
+      "name": "Community",
+        "links": [
+          { "name": "Adobe Tech Blog", "url": "https://medium.com/adobetech" },
+          { "name": "Adobe on GitHub", "url": "https://github.com/adobe" },
+          { "name": "Adobe Developer on YouTube", "url": "https://youtube.com/channel/UCDtYqOjS9Eq9gacLcbMwhhQ" },
+          { "name": "Adobe Developer on Twitter", "url": "https://twitter.com/adobedevs" },
+          { "name": "Community Forums", "url": "https://adobe.com/communities/index.html" }
+      ]
+    },
+    {
+      "name": "Support",
+        "links": [
+          { "name": "Contact us", "url": "https://www.adobe.io/contactus" },
+          { "name": "Adobe Developer support", "url": "https://www.adobe.io/support" },
+          { "name": "Adobe Product support", "url": "https://helpx.adobe.com/contact/enterprise-support.html" }
+      ]
+    },
+    {
+      "name": "Developer",
+        "links": [
+          { "name": "Adobe I/O console", "url": "https://console.adobe.io/" },
+          { "name": "Open source at Adobe", "url": "https://www.adobe.io/open" },
+          { "name": "Download SDKs", "url": "https://console.adobe.io/downloads" },
+          { "name": "Authentication", "url": "https://www.adobe.io/authentication.html)" },
+          { "name": "Careers", "url": "https://adobe.com/careers.html" }
+      ]
+    }
+  ]
+};  
   /**
    * Creates a tag with the given name and attributes.
    * @param {string} name The tag name
@@ -195,6 +245,71 @@
       const $wrapper = createTag("div", { class: "section-wrapper" });
       $div.parentNode.appendChild($wrapper);
       $wrapper.appendChild($div);
+    });
+  }
+
+  function decorateFooter() {
+    const $footerTemplate = `
+      <div class="footer-links-container">
+        <div class="footer-links-container-inner">
+
+        </div>
+      </div>
+    `;
+
+    const $apisTemplate = `
+    <div class="footer-apis">
+          <div class="footer-apis-container">
+            <div>
+              <Heading>APIs and Services</Heading>
+              <ul>
+               
+              </ul>
+            </div>
+            <div class="footer-services-container">
+              <ul className="spectrum-Body spectrum-Body--sizeS">
+                
+              </ul>
+            </div>
+          </div>
+          <div class="footer-divider">
+            <Divider height="100%" orientation="vertical" size="M" />
+          </div>
+        </div>
+    `;
+
+    const $footerApiLinksTemplate = `
+    {APIs.map(({ title, path }, i) => (
+      <li key={i}>
+        <Link isQuiet={true} variant="secondary">
+          <a {...getExternalLinkProps(path)} href={path}>
+            {title}
+          </a>
+        </Link>
+      </li>
+    ))}
+    <li>
+      <Link isQuiet={true}>
+        <a {...getExternalLinkProps(allAPIs.path)} href={allAPIs.path}>
+          <strong>{allAPIs.title}</strong>
+        </a>
+      </Link>
+    </li>
+    `;
+
+    const $footerServicesLinksTemplate = `
+    {services.map(({ title, path }, i) => (
+      <li key={i}>
+        <Link isQuiet={true} variant="secondary">
+          <a {...getExternalLinkProps(path)} href={path}>
+            {title}
+          </a>
+        </Link>
+      </li>
+    ))}
+    `;
+    document.querySelectorAll('footer').forEach(($footer) => {
+
     });
   }
 
@@ -701,6 +816,7 @@
     wrapSections("main>div");
     decorateBlocks();
     wrapSections("header>div, footer>div");
+    decorateFooter();
     decorateButtons();
     //decorateHeader();
     decorateHero();
