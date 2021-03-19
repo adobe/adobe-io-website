@@ -378,7 +378,7 @@ const $FOOTER_LINKS =
 
       let $legalLinksTemplate = `
       <div
-        size="M"
+        class="spectrum-Divider spectrum-Divider--sizeM "
         style="margin-top: var(--spectrum-global-dimension-size-700)"
       ></div>
       <div
