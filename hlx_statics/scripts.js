@@ -1,53 +1,52 @@
-const $FOOTER_LINKS = {
-  "footer": [
-    {
-      "name": "Api",
-        "links": [
-          { "name": "Adobe Creative Cloud", "url": "https://www.adobe.io/apis/creativecloud" },
-          { "name": "Adobe Experience Platform", "url": "https://www.adobe.io/apis/experienceplatform/home" },
-          { "name": "Adobe Document Cloud", "url": "https://www.adobe.io/apis/documentcloud" },
-          { "name": "Adobe Experience Cloud", "url": "https://www.adobe.io/apis/experiencecloud" }
-      ]
-    },
-    {
-      "name": "Service",
-        "links": [
-          { "name": "Adobe XD", "url": "https://www.adobe.io/apis/creativecloud/xd" },
-          { "name": "Adobe Target", "url": "https://www.adobe.io/apis/experiencecloud/target" },
-          { "name": "Adobe Analytics", "url": "https://www.adobe.io/apis/experiencecloud/analytics" },
-          { "name": "Project Firefly", "url": "https://www.adobe.io/apis/experienceplatform/project-firefly" }
-      ]
-    },
-    {
-      "name": "Community",
-        "links": [
-          { "name": "Adobe Tech Blog", "url": "https://medium.com/adobetech" },
-          { "name": "Adobe on GitHub", "url": "https://github.com/adobe" },
-          { "name": "Adobe Developer on YouTube", "url": "https://youtube.com/channel/UCDtYqOjS9Eq9gacLcbMwhhQ" },
-          { "name": "Adobe Developer on Twitter", "url": "https://twitter.com/adobedevs" },
-          { "name": "Community Forums", "url": "https://adobe.com/communities/index.html" }
-      ]
-    },
-    {
-      "name": "Support",
-        "links": [
-          { "name": "Contact us", "url": "https://www.adobe.io/contactus" },
-          { "name": "Adobe Developer support", "url": "https://www.adobe.io/support" },
-          { "name": "Adobe Product support", "url": "https://helpx.adobe.com/contact/enterprise-support.html" }
-      ]
-    },
-    {
-      "name": "Developer",
-        "links": [
-          { "name": "Adobe I/O console", "url": "https://console.adobe.io/" },
-          { "name": "Open source at Adobe", "url": "https://www.adobe.io/open" },
-          { "name": "Download SDKs", "url": "https://console.adobe.io/downloads" },
-          { "name": "Authentication", "url": "https://www.adobe.io/authentication.html)" },
-          { "name": "Careers", "url": "https://adobe.com/careers.html" }
-      ]
-    }
+const $FOOTER_LINKS = 
+[
+  {
+    "name": "Api",
+    "links": [
+      { "name": "Adobe Creative Cloud", "url": "https://www.adobe.io/apis/creativecloud" },
+      { "name": "Adobe Experience Platform", "url": "https://www.adobe.io/apis/experienceplatform/home" },
+      { "name": "Adobe Document Cloud", "url": "https://www.adobe.io/apis/documentcloud" },
+      { "name": "Adobe Experience Cloud", "url": "https://www.adobe.io/apis/experiencecloud" }
   ]
-};  
+  },
+  {
+    "name": "Service",
+    "links": [
+      { "name": "Adobe XD", "url": "https://www.adobe.io/apis/creativecloud/xd" },
+      { "name": "Adobe Target", "url": "https://www.adobe.io/apis/experiencecloud/target" },
+      { "name": "Adobe Analytics", "url": "https://www.adobe.io/apis/experiencecloud/analytics" },
+      { "name": "Project Firefly", "url": "https://www.adobe.io/apis/experienceplatform/project-firefly" }
+    ]
+  },
+  {
+    "name": "Community",
+    "links": [
+      { "name": "Adobe Tech Blog", "url": "https://medium.com/adobetech" },
+      { "name": "Adobe on GitHub", "url": "https://github.com/adobe" },
+      { "name": "Adobe Developer on YouTube", "url": "https://youtube.com/channel/UCDtYqOjS9Eq9gacLcbMwhhQ" },
+      { "name": "Adobe Developer on Twitter", "url": "https://twitter.com/adobedevs" },
+      { "name": "Community Forums", "url": "https://adobe.com/communities/index.html" }
+    ]
+  },
+  {
+    "name": "Support",
+    "links": [
+      { "name": "Contact us", "url": "https://www.adobe.io/contactus" },
+      { "name": "Adobe Developer support", "url": "https://www.adobe.io/support" },
+      { "name": "Adobe Product support", "url": "https://helpx.adobe.com/contact/enterprise-support.html" }
+    ]
+  },
+  {
+    "name": "Developer",
+      "links": [
+      { "name": "Adobe I/O console", "url": "https://console.adobe.io/" },
+      { "name": "Open source at Adobe", "url": "https://www.adobe.io/open" },
+      { "name": "Download SDKs", "url": "https://console.adobe.io/downloads" },
+      { "name": "Authentication", "url": "https://www.adobe.io/authentication.html)" },
+      { "name": "Careers", "url": "https://adobe.com/careers.html" }
+    ]
+  }
+];
   /**
    * Creates a tag with the given name and attributes.
    * @param {string} name The tag name
@@ -248,68 +247,133 @@ const $FOOTER_LINKS = {
     });
   }
 
+  function footerListItem(name, url) {
+    return `
+      <li>
+        <a href="${url}" class="spectrum-Link spectrum-Link--secondary spectrum-Link--quiet">${name}</a>
+      </li>
+    `;
+  }
+
   function decorateFooter() {
-    const $footerTemplate = `
-      <div class="footer-links-container">
-        <div class="footer-links-container-inner">
-
-        </div>
-      </div>
-    `;
-
-    const $apisTemplate = `
-    <div class="footer-apis">
-          <div class="footer-apis-container">
-            <div>
-              <Heading>APIs and Services</Heading>
-              <ul>
-               
-              </ul>
-            </div>
-            <div class="footer-services-container">
-              <ul className="spectrum-Body spectrum-Body--sizeS">
-                
-              </ul>
-            </div>
-          </div>
-          <div class="footer-divider">
-            <Divider height="100%" orientation="vertical" size="M" />
-          </div>
-        </div>
-    `;
-
-    const $footerApiLinksTemplate = `
-    {APIs.map(({ title, path }, i) => (
-      <li key={i}>
-        <Link isQuiet={true} variant="secondary">
-          <a {...getExternalLinkProps(path)} href={path}>
-            {title}
-          </a>
-        </Link>
-      </li>
-    ))}
-    <li>
-      <Link isQuiet={true}>
-        <a {...getExternalLinkProps(allAPIs.path)} href={allAPIs.path}>
-          <strong>{allAPIs.title}</strong>
-        </a>
-      </Link>
-    </li>
-    `;
-
-    const $footerServicesLinksTemplate = `
-    {services.map(({ title, path }, i) => (
-      <li key={i}>
-        <Link isQuiet={true} variant="secondary">
-          <a {...getExternalLinkProps(path)} href={path}>
-            {title}
-          </a>
-        </Link>
-      </li>
-    ))}
-    `;
     document.querySelectorAll('footer').forEach(($footer) => {
 
+
+      let $apiLinksHTML = '';
+      $FOOTER_LINKS[0].links.forEach(($link) => {
+        $apiLinksHTML += footerListItem($link.name, $link.url)
+      });
+
+      let $servicesLinksHTML = '';
+      $FOOTER_LINKS[1].links.forEach(($link) => {
+        $servicesLinksHTML += footerListItem($link.name, $link.url)
+      });
+
+      let $apisTemplate = `
+      <div class="footer-apis">
+        <div class="footer-apis-container">
+          <div class="footer-apis-inner">
+            <h3 class="spectrum-Heading--XS">APIs and Services</h3>
+            <ul class="spectrum-Body spectrum-Body--sizeS">
+              ${$apiLinksHTML}
+              <li>
+                <a href="https://www.adobe.io/apis/" class="spectrum-Link spectrum-Link--quiet">
+                  <strong>
+                    View all
+                  </strong>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-services-container">
+            <ul class="spectrum-Body spectrum-Body--sizeS">
+              ${$servicesLinksHTML}
+            </ul>
+          </div>
+        </div>
+        <div class="footer-divider">
+          <div class="spectrum-Divider spectrum-Divider--sizeM spectrum-Divider--vertical" style="height: 100%; align-self: stretch;"></div>
+        </div>
+      </div>
+      `;
+
+      let $communityLinksHTML = '';
+      $FOOTER_LINKS[2].links.forEach(($link) => {
+        $communityLinksHTML += footerListItem($link.name, $link.url)
+      });
+
+      let $communityTemplate = `
+      <div class="footer-community">
+        <div class="footer-community-container">
+          <div>
+          <h3 class="spectrum-Heading--XS">Community</h3>
+            <ul class="spectrum-Body spectrum-Body--sizeS">
+              ${$communityLinksHTML}
+            </ul>
+          </div>
+        </div>
+        <div class="footer-divider">
+        <div class="spectrum-Divider spectrum-Divider--sizeM spectrum-Divider--vertical" style="height: 100%; align-self: stretch;"></div>
+        </div>
+      </div>
+      `;
+
+      let $supportLinksHTML = '';
+      $FOOTER_LINKS[3].links.forEach(($link) => {
+        $supportLinksHTML += footerListItem($link.name, $link.url)
+      });
+
+      let $supportTemplate = `
+      <div class="footer-support">
+      <div class="footer-support-container">
+        <div>
+        <h3 class="spectrum-Heading--XS">Support</h3>
+          <ul class="spectrum-Body spectrum-Body--sizeS">
+            ${$supportLinksHTML}
+          </ul>
+        </div>
+      </div>
+      <div class="footer-divider">
+      <div class="spectrum-Divider spectrum-Divider--sizeM spectrum-Divider--vertical" style="height: 100%; align-self: stretch;"></div>
+      </div>
+    </div>
+      `;
+
+
+      let $developerLinksHTML = '';
+      $FOOTER_LINKS[4].links.forEach(($link) => {
+        $developerLinksHTML += footerListItem($link.name, $link.url)
+      });
+
+      let $developerTemplate = `
+      <div class="footer-developer">
+      <div class="footer-developer-container">
+        <div>
+        <h3 class="spectrum-Heading--XS">Adobe Developer</h3>
+          <ul class="spectrum-Body spectrum-Body--sizeS">
+            ${$developerLinksHTML}
+          </ul>
+        </div>
+      </div>
+      <div class="footer-divider">
+      <div class="spectrum-Divider spectrum-Divider--sizeM spectrum-Divider--vertical" style="height: 100%; align-self: stretch;"></div>
+      </div>
+    </div>
+      `;
+
+      let $footerTemplate = `
+        <div class="footer-links-container">
+          <div class="footer-links-container-inner">
+            ${$apisTemplate}
+            ${$communityTemplate}
+            ${$supportTemplate}
+            ${$developerTemplate}
+          </div>
+        </div>
+      `;
+      const $footerContainer = createTag('div', {class: 'footer-links-container'});
+      $footerContainer.innerHTML = $footerTemplate;
+      $footer.prepend($footerContainer);
     });
   }
 
@@ -809,6 +873,8 @@ const $FOOTER_LINKS = {
     loadCSS('/hlx_statics/spectrum/typography/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/card/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/checkbox/dist/index-vars.css');
+    loadCSS('/hlx_statics/spectrum/link/dist/index-vars.css');
+    loadCSS('/hlx_statics/spectrum/divider/dist/index-vars.css');
   }
 
   async function decoratePage() {

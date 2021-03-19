@@ -80,33 +80,85 @@ footer {
   }
 }
 
-footer .section-wrapper > div {
-
+footer > div {
   box-sizing: border-box;
-  /* max-width: ${layoutColumns(12)}; */
+  max-width: calc(12 * var(--spectrum-global-dimension-static-grid-fixed-max-width) / var(--spectrum-global-dimension-static-grid-columns)); 
   margin: 0 auto;
 }
 
-footer .section-wrapper > div ul{
+footer > div ul{
   list-style: none;
   padding: 0;
 }
 
-footer .section-wrapper > div .spectrum-Heading--sizeXS {
+footer h3.spectrum-Heading--XS {
   position: absolute;
   white-space: nowrap;
 }
 
-footer .section-wrapper > div ul.spectrum-Body--sizeS {
+footer > div ul.spectrum-Body--sizeS {
   padding-top: var(--spectrum-global-dimension-size-500);
 }
 
-footer .section-wrapper > div ul.spectrum-Body--sizeS > li {
+footer > div ul.spectrum-Body--sizeS > li {
   margin-top: var(--spectrum-global-dimension-size-200);
 }
 
-footer .section-wrapper > div ul.spectrum-Body--sizeS > li:first-of-type {
+footer > div ul.spectrum-Body--sizeS > li:first-of-type {
   margin-top: 0;
+}
+
+footer .footer-links-container-inner {
+  display: grid;
+  grid-template-areas: 'apis blogs support developer';
+  grid-template-columns: 30% 22% 19%;
+  gap: var(--spectrum-global-dimension-size-400);
+}
+
+@media screen and (max-width: 1280px) {
+  footer .footer-links-container-inner {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+footer .footer-divider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+footer .footer-apis {
+  position: relative;
+  grid-area: apis;
+}
+
+footer .footer-apis-container {
+  display: flex;
+}
+
+@media screen and (max-width: 1280px) {
+  footer .footer-apis-container {
+    flex-direction: column;
+  }
+
+  footer .footer-apis-container > div{
+    margin: 0;
+  }
+}
+
+footer .footer-services-container {
+  margin-left: var(--spectrum-global-dimension-size-400);
+}
+footer .footer-community {
+  position: relative;
+  grid-area: blogs;
+}
+
+footer .footer-support {
+  position: relative;
+  grid-area: support;
 }
 
 .title-header {
