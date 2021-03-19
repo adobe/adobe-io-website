@@ -42,11 +42,21 @@ const $FOOTER_LINKS =
       { "name": "Adobe I/O console", "url": "https://console.adobe.io/" },
       { "name": "Open source at Adobe", "url": "https://www.adobe.io/open" },
       { "name": "Download SDKs", "url": "https://console.adobe.io/downloads" },
-      { "name": "Authentication", "url": "https://www.adobe.io/authentication.html)" },
+      { "name": "Authentication", "url": "https://www.adobe.io/authentication.html" },
       { "name": "Careers", "url": "https://adobe.com/careers.html" }
     ]
-  }
+  },
+  {
+    "name": "Legal",
+      "links": [
+      { "name": "Terms of use", "url": "https://adobe.com/legal/terms.html" },
+      { "name": "Privacy policy", "url": "https://adobe.com/privacy.html" },
+      { "name": "Cookies", "url": "https://adobe.com/privacy/cookies.html" },
+      { "name": "AdChoices", "url": "https://adobe.com/privacy/opt-out.html#interest-based-ads" }
+    ]
+  },
 ];
+
   /**
    * Creates a tag with the given name and attributes.
    * @param {string} name The tag name
@@ -361,6 +371,33 @@ const $FOOTER_LINKS =
     </div>
       `;
 
+      let $legalLinksHTML = '';
+      $FOOTER_LINKS[4].links.forEach(($link) => {
+        $legalLinksHTML += footerListItem($link.name, $link.url)
+      });
+
+      let $legalLinksTemplate = `
+      <div
+        size="M"
+        style="margin-top: var(--spectrum-global-dimension-size-700)"
+      ></div>
+      <div
+        class="footer-legal">
+        <div>
+          <ul
+            class="spectrum-Body spectrum-Body--sizeXS">
+            ${$legalLinksHTML}
+          </ul>
+        </div>
+        <div>
+          <span
+            class="spectrum-Body spectrum-Body--sizeXS footer-date">
+            Copyright © ${new Date().getFullYear()} Adobe. All rights reserved.
+          </span>
+        </div>
+      </div>
+      `;
+
       let $footerTemplate = `
         <div class="footer-links-container">
           <div class="footer-links-container-inner">
@@ -369,6 +406,7 @@ const $FOOTER_LINKS =
             ${$supportTemplate}
             ${$developerTemplate}
           </div>
+          ${$legalLinksTemplate}
         </div>
       `;
       const $footerContainer = createTag('div', {class: 'footer-links-container'});
@@ -526,7 +564,6 @@ const $FOOTER_LINKS =
   </div>
 </div>
 `;
-
 
         $cards.innerHTML += cardTemplate;
         counter++;

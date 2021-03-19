@@ -161,6 +161,40 @@ footer .footer-support {
   grid-area: support;
 }
 
+footer .footer-legal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--spectrum-global-dimension-size-100);
+}
+
+footer .footer-legal ul {
+  display: inline-flex;
+  color: var(--spectrum-global-color-gray-700);
+}
+
+footer .footer-legal ul > li {
+  margin-right: var(--spectrum-global-dimension-size-400);
+}
+
+@media screen and (max-width: 1280px) {
+  footer .footer-legal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+footer .footer-date {
+  color: var(--spectrum-global-color-gray-700);
+}
+
+@media screen and (max-width: 1280px) {
+  footer .footer-date {
+    display: block;
+    margin-top: var(--spectrum-global-dimension-size-200);
+  }
+}
+
 .title-header {
   text-align: center;
   padding-bottom: 16px;
