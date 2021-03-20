@@ -914,6 +914,10 @@ const $FOOTER_LINKS =
     loadCSS('/hlx_statics/spectrum/checkbox/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/link/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/divider/dist/index-vars.css');
+
+    const $adobeAnalytics = document.createElement('script');
+    $adobeAnalytics.src = '//assets.adobedtm.com/f9ca2ebf8aa5/cfdcfc3c597a/launch-8857f8f8b05b.min.js';
+    document.body.appendChild($adobeAnalytics);
   }
 
   async function decoratePage() {
