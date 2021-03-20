@@ -267,8 +267,6 @@ const $FOOTER_LINKS =
 
   function decorateFooter() {
     document.querySelectorAll('footer').forEach(($footer) => {
-
-
       let $apiLinksHTML = '';
       $FOOTER_LINKS[0].links.forEach(($link) => {
         $apiLinksHTML += footerListItem($link.name, $link.url)
@@ -323,7 +321,7 @@ const $FOOTER_LINKS =
           </div>
         </div>
         <div class="footer-divider">
-        <div class="spectrum-Divider spectrum-Divider--sizeM spectrum-Divider--vertical" style="height: 100%; align-self: stretch;"></div>
+          <div class="spectrum-Divider spectrum-Divider--sizeM spectrum-Divider--vertical" style="height: 100%; align-self: stretch;"></div>
         </div>
       </div>
       `;
@@ -344,7 +342,7 @@ const $FOOTER_LINKS =
         </div>
       </div>
       <div class="footer-divider">
-      <div class="spectrum-Divider spectrum-Divider--sizeM spectrum-Divider--vertical" style="height: 100%; align-self: stretch;"></div>
+        <div class="spectrum-Divider spectrum-Divider--sizeM spectrum-Divider--vertical" style="height: 100%; align-self: stretch;"></div>
       </div>
     </div>
       `;
@@ -366,13 +364,13 @@ const $FOOTER_LINKS =
         </div>
       </div>
       <div class="footer-divider">
-      <div class="spectrum-Divider spectrum-Divider--sizeM spectrum-Divider--vertical" style="height: 100%; align-self: stretch;"></div>
+        <div class="spectrum-Divider spectrum-Divider--sizeM spectrum-Divider--vertical" style="height: 100%; align-self: stretch;"></div>
       </div>
     </div>
       `;
 
       let $legalLinksHTML = '';
-      $FOOTER_LINKS[4].links.forEach(($link) => {
+      $FOOTER_LINKS[5].links.forEach(($link) => {
         $legalLinksHTML += footerListItem($link.name, $link.url)
       });
 
@@ -575,7 +573,9 @@ const $FOOTER_LINKS =
     let $header = document.querySelector('header');
 
     let $pContainer = document.createElement('p');
-    let $pContent = document.createTextNode('Adobe I/O');
+    let $pContent = createTag('strong', {class: 'spectrum-Heading spectrum-Heading--sizeXXS'});
+    $pContent.append('Adobe I/O')
+
     let $imgContainer = document.createElement('img');
 
     $imgContainer.classList.add('icon', 'icon-adobe');
@@ -600,16 +600,18 @@ const $FOOTER_LINKS =
     $aLink.href = 'https://console.adobe.io/';
     $aLink.textContent = 'Console';
 
-    let $strong = document.createElement('strong');
-    $strong.appendChild($aLink);
+    let $consoleLinkHTML = `
+      <button onClick="location.href='https://console.adobe.io/'"  class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+        <span class="spectrum-Button-label">
+          Console
+        </span>
+      </button>
+    `;
 
-    $pContainer = document.createElement('p');
-    $pContainer.appendChild($strong);
+    let $buttonContainer = createTag('div');
+    $buttonContainer.innerHTML = $consoleLinkHTML;
 
-    $header.appendChild($pContainer);
-    
-    const $navContainer = document.querySelector('.nav');
-    $navContainer.remove();
+    $header.appendChild($buttonContainer );
   }
 
   function decorateAnnouncement() {
@@ -921,7 +923,7 @@ const $FOOTER_LINKS =
     wrapSections("header>div, footer>div");
     decorateFooter();
     decorateButtons();
-    //decorateHeader();
+    decorateHeader();
     decorateHero();
     // decorateEmbeds();
 
