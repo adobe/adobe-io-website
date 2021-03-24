@@ -5,6 +5,7 @@ main .api-browser-container {
 main .api-browser {
     max-width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
     margin: var(--spectrum-global-dimension-size-400) auto;
+    margin-bottom: 0;
 }
 
 main .api-cards {
@@ -29,7 +30,7 @@ main .api-card {
     flex-direction: column;
     align-items: 'center';
     width: 100%;
-    padding: var(--spectrum-global-dimension-size-400) 0;
+
     background: var(--spectrum-global-color-gray-100);
 }
 
@@ -147,4 +148,14 @@ main .api-browser .filters-inner {
 
 main .filter-item {
     margin-bottom: var(--spectrum-global-dimension-size-100, var(--spectrum-alias-size-100));
+}
+
+main .filters-list {
+    margin-top: var(--spectrum-global-dimension-size-100);
+    display: flex;
+    flex-direction: column;
+}
+
+main .filter-label {
+    margin-left: var(--spectrum-checkbox-text-gap);
 }

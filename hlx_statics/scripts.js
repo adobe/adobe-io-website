@@ -662,19 +662,15 @@ const $FOOTER_LINKS =
         const $cards = createTag("div", { class: "api-cards" });
 
         const $apiCardsInner = createTag("div", { class: 'api-cards-inner' });
+        const $filters = createTag('div', {class: 'filters'});
+        $apiCardsInner.append($filters);
 
-        const $filters = createTag("div", { class: "filters" });
-        const $filtersInner = createTag('div', { class: 'filters-inner'});
-         
-        $filtersInner.innerHTML = `<strong><h4 class="spectrum-Heading--XS">Filter by</h4></strong>`;
-        
+        let $filterHtml = '';
         categories.forEach((c) => {
           const $filter = createTag("div");
           const id = toClassName(c);
 
-  
-          $filter.innerHTML = `
-          
+          $filterHtml += `
             <label class="spectrum-Checkbox spectrum-Checkbox--emphasized spectrum-Checkbox--sizeM" for="${id}">
               <input type="checkbox" class="spectrum-Checkbox-input" id="${id}" name="${id}" value="${c}">
               <span class="spectrum-Checkbox-box">
@@ -685,9 +681,8 @@ const $FOOTER_LINKS =
                   <use xlink:href="#spectrum-css-icon-Dash100" />
                 </svg>
               </span>
-              <span class="spectrum-Checkbox-label" dir="ltr"> ${c}</span>
+              <span class="spectrum-Checkbox-label filter-label">${c}</span>
             </label>
-          <br />
         `;
 
           $filter.addEventListener("click", (evt) => {
@@ -697,11 +692,19 @@ const $FOOTER_LINKS =
               .forEach(($cb) => filters.push($cb.value));
             displayFilteredCards(catalog, $cards, buttons, config.limit, filters);
           });
-          $filtersInner.append($filter);
         });
 
-        $filters.append($filtersInner);
-        $apiCardsInner.append($filters);
+        
+        let $filtersTemplate = `
+        <div class="filters-inner">
+          <strong><h4 class="spectrum-Heading--XS">Filter by</h4></strong>
+          <div class="filters-list">
+            ${$filterHtml}
+          </div>
+        </div>
+        `;
+
+        $filters.innerHTML = $filtersTemplate;
         $apiCardsInner.append($cards);
         $apiBrowser.append($apiCardsInner);
         displayFilteredCards(catalog, $cards, buttons, config.limit);
