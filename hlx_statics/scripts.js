@@ -906,9 +906,17 @@ const $FOOTER_LINKS =
     });
   }
 
+  function toggleScale() {
+    const doc = document.documentElement;
+    const isLargeScale = doc.clientWidth < MOBILE_SCREEN_WIDTH;
+  
+    doc.classList.toggle('spectrum--medium', !isLargeScale);
+    doc.classList.toggle('spectrum--large', isLargeScale);
+  }
 
   function later() {
-    document.documentElement.classList.add('spectrum','spectrum--light','spectrum--large');
+    document.documentElement.classList.add('spectrum','spectrum--light');
+    toggleScale();
     loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-global.css');
     loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-medium.css');
     loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-large.css');
@@ -953,10 +961,4 @@ const $FOOTER_LINKS =
 
   decoratePage();
 
-  window.addEventListener('resize', () => {
-    const doc = document.documentElement;
-    const isLargeScale = doc.clientWidth < MOBILE_SCREEN_WIDTH;
-    
-    doc.classList.toggle('spectrum--medium', !isLargeScale);
-    doc.classList.toggle('spectrum--large', isLargeScale);
-  });
+  window.addEventListener('resize', toggleScale);
