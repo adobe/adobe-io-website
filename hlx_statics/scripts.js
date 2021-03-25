@@ -1,4 +1,7 @@
-const $FOOTER_LINKS = 
+// See https://github.com/adobe/react-spectrum/blob/dac6d273a9843694a652d7513ff88f6a9c773887/packages/%40react-spectrum/utils/src/useIsMobileDevice.ts#L15
+const MOBILE_SCREEN_WIDTH = 700;
+
+const $FOOTER_LINKS =
 [
   {
     "name": "Api",
@@ -903,21 +906,33 @@ const $FOOTER_LINKS =
     });
   }
 
+  function toggleScale() {
+    const doc = document.documentElement;
+    const isLargeScale = doc.clientWidth < MOBILE_SCREEN_WIDTH;
+  
+    doc.classList.toggle('spectrum--medium', !isLargeScale);
+    doc.classList.toggle('spectrum--large', isLargeScale);
+  }
 
   function later() {
-    document.documentElement.classList.add('spectrum','spectrum--light','spectrum--medium');
-    // loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-global.css');
-    // loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-medium.css');
-    // loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-light.css');
-    // loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-lightest.css');
-    // loadCSS('/hlx_statics/spectrum/page/dist/index-vars.css');
-    // loadCSS('/hlx_statics/spectrum/button/dist/index-vars.css');
-    // loadCSS('/hlx_statics/spectrum/typography/dist/index-vars.css');
-    // loadCSS('/hlx_statics/spectrum/card/dist/index-vars.css');
-    // loadCSS('/hlx_statics/spectrum/checkbox/dist/index-vars.css');
-    // loadCSS('/hlx_statics/spectrum/link/dist/index-vars.css');
-    // loadCSS('/hlx_statics/spectrum/divider/dist/index-vars.css');
-    loadCSS('/hlx_statics/spectrum/minified/index.min.css');
+    document.documentElement.classList.add('spectrum','spectrum--light');
+    toggleScale();
+    loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-global.css');
+    loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-medium.css');
+    loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-large.css');
+    loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-light.css');
+    loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-lightest.css');
+    loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-dark.css');
+    loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-darkest.css');
+    loadCSS('/hlx_statics/spectrum/page/dist/index-vars.css');
+    loadCSS('/hlx_statics/spectrum/button/dist/index-vars.css');
+    loadCSS('/hlx_statics/spectrum/typography/dist/index-vars.css');
+    loadCSS('/hlx_statics/spectrum/card/dist/index-vars.css');
+    loadCSS('/hlx_statics/spectrum/checkbox/dist/index-vars.css');
+    loadCSS('/hlx_statics/spectrum/link/dist/index-vars.css');
+    loadCSS('/hlx_statics/spectrum/divider/dist/index-vars.css');
+    loadCSS('https://use.typekit.net/uma8ayv.css');
+    // loadCSS('/hlx_statics/spectrum/minified/index.min.css');
     const $adobeAnalytics = document.createElement('script');
     $adobeAnalytics.src = '//assets.adobedtm.com/f9ca2ebf8aa5/cfdcfc3c597a/launch-8857f8f8b05b.min.js';
     document.body.appendChild($adobeAnalytics);
@@ -945,3 +960,5 @@ const $FOOTER_LINKS =
   }
 
   decoratePage();
+
+  window.addEventListener('resize', toggleScale);
