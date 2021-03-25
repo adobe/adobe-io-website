@@ -908,7 +908,7 @@ const $FOOTER_LINKS =
 
 
   function later() {
-    document.documentElement.classList.add('spectrum','spectrum--light','spectrum--medium');
+    document.documentElement.classList.add('spectrum','spectrum--light','spectrum--large');
     loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-global.css');
     loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-medium.css');
     loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-large.css');
