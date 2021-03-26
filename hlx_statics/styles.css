@@ -117,6 +117,8 @@ footer .footer-links-container-inner {
   footer .footer-links-container-inner {
     display: flex;
     flex-direction: column;
+    padding: var(--spectrum-global-dimension-size-200);
+    margin: 0 auto;
   }
 }
 
@@ -179,6 +181,8 @@ footer .footer-legal ul > li {
   footer .footer-legal {
     flex-direction: column;
     align-items: flex-start;
+    padding: var(--spectrum-global-dimension-size-200);
+    margin: 0 auto;
   }
 }
 
