@@ -46,6 +46,13 @@ main .api-cards-inner {
     display: flex;
 }
 
+@media screen and (max-width: 1280px) {
+    main .api-cards-inner {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 
 main .api-card-inner {
     margin: 0 var(--spectrum-global-dimension-size-300);
