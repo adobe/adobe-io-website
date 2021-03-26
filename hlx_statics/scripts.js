@@ -666,7 +666,7 @@ const $FOOTER_LINKS =
       $apiBrowser.classList.add('spectrum--light');
       const config = readBlockConfig($apiBrowser);
       window.aio = window.aio || {};
-      const resp = await fetch("/api-catalog.json");
+      const resp = await fetch("/hlx_api-catalog.json");
       window.aio.apiCatalog = (await resp.json()).data;
       const catalog = window.aio.apiCatalog;
       let buttons = ["Learn More", "View Docs"];
