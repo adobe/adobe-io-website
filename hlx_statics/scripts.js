@@ -440,6 +440,10 @@ const $FOOTER_LINKS =
         }
       });
 
+      $heroSection.querySelectorAll('picture source').forEach(($picture) => {
+        //remove weird max-width attribute 
+      //$picture.media = "";
+      });
       // put buttons into their own div
       const $buttonContainer = createTag('div', {class: 'hero-button-container'});
       $heroSection.querySelectorAll('button').forEach(($button) => {
