@@ -975,7 +975,7 @@ const $FOOTER_LINKS =
     decorateAPIBrowser()
     // decorateResourceCards();
     // decorateSummary();
-    // fixIcons();
+    fixIcons();
     later();
   }
 
