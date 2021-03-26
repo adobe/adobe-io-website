@@ -48,9 +48,9 @@ header ul {
 header ul li {
     display: flex;
     align-items: center;
-    padding: 16px 48px 24px;
+    padding: 16px 48px 16px;
     border-left: 1px solid #eaeaea;
-    height: calc(100% + 1px);
+
 }
 
 header ul li:last-child {

@@ -590,12 +590,6 @@ const $FOOTER_LINKS =
 
     let $ulContainer = document.createElement('ul');
 
-    document.querySelectorAll(".nav a").forEach(($item) => {
-      let $liContainer = document.createElement('li');
-      $liContainer.appendChild($item);
-      $ulContainer.appendChild($liContainer);
-    });
-
     $header.appendChild($pContainer);
     $header.appendChild($ulContainer);
 
@@ -614,7 +608,29 @@ const $FOOTER_LINKS =
     let $buttonContainer = createTag('div');
     $buttonContainer.innerHTML = $consoleLinkHTML;
 
-    $header.appendChild($buttonContainer );
+    $header.appendChild($buttonContainer);
+
+    document.querySelectorAll('header').forEach(async ($header) => {
+      window.aio = window.aio || {};
+      const resp = await fetch("/nav.json");
+      window.aio.links = (await resp.json()).data;
+      const $links = window.aio.links;
+
+      $links.forEach(($link) => {
+        let $liItem = createTag('li');
+        let $aItem = createTag('a');
+        $aItem.href = $link.Url;
+        $aItem.innerText = $link.Title;
+        $liItem.append($aItem);
+        $ulContainer.append($liItem);
+      });
+
+    });
+    // document.querySelectorAll(".nav a").forEach(($item) => {
+    //   let $liContainer = document.createElement('li');
+    //   $liContainer.appendChild($item);
+    //   $ulContainer.appendChild($liContainer);
+    // });
   }
 
   function decorateAnnouncement() {
