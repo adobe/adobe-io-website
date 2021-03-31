@@ -28,7 +28,7 @@ main .api-cards {
 main .api-card {
     display: inline-flex;
     flex-direction: column;
-    align-items: 'center';
+    align-items: center;
     width: 100%;
 
     background: var(--spectrum-global-color-gray-100);

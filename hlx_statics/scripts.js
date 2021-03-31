@@ -542,7 +542,6 @@ const $FOOTER_LINKS =
     class="spectrum-Card api-card-inner"
     role="figure"
     tabindex="0"
-    dir="ltr"
   >
     <div class="spectrum-Card-body api-card-body">
       ${iconTemplate}
@@ -932,10 +931,12 @@ const $FOOTER_LINKS =
   
     doc.classList.toggle('spectrum--medium', !isLargeScale);
     doc.classList.toggle('spectrum--large', isLargeScale);
+
   }
 
   function later() {
     document.documentElement.classList.add('spectrum','spectrum--light');
+    document.documentElement.dir="ltr";
     toggleScale();
     loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-global.css');
     loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-medium.css');
@@ -952,7 +953,7 @@ const $FOOTER_LINKS =
     loadCSS('/hlx_statics/spectrum/link/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/divider/dist/index-vars.css');
     loadCSS('https://use.typekit.net/uma8ayv.css');
-    // loadCSS('/hlx_statics/spectrum/minified/index.min.css');
+    //loadCSS('/hlx_statics/spectrum/minified/index.min.css');
     const $adobeAnalytics = document.createElement('script');
     $adobeAnalytics.src = '//assets.adobedtm.com/f9ca2ebf8aa5/cfdcfc3c597a/launch-8857f8f8b05b.min.js';
     document.body.appendChild($adobeAnalytics);
