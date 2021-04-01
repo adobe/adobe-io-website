@@ -730,10 +730,12 @@ const $FOOTER_LINKS =
             <label class="spectrum-Checkbox spectrum-Checkbox--emphasized spectrum-Checkbox--sizeM" for="${id}">
               <input type="checkbox" class="spectrum-Checkbox-input" id="${id}" name="${id}" value="${c}">
               <span class="spectrum-Checkbox-box">
-                <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Checkbox-checkmark" focusable="false" aria-hidden="true">
-                  <use xlink:href="#spectrum-css-icon-Checkmark100" />
-                </svg>
-
+              <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Checkbox-checkmark" focusable="false" aria-hidden="true">
+              <use xlink:href="#spectrum-css-icon-Checkmark100" />
+            </svg>
+            <svg class="spectrum-Icon spectrum-UIIcon-Dash100 spectrum-Checkbox-partialCheckmark" focusable="false" aria-hidden="true">
+              <use xlink:href="#spectrum-css-icon-Dash100" />
+            </svg>
               </span>
               <span class="spectrum-Checkbox-label filter-label">${c}</span>
             </label>
@@ -998,6 +1000,7 @@ const $FOOTER_LINKS =
     // $loadIcons.src = '/hlx_statics/loadIcons.js';
     // document.body.appendChild($loadIcons);
     // console.log($loadIcons)
+    loadIcons('hlx_statics/spectrum/icon/dist/spectrum-css-icons.svg');
     loadIcons('hlx_statics/spectrum/spectrum-css-workflow-icons/dist/spectrum-icons.svg');
   }
 
