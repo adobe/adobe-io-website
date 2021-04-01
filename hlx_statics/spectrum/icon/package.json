@@ -1,0 +1,66 @@
+{
+  "_from": "@spectrum-css/icon",
+  "_id": "@spectrum-css/icon@3.0.1",
+  "_inBundle": false,
+  "_integrity": "sha1-4wCm/DU8hca11uejZECKlAwxsXc=",
+  "_location": "/@spectrum-css/icon",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@spectrum-css/icon",
+    "name": "@spectrum-css/icon",
+    "escapedName": "@spectrum-css%2ficon",
+    "scope": "@spectrum-css",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://artifactory.corp.adobe.com:443/artifactory/api/npm/npm-adobe-release/@spectrum-css/icon/-/icon-3.0.1.tgz",
+  "_shasum": "e300a6fc353c85c6b5d6e7a364408a940c31b177",
+  "_spec": "@spectrum-css/icon",
+  "_where": "/Users/timk/repo/adobe-docs/adobe-io-website",
+  "bugs": {
+    "url": "https://github.com/adobe/spectrum-css/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "The Spectrum CSS icon component",
+  "devDependencies": {
+    "@spectrum-css/component-builder": "^2.0.1",
+    "@spectrum-css/vars": "^3.0.1",
+    "gulp": "^4.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sort": "^2.0.0",
+    "gulp-svgcombiner": "^1.0.1",
+    "gulp-svgmin": "^2.1.0",
+    "gulp-svgstore": "^7.0.1",
+    "vinyl-paths": "^3.0.1"
+  },
+  "gitHead": "17254efa6b2fc16015381c6110e8ba76400fa2f8",
+  "homepage": "https://opensource.adobe.com/spectrum-css/",
+  "license": "Apache-2.0",
+  "main": "dist/index-vars.css",
+  "name": "@spectrum-css/icon",
+  "peerDependencies": {
+    "@spectrum-css/vars": "^3.0.0-beta.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adobe/spectrum-css.git",
+    "directory": "components/icon"
+  },
+  "scripts": {
+    "build": "gulp",
+    "update": "gulp updateIcons"
+  },
+  "version": "3.0.1"
+}
