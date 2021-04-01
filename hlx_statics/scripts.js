@@ -416,6 +416,36 @@ const $FOOTER_LINKS =
     });
   }
 
+  function decorateSiteHero() {
+    document.querySelectorAll('.site-hero-container').forEach(($heroSection) => {
+      removeEmptyPTags($heroSection);
+
+      $heroSection.classList.add('spectrum--dark');
+
+      $heroSection.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
+        $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
+      })
+
+      $heroSection.querySelectorAll('p').forEach(($p) => {
+        const $hasLinks = $p.querySelectorAll('a, button');
+        // don't attach to icon container or if p tag contains links
+        if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
+          $p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
+        }
+      });
+
+      // delete image and re-insert as bg
+      const $heroImageSrc = $heroSection.querySelector('img') ? $heroSection.querySelector('img').src : null;
+      $heroSection.querySelectorAll('picture source').forEach(($picture) => {
+        //remove weird max-width attribute 
+        $picture.media = "";
+        $picture.parentElement.parentElement.remove();
+      });
+
+      $heroSection.style.backgroundImage = `url(${$heroImageSrc})`;
+    });
+  }
+
   function decorateHero() {
     document.querySelectorAll('.hero-container').forEach(($heroSection) => {
       removeEmptyPTags($heroSection);
@@ -671,8 +701,6 @@ const $FOOTER_LINKS =
       const catalog = window.aio.apiCatalog;
       let buttons = ["Learn More", "View Docs"];
 
-      console.log('config')
-      console.log(config)
       if (config.display)
         buttons = config.display.split(",").map((e) => e.trim());
 
@@ -1013,6 +1041,7 @@ const $FOOTER_LINKS =
     decorateFooter();
     decorateButtons();
     decorateHeader();
+    decorateSiteHero();
     decorateHero();
     // decorateEmbeds();
 
