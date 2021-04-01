@@ -517,17 +517,18 @@ const $FOOTER_LINKS =
 
         let buttonTemplate = '';
         buttons.forEach((b, i) => {
-          if (card[b]) {
-            if(i === 0){
+          if (card[b] !== "") {
+
+            if(b === "Learn More"){
               buttonTemplate += 
-                `<button onClick="location.href=${card[b]}" class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet spectrum-Button--sizeM">
+                `<button onClick="location.href='${card[b]}'" class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet spectrum-Button--sizeM" >
                   <span class="spectrum-Button-label">${b}</span>
                 </button>`
             
             } else {
               buttonTemplate +=
               `
-              <button onClick="location.href=${card[b]}" class="spectrum-Button spectrum-Button--primary spectrum-Button--sizeM">
+              <button onClick="location.href='${card[b]}'" class="spectrum-Button spectrum-Button--primary spectrum-Button--sizeM">
                 <span class="spectrum-Button-label">${b}</span>
               </button>
               `
@@ -665,11 +666,13 @@ const $FOOTER_LINKS =
       $apiBrowser.classList.add('spectrum--light');
       const config = readBlockConfig($apiBrowser);
       window.aio = window.aio || {};
-      const resp = await fetch("/hlx_api-catalog.json");
+      const resp = await fetch("/hlx_api_catalog.json");
       window.aio.apiCatalog = (await resp.json()).data;
       const catalog = window.aio.apiCatalog;
       let buttons = ["Learn More", "View Docs"];
 
+      console.log('config')
+      console.log(config)
       if (config.display)
         buttons = config.display.split(",").map((e) => e.trim());
 
