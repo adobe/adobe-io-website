@@ -981,6 +981,7 @@ const $FOOTER_LINKS =
     loadCSS('/hlx_statics/spectrum/page/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/button/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/typography/dist/index-vars.css');
+    loadCSS('/hlx_statics/spectrum/icon/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/card/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/checkbox/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/link/dist/index-vars.css');
