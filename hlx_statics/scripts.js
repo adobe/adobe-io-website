@@ -688,6 +688,37 @@ const $FOOTER_LINKS =
 
         const $apiCardsInner = createTag("div", { class: 'api-cards-inner' });
         const $filters = createTag('div', {class: 'filters'});
+
+
+        // const $pickerContainer = createTag('div', {class: 'picker'});
+        // $apiCardsInner.append($pickerContainer);
+        // let $pickerHtml = `
+        // <button class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet is-open" aria-haspopup="listbox">
+        //   <span class="spectrum-Picker-label">Last updated</span>
+        //   <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
+        //     <use xlink:href="#spectrum-css-icon-Chevron100" />
+        //   </svg>
+        // </button>
+        // <div class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet is-open">
+        //   <ul class="spectrum-Menu" role="listbox">
+        //     <li class="spectrum-Menu-item is-selected" role="option" aria-selected="true" tabindex="0">
+        //       <span class="spectrum-Menu-itemLabel">Last updated</span>
+        //       <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Menu-checkmark spectrum-Menu-itemIcon" focusable="false" aria-hidden="true">
+        //         <use xlink:href="#spectrum-css-icon-Checkmark100" />
+        //       </svg>
+        //     </li>
+        //     <li class="spectrum-Menu-item" role="option" tabindex="0">
+        //       <span class="spectrum-Menu-itemLabel">Name</span>
+        //       <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Menu-checkmark spectrum-Menu-itemIcon" focusable="false" aria-hidden="true">
+        //         <use xlink:href="#spectrum-css-icon-Checkmark100" />
+        //       </svg>
+        //     </li>
+        //   </ul>
+        // </div>
+        // `;
+
+        // $pickerContainer.innerHTML = $pickerHtml;
+
         $apiCardsInner.append($filters);
 
         let $filterHtml = '';
@@ -702,9 +733,7 @@ const $FOOTER_LINKS =
                 <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Checkbox-checkmark" focusable="false" aria-hidden="true">
                   <use xlink:href="#spectrum-css-icon-Checkmark100" />
                 </svg>
-                <svg class="spectrum-Icon spectrum-UIIcon-Dash100 spectrum-Checkbox-partialCheckmark" focusable="false" aria-hidden="true">
-                  <use xlink:href="#spectrum-css-icon-Dash100" />
-                </svg>
+
               </span>
               <span class="spectrum-Checkbox-label filter-label">${c}</span>
             </label>
@@ -719,7 +748,6 @@ const $FOOTER_LINKS =
           });
         });
 
-        
         let $filtersTemplate = `
         <div class="filters-inner">
           <strong><h4 class="spectrum-Heading--XS">Filter by</h4></strong>
@@ -955,11 +983,22 @@ const $FOOTER_LINKS =
     loadCSS('/hlx_statics/spectrum/checkbox/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/link/dist/index-vars.css');
     loadCSS('/hlx_statics/spectrum/divider/dist/index-vars.css');
+
+    loadCSS('/hlx_statics/spectrum/menu/dist/index-vars.css');
+    loadCSS('/hlx_statics/spectrum/popover/dist/index-vars.css');
+    loadCSS('/hlx_statics/spectrum/picker/dist/index-vars.css');
+
     loadCSS('https://use.typekit.net/uma8ayv.css');
     //loadCSS('/hlx_statics/spectrum/minified/index.min.css');
     const $adobeAnalytics = document.createElement('script');
     $adobeAnalytics.src = '//assets.adobedtm.com/f9ca2ebf8aa5/cfdcfc3c597a/launch-8857f8f8b05b.min.js';
     document.body.appendChild($adobeAnalytics);
+
+    // const $loadIcons = document.createElement('script');
+    // $loadIcons.src = '/hlx_statics/loadIcons.js';
+    // document.body.appendChild($loadIcons);
+    // console.log($loadIcons)
+    loadIcons('hlx_statics/spectrum/spectrum-css-workflow-icons/dist/spectrum-icons.svg');
   }
 
   async function decoratePage() {

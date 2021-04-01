@@ -1,0 +1,37 @@
+{
+  "_from": "@adobe/spectrum-css-workflow-icons",
+  "_id": "@adobe/spectrum-css-workflow-icons@1.2.0",
+  "_inBundle": false,
+  "_integrity": "sha1-zai76HO6kxcWBFiFiul55Tk+VVA=",
+  "_location": "/@adobe/spectrum-css-workflow-icons",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@adobe/spectrum-css-workflow-icons",
+    "name": "@adobe/spectrum-css-workflow-icons",
+    "escapedName": "@adobe%2fspectrum-css-workflow-icons",
+    "scope": "@adobe",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://artifactory.corp.adobe.com:443/artifactory/api/npm/npm-adobe-release/@adobe/spectrum-css-workflow-icons/-/spectrum-css-workflow-icons-1.2.0.tgz",
+  "_shasum": "cda8bbe873ba9317160458858ae979e5393e5550",
+  "_spec": "@adobe/spectrum-css-workflow-icons",
+  "_where": "/Users/timk/repo/adobe-docs/adobe-io-website",
+  "bugs": {
+    "url": "https://github.com/adobe/spectrum-css-workflow-icons/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Build and publish spectrum-css workflow svg icons and svg sprite sheet for [Spectrum CSS](https://github.com/adobe/spectrum-css).",
+  "license": "Apache-2.0",
+  "main": "dist/icons.json",
+  "name": "@adobe/spectrum-css-workflow-icons",
+  "version": "1.2.0"
+}

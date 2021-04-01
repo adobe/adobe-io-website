@@ -1,0 +1,60 @@
+{
+  "_from": "@spectrum-css/menu@3.0.0",
+  "_id": "@spectrum-css/menu@3.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-eBU+pgo2yH6dgVzlHcf4TWubmr0=",
+  "_location": "/@spectrum-css/menu",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@spectrum-css/menu@3.0.0",
+    "name": "@spectrum-css/menu",
+    "escapedName": "@spectrum-css%2fmenu",
+    "scope": "@spectrum-css",
+    "rawSpec": "3.0.0",
+    "saveSpec": null,
+    "fetchSpec": "3.0.0"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://artifactory.corp.adobe.com:443/artifactory/api/npm/npm-adobe-release/@spectrum-css/menu/-/menu-3.0.0.tgz",
+  "_shasum": "78153ea60a36c87e9d815ce51dc7f84d6b9b9abd",
+  "_spec": "@spectrum-css/menu@3.0.0",
+  "_where": "/Users/timk/repo/adobe-docs/adobe-io-website",
+  "bugs": {
+    "url": "https://github.com/adobe/spectrum-css/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "The Spectrum CSS menu component",
+  "devDependencies": {
+    "@spectrum-css/component-builder": "^2.0.0",
+    "@spectrum-css/icon": "^3.0.0",
+    "@spectrum-css/vars": "^3.0.0",
+    "gulp": "^4.0.0"
+  },
+  "gitHead": "2182fd81423587146f3fb1c881536734a7dfe1a4",
+  "homepage": "https://opensource.adobe.com/spectrum-css/",
+  "license": "Apache-2.0",
+  "main": "dist/index-vars.css",
+  "name": "@spectrum-css/menu",
+  "peerDependencies": {
+    "@spectrum-css/icon": "^3.0.0-beta.0",
+    "@spectrum-css/vars": "^3.0.0-beta.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adobe/spectrum-css.git",
+    "directory": "components/menu"
+  },
+  "scripts": {
+    "build": "gulp"
+  },
+  "version": "3.0.0"
+}
