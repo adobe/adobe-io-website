@@ -222,10 +222,6 @@ const $FOOTER_LINKS =
         $twoup.replaceChild($button, $up);
       }
     });
-
-
-    // const $consoleButton = document.querySelector("header p:last-child a");
-    // $consoleButton.className = "button secondary";
   }
 
   function decorateIframe() {
@@ -607,63 +603,143 @@ const $FOOTER_LINKS =
   }
 
   function decorateHeader() {
-    let $header = document.querySelector('header');
+    document.querySelectorAll('header').forEach(($header) => {
+      $header.classList.add('main-header')
 
-    let $pContainer = document.createElement('p');
-    let $pContent = createTag('strong', {class: 'spectrum-Heading spectrum-Heading--sizeXXS'});
-    $pContent.append('Adobe I/O')
 
-    let $imgContainer = document.createElement('img');
+      const $mainHeaderLinks = `
+        <li class="header-list-item">
+          <a href="/apis">
+            Discover
+          </a>
+        </li>
+        <li class="header-list-item">
+          <a href="/open">
+            Open Source
+          </a>
+        </li>
+        <li class="header-list-item">
+          <a href="https://medium.com/adobetech">
+            Blog
+          </a>
+        </li>
+        <li class="header-list-item header-list-item-button">
+          <button onClick="location.href='https://console.adobe.io/'" class="spectrum-Button spectrum-Button--cta spectrum-Button--sizeM">
+            <span class="spectrum-Button-label">Console</span>
+          </button>
+        </li>
+      `;
 
-    $imgContainer.classList.add('icon', 'icon-adobe');
-    $imgContainer.src = '/hlx_statics/icons/adobe.svg';
-    $imgContainer.alt = 'adobe icon';
+      const $mainHeaderTemplate = `
+       <nav class="header-nav">
+        <a href="/" class="header-main-link">
+          <span class="header-label">
+            Adobe I/O
+          </span>
+        </a>
+        <div class="header-link-container">
+          <ul class="header-list">
+            ${$mainHeaderLinks}
+          </ul>
+        </div>
+      </nav>
+      `;
 
-    $pContainer.appendChild($imgContainer);
-    $pContainer.appendChild($pContent);
+      $header.innerHTML = $mainHeaderTemplate;
 
-    let $ulContainer = document.createElement('ul');
+      // {links.map(({ title, path, variant }, i) => {
+      //   const isButton = variant === 'button';
 
-    $header.appendChild($pContainer);
-    $header.appendChild($ulContainer);
-
-    let $aLink = document.createElement('a');
-    $aLink.href = 'https://console.adobe.io/';
-    $aLink.textContent = 'Console';
-
-    let $consoleLinkHTML = `
-      <button onClick="location.href='https://console.adobe.io/'"  class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
-        <span class="spectrum-Button-label">
-          Console
-        </span>
-      </button>
-    `;
-
-    let $buttonContainer = createTag('div');
-    $buttonContainer.innerHTML = $consoleLinkHTML;
-
-    $header.appendChild($buttonContainer);
-
-    document.querySelectorAll('header').forEach(async ($header) => {
-      window.aio = window.aio || {};
-      const resp = await fetch("/nav.json");
-      window.aio.links = (await resp.json()).data;
-      const $links = window.aio.links;
-
-      $links.forEach(($link) => {
-        let $liItem = createTag('li');
-        let $aItem = createTag('a');
-        $aItem.href = $link.Url;
-        $aItem.innerText = $link.Title;
-        $liItem.append($aItem);
-        $ulContainer.append($liItem);
-      });
-
+      //   return (
+      //     <li
+      //       key={i}
+      //       css={css`
+      //         display: flex;
+      //         align-items: center;
+      //         ${isButton
+      //           ? 'padding: 0 20px;'
+      //           : `
+      //           &:hover {
+      //             background-color: hsla(0, 0%, 89%, .8);
+      //             cursor: pointer;
+      //           }
+      //         `}
+      //       `}>
+      //       {isButton ? (
+      //         <AnchorButton variant="cta" href={path}>
+      //           {title}
+      //         </AnchorButton>
+      //       ) : (
+      //         <a
+      //           href={path}
+      //           css={css`
+      //             display: flex;
+      //             height: 100%;
+      //             align-items: center;
+      //             padding: 0 20px;
+      //             font-size: 14px;
+      //             font-weight: 700;
+      //             color: black;
+      //             text-decoration: none;
+      //           `}>
+      //           {title}
+      //         </a>
+      //       )}
+      //     </li>
+      //   );
+      // })}
     });
-    // document.querySelectorAll(".nav a").forEach(($item) => {
-    //   let $liContainer = document.createElement('li');
-    //   $liContainer.appendChild($item);
-    //   $ulContainer.appendChild($liContainer);
+
+    // let $pContainer = document.createElement('p');
+    // let $pContent = createTag('strong', {class: 'spectrum-Heading spectrum-Heading--sizeXXS'});
+    // $pContent.append('Adobe I/O')
+
+    // let $imgContainer = document.createElement('img');
+
+    // $imgContainer.classList.add('icon', 'icon-adobe');
+    // $imgContainer.src = '/hlx_statics/icons/adobe.svg';
+    // $imgContainer.alt = 'adobe icon';
+
+    // $pContainer.appendChild($imgContainer);
+    // $pContainer.appendChild($pContent);
+
+    // let $ulContainer = document.createElement('ul');
+
+    // $header.appendChild($pContainer);
+    // $header.appendChild($ulContainer);
+
+    // let $aLink = document.createElement('a');
+    // $aLink.href = 'https://console.adobe.io/';
+    // $aLink.textContent = 'Console';
+
+    // let $consoleLinkHTML = `
+    //   <button onClick="location.href='https://console.adobe.io/'"  class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+    //     <span class="spectrum-Button-label">
+    //       Console
+    //     </span>
+    //   </button>
+    // `;
+
+    // let $buttonContainer = createTag('div');
+    // $buttonContainer.innerHTML = $consoleLinkHTML;
+
+    // $header.appendChild($buttonContainer);
+
+    // document.querySelectorAll('header').forEach(async ($header) => {
+    //   window.aio = window.aio || {};
+    //   const resp = await fetch("/nav.json");
+    //   window.aio.links = (await resp.json()).data;
+    //   const $links = window.aio.links;
+
+    //   $links.forEach(($link) => {
+    //     let $liItem = createTag('li');
+    //     let $aItem = createTag('a');
+    //     $aItem.href = $link.Url;
+    //     $aItem.innerText = $link.Title;
+    //     $liItem.append($aItem);
+    //     $ulContainer.append($liItem);
+    //   });
+    //   // when this loads this should really determine which nav to use
     // });
   }
 
