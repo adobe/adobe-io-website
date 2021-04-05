@@ -123,6 +123,26 @@ let $CURRENT_API_FILTERS = [];
     })
   }
 
+  function sortDate( a, b ) {
+    if ( a['Last Updated'] > b['Last Updated']  ){
+      return -1;
+    }
+    if ( a['Last Updated'] < b['Last Updated']  ){
+      return 1;
+    }
+    return 0;
+  }
+
+  function sortTitle( a, b ) {
+    if ( a['Title'] < b['Title']  ){
+      return -1;
+    }
+    if ( a['Title'] > b['Title']  ){
+      return 1;
+    }
+    return 0;
+  }
+
   function decorateTables() {
     document.querySelectorAll("main div>table").forEach(($table) => {
       const $div = tableToDivs($table);
@@ -845,6 +865,7 @@ let $CURRENT_API_FILTERS = [];
         const $filterListName = document.querySelector('#filter-list-name');
 
         $filterListLastUpdated.addEventListener('click', (evt) => {
+          console.log(catalog)
           if(!$filterListLastUpdated.classList.contains('is-selected')){
             $filterListLastUpdated.classList.add('is-selected');
             $filterListLastUpdated.ariaSelected = true;
@@ -856,6 +877,8 @@ let $CURRENT_API_FILTERS = [];
             $dropdownPicker.classList.remove('is-open');
             $dropdownPopover.classList.remove('is-open');
             $dropdownPopover.ariaHidden = true;
+
+            displayFilteredCards(catalog.sort(sortDate), $cards, buttons, config.limit);
           }
         });
 
@@ -871,6 +894,8 @@ let $CURRENT_API_FILTERS = [];
             $dropdownPicker.classList.remove('is-open');
             $dropdownPopover.classList.remove('is-open');
             $dropdownPopover.ariaHidden = true;
+            console.log(catalog)
+            displayFilteredCards(catalog.sort(sortTitle), $cards, buttons, config.limit);
           }
         });
 
