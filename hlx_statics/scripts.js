@@ -280,7 +280,7 @@ const $FOOTER_LINKS =
       <div class="footer-apis">
         <div class="footer-apis-container">
           <div class="footer-apis-inner">
-            <h3 class="spectrum-Heading--XS">APIs and Services</h3>
+            <h3 class="spectrum-Heading--sizeXS">APIs and Services</h3>
             <ul class="spectrum-Body spectrum-Body--sizeS">
               ${$apiLinksHTML}
               <li>
@@ -313,7 +313,7 @@ const $FOOTER_LINKS =
       <div class="footer-community">
         <div class="footer-community-container">
           <div>
-          <h3 class="spectrum-Heading--XS">Community</h3>
+          <h3 class="spectrum-Heading--sizeXS">Community</h3>
             <ul class="spectrum-Body spectrum-Body--sizeS">
               ${$communityLinksHTML}
             </ul>
@@ -334,7 +334,7 @@ const $FOOTER_LINKS =
       <div class="footer-support">
       <div class="footer-support-container">
         <div>
-        <h3 class="spectrum-Heading--XS">Support</h3>
+        <h3 class="spectrum-Heading--sizeXS">Support</h3>
           <ul class="spectrum-Body spectrum-Body--sizeS">
             ${$supportLinksHTML}
           </ul>
@@ -356,7 +356,7 @@ const $FOOTER_LINKS =
       <div class="footer-developer">
       <div class="footer-developer-container">
         <div>
-        <h3 class="spectrum-Heading--XS">Adobe Developer</h3>
+        <h3 class="spectrum-Heading--sizeXS">Adobe Developer</h3>
           <ul class="spectrum-Body spectrum-Body--sizeS">
             ${$developerLinksHTML}
           </ul>
@@ -856,7 +856,7 @@ const $FOOTER_LINKS =
 
         let $filtersTemplate = `
         <div class="filters-inner">
-          <strong><h4 class="spectrum-Heading--XS">Filter by</h4></strong>
+          <strong><h4 class="spectrum-Heading--sizeXS">Filter by</h4></strong>
           <div class="filters-list">
             ${$filterHtml}
           </div>
