@@ -520,16 +520,11 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function displayFilteredCards(catalog, $cards, buttons, limit) {
-    console.log('catalog, $cards, buttons, limit')
-    console.log(catalog, $cards, buttons, limit)
     $cards.innerHTML = "";
     let counter = 0;
     catalog.forEach((card) => {
       let show = true;
       if ($CURRENT_API_FILTERS.length > 0) {
-        console.log('wat')
-        console.log($CURRENT_API_FILTERS)
-        console.log(card.Category)
         if (!$CURRENT_API_FILTERS.includes(card.Category)) show = false;
       }
 
@@ -801,34 +796,49 @@ let $CURRENT_API_FILTERS = [];
         const $filters = createTag('div', {class: 'filters'});
 
 
-        // const $pickerContainer = createTag('div', {class: 'picker'});
-        // $apiCardsInner.append($pickerContainer);
-        // let $pickerHtml = `
-        // <button class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet is-open" aria-haspopup="listbox">
-        //   <span class="spectrum-Picker-label">Last updated</span>
-        //   <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
-        //     <use xlink:href="#spectrum-css-icon-Chevron100" />
-        //   </svg>
-        // </button>
-        // <div class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet is-open">
-        //   <ul class="spectrum-Menu" role="listbox">
-        //     <li class="spectrum-Menu-item is-selected" role="option" aria-selected="true" tabindex="0">
-        //       <span class="spectrum-Menu-itemLabel">Last updated</span>
-        //       <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Menu-checkmark spectrum-Menu-itemIcon" focusable="false" aria-hidden="true">
-        //         <use xlink:href="#spectrum-css-icon-Checkmark100" />
-        //       </svg>
-        //     </li>
-        //     <li class="spectrum-Menu-item" role="option" tabindex="0">
-        //       <span class="spectrum-Menu-itemLabel">Name</span>
-        //       <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Menu-checkmark spectrum-Menu-itemIcon" focusable="false" aria-hidden="true">
-        //         <use xlink:href="#spectrum-css-icon-Checkmark100" />
-        //       </svg>
-        //     </li>
-        //   </ul>
-        // </div>
-        // `;
+        const $pickerContainer = createTag('div', {class: 'picker'});
+        $apiBrowser.append($pickerContainer);
+        let $pickerHtml = `
+        <button id="filter-dropdown-picker" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet" aria-haspopup="listbox">
+          <span class="spectrum-Picker-label">Last updated</span>
+          <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
+            <use xlink:href="#spectrum-css-icon-Chevron100" />
+          </svg>
+        </button>
+        <div id="filter-dropdown-popover" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover">
+          <ul class="spectrum-Menu" role="listbox">
+            <li class="spectrum-Menu-item is-selected" role="option" aria-selected="true" tabindex="0">
+              <span class="spectrum-Menu-itemLabel">Last updated</span>
+              <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Menu-checkmark spectrum-Menu-itemIcon" focusable="false" aria-hidden="true">
+                <use xlink:href="#spectrum-css-icon-Checkmark100" />
+              </svg>
+            </li>
+            <li class="spectrum-Menu-item" role="option" tabindex="0">
+              <span class="spectrum-Menu-itemLabel">Name</span>
+              <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Menu-checkmark spectrum-Menu-itemIcon" focusable="false" aria-hidden="true">
+                <use xlink:href="#spectrum-css-icon-Checkmark100" />
+              </svg>
+            </li>
+          </ul>
+        </div>
+        `;
 
-        // $pickerContainer.innerHTML = $pickerHtml;
+        $pickerContainer.innerHTML = $pickerHtml;
+
+        const $dropdownPicker = document.querySelector('#filter-dropdown-picker');
+        const $dropdownPopover = document.querySelector('#filter-dropdown-popover');
+
+        $dropdownPicker.addEventListener('click', (evt) => {
+          if(!evt.currentTarget.classList.contains('is-open')){
+            $dropdownPicker.classList.add('is-open');
+            $dropdownPopover.classList.add('is-open');
+            $dropdownPopover.ariaHidden = false;
+          } else {
+            $dropdownPicker.classList.remove('is-open');
+            $dropdownPopover.classList.remove('is-open');
+            $dropdownPopover.ariaHidden = true;
+          }
+        });
 
         $apiCardsInner.append($filters);
 

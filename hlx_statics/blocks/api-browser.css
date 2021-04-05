@@ -1,5 +1,25 @@
 main .api-browser-container {
     background-color: #fff;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+main .picker {
+    display: flex;
+    align-items: right;
+    height: var(--spectrum-global-dimension-size-800);
+    justify-content: flex-end;
+    margin-right: var(--spectrum-global-dimension-size-400);
+}
+
+main .filter-by-popover {
+    display: flex;
+    min-width: var(--spectrum-global-dimension-size-800);
+    width: auto;
+    z-index: 100;
+    max-height: calc(100vh - var(--spectrum-global-dimension-size-2400));
+    overflow: auto;
+    margin-top: 32px;
 }
 
 main .api-browser {
