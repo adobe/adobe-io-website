@@ -800,20 +800,20 @@ let $CURRENT_API_FILTERS = [];
         $apiBrowser.append($pickerContainer);
         let $pickerHtml = `
         <button id="filter-dropdown-picker" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet" aria-haspopup="listbox">
-          <span class="spectrum-Picker-label">Last updated</span>
+          <span id="filter-label" class="spectrum-Picker-label">Last updated</span>
           <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
             <use xlink:href="#spectrum-css-icon-Chevron100" />
           </svg>
         </button>
         <div id="filter-dropdown-popover" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover">
-          <ul class="spectrum-Menu" role="listbox">
-            <li class="spectrum-Menu-item is-selected" role="option" aria-selected="true" tabindex="0">
+          <ul id="filter-list"class="spectrum-Menu" role="listbox">
+            <li id="filter-list-last-updated" class="spectrum-Menu-item is-selected" role="option" aria-selected="true" tabindex="0">
               <span class="spectrum-Menu-itemLabel">Last updated</span>
               <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Menu-checkmark spectrum-Menu-itemIcon" focusable="false" aria-hidden="true">
                 <use xlink:href="#spectrum-css-icon-Checkmark100" />
               </svg>
             </li>
-            <li class="spectrum-Menu-item" role="option" tabindex="0">
+            <li id="filter-list-name" class="spectrum-Menu-item" role="option" tabindex="0">
               <span class="spectrum-Menu-itemLabel">Name</span>
               <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Menu-checkmark spectrum-Menu-itemIcon" focusable="false" aria-hidden="true">
                 <use xlink:href="#spectrum-css-icon-Checkmark100" />
@@ -834,6 +834,40 @@ let $CURRENT_API_FILTERS = [];
             $dropdownPopover.classList.add('is-open');
             $dropdownPopover.ariaHidden = false;
           } else {
+            $dropdownPicker.classList.remove('is-open');
+            $dropdownPopover.classList.remove('is-open');
+            $dropdownPopover.ariaHidden = true;
+          }
+        });
+
+        const $filterLabel = document.querySelector('#filter-label');
+        const $filterListLastUpdated = document.querySelector('#filter-list-last-updated');
+        const $filterListName = document.querySelector('#filter-list-name');
+
+        $filterListLastUpdated.addEventListener('click', (evt) => {
+          if(!$filterListLastUpdated.classList.contains('is-selected')){
+            $filterListLastUpdated.classList.add('is-selected');
+            $filterListLastUpdated.ariaSelected = true;
+            $filterListName.classList.remove('is-selected');
+            $filterListName.ariaSelected = false;
+
+            $filterLabel.innerText = 'Last updated';
+
+            $dropdownPicker.classList.remove('is-open');
+            $dropdownPopover.classList.remove('is-open');
+            $dropdownPopover.ariaHidden = true;
+          }
+        });
+
+        $filterListName.addEventListener('click', (evt) => {
+          if(!$filterListName.classList.contains('is-selected')){
+            $filterListLastUpdated.classList.remove('is-selected');
+            $filterListLastUpdated.ariaSelected = false;
+            $filterListName.classList.add('is-selected');
+            $filterListName.ariaSelected = true;
+
+            $filterLabel.innerText = 'Name';
+
             $dropdownPicker.classList.remove('is-open');
             $dropdownPopover.classList.remove('is-open');
             $dropdownPopover.ariaHidden = true;
