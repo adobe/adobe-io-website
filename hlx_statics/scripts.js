@@ -60,6 +60,8 @@ const $FOOTER_LINKS =
   },
 ];
 
+let $CURRENT_API_FILTERS = [];
+
   /**
    * Creates a tag with the given name and attributes.
    * @param {string} name The tag name
@@ -517,13 +519,18 @@ const $FOOTER_LINKS =
     return config;
   }
 
-  function displayFilteredCards(catalog, $cards, buttons, limit, filters) {
+  function displayFilteredCards(catalog, $cards, buttons, limit) {
+    console.log('catalog, $cards, buttons, limit')
+    console.log(catalog, $cards, buttons, limit)
     $cards.innerHTML = "";
     let counter = 0;
     catalog.forEach((card) => {
       let show = true;
-      if (filters && filters[0]) {
-        if (!filters.includes(card.Category)) show = false;
+      if ($CURRENT_API_FILTERS.length > 0) {
+        console.log('wat')
+        console.log($CURRENT_API_FILTERS)
+        console.log(card.Category)
+        if (!$CURRENT_API_FILTERS.includes(card.Category)) show = false;
       }
 
       if (counter >= limit) show = false;
@@ -827,7 +834,6 @@ const $FOOTER_LINKS =
 
         let $filterHtml = '';
         categories.forEach((c) => {
-          const $filter = createTag("div");
           const id = toClassName(c);
 
           $filterHtml += `
@@ -844,14 +850,6 @@ const $FOOTER_LINKS =
               <span class="spectrum-Checkbox-label filter-label">${c}</span>
             </label>
         `;
-
-          $filter.addEventListener("click", (evt) => {
-            const filters = [];
-            $filtersInner
-              .querySelectorAll(`:checked`)
-              .forEach(($cb) => filters.push($cb.value));
-            displayFilteredCards(catalog, $cards, buttons, config.limit, filters);
-          });
         });
 
         let $filtersTemplate = `
@@ -866,7 +864,21 @@ const $FOOTER_LINKS =
         $filters.innerHTML = $filtersTemplate;
         $apiCardsInner.append($cards);
         $apiBrowser.append($apiCardsInner);
+
         displayFilteredCards(catalog, $cards, buttons, config.limit);
+
+        document.querySelectorAll('.filters-list input').forEach(($filterItem) => {
+          $filterItem.addEventListener('change', (evt) => {
+            if(evt.currentTarget.checked) {
+              if($CURRENT_API_FILTERS.indexOf(evt.currentTarget.value) < 0){
+                $CURRENT_API_FILTERS.push(evt.currentTarget.value);
+              }
+            } else {
+              $CURRENT_API_FILTERS.splice($CURRENT_API_FILTERS.indexOf(evt.currentTarget.value),1);
+            }
+            displayFilteredCards(catalog, $cards, buttons, config.limit);
+          });
+        })
       }
     });
   }
@@ -1101,10 +1113,6 @@ const $FOOTER_LINKS =
     $adobeAnalytics.src = '//assets.adobedtm.com/f9ca2ebf8aa5/cfdcfc3c597a/launch-8857f8f8b05b.min.js';
     document.body.appendChild($adobeAnalytics);
 
-    // const $loadIcons = document.createElement('script');
-    // $loadIcons.src = '/hlx_statics/loadIcons.js';
-    // document.body.appendChild($loadIcons);
-    // console.log($loadIcons)
     loadIcons('hlx_statics/spectrum/icon/dist/spectrum-css-icons.svg');
     loadIcons('hlx_statics/spectrum/spectrum-css-workflow-icons/dist/spectrum-icons.svg');
   }
