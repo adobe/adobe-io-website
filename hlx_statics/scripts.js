@@ -453,8 +453,9 @@ let $CURRENT_API_FILTERS = [];
       });
 
       // delete image and re-insert as bg
-      const $heroImageSrc = $heroSection.querySelector('img') ? $heroSection.querySelector('img').src : null;
-      console.log($heroImageSrc )
+      // just grab the path to fix pathing issues on stage and prod
+      let $heroImageSrc = $heroSection.querySelector('img') ? ($heroSection.querySelector('img').src).split(window.location.host)[1] : null;
+
       $heroSection.querySelectorAll('picture source').forEach(($picture) => {
         //remove weird max-width attribute 
         $picture.media = "";
