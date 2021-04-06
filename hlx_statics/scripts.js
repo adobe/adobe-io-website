@@ -1153,9 +1153,6 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function later() {
-    document.documentElement.classList.add('spectrum','spectrum--light');
-    document.documentElement.dir="ltr";
-    toggleScale();
     // loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-global.css');
     // loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-medium.css');
     // loadCSS('/hlx_statics/spectrum/vars/dist/spectrum-large.css');
@@ -1171,13 +1168,9 @@ let $CURRENT_API_FILTERS = [];
     // loadCSS('/hlx_statics/spectrum/checkbox/dist/index-vars.css');
     // loadCSS('/hlx_statics/spectrum/link/dist/index-vars.css');
     // loadCSS('/hlx_statics/spectrum/divider/dist/index-vars.css');
-
     // loadCSS('/hlx_statics/spectrum/menu/dist/index-vars.css');
     // loadCSS('/hlx_statics/spectrum/popover/dist/index-vars.css');
     // loadCSS('/hlx_statics/spectrum/picker/dist/index-vars.css');
-
-    loadCSS('https://use.typekit.net/uma8ayv.css');
-    loadCSS('/hlx_statics/spectrum/minified/index.min.css');
     const $adobeAnalytics = document.createElement('script');
     $adobeAnalytics.src = '//assets.adobedtm.com/f9ca2ebf8aa5/cfdcfc3c597a/launch-8857f8f8b05b.min.js';
     document.body.appendChild($adobeAnalytics);
@@ -1187,6 +1180,13 @@ let $CURRENT_API_FILTERS = [];
   }
 
   async function decoratePage() {
+    loadCSS('https://use.typekit.net/uma8ayv.css');
+    loadCSS('/hlx_statics/spectrum/minified/index.min.css');
+    
+    document.documentElement.classList.add('spectrum','spectrum--light');
+    document.documentElement.dir="ltr";
+    toggleScale();
+
     decorateTables();
     wrapSections("main>div");
     decorateBlocks();
