@@ -454,6 +454,7 @@ let $CURRENT_API_FILTERS = [];
 
       // delete image and re-insert as bg
       const $heroImageSrc = $heroSection.querySelector('img') ? $heroSection.querySelector('img').src : null;
+      console.log($heroImageSrc )
       $heroSection.querySelectorAll('picture source').forEach(($picture) => {
         //remove weird max-width attribute 
         $picture.media = "";
