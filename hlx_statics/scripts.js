@@ -1148,24 +1148,21 @@ let $CURRENT_API_FILTERS = [];
   function toggleScale() {
     const doc = document.documentElement;
     const isLargeScale = doc.clientWidth < MOBILE_SCREEN_WIDTH;
-  
+
     doc.classList.toggle('spectrum--medium', !isLargeScale);
     doc.classList.toggle('spectrum--large', isLargeScale);
-
   }
 
   function later() {
     const $adobeAnalytics = document.createElement('script');
     $adobeAnalytics.src = '//assets.adobedtm.com/f9ca2ebf8aa5/cfdcfc3c597a/launch-8857f8f8b05b.min.js';
     document.body.appendChild($adobeAnalytics);
-    loadCSS('https://use.typekit.net/uma8ayv.css');
-    loadIcons('hlx_statics/spectrum/icon/dist/spectrum-css-icons.svg');
-    loadIcons('hlx_statics/spectrum/spectrum-css-workflow-icons/dist/spectrum-icons.svg');
+
+    // We're done, let the page render
+    document.documentElement.classList.remove('helix-loading');
   }
 
   async function decoratePage() {
-    document.documentElement.classList.add('spectrum','spectrum--light');
-    document.documentElement.dir="ltr";
     toggleScale();
 
     decorateTables();

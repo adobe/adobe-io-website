@@ -1,6 +1,26 @@
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link id="favicon" rel="icon" type="image/svg+xml" href="/hlx_statics/icons/adobe.svg">
+
+<script type="text/javascript">
+  // First things first, set up the outer classnames that are required for rendering
+  document.documentElement.classList.add('spectrum', 'spectrum--light', 'spectrum--medium');
+  document.documentElement.dir = 'ltr';
+</script>
+
+<!-- Load styles upfront to prevent FOUC -->
 <link rel="stylesheet" href="/hlx_statics/styles.css"/>
 <link rel="stylesheet" href="/hlx_statics/spectrum/minified/index.min.css"/>
-<link id="favicon" rel="icon" type="image/svg+xml" href="/hlx_statics/icons/adobe.svg">
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<!-- Load fonts up front to prevent FOUT -->
+<link rel="stylesheet" href="https://use.typekit.net/uma8ayv.css"/>
+
+<!-- Get loadIcons coming so we can use it immediately -->
 <script src="/hlx_statics/loadIcons.js"></script>
+<script type="text/javascript">
+  // Get icons loading immediately, they're async and non-blocking
+  loadIcons('hlx_statics/spectrum/icon/dist/spectrum-css-icons.svg');
+  loadIcons('hlx_statics/spectrum/spectrum-css-workflow-icons/dist/spectrum-icons.svg');
+</script>
+
+<!-- Finally, load scripts and execute them right before DOMContentLoaded -->
 <script src="/hlx_statics/scripts.js" defer></script>

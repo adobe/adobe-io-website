@@ -1,3 +1,11 @@
+/*
+  Stop the page from drawing until we're ready
+  We'll remove this class when we're done rendering blocks
+*/
+.helix-loading {
+  display: none;
+}
+
 body {
   margin: 0;
 }
