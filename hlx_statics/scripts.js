@@ -454,7 +454,11 @@ let $CURRENT_API_FILTERS = [];
 
       // delete image and re-insert as bg
       // just grab the path to fix pathing issues on stage and prod
-      let $heroImageSrc = $heroSection.querySelector('img') ? ($heroSection.querySelector('img').src).split(window.location.host)[1] : null;
+      // hate to do this but this is less pain than configuring fastly rules
+      let $heroImageSrc = $heroSection.querySelector('img') ? $heroSection.querySelector('img').src : null;
+      if((window.location.host === 'www.stage.adobe.io' || window.location.host === 'www.adobe.io') && $heroImageSrc){
+        $heroImageSrc = window.location.host + '/apis' + $heroImageSrc;
+      }
 
       $heroSection.querySelectorAll('picture source').forEach(($picture) => {
         //remove weird max-width attribute 
