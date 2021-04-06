@@ -12,5 +12,5 @@ jobs:
         id: trigger
         uses: adobe-rnd/github-purge-cache-action@master
         with:
-          helix-url: https://spark-website--adobe.hlx.live/
+          helix-url: https://adobe-io-website--adobe.hlx.live/
           repo-token: ${{ secrets.GITHUB_TOKEN }}
