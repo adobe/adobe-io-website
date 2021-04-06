@@ -457,7 +457,8 @@ let $CURRENT_API_FILTERS = [];
       // hate to do this but this is less pain than configuring fastly rules
       let $heroImageSrc = $heroSection.querySelector('img') ? $heroSection.querySelector('img').src : null;
       if((window.location.host === 'www.stage.adobe.io' || window.location.host === 'www.adobe.io') && $heroImageSrc){
-        $heroImageSrc = window.location.host + '/apis' + $heroImageSrc;
+        let $mediaPath = $heroImageSrc.split(window.location.host)[1];
+        $heroImageSrc = window.location.host + '/apis' + $mediaPath;
       }
 
       $heroSection.querySelectorAll('picture source').forEach(($picture) => {
