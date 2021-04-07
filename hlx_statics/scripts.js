@@ -397,8 +397,7 @@ let $CURRENT_API_FILTERS = [];
 
       let $legalLinksTemplate = `
       <div
-        class="spectrum-Divider spectrum-Divider--sizeM "
-        style="margin-top: var(--spectrum-global-dimension-size-700)"
+        class="spectrum-Divider spectrum-Divider--sizeM footer-horizontal"
       ></div>
       <div
         class="footer-legal">

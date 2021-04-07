@@ -308,6 +308,10 @@ footer .footer-date {
   }
 }
 
+footer .footer-horizontal {
+  margin-top: var(--spectrum-global-dimension-size-700);
+}
+
 .title-header {
   text-align: center;
   padding-bottom: 16px;

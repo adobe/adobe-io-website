@@ -228,6 +228,7 @@
   --spectrum-global-dimension-size-500: 40px;
   --spectrum-global-dimension-size-600: 48px;
   --spectrum-global-dimension-size-675: 54px;
+  --spectrum-global-dimension-size-700: 56px;
   --spectrum-global-dimension-size-750: 60px;
   --spectrum-global-dimension-size-800: 64px;
   --spectrum-global-dimension-size-900: 72px;
@@ -336,6 +337,7 @@
   --spectrum-global-dimension-size-500: 50px;
   --spectrum-global-dimension-size-600: 60px;
   --spectrum-global-dimension-size-675: 68px;
+  --spectrum-global-dimension-size-700: 70px;
   --spectrum-global-dimension-size-750: 75px;
   --spectrum-global-dimension-size-800: 80px;
   --spectrum-global-dimension-size-900: 90px;
@@ -5743,6 +5745,10 @@ footer .footer-date {
     display: block;
     margin-top: var(--spectrum-global-dimension-size-200);
   }
+}
+
+footer .footer-horizontal {
+  margin-top: var(--spectrum-global-dimension-size-700);
 }
 
 .title-header {
