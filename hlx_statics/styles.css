@@ -262,6 +262,11 @@ footer .footer-apis-container {
 footer .footer-services-container {
   margin-left: var(--spectrum-global-dimension-size-400);
 }
+
+footer .footer-services-container ul {
+  padding-top: var(--spectrum-global-dimension-size-750) !important;
+}
+
 footer .footer-community {
   position: relative;
   grid-area: blogs;
