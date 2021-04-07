@@ -867,7 +867,6 @@ let $CURRENT_API_FILTERS = [];
         const $filterListName = document.querySelector('#filter-list-name');
 
         $filterListLastUpdated.addEventListener('click', (evt) => {
-          console.log(catalog)
           if(!$filterListLastUpdated.classList.contains('is-selected')){
             $filterListLastUpdated.classList.add('is-selected');
             $filterListLastUpdated.ariaSelected = true;
@@ -896,7 +895,6 @@ let $CURRENT_API_FILTERS = [];
             $dropdownPicker.classList.remove('is-open');
             $dropdownPopover.classList.remove('is-open');
             $dropdownPopover.ariaHidden = true;
-            console.log(catalog)
             displayFilteredCards(catalog.sort(sortTitle), $cards, buttons, config.limit);
           }
         });
