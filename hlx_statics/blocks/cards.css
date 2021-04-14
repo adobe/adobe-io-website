@@ -1,35 +1,41 @@
 main div.cards {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
+    width: var(--spectrum-global-dimension-static-grid-fluid-width);
+    background: var(--spectrum-global-color-gray-100);
 } 
 
 main div.cards > div {
-    display: flex;
-    flex-direction: column;
     text-align: center;
-    flex-basis: 25%;
-    margin-left: 32px;
-    margin-right: 32px;
-    height: 250px;
+    display: table-cell;
+    width: 33.33vw;
+    padding: var(--spectrum-global-dimension-size-1000) 0;
 } 
 
+@media screen and (max-width: 1280px) {
+    main div.cards > div {
+        display: block;
+        width: 100%;
+    }
+  }
+
+main div.cards > div > div {
+    max-width: var(--spectrum-global-dimension-size-4600);
+    padding: 0 var(--spectrum-global-dimension-size-400);
+    margin: auto;
+}
+
 main div.cards > div img {
-    height: 80px;
+    height: var(--spectrum-global-dimension-size-1000);
+    margin-top: 0;
+    margin-bottom: var(--spectrum-global-dimension-size-300);
 } 
 
 main div.cards > div h3 {
-    color: #2c2c2c;
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 33px;
+    margin-bottom: var(--spectrum-global-dimension-size-200)!important;
 } 
 
 main div.cards > div p {
-    color: #4b4b4b;
-    line-height: 24px;
-    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0!important;
 } 
 
 
