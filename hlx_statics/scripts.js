@@ -184,40 +184,20 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function decorateEmbeds() {
-    document.querySelectorAll('a[href]').forEach(($a) => {
-      if ($a.textContent.startsWith('https://')) {
-        const url=new URL($a.href);
-        const usp=new URLSearchParams(url.search);
-        let embedHTML='';
-        let type='';
+    document.querySelectorAll('.embed-container').forEach(($embed) => {
+      $embed.classList.add('spectrum--lightest');
+      $embed.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
+        $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
+      })
 
-        if ($a.href.startsWith('https://www.youtube.com/watch')) {
-          const vid=usp.get('v');
-          
-          type='youtube';
-          embedHTML=`<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-            <iframe src="https://www.youtube.com/embed/${vid}?rel=0&amp;v=${vid}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen="" scrolling="no" allow="encrypted-media; accelerometer; gyroscope; picture-in-picture" title="content from youtube" loading="lazy"></iframe>
-            </div>
-          `;
+      $embed.querySelectorAll('p').forEach(($p) => {
+        const $hasLinks = $p.querySelectorAll('a, button');
+        // don't attach to icon container or if p tag contains links
+        if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
+          $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
         }
-    
-        if (type) {
-          const $embed=createTag('div', {class: `embed embed-oembed embed-${type} column-embed`});
-          const $div=$a.closest('div');
-          $embed.innerHTML=embedHTML;
-          $div.parentElement.replaceChild($embed, $div);
-        }  
-      }
-    })
+      });
 
-    // helix auto injects youtube vids as a small thumbnail - make sure
-    // to take only the embeds not in the column view
-    document.querySelectorAll('.embed-youtube > iframe').forEach(($embed) => {
-      if(!$embed.parentElement.classList.contains('column-embed')){
-
-        $embed.setAttribute('height', '350px');
-        $embed.setAttribute('width', '100%');
-      }
     });
   }
 
@@ -954,7 +934,14 @@ let $CURRENT_API_FILTERS = [];
 
   function decorateCards() {
     document.querySelectorAll('.cards').forEach(($card) => {
-      removeEmptyPTags($card);
+      $card.classList.add('spectrum--light');
+      $card.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
+        $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
+      })
+
+      $card.querySelectorAll('p').forEach(($p) => {
+        $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
+      });
     });
   }
 
@@ -1172,9 +1159,9 @@ let $CURRENT_API_FILTERS = [];
     decorateHeader();
     decorateSiteHero();
     decorateHero();
-    // decorateEmbeds();
+    decorateEmbeds();
 
-    // decorateCards();
+    decorateCards();
     // decorateColumns();
     decorateAnnouncement();
     decorateAPIBrowser()
