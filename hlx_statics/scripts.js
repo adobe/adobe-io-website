@@ -959,44 +959,70 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function decorateColumns() {
+    document.querySelectorAll('.columns > div > div:first-child').forEach(($column) => {
+      $column.classList.add('first-column');
+    });
+
+    document.querySelectorAll('.columns > div > div:nth-child(2)').forEach(($column) => {
+      $column.classList.add('second-column');
+      $column.id = 'wtf'
+    });
+
     document.querySelectorAll('.columns').forEach(($column) => {
+      $column.classList.add('spectrum--light');
       removeEmptyPTags($column);
+      $column.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
+        $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
+      })
 
-      $column.querySelectorAll('img + a').forEach(($productLink) => {
-        // this is annoying - sometimes it's wrapper is in p and sometimes not?
-        // is it when gdoc has two icons in a row that p will be used?
-        if($productLink.parentElement.tagName === 'P') {
-          $productLink.parentElement.classList.add('product-link');
-        } else {
-          let $pContainer = createTag('p', { class: 'product-link'});
-
-          let $newImg = $productLink.previousSibling.previousSibling.cloneNode(true);
-          let $newP = $productLink.cloneNode(true);
-
-          $pContainer.append($newImg);
-          $pContainer.append($newP);
-          $productLink.previousSibling.previousSibling.remove();
-          $productLink.parentNode.replaceChild($pContainer, $productLink);
+      $column.querySelectorAll('p').forEach(($p) => {
+        const $hasLinks = $p.querySelectorAll('a, button');
+        // don't attach to icon container or if p tag contains links
+        if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
+          $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
         }
       });
 
-      $column.childNodes.forEach(($row) => {
-        if($row.childNodes.length > 1) {
-          let $textColumnContainer = createTag('div', { class : 'columns-text'});
 
-          // find the text column in the row and wrap it then insert it 
-          let $cloneNodes;
-          if($row.childNodes[0].textContent.length > 0) {
-            $cloneNodes = $row.childNodes[0].cloneNode(true);
-            $textColumnContainer.append($cloneNodes); 
-            $row.replaceChild($textColumnContainer, $row.childNodes[0]);
-          } else if($row.childNodes[1].textContent.length > 0) {
-            $cloneNodes = $row.childNodes[1].cloneNode(true);
-            $textColumnContainer.append($cloneNodes); 
-            $row.replaceChild($textColumnContainer, $row.childNodes[1]);
-          }
-        } 
-      });
+
+      $column.querySelectorAll('div').forEach(($child) => {
+        //$child.classList.add('second-column');
+      })
+      // $column.querySelectorAll('img + a').forEach(($productLink) => {
+      //   // this is annoying - sometimes it's wrapper is in p and sometimes not?
+      //   // is it when gdoc has two icons in a row that p will be used?
+      //   if($productLink.parentElement.tagName === 'P') {
+      //     $productLink.parentElement.classList.add('product-link');
+      //   } else {
+      //     let $pContainer = createTag('p', { class: 'product-link'});
+
+      //     let $newImg = $productLink.previousSibling.previousSibling.cloneNode(true);
+      //     let $newP = $productLink.cloneNode(true);
+
+      //     $pContainer.append($newImg);
+      //     $pContainer.append($newP);
+      //     $productLink.previousSibling.previousSibling.remove();
+      //     $productLink.parentNode.replaceChild($pContainer, $productLink);
+      //   }
+      // });
+
+      // $column.childNodes.forEach(($row) => {
+      //   if($row.childNodes.length > 1) {
+      //     let $textColumnContainer = createTag('div', { class : 'columns-text'});
+
+      //     // find the text column in the row and wrap it then insert it 
+      //     let $cloneNodes;
+      //     if($row.childNodes[0].textContent.length > 0) {
+      //       $cloneNodes = $row.childNodes[0].cloneNode(true);
+      //       $textColumnContainer.append($cloneNodes); 
+      //       $row.replaceChild($textColumnContainer, $row.childNodes[0]);
+      //     } else if($row.childNodes[1].textContent.length > 0) {
+      //       $cloneNodes = $row.childNodes[1].cloneNode(true);
+      //       $textColumnContainer.append($cloneNodes); 
+      //       $row.replaceChild($textColumnContainer, $row.childNodes[1]);
+      //     }
+      //   } 
+      // });
     });
 
     document.querySelectorAll('.columns-dark').forEach(($column) => {
@@ -1175,7 +1201,7 @@ let $CURRENT_API_FILTERS = [];
     decorateEmbeds();
 
     decorateCards();
-    // decorateColumns();
+    decorateColumns();
     decorateAnnouncement();
     decorateAPIBrowser()
     // decorateResourceCards();
