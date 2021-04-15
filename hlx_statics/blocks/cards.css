@@ -6,8 +6,15 @@ main div.cards {
 main div.cards > div {
     text-align: center;
     display: table-cell;
-    width: 33.33vw;
     padding: var(--spectrum-global-dimension-size-1000) 0;
+} 
+
+main div.cards > div.three-cards {
+    width: 33.33vw;
+} 
+
+main div.cards > div.four-cards {
+    width: 25vw;
 } 
 
 @media screen and (max-width: 1280px) {

@@ -933,7 +933,22 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function decorateCards() {
-    document.querySelectorAll('.cards').forEach(($card) => {
+    document.querySelectorAll('.cards-container').forEach(($cardContainer) => {
+      $cardContainer.querySelectorAll('.cards > div').forEach(($card, index, $array) => {
+        if($array.length === 3) {
+          //$card.querySelectorAll('div').forEach(($cardInner) => {
+            $card.classList.add('three-card');
+          //});
+        } else if($array.length === 4) {
+          //$card.querySelectorAll('div').forEach(($cardInner) => {
+            $card.classList.add('four-card');
+          //});
+        }
+      })
+    })
+
+
+    document.querySelectorAll('.cards').forEach(($card, index, $array) => {
       $card.classList.add('spectrum--light');
       $card.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
         $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
