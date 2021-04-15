@@ -935,29 +935,27 @@ let $CURRENT_API_FILTERS = [];
   function decorateCards() {
     document.querySelectorAll('.cards-container').forEach(($cardContainer) => {
       $cardContainer.querySelectorAll('.cards > div').forEach(($card, index, $array) => {
+        $card.classList.add('spectrum--light');
+        $card.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
+          $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
+        })
+  
+        $card.querySelectorAll('p').forEach(($p) => {
+          $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
+        });
+
+        $card.querySelectorAll('p > button').forEach(($button) => {
+          //spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM
+          $button.classList.remove('spectrum-Button--secondary')
+          $button.classList.add('spectrum-Button--cta', 'spectrum-Button--quiet', 'card-button');
+        });
         if($array.length === 3) {
-          //$card.querySelectorAll('div').forEach(($cardInner) => {
-            $card.classList.add('three-card');
-          //});
+          $card.classList.add('three-card');
         } else if($array.length === 4) {
-          //$card.querySelectorAll('div').forEach(($cardInner) => {
-            $card.classList.add('four-card');
-          //});
+          $card.classList.add('four-card');
         }
       })
     })
-
-
-    document.querySelectorAll('.cards').forEach(($card, index, $array) => {
-      $card.classList.add('spectrum--light');
-      $card.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
-        $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
-      })
-
-      $card.querySelectorAll('p').forEach(($p) => {
-        $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
-      });
-    });
   }
 
   function decorateColumns() {
