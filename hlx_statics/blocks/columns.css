@@ -8,7 +8,6 @@ main div.columns {
     width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
     box-sizing: border-box;
     margin: auto;
-    padding: var(--spectrum-global-dimension-size-1000) 0;
 } 
 
 @media screen and (max-width: 1280px) {
@@ -23,6 +22,11 @@ main div.columns {
 main div.columns > div {
     display: flex;
     align-items: center;
+    padding: var(--spectrum-global-dimension-size-1000) 0;
+}
+
+main div.columns > div:nth-child(even) {
+    flex-direction: row-reverse;
 }
 
 @media screen and (max-width: 1280px) {
