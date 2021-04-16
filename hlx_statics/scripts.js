@@ -965,7 +965,6 @@ let $CURRENT_API_FILTERS = [];
 
     document.querySelectorAll('.columns > div > div:nth-child(2)').forEach(($column) => {
       $column.classList.add('second-column');
-      $column.id = 'wtf'
     });
 
     document.querySelectorAll('.columns').forEach(($column) => {

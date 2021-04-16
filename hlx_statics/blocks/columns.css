@@ -42,7 +42,7 @@ main div.columns div.first-column {
     margin-top: 0;
 }
 
-main div.columns div.first-column img{
+main div.columns div.first-column img {
     max-height: 350px;
 }
 
@@ -76,6 +76,10 @@ main div.columns h3.column-header {
 
 main div.columns h3.column-header + p {
     margin-top: 0!important;
+}
+
+main div.columns p + p {
+    margin-top: var(--spectrum-global-dimension-size-300);
 }
 /* 
 main div.columns > div {
