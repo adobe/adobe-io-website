@@ -945,7 +945,6 @@ let $CURRENT_API_FILTERS = [];
         });
 
         $card.querySelectorAll('p > button').forEach(($button) => {
-          //spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM
           $button.classList.remove('spectrum-Button--secondary')
           $button.classList.add('spectrum-Button--cta', 'spectrum-Button--quiet', 'card-button');
         });
@@ -981,90 +980,47 @@ let $CURRENT_API_FILTERS = [];
           $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
         }
       });
-
-      // $column.querySelectorAll('img + a').forEach(($productLink) => {
-      //   // this is annoying - sometimes it's wrapper is in p and sometimes not?
-      //   // is it when gdoc has two icons in a row that p will be used?
-      //   if($productLink.parentElement.tagName === 'P') {
-      //     $productLink.parentElement.classList.add('product-link');
-      //   } else {
-      //     let $pContainer = createTag('p', { class: 'product-link'});
-
-      //     let $newImg = $productLink.previousSibling.previousSibling.cloneNode(true);
-      //     let $newP = $productLink.cloneNode(true);
-
-      //     $pContainer.append($newImg);
-      //     $pContainer.append($newP);
-      //     $productLink.previousSibling.previousSibling.remove();
-      //     $productLink.parentNode.replaceChild($pContainer, $productLink);
-      //   }
-      // });
-
-      // $column.childNodes.forEach(($row) => {
-      //   if($row.childNodes.length > 1) {
-      //     let $textColumnContainer = createTag('div', { class : 'columns-text'});
-
-      //     // find the text column in the row and wrap it then insert it 
-      //     let $cloneNodes;
-      //     if($row.childNodes[0].textContent.length > 0) {
-      //       $cloneNodes = $row.childNodes[0].cloneNode(true);
-      //       $textColumnContainer.append($cloneNodes); 
-      //       $row.replaceChild($textColumnContainer, $row.childNodes[0]);
-      //     } else if($row.childNodes[1].textContent.length > 0) {
-      //       $cloneNodes = $row.childNodes[1].cloneNode(true);
-      //       $textColumnContainer.append($cloneNodes); 
-      //       $row.replaceChild($textColumnContainer, $row.childNodes[1]);
-      //     }
-      //   } 
-      // });
     });
 
-    document.querySelectorAll('.columns-dark').forEach(($column) => {
-      removeEmptyPTags($column);
+    // document.querySelectorAll('.columns-dark').forEach(($column) => {
+    //   removeEmptyPTags($column);
 
-      // re-wrap second container so it's easier to vertically align
-      $column.childNodes.forEach(($row) => {
-        if($row.childNodes.length > 1) {
-          let $textColumnContainer = createTag('div', { class : 'columns-text'});
+    //   // re-wrap second container so it's easier to vertically align
+    //   $column.childNodes.forEach(($row) => {
+    //     if($row.childNodes.length > 1) {
+    //       let $textColumnContainer = createTag('div', { class : 'columns-text'});
 
-          // find the text column in the row and wrap it then insert it 
-          // may have to expand search to allow all media types instead of just iframe
-          let $cloneNodes;
-          if(!$row.childNodes[0].querySelector('iframe')) {
-            $cloneNodes = $row.childNodes[0].cloneNode(true);
-            $textColumnContainer.append($cloneNodes); 
-            $row.replaceChild($textColumnContainer, $row.childNodes[0]);
+    //       // find the text column in the row and wrap it then insert it 
+    //       // may have to expand search to allow all media types instead of just iframe
+    //       let $cloneNodes;
+    //       if(!$row.childNodes[0].querySelector('iframe')) {
+    //         $cloneNodes = $row.childNodes[0].cloneNode(true);
+    //         $textColumnContainer.append($cloneNodes); 
+    //         $row.replaceChild($textColumnContainer, $row.childNodes[0]);
 
-          } else if(!$row.childNodes[1].querySelector('iframe')) {
-            $cloneNodes = $row.childNodes[1].cloneNode(true);
-            $textColumnContainer.append($cloneNodes); 
-            $row.replaceChild($textColumnContainer, $row.childNodes[1]);
-          }
-        } 
-      });
-    });
+    //       } else if(!$row.childNodes[1].querySelector('iframe')) {
+    //         $cloneNodes = $row.childNodes[1].cloneNode(true);
+    //         $textColumnContainer.append($cloneNodes); 
+    //         $row.replaceChild($textColumnContainer, $row.childNodes[1]);
+    //       }
+    //     } 
+    //   });
+    // });
   }
 
-  function getLargeResourceCard() {
+  function getResourceCard(size,linkHref, imgSrc, heading, text) {
     return `
-    
-    `;
-  }
-
-  function getSmallResourceCard(linkHref, imgSrc, heading, text) {
-    return `
-    <a
-    class="spectrum-Card spectrum-Card--horizontal resource-card-small-container-inner"
-    href=${linkHref}
-    >
-            <div class="spectrum-Card-preview resource-card-small-preview">
-              <div class="resource-card-small-image-container spectrum-Asset">
+          <a class="spectrum-Card ${size === 'small' ? 'spectrum-Card--horizontal' : ''} resource-card-${size}-container-inner"
+             href=${linkHref}
+          >
+            <div class="spectrum-Card-preview resource-card-${size}-preview">
+              <div class="resource-card-${size}-image-container spectrum-Asset">
                 <img class="spectrum-Asset-image" src=${imgSrc} />
               </div>
             </div>
-            <div class="spectrum-Card-body resource-card-small-body">
-              <div class="spectrum-Card-header resource-card-small-header">
-                <div class="spectrum-Card-title resource-card-small-title">
+            <div class="spectrum-Card-body resource-card-${size}-body">
+              <div class="spectrum-Card-header resource-card-${size}-header">
+                <div class="spectrum-Card-title resource-card-${size}-title">
                   <h3 class="spectrum-Heading spectrum-Heading--sizeM">
                     ${heading}
                   </h3>
@@ -1081,6 +1037,7 @@ let $CURRENT_API_FILTERS = [];
           </a>
     `;
   }
+
   function decorateResourceCards() {
     document.querySelectorAll('.section-wrapper').forEach(($section) => {
       // resource cards are special in that multiple cards will be grouped together within
@@ -1090,98 +1047,32 @@ let $CURRENT_API_FILTERS = [];
 
       let $leftResourceCardContainer = createTag('div', { class: 'resource-cards-left'});
       let $rightResourceCardContainer = createTag('div', { class: 'resource-cards-right'});
-
-      let $smallResourceCardTemplate = ``;
-
-      let $largeResourceCardTemplate = ``;
+      let $resourceCardsContainer = createTag('div', { class: 'resource-cards-container'});
+      $section.append($resourceCardsContainer);
 
       $section.querySelectorAll('.resource-card-large').forEach(($resourceLarge, index, array) => {
-
+        removeEmptyPTags($resourceLarge);
         $largeResourceCardCount = array.length;
-        // // find the image
-        // let $image = $resourceLarge.querySelector('img');
-        // if($image) {
-        //   let $imageContainer = $image.parentElement;
-    
-        //   $imageContainer.style.backgroundImage = 'url('+ $image.src + ')';
-        //   $imageContainer.classList.add('resource-card-large-image-container');
-    
-        //   $image.remove();
-        // }
-    
-        // let $link = $resourceLarge.querySelector('a');
-        // if($link) {
-        //   $resourceLarge.addEventListener('click', url => {
-        //     window.open($link.href, '_blank');
-        //   });
-        //   $link.remove();
-        // }
-    
-        // let $resourceLargeContainer = createTag('div', { class: 'resource-card-large-container-inner'});
-        // let $resourceLargeContainerParent = $resourceLarge.parentElement;
-    
-        // $resourceLargeContainer.append($resourceLarge);
-        // $resourceLargeContainerParent.append($resourceLargeContainer);
-        // removeEmptyPTags($resourceLarge);
-      });
-    
-      // take two small resource cards and wrap em
-      // let $containerParent = $section.querySelector('.resource-card-small-container > div');
-      // let $resourceSmallContainer = createTag('div', { class: 'resource-card-small-container-inner'});
+        let $linkHref = $resourceLarge.querySelector('a').href;
+        let $heading = $resourceLarge.querySelector('a').innerText;
+        let $imgSrc = $resourceLarge.querySelector('img').src;
+        let $text = $resourceLarge.querySelector('p').innerText;
 
-      // let $resourceSmallContainerSecond = createTag('div', { class: 'resource-card-small-container-inner'});
+        $resourceCardsContainer.append($rightResourceCardContainer);
+        $rightResourceCardContainer.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
+      });
       $section.querySelectorAll('.resource-card-small').forEach(($resourceSmall, index, array) => {
         removeEmptyPTags($resourceSmall);
-        let $smallResourceCardCount = array.length;
+        $smallResourceCardCount = array.length;
         let $linkHref = $resourceSmall.querySelector('a').href;
         let $heading = $resourceSmall.querySelector('a').innerText;
         let $imgSrc = $resourceSmall.querySelector('img').src;
         let $text = $resourceSmall.querySelector('p').innerText;
-        console.log(getSmallResourceCard($linkHref, $heading, $imgSrc, $text))
-        $section.append($leftResourceCardContainer)
-        $leftResourceCardContainer.innerHTML = getSmallResourceCard($linkHref, $imgSrc, $heading, $text);
-        // find the image
-        // let $image = $resourceSmall.querySelector('img');
-        // if($image) {
-        //   let $imageContainer = $image.parentElement;
-    
-        //   $imageContainer.style.backgroundImage = 'url('+ $image.src + ')';
-        //   $imageContainer.classList.add('resource-card-small-image-container');
-    
-        //   $image.remove();
-        // }
-    
-        // let $link = $resourceSmall.querySelector('a');
-        // if($link) {
-        //   $resourceSmall.addEventListener('click', url => {
-        //     window.open($link.href, '_blank');
-        //   });
-        //   $link.remove();
-        // }
 
-        // // annoying logic to wrap two small cards vs four
-        // if(index <= 1) {
-        //   $resourceSmallContainer.append($resourceSmall);
-        // } else {
-        //   $resourceSmallContainerSecond.append($resourceSmall);
-        //   $containerParent.append($resourceSmallContainerSecond);
-        // }
-        // removeEmptyPTags($resourceSmall);
+        $resourceCardsContainer.append($leftResourceCardContainer);
+        $leftResourceCardContainer.innerHTML += getResourceCard('small', $linkHref, $imgSrc, $heading, $text);
+        
       });
-    
-      // if($containerParent) {
-      //   $containerParent.append($resourceSmallContainer);
-      // }
-    
-      // let $resourceFlexContainer = createTag('div', {class: 'resource-card-flex-container'});
-      // $section.querySelectorAll('.resource-card-large-container-inner').forEach(($largeSection) => {
-      //   $resourceFlexContainer.append($largeSection);
-      // });
-
-      // $section.querySelectorAll('.resource-card-small-container-inner').forEach(($smallSection) => {
-      //   $resourceFlexContainer.append($smallSection);
-      // });
-      // $section.append($resourceFlexContainer);
     });
   
   }

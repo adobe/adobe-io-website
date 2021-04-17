@@ -1,39 +1,6 @@
-/* main div.resource-card-small> div{ 
-  display: flex;
-  flex-direction: row;
-  border: 1px solid #eaeaea;
-  border-radius: 4px;
-  margin-right: 32px;
-  margin-bottom: 32px;
-} 
-
-main div.resource-card-small div.resource-card-small-image-container {
-  background: no-repeat;
-  height: 200px;
-  width: 200px;
-  background-size: cover;
-  background-position-x: center;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-
-div.resource-card-small h4 {
-  text-align: left;
-  padding-bottom: 0;
-  padding-left: 32px;
-} 
-
-div.resource-card-small p {
-  text-align: left;
-  padding-bottom: 0;
-  padding-left: 32px;
-} 
-main div.resource-card-small-container-inner  {
-  flex-basis: 41.666%;
-} 
- */
 main a.resource-card-small-container-inner {
     height: calc(var(--spectrum-global-dimension-size-2000) - var(--spectrum-global-dimension-size-50));
+    margin: var(--spectrum-global-dimension-size-300);
 }
 
 @media screen and (max-width: 1280px) {
