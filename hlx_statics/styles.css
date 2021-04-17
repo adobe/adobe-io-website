@@ -329,3 +329,16 @@ footer .footer-horizontal {
   margin: 0 auto;
   padding-bottom: 60px;
 }
+
+.resource-cards-container {
+  display: flex;
+}
+
+.resource-cards-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.resource-cards-right {
+  display: flex;
+}

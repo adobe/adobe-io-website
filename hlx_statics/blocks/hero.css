@@ -68,7 +68,7 @@ main .hero .icon {
   object-fit: contain;
 }
 
-main .hero h1, h2, h3, h4, h5, h6 {
+main .hero h3 {
   margin-top: 0;
   margin-bottom: var(--spectrum-global-dimension-size-200);
 }
