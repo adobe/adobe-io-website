@@ -1053,7 +1053,10 @@ let $CURRENT_API_FILTERS = [];
 
   function getSmallResourceCard(linkHref, imgSrc, heading, text) {
     return `
-          
+    <a
+    class="spectrum-Card spectrum-Card--horizontal resource-card-small-container-inner"
+    href=${linkHref}
+    >
             <div class="spectrum-Card-preview resource-card-small-preview">
               <div class="resource-card-small-image-container spectrum-Asset">
                 <img class="spectrum-Asset-image" src=${imgSrc} />
@@ -1075,7 +1078,7 @@ let $CURRENT_API_FILTERS = [];
                 </div>
               </div>
             </div>
-          
+          </a>
     `;
   }
   function decorateResourceCards() {
