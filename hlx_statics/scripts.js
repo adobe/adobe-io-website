@@ -982,11 +982,6 @@ let $CURRENT_API_FILTERS = [];
         }
       });
 
-
-
-      $column.querySelectorAll('div').forEach(($child) => {
-        //$child.classList.add('second-column');
-      })
       // $column.querySelectorAll('img + a').forEach(($productLink) => {
       //   // this is annoying - sometimes it's wrapper is in p and sometimes not?
       //   // is it when gdoc has two icons in a row that p will be used?
@@ -1050,85 +1045,140 @@ let $CURRENT_API_FILTERS = [];
     });
   }
 
+  function getLargeResourceCard() {
+    return `
+    
+    `;
+  }
+
+  function getSmallResourceCard(linkHref, imgSrc, heading, text) {
+    return `
+          
+            <div class="spectrum-Card-preview resource-card-small-preview">
+              <div class="resource-card-small-image-container spectrum-Asset">
+                <img class="spectrum-Asset-image" src=${imgSrc} />
+              </div>
+            </div>
+            <div class="spectrum-Card-body resource-card-small-body">
+              <div class="spectrum-Card-header resource-card-small-header">
+                <div class="spectrum-Card-title resource-card-small-title">
+                  <h3 class="spectrum-Heading spectrum-Heading--sizeM">
+                    ${heading}
+                  </h3>
+                </div>
+              </div>
+              <div class="spectrum-Card-content">
+                <div class="spectrum-Card-subtitle">
+                  <p className="spectrum-Body spectrum-Body-S">
+                    ${text}
+                  </p>
+                </div>
+              </div>
+            </div>
+          
+    `;
+  }
   function decorateResourceCards() {
     document.querySelectorAll('.section-wrapper').forEach(($section) => {
-      $section.querySelectorAll('.resource-card-large').forEach(($resourceLarge) => {
+      // resource cards are special in that multiple cards will be grouped together within
+      // a section so need to find out how many and what format it is
+      let $smallResourceCardCount = 0;
+      let $largeResourceCardCount = 0;
 
-        // find the image
-        let $image = $resourceLarge.querySelector('img');
-        if($image) {
-          let $imageContainer = $image.parentElement;
+      let $leftResourceCardContainer = createTag('div', { class: 'resource-cards-left'});
+      let $rightResourceCardContainer = createTag('div', { class: 'resource-cards-right'});
+
+      let $smallResourceCardTemplate = ``;
+
+      let $largeResourceCardTemplate = ``;
+
+      $section.querySelectorAll('.resource-card-large').forEach(($resourceLarge, index, array) => {
+
+        $largeResourceCardCount = array.length;
+        // // find the image
+        // let $image = $resourceLarge.querySelector('img');
+        // if($image) {
+        //   let $imageContainer = $image.parentElement;
     
-          $imageContainer.style.backgroundImage = 'url('+ $image.src + ')';
-          $imageContainer.classList.add('resource-card-large-image-container');
+        //   $imageContainer.style.backgroundImage = 'url('+ $image.src + ')';
+        //   $imageContainer.classList.add('resource-card-large-image-container');
     
-          $image.remove();
-        }
+        //   $image.remove();
+        // }
     
-        let $link = $resourceLarge.querySelector('a');
-        if($link) {
-          $resourceLarge.addEventListener('click', url => {
-            window.open($link.href, '_blank');
-          });
-          $link.remove();
-        }
+        // let $link = $resourceLarge.querySelector('a');
+        // if($link) {
+        //   $resourceLarge.addEventListener('click', url => {
+        //     window.open($link.href, '_blank');
+        //   });
+        //   $link.remove();
+        // }
     
-        let $resourceLargeContainer = createTag('div', { class: 'resource-card-large-container-inner'});
-        let $resourceLargeContainerParent = $resourceLarge.parentElement;
+        // let $resourceLargeContainer = createTag('div', { class: 'resource-card-large-container-inner'});
+        // let $resourceLargeContainerParent = $resourceLarge.parentElement;
     
-        $resourceLargeContainer.append($resourceLarge);
-        $resourceLargeContainerParent.append($resourceLargeContainer);
-        removeEmptyPTags($resourceLarge);
+        // $resourceLargeContainer.append($resourceLarge);
+        // $resourceLargeContainerParent.append($resourceLargeContainer);
+        // removeEmptyPTags($resourceLarge);
       });
     
       // take two small resource cards and wrap em
-      let $containerParent = $section.querySelector('.resource-card-small-container > div');
-      let $resourceSmallContainer = createTag('div', { class: 'resource-card-small-container-inner'});
+      // let $containerParent = $section.querySelector('.resource-card-small-container > div');
+      // let $resourceSmallContainer = createTag('div', { class: 'resource-card-small-container-inner'});
 
-      let $resourceSmallContainerSecond = createTag('div', { class: 'resource-card-small-container-inner'});
-      $section.querySelectorAll('.resource-card-small').forEach(($resourceSmall, index) => {
-        // find the image
-        let $image = $resourceSmall.querySelector('img');
-        if($image) {
-          let $imageContainer = $image.parentElement;
-    
-          $imageContainer.style.backgroundImage = 'url('+ $image.src + ')';
-          $imageContainer.classList.add('resource-card-small-image-container');
-    
-          $image.remove();
-        }
-    
-        let $link = $resourceSmall.querySelector('a');
-        if($link) {
-          $resourceSmall.addEventListener('click', url => {
-            window.open($link.href, '_blank');
-          });
-          $link.remove();
-        }
-
-        // annoying logic to wrap two small cards vs four
-        if(index <= 1) {
-          $resourceSmallContainer.append($resourceSmall);
-        } else {
-          $resourceSmallContainerSecond.append($resourceSmall);
-          $containerParent.append($resourceSmallContainerSecond);
-        }
+      // let $resourceSmallContainerSecond = createTag('div', { class: 'resource-card-small-container-inner'});
+      $section.querySelectorAll('.resource-card-small').forEach(($resourceSmall, index, array) => {
         removeEmptyPTags($resourceSmall);
-      });
+        let $smallResourceCardCount = array.length;
+        let $linkHref = $resourceSmall.querySelector('a').href;
+        let $heading = $resourceSmall.querySelector('a').innerText;
+        let $imgSrc = $resourceSmall.querySelector('img').src;
+        let $text = $resourceSmall.querySelector('p').innerText;
+        console.log(getSmallResourceCard($linkHref, $heading, $imgSrc, $text))
+        $section.append($leftResourceCardContainer)
+        $leftResourceCardContainer.innerHTML = getSmallResourceCard($linkHref, $imgSrc, $heading, $text);
+        // find the image
+        // let $image = $resourceSmall.querySelector('img');
+        // if($image) {
+        //   let $imageContainer = $image.parentElement;
     
-      if($containerParent) {
-        $containerParent.append($resourceSmallContainer);
-      }
+        //   $imageContainer.style.backgroundImage = 'url('+ $image.src + ')';
+        //   $imageContainer.classList.add('resource-card-small-image-container');
     
-      let $resourceFlexContainer = createTag('div', {class: 'resource-card-flex-container'});
-      $section.querySelectorAll('.resource-card-large-container-inner').forEach(($largeSection) => {
-        $resourceFlexContainer.append($largeSection);
-      });
+        //   $image.remove();
+        // }
+    
+        // let $link = $resourceSmall.querySelector('a');
+        // if($link) {
+        //   $resourceSmall.addEventListener('click', url => {
+        //     window.open($link.href, '_blank');
+        //   });
+        //   $link.remove();
+        // }
 
-      $section.querySelectorAll('.resource-card-small-container-inner').forEach(($smallSection) => {
-        $resourceFlexContainer.append($smallSection);
+        // // annoying logic to wrap two small cards vs four
+        // if(index <= 1) {
+        //   $resourceSmallContainer.append($resourceSmall);
+        // } else {
+        //   $resourceSmallContainerSecond.append($resourceSmall);
+        //   $containerParent.append($resourceSmallContainerSecond);
+        // }
+        // removeEmptyPTags($resourceSmall);
       });
-      $section.append($resourceFlexContainer);
+    
+      // if($containerParent) {
+      //   $containerParent.append($resourceSmallContainer);
+      // }
+    
+      // let $resourceFlexContainer = createTag('div', {class: 'resource-card-flex-container'});
+      // $section.querySelectorAll('.resource-card-large-container-inner').forEach(($largeSection) => {
+      //   $resourceFlexContainer.append($largeSection);
+      // });
+
+      // $section.querySelectorAll('.resource-card-small-container-inner').forEach(($smallSection) => {
+      //   $resourceFlexContainer.append($smallSection);
+      // });
+      // $section.append($resourceFlexContainer);
     });
   
   }
@@ -1203,7 +1253,7 @@ let $CURRENT_API_FILTERS = [];
     decorateColumns();
     decorateAnnouncement();
     decorateAPIBrowser()
-    // decorateResourceCards();
+    decorateResourceCards();
     // decorateSummary();
     fixIcons();
     later();
