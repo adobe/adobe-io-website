@@ -5,8 +5,8 @@ main a.resource-card-large-container-inner {
 
 @media screen and (max-width: 1280px) {
   main a.resource-card-large-container-inner {
-    min-width: 0;
-    margin: 0;
+    width: 100%;
+    margin: var(--spectrum-global-dimension-size-300);
   }
 }
 
