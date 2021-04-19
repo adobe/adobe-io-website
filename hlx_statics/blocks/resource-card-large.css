@@ -5,14 +5,11 @@ main a.resource-card-large-container-inner {
 
 @media screen and (max-width: 1280px) {
   main a.resource-card-large-container-inner {
-    width: 100%;
-    height: auto;
     min-width: 0;
     margin: 0;
   }
 }
 
-         
 main div.resource-card-large-preview {
   height: var(--spectrum-global-dimension-size-3000);
   width: 100%;

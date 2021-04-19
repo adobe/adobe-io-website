@@ -1,68 +1,50 @@
 main div.summary-container {
-  background-repeat: no-repeat;
-}
-
-
-main div.summary-container > div {
-  padding-top: 32px;
-  padding-bottom: 32px;
+  background: var(--spectrum-global-color-gray-50);
+  background-position: center;
+  background-size: cover;
 }
 
 main div.summary {
+  position: relative;
   width: 100%;
-  padding-left: 64px;
-  padding-right: 32px;
-  display: flex;
+  height: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-225));
+}
+
+@media screen and (max-width: 1280px) {
+  main div.summary {
+    height: 100vh;
+  }
 }
 
 main div.summary > div {
-  width: 53.61%;
-}
-
-main div.summary h2 { 
-  color: #fff;
-  text-align: left;
-  font-size: 28px;
-  line-height: 36px;
-}
-
-main div.summary p { 
-  color: #fff;
-  text-align: left;
-  font-size: 16px;
-  line-height: 27px;
-  padding-bottom: 24px;
-}
-
-main div.summary .summary-link-container {
+  box-sizing: border-box;
+  padding-left: var(--spectrum-global-dimension-size-800);
+  width: calc(7 * 100% / 12);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  text-align: left;
 }
 
-
-main div.summary .summaryPrimaryLink {
-  padding-bottom: 0;
-  padding-right: 16px;
+@media screen and (max-width: 1280px) {
+  main div.summary > div {
+    width: auto;
+    padding: var(--spectrum-global-dimension-size-400);
+  }
 }
 
-main div.summary .summarySecondaryLink {
-  padding-bottom: 0;
+main div.summary h2 {
+  margin-top: 0 !important;
+  margin-bottom: var(--spectrum-global-dimension-size-200) !important;
 }
 
-
-main div.summary .summarySecondaryLink .button.secondary {
-	background-color: transparent;
-  border-color: #fff;
-	color: #fff;
-}
-
-main div.summary .summarySecondaryLink .button.secondary.quiet {
-	background-color: transparent;
-  border-style: none;
-	color: #fff;
-}
-
-main div.summary .summarySecondaryLink .button.secondary:hover {
-	background-color: #fff;
-	border-color: #fff;
-  color: #323232;
+main div.summary p {
+  margin-bottom: var(--spectrum-global-dimension-size-300) !important;
+  color: var(--spectrum-global-color-gray-900);
+  margin-top: 0;
 }

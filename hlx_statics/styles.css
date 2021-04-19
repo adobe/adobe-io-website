@@ -334,11 +334,24 @@ footer .footer-horizontal {
   display: flex;
 }
 
+@media screen and (max-width: 1280px) {
+  .resource-cards-container {
+    flex-wrap: wrap;
+  }
+}
+
 .resource-cards-left {
   display: flex;
   flex-direction: column;
 }
 
+@media screen and (max-width: 1280px) {
+  .resource-cards-left {
+    width: 50%;
+  }
+}
+
 .resource-cards-right {
   display: flex;
 }
+

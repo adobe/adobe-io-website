@@ -5,11 +5,10 @@ main a.resource-card-small-container-inner {
 
 @media screen and (max-width: 1280px) {
   main a.resource-card-small-container-inner {
-    width: 100%;
-    height: auto;
+    height: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-100));
+
     min-width: 0;
     margin: 0;
-    flex-direction: column;
   }
 }
 
@@ -21,6 +20,7 @@ main div.resource-card-small-preview {
 @media screen and (max-width: 1280px) {
   main div.resource-card-small-preview {
     width: 100%;
+    height: var(--spectrum-global-dimension-size-3000);
   }
 }
 
