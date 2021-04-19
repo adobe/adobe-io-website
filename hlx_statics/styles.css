@@ -128,13 +128,13 @@ header.global-header {
     z-index: 10;
 }
 
-header.global-header.icon {
+header.global-header img.icon {
     height: 20px;
     width: 24px;
     margin-right: 8px;
 }
 
-header.global-headerp {
+header.global-header p {
     padding: 16px;
     display: flex;
     align-items: center;
@@ -142,21 +142,21 @@ header.global-headerp {
     margin-bottom: 0;
 }
 
-header.global-headerdiv:last-child {
+header.global-header div:last-child {
   margin-left: auto;
   display: flex;
   align-items: center;
 }
 
 
-header.global-headerul {
+header.global-header ul {
     display: flex;
     list-style: none;
     margin-top: 0;
     margin-bottom: 0;
 }
 
-header.global-headerul li {
+header.global-header ul li {
     display: flex;
     align-items: center;
     padding: 16px 48px 16px;
@@ -164,11 +164,11 @@ header.global-headerul li {
 
 }
 
-header.global-headerul li:last-child {
+header.global-header ul li:last-child {
   border-right: 1px solid #eaeaea;
 }
 
-header.global-headerul li a {
+header.global-header ul li a {
     font-size: 14px;
     font-weight: 400;
     color: #505050;
