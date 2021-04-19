@@ -1043,43 +1043,45 @@ let $CURRENT_API_FILTERS = [];
     document.querySelectorAll('.section-wrapper').forEach(($section) => {
       // resource cards are special in that multiple cards will be grouped together within
       // a section so need to find out how many and what format it is
-      let $smallResourceCardCount = 0;
-      let $largeResourceCardCount = 0;
+      // let $smallResourceCardCount = 0;
+      // let $largeResourceCardCount = 0;
 
-      let $leftResourceCardContainer = createTag('div', { class: 'resource-cards-left'});
-      let $rightResourceCardContainer = createTag('div', { class: 'resource-cards-right'});
-      let $resourceCardsContainer = createTag('div', { class: 'resource-cards-container'});
-      
-      $section.append($resourceCardsContainer);
+      // make sure section has resource cards
+      if($section.querySelector('.resource-card-large, .resource-card-small')){
+        let $leftResourceCardContainer = createTag('div', { class: 'resource-cards-left'});
+        let $rightResourceCardContainer = createTag('div', { class: 'resource-cards-right'});
 
-      $section.querySelectorAll('.resource-card-large').forEach(($resourceLarge, index, array) => {
-        removeEmptyPTags($resourceLarge);
-        $largeResourceCardCount = array.length;
-        let $linkHref = $resourceLarge.querySelector('a').href;
-        let $heading = $resourceLarge.querySelector('a').innerText;
-        let $imgSrc = $resourceLarge.querySelector('img').src;
-        let $text = $resourceLarge.querySelector('p').innerText;
-
-        $resourceCardsContainer.append($rightResourceCardContainer);
-        $rightResourceCardContainer.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
-
-        $resourceLarge.remove();
-      });
-
-      $section.querySelectorAll('.resource-card-small').forEach(($resourceSmall, index, array) => {
-        removeEmptyPTags($resourceSmall);
-        $smallResourceCardCount = array.length;
-        let $linkHref = $resourceSmall.querySelector('a').href;
-        let $heading = $resourceSmall.querySelector('a').innerText;
-        let $imgSrc = $resourceSmall.querySelector('img').src;
-        let $text = $resourceSmall.querySelector('p').innerText;
-
+        let $resourceCardsContainer = createTag('div', { class: 'resource-cards-container'});
+        $section.append($resourceCardsContainer);
         $resourceCardsContainer.append($leftResourceCardContainer);
-        $leftResourceCardContainer.innerHTML += getResourceCard('small', $linkHref, $imgSrc, $heading, $text);
-        $resourceSmall.remove();
-      });
+        $resourceCardsContainer.append($rightResourceCardContainer);
 
+        $section.querySelectorAll('.resource-card-large').forEach(($resourceLarge, index, array) => {
+          removeEmptyPTags($resourceLarge);
+          //$largeResourceCardCount = array.length;
+          let $linkHref = $resourceLarge.querySelector('a').href;
+          let $heading = $resourceLarge.querySelector('a').innerText;
+          let $imgSrc = $resourceLarge.querySelector('img').src;
+          let $text = $resourceLarge.querySelector('p').innerText;
 
+          $leftResourceCardContainer.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
+  
+          $resourceLarge.remove();
+        });
+  
+        $section.querySelectorAll('.resource-card-small').forEach(($resourceSmall, index, array) => {
+          removeEmptyPTags($resourceSmall);
+          //$smallResourceCardCount = array.length;
+          let $linkHref = $resourceSmall.querySelector('a').href;
+          let $heading = $resourceSmall.querySelector('a').innerText;
+          let $imgSrc = $resourceSmall.querySelector('img').src;
+          let $text = $resourceSmall.querySelector('p').innerText;
+  
+          $rightResourceCardContainer.innerHTML += getResourceCard('small', $linkHref, $imgSrc, $heading, $text);
+          toggleScale();
+          $resourceSmall.remove();
+        });
+      }
     });
   }
 
@@ -1113,28 +1115,6 @@ let $CURRENT_API_FILTERS = [];
       });
 
       $summary.style.backgroundImage = `url(${$summaryImageSrc})`;
-
-      // $backgroundImg = $summary.querySelector('img');
-      // $summary.style.backgroundImage = 'url('+ $backgroundImg.src + ')';
-      // $backgroundImg.remove();
-      // removeEmptyPTags($summary);
-
-      // // fix up button styling
-      // let $linkContainer = createTag('div', {class: 'summary-link-container'});
-      // const $primaryLink = $summary.querySelector('p > strong');
-      // if($primaryLink) {
-      //   $primaryLink.parentElement.classList.add('summaryPrimaryLink');
-      //   $linkContainer.append($primaryLink.parentElement);
-      // }
-
-      // const $secondaryLink = $summary.querySelector('p > a');
-      // if($secondaryLink) {
-      //   $secondaryLink.parentElement.classList.add('summarySecondaryLink');
-      //   $linkContainer.append($secondaryLink.parentElement);
-      // }
-
-      // let $textContainer = $summary.querySelector('.summary > div > div')
-      // $textContainer.append($linkContainer);
     });
   }
 
@@ -1157,7 +1137,6 @@ let $CURRENT_API_FILTERS = [];
 
     // have to toggle dumb small resource cards
     document.querySelectorAll('.resource-card-small-container-inner').forEach(($smallResourceCards) => {
-
       $smallResourceCards.classList.toggle('spectrum-Card--horizontal', !mobileBreak);
     });
 
@@ -1190,7 +1169,7 @@ let $CURRENT_API_FILTERS = [];
     decorateColumns();
     decorateAnnouncement();
     decorateAPIBrowser()
-    //decorateResourceCards();
+    decorateResourceCards();
     decorateSummary();
     fixIcons();
     later();

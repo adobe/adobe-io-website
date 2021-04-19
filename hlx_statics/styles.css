@@ -337,23 +337,18 @@ footer .footer-horizontal {
 }
 
 @media screen and (max-width: 1280px) {
-  .resource-cards-container {
+  .resource-cards-container  {
     flex-wrap: wrap;
+    flex-direction: column;
   }
 }
 
 .resource-cards-left {
   display: flex;
-  flex-direction: column;
-}
-
-@media screen and (max-width: 1280px) {
-  .resource-cards-left {
-    width: 50%;
-  }
 }
 
 .resource-cards-right {
   display: flex;
+  flex-direction: column;
 }
 
