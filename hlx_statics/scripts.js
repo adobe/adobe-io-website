@@ -1,5 +1,6 @@
 // See https://github.com/adobe/react-spectrum/blob/dac6d273a9843694a652d7513ff88f6a9c773887/packages/%40react-spectrum/utils/src/useIsMobileDevice.ts#L15
 const MOBILE_SCREEN_WIDTH = 700;
+const LARGE_SCREEN_WIDTH = 1280;
 
 const $FOOTER_LINKS =
 [
@@ -1048,6 +1049,7 @@ let $CURRENT_API_FILTERS = [];
       let $leftResourceCardContainer = createTag('div', { class: 'resource-cards-left'});
       let $rightResourceCardContainer = createTag('div', { class: 'resource-cards-right'});
       let $resourceCardsContainer = createTag('div', { class: 'resource-cards-container'});
+      
       $section.append($resourceCardsContainer);
 
       $section.querySelectorAll('.resource-card-large').forEach(($resourceLarge, index, array) => {
@@ -1060,7 +1062,10 @@ let $CURRENT_API_FILTERS = [];
 
         $resourceCardsContainer.append($rightResourceCardContainer);
         $rightResourceCardContainer.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
+
+        $resourceLarge.remove();
       });
+
       $section.querySelectorAll('.resource-card-small').forEach(($resourceSmall, index, array) => {
         removeEmptyPTags($resourceSmall);
         $smallResourceCardCount = array.length;
@@ -1071,35 +1076,65 @@ let $CURRENT_API_FILTERS = [];
 
         $resourceCardsContainer.append($leftResourceCardContainer);
         $leftResourceCardContainer.innerHTML += getResourceCard('small', $linkHref, $imgSrc, $heading, $text);
-        
+        $resourceSmall.remove();
       });
+
+
     });
-  
   }
 
   function decorateSummary() {
     document.querySelectorAll(".summary-container").forEach(($summary) => {
-      $backgroundImg = $summary.querySelector('img');
-      $summary.style.backgroundImage = 'url('+ $backgroundImg.src + ')';
-      $backgroundImg.remove();
-      removeEmptyPTags($summary);
+      $summary.classList.add('spectrum--dark');
 
-      // fix up button styling
-      let $linkContainer = createTag('div', {class: 'summary-link-container'});
-      const $primaryLink = $summary.querySelector('p > strong');
-      if($primaryLink) {
-        $primaryLink.parentElement.classList.add('summaryPrimaryLink');
-        $linkContainer.append($primaryLink.parentElement);
-      }
+      //removeEmptyPTags($summary);
+      $summary.querySelectorAll('h2').forEach(($header) => {
+        $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL');
+      })
 
-      const $secondaryLink = $summary.querySelector('p > a');
-      if($secondaryLink) {
-        $secondaryLink.parentElement.classList.add('summarySecondaryLink');
-        $linkContainer.append($secondaryLink.parentElement);
-      }
+      $summary.querySelectorAll('p').forEach(($p) => {
+        const $hasLinks = $p.querySelectorAll('a, button');
+        // don't attach to icon container or if p tag contains links
+        if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
+          $p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
+        } 
+        $hasLinks.forEach(($button) => {
+          $button.classList.add('spectrum-Button--overBackground');
+        })
+      });
 
-      let $textContainer = $summary.querySelector('.summary > div > div')
-      $textContainer.append($linkContainer);
+      // delete image and re-insert as bg
+      let $summaryImageSrc = $summary.querySelector('img') ? $summary.querySelector('img').src : null;
+
+      $summary.querySelectorAll('picture').forEach(($picture) => {
+        //remove weird max-width attribute 
+        $picture.media = "";
+        $picture.remove();
+      });
+
+      $summary.style.backgroundImage = `url(${$summaryImageSrc})`;
+
+      // $backgroundImg = $summary.querySelector('img');
+      // $summary.style.backgroundImage = 'url('+ $backgroundImg.src + ')';
+      // $backgroundImg.remove();
+      // removeEmptyPTags($summary);
+
+      // // fix up button styling
+      // let $linkContainer = createTag('div', {class: 'summary-link-container'});
+      // const $primaryLink = $summary.querySelector('p > strong');
+      // if($primaryLink) {
+      //   $primaryLink.parentElement.classList.add('summaryPrimaryLink');
+      //   $linkContainer.append($primaryLink.parentElement);
+      // }
+
+      // const $secondaryLink = $summary.querySelector('p > a');
+      // if($secondaryLink) {
+      //   $secondaryLink.parentElement.classList.add('summarySecondaryLink');
+      //   $linkContainer.append($secondaryLink.parentElement);
+      // }
+
+      // let $textContainer = $summary.querySelector('.summary > div > div')
+      // $textContainer.append($linkContainer);
     });
   }
 
@@ -1115,9 +1150,17 @@ let $CURRENT_API_FILTERS = [];
   function toggleScale() {
     const doc = document.documentElement;
     const isLargeScale = doc.clientWidth < MOBILE_SCREEN_WIDTH;
+    const mobileBreak = doc.clientWidth < LARGE_SCREEN_WIDTH;
 
     doc.classList.toggle('spectrum--medium', !isLargeScale);
     doc.classList.toggle('spectrum--large', isLargeScale);
+
+    // have to toggle dumb small resource cards
+    document.querySelectorAll('.resource-card-small-container-inner').forEach(($smallResourceCards) => {
+
+      $smallResourceCards.classList.toggle('spectrum-Card--horizontal', !mobileBreak);
+    });
+
   }
 
   function later() {
@@ -1147,8 +1190,8 @@ let $CURRENT_API_FILTERS = [];
     decorateColumns();
     decorateAnnouncement();
     decorateAPIBrowser()
-    decorateResourceCards();
-    // decorateSummary();
+    //decorateResourceCards();
+    decorateSummary();
     fixIcons();
     later();
   }
