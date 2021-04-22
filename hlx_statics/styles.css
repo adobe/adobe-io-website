@@ -347,6 +347,17 @@ footer .footer-horizontal {
   display: flex;
 }
 
+div.resource-cards-left > a.resource-card-large-container-inner {
+  margin-right: 0 !important;
+}
+
+@media screen and (min-width: 1280px) {
+  .resource-cards-left, .resource-cards-right {
+    width: 50%
+  }
+}
+
+
 .resource-cards-right {
   display: flex;
   flex-direction: column;
