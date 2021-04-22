@@ -607,18 +607,17 @@ let $CURRENT_API_FILTERS = [];
     });
   }
 
-  function globalHeaderTemplate(links) {
+  function globalHeaderTemplate() {
     return `
       <p>
         <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
         <strong class="spectrum-Heading spectrum-Heading--sizeXXS">Adobe I/O</strong>
       </p>
 
-      <ul>
+      <ul id="navigation-links">
         <li>
           <a href="/apis">Discover</a>
         </li>
-          ${links}
       </ul>
 
       <div>
@@ -631,10 +630,15 @@ let $CURRENT_API_FILTERS = [];
     `
   }
 
+  async function fetchNav() {
+    const $localNavPath = window.location.pathname.split('/')[1];
+    const resp = await fetch(`${$localNavPath}/nav.json`);
+    return (await resp.json()).data;
+  }
+
   function decorateHeader() {
-    document.querySelectorAll('header').forEach(($header) => {
-      // TODO better handling of navs
-      if(window.location.pathname === '/apis' || window.location.pathname === '/apis/'){
+    if(window.location.pathname === '/apis' || window.location.pathname === '/apis/') {
+      document.querySelectorAll('header').forEach(($header) => {
         $header.classList.add('main-header');
         const $mainHeaderLinks = `
           <li class="header-list-item">
@@ -658,9 +662,9 @@ let $CURRENT_API_FILTERS = [];
             </button>
           </li>
         `;
-  
+
         const $mainHeaderTemplate = `
-         <nav class="header-nav">
+          <nav class="header-nav">
           <a href="/" class="header-main-link">
             <span class="header-label">
               Adobe I/O
@@ -673,68 +677,28 @@ let $CURRENT_API_FILTERS = [];
           </div>
         </nav>
         `;
-  
+
         $header.innerHTML = $mainHeaderTemplate;
-      } else {
+      });
+    } else {
+      document.querySelectorAll('header').forEach(($header) => {
+        $header.classList.add('main-header');
         $header.classList.add('global-header');
         $header.innerHTML = globalHeaderTemplate('');
+      });
 
-        // let $pContainer = document.createElement('p');
-        // let $pContent = createTag('strong', {class: 'spectrum-Heading spectrum-Heading--sizeXXS'});
-        // $pContent.append('Adobe I/O')
-
-        // let $imgContainer = document.createElement('img');
-
-        // $imgContainer.classList.add('icon', 'icon-adobe');
-        // $imgContainer.src = '/hlx_statics/icons/adobe.svg';
-        // $imgContainer.alt = 'adobe icon';
-
-        // $pContainer.appendChild($imgContainer);
-        // $pContainer.appendChild($pContent);
-
-        // let $ulContainer = document.createElement('ul');
-
-        // $header.appendChild($pContainer);
-        // $header.appendChild($ulContainer);
-
-        // let $aLink = document.createElement('a');
-        // $aLink.href = 'https://console.adobe.io/';
-        // $aLink.textContent = 'Console';
-
-        // let $consoleLinkHTML = `
-        //   <button onClick="location.href='https://console.adobe.io/'"  class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
-        //     <span class="spectrum-Button-label">
-        //       Console
-        //     </span>
-        //   </button>
-        // `;
-
-        // let $buttonContainer = createTag('div');
-        // $buttonContainer.innerHTML = $consoleLinkHTML;
-
-        // $header.appendChild($buttonContainer);
-      }
-      
-    });
-
-    
-
-    // document.querySelectorAll('header').forEach(async ($header) => {
-    //   window.aio = window.aio || {};
-    //   const resp = await fetch("/nav.json");
-    //   window.aio.links = (await resp.json()).data;
-    //   const $links = window.aio.links;
-
-    //   $links.forEach(($link) => {
-    //     let $liItem = createTag('li');
-    //     let $aItem = createTag('a');
-    //     $aItem.href = $link.Url;
-    //     $aItem.innerText = $link.Title;
-    //     $liItem.append($aItem);
-    //     $ulContainer.append($liItem);
-    //   });
-    //   // when this loads this should really determine which nav to use
-    // });
+      fetchNav().then($links => {
+        const $headerLinks = document.querySelector('#navigation-links');
+        $links.forEach(($link) => {
+          let $liItem = createTag('li');
+          let $aItem = createTag('a');
+          $aItem.href = $link.Url;
+          $aItem.innerText = $link.Title;
+          $liItem.append($aItem);
+          $headerLinks.append($liItem);
+        })
+      })
+    }
   }
 
   function decorateAnnouncement() {
