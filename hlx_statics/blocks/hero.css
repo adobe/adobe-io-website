@@ -56,6 +56,12 @@ main div.hero div:nth-child(2) > div img {
   min-height: 500px;
 }
 
+@media screen and (min-width: 1280px) {
+  main div.hero div:nth-child(2) > div img {
+    max-height: 500px;
+  }
+}
+
 main .hero .icon-container {
   height: var(--spectrum-global-dimension-size-600);
   width: var(--spectrum-global-dimension-size-600);
