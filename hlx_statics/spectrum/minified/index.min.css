@@ -5565,7 +5565,7 @@ main div.hero div:nth-child(2) > div {
   margin-top: 0;
 }
 
-main div.hero div:nth-child(2) > div > img {
+main div.hero div:nth-child(2) > div img {
   width: 100%;
   height: 100%;
   object-fit: cover;
