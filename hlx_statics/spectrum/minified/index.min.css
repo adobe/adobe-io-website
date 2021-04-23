@@ -5709,6 +5709,13 @@ main div.resource-card-small-image-container img {
 object-fit: contain;
 }
 
+@media screen and (min-width: 1280px) {
+main div.resource-card-small-image-container img {
+  max-width: 110%;
+  max-height: 110%;
+}
+}
+
 main div.resource-card-small-body {
 flex: 1;
 padding: var(--spectrum-global-dimension-size-300) !important;
@@ -6199,11 +6206,13 @@ footer .footer-horizontal {
 }
 
 div.resource-cards-left > a.resource-card-large-container-inner {
-  width: 100%;
   margin-right: 0 !important;
 }
 
 @media screen and (min-width: 1280px) {
+  div.resource-cards-left > a.resource-card-large-container-inner {
+    width: 100%;
+  }
   .resource-cards-left, .resource-cards-right {
     width: 50%
   }

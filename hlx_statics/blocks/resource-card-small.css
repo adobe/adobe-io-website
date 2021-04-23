@@ -7,6 +7,7 @@ main a.resource-card-small-container-inner {
   main a.resource-card-small-container-inner {
     height: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-100));
     margin: var(--spectrum-global-dimension-size-300);
+    width: calc(100vw - var(--spectrum-global-dimension-size-300)*2);
   }
 }
 
@@ -35,6 +36,13 @@ main div.resource-card-small-image-container {
 
 main div.resource-card-small-image-container img {
   object-fit: contain;
+}
+
+@media screen and (min-width: 1280px) {
+  main div.resource-card-small-image-container img {
+    max-width: 110%;
+    max-height: 110%;
+  }
 }
 
 main div.resource-card-small-body {
