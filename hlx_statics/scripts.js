@@ -631,8 +631,7 @@ let $CURRENT_API_FILTERS = [];
   }
 
   async function fetchNav() {
-    const $localNavPath = window.location.pathname.split('/')[1];
-    const resp = await fetch(`${$localNavPath}/nav.json`);
+    const resp = await fetch('/nav.json');
     return (await resp.json()).data;
   }
 
