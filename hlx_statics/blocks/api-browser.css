@@ -135,6 +135,11 @@ main .api-card-title {
     font-size: var(--spectrum-global-dimension-size-200);
 }
 
+main .api-card-title h4 {
+    margin-top: 0;
+    margin-bottom: var(--spectrum-global-dimension-size-200);
+}
+
 main .api-card-content {
     height: auto;
     margin-bottom: 0 !important;
