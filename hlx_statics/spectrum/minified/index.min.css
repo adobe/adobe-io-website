@@ -5474,15 +5474,28 @@ main div.cards {
 main div.cards > div {
     text-align: center;
     display: table-cell;
-    width: 33.33vw;
     padding: var(--spectrum-global-dimension-size-1000) 0;
 }
+
+main div.cards > div.three-cards {
+    width: 33.33vw;
+}
+
+main div.cards > div.four-cards {
+    width: 25vw;
+}
+
+@media screen and (max-width: 1280px) {
+    main div.cards > div {
+        display: block;
+        width: 100%;
+    }
+  }
 
 main div.cards > div > div {
     max-width: var(--spectrum-global-dimension-size-4600);
     padding: 0 var(--spectrum-global-dimension-size-400);
     margin: auto;
-    margin-right: 0;
 }
 
 main div.cards > div img {
@@ -5498,6 +5511,14 @@ main div.cards > div h3 {
 main div.cards > div p {
     margin-top: 0;
     margin-bottom: 0!important;
+}
+
+main div.cards button.card-button {
+    --gap: var(--spectrum-global-dimension-size-200);
+    margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
+
+    margin-top: var(--spectrum-global-dimension-size-150);
+    margin-bottom: var(--spectrum-global-dimension-size-150);
 }
 
 main div.site-hero-container {
