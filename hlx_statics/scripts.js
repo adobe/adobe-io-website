@@ -691,7 +691,17 @@ let $CURRENT_API_FILTERS = [];
         $links.forEach(($link) => {
           let $liItem = createTag('li');
           let $aItem = createTag('a');
-          $aItem.href = $link.Url;
+          // fix link urls - there's a weird bug with a urls that end
+          // with trailing slashes and relative links
+          if(window.location.pathname.substr(-1) !== '/') {
+            if($link.Url.charAt(0) === '.') {
+              let $tempUrl = $link.Url.split('.');
+              $aItem.href = './' + window.location.pathname.split('/')[1] + $tempUrl[1];
+            }
+          } else {
+            $aItem.href = $link.Url;
+          }
+
           $aItem.innerText = $link.Title;
           $liItem.append($aItem);
           $headerLinks.append($liItem);
