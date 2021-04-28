@@ -906,6 +906,7 @@ let $CURRENT_API_FILTERS = [];
           $button.classList.remove('spectrum-Button--secondary')
           $button.classList.add('spectrum-Button--cta', 'spectrum-Button--quiet', 'card-button');
         });
+
         if($array.length === 3) {
           $card.classList.add('three-card');
         } else if($array.length === 4) {
@@ -936,8 +937,25 @@ let $CURRENT_API_FILTERS = [];
         // don't attach to icon container or if p tag contains links
         if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
           $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
+        } else {
+          $p.classList.add('icon-container')
         }
       });
+
+      $column.querySelectorAll('a').forEach(($a) => {
+        $a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
+      });
+
+      $column.querySelectorAll('div > div.second-column').forEach(($secondColumn) => {
+        let $productLinkContainer = createTag('div', { class : 'product-link-container'});
+
+        $secondColumn.querySelectorAll('p.icon-container').forEach(($innerSecond) => {
+
+          $productLinkContainer.append($innerSecond);
+        });
+        $secondColumn.append($productLinkContainer);
+      });
+
     });
 
     // document.querySelectorAll('.columns-dark').forEach(($column) => {
@@ -1110,7 +1128,6 @@ let $CURRENT_API_FILTERS = [];
 
   async function decoratePage() {
     toggleScale();
-
     decorateTables();
     wrapSections("main>div");
     decorateBlocks();
