@@ -962,7 +962,13 @@ let $CURRENT_API_FILTERS = [];
       });
 
     });
+  }
 
+  function decorateColumnsDark() {
+    document.querySelectorAll('.columns-dark').forEach(($column) => {
+    });
+    
+    //document.querySelectorAll('.columns').forEach(($column) => {
     // document.querySelectorAll('.columns-dark').forEach(($column) => {
     //   removeEmptyPTags($column);
 
@@ -988,7 +994,6 @@ let $CURRENT_API_FILTERS = [];
     //   });
     // });
   }
-
   function getResourceCard(size,linkHref, imgSrc, heading, text) {
     return `
           <a class="spectrum-Card ${size === 'small' ? 'spectrum-Card--horizontal' : ''} resource-card-${size}-container-inner"
@@ -1145,6 +1150,7 @@ let $CURRENT_API_FILTERS = [];
     decorateEmbeds();
     decorateCards();
     decorateColumns();
+    // decorateColumnsDark();
     decorateAnnouncement();
     decorateAPIBrowser()
     decorateResourceCards();
