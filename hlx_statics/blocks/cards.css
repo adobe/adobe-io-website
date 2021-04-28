@@ -3,7 +3,14 @@ main div.cards {
     background: var(--spectrum-global-color-gray-100);
     display: flex;
     justify-content: center;
+    flex-direction: row;
 } 
+
+@media screen and (max-width: 1280px) {
+    main div.cards {
+        flex-direction: column;
+    }
+  }
 
 main div.cards > div {
     text-align: center;
