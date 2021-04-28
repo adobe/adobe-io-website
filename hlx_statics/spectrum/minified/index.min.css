@@ -5349,6 +5349,8 @@ main div.background-image a.button.secondary {
 main div.cards {
     width: var(--spectrum-global-dimension-static-grid-fluid-width);
     background: var(--spectrum-global-color-gray-100);
+    display: flex;
+    justify-content: center;
 }
 
 main div.cards > div {
@@ -5488,6 +5490,7 @@ main div.columns p + p {
     margin-top: var(--spectrum-global-dimension-size-300);
 }
 
+<<<<<<< HEAD
 /* 
 main div.columns > div {
     display: flex;
@@ -5542,6 +5545,35 @@ main div.columns p.product-link {
 main div.columns p.product-link a {
     padding-left: 16px;
 } */
+=======
+main div.columns div.product-link-container p {
+    margin-top: var(--spectrum-global-dimension-size-300);
+}
+
+main div.columns div.product-link-container p + p {
+    margin-left: var(--spectrum-global-dimension-size-300);
+}
+
+main div.second-column div.product-link-container {
+    display: flex;
+    flex-direction: row;
+}
+
+main div.second-column div.product-link-container p.icon-container { 
+    display: flex;
+    align-items: center;
+}
+
+main div.second-column div.product-link-container img.icon { 
+    height: var(--spectrum-global-dimension-size-400);
+    width: var(--spectrum-global-dimension-size-400);
+    object-fit: contain;
+}
+
+main div.second-column div.product-link-container a { 
+    margin-left: var(--spectrum-global-dimension-size-100);
+}
+>>>>>>> Fix up columns and cards
 
 main div.embed-container {
   align-items: center;

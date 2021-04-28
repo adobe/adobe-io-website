@@ -1,6 +1,8 @@
 main div.cards {
     width: var(--spectrum-global-dimension-static-grid-fluid-width);
     background: var(--spectrum-global-color-gray-100);
+    display: flex;
+    justify-content: center;
 } 
 
 main div.cards > div {
