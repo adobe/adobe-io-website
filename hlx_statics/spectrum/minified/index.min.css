@@ -5349,6 +5349,8 @@ main div.background-image a.button.secondary {
 main div.cards {
     width: var(--spectrum-global-dimension-static-grid-fluid-width);
     background: var(--spectrum-global-color-gray-100);
+    display: flex;
+    justify-content: center;
 }
 
 main div.cards > div {
@@ -5486,6 +5488,34 @@ main div.columns h3.column-header + p {
 
 main div.columns p + p {
     margin-top: var(--spectrum-global-dimension-size-300);
+}
+
+main div.columns div.product-link-container p {
+    margin-top: var(--spectrum-global-dimension-size-300);
+}
+
+main div.columns div.product-link-container p + p {
+    margin-left: var(--spectrum-global-dimension-size-300);
+}
+
+main div.second-column div.product-link-container {
+    display: flex;
+    flex-direction: row;
+}
+
+main div.second-column div.product-link-container p.icon-container { 
+    display: flex;
+    align-items: center;
+}
+
+main div.second-column div.product-link-container img.icon { 
+    height: var(--spectrum-global-dimension-size-400);
+    width: var(--spectrum-global-dimension-size-400);
+    object-fit: contain;
+}
+
+main div.second-column div.product-link-container a { 
+    margin-left: var(--spectrum-global-dimension-size-100);
 }
 
 main div.embed-container {
