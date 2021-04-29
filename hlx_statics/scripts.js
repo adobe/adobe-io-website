@@ -156,6 +156,7 @@ let $CURRENT_API_FILTERS = [];
       .querySelectorAll("main>div.section-wrapper>div>div")
       .forEach(($block) => {
         const classes = Array.from($block.classList.values());
+        loadCSS(`/hlx_statics/blocks/${classes[0]}.css`);
         $block
           .closest(".section-wrapper")
           .classList.add(`${classes[0]}-container`);
