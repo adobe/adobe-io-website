@@ -45,7 +45,7 @@ main div.cards > div p {
     margin-bottom: 0!important;
 } 
 
-main div.cards button.card-button {
+main div.cards a.card-button {
     --gap: var(--spectrum-global-dimension-size-200);
     margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
 

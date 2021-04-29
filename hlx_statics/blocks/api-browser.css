@@ -154,7 +154,7 @@ main .api-card-button-container {
     justify-content: flex-end;
 }
 
-main .api-card-button-container button{
+main .api-card-button-container a {
     margin: var(--gap) 0 0 var(--gap);
 }
 
