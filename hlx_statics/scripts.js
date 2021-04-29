@@ -203,16 +203,11 @@ let $CURRENT_API_FILTERS = [];
 
   function decorateButtons() {
     document.querySelectorAll("main a").forEach(($a) => {
-      const $button = createTag('button');
-      $button.addEventListener('click', () => {
-        window.location.href = $a.href;
-      })
-      $button.innerHTML = `<span class="spectrum-Button-label">${$a.innerHTML}</span>`
+      $a.innerHTML = `<span class="spectrum-Button-label">${$a.innerHTML}</span>`
       const $up = $a.parentElement;
       const $twoup = $a.parentElement.parentElement;
       if ($up.childNodes.length == 1 && $up.tagName == "P") {
-        $button.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
-        $up.replaceChild($button, $a);
+        $a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
       }
       if (
         $up.childNodes.length == 1 &&
@@ -220,8 +215,8 @@ let $CURRENT_API_FILTERS = [];
         $twoup.childNodes.length == 1 &&
         $twoup.tagName == "P"
       ) {
-        $button.className = 'spectrum-Button spectrum-Button--cta  spectrum-Button--sizeM';
-        $twoup.replaceChild($button, $up);
+        $a.className = 'spectrum-Button spectrum-Button--cta  spectrum-Button--sizeM';
+        $twoup.replaceChild($a, $up);
       }
     });
   }
@@ -474,7 +469,7 @@ let $CURRENT_API_FILTERS = [];
       });
       // put buttons into their own div
       const $buttonContainer = createTag('div', {class: 'hero-button-container'});
-      $heroSection.querySelectorAll('button').forEach(($button) => {
+      $heroSection.querySelectorAll('a').forEach(($button) => {
         $button.classList.add('spectrum-Button--quiet')
         $buttonContainer.append($button);
       });
@@ -551,16 +546,16 @@ let $CURRENT_API_FILTERS = [];
 
             if(b === "Learn More"){
               buttonTemplate += 
-                `<button onClick="location.href='${card[b]}'" class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet spectrum-Button--sizeM" >
+                `<a href="${card[b]}" class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet spectrum-Button--sizeM" >
                   <span class="spectrum-Button-label">${b}</span>
-                </button>`
+                </a>`
             
             } else {
               buttonTemplate +=
               `
-              <button onClick="location.href='${card[b]}'" class="spectrum-Button spectrum-Button--primary spectrum-Button--sizeM">
+              <a href="${card[b]}" class="spectrum-Button spectrum-Button--primary spectrum-Button--sizeM">
                 <span class="spectrum-Button-label">${b}</span>
-              </button>
+              </a>
               `
             
             }
@@ -620,11 +615,11 @@ let $CURRENT_API_FILTERS = [];
       </ul>
 
       <div>
-        <button onclick="location.href='https://console.adobe.io/'" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+        <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
           <span class="spectrum-Button-label">
             Console
           </span>
-        </button>
+        </a>
       </div>
     `
   }
@@ -656,9 +651,9 @@ let $CURRENT_API_FILTERS = [];
             </a>
           </li>
           <li class="header-list-item header-list-item-button">
-            <button onClick="location.href='https://console.adobe.io/'" class="spectrum-Button spectrum-Button--cta spectrum-Button--sizeM">
+            <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--cta spectrum-Button--sizeM">
               <span class="spectrum-Button-label">Console</span>
-            </button>
+            </a>
           </li>
         `;
 
@@ -907,7 +902,7 @@ let $CURRENT_API_FILTERS = [];
           $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
         });
 
-        $card.querySelectorAll('p > button').forEach(($button) => {
+        $card.querySelectorAll('p > a').forEach(($button) => {
           $button.classList.remove('spectrum-Button--secondary')
           $button.classList.add('spectrum-Button--cta', 'spectrum-Button--quiet', 'card-button');
         });
