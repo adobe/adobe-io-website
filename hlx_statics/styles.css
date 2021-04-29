@@ -100,7 +100,7 @@ header li.header-list-item:hover {
   cursor: pointer;
 }
 
-header li.header-list-item a {
+header li.header-list-item a.header-list-item-link {
   display: flex;
   height: 100%;
   align-items: center;

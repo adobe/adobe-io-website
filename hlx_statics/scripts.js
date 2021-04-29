@@ -636,17 +636,17 @@ let $CURRENT_API_FILTERS = [];
         $header.classList.add('main-header');
         const $mainHeaderLinks = `
           <li class="header-list-item">
-            <a href="/apis">
+            <a href="/apis" class="header-list-item-link">
               Discover
             </a>
           </li>
           <li class="header-list-item">
-            <a href="/open">
+            <a href="/open" class="header-list-item-link">
               Open Source
             </a>
           </li>
           <li class="header-list-item">
-            <a href="https://medium.com/adobetech">
+            <a href="https://medium.com/adobetech" class="header-list-item-link">
               Blog
             </a>
           </li>

@@ -5299,7 +5299,7 @@ main .api-card-button-container {
     justify-content: flex-end;
 }
 
-main .api-card-button-container button{
+main .api-card-button-container a {
     margin: var(--gap) 0 0 var(--gap);
 }
 
@@ -5393,7 +5393,7 @@ main div.cards > div p {
     margin-bottom: 0!important;
 }
 
-main div.cards button.card-button {
+main div.cards a.card-button {
     --gap: var(--spectrum-global-dimension-size-200);
     margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
 
@@ -5487,6 +5487,61 @@ main div.columns h3.column-header + p {
 main div.columns p + p {
     margin-top: var(--spectrum-global-dimension-size-300);
 }
+
+/* 
+main div.columns > div {
+    display: flex;
+    flex-direction: row;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+} 
+
+main div.columns div:last-child {
+    padding-bottom: 0px;
+} 
+
+main div.columns > div > div{
+    flex-basis: 50%;
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+main div.columns .columns-text{
+    display: flex;
+    align-items: center;
+} 
+
+main div.columns > div h3 {
+    margin-top: 0;
+    text-align: left;
+} 
+
+main div.columns > div p {
+    margin-top: 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(75, 75, 75);
+    line-height: 24px;
+    text-align: left;
+    padding-top: 0;
+} 
+
+main div.columns p.product-link {
+    margin-top: 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(75, 75, 75);
+    line-height: 24px;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+} 
+
+main div.columns p.product-link a {
+    padding-left: 16px;
+} */
 
 main div.embed-container {
   align-items: center;
@@ -5603,10 +5658,9 @@ main .hero h1 + p.last-of-type {
 main .hero .hero-button-container {
   display: flex;
   flex-wrap: wrap;
-  display: inline-flex;
 
   margin-top: var(--spectrum-global-dimension-size-300);
-  gap: var(--spectrum-alias-size-200);
+  gap: var(--spectrum-global-dimension-size-200);
 }
 
 main a.resource-card-large-container-inner {
@@ -5670,77 +5724,77 @@ main div.resource-card-large p {
 }
 
 main a.resource-card-small-container-inner {
-  height: calc(var(--spectrum-global-dimension-size-2000) - var(--spectrum-global-dimension-size-50));
-  margin: var(--spectrum-global-dimension-size-300);
+    height: calc(var(--spectrum-global-dimension-size-2000) - var(--spectrum-global-dimension-size-50));
+    margin: var(--spectrum-global-dimension-size-300);
 }
 
 @media screen and (max-width: 1280px) {
-main a.resource-card-small-container-inner {
-  height: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-100));
-  margin: var(--spectrum-global-dimension-size-300);
-  width: calc(100vw - var(--spectrum-global-dimension-size-300)*2);
-}
+  main a.resource-card-small-container-inner {
+    height: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-100));
+    margin: var(--spectrum-global-dimension-size-300);
+    width: calc(100vw - var(--spectrum-global-dimension-size-300)*2);
+  }
 }
 
 main div.resource-card-small-preview {
-width: calc(var(--spectrum-global-dimension-size-2000) + var(--spectrum-global-dimension-size-125));
-padding: 0 !important;
-}
-
-@media screen and (max-width: 1280px) {
-main div.resource-card-small-preview {
-  height: var(--spectrum-global-dimension-size-3000);
-  width: calc(100vw - var(--spectrum-global-dimension-size-300)*2);
+  width: calc(var(--spectrum-global-dimension-size-2000) + var(--spectrum-global-dimension-size-125));
   padding: 0 !important;
 }
+
+@media screen and (max-width: 1280px) {
+  main div.resource-card-small-preview {
+    height: var(--spectrum-global-dimension-size-3000);
+    width: calc(100vw - var(--spectrum-global-dimension-size-300)*2);
+    padding: 0 !important;
+  }
 }
 
 main div.resource-card-small-image-container {
-display: flex;
-align-items: center;
-justify-content: center;
-height: 100%;
-width: 100%;
-margin-top: 0;
-margin-bottom: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0 !important;
 }
 
 main div.resource-card-small-image-container img {
-object-fit: contain;
+  object-fit: contain;
 }
 
 @media screen and (min-width: 1280px) {
-main div.resource-card-small-image-container img {
-  max-width: 110%;
-  max-height: 110%;
-}
+  main div.resource-card-small-image-container img {
+    max-width: 110%;
+    max-height: 110%;
+  }
 }
 
 main div.resource-card-small-body {
-flex: 1;
-padding: var(--spectrum-global-dimension-size-300) !important;
-justify-content: flex-start !important;
-overflow: hidden;
+  flex: 1;
+  padding: var(--spectrum-global-dimension-size-300) !important;
+  justify-content: flex-start !important;
+  overflow: hidden;
 }
 
 main div.resource-card-small-header {
-width: 100%;
+  width: 100%;
 }
 
 main div.resource-card-small-title {
-white-space: normal;
-text-align: left;
+  white-space: normal;
+  text-align: left;
 }
 
 main div.resource-card-small h3 {
-margin-top: 0 !important;
-margin-bottom: var(--spectrum-global-dimension-size-200) !important;
+  margin-top: 0 !important;
+  margin-bottom: var(--spectrum-global-dimension-size-200) !important;
 }
 
 main div.resource-card-small p {
-text-align: left;
-color: var(--spectrum-global-color-gray-700);
-margin-top: 0;
+  text-align: left;
+  color: var(--spectrum-global-color-gray-700);
+  margin-top: 0;
 }
 
 main div.site-hero-container {
@@ -5959,7 +6013,7 @@ header li.header-list-item:hover {
   cursor: pointer;
 }
 
-header li.header-list-item a {
+header li.header-list-item a.header-list-item-link {
   display: flex;
   height: 100%;
   align-items: center;
