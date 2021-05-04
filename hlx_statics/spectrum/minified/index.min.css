@@ -5349,16 +5349,7 @@ main div.background-image a.button.secondary {
 main div.cards {
     width: var(--spectrum-global-dimension-static-grid-fluid-width);
     background: var(--spectrum-global-color-gray-100);
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
 }
-
-@media screen and (max-width: 1280px) {
-    main div.cards {
-        flex-direction: column;
-    }
-  }
 
 main div.cards > div {
     text-align: center;
@@ -5498,6 +5489,7 @@ main div.columns p + p {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 
 main div.columns > div {
     display: flex;
@@ -5562,25 +5554,69 @@ main div.columns div.product-link-container p + p {
 }
 
 main div.second-column div.product-link-container {
+=======
+/* 
+main div.columns > div {
+>>>>>>> [DEVEP-2732]- Fix focus on cards underlining text
     display: flex;
     flex-direction: row;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+} 
+
+main div.columns div:last-child {
+    padding-bottom: 0px;
+} 
+
+main div.columns > div > div{
+    flex-basis: 50%;
+    padding-left: 32px;
+    padding-right: 32px;
 }
 
-main div.second-column div.product-link-container p.icon-container { 
+main div.columns .columns-text{
     display: flex;
     align-items: center;
-}
+} 
 
-main div.second-column div.product-link-container img.icon { 
-    height: var(--spectrum-global-dimension-size-400);
-    width: var(--spectrum-global-dimension-size-400);
-    object-fit: contain;
-}
+main div.columns > div h3 {
+    margin-top: 0;
+    text-align: left;
+} 
 
+<<<<<<< HEAD
 main div.second-column div.product-link-container a { 
     margin-left: var(--spectrum-global-dimension-size-100);
 }
 >>>>>>> Fix up columns and cards
+=======
+main div.columns > div p {
+    margin-top: 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(75, 75, 75);
+    line-height: 24px;
+    text-align: left;
+    padding-top: 0;
+} 
+
+main div.columns p.product-link {
+    margin-top: 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(75, 75, 75);
+    line-height: 24px;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+} 
+
+main div.columns p.product-link a {
+    padding-left: 16px;
+} */
+>>>>>>> [DEVEP-2732]- Fix focus on cards underlining text
 
 main div.embed-container {
   align-items: center;
@@ -6025,7 +6061,7 @@ header a.header-main-link {
   width: var(--spectrum-global-dimension-size-1600);
 }
 
-header a.header-main-link:hover, :focus {
+header a.header-main-link:hover, a.header-main-link:focus {
   text-decoration: underline;
 }
 

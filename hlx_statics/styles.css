@@ -73,7 +73,7 @@ header a.header-main-link {
   width: var(--spectrum-global-dimension-size-1600);
 }
 
-header a.header-main-link:hover, :focus {
+header a.header-main-link:hover, a.header-main-link:focus {
   text-decoration: underline;
 }
 
