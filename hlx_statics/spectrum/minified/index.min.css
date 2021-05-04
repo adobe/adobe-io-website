@@ -5892,6 +5892,10 @@ main div.summary p {
   margin-top: 0;
 }
 
+main div.summary p a:hover {
+  color: var(--spectrum-global-color-gray-300);
+}
+
 /*
   Stop the page from drawing until we're ready
   We'll remove this class when we're done rendering blocks
