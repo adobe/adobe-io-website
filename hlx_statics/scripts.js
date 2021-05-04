@@ -201,8 +201,8 @@ let $CURRENT_API_FILTERS = [];
     });
   }
 
-  function decorateButtons() {
-    document.querySelectorAll("main a").forEach(($a) => {
+  function decorateButtons(section) {
+    document.querySelectorAll(`${section} a`).forEach(($a) => {
       $a.innerHTML = `<span class="spectrum-Button-label">${$a.innerHTML}</span>`
       const $up = $a.parentElement;
       const $twoup = $a.parentElement.parentElement;
@@ -440,6 +440,8 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function decorateHero() {
+    decorateButtons('.hero-container');
+
     document.querySelectorAll('.hero-container').forEach(($heroSection) => {
       removeEmptyPTags($heroSection);
 
@@ -706,21 +708,17 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function decorateAnnouncement() {
+    decorateButtons('.announcement-container');
     document.querySelectorAll(".announcement").forEach(($announcement) => {
       removeEmptyPTags($announcement);
-      $announcement.querySelectorAll('br').forEach(($br) => {
-        $br.remove();
-      });
 
       $announcement.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($h) => {
         $h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'announce-heading');
       });
 
-
       $announcement.querySelectorAll('p a').forEach(($link) => {
         $link.parentElement.classList.add('announce-link');
       });
-
 
     });
   }
@@ -891,6 +889,7 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function decorateCards() {
+    decorateButtons('.cards-container');
     document.querySelectorAll('.cards-container').forEach(($cardContainer) => {
       $cardContainer.querySelectorAll('.cards > div').forEach(($card, index, $array) => {
         $card.classList.add('spectrum--light');
@@ -1066,7 +1065,9 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function decorateSummary() {
+    decorateButtons('.summary-container');
     document.querySelectorAll(".summary-container").forEach(($summary) => {
+      removeEmptyPTags($summary);
       $summary.classList.add('spectrum--dark');
 
       //removeEmptyPTags($summary);
@@ -1090,8 +1091,10 @@ let $CURRENT_API_FILTERS = [];
 
       $summary.querySelectorAll('picture').forEach(($picture) => {
         //remove weird max-width attribute 
-        $picture.media = "";
-        $picture.remove();
+
+        //$picture.media = "";
+        $picture.parentElement.parentElement.remove();
+        //$picture.remove();
       });
 
       $summary.style.backgroundImage = `url(${$summaryImageSrc})`;
@@ -1138,7 +1141,7 @@ let $CURRENT_API_FILTERS = [];
     decorateBlocks();
     wrapSections("header>div, footer>div");
     decorateFooter();
-    decorateButtons();
+    //decorateButtons();
     decorateHeader();
     decorateSiteHero();
     decorateHero();

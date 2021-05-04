@@ -48,3 +48,7 @@ main div.summary p {
   color: var(--spectrum-global-color-gray-900);
   margin-top: 0;
 }
+
+main div.summary p a:hover {
+  color: var(--spectrum-global-color-gray-300);
+}
