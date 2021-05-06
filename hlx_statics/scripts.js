@@ -639,6 +639,29 @@ let $CURRENT_API_FILTERS = [];
     `
   }
 
+  function globalNavTemplate() {
+    return `
+      <p class="icon-adobe-container">
+        <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
+        <strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">Adobe Developer</strong>
+      </p>
+
+      <ul id="navigation-links">
+        <li>
+          <a href="/apis">Products</a>
+        </li>
+      </ul>
+
+      <div>
+        <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+          <span class="spectrum-Button-label">
+            Console
+          </span>
+        </a>
+      </div>
+    `
+  }
+
   async function fetchNav() {
     const $localNavPath = window.location.pathname.split('/')[1];
     const resp = await fetch(`/${$localNavPath}/nav.json`);
@@ -692,8 +715,8 @@ let $CURRENT_API_FILTERS = [];
     } else {
       document.querySelectorAll('header').forEach(($header) => {
         $header.classList.add('main-header');
-        $header.classList.add('global-header');
-        $header.innerHTML = globalHeaderTemplate('');
+        $header.classList.add('global-nav-header');
+        $header.innerHTML = globalNavTemplate('');
       });
 
       fetchNav().then($links => {
