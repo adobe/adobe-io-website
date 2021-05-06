@@ -956,6 +956,11 @@ let $CURRENT_API_FILTERS = [];
 
       $column.querySelectorAll('a').forEach(($a) => {
         $a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
+        
+        if(isLinkExternal($a.href)) {
+          $a.target = '_blank';
+          $a.rel = 'noopener noreferrer';
+        }
       });
 
       $column.querySelectorAll('div > div.second-column').forEach(($secondColumn) => {
@@ -1148,7 +1153,6 @@ let $CURRENT_API_FILTERS = [];
   }
 
   async function decoratePage() {
-    configureLocal();
     toggleScale();
     decorateTables();
     wrapSections("main>div");
