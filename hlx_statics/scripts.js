@@ -62,7 +62,6 @@ const $FOOTER_LINKS =
 ];
 
 let $CURRENT_API_FILTERS = [];
-
   /**
    * Creates a tag with the given name and attributes.
    * @param {string} name The tag name
@@ -201,6 +200,14 @@ let $CURRENT_API_FILTERS = [];
     });
   }
 
+  function isLinkExternal(url) {
+    if(url.indexOf('adobe.io') > -1 || url.indexOf('hlx.page') > -1 ){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   function decorateButtons(section) {
     document.querySelectorAll(`${section} a`).forEach(($a) => {
       $a.innerHTML = `<span class="spectrum-Button-label">${$a.innerHTML}</span>`
@@ -209,6 +216,12 @@ let $CURRENT_API_FILTERS = [];
       if ($up.childNodes.length == 1 && $up.tagName == "P") {
         $a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
       }
+
+      if(isLinkExternal($a.href)) {
+        $a.target = '_blank';
+        $a.rel = 'noopener noreferrer';
+      }
+
       if (
         $up.childNodes.length == 1 &&
         $up.tagName == "STRONG" &&
@@ -1135,13 +1148,13 @@ let $CURRENT_API_FILTERS = [];
   }
 
   async function decoratePage() {
+    configureLocal();
     toggleScale();
     decorateTables();
     wrapSections("main>div");
     decorateBlocks();
     wrapSections("header>div, footer>div");
     decorateFooter();
-    //decorateButtons();
     decorateHeader();
     decorateSiteHero();
     decorateHero();
