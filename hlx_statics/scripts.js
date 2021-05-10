@@ -455,8 +455,14 @@ let $CURRENT_API_FILTERS = [];
   function decorateHero() {
     decorateButtons('.hero-container');
 
-    document.querySelectorAll('.hero-container').forEach(($heroSection) => {
+    document.querySelectorAll('.hero-container').forEach(($heroSection, index) => {
       removeEmptyPTags($heroSection);
+
+      // add padding to push down hero when on top level page
+      // make sure to only add to the first one
+      if(index === 0 && isTopLevelNav(window.location.pathname)){
+        $heroSection.classList.add('top-nav-hero');
+      }
 
       $heroSection.querySelectorAll('.hero').forEach(($hero) => {
         $hero.classList.add('spectrum--lightest')
@@ -645,8 +651,18 @@ let $CURRENT_API_FILTERS = [];
     return (await resp.json()).data;
   }
 
+  function isTopLevelNav(urlPathname) {
+    switch(urlPathname) {
+      case '/apis': return true;
+      case '/apis/': return true;
+      case '/open': return true;
+      case '/open/': return true;
+      default: return false;
+    }
+  }
+
   function decorateHeader() {
-    if(window.location.pathname === '/apis' || window.location.pathname === '/apis/') {
+    if(isTopLevelNav(window.location.pathname)) {
       document.querySelectorAll('header').forEach(($header) => {
         $header.classList.add('main-header');
         const $mainHeaderLinks = `

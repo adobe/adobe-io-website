@@ -13,6 +13,10 @@ main div.hero {
   }
 }
 
+main div.top-nav-hero {
+  padding-top: 80px;
+}
+
 main div.hero > div:first-child {
   display: flex;
   flex-direction: column;
