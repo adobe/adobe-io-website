@@ -650,9 +650,43 @@ let $CURRENT_API_FILTERS = [];
         <li>
           <a href="/apis">Products</a>
         </li>
+        <li>
+          <a href="/apis">Adobe Document Services</a>
+        </li>
+        <li>
+          <button id="nav-dropdown-button_0" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet navigation-dropdown" aria-haspopup="listbox">
+            <span class="spectrum-Picker-label">
+              Community
+            </span>
+            <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
+              <use xlink:href="#spectrum-css-icon-Chevron100" />
+            </svg>
+          </button>
+          <div id="nav-dropdown-popover_0" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover nav-dropdown-popover">
+            <ul class="spectrum-Menu" role="menu">
+              <li class="spectrum-Menu-item">
+                <span class="spectrum-Menu-itemLabel">Document Generation</span>
+              </li>
+              <li class="spectrum-Menu-item">
+                <span class="spectrum-Menu-itemLabel">PDF Embed</span>
+              </li>
+              <li class="spectrum-Menu-item">
+                <span class="spectrum-Menu-itemLabel">PDF Tools</span>
+              </li>
+            </ul>
+          </div>
+        </li>
       </ul>
 
-      <div>
+      <div class="nav-view-docs-button">
+        <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+          <span class="spectrum-Button-label">
+            View Docs
+          </span>
+        </a>
+      </div>
+
+      <div class="nav-console-button">
         <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
           <span class="spectrum-Button-label">
             Console
@@ -717,6 +751,24 @@ let $CURRENT_API_FILTERS = [];
         $header.classList.add('main-header');
         $header.classList.add('global-nav-header');
         $header.innerHTML = globalNavTemplate('');
+
+        const $currentHeader = $header;
+        $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
+          let $index = $button.id.split('_')[1];
+          let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
+          
+          $button.addEventListener('click', (evt) => {
+            if(!evt.currentTarget.classList.contains('is-open')){
+              $button.classList.add('is-open');
+              $dropdownPopover.classList.add('is-open');
+              $dropdownPopover.ariaHidden = false;
+            } else {
+              $button.classList.remove('is-open');
+              $dropdownPopover.classList.remove('is-open');
+              $dropdownPopover.ariaHidden = false;
+            }
+          });
+        })
       });
 
       fetchNav().then($links => {

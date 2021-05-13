@@ -177,11 +177,6 @@ header.global-header ul li a {
     text-decoration: none;
 }
 
-
-
-
-
-
 header.global-nav-header {
   position: sticky;
   top: 0;
@@ -198,7 +193,7 @@ header.global-nav-header {
 
 header.global-nav-header img.icon {
   height: 22px;
-  width: 25px;
+  width: 24px;
   margin-right: 8px;
 }
 
@@ -214,14 +209,20 @@ header.global-nav-header strong.icon-adobe-label {
   color: #fa0f00;
 }
 
-header.global-nav-header div:last-child {
-margin-left: auto;
-display: flex;
-align-items: center;
+header.global-nav-header div.nav-view-docs-button {
+  display: flex;
+  margin-left: 16px;
+  align-items: center;
 }
 
+header.global-nav-header div.nav-console-button {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+}
 
-header.global-nav-header ul {
+header.global-nav-header ul#navigation-links {
   display: flex;
   list-style: none;
   margin-top: 0;
@@ -229,15 +230,20 @@ header.global-nav-header ul {
   padding-left: 24px;
 }
 
-header.global-nav-header ul li {
+header.global-nav-header ul#navigation-links > li {
   display: flex;
   align-items: center;
   padding: 0 24px 0 24px;
   border-left: 1px solid #eaeaea;
 }
 
-header.global-nav-header ul li:last-child {
-border-right: 1px solid #eaeaea;
+header.global-nav-header li.item-select {
+  border-bottom: 1px solid #eaeaea;
+  border-bottom-width: thick;
+}
+
+header.global-nav-header ul#navigation-links > li:last-child {
+  border-right: 1px solid #eaeaea;
 }
 
 header.global-nav-header ul li a {
@@ -245,6 +251,11 @@ header.global-nav-header ul li a {
   font-weight: 400;
   color: #505050;
   text-decoration: none;
+}
+
+header.global-nav-header div.nav-dropdown-popover {
+  margin-top: 154px;
+  margin-left: -20px !important;
 }
 
 footer {
