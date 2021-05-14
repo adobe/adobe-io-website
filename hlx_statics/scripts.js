@@ -1189,6 +1189,28 @@ let $CURRENT_API_FILTERS = [];
         $card.classList.remove('focus-ring');
       });
     });
+
+    domObj.querySelectorAll('input.spectrum-Checkbox-input').forEach(($input) => {
+      $input.addEventListener('focus', () => {
+        $input.classList.add('focus-ring');
+      });
+
+      $input.addEventListener('blur', () => {
+        $input.classList.remove('focus-ring');
+      });
+    });
+
+    domObj.querySelectorAll('button.spectrum-Picker').forEach(($button) => {
+      $button.addEventListener('focus', () => {
+        $button.classList.add('focus-ring');
+      });
+
+      $button.addEventListener('blur', () => {
+        $button.classList.remove('focus-ring');
+      });
+    });
+
+
   }
 
   function toggleScale() {
