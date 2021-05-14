@@ -213,7 +213,8 @@ let $CURRENT_API_FILTERS = [];
       $a.innerHTML = `<span class="spectrum-Button-label">${$a.innerHTML}</span>`
       const $up = $a.parentElement;
       const $twoup = $a.parentElement.parentElement;
-      $a.tabindex = 0;
+
+      $a.tabIndex = 0;
       if ($up.childNodes.length == 1 && $up.tagName == "P") {
         $a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
       }
@@ -914,6 +915,8 @@ let $CURRENT_API_FILTERS = [];
             displayFilteredCards(catalog, $cards, buttons, config.limit);
           });
         })
+
+        focusRing($apiBrowser);
       }
     });
   }
@@ -1095,6 +1098,7 @@ let $CURRENT_API_FILTERS = [];
           toggleScale();
           $resourceSmall.remove();
         });
+        focusRing($resourceCardsContainer);
       }
     });
   }
@@ -1145,14 +1149,44 @@ let $CURRENT_API_FILTERS = [];
     });
   }
 
-  function focusRing() {
-    document.querySelectorAll('a.spectrum-Button').forEach(($button) => {
-      $button.addEventListener('focus', (event) => {
+  function focusRing(domObj=document) {
+    domObj.querySelectorAll('a.spectrum-Link').forEach(($a) => {
+      $a.addEventListener('focus', () => {
+        $a.classList.add('focus-ring');
+      });
+
+      $a.addEventListener('blur', () => {
+        $a.classList.remove('focus-ring');
+      });
+    });
+
+    domObj.querySelectorAll('a.spectrum-Button').forEach(($button) => {
+      $button.addEventListener('focus', () => {
         $button.classList.add('focus-ring');
       });
 
-      $button.addEventListener('blur', (event) => {
+      $button.addEventListener('blur', () => {
         $button.classList.remove('focus-ring');
+      });
+    });
+
+    domObj.querySelectorAll('div.spectrum-Card').forEach(($card) => {
+      $card.addEventListener('focus', () => {
+        $card.classList.add('focus-ring');
+      });
+
+      $card.addEventListener('blur', () => {
+        $card.classList.remove('focus-ring');
+      });
+    });
+
+    domObj.querySelectorAll('a.spectrum-Card').forEach(($card) => {
+      $card.addEventListener('focus', () => {
+        $card.classList.add('focus-ring');
+      });
+
+      $card.addEventListener('blur', () => {
+        $card.classList.remove('focus-ring');
       });
     });
   }
@@ -1179,6 +1213,7 @@ let $CURRENT_API_FILTERS = [];
 
     // We're done, let the page render
     document.documentElement.classList.remove('helix-loading');
+    focusRing();
   }
 
   async function decoratePage() {
