@@ -213,6 +213,7 @@ let $CURRENT_API_FILTERS = [];
       $a.innerHTML = `<span class="spectrum-Button-label">${$a.innerHTML}</span>`
       const $up = $a.parentElement;
       const $twoup = $a.parentElement.parentElement;
+      $a.tabindex = 0;
       if ($up.childNodes.length == 1 && $up.tagName == "P") {
         $a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
       }
@@ -1141,6 +1142,18 @@ let $CURRENT_API_FILTERS = [];
       if($icon.getAttribute('src').indexOf('hlx_statics') === -1){
         $icon.setAttribute('src',  '/hlx_statics' + $icon.getAttribute('src') );
       }
+    });
+  }
+
+  function focusRing() {
+    document.querySelectorAll('a.spectrum-Button').forEach(($button) => {
+      $button.addEventListener('focus', (event) => {
+        $button.classList.add('focus-ring');
+      });
+
+      $button.addEventListener('blur', (event) => {
+        $button.classList.remove('focus-ring');
+      });
     });
   }
 
