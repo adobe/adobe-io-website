@@ -647,7 +647,7 @@ let $CURRENT_API_FILTERS = [];
       </p>
 
       <ul id="navigation-links">
-        <li>
+        <li class="navigation-products">
           <a href="/apis">Products</a>
         </li>
         <li>

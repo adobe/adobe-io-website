@@ -230,20 +230,20 @@ header.global-nav-header ul#navigation-links {
   padding-left: 24px;
 }
 
+header.global-nav-header ul#navigation-links > li.navigation-products {
+  border-left: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
+}
+
 header.global-nav-header ul#navigation-links > li {
   display: flex;
   align-items: center;
   padding: 0 24px 0 24px;
-  border-left: 1px solid #eaeaea;
 }
 
 header.global-nav-header li.item-select {
   border-bottom: 1px solid #eaeaea;
   border-bottom-width: thick;
-}
-
-header.global-nav-header ul#navigation-links > li:last-child {
-  border-right: 1px solid #eaeaea;
 }
 
 header.global-nav-header ul li a {
