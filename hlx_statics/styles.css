@@ -215,13 +215,6 @@ header.global-nav-header div.nav-view-docs-button {
   align-items: center;
 }
 
-header.global-nav-header div.nav-console-button {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  margin-right: 24px;
-}
-
 header.global-nav-header ul#navigation-links {
   display: flex;
   list-style: none;
@@ -256,6 +249,24 @@ header.global-nav-header ul li a {
 header.global-nav-header div.nav-dropdown-popover {
   margin-top: 154px;
   margin-left: -20px !important;
+}
+
+header.global-nav-header div.nav-console-right-container {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+header.global-nav-header div.nav-console-search-button{
+  margin-right: 24px;
+}
+
+header.global-nav-header div.nav-console-button{
+  margin-right: 16px;
+}
+
+header.global-nav-header div.nav-sign-in{
+  margin-right: 24px;
 }
 
 footer {

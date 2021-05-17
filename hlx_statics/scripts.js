@@ -686,12 +686,28 @@ let $CURRENT_API_FILTERS = [];
         </a>
       </div>
 
-      <div class="nav-console-button">
-        <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
-          <span class="spectrum-Button-label">
-            Console
-          </span>
-        </a>
+      <div class ="nav-console-right-container">
+        <div class="nav-console-search-button">
+          <button id="nav-dropdown-search" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--emphasized spectrum-ActionButton--quiet">
+            <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Edit">
+              <use xlink:href="#spectrum-icon-24-Search"></use>
+            </svg>
+          </button>
+        </div>
+
+        <div class="nav-console-button">
+          <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+            <span class="spectrum-Button-label">
+              Console
+            </span>
+          </a>
+        </div>
+
+        <div class="nav-sign-in">
+          <button class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet">
+            <span class="spectrum-ActionButton-label">Sign in</span>
+          </button>
+        </div>
       </div>
     `
   }
