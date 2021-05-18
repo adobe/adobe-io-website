@@ -1,3 +1,4 @@
+(function() {
 window.adobeid = {
   client_id: 'IMSLibJSTestClient',
   scope: 'AdobeID,openid',
@@ -15,7 +16,57 @@ window.adobeid = {
   onReady: function(appState) {
   }
 };
+});
 
+adobeIMSMethods = {
+  signIn: function () {
+      adobeIMS.signIn({
+          test: 1,
+      }, { say: 'hello' });
+  },
+  authorizeToken(token) {},
+  getAccessToken() {
+      vm.state.token = adobeIMS.getAccessToken();
+  },
+  refreshToken() {
+      adobeIMS.refreshToken();
+  },
+  reAuthenticate() {
+      adobeIMS.reAuthenticate({
+      }, "check");
+  },
+  reAuthenticateForce() {
+      adobeIMS.reAuthenticate({
+          api: 'apioverride',
+      }, "force");
+  },
+  getReauthAccessToken() {
+      vm.state.rtoken = adobeIMS.getReauthAccessToken();
+  },
+  signOut(){
+      adobeIMS.signOut({});
+  },
+  getProfile(){
+      adobeIMS.getProfile().then(profile => {
+              vm.state.profile = profile;
+      })
+      .catch( ex => {
+              vm.state.profile = ex;
+      })
+  },
+  signUp(){
+      adobeIMS.signUp();
+  },
+  validateToken(){
+      adobeIMS.validateToken().then(v => {
+      })
+      .catch(ex => {
+      })
+  },
+  signInWithSocialProvider(){
+      adobeIMS.signInWithSocialProvider('google');
+  }
+};
 // See https://github.com/adobe/react-spectrum/blob/dac6d273a9843694a652d7513ff88f6a9c773887/packages/%40react-spectrum/utils/src/useIsMobileDevice.ts#L15
 const MOBILE_SCREEN_WIDTH = 700;
 const LARGE_SCREEN_WIDTH = 1280;
