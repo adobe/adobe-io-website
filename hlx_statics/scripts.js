@@ -1,23 +1,20 @@
-(function() {
-  console.log('Setting adobe id')
-  window.adobeid = {
-    client_id: 'IMSLibJSTestClient',
-    scope: 'AdobeID,openid',
-    locale: 'en_US',
-    environment: 'stg1',
-    useLocalStorage: false,
-    onAccessToken: function (tokenInformation) {
-    },
-    onReauthAccessToken: function (reauthTokenInformation) {
-    },
-    onError: function (error) {
-    },
-    onAccessTokenHasExpired: function() {
-    },
-    onReady: function(appState) {
-    }
-  };
-})();
+window.adobeid = {
+  client_id: 'IMSLibJSTestClient',
+  scope: 'AdobeID,openid',
+  locale: 'en_US',
+  environment: 'stg1',
+  useLocalStorage: false,
+  onAccessToken: function (tokenInformation) {
+  },
+  onReauthAccessToken: function (reauthTokenInformation) {
+  },
+  onError: function (error) {
+  },
+  onAccessTokenHasExpired: function() {
+  },
+  onReady: function(appState) {
+  }
+};
 
 adobeIMSMethods = {
   signIn: function () {
@@ -1311,6 +1308,8 @@ let $CURRENT_API_FILTERS = [];
 
     // We're done, let the page render
     document.documentElement.classList.remove('helix-loading');
+
+    window.adobeImsFactory.createIMSLib(window.adobeid);
   }
 
   async function decoratePage() {
