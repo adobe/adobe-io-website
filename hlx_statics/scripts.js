@@ -13,14 +13,13 @@ window.adobeid = {
   onAccessTokenHasExpired: function() {
   },
   onReady: function(appState) {
+    console.log('adobe id ready')
   }
 };
 
 adobeIMSMethods = {
   signIn: function () {
-      adobeIMS.signIn({
-          test: 1,
-      }, { say: 'hello' });
+      adobeIMS.signIn();
   },
   authorizeToken(token) {},
   getAccessToken() {
@@ -772,7 +771,7 @@ let $CURRENT_API_FILTERS = [];
 
         <div class="nav-sign-in">
           <button class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet">
-            <span class="spectrum-ActionButton-label">Sign in</span>
+            <span id="signIn" class="spectrum-ActionButton-label">Sign in</span>
           </button>
         </div>
       </div>
@@ -852,6 +851,11 @@ let $CURRENT_API_FILTERS = [];
             }
           });
         })
+
+        const $signIn = $header.querySelector('#signIn');
+        $signIn.addEventListener('click', (evt) => {
+          adobeIMSMethods.signIn();
+        });
       });
 
       fetchNav().then($links => {
@@ -1309,6 +1313,7 @@ let $CURRENT_API_FILTERS = [];
     // We're done, let the page render
     document.documentElement.classList.remove('helix-loading');
 
+    console.log(window.adobeid)
     window.adobeImsFactory.createIMSLib(window.adobeid);
   }
 
