@@ -1,22 +1,23 @@
-window.adobeid = {
-  client_id: 'IMSLibJSTestClient',
-  scope: 'AdobeID,openid',
-  locale: 'en_US',
-  environment: 'stg1',
-  useLocalStorage: false,
-  onAccessToken: function (tokenInformation) {
-  },
-  onReauthAccessToken: function (reauthTokenInformation) {
-  },
-  onError: function (error) {
-  },
-  onAccessTokenHasExpired: function() {
-  },
-  onReady: function(appState) {
-    console.log('adobe id ready')
-  }
-};
+// window.adobeid = {
+//   client_id: 'IMSLibJSTestClient',
+//   scope: 'AdobeID,openid',
+//   locale: 'en_US',
+//   environment: 'stg1',
+//   useLocalStorage: false,
+//   onAccessToken: function (tokenInformation) {
+//   },
+//   onReauthAccessToken: function (reauthTokenInformation) {
+//   },
+//   onError: function (error) {
+//   },
+//   onAccessTokenHasExpired: function() {
+//   },
+//   onReady: function(appState) {
+//     console.log('adobe id ready')
+//   }
+// };
 
+window.adobeid = {"client_id": "stage_adobe_io","scope": "AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk", "locale": "en_US", "environment": "stg1", "useLocalStorage": false, "logsEnabled": true};
 adobeIMSMethods = {
   signIn: function () {
       adobeIMS.signIn();
