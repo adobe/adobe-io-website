@@ -35,6 +35,7 @@
   --spectrum-global-dimension-static-size-250: 20px;
   --spectrum-global-dimension-static-size-275: 22px;
   --spectrum-global-dimension-static-size-300: 24px;
+  --spectrum-global-dimension-static-percent-50: 50%;
   --spectrum-global-dimension-static-grid-columns: 12;
   --spectrum-global-dimension-static-grid-fluid-width: 100%;
   --spectrum-global-dimension-static-grid-fixed-max-width: 1280px;
@@ -251,6 +252,7 @@
   --spectrum-global-dimension-size-2000: 160px;
   --spectrum-global-dimension-size-2400: 192px;
   --spectrum-global-dimension-size-3000: 240px;
+  --spectrum-global-dimension-size-3400: 272px;
   --spectrum-global-dimension-size-3600: 288px;
   --spectrum-global-dimension-size-4600: 368px;
   --spectrum-global-dimension-size-6000: 480px;
@@ -360,6 +362,7 @@
   --spectrum-global-dimension-size-2000: 200px;
   --spectrum-global-dimension-size-2400: 240px;
   --spectrum-global-dimension-size-3000: 300px;
+  --spectrum-global-dimension-size-3400: 340px;
   --spectrum-global-dimension-size-3600: 360px;
   --spectrum-global-dimension-size-4600: 460px;
   --spectrum-global-dimension-size-6000: 600px;
@@ -6862,6 +6865,54 @@ header.global-nav-header div.nav-console-right-container {
   margin-left: auto;
   display: flex;
   align-items: center;
+}
+
+header.global-nav-header div.nav-console-search-button {
+  margin-right: 24px;
+}
+
+header.global-nav-header div.nav-console-button {
+  margin-right: 16px;
+}
+
+header.global-nav-header div.nav-sign-in {
+  margin-right: 24px;
+}
+
+header.global-nav-header div#nav-profile-dropdown-popover {
+  width: var(--spectrum-global-dimension-size-3400);
+  max-height: var(--spectrum-global-dimension-size-4600);
+  margin-left: -400px !important;
+  margin-top: 60px !important;
+}
+
+header.global-nav-header div.nav-profile-popover-innerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+header.global-nav-header div.nav-profile-popover-avatar {
+  width: var(--spectrum-global-dimension-size-800);
+  height: var(--spectrum-global-dimension-size-800);
+  border-radius: var(--spectrum-global-dimension-static-percent-50);
+  background: var(--spectrum-global-color-gray-50);
+  overflow: hidden;
+  margin-top: var(--spectrum-global-dimension-size-400);
+  margin-bottom: var(--spectrum-global-dimension-size-200);
+}
+
+header.global-nav-header div.nav-profile-popover-name {
+  padding: 0 var(--spectrum-global-dimension-size-200);
+  text-align: center;
+}
+
+header.global-nav-header div.nav-profile-popover-divider {
+  margin: var(--spectrum-global-dimension-size-200) 0;
+  padding: 0 var(--spectrum-global-dimension-size-200);
+  box-sizing: border-box;
+  width: 100%;
 }
 
 footer {

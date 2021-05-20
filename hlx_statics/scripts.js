@@ -774,9 +774,132 @@ let $CURRENT_API_FILTERS = [];
             <span id="signIn" class="spectrum-ActionButton-label">Sign in</span>
           </button>
         </div>
+
+        <div class="nav-profile">
+          <button id="nav-profile-dropdown-button" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet  navigation-dropdown">
+            <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Profile">
+              <use xlink:href="#spectrum-icon-24-RealTimeCustomerProfile"></use>
+            </svg>
+          </button>
+
+          <div id="nav-profile-dropdown-popover" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet">
+            <div class="nav-profile-popover-innerContainer">
+              <div class="nav-profile-popover-avatar">
+                <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Profile">
+                  <use xlink:href="#spectrum-icon-24-RealTimeCustomerProfile"></use>
+                </svg>
+              </div>
+        
+              <div class="nav-profile-popover-name">
+                I am name
+              </div>
+        
+              <div class="nav-profile-popover-divider">
+                <hr />
+              </div>
+
+              <a href="https://account.adobe.com/">
+                Edit Profile
+              </a>
+        
+              <button class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet">
+                <span id="signOut" class="spectrum-ActionButton-label">Sign out</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     `
   }
+
+
+
+//   <div hidden={!profile}>
+//   <div
+//     aria-controls={profilePopoverId}
+//     onClick={(event) => {
+//       event.stopPropagation();
+//       event.nativeEvent.stopImmediatePropagation();
+
+//       setOpenProfile((open) => !open);
+//     }}
+//     css={css`
+//       width: var(--spectrum-global-dimension-size-400);
+//       height: var(--spectrum-global-dimension-size-400);
+//       border-radius: var(--spectrum-global-dimension-static-percent-50);
+//       background: var(--spectrum-global-color-gray-50);
+//       overflow: hidden;
+//       cursor: pointer;
+//     `}>
+//     <Image alt="Avatar" src={profile ? ims.avatarUrl(profile.userId) : ''} />
+//   </div>
+//   <Popover
+//     id={profilePopoverId}
+//     ref={profilePopover}
+//     isOpen={openProfile}
+//     css={css`
+//       width: var(--spectrum-global-dimension-size-3400);
+//       max-height: var(--spectrum-global-dimension-size-4600);
+//       margin-left: calc(-1 * var(--spectrum-global-dimension-size-3000));
+//     `}>
+//     <div
+//       css={css`
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         flex-direction: column;
+//       `}>
+//       <div
+//         css={css`
+//           width: var(--spectrum-global-dimension-size-800);
+//           height: var(--spectrum-global-dimension-size-800);
+//           border-radius: var(--spectrum-global-dimension-static-percent-50);
+//           background: var(--spectrum-global-color-gray-50);
+//           overflow: hidden;
+//           margin-top: var(--spectrum-global-dimension-size-400);
+//           margin-bottom: var(--spectrum-global-dimension-size-200);
+//         `}>
+//         <Image alt="Avatar" src={profile ? ims.avatarUrl(profile.userId) : ''} />
+//       </div>
+
+//       <div
+//         className="spectrum-Heading spectrum-Heading--sizeL spectrum-Heading--light"
+//         css={css`
+//           padding: 0 var(--spectrum-global-dimension-size-200);
+//           text-align: center;
+//         `}>
+//         {profile && profile.displayName}
+//       </div>
+
+//       <div
+//         css={css`
+//           margin: var(--spectrum-global-dimension-size-200) 0;
+//           padding: 0 var(--spectrum-global-dimension-size-200);
+//           box-sizing: border-box;
+//           width: 100%;
+//         `}>
+//         <Divider size="S" />
+//       </div>
+
+//       <AnchorButton href="https://account.adobe.com/" variant="primary" isQuiet>
+//         Edit Profile
+//       </AnchorButton>
+
+//       <Button
+//         variant="primary"
+//         css={css`
+//           margin: var(--spectrum-global-dimension-size-200) 0;
+//         `}
+//         onClick={() => {
+//           ims.signOut();
+//         }}>
+//         Sign out
+//       </Button>
+//     </div>
+//   </Popover>
+// </div>
+// </div>
+
 
   async function fetchNav() {
     const $localNavPath = window.location.pathname.split('/')[1];
@@ -835,26 +958,49 @@ let $CURRENT_API_FILTERS = [];
         $header.innerHTML = globalNavTemplate('');
 
         const $currentHeader = $header;
+
         $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
-          let $index = $button.id.split('_')[1];
-          let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
-          
-          $button.addEventListener('click', (evt) => {
-            if(!evt.currentTarget.classList.contains('is-open')){
-              $button.classList.add('is-open');
-              $dropdownPopover.classList.add('is-open');
-              $dropdownPopover.ariaHidden = false;
-            } else {
-              $button.classList.remove('is-open');
-              $dropdownPopover.classList.remove('is-open');
-              $dropdownPopover.ariaHidden = false;
-            }
-          });
+          if($button.id.indexOf('nav-dropdown-button') >= 0) {
+            let $index = $button.id.split('_')[1];
+            let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
+            
+            $button.addEventListener('click', (evt) => {
+              if(!evt.currentTarget.classList.contains('is-open')){
+                $button.classList.add('is-open');
+                $dropdownPopover.classList.add('is-open');
+                $dropdownPopover.ariaHidden = false;
+              } else {
+                $button.classList.remove('is-open');
+                $dropdownPopover.classList.remove('is-open');
+                $dropdownPopover.ariaHidden = false;
+              }
+            });
+          } else if($button.id.indexOf('nav-profile-dropdown-button') >=0 ) {
+
+            let $profileDropdownPopover = $currentHeader.querySelector('div#nav-profile-dropdown-popover');
+
+            $button.addEventListener('click', (evt) => {
+              if(!evt.currentTarget.classList.contains('is-open')){
+                $button.classList.add('is-open');
+                $profileDropdownPopover.classList.add('is-open');
+                $profileDropdownPopover.ariaHidden = false;
+              } else {
+                $button.classList.remove('is-open');
+                $profileDropdownPopover.classList.remove('is-open');
+                $profileDropdownPopover.ariaHidden = false;
+              }
+            });
+          }
         })
 
         const $signIn = $header.querySelector('#signIn');
         $signIn.addEventListener('click', (evt) => {
           adobeIMSMethods.signIn();
+        });
+
+        const $signOut = $header.querySelector('#signOut');
+        $signIn.addEventListener('click', (evt) => {
+          adobeIMSMethods.signOut();
         });
       });
 
