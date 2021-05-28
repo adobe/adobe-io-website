@@ -24,7 +24,7 @@ adobeIMSMethods = {
   },
   authorizeToken(token) {},
   getAccessToken() {
-      vm.state.token = adobeIMS.getAccessToken();
+    window.adobeid.accessToken = adobeIMS.getAccessToken();
   },
   refreshToken() {
       adobeIMS.refreshToken();
@@ -39,17 +39,17 @@ adobeIMSMethods = {
       }, "force");
   },
   getReauthAccessToken() {
-      vm.state.rtoken = adobeIMS.getReauthAccessToken();
+      window.adobeid.state.rtoken = adobeIMS.getReauthAccessToken();
   },
   signOut(){
       adobeIMS.signOut({});
   },
   getProfile(){
       adobeIMS.getProfile().then(profile => {
-              vm.state.profile = profile;
+        window.adobeid.profile = profile;
       })
       .catch( ex => {
-              vm.state.profile = ex;
+        window.adobeid.profile = ex;
       })
   },
   signUp(){
@@ -60,9 +60,6 @@ adobeIMSMethods = {
       })
       .catch(ex => {
       })
-  },
-  signInWithSocialProvider(){
-      adobeIMS.signInWithSocialProvider('google');
   }
 };
 // See https://github.com/adobe/react-spectrum/blob/dac6d273a9843694a652d7513ff88f6a9c773887/packages/%40react-spectrum/utils/src/useIsMobileDevice.ts#L15
