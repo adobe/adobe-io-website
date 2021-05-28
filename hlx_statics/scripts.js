@@ -81,9 +81,6 @@ adobeIMSMethods = {
   }
 };
 
-// Have to call this manually for some reason
-adobeIMS.initialize();
-
 // See https://github.com/adobe/react-spectrum/blob/dac6d273a9843694a652d7513ff88f6a9c773887/packages/%40react-spectrum/utils/src/useIsMobileDevice.ts#L15
 const MOBILE_SCREEN_WIDTH = 700;
 const LARGE_SCREEN_WIDTH = 1280;
@@ -1481,6 +1478,7 @@ let $CURRENT_API_FILTERS = [];
 
     console.log(window.adobeid)
     window.adobeImsFactory.createIMSLib(window.adobeid);
+    adobeIMS.initialize();
   }
 
   async function decoratePage() {
