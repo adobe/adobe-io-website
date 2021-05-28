@@ -17,7 +17,24 @@
 //   }
 // };
 
-window.adobeid = {"client_id": "helix_adobeio","scope": "AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk", "locale": "en_US", "environment": "stg1", "useLocalStorage": false, "logsEnabled": true, redirect_uri: window.location.href};
+window.adobeid = {
+  client_id: "helix_adobeio",
+  scope:
+    "AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk",
+  locale: "en_US",
+  environment: "stg1",
+  useLocalStorage: false,
+  logsEnabled: true,
+  redirect_uri: window.location.href,
+  onError: function (error) {
+    console.log('error')
+    console.log(error)
+  },
+  onReady: function(ims) {
+    console.log('ims ready')
+    console.log(ims)
+  }
+};
 adobeIMSMethods = {
   signIn: function () {
       adobeIMS.signIn();
