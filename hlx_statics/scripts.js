@@ -17,7 +17,7 @@
 //   }
 // };
 
-window.adobeid = {"client_id": "helix_adobeio","scope": "AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk", "locale": "en_US", "environment": "stg1", "useLocalStorage": false, "logsEnabled": true, redirect_uri: window.location.href};
+window.adobeid = {"client_id": "helix_adobeio","scope": "AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk", "locale": "en_US", "environment": "stg1", "useLocalStorage": false, "logsEnabled": true, redirect_uri: window.location.origin};
 adobeIMSMethods = {
   signIn: function () {
       adobeIMS.signIn();
@@ -39,7 +39,7 @@ adobeIMSMethods = {
       }, "force");
   },
   getReauthAccessToken() {
-      window.adobeid.state.rtoken = adobeIMS.getReauthAccessToken();
+      window.adobeid.rtoken = adobeIMS.getReauthAccessToken();
   },
   signOut(){
       adobeIMS.signOut({});
@@ -997,7 +997,7 @@ let $CURRENT_API_FILTERS = [];
         });
 
         const $signOut = $header.querySelector('#signOut');
-        $signIn.addEventListener('click', (evt) => {
+        $signOut.addEventListener('click', (evt) => {
           adobeIMSMethods.signOut();
         });
       });
