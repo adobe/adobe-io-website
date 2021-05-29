@@ -17,14 +17,14 @@
 //   }
 // };
 
-window.adobeid = {"client_id": "helix_adobeio","scope": "AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk", "locale": "en_US", "environment": "stg1", "useLocalStorage": false, "logsEnabled": true, redirect_uri: window.location.href};
+window.adobeid = {"client_id": "helix_adobeio","scope": "AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk", "locale": "en_US", "environment": "stg1", "useLocalStorage": false, "logsEnabled": true};
 adobeIMSMethods = {
   signIn: function () {
       adobeIMS.signIn();
   },
   authorizeToken(token) {},
   getAccessToken() {
-    window.adobeid.accessToken = adobeIMS.getAccessToken();
+      vm.state.token = adobeIMS.getAccessToken();
   },
   refreshToken() {
       adobeIMS.refreshToken();
@@ -39,17 +39,17 @@ adobeIMSMethods = {
       }, "force");
   },
   getReauthAccessToken() {
-      window.adobeid.rtoken = adobeIMS.getReauthAccessToken();
+      vm.state.rtoken = adobeIMS.getReauthAccessToken();
   },
   signOut(){
       adobeIMS.signOut({});
   },
   getProfile(){
       adobeIMS.getProfile().then(profile => {
-        window.adobeid.profile = profile;
+              vm.state.profile = profile;
       })
       .catch( ex => {
-        window.adobeid.profile = ex;
+              vm.state.profile = ex;
       })
   },
   signUp(){
@@ -60,6 +60,9 @@ adobeIMSMethods = {
       })
       .catch(ex => {
       })
+  },
+  signInWithSocialProvider(){
+      adobeIMS.signInWithSocialProvider('google');
   }
 };
 // See https://github.com/adobe/react-spectrum/blob/dac6d273a9843694a652d7513ff88f6a9c773887/packages/%40react-spectrum/utils/src/useIsMobileDevice.ts#L15
@@ -507,7 +510,7 @@ let $CURRENT_API_FILTERS = [];
       let $heroImageSrc = $heroSection.querySelector('img') ? $heroSection.querySelector('img').src : null;
 
       $heroSection.querySelectorAll('picture source').forEach(($picture) => {
-        //remove weird max-width attribute 
+        //remove weird max-width attribute
         $picture.media = "";
         $picture.parentElement.parentElement.remove();
       });
@@ -543,7 +546,7 @@ let $CURRENT_API_FILTERS = [];
       });
 
       $heroSection.querySelectorAll('picture source').forEach(($picture) => {
-        //remove weird max-width attribute 
+        //remove weird max-width attribute
         $picture.media = "";
       });
       // put buttons into their own div
@@ -624,11 +627,11 @@ let $CURRENT_API_FILTERS = [];
           if (card[b] !== "") {
 
             if(b === "Learn More"){
-              buttonTemplate += 
+              buttonTemplate +=
                 `<a href="${card[b]}" class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet spectrum-Button--sizeM" >
                   <span class="spectrum-Button-label">${b}</span>
                 </a>`
-            
+
             } else {
               buttonTemplate +=
               `
@@ -636,7 +639,7 @@ let $CURRENT_API_FILTERS = [];
                 <span class="spectrum-Button-label">${b}</span>
               </a>
               `
-            
+
             }
           }
         });
@@ -787,11 +790,11 @@ let $CURRENT_API_FILTERS = [];
                   <use xlink:href="#spectrum-icon-24-RealTimeCustomerProfile"></use>
                 </svg>
               </div>
-        
+
               <div class="nav-profile-popover-name">
                 I am name
               </div>
-        
+
               <div class="nav-profile-popover-divider">
                 <hr />
               </div>
@@ -799,7 +802,7 @@ let $CURRENT_API_FILTERS = [];
               <a href="https://account.adobe.com/">
                 Edit Profile
               </a>
-        
+
               <button class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet">
                 <span id="signOut" class="spectrum-ActionButton-label">Sign out</span>
               </button>
@@ -961,7 +964,7 @@ let $CURRENT_API_FILTERS = [];
           if($button.id.indexOf('nav-dropdown-button') >= 0) {
             let $index = $button.id.split('_')[1];
             let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
-            
+
             $button.addEventListener('click', (evt) => {
               if(!evt.currentTarget.classList.contains('is-open')){
                 $button.classList.add('is-open');
@@ -997,7 +1000,7 @@ let $CURRENT_API_FILTERS = [];
         });
 
         const $signOut = $header.querySelector('#signOut');
-        $signOut.addEventListener('click', (evt) => {
+        $signIn.addEventListener('click', (evt) => {
           adobeIMSMethods.signOut();
         });
       });
@@ -1215,7 +1218,7 @@ let $CURRENT_API_FILTERS = [];
         $card.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
           $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
         })
-  
+
         $card.querySelectorAll('p').forEach(($p) => {
           $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
         });
@@ -1262,7 +1265,7 @@ let $CURRENT_API_FILTERS = [];
 
       $column.querySelectorAll('a').forEach(($a) => {
         $a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
-        
+
         if(isLinkExternal($a.href)) {
           $a.target = '_blank';
           $a.rel = 'noopener noreferrer';
@@ -1285,7 +1288,7 @@ let $CURRENT_API_FILTERS = [];
   function decorateColumnsDark() {
     document.querySelectorAll('.columns-dark').forEach(($column) => {
     });
-    
+
     //document.querySelectorAll('.columns').forEach(($column) => {
     // document.querySelectorAll('.columns-dark').forEach(($column) => {
     //   removeEmptyPTags($column);
@@ -1295,20 +1298,20 @@ let $CURRENT_API_FILTERS = [];
     //     if($row.childNodes.length > 1) {
     //       let $textColumnContainer = createTag('div', { class : 'columns-text'});
 
-    //       // find the text column in the row and wrap it then insert it 
+    //       // find the text column in the row and wrap it then insert it
     //       // may have to expand search to allow all media types instead of just iframe
     //       let $cloneNodes;
     //       if(!$row.childNodes[0].querySelector('iframe')) {
     //         $cloneNodes = $row.childNodes[0].cloneNode(true);
-    //         $textColumnContainer.append($cloneNodes); 
+    //         $textColumnContainer.append($cloneNodes);
     //         $row.replaceChild($textColumnContainer, $row.childNodes[0]);
 
     //       } else if(!$row.childNodes[1].querySelector('iframe')) {
     //         $cloneNodes = $row.childNodes[1].cloneNode(true);
-    //         $textColumnContainer.append($cloneNodes); 
+    //         $textColumnContainer.append($cloneNodes);
     //         $row.replaceChild($textColumnContainer, $row.childNodes[1]);
     //       }
-    //     } 
+    //     }
     //   });
     // });
   }
@@ -1368,10 +1371,10 @@ let $CURRENT_API_FILTERS = [];
           let $text = $resourceLarge.querySelector('p').innerText;
 
           $leftResourceCardContainer.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
-  
+
           $resourceLarge.remove();
         });
-  
+
         $section.querySelectorAll('.resource-card-small').forEach(($resourceSmall, index, array) => {
           removeEmptyPTags($resourceSmall);
           //$smallResourceCardCount = array.length;
@@ -1379,7 +1382,7 @@ let $CURRENT_API_FILTERS = [];
           let $heading = $resourceSmall.querySelector('a').innerText;
           let $imgSrc = $resourceSmall.querySelector('img').src;
           let $text = $resourceSmall.querySelector('p').innerText;
-  
+
           $rightResourceCardContainer.innerHTML += getResourceCard('small', $linkHref, $imgSrc, $heading, $text);
           toggleScale();
           $resourceSmall.remove();
@@ -1404,7 +1407,7 @@ let $CURRENT_API_FILTERS = [];
         // don't attach to icon container or if p tag contains links
         if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
           $p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
-        } 
+        }
         $hasLinks.forEach(($button) => {
           $button.classList.add('spectrum-Button--overBackground');
         })
@@ -1414,7 +1417,7 @@ let $CURRENT_API_FILTERS = [];
       let $summaryImageSrc = $summary.querySelector('img') ? $summary.querySelector('img').src : null;
 
       $summary.querySelectorAll('picture').forEach(($picture) => {
-        //remove weird max-width attribute 
+        //remove weird max-width attribute
 
         //$picture.media = "";
         $picture.parentElement.parentElement.remove();
@@ -1427,7 +1430,7 @@ let $CURRENT_API_FILTERS = [];
 
   function fixIcons() {
     document.querySelectorAll('img.icon').forEach(($icon) => {
-      // fix up paths for icons that are injected into the doc when using :icon: 
+      // fix up paths for icons that are injected into the doc when using :icon:
       if($icon.getAttribute('src').indexOf('hlx_statics') === -1){
         $icon.setAttribute('src',  '/hlx_statics' + $icon.getAttribute('src') );
       }

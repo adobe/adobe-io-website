@@ -130,18 +130,19 @@ header.global-header {
     z-index: 10;
 }
 
-header.global-header img.icon {
-    height: 20px;
-    width: 24px;
-    margin-right: 8px;
+header.global-nav-header img.icon {
+  height: 18px;
+  width: 22px;
+  margin-right: 8px;
 }
 
-header.global-header p {
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    margin-top: 0;
-    margin-bottom: 0;
+header.global-nav-header p {
+  color: var(--spectrum-global-color-gray-700);
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-weight: 700;
+  font-size: 15px;
 }
 
 header.global-header div:last-child {
@@ -184,20 +185,19 @@ header.global-nav-header {
   height: 60px;
   padding-left: 24px;
   border-bottom: 1px solid #eaeaea;
-
-  color: #505050;
   text-decoration: none;
   background-color: #fff;
   z-index: 10;
 }
 
 header.global-nav-header img.icon {
-  height: 22px;
-  width: 24px;
+  height: 18px;
+  width: 22px;
   margin-right: 8px;
 }
 
 header.global-nav-header p {
+  color: var(--spectrum-global-color-gray-700);
   display: flex;
   align-items: center;
   margin: 0;
@@ -207,48 +207,84 @@ header.global-nav-header p {
 
 header.global-nav-header strong.icon-adobe-label {
   color: #fa0f00;
+  font-size: 15px;
+  white-space: nowrap;
 }
 
 header.global-nav-header div.nav-view-docs-button {
   display: flex;
   margin-left: 16px;
-  align-items: center;
 }
 
-header.global-nav-header ul#navigation-links {
-  display: flex;
+header.global-nav-header > ul#navigation-links {
   list-style: none;
   margin-top: 0;
   margin-bottom: 0;
   padding-left: 24px;
+  display: flex;
 }
 
-header.global-nav-header ul#navigation-links > li.navigation-products {
+header.global-nav-header > ul#navigation-links > li.navigation-products {
   border-left: 1px solid #eaeaea;
   border-right: 1px solid #eaeaea;
+  padding: 0;
+  margin-right: 16px;
 }
 
-header.global-nav-header ul#navigation-links > li {
-  display: flex;
+header.global-nav-header > ul#navigation-links > li.navigation-products a {
   align-items: center;
-  padding: 0 24px 0 24px;
+  text-decoration: none;
+  height: 100%;
 }
 
-header.global-nav-header li.item-select {
+header.global-nav-header > ul#navigation-links > li > a {
+  line-height: 60px;
+  display: block;
+  padding: 0 12px;
+  text-decoration: none;
+  color: var(--spectrum-global-color-gray-700);
+}
+
+header.global-nav-header > ul#navigation-links > li > button {
+  height: 60px;
+  padding: 0 12px;
+  color: var(--spectrum-global-color-gray-700);
+}
+
+header.global-nav-header > ul#navigation-links > li > a:hover,
+header.global-nav-header > ul#navigation-links > li > button:hover {
+  background-color: var(--spectrum-global-color-gray-75);
+  color: var(--spectrum-global-color-gray-900);
+}
+
+header.global-nav-header > ul#navigation-links > li.navigation-products a {
+  display: block;
+  vertical-align: middle;
+  padding: 0 24px;
+  height: 100%;
+}
+
+header.global-nav-header > ul > li:first-of-type {
+  padding: 0;
+}
+
+header.global-nav-header > ul#navigation-links > li {
+  align-items: center;
+}
+
+header.global-nav-header > ul > li.item-select {
   border-bottom: 1px solid #eaeaea;
   border-bottom-width: thick;
 }
 
-header.global-nav-header ul li a {
-  font-size: 14px;
-  font-weight: 400;
-  color: #505050;
-  text-decoration: none;
+header.global-nav-header > ul > li a:hover {
+  background-color: var(--spectrum-global-color-gray-75);
+  color: var(--spectrum-global-color-gray-900);
 }
 
 header.global-nav-header div.nav-dropdown-popover {
-  margin-top: 154px;
-  margin-left: -20px !important;
+  margin-top: -6px;
+  margin-left: -1px;
 }
 
 header.global-nav-header div.nav-console-right-container {
@@ -264,6 +300,7 @@ header.global-nav-header div.nav-console-search-button {
 header.global-nav-header div.nav-console-button {
   margin-right: 16px;
 }
+
 
 header.global-nav-header div.nav-sign-in {
   margin-right: 24px;
@@ -322,7 +359,7 @@ footer {
 
 footer > div {
   box-sizing: border-box;
-  max-width: calc(12 * var(--spectrum-global-dimension-static-grid-fixed-max-width) / var(--spectrum-global-dimension-static-grid-columns)); 
+  max-width: calc(12 * var(--spectrum-global-dimension-static-grid-fixed-max-width) / var(--spectrum-global-dimension-static-grid-columns));
   margin: 0 auto;
 }
 
@@ -493,4 +530,3 @@ div.resource-cards-left > a.resource-card-large-container-inner {
   display: flex;
   flex-direction: column;
 }
-
