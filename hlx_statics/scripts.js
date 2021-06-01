@@ -48,14 +48,14 @@ window.adobeIMSMethods = {
       adobeIMS.signOut({});
   },
   getProfile(){
-      adobeIMS.getProfile().then(profile => {
-        window.adobeid.profile = profile;
-        window.adobeid.profile.avatarUrl = adobeIMS.avatarUrl(adobeid.profile.userId);
-        decorateProfile(window.adobeid.profile);
-      })
-      .catch( ex => {
-        window.adobeid.profile = ex;
-      })
+    adobeIMS.getProfile().then(profile => {
+      window.adobeid.profile = profile;
+      window.adobeid.profile.avatarUrl = adobeIMS.avatarUrl(adobeid.profile.userId);
+      decorateProfile(window.adobeid.profile);
+    })
+    .catch( ex => {
+      window.adobeid.profile = ex;
+    })
   },
 };
 
@@ -909,7 +909,22 @@ let $CURRENT_API_FILTERS = [];
     $signIn.remove();
     $parentContainer.innerHTML += globalNavProfileTemplate(profile);
 
-    const $signOut = $document.querySelector('#signOut');
+    let $profileDropdownPopover = $parentContainer.querySelector('div#nav-profile-dropdown-popover');
+    let $button = $parentContainer.querySelector('div#nav-profile-dropdown-button');
+
+    $button.addEventListener('click', (evt) => {
+      if(!evt.currentTarget.classList.contains('is-open')){
+        $button.classList.add('is-open');
+        $profileDropdownPopover.classList.add('is-open');
+        $profileDropdownPopover.ariaHidden = false;
+      } else {
+        $button.classList.remove('is-open');
+        $profileDropdownPopover.classList.remove('is-open');
+        $profileDropdownPopover.ariaHidden = false;
+      }
+    });
+
+    const $signOut = $parentContainer.querySelector('#signOut');
     $signOut.addEventListener('click', (evt) => {
       adobeIMSMethods.signOut();
     });
