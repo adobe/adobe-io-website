@@ -31,9 +31,7 @@ window.adobeid = {
     console.log(error);
   },
   onReady: function(ims) {
-    console.log('IMS ready');
     if(window.adobeIMSMethods.isSignedIn()) {
-      console.log('Get profile');
       window.adobeIMSMethods.getProfile();
     }
   }
@@ -52,7 +50,8 @@ window.adobeIMSMethods = {
   getProfile(){
       adobeIMS.getProfile().then(profile => {
         window.adobeid.profile = profile;
-        console.log('got profile')
+        window.adobeid.profile.avatarUrl = adobeIMS.avatarUrl(adobeid.profile.userId);
+        decorateProfile(window.adobeid.profile);
       })
       .catch( ex => {
         window.adobeid.profile = ex;
@@ -770,41 +769,6 @@ let $CURRENT_API_FILTERS = [];
             <span id="signIn" class="spectrum-ActionButton-label">Sign in</span>
           </button>
         </div>
-
-        <div class="nav-profile">
-          <button id="nav-profile-dropdown-button" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet  navigation-dropdown">
-            <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Profile">
-              <use xlink:href="#spectrum-icon-24-RealTimeCustomerProfile"></use>
-            </svg>
-          </button>
-
-          <div id="nav-profile-dropdown-popover" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet">
-            <div class="nav-profile-popover-innerContainer">
-              <div class="nav-profile-popover-avatar">
-                <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Profile">
-                  <use xlink:href="#spectrum-icon-24-RealTimeCustomerProfile"></use>
-                </svg>
-              </div>
-        
-              <div class="nav-profile-popover-name">
-                I am name
-              </div>
-        
-              <div class="nav-profile-popover-divider">
-                <hr />
-              </div>
-
-              <a href="https://account.adobe.com/">
-                Edit Profile
-              </a>
-        
-              <button class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet">
-                <span id="signOut" class="spectrum-ActionButton-label">Sign out</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     `
   }
 
@@ -896,11 +860,59 @@ let $CURRENT_API_FILTERS = [];
 // </div>
 // </div>
 
+  function globalNavProfileTemplate(profile) {
+    return `
+      <div class="nav-profile">
+        <button id="nav-profile-dropdown-button" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet  navigation-dropdown">
+          <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Profile">
+            <use xlink:href="#spectrum-icon-24-RealTimeCustomerProfile"></use>
+          </svg>
+        </button>
 
+          <div id="nav-profile-dropdown-popover" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet">
+            <div class="nav-profile-popover-innerContainer">
+              <div class="nav-profile-popover-avatar">
+                <img alt="Avatar" src=${profile.avatarUrl} />
+              </div>
+
+              <div class="nav-profile-popover-name">
+                ${profile.name}
+              </div>
+
+              <div class="nav-profile-popover-divider">
+                <hr />
+              </div>
+
+              <a href="https://account.adobe.com/">
+                Edit Profile
+              </a>
+
+              <button class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet">
+                <span id="signOut" class="spectrum-ActionButton-label">Sign out</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `
+  }
   async function fetchNav() {
     const $localNavPath = window.location.pathname.split('/')[1];
     const resp = await fetch(`/${$localNavPath}/nav.json`);
     return (await resp.json()).data;
+  }
+
+  function decorateProfile(profile) {
+    // replace sign-in link with profile
+    let $signIn = document.querySelector('div.nav-sign-in');
+    let $parentContainer = $signIn.parentElement;
+    $signIn.remove();
+    $parentContainer.innerHTML += globalNavProfileTemplate(profile);
+
+    const $signOut = $document.querySelector('#signOut');
+    $signOut.addEventListener('click', (evt) => {
+      adobeIMSMethods.signOut();
+    });
   }
 
   function decorateHeader() {
@@ -992,11 +1004,6 @@ let $CURRENT_API_FILTERS = [];
         const $signIn = $header.querySelector('#signIn');
         $signIn.addEventListener('click', (evt) => {
           adobeIMSMethods.signIn();
-        });
-
-        const $signOut = $header.querySelector('#signOut');
-        $signOut.addEventListener('click', (evt) => {
-          adobeIMSMethods.signOut();
         });
       });
 
