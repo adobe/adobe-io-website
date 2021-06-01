@@ -910,7 +910,7 @@ let $CURRENT_API_FILTERS = [];
     $parentContainer.innerHTML += globalNavProfileTemplate(profile);
 
     let $profileDropdownPopover = $parentContainer.querySelector('div#nav-profile-dropdown-popover');
-    let $button = $parentContainer.querySelector('div#nav-profile-dropdown-button');
+    let $button = $parentContainer.querySelector('button#nav-profile-dropdown-button');
 
     $button.addEventListener('click', (evt) => {
       if(!evt.currentTarget.classList.contains('is-open')){
