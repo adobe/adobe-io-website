@@ -32,7 +32,7 @@ window.adobeid = {
   },
   onReady: function(ims) {
     console.log('IMS ready');
-    if(window.adobeid.isSignedIn) {
+    if(window.adobeIMSMethods.isSignedIn()) {
       console.log('Get profile');
       window.adobeIMSMethods.getProfile();
     }
@@ -41,9 +41,7 @@ window.adobeid = {
 
 window.adobeIMSMethods = {
   isSignedIn: function() {
-    if(adobeIMS.isSignedInUser()) {
-      window.adobeid.isSignedIn = true;
-    }
+    return adobeIMS.isSignedInUser();
   },
   signIn: function () {
       adobeIMS.signIn();
