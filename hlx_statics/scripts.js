@@ -26,38 +26,27 @@ window.adobeid = {
   useLocalStorage: false,
   logsEnabled: true,
   redirect_uri: window.location.href,
+  isSignedIn: false,
   onError: function (error) {
-    console.log('error')
-    console.log(error)
+    console.log(error);
   },
   onReady: function(ims) {
-    console.log('ims ready')
-    console.log(ims)
+    console.log('IMS ready');
+    if(window.adobeid.isSignedIn) {
+      console.log('Get profile');
+      window.adobeIMSMethods.getProfile();
+    }
   }
 };
 
-adobeIMSMethods = {
+window.adobeIMSMethods = {
+  isSignedIn: function() {
+    if(adobeIMS.isSignedInUser()) {
+      window.adobeid.isSignedIn = true;
+    }
+  },
   signIn: function () {
       adobeIMS.signIn();
-  },
-  authorizeToken(token) {},
-  getAccessToken() {
-    window.adobeid.accessToken = adobeIMS.getAccessToken();
-  },
-  refreshToken() {
-      adobeIMS.refreshToken();
-  },
-  reAuthenticate() {
-      adobeIMS.reAuthenticate({
-      }, "check");
-  },
-  reAuthenticateForce() {
-      adobeIMS.reAuthenticate({
-          api: 'apioverride',
-      }, "force");
-  },
-  getReauthAccessToken() {
-      window.adobeid.rtoken = adobeIMS.getReauthAccessToken();
   },
   signOut(){
       adobeIMS.signOut({});
@@ -65,20 +54,12 @@ adobeIMSMethods = {
   getProfile(){
       adobeIMS.getProfile().then(profile => {
         window.adobeid.profile = profile;
+        console.log('got profile')
       })
       .catch( ex => {
         window.adobeid.profile = ex;
       })
   },
-  signUp(){
-      adobeIMS.signUp();
-  },
-  validateToken(){
-      adobeIMS.validateToken().then(v => {
-      })
-      .catch(ex => {
-      })
-  }
 };
 
 // See https://github.com/adobe/react-spectrum/blob/dac6d273a9843694a652d7513ff88f6a9c773887/packages/%40react-spectrum/utils/src/useIsMobileDevice.ts#L15
