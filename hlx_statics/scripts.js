@@ -26,59 +26,37 @@ window.adobeid = {
   useLocalStorage: false,
   logsEnabled: true,
   redirect_uri: window.location.href,
+  isSignedIn: false,
   onError: function (error) {
-    console.log('error')
-    console.log(error)
+    console.log(error);
   },
   onReady: function(ims) {
-    console.log('ims ready')
-    console.log(ims)
+    if(window.adobeIMSMethods.isSignedIn()) {
+      window.adobeIMSMethods.getProfile();
+    }
   }
 };
 
-adobeIMSMethods = {
+window.adobeIMSMethods = {
+  isSignedIn: function() {
+    return adobeIMS.isSignedInUser();
+  },
   signIn: function () {
       adobeIMS.signIn();
-  },
-  authorizeToken(token) {},
-  getAccessToken() {
-    window.adobeid.accessToken = adobeIMS.getAccessToken();
-  },
-  refreshToken() {
-      adobeIMS.refreshToken();
-  },
-  reAuthenticate() {
-      adobeIMS.reAuthenticate({
-      }, "check");
-  },
-  reAuthenticateForce() {
-      adobeIMS.reAuthenticate({
-          api: 'apioverride',
-      }, "force");
-  },
-  getReauthAccessToken() {
-      window.adobeid.rtoken = adobeIMS.getReauthAccessToken();
   },
   signOut(){
       adobeIMS.signOut({});
   },
   getProfile(){
-      adobeIMS.getProfile().then(profile => {
-        window.adobeid.profile = profile;
-      })
-      .catch( ex => {
-        window.adobeid.profile = ex;
-      })
+    adobeIMS.getProfile().then(profile => {
+      window.adobeid.profile = profile;
+      window.adobeid.profile.avatarUrl = adobeIMS.avatarUrl(adobeid.profile.userId);
+      decorateProfile(window.adobeid.profile);
+    })
+    .catch( ex => {
+      window.adobeid.profile = ex;
+    })
   },
-  signUp(){
-      adobeIMS.signUp();
-  },
-  validateToken(){
-      adobeIMS.validateToken().then(v => {
-      })
-      .catch(ex => {
-      })
-  }
 };
 
 // See https://github.com/adobe/react-spectrum/blob/dac6d273a9843694a652d7513ff88f6a9c773887/packages/%40react-spectrum/utils/src/useIsMobileDevice.ts#L15
@@ -791,7 +769,6 @@ let $CURRENT_API_FILTERS = [];
             <span id="signIn" class="spectrum-ActionButton-label">Sign in</span>
           </button>
         </div>
-
         <div class="nav-profile">
           <button id="nav-profile-dropdown-button" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet  navigation-dropdown">
             <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Profile">
@@ -917,11 +894,74 @@ let $CURRENT_API_FILTERS = [];
 // </div>
 // </div>
 
+  function globalNavProfileTemplate(profile) {
+    return `
+      <div class="nav-profile spectrum--lightest">
+        <button id="nav-profile-dropdown-button" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet  navigation-dropdown">
+          <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Profile">
+            <use xlink:href="#spectrum-icon-24-RealTimeCustomerProfile"></use>
+          </svg>
+        </button>
 
+          <div id="nav-profile-dropdown-popover" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet">
+            <div class="nav-profile-popover-innerContainer">
+              <div class="nav-profile-popover-avatar">
+                <img alt="Avatar" src=${profile.avatarUrl} />
+              </div>
+
+              <div class="nav-profile-popover-name">
+                <h1 class="spectrum-Heading spectrum-Heading--sizeM">
+                  ${profile.name}
+                </h1>
+              </div>
+
+              <div class="nav-profile-popover-divider">
+                <hr />
+              </div>
+              <a href="https://account.adobe.com/" class="spectrum-Button spectrum-Button--primary spectrum-Button--quiet spectrum-Button--sizeM nav-profile-popover-edit">
+                Edit Profile
+              </a>
+              <a href="https://account.adobe.com/" id="signOut" class="spectrum-Button spectrum-Button--secondary spectrum-Button--sizeM nav-profile-popover-sign-out">
+                Sign out
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `
+  }
   async function fetchNav() {
     const $localNavPath = window.location.pathname.split('/')[1];
     const resp = await fetch(`/${$localNavPath}/nav.json`);
     return (await resp.json()).data;
+  }
+
+  function decorateProfile(profile) {
+    // replace sign-in link with profile
+    let $signIn = document.querySelector('div.nav-sign-in');
+    let $parentContainer = $signIn.parentElement;
+    $signIn.remove();
+    $parentContainer.innerHTML += globalNavProfileTemplate(profile);
+
+    let $profileDropdownPopover = $parentContainer.querySelector('div#nav-profile-dropdown-popover');
+    let $button = $parentContainer.querySelector('button#nav-profile-dropdown-button');
+
+    $button.addEventListener('click', (evt) => {
+      if(!evt.currentTarget.classList.contains('is-open')){
+        $button.classList.add('is-open');
+        $profileDropdownPopover.classList.add('is-open');
+        $profileDropdownPopover.ariaHidden = false;
+      } else {
+        $button.classList.remove('is-open');
+        $profileDropdownPopover.classList.remove('is-open');
+        $profileDropdownPopover.ariaHidden = false;
+      }
+    });
+
+    const $signOut = $parentContainer.querySelector('#signOut');
+    $signOut.addEventListener('click', (evt) => {
+      adobeIMSMethods.signOut();
+    });
   }
 
   function decorateHeader() {
@@ -1013,11 +1053,6 @@ let $CURRENT_API_FILTERS = [];
         const $signIn = $header.querySelector('#signIn');
         $signIn.addEventListener('click', (evt) => {
           adobeIMSMethods.signIn();
-        });
-
-        const $signOut = $header.querySelector('#signOut');
-        $signOut.addEventListener('click', (evt) => {
-          adobeIMSMethods.signOut();
         });
       });
 
