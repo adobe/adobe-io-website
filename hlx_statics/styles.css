@@ -15,7 +15,7 @@ html, body {
 header.main-header {
   grid-area: header;
   position: fixed;
-  height: var(--spectrum-global-dimension-size-1000);
+  height: var(--spectrum-global-dimension-size-800);
   left: 0;
   right: 0;
   background-color: var(--spectrum-global-color-gray-50);
@@ -123,7 +123,6 @@ header.global-header {
     padding-left: 32px;
     padding-right: 32px;
     border-bottom: 1px solid #eaeaea;
-
     color: #505050;
     text-decoration: none;
     background-color: #fff;
@@ -182,12 +181,13 @@ header.global-nav-header {
   position: sticky;
   top: 0;
   display: flex;
-  height: 60px;
   padding-left: 24px;
   border-bottom: 1px solid #eaeaea;
   text-decoration: none;
   background-color: #fff;
   z-index: 10;
+  padding-left: var(--spectrum-global-dimension-size-400);
+  padding-right: var(--spectrum-global-dimension-size-400);
 }
 
 header.global-nav-header img.icon {
@@ -206,14 +206,23 @@ header.global-nav-header p {
 }
 
 header.global-nav-header strong.icon-adobe-label {
+  color: #000000;
+  font-size: var(--spectrum-global-dimension-size-200);
+  white-space: nowrap;
+}
+
+/* Not ready for Adobe Developer logo change
+header.global-nav-header strong.icon-adobe-label {
   color: #fa0f00;
   font-size: 15px;
   white-space: nowrap;
 }
+*/
 
 header.global-nav-header div.nav-view-docs-button {
   display: flex;
   margin-left: 16px;
+  align-items: center;
 }
 
 header.global-nav-header > ul#navigation-links {
@@ -238,7 +247,7 @@ header.global-nav-header > ul#navigation-links > li.navigation-products a {
 }
 
 header.global-nav-header > ul#navigation-links > li > a {
-  line-height: 60px;
+  line-height: 64px;
   display: block;
   padding: 0 12px;
   text-decoration: none;
@@ -246,7 +255,7 @@ header.global-nav-header > ul#navigation-links > li > a {
 }
 
 header.global-nav-header > ul#navigation-links > li > button {
-  height: 60px;
+  height: 64px;
   padding: 0 12px;
   color: var(--spectrum-global-color-gray-700);
 }
@@ -259,7 +268,6 @@ header.global-nav-header > ul#navigation-links > li > button:hover {
 
 header.global-nav-header > ul#navigation-links > li.navigation-products a {
   display: block;
-  vertical-align: middle;
   padding: 0 24px;
   height: 100%;
 }
