@@ -769,39 +769,6 @@ let $CURRENT_API_FILTERS = [];
             <span id="signIn" class="spectrum-ActionButton-label">Sign in</span>
           </button>
         </div>
-        <div class="nav-profile">
-          <button id="nav-profile-dropdown-button" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet  navigation-dropdown">
-            <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Profile">
-              <use xlink:href="#spectrum-icon-24-RealTimeCustomerProfile"></use>
-            </svg>
-          </button>
-
-          <div id="nav-profile-dropdown-popover" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet">
-            <div class="nav-profile-popover-innerContainer">
-              <div class="nav-profile-popover-avatar">
-                <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Profile">
-                  <use xlink:href="#spectrum-icon-24-RealTimeCustomerProfile"></use>
-                </svg>
-              </div>
-
-              <div class="nav-profile-popover-name">
-                I am name
-              </div>
-
-              <div class="nav-profile-popover-divider">
-                <hr />
-              </div>
-
-              <a href="https://account.adobe.com/">
-                Edit Profile
-              </a>
-
-              <button class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet">
-                <span id="signOut" class="spectrum-ActionButton-label">Sign out</span>
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     `
   }
