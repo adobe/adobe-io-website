@@ -6930,13 +6930,13 @@ header.global-nav-header div.nav-profile-popover-innerContainer {
 }
 
 header.global-nav-header div.nav-profile-popover-avatar {
-  width: var(--spectrum-global-dimension-size-800);
-  height: var(--spectrum-global-dimension-size-800);
+  width: 75px;
+  height: 75px;
   border-radius: var(--spectrum-global-dimension-static-percent-50);
   background: var(--spectrum-global-color-gray-50);
   overflow: hidden;
-  margin-top: var(--spectrum-global-dimension-size-400);
-  margin-bottom: var(--spectrum-global-dimension-size-200);
+  margin-top: var(--spectrum-global-dimension-size-200);
+  margin-bottom: var(--spectrum-global-dimension-size-300);
 }
 
 header.global-nav-header div.nav-profile-popover-name {

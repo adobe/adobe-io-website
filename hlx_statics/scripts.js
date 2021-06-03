@@ -876,20 +876,20 @@ let $CURRENT_API_FILTERS = [];
               </div>
 
               <div class="nav-profile-popover-name">
-                ${profile.name}
+                <h1 class="spectrum-Heading spectrum-Heading--sizeM">
+                  ${profile.name}
+                </h1>
               </div>
 
               <div class="nav-profile-popover-divider">
                 <hr />
               </div>
-
-              <a href="https://account.adobe.com/">
+              <a href="https://account.adobe.com/" class="spectrum-Button spectrum-Button--primary spectrum-Button--quiet spectrum-Button--sizeM">
                 Edit Profile
               </a>
-
-              <button class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet">
-                <span id="signOut" class="spectrum-ActionButton-label">Sign out</span>
-              </button>
+              <a href="https://account.adobe.com/" id="signOut" class="spectrum-Button spectrum-Button--primary spectrum-Button--quiet spectrum-Button--sizeM">
+                Sign out
+              </a>
             </div>
           </div>
         </div>
