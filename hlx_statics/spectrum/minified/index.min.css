@@ -571,7 +571,7 @@
   }
 
 .spectrum-Heading--sizeXXXL {
-  
+
 
     font-size: var(--spectrum-alias-heading-xxxl-text-size);
   font-weight: var(--spectrum-alias-heading-text-font-weight-regular);
@@ -582,11 +582,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Heading--sizeXXL {
-  
+
 
     font-size: var(--spectrum-alias-heading-xxl-text-size);
   font-weight: var(--spectrum-alias-heading-text-font-weight-regular);
@@ -597,11 +597,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Heading--sizeXL {
-  
+
 
     font-size: var(--spectrum-alias-heading-xl-text-size);
   font-weight: var(--spectrum-alias-heading-text-font-weight-regular);
@@ -612,11 +612,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Heading--sizeL {
-  
+
 
     font-size: var(--spectrum-alias-heading-l-text-size);
   font-weight: var(--spectrum-alias-heading-text-font-weight-regular);
@@ -627,11 +627,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Heading--sizeM {
-  
+
 
     font-size: var(--spectrum-alias-heading-m-text-size);
   font-weight: var(--spectrum-alias-heading-text-font-weight-regular);
@@ -642,11 +642,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Heading--sizeS {
-  
+
 
     font-size: var(--spectrum-alias-heading-s-text-size);
   font-weight: var(--spectrum-alias-heading-text-font-weight-regular);
@@ -657,11 +657,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Heading--sizeXS {
-  
+
 
     font-size: var(--spectrum-alias-heading-xs-text-size);
   font-weight: var(--spectrum-alias-heading-text-font-weight-regular);
@@ -672,11 +672,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Heading--sizeXXS {
-  
+
 
     font-size: var(--spectrum-alias-heading-xxs-text-size);
   font-weight: var(--spectrum-alias-heading-text-font-weight-regular);
@@ -687,7 +687,7 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Heading {
@@ -738,7 +738,7 @@
   }
 
 .spectrum-Body--sizeXXXL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-600);
   font-weight: var(--spectrum-alias-body-text-font-weight);
@@ -749,11 +749,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Body--sizeXXL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-500);
   font-weight: var(--spectrum-alias-body-text-font-weight);
@@ -764,11 +764,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Body--sizeXL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-400);
   font-weight: var(--spectrum-alias-body-text-font-weight);
@@ -779,11 +779,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Body--sizeL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-300);
   font-weight: var(--spectrum-alias-body-text-font-weight);
@@ -794,11 +794,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Body--sizeM {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-200);
   font-weight: var(--spectrum-alias-body-text-font-weight);
@@ -809,11 +809,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Body--sizeS {
-  
+
 
     font-size: var(--spectrum-alias-font-size-default);
   font-weight: var(--spectrum-alias-body-text-font-weight);
@@ -824,11 +824,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Body--sizeXS {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-75);
   font-weight: var(--spectrum-alias-body-text-font-weight);
@@ -839,7 +839,7 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum-Body {
@@ -884,7 +884,7 @@
 }
 
 .spectrum-Detail--sizeXL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-200);
   font-weight: var(--spectrum-alias-detail-text-font-weight);
@@ -894,7 +894,7 @@
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
-  
+
   }
 
 .spectrum-Detail--sizeXL em {
@@ -922,7 +922,7 @@
     }
 
 .spectrum-Detail--sizeL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-100);
   font-weight: var(--spectrum-alias-detail-text-font-weight);
@@ -932,7 +932,7 @@
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
-  
+
   }
 
 .spectrum-Detail--sizeL em {
@@ -960,7 +960,7 @@
     }
 
 .spectrum-Detail--sizeM {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-75);
   font-weight: var(--spectrum-alias-detail-text-font-weight);
@@ -970,7 +970,7 @@
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
-  
+
   }
 
 .spectrum-Detail--sizeM em {
@@ -998,7 +998,7 @@
     }
 
 .spectrum-Detail--sizeS {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-50);
   font-weight: var(--spectrum-alias-detail-text-font-weight);
@@ -1008,7 +1008,7 @@
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
-  
+
   }
 
 .spectrum-Detail--sizeS em {
@@ -1054,7 +1054,7 @@
 }
 
 .spectrum-Code--sizeXL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-400);
   font-weight: var(--spectrum-alias-code-text-font-weight-regular);
@@ -1065,11 +1065,11 @@
   margin-bottom: 0;
   font-family: var(--spectrum-alias-code-text-font-family);
 
-    
+
   }
 
 .spectrum-Code--sizeL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-300);
   font-weight: var(--spectrum-alias-code-text-font-weight-regular);
@@ -1080,11 +1080,11 @@
   margin-bottom: 0;
   font-family: var(--spectrum-alias-code-text-font-family);
 
-    
+
   }
 
 .spectrum-Code--sizeM {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-200);
   font-weight: var(--spectrum-alias-code-text-font-weight-regular);
@@ -1095,11 +1095,11 @@
   margin-bottom: 0;
   font-family: var(--spectrum-alias-code-text-font-family);
 
-    
+
   }
 
 .spectrum-Code--sizeS {
-  
+
 
     font-size: var(--spectrum-alias-font-size-default);
   font-weight: var(--spectrum-alias-code-text-font-weight-regular);
@@ -1110,11 +1110,11 @@
   margin-bottom: 0;
   font-family: var(--spectrum-alias-code-text-font-family);
 
-    
+
   }
 
 .spectrum-Code--sizeXS {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-75);
   font-weight: var(--spectrum-alias-code-text-font-weight-regular);
@@ -1125,7 +1125,7 @@
   margin-bottom: 0;
   font-family: var(--spectrum-alias-code-text-font-family);
 
-    
+
   }
 
 .spectrum-Typography .spectrum-Heading--sizeXXXL {
@@ -1204,7 +1204,7 @@
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeXXXL, .spectrum:lang(ko) .spectrum-Heading--sizeXXXL, .spectrum:lang(zh) .spectrum-Heading--sizeXXXL {
-  
+
 
     font-size: var(--spectrum-alias-heading-xxxl-text-size);
   font-weight: var(--spectrum-alias-han-heading-text-font-weight-regular);
@@ -1215,11 +1215,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeXXL, .spectrum:lang(ko) .spectrum-Heading--sizeXXL, .spectrum:lang(zh) .spectrum-Heading--sizeXXL {
-  
+
 
     font-size: var(--spectrum-alias-heading-han-xxl-text-size);
   font-weight: var(--spectrum-alias-han-heading-text-font-weight-regular);
@@ -1230,11 +1230,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeXL, .spectrum:lang(ko) .spectrum-Heading--sizeXL, .spectrum:lang(zh) .spectrum-Heading--sizeXL {
-  
+
 
     font-size: var(--spectrum-alias-heading-han-xl-text-size);
   font-weight: var(--spectrum-alias-han-heading-text-font-weight-regular);
@@ -1245,11 +1245,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeL, .spectrum:lang(ko) .spectrum-Heading--sizeL, .spectrum:lang(zh) .spectrum-Heading--sizeL {
-  
+
 
     font-size: var(--spectrum-alias-heading-han-l-text-size);
   font-weight: var(--spectrum-alias-han-heading-text-font-weight-regular);
@@ -1260,11 +1260,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeM, .spectrum:lang(ko) .spectrum-Heading--sizeM, .spectrum:lang(zh) .spectrum-Heading--sizeM {
-  
+
 
     font-size: var(--spectrum-alias-heading-han-m-text-size);
   font-weight: var(--spectrum-alias-han-heading-text-font-weight-regular);
@@ -1275,11 +1275,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeS, .spectrum:lang(ko) .spectrum-Heading--sizeS, .spectrum:lang(zh) .spectrum-Heading--sizeS {
-  
+
 
     font-size: var(--spectrum-alias-heading-s-text-size);
   font-weight: var(--spectrum-alias-han-heading-text-font-weight-regular);
@@ -1290,11 +1290,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeXS, .spectrum:lang(ko) .spectrum-Heading--sizeXS, .spectrum:lang(zh) .spectrum-Heading--sizeXS {
-  
+
 
     font-size: var(--spectrum-alias-heading-xs-text-size);
   font-weight: var(--spectrum-alias-han-heading-text-font-weight-regular);
@@ -1305,11 +1305,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeXXS, .spectrum:lang(ko) .spectrum-Heading--sizeXXS, .spectrum:lang(zh) .spectrum-Heading--sizeXXS {
-  
+
 
     font-size: var(--spectrum-alias-heading-xxs-text-size);
   font-weight: var(--spectrum-alias-han-heading-text-font-weight-regular);
@@ -1320,7 +1320,7 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Heading--heavy, .spectrum:lang(ko) .spectrum-Heading--heavy, .spectrum:lang(zh) .spectrum-Heading--heavy {
@@ -1372,7 +1372,7 @@
       }
 
 .spectrum:lang(ja) .spectrum-Body--sizeXXXL, .spectrum:lang(ko) .spectrum-Body--sizeXXXL, .spectrum:lang(zh) .spectrum-Body--sizeXXXL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-600);
   font-weight: var(--spectrum-alias-han-body-text-font-weight-regular);
@@ -1383,11 +1383,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Body--sizeXXL, .spectrum:lang(ko) .spectrum-Body--sizeXXL, .spectrum:lang(zh) .spectrum-Body--sizeXXL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-500);
   font-weight: var(--spectrum-alias-han-body-text-font-weight-regular);
@@ -1398,11 +1398,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Body--sizeXL, .spectrum:lang(ko) .spectrum-Body--sizeXL, .spectrum:lang(zh) .spectrum-Body--sizeXL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-400);
   font-weight: var(--spectrum-alias-han-body-text-font-weight-regular);
@@ -1413,11 +1413,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Body--sizeL, .spectrum:lang(ko) .spectrum-Body--sizeL, .spectrum:lang(zh) .spectrum-Body--sizeL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-300);
   font-weight: var(--spectrum-alias-han-body-text-font-weight-regular);
@@ -1428,11 +1428,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Body--sizeM, .spectrum:lang(ko) .spectrum-Body--sizeM, .spectrum:lang(zh) .spectrum-Body--sizeM {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-200);
   font-weight: var(--spectrum-alias-han-body-text-font-weight-regular);
@@ -1443,11 +1443,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Body--sizeS, .spectrum:lang(ko) .spectrum-Body--sizeS, .spectrum:lang(zh) .spectrum-Body--sizeS {
-  
+
 
     font-size: var(--spectrum-alias-font-size-default);
   font-weight: var(--spectrum-alias-han-body-text-font-weight-regular);
@@ -1458,11 +1458,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Body--sizeXS, .spectrum:lang(ko) .spectrum-Body--sizeXS, .spectrum:lang(zh) .spectrum-Body--sizeXS {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-75);
   font-weight: var(--spectrum-alias-han-body-text-font-weight-regular);
@@ -1473,11 +1473,11 @@
   margin-top: 0;
   margin-bottom: 0;
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Detail--sizeXL, .spectrum:lang(ko) .spectrum-Detail--sizeXL, .spectrum:lang(zh) .spectrum-Detail--sizeXL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-200);
   font-weight: var(--spectrum-alias-detail-text-font-weight);
@@ -1487,7 +1487,7 @@
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
-  
+
   }
 
 .spectrum:lang(ja) .spectrum-Detail--sizeXL em, .spectrum:lang(ko) .spectrum-Detail--sizeXL em, .spectrum:lang(zh) .spectrum-Detail--sizeXL em {
@@ -1515,7 +1515,7 @@
     }
 
 .spectrum:lang(ja) .spectrum-Detail--sizeL, .spectrum:lang(ko) .spectrum-Detail--sizeL, .spectrum:lang(zh) .spectrum-Detail--sizeL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-100);
   font-weight: var(--spectrum-alias-detail-text-font-weight);
@@ -1525,7 +1525,7 @@
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
-  
+
   }
 
 .spectrum:lang(ja) .spectrum-Detail--sizeL em, .spectrum:lang(ko) .spectrum-Detail--sizeL em, .spectrum:lang(zh) .spectrum-Detail--sizeL em {
@@ -1553,7 +1553,7 @@
     }
 
 .spectrum:lang(ja) .spectrum-Detail--sizeM, .spectrum:lang(ko) .spectrum-Detail--sizeM, .spectrum:lang(zh) .spectrum-Detail--sizeM {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-75);
   font-weight: var(--spectrum-alias-detail-text-font-weight);
@@ -1563,7 +1563,7 @@
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
-  
+
   }
 
 .spectrum:lang(ja) .spectrum-Detail--sizeM em, .spectrum:lang(ko) .spectrum-Detail--sizeM em, .spectrum:lang(zh) .spectrum-Detail--sizeM em {
@@ -1591,7 +1591,7 @@
     }
 
 .spectrum:lang(ja) .spectrum-Detail--sizeS, .spectrum:lang(ko) .spectrum-Detail--sizeS, .spectrum:lang(zh) .spectrum-Detail--sizeS {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-50);
   font-weight: var(--spectrum-alias-detail-text-font-weight);
@@ -1601,7 +1601,7 @@
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
-  
+
   }
 
 .spectrum:lang(ja) .spectrum-Detail--sizeS em, .spectrum:lang(ko) .spectrum-Detail--sizeS em, .spectrum:lang(zh) .spectrum-Detail--sizeS em {
@@ -1653,7 +1653,7 @@
       }
 
 .spectrum:lang(ja) .spectrum-Code--sizeXL, .spectrum:lang(ko) .spectrum-Code--sizeXL, .spectrum:lang(zh) .spectrum-Code--sizeXL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-400);
   font-weight: var(--spectrum-alias-han-body-text-font-weight-regular);
@@ -1664,11 +1664,11 @@
   margin-bottom: 0;
       font-family: var(--spectrum-alias-font-family-zh);
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Code--sizeL, .spectrum:lang(ko) .spectrum-Code--sizeL, .spectrum:lang(zh) .spectrum-Code--sizeL {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-300);
   font-weight: var(--spectrum-alias-han-body-text-font-weight-regular);
@@ -1679,11 +1679,11 @@
   margin-bottom: 0;
       font-family: var(--spectrum-alias-font-family-zh);
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Code--sizeM, .spectrum:lang(ko) .spectrum-Code--sizeM, .spectrum:lang(zh) .spectrum-Code--sizeM {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-200);
   font-weight: var(--spectrum-alias-han-body-text-font-weight-regular);
@@ -1694,11 +1694,11 @@
   margin-bottom: 0;
       font-family: var(--spectrum-alias-font-family-zh);
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Code--sizeS, .spectrum:lang(ko) .spectrum-Code--sizeS, .spectrum:lang(zh) .spectrum-Code--sizeS {
-  
+
 
     font-size: var(--spectrum-alias-font-size-default);
   font-weight: var(--spectrum-alias-han-body-text-font-weight-regular);
@@ -1709,11 +1709,11 @@
   margin-bottom: 0;
       font-family: var(--spectrum-alias-font-family-zh);
 
-    
+
   }
 
 .spectrum:lang(ja) .spectrum-Code--sizeXS, .spectrum:lang(ko) .spectrum-Code--sizeXS, .spectrum:lang(zh) .spectrum-Code--sizeXS {
-  
+
 
     font-size: var(--spectrum-global-dimension-font-size-75);
   font-weight: var(--spectrum-alias-han-body-text-font-weight-regular);
@@ -1724,366 +1724,366 @@
   margin-bottom: 0;
       font-family: var(--spectrum-alias-font-family-zh);
 
-    
+
   }
 
 .spectrum-Heading--sizeXXXL {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading--sizeXXL {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading--sizeXL {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading--sizeL {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading--sizeM {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading--sizeS {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading--sizeXS {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading--sizeXXS {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading-sizeXXXL--light {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading-sizeXXL--light {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading-sizeXL--light {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading-sizeL--light {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading-sizeXXXL--heavy {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading-sizeXXL--heavy {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading-sizeXL--heavy {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading-sizeL--heavy {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading-sizeXXXL--heading {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading-sizeXXL--heading {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading-sizeXL--heading {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Heading-sizeL--heading {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Body--sizeXXXL {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum-Body--sizeXXL {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum-Body--sizeXL {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum-Body--sizeL {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum-Body--sizeM {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum-Body--sizeS {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum-Body--sizeXS {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum-Detail--sizeXL {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Detail--sizeL {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Detail--sizeM {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Detail--sizeS {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum-Code--sizeXL {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum-Code--sizeL {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum-Code--sizeM {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum-Code--sizeS {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum-Code--sizeXS {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Body--sizeXXXL, .spectrum:lang(ko) .spectrum-Body--sizeXXXL, .spectrum:lang(zh) .spectrum-Body--sizeXXXL {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Body--sizeXXL, .spectrum:lang(ko) .spectrum-Body--sizeXXL, .spectrum:lang(zh) .spectrum-Body--sizeXXL {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Body--sizeXL, .spectrum:lang(ko) .spectrum-Body--sizeXL, .spectrum:lang(zh) .spectrum-Body--sizeXL {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Body--sizeL, .spectrum:lang(ko) .spectrum-Body--sizeL, .spectrum:lang(zh) .spectrum-Body--sizeL {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Body--sizeM, .spectrum:lang(ko) .spectrum-Body--sizeM, .spectrum:lang(zh) .spectrum-Body--sizeM {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Body--sizeS, .spectrum:lang(ko) .spectrum-Body--sizeS, .spectrum:lang(zh) .spectrum-Body--sizeS {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Body--sizeXS, .spectrum:lang(ko) .spectrum-Body--sizeXS, .spectrum:lang(zh) .spectrum-Body--sizeXS {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeXXXL, .spectrum:lang(ko) .spectrum-Heading--sizeXXXL, .spectrum:lang(zh) .spectrum-Heading--sizeXXXL {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeXXL, .spectrum:lang(ko) .spectrum-Heading--sizeXXL, .spectrum:lang(zh) .spectrum-Heading--sizeXXL {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeXL, .spectrum:lang(ko) .spectrum-Heading--sizeXL, .spectrum:lang(zh) .spectrum-Heading--sizeXL {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeL, .spectrum:lang(ko) .spectrum-Heading--sizeL, .spectrum:lang(zh) .spectrum-Heading--sizeL {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeM, .spectrum:lang(ko) .spectrum-Heading--sizeM, .spectrum:lang(zh) .spectrum-Heading--sizeM {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeS, .spectrum:lang(ko) .spectrum-Heading--sizeS, .spectrum:lang(zh) .spectrum-Heading--sizeS {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeXS, .spectrum:lang(ko) .spectrum-Heading--sizeXS, .spectrum:lang(zh) .spectrum-Heading--sizeXS {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading--sizeXXS, .spectrum:lang(ko) .spectrum-Heading--sizeXXS, .spectrum:lang(zh) .spectrum-Heading--sizeXXS {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading-sizeXXXL--light, .spectrum:lang(ko) .spectrum-Heading-sizeXXXL--light, .spectrum:lang(zh) .spectrum-Heading-sizeXXXL--light {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading-sizeXXL--light, .spectrum:lang(ko) .spectrum-Heading-sizeXXL--light, .spectrum:lang(zh) .spectrum-Heading-sizeXXL--light {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading-sizeXL--light, .spectrum:lang(ko) .spectrum-Heading-sizeXL--light, .spectrum:lang(zh) .spectrum-Heading-sizeXL--light {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading-sizeL--light, .spectrum:lang(ko) .spectrum-Heading-sizeL--light, .spectrum:lang(zh) .spectrum-Heading-sizeL--light {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading-sizeXXXL--heavy, .spectrum:lang(ko) .spectrum-Heading-sizeXXXL--heavy, .spectrum:lang(zh) .spectrum-Heading-sizeXXXL--heavy {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading-sizeXXL--heavy, .spectrum:lang(ko) .spectrum-Heading-sizeXXL--heavy, .spectrum:lang(zh) .spectrum-Heading-sizeXXL--heavy {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading-sizeXL--heavy, .spectrum:lang(ko) .spectrum-Heading-sizeXL--heavy, .spectrum:lang(zh) .spectrum-Heading-sizeXL--heavy {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading-sizeL--heavy, .spectrum:lang(ko) .spectrum-Heading-sizeL--heavy, .spectrum:lang(zh) .spectrum-Heading-sizeL--heavy {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading-sizeXXXL--heading, .spectrum:lang(ko) .spectrum-Heading-sizeXXXL--heading, .spectrum:lang(zh) .spectrum-Heading-sizeXXXL--heading {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading-sizeXXL--heading, .spectrum:lang(ko) .spectrum-Heading-sizeXXL--heading, .spectrum:lang(zh) .spectrum-Heading-sizeXXL--heading {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading-sizeXL--heading, .spectrum:lang(ko) .spectrum-Heading-sizeXL--heading, .spectrum:lang(zh) .spectrum-Heading-sizeXL--heading {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Heading-sizeL--heading, .spectrum:lang(ko) .spectrum-Heading-sizeL--heading, .spectrum:lang(zh) .spectrum-Heading-sizeL--heading {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Detail--sizeXL, .spectrum:lang(ko) .spectrum-Detail--sizeXL, .spectrum:lang(zh) .spectrum-Detail--sizeXL {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Detail--sizeL, .spectrum:lang(ko) .spectrum-Detail--sizeL, .spectrum:lang(zh) .spectrum-Detail--sizeL {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Detail--sizeM, .spectrum:lang(ko) .spectrum-Detail--sizeM, .spectrum:lang(zh) .spectrum-Detail--sizeM {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Detail--sizeS, .spectrum:lang(ko) .spectrum-Detail--sizeS, .spectrum:lang(zh) .spectrum-Detail--sizeS {
-    
+
     color: var(--spectrum-alias-heading-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Code--sizeXL, .spectrum:lang(ko) .spectrum-Code--sizeXL, .spectrum:lang(zh) .spectrum-Code--sizeXL {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Code--sizeL, .spectrum:lang(ko) .spectrum-Code--sizeL, .spectrum:lang(zh) .spectrum-Code--sizeL {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Code--sizeM, .spectrum:lang(ko) .spectrum-Code--sizeM, .spectrum:lang(zh) .spectrum-Code--sizeM {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Code--sizeS, .spectrum:lang(ko) .spectrum-Code--sizeS, .spectrum:lang(zh) .spectrum-Code--sizeS {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
 .spectrum:lang(ja) .spectrum-Code--sizeXS, .spectrum:lang(ko) .spectrum-Code--sizeXS, .spectrum:lang(zh) .spectrum-Code--sizeXS {
-    
+
     color: var(--spectrum-alias-text-color);
   }
 
@@ -3243,7 +3243,7 @@ a.spectrum-Button {
   visibility: hidden;
 }
 
-[dir="ltr"] .spectrum-Card-quickActions .spectrum-Checkbox,[dir="rtl"] 
+[dir="ltr"] .spectrum-Card-quickActions .spectrum-Checkbox,[dir="rtl"]
   .spectrum-Card-quickActions .spectrum-Checkbox {
     margin: 0;
   }
@@ -3903,12 +3903,12 @@ a.spectrum-Button {
     transform: translate(0, 0);
   }
 
-[dir="ltr"] .spectrum-Checkbox-checkmark,[dir="ltr"] 
+[dir="ltr"] .spectrum-Checkbox-checkmark,[dir="ltr"]
 .spectrum-Checkbox-partialCheckmark {
   left: 50%;
 }
 
-[dir="rtl"] .spectrum-Checkbox-checkmark,[dir="rtl"] 
+[dir="rtl"] .spectrum-Checkbox-checkmark,[dir="rtl"]
 .spectrum-Checkbox-partialCheckmark {
   right: 50%;
 }
@@ -4395,12 +4395,12 @@ a.spectrum-Button {
         align-self: flex-start;
   }
 
-[dir="ltr"] .spectrum-Menu-item .spectrum-Icon + .spectrum-Menu-itemLabel,[dir="ltr"] 
+[dir="ltr"] .spectrum-Menu-item .spectrum-Icon + .spectrum-Menu-itemLabel,[dir="ltr"]
   .spectrum-Menu-item .spectrum-Menu-itemIcon + .spectrum-Menu-itemLabel {
     margin-left: var(--spectrum-listitem-icon-gap);
 }
 
-[dir="rtl"] .spectrum-Menu-item .spectrum-Icon + .spectrum-Menu-itemLabel,[dir="rtl"] 
+[dir="rtl"] .spectrum-Menu-item .spectrum-Icon + .spectrum-Menu-itemLabel,[dir="rtl"]
   .spectrum-Menu-item .spectrum-Menu-itemIcon + .spectrum-Menu-itemLabel {
     margin-right: var(--spectrum-listitem-icon-gap);
 }
@@ -4434,12 +4434,12 @@ a.spectrum-Button {
       align-self: flex-start;
 }
 
-[dir="ltr"] .spectrum-Menu-checkmark,[dir="ltr"] 
+[dir="ltr"] .spectrum-Menu-checkmark,[dir="ltr"]
 .spectrum-Menu-chevron {
   margin-left: var(--spectrum-listitem-icon-gap);
 }
 
-[dir="rtl"] .spectrum-Menu-checkmark,[dir="rtl"] 
+[dir="rtl"] .spectrum-Menu-checkmark,[dir="rtl"]
 .spectrum-Menu-chevron {
   margin-right: var(--spectrum-listitem-icon-gap);
 }
@@ -4495,12 +4495,12 @@ a.spectrum-Button {
   color: var(--spectrum-alias-text-color);
 }
 
-[dir="ltr"] .spectrum-Menu-item.focus-ring,[dir="ltr"] 
+[dir="ltr"] .spectrum-Menu-item.focus-ring,[dir="ltr"]
   .spectrum-Menu-item.is-focused {
     border-left-color: var(--spectrum-alias-border-color-focus);
 }
 
-[dir="rtl"] .spectrum-Menu-item.focus-ring,[dir="rtl"] 
+[dir="rtl"] .spectrum-Menu-item.focus-ring,[dir="rtl"]
   .spectrum-Menu-item.is-focused {
     border-right-color: var(--spectrum-alias-border-color-focus);
 }
@@ -6222,18 +6222,18 @@ main div.second-column div.product-link-container {
     flex-direction: row;
 }
 
-main div.second-column div.product-link-container p.icon-container { 
+main div.second-column div.product-link-container p.icon-container {
     display: flex;
     align-items: center;
 }
 
-main div.second-column div.product-link-container img.icon { 
+main div.second-column div.product-link-container img.icon {
     height: var(--spectrum-global-dimension-size-400);
     width: var(--spectrum-global-dimension-size-400);
     object-fit: contain;
 }
 
-main div.second-column div.product-link-container a { 
+main div.second-column div.product-link-container a {
     margin-left: var(--spectrum-global-dimension-size-100);
 }
 
@@ -6626,7 +6626,7 @@ html, body {
 header.main-header {
   grid-area: header;
   position: fixed;
-  height: var(--spectrum-global-dimension-size-1000);
+  height: var(--spectrum-global-dimension-size-800);
   left: 0;
   right: 0;
   background-color: var(--spectrum-global-color-gray-50);
@@ -6792,12 +6792,13 @@ header.global-nav-header {
   position: sticky;
   top: 0;
   display: flex;
-  height: 60px;
   padding-left: 24px;
   border-bottom: 1px solid #eaeaea;
   text-decoration: none;
   background-color: #fff;
   z-index: 10;
+  padding-left: var(--spectrum-global-dimension-size-400);
+  padding-right: var(--spectrum-global-dimension-size-400);
 }
 
 header.global-nav-header img.icon {
@@ -6816,14 +6817,15 @@ header.global-nav-header p {
 }
 
 header.global-nav-header strong.icon-adobe-label {
-  color: #fa0f00;
-  font-size: 15px;
+  color: #000000;
+  font-size: var(--spectrum-global-dimension-size-200);
   white-space: nowrap;
 }
 
 header.global-nav-header div.nav-view-docs-button {
   display: flex;
   margin-left: 16px;
+  align-items: center;
 }
 
 header.global-nav-header > ul#navigation-links {
@@ -6848,7 +6850,7 @@ header.global-nav-header > ul#navigation-links > li.navigation-products a {
 }
 
 header.global-nav-header > ul#navigation-links > li > a {
-  line-height: 60px;
+  line-height: 64px;
   display: block;
   padding: 0 12px;
   text-decoration: none;
@@ -6856,7 +6858,7 @@ header.global-nav-header > ul#navigation-links > li > a {
 }
 
 header.global-nav-header > ul#navigation-links > li > button {
-  height: 60px;
+  height: 64px;
   padding: 0 12px;
   color: var(--spectrum-global-color-gray-700);
 }
@@ -6869,7 +6871,6 @@ header.global-nav-header > ul#navigation-links > li > button:hover {
 
 header.global-nav-header > ul#navigation-links > li.navigation-products a {
   display: block;
-  vertical-align: middle;
   padding: 0 24px;
   height: 100%;
 }
