@@ -887,7 +887,7 @@ let $CURRENT_API_FILTERS = [];
               <a href="https://account.adobe.com/" class="spectrum-Button spectrum-Button--primary spectrum-Button--quiet spectrum-Button--sizeM">
                 Edit Profile
               </a>
-              <a href="https://account.adobe.com/" id="signOut" class="spectrum-Button spectrum-Button--primary spectrum-Button--quiet spectrum-Button--sizeM">
+              <a href="https://account.adobe.com/" id="signOut" class="spectrum-Button spectrum-Button--secondary spectrum-Button--sizeM nav-profile-popover-sign-out">
                 Sign out
               </a>
             </div>
