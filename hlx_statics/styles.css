@@ -333,15 +333,25 @@ header.global-nav-header div.nav-profile-popover-avatar {
 header.global-nav-header div.nav-profile-popover-name {
   padding: 0 var(--spectrum-global-dimension-size-200);
   text-align: center;
+  color: var(--spectrum-global-color-gray-800);
+  margin-bottom: var(--spectrum-global-dimension-size-300);
 }
 
 header.global-nav-header div.nav-profile-popover-divider {
-  margin: var(--spectrum-global-dimension-size-200) 0;
-  padding: 0 var(--spectrum-global-dimension-size-200);
+  margin-bottom: var(--spectrum-global-dimension-size-250);
+  padding: 0 var(--spectrum-global-dimension-size-250);
   box-sizing: border-box;
   width: 100%;
+  color: var(--spectrum-global-color-gray-300);
 }
 
+header.global-nav-header div.nav-profile-popover-edit {
+  padding: 0 var(--spectrum-global-dimension-size-250);
+}
+
+header.global-nav-header div.nav-profile-popover-sign-out {
+  padding: 0 var(--spectrum-global-dimension-size-300);
+}
 
 footer {
   position: relative;

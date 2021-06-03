@@ -862,7 +862,7 @@ let $CURRENT_API_FILTERS = [];
 
   function globalNavProfileTemplate(profile) {
     return `
-      <div class="nav-profile">
+      <div class="nav-profile spectrum--lightest">
         <button id="nav-profile-dropdown-button" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet  navigation-dropdown">
           <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Profile">
             <use xlink:href="#spectrum-icon-24-RealTimeCustomerProfile"></use>
@@ -884,7 +884,7 @@ let $CURRENT_API_FILTERS = [];
               <div class="nav-profile-popover-divider">
                 <hr />
               </div>
-              <a href="https://account.adobe.com/" class="spectrum-Button spectrum-Button--primary spectrum-Button--quiet spectrum-Button--sizeM">
+              <a href="https://account.adobe.com/" class="spectrum-Button spectrum-Button--primary spectrum-Button--quiet spectrum-Button--sizeM nav-profile-popover-edit">
                 Edit Profile
               </a>
               <a href="https://account.adobe.com/" id="signOut" class="spectrum-Button spectrum-Button--secondary spectrum-Button--sizeM nav-profile-popover-sign-out">
