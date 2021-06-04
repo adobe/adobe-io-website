@@ -888,7 +888,7 @@ let $CURRENT_API_FILTERS = [];
               <a href="https://account.adobe.com/" class="spectrum-Button spectrum-Button--primary spectrum-Button--quiet spectrum-Button--sizeM nav-profile-popover-edit">
                 Edit Profile
               </a>
-              <a href="https://account.adobe.com/" id="signOut" class="spectrum-Button spectrum-Button--secondary spectrum-Button--sizeM nav-profile-popover-sign-out">
+              <a href="#" id="signOut" class="spectrum-Button spectrum-Button--secondary spectrum-Button--sizeM nav-profile-popover-sign-out">
                 Sign out
               </a>
             </div>
@@ -927,6 +927,7 @@ let $CURRENT_API_FILTERS = [];
 
     const $signOut = $parentContainer.querySelector('#signOut');
     $signOut.addEventListener('click', (evt) => {
+      evt.preventDefault();
       adobeIMSMethods.signOut();
     });
   }
