@@ -318,7 +318,7 @@ header.global-nav-header div#nav-profile-dropdown-popover {
   width: var(--spectrum-global-dimension-size-3400);
   max-height: var(--spectrum-global-dimension-size-4600);
   right: 0;
-  top: calc(64px - translateY(var(--spectrum-overlay-animation-distance)));
+  top: calc(64px - var(--spectrum-overlay-animation-distance));
 }
 
 header.global-nav-header div.nav-profile-popover-innerContainer {
@@ -353,11 +353,11 @@ header.global-nav-header div.nav-profile-popover-divider {
   color: var(--spectrum-global-color-gray-300);
 }
 
-header.global-nav-header div.nav-profile-popover-edit {
+header.global-nav-header a.nav-profile-popover-edit {
   padding: 0 var(--spectrum-global-dimension-size-250);
 }
 
-header.global-nav-header div.nav-profile-popover-sign-out {
+header.global-nav-header a.nav-profile-popover-sign-out {
   padding: 0 var(--spectrum-global-dimension-size-300);
   margin-bottom: var(--spectrum-global-dimension-size-300);
 }
