@@ -354,7 +354,7 @@ header.global-nav-header div.nav-profile-popover-divider {
 }
 
 header.global-nav-header a.nav-profile-popover-edit {
-  padding: 0 var(--spectrum-global-dimension-size-250);
+  margin-bottom: var(--spectrum-global-dimension-size-250);
 }
 
 header.global-nav-header a.nav-profile-popover-sign-out {
