@@ -6926,8 +6926,8 @@ header.global-nav-header div.nav-sign-in {
 header.global-nav-header div#nav-profile-dropdown-popover {
   width: var(--spectrum-global-dimension-size-3400);
   max-height: var(--spectrum-global-dimension-size-4600);
-  margin-left: -400px !important;
-  margin-top: 60px !important;
+  right: 0;
+  top: calc(64px - translateY(var(--spectrum-overlay-animation-distance)));
 }
 
 header.global-nav-header div.nav-profile-popover-innerContainer {
@@ -6968,6 +6968,7 @@ header.global-nav-header div.nav-profile-popover-edit {
 
 header.global-nav-header div.nav-profile-popover-sign-out {
   padding: 0 var(--spectrum-global-dimension-size-300);
+  margin-bottom: var(--spectrum-global-dimension-size-300);
 }
 
 footer {
