@@ -6927,7 +6927,7 @@ header.global-nav-header div#nav-profile-dropdown-popover {
   width: var(--spectrum-global-dimension-size-3400);
   max-height: var(--spectrum-global-dimension-size-4600);
   right: 0;
-  top: calc(64px - var(--spectrum-overlay-animation-distance));
+  top: calc(64px - var(--spectrum-overlay-animation-distance) + 1);
 }
 
 header.global-nav-header div.nav-profile-popover-innerContainer {
@@ -6945,6 +6945,11 @@ header.global-nav-header div.nav-profile-popover-avatar {
   overflow: hidden;
   margin-top: var(--spectrum-global-dimension-size-200);
   margin-bottom: var(--spectrum-global-dimension-size-300);
+}
+
+header.global-nav-header div.nav-profile-popover-avatar > img{
+  width: 75px;
+  height: 75px;
 }
 
 header.global-nav-header div.nav-profile-popover-name {
