@@ -226,11 +226,20 @@ header.global-nav-header div.nav-view-docs-button {
 }
 
 header.global-nav-header > ul#navigation-links {
+  overflow-x: auto;
+  overflow-x: overlay;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   list-style: none;
   margin-top: 0;
   margin-bottom: 0;
   padding-left: 24px;
   display: flex;
+}
+
+header.global-nav-header > ul#navigation-links::-webkit-scrollbar  {
+  display: none;
 }
 
 header.global-nav-header > ul#navigation-links > li.navigation-products {
