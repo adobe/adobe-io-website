@@ -245,6 +245,7 @@ header.global-nav-header > ul#navigation-links::-webkit-scrollbar  {
 }
 
 header.global-nav-header > ul#navigation-links > li.navigation-products {
+  border-left: 1px solid #eaeaea;
   border-right: 1px solid #eaeaea;
   padding: 0;
   margin-right: 16px;
