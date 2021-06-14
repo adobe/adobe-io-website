@@ -844,17 +844,39 @@ let $CURRENT_API_FILTERS = [];
   }
 
   async function fetchNav() {
-    const $localNavPath = window.location.pathname.split('/')[1];
-    //const resp = await fetch(`/${$localNavPath}/nav`);
-    //return (await resp.json()).data;
-    fetch(`/${$localNavPath}/nav`).then(($resp)=> {
-      const $parser = new DOMParser();
-	    const $doc = parser.parseFromString(html, 'text/html');
-      console.log(doc);
-    }).catch(($err) => {
-      console.log('Unable to retrieve nav');
-    })
+    let $localNavPath = window.location.pathname.split('/')[1];
+    if($localNavPath === '') {
+      $localNavPath = '/nav';
+    } else {
+      $localNavPath = `/${$localNavPath}/nav`;
+    }
+    const $resp = await fetch($localNavPath);
+    let $html = await $resp.text();
 
+    const $parser = new DOMParser();
+    const $doc = $parser.parseFromString($html, 'text/html');
+    const $navItems = $doc.querySelectorAll('.nav div > ul');
+    let $navJSON = [];
+    if($navItems.length > 0) {
+      $navItems[0].childNodes.forEach(($node) => {
+        // find child nodes that aren't text
+        if($node.nodeType === 1) {
+          if($node.querySelector('ul') !== null) {
+            let $nestedLink = { "name" : $node.childNodes[0].wholeText, "links" : [] };
+            $node.querySelectorAll('li').forEach(($nestedNode) => {
+              let $url = $nestedNode.querySelector('a');
+              $nestedLink["links"].push({ "name" : $nestedNode.innerText, "url": $url.href })
+            });
+            $navJSON.push($nestedLink);
+          } else {
+            let $url = $node.querySelector('a');
+            let $nestedLink = { "name" : $node.innerText, "links" : [{ "url": $url.href }] };
+            $navJSON.push($nestedLink);
+          }
+        }
+      });
+    }
+    return $navJSON;
   }
 
   function decorateProfile(profile) {
@@ -906,53 +928,104 @@ let $CURRENT_API_FILTERS = [];
             $linkHTML += globalNavLinkItemDropdown(index, $link.name, $dropdownLinkHTML);
           }
         });
+
+        $linkContainerHTML = globalNavLinks($linkHTML);
+        $header.innerHTML = globalNavTemplate($linkContainerHTML);
+
+        let $currentHeader = $header;
+        $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
+          if($button.id.indexOf('nav-dropdown-button') >= 0) {
+            let $index = $button.id.split('_')[1];
+            let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
+
+            $button.addEventListener('click', (evt) => {
+              if(!evt.currentTarget.classList.contains('is-open')){
+                $button.classList.add('is-open');
+                $dropdownPopover.classList.add('is-open');
+                $dropdownPopover.ariaHidden = false;
+              } else {
+                $button.classList.remove('is-open');
+                $dropdownPopover.classList.remove('is-open');
+                $dropdownPopover.ariaHidden = false;
+              }
+            });
+          } else if($button.id.indexOf('nav-profile-dropdown-button') >=0 ) {
+
+            let $profileDropdownPopover = $currentHeader.querySelector('div#nav-profile-dropdown-popover');
+
+            $button.addEventListener('click', (evt) => {
+              if(!evt.currentTarget.classList.contains('is-open')){
+                $button.classList.add('is-open');
+                $profileDropdownPopover.classList.add('is-open');
+                $profileDropdownPopover.ariaHidden = false;
+              } else {
+                $button.classList.remove('is-open');
+                $profileDropdownPopover.classList.remove('is-open');
+                $profileDropdownPopover.ariaHidden = false;
+              }
+            });
+          }
+        });
+
+        const $signIn = $header.querySelector('#signIn');
+        $signIn.addEventListener('click', (evt) => {
+          adobeIMSMethods.signIn();
+        });
       } else {
         $linkHTML += globalNavLinkItem({name: 'Products', url: '/apis'}, true);
-        fetchNav();
+        fetchNav().then($discoveryLinks => {
+          $discoveryLinks.forEach(($link, index) => {
+            if($link.links.length === 1) {
+              $linkHTML += globalNavLinkItem($link, false);
+            } else {
+              let $dropdownLinkHTML = '';
+              $link.links.forEach(($dropDownLink) => {
+                $dropdownLinkHTML += globalNavLinkItemDropdownItem($dropDownLink);
+              });
+  
+              // use the index from the array to assign unique dropdown id
+              $linkHTML += globalNavLinkItemDropdown(index, $link.name, $dropdownLinkHTML);
+            }
+          });
+          $linkContainerHTML = globalNavLinks($linkHTML);
+          $header.innerHTML = globalNavTemplate($linkContainerHTML);
+
+          let $currentHeader = $header;
+          $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
+            if($button.id.indexOf('nav-dropdown-button') >= 0) {
+              let $index = $button.id.split('_')[1];
+              let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
+
+              $button.addEventListener('click', (evt) => {
+                if(!evt.currentTarget.classList.contains('is-open')){
+                  $button.classList.add('is-open');
+                  $dropdownPopover.classList.add('is-open');
+                  $dropdownPopover.ariaHidden = false;
+                } else {
+                  $button.classList.remove('is-open');
+                  $dropdownPopover.classList.remove('is-open');
+                  $dropdownPopover.ariaHidden = false;
+                }
+              });
+            } else if($button.id.indexOf('nav-profile-dropdown-button') >=0 ) {
+
+              let $profileDropdownPopover = $currentHeader.querySelector('div#nav-profile-dropdown-popover');
+
+              $button.addEventListener('click', (evt) => {
+                if(!evt.currentTarget.classList.contains('is-open')){
+                  $button.classList.add('is-open');
+                  $profileDropdownPopover.classList.add('is-open');
+                  $profileDropdownPopover.ariaHidden = false;
+                } else {
+                  $button.classList.remove('is-open');
+                  $profileDropdownPopover.classList.remove('is-open');
+                  $profileDropdownPopover.ariaHidden = false;
+                }
+              });
+            }
+          });
+        });
       }
-
-      $linkContainerHTML = globalNavLinks($linkHTML);
-      $header.innerHTML = globalNavTemplate($linkContainerHTML);
-      const $currentHeader = $header;
-
-      $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
-        if($button.id.indexOf('nav-dropdown-button') >= 0) {
-          let $index = $button.id.split('_')[1];
-          let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
-
-          $button.addEventListener('click', (evt) => {
-            if(!evt.currentTarget.classList.contains('is-open')){
-              $button.classList.add('is-open');
-              $dropdownPopover.classList.add('is-open');
-              $dropdownPopover.ariaHidden = false;
-            } else {
-              $button.classList.remove('is-open');
-              $dropdownPopover.classList.remove('is-open');
-              $dropdownPopover.ariaHidden = false;
-            }
-          });
-        } else if($button.id.indexOf('nav-profile-dropdown-button') >=0 ) {
-
-          let $profileDropdownPopover = $currentHeader.querySelector('div#nav-profile-dropdown-popover');
-
-          $button.addEventListener('click', (evt) => {
-            if(!evt.currentTarget.classList.contains('is-open')){
-              $button.classList.add('is-open');
-              $profileDropdownPopover.classList.add('is-open');
-              $profileDropdownPopover.ariaHidden = false;
-            } else {
-              $button.classList.remove('is-open');
-              $profileDropdownPopover.classList.remove('is-open');
-              $profileDropdownPopover.ariaHidden = false;
-            }
-          });
-        }
-      })
-
-      const $signIn = $header.querySelector('#signIn');
-      $signIn.addEventListener('click', (evt) => {
-        adobeIMSMethods.signIn();
-      });
     });
   }
 
