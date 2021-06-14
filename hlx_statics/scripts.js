@@ -777,7 +777,7 @@ let $CURRENT_API_FILTERS = [];
   function globalNavLinkItemDropdownItem(link) {
     return `
       <li class="spectrum-Menu-item">
-        <span class="spectrum-Menu-itemLabel"><a href="${link.url}">${link.name}</a></span>
+        <span class="spectrum-Menu-itemLabel"><a href="${link.url}" class="nav-dropdown-links">${link.name}</a></span>
       </li>
     `;
   }

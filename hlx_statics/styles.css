@@ -306,6 +306,15 @@ header.global-nav-header div.nav-dropdown-popover {
   margin-left: -1px;
 }
 
+header.global-nav-header a.nav-dropdown-links {
+  text-decoration: none;
+  color: var(--spectrum-global-color-gray-700);
+}
+
+header.global-nav-header a.nav-dropdown-links:visited {
+  color: var(--spectrum-global-color-gray-700);
+}
+
 header.global-nav-header div.nav-console-right-container {
   margin-left: auto;
   display: flex;
