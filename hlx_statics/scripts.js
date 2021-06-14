@@ -1,22 +1,3 @@
-// window.adobeid = {
-//   client_id: 'IMSLibJSTestClient',
-//   scope: 'AdobeID,openid',
-//   locale: 'en_US',
-//   environment: 'stg1',
-//   useLocalStorage: false,
-//   onAccessToken: function (tokenInformation) {
-//   },
-//   onReauthAccessToken: function (reauthTokenInformation) {
-//   },
-//   onError: function (error) {
-//   },
-//   onAccessTokenHasExpired: function() {
-//   },
-//   onReady: function(appState) {
-//     console.log('adobe id ready')
-//   }
-// };
-
 window.adobeid = {
   client_id: "helix_adobeio",
   scope:
@@ -62,6 +43,32 @@ window.adobeIMSMethods = {
 // See https://github.com/adobe/react-spectrum/blob/dac6d273a9843694a652d7513ff88f6a9c773887/packages/%40react-spectrum/utils/src/useIsMobileDevice.ts#L15
 const MOBILE_SCREEN_WIDTH = 700;
 const LARGE_SCREEN_WIDTH = 1280;
+
+const $HEADER_LINKS = 
+[
+  {
+    "name" : "Home",
+    "links" : [
+      { "url": 'https://www.adobe.io' }
+    ]
+  },
+  {
+    "name" : "Products",
+    "links" : [
+      { "url": 'https://www.adobe.io/apis' }
+    ]
+  },
+  {
+    "name" : "Community",
+    "links" : [
+      { "name": "Tech Blog", "url": 'https://medium.com/adobetech' },
+      { "name": "Open Source at Adobe", "url": 'https://www.adobe.io/open' },
+      { "name": "Adobe on Github", "url": 'https://github.com/adobe' },
+      { "name": "Developer Support", "url": 'https://www.adobe.io/support' },
+      { "name": "Experience League Community", "url": 'https://www.adobe.com/communities/index.html' },
+    ]
+  }
+];
 
 const $FOOTER_LINKS =
 [
@@ -700,61 +707,18 @@ let $CURRENT_API_FILTERS = [];
     `
   }
 
-  function globalNavTemplate() {
+  function globalNavTemplate(links, consoleButton = '', searchButton = '') {
     return `
       <p class="icon-adobe-container">
         <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
         <strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">Adobe I/O</strong>
       </p>
 
-      <ul id="navigation-links">
-        <li class="navigation-products">
-          <a href="/apis">Products</a>
-        </li>
-        <li>
-          <a href="/apis">Adobe Document Services</a>
-        </li>
-        <li>
-          <button id="nav-dropdown-button_0" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet navigation-dropdown" aria-haspopup="listbox">
-            <span class="spectrum-Picker-label">
-              Community
-            </span>
-            <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
-              <use xlink:href="#spectrum-css-icon-Chevron100" />
-            </svg>
-          </button>
-          <div id="nav-dropdown-popover_0" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover nav-dropdown-popover">
-            <ul class="spectrum-Menu" role="menu">
-              <li class="spectrum-Menu-item">
-                <span class="spectrum-Menu-itemLabel">Document Generation</span>
-              </li>
-              <li class="spectrum-Menu-item">
-                <span class="spectrum-Menu-itemLabel">PDF Embed</span>
-              </li>
-              <li class="spectrum-Menu-item">
-                <span class="spectrum-Menu-itemLabel">PDF Tools</span>
-              </li>
-            </ul>
-          </div>
-        </li>
-      </ul>
-
-      <div class="nav-view-docs-button">
-        <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
-          <span class="spectrum-Button-label">
-            View Docs
-          </span>
-        </a>
-      </div>
+      ${links}
+      ${consoleButton}
 
       <div class ="nav-console-right-container">
-        <div class="nav-console-search-button">
-          <button id="nav-dropdown-search" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--emphasized spectrum-ActionButton--quiet">
-            <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Edit">
-              <use xlink:href="#spectrum-icon-24-Search"></use>
-            </svg>
-          </button>
-        </div>
+        ${searchButton}
 
         <div class="nav-console-button">
           <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
@@ -773,93 +737,107 @@ let $CURRENT_API_FILTERS = [];
     `
   }
 
+  function globalNavLinks(links) {
+    return `
+      <ul id="navigation-links">
+        ${links}
+      </ul>
+    `;
+  }
 
+  function globalNavLinkItem(link, isProduct = false) {
+    return `
+      <li class="${isProduct ? 'navigation-products' : ''}">
+        <a href="${link.href}">${link.name}</a>
+      </li>
+    `;
 
-//   <div hidden={!profile}>
-//   <div
-//     aria-controls={profilePopoverId}
-//     onClick={(event) => {
-//       event.stopPropagation();
-//       event.nativeEvent.stopImmediatePropagation();
+  }
 
-//       setOpenProfile((open) => !open);
-//     }}
-//     css={css`
-//       width: var(--spectrum-global-dimension-size-400);
-//       height: var(--spectrum-global-dimension-size-400);
-//       border-radius: var(--spectrum-global-dimension-static-percent-50);
-//       background: var(--spectrum-global-color-gray-50);
-//       overflow: hidden;
-//       cursor: pointer;
-//     `}>
-//     <Image alt="Avatar" src={profile ? ims.avatarUrl(profile.userId) : ''} />
-//   </div>
-//   <Popover
-//     id={profilePopoverId}
-//     ref={profilePopover}
-//     isOpen={openProfile}
-//     css={css`
-//       width: var(--spectrum-global-dimension-size-3400);
-//       max-height: var(--spectrum-global-dimension-size-4600);
-//       margin-left: calc(-1 * var(--spectrum-global-dimension-size-3000));
-//     `}>
-//     <div
-//       css={css`
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//         flex-direction: column;
-//       `}>
-//       <div
-//         css={css`
-//           width: var(--spectrum-global-dimension-size-800);
-//           height: var(--spectrum-global-dimension-size-800);
-//           border-radius: var(--spectrum-global-dimension-static-percent-50);
-//           background: var(--spectrum-global-color-gray-50);
-//           overflow: hidden;
-//           margin-top: var(--spectrum-global-dimension-size-400);
-//           margin-bottom: var(--spectrum-global-dimension-size-200);
-//         `}>
-//         <Image alt="Avatar" src={profile ? ims.avatarUrl(profile.userId) : ''} />
-//       </div>
+  function globalNavLinkItemDropdown(id, name, links) {
+    return `
+      <li>
+        <button id="nav-dropdown-button_${id}" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet navigation-dropdown" aria-haspopup="listbox">
+          <span class="spectrum-Picker-label">
+            ${name}
+          </span>
+          <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
+            <use xlink:href="#spectrum-css-icon-Chevron100" />
+          </svg>
+        </button>
+        <div id="nav-dropdown-popover_${id}" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover nav-dropdown-popover">
+          <ul class="spectrum-Menu" role="menu">
+            ${links}
+          </ul>
+        </div>
+      </li>
+    `;
+  }
 
-//       <div
-//         className="spectrum-Heading spectrum-Heading--sizeL spectrum-Heading--light"
-//         css={css`
-//           padding: 0 var(--spectrum-global-dimension-size-200);
-//           text-align: center;
-//         `}>
-//         {profile && profile.displayName}
-//       </div>
+  function globalNavLinkItemDropdownItem(link) {
+    return `
+      <li class="spectrum-Menu-item">
+        <span class="spectrum-Menu-itemLabel"><a href="${link.url}">${link.name}</a></span>
+      </li>
+    `;
+  }
 
-//       <div
-//         css={css`
-//           margin: var(--spectrum-global-dimension-size-200) 0;
-//           padding: 0 var(--spectrum-global-dimension-size-200);
-//           box-sizing: border-box;
-//           width: 100%;
-//         `}>
-//         <Divider size="S" />
-//       </div>
+  function globalNavConsoleButton() {
+    return `
+      <div class="nav-view-docs-button">
+        <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+          <span class="spectrum-Button-label">
+            View Docs
+          </span>
+        </a>
+      </div>
+    `;
+  }
 
-//       <AnchorButton href="https://account.adobe.com/" variant="primary" isQuiet>
-//         Edit Profile
-//       </AnchorButton>
+  function globalNavSearchButton() {
+    return `
+      <div class="nav-console-search-button">
+        <button id="nav-dropdown-search" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--emphasized spectrum-ActionButton--quiet">
+          <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Edit">
+            <use xlink:href="#spectrum-icon-24-Search"></use>
+          </svg>
+        </button>
+      </div>
+    `;
+  }
 
-//       <Button
-//         variant="primary"
-//         css={css`
-//           margin: var(--spectrum-global-dimension-size-200) 0;
-//         `}
-//         onClick={() => {
-//           ims.signOut();
-//         }}>
-//         Sign out
-//       </Button>
-//     </div>
-//   </Popover>
-// </div>
-// </div>
+    // <ul id="navigation-links">  
+    //     <li class="navigation-products">
+    //       <a href="/apis">Products</a>
+    //     </li>
+    //     <li>
+    //       <a href="/apis">Adobe Document Services</a>
+    //     </li>
+    //     <li>
+          // <button id="nav-dropdown-button_0" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet navigation-dropdown" aria-haspopup="listbox">
+          //   <span class="spectrum-Picker-label">
+          //     Community
+          //   </span>
+          //   <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
+          //     <use xlink:href="#spectrum-css-icon-Chevron100" />
+          //   </svg>
+          // </button>
+          // <div id="nav-dropdown-popover_0" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover nav-dropdown-popover">
+          //   <ul class="spectrum-Menu" role="menu">
+          //     <li class="spectrum-Menu-item">
+          //       <span class="spectrum-Menu-itemLabel">Document Generation</span>
+          //     </li>
+          //     <li class="spectrum-Menu-item">
+          //       <span class="spectrum-Menu-itemLabel">PDF Embed</span>
+          //     </li>
+          //     <li class="spectrum-Menu-item">
+          //       <span class="spectrum-Menu-itemLabel">PDF Tools</span>
+          //     </li>
+          //   </ul>
+          // </div>
+    //     </li>
+    //   </ul>
+  
 
   function globalNavProfileTemplate(profile) {
     return `
@@ -980,8 +958,26 @@ let $CURRENT_API_FILTERS = [];
       document.querySelectorAll('header').forEach(($header) => {
         $header.classList.add('main-header');
         $header.classList.add('global-nav-header');
-        $header.innerHTML = globalNavTemplate('');
 
+        // TODO get way to generically get those navs
+        
+        let $linkHTML = '';
+        $HEADER_LINKS.forEach(($link, index) => {
+          if($link.links.length === 1) {
+            $linkHTML += globalNavLinkItem($link, false);
+          } else {
+            let $dropdownLinkHTML = '';
+            $link.links.forEach(($dropDownLink) => {
+              $dropdownLinkHTML += globalNavLinkItemDropdownItem($dropDownLink);
+            });
+
+            // use the index from the array to assign unique dropdown id
+            $linkHTML += globalNavLinkItemDropdown(index, $link.name, $dropdownLinkHTML);
+          }
+        });
+
+        $linkContainerHTML = globalNavLinks($linkHTML);
+        $header.innerHTML = globalNavTemplate($linkContainerHTML);
         const $currentHeader = $header;
 
         $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
