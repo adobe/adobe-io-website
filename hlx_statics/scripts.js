@@ -748,7 +748,7 @@ let $CURRENT_API_FILTERS = [];
   function globalNavLinkItem(link, isProduct = false) {
     return `
       <li class="${isProduct ? 'navigation-products' : ''}">
-        <a href="${link.href}">${link.name}</a>
+        <a href="${link.url}">${link.name}</a>
       </li>
     `;
 
@@ -806,39 +806,6 @@ let $CURRENT_API_FILTERS = [];
     `;
   }
 
-    // <ul id="navigation-links">  
-    //     <li class="navigation-products">
-    //       <a href="/apis">Products</a>
-    //     </li>
-    //     <li>
-    //       <a href="/apis">Adobe Document Services</a>
-    //     </li>
-    //     <li>
-          // <button id="nav-dropdown-button_0" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet navigation-dropdown" aria-haspopup="listbox">
-          //   <span class="spectrum-Picker-label">
-          //     Community
-          //   </span>
-          //   <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
-          //     <use xlink:href="#spectrum-css-icon-Chevron100" />
-          //   </svg>
-          // </button>
-          // <div id="nav-dropdown-popover_0" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover nav-dropdown-popover">
-          //   <ul class="spectrum-Menu" role="menu">
-          //     <li class="spectrum-Menu-item">
-          //       <span class="spectrum-Menu-itemLabel">Document Generation</span>
-          //     </li>
-          //     <li class="spectrum-Menu-item">
-          //       <span class="spectrum-Menu-itemLabel">PDF Embed</span>
-          //     </li>
-          //     <li class="spectrum-Menu-item">
-          //       <span class="spectrum-Menu-itemLabel">PDF Tools</span>
-          //     </li>
-          //   </ul>
-          // </div>
-    //     </li>
-    //   </ul>
-  
-
   function globalNavProfileTemplate(profile) {
     return `
       <div class="nav-profile spectrum--lightest">
@@ -875,10 +842,19 @@ let $CURRENT_API_FILTERS = [];
       </div>
     `
   }
+
   async function fetchNav() {
     const $localNavPath = window.location.pathname.split('/')[1];
-    const resp = await fetch(`/${$localNavPath}/nav.json`);
-    return (await resp.json()).data;
+    //const resp = await fetch(`/${$localNavPath}/nav`);
+    //return (await resp.json()).data;
+    fetch(`/${$localNavPath}/nav`).then(($resp)=> {
+      const $parser = new DOMParser();
+	    const $doc = parser.parseFromString(html, 'text/html');
+      console.log(doc);
+    }).catch(($err) => {
+      console.log('Unable to retrieve nav');
+    })
+
   }
 
   function decorateProfile(profile) {
@@ -911,57 +887,12 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function decorateHeader() {
-    if(window.location.pathname === '/apis' || window.location.pathname === '/apis/') {
-      document.querySelectorAll('header').forEach(($header) => {
-        $header.classList.add('main-header');
-        const $mainHeaderLinks = `
-          <li class="header-list-item">
-            <a href="/apis" class="header-list-item-link">
-              Discover
-            </a>
-          </li>
-          <li class="header-list-item">
-            <a href="/open" class="header-list-item-link">
-              Open Source
-            </a>
-          </li>
-          <li class="header-list-item">
-            <a href="https://medium.com/adobetech" class="header-list-item-link">
-              Blog
-            </a>
-          </li>
-          <li class="header-list-item header-list-item-button">
-            <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--cta spectrum-Button--sizeM">
-              <span class="spectrum-Button-label">Console</span>
-            </a>
-          </li>
-        `;
+    document.querySelectorAll('header').forEach(($header) => {
+      $header.classList.add('main-header');
+      $header.classList.add('global-nav-header');
 
-        const $mainHeaderTemplate = `
-          <nav class="header-nav">
-          <a href="/" class="header-main-link">
-            <span class="header-label">
-              Adobe I/O
-            </span>
-          </a>
-          <div class="header-link-container">
-            <ul class="header-list">
-              ${$mainHeaderLinks}
-            </ul>
-          </div>
-        </nav>
-        `;
-
-        $header.innerHTML = $mainHeaderTemplate;
-      });
-    } else {
-      document.querySelectorAll('header').forEach(($header) => {
-        $header.classList.add('main-header');
-        $header.classList.add('global-nav-header');
-
-        // TODO get way to generically get those navs
-        
-        let $linkHTML = '';
+      let $linkHTML = '';
+      if(window.location.pathname === '/apis' || window.location.pathname === '/apis/') {
         $HEADER_LINKS.forEach(($link, index) => {
           if($link.links.length === 1) {
             $linkHTML += globalNavLinkItem($link, false);
@@ -975,73 +906,54 @@ let $CURRENT_API_FILTERS = [];
             $linkHTML += globalNavLinkItemDropdown(index, $link.name, $dropdownLinkHTML);
           }
         });
+      } else {
+        $linkHTML += globalNavLinkItem({name: 'Products', url: '/apis'}, true);
+        fetchNav();
+      }
 
-        $linkContainerHTML = globalNavLinks($linkHTML);
-        $header.innerHTML = globalNavTemplate($linkContainerHTML);
-        const $currentHeader = $header;
+      $linkContainerHTML = globalNavLinks($linkHTML);
+      $header.innerHTML = globalNavTemplate($linkContainerHTML);
+      const $currentHeader = $header;
 
-        $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
-          if($button.id.indexOf('nav-dropdown-button') >= 0) {
-            let $index = $button.id.split('_')[1];
-            let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
+      $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
+        if($button.id.indexOf('nav-dropdown-button') >= 0) {
+          let $index = $button.id.split('_')[1];
+          let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
 
-            $button.addEventListener('click', (evt) => {
-              if(!evt.currentTarget.classList.contains('is-open')){
-                $button.classList.add('is-open');
-                $dropdownPopover.classList.add('is-open');
-                $dropdownPopover.ariaHidden = false;
-              } else {
-                $button.classList.remove('is-open');
-                $dropdownPopover.classList.remove('is-open');
-                $dropdownPopover.ariaHidden = false;
-              }
-            });
-          } else if($button.id.indexOf('nav-profile-dropdown-button') >=0 ) {
-
-            let $profileDropdownPopover = $currentHeader.querySelector('div#nav-profile-dropdown-popover');
-
-            $button.addEventListener('click', (evt) => {
-              if(!evt.currentTarget.classList.contains('is-open')){
-                $button.classList.add('is-open');
-                $profileDropdownPopover.classList.add('is-open');
-                $profileDropdownPopover.ariaHidden = false;
-              } else {
-                $button.classList.remove('is-open');
-                $profileDropdownPopover.classList.remove('is-open');
-                $profileDropdownPopover.ariaHidden = false;
-              }
-            });
-          }
-        })
-
-        const $signIn = $header.querySelector('#signIn');
-        $signIn.addEventListener('click', (evt) => {
-          adobeIMSMethods.signIn();
-        });
-      });
-
-      fetchNav().then($links => {
-        const $headerLinks = document.querySelector('#navigation-links');
-        $links.forEach(($link) => {
-          let $liItem = createTag('li');
-          let $aItem = createTag('a');
-          // fix link urls - there's a weird bug with a urls that end
-          // with trailing slashes and relative links
-          if(window.location.pathname.substr(-1) !== '/') {
-            if($link.Url.charAt(0) === '.') {
-              let $tempUrl = $link.Url.split('.');
-              $aItem.href = './' + window.location.pathname.split('/')[1] + $tempUrl[1];
+          $button.addEventListener('click', (evt) => {
+            if(!evt.currentTarget.classList.contains('is-open')){
+              $button.classList.add('is-open');
+              $dropdownPopover.classList.add('is-open');
+              $dropdownPopover.ariaHidden = false;
+            } else {
+              $button.classList.remove('is-open');
+              $dropdownPopover.classList.remove('is-open');
+              $dropdownPopover.ariaHidden = false;
             }
-          } else {
-            $aItem.href = $link.Url;
-          }
+          });
+        } else if($button.id.indexOf('nav-profile-dropdown-button') >=0 ) {
 
-          $aItem.innerText = $link.Title;
-          $liItem.append($aItem);
-          $headerLinks.append($liItem);
-        })
+          let $profileDropdownPopover = $currentHeader.querySelector('div#nav-profile-dropdown-popover');
+
+          $button.addEventListener('click', (evt) => {
+            if(!evt.currentTarget.classList.contains('is-open')){
+              $button.classList.add('is-open');
+              $profileDropdownPopover.classList.add('is-open');
+              $profileDropdownPopover.ariaHidden = false;
+            } else {
+              $button.classList.remove('is-open');
+              $profileDropdownPopover.classList.remove('is-open');
+              $profileDropdownPopover.ariaHidden = false;
+            }
+          });
+        }
       })
-    }
+
+      const $signIn = $header.querySelector('#signIn');
+      $signIn.addEventListener('click', (evt) => {
+        adobeIMSMethods.signIn();
+      });
+    });
   }
 
   function decorateAnnouncement() {
