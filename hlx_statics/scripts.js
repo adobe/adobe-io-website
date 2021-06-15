@@ -707,7 +707,7 @@ let $CURRENT_API_FILTERS = [];
     `
   }
 
-  function globalNavTemplate(links, consoleButton = '', searchButton = '') {
+  function globalNavTemplate(links, searchButton = '') {
     return `
       <p class="icon-adobe-container">
         <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
@@ -715,7 +715,6 @@ let $CURRENT_API_FILTERS = [];
       </p>
 
       ${links}
-      ${consoleButton}
 
       <div class ="nav-console-right-container">
         ${searchButton}
@@ -745,10 +744,10 @@ let $CURRENT_API_FILTERS = [];
     `;
   }
 
-  function globalNavLinkItem(link, isProduct = false) {
+  function globalNavLinkItem(name, url, isProduct = false) {
     return `
       <li class="${isProduct ? 'navigation-products' : ''}">
-        <a href="${link.url}">${link.name}</a>
+        <a href="${url}">${name}</a>
       </li>
     `;
 
@@ -782,10 +781,10 @@ let $CURRENT_API_FILTERS = [];
     `;
   }
 
-  function globalNavConsoleButton() {
+  function globalNavViewDocsButton(url) {
     return `
       <div class="nav-view-docs-button">
-        <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+        <a href="${url}" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
           <span class="spectrum-Button-label">
             View Docs
           </span>
@@ -913,11 +912,12 @@ let $CURRENT_API_FILTERS = [];
       $header.classList.add('main-header');
       $header.classList.add('global-nav-header');
 
+      // TODO simplfy this as it's doing the same thing almost twice
       let $linkHTML = '';
       if(window.location.pathname === '/apis' || window.location.pathname === '/apis/') {
         $HEADER_LINKS.forEach(($link, index) => {
           if($link.links.length === 1) {
-            $linkHTML += globalNavLinkItem($link, false);
+            $linkHTML += globalNavLinkItem($link.name, $link.links[0].url, false);
           } else {
             let $dropdownLinkHTML = '';
             $link.links.forEach(($dropDownLink) => {
@@ -972,11 +972,16 @@ let $CURRENT_API_FILTERS = [];
           adobeIMSMethods.signIn();
         });
       } else {
-        $linkHTML += globalNavLinkItem({name: 'Products', url: '/apis'}, true);
+        $linkHTML += globalNavLinkItem('Products', '/apis', true);
         fetchNav().then($discoveryLinks => {
           $discoveryLinks.forEach(($link, index) => {
             if($link.links.length === 1) {
-              $linkHTML += globalNavLinkItem($link, false);
+              if($link.name === 'View docs') {
+                $linkHTML += globalNavViewDocsButton($link.links[0].url);
+              } else {
+                $linkHTML += globalNavLinkItem($link.name, $link.links[0].url, false);
+              }
+
             } else {
               let $dropdownLinkHTML = '';
               $link.links.forEach(($dropDownLink) => {
@@ -1460,7 +1465,6 @@ let $CURRENT_API_FILTERS = [];
     // We're done, let the page render
     document.documentElement.classList.remove('helix-loading');
 
-    console.log(window.adobeid)
     window.adobeImsFactory.createIMSLib(window.adobeid);
     adobeIMS.initialize();
   }
