@@ -1006,7 +1006,7 @@ let $CURRENT_API_FILTERS = [];
           }
         });
 
-        const $signIn = $header.querySelector('#signIn');
+        let $signIn = $header.querySelector('#signIn');
         $signIn.addEventListener('click', (evt) => {
           adobeIMSMethods.signIn();
         });
@@ -1069,6 +1069,10 @@ let $CURRENT_API_FILTERS = [];
             }
           });
 
+          let $signIn = $header.querySelector('#signIn');
+          $signIn.addEventListener('click', (evt) => {
+            adobeIMSMethods.signIn();
+          });
           setActiveTab();
         });
       }
