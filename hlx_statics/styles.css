@@ -132,7 +132,6 @@ header.global-nav-header div.nav-link-active {
   height: 2px;
   position: absolute;
   background-color: var(--spectrum-global-color-gray-900);
-  bottom: 0.5px;
 }
 
 header.global-nav-header a.nav-console-adobeio-link {

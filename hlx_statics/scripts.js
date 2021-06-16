@@ -880,9 +880,9 @@ let $CURRENT_API_FILTERS = [];
     return $navJSON;
   }
 
-  function activeTabTemplate($width){
+  function activeTabTemplate($width, $isMainPage = false){
     const $calcWidth = parseInt($width)-24;
-    return `<div class="nav-link-active" style="width: ${$calcWidth}px; transform:translate(12px,0)"></div>`;
+    return `<div class="nav-link-active" style="width: ${$calcWidth}px; transform:translate(12px,0); bottom: ${!$isMainPage ? '0.5px' : '-1px'}"></div>`;
   }
 
   function fixRelativeLinks(link) {
@@ -898,7 +898,7 @@ let $CURRENT_API_FILTERS = [];
     return link;
   }
 
-  function setActiveTab() {
+  function setActiveTab($isMainPage) {
     const $nav = document.querySelector('#navigation-links');
     let $currentPath = window.location.pathname;
 
@@ -911,7 +911,7 @@ let $CURRENT_API_FILTERS = [];
         $currentPath = $currentPath.replace(/\/$/, "");
         if($currentPath === $hrefPathname) {
           let $parentWidth = $tabItem.parentElement.offsetWidth;
-          $tabItem.parentElement.innerHTML += activeTabTemplate($parentWidth);
+          $tabItem.parentElement.innerHTML += activeTabTemplate($parentWidth, $isMainPage);
         }
       }
     });
@@ -1508,6 +1508,10 @@ let $CURRENT_API_FILTERS = [];
 
     window.adobeImsFactory.createIMSLib(window.adobeid);
     adobeIMS.initialize();
+
+    if(window.location.pathname === '/apis' || window.location.pathname === '/apis/') {
+      setActiveTab(true);
+    }
   }
 
   async function decoratePage() {

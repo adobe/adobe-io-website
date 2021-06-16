@@ -6849,6 +6849,12 @@ header.global-header {
     z-index: 10;
 }
 
+header.global-nav-header div.nav-link-active {
+  height: 2px;
+  position: absolute;
+  background-color: var(--spectrum-global-color-gray-900);
+}
+
 header.global-nav-header a.nav-console-adobeio-link {
   text-decoration: none;
 }
