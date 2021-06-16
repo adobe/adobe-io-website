@@ -880,6 +880,43 @@ let $CURRENT_API_FILTERS = [];
     return $navJSON;
   }
 
+  function activeTabTemplate($width){
+    const $calcWidth = parseInt($width)-24;
+    return `<div class="nav-link-active" style="width: ${$calcWidth}px; transform:translate(12px,0)"></div>`;
+  }
+
+  function fixRelativeLinks(link) {
+    // gdoc is annoying in that any link turns into a http
+    // if authors prepend their relative links with 'rel' 
+    // search for that and fix the link
+    if(link.indexOf('http://rel') === 0) {
+      link = link.replace('http://rel', '.')
+    } else if(link.indexOf('https://rel') === 0 ) {
+      link = link.replace('https://rel', '.')
+    }
+
+    return link;
+  }
+
+  function setActiveTab() {
+    const $nav = document.querySelector('#navigation-links');
+    let $currentPath = window.location.pathname;
+
+    $nav.querySelectorAll('li > a').forEach(($tabItem) => {
+      let $hrefPath = new URL($tabItem.href);
+
+      if($hrefPath && $hrefPath.pathname) {
+        // remove trailing slashes before we compare
+        let $hrefPathname = $hrefPath.pathname.replace(/\/$/, "");
+        $currentPath = $currentPath.replace(/\/$/, "");
+        if($currentPath === $hrefPathname) {
+          let $parentWidth = $tabItem.parentElement.offsetWidth;
+          $tabItem.parentElement.innerHTML += activeTabTemplate($parentWidth);
+        }
+      }
+    });
+  }
+
   function decorateProfile(profile) {
     // replace sign-in link with profile
     let $signIn = document.querySelector('div.nav-sign-in');
@@ -919,7 +956,7 @@ let $CURRENT_API_FILTERS = [];
       if(window.location.pathname === '/apis' || window.location.pathname === '/apis/') {
         $HEADER_LINKS.forEach(($link, index) => {
           if($link.links.length === 1) {
-            $linkHTML += globalNavLinkItem($link.name, $link.links[0].url, false);
+            $linkHTML += globalNavLinkItem($link.name, fixRelativeLinks($link.links[0].url), false);
           } else {
             let $dropdownLinkHTML = '';
             $link.links.forEach(($dropDownLink) => {
@@ -979,9 +1016,9 @@ let $CURRENT_API_FILTERS = [];
           $discoveryLinks.forEach(($link, index) => {
             if($link.links.length === 1) {
               if($link.name === 'View docs') {
-                $linkHTML += globalNavViewDocsButton($link.links[0].url);
+                $linkHTML += globalNavViewDocsButton(fixRelativeLinks($link.links[0].url));
               } else {
-                $linkHTML += globalNavLinkItem($link.name, $link.links[0].url, false);
+                $linkHTML += globalNavLinkItem($link.name, fixRelativeLinks($link.links[0].url), false);
               }
 
             } else {
@@ -1031,6 +1068,8 @@ let $CURRENT_API_FILTERS = [];
               });
             }
           });
+
+          setActiveTab();
         });
       }
     });
