@@ -710,8 +710,10 @@ let $CURRENT_API_FILTERS = [];
   function globalNavTemplate(links, searchButton = '') {
     return `
       <p class="icon-adobe-container">
-        <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
-        <strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">Adobe I/O</strong>
+        <a href="https://adobe.io" class="nav-console-adobeio-link">
+          <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
+          <strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">Adobe I/O</strong>
+        </a>
       </p>
 
       ${links}

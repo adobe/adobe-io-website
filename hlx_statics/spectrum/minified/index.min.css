@@ -6849,6 +6849,10 @@ header.global-header {
     z-index: 10;
 }
 
+header.global-nav-header a.nav-console-adobeio-link {
+  text-decoration: none;
+}
+
 header.global-nav-header img.icon {
   height: 18px;
   width: 22px;
