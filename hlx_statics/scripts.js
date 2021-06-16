@@ -1073,7 +1073,9 @@ let $CURRENT_API_FILTERS = [];
           $signIn.addEventListener('click', (evt) => {
             adobeIMSMethods.signIn();
           });
+          
           setActiveTab();
+          window.adobeIMSMethods.getProfile();
         });
       }
     });
