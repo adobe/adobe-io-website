@@ -357,6 +357,11 @@ header.global-nav-header div.nav-profile-popover-innerContainer {
   flex-direction: column;
 }
 
+header.global-nav-header div.nav-profile-popover-avatar-button > img {
+  width: 32px;
+  height: 32px;
+}
+
 header.global-nav-header div.nav-profile-popover-avatar {
   width: 75px;
   height: 75px;
