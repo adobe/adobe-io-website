@@ -77,7 +77,7 @@ governing permissions and limitations under the License.
 
   function fixHlxPath(path) {
     // make sure to reference hlx_statics always to the root
-    if(path.indexOf('hlx.page') > 0 || path.indexOf('hlx.live') > 0 || path.indexOf('localhost') > 0) {
+    if(window.location.indexOf('hlx.page') > 0 || window.location.indexOf('hlx.live') > 0 || window.location.indexOf('localhost') > 0) {
       return window.location.hostname + path;
     } else {
       return path
