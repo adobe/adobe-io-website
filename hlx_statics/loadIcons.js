@@ -86,7 +86,6 @@ governing permissions and limitations under the License.
   
   function loadIcons(svgURL, callback) {
     // Request the SVG sprite
-    svgURL = fixHlxPath(svgURL);
     var req = new XMLHttpRequest();
     req.open('GET', svgURL, true);
 
