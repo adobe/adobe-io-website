@@ -31,7 +31,7 @@ window.adobeIMSMethods = {
   getProfile(){
     adobeIMS.getProfile().then(profile => {
       window.adobeid.profile = profile;
-      window.adobeid.profile.avatarUrl = '/hlx_statics/icons/avatar.svg';
+      window.adobeid.profile.avatarUrl = fixHlxPath('/hlx_statics/icons/avatar.svg');
       fetchProfileAvatar(window.adobeid.profile.userId);
       decorateProfile(window.adobeid.profile);
     })
@@ -131,6 +131,7 @@ const $FOOTER_LINKS =
 ];
 
 let $CURRENT_API_FILTERS = [];
+
   /**
    * Creates a tag with the given name and attributes.
    * @param {string} name The tag name
@@ -849,7 +850,7 @@ let $CURRENT_API_FILTERS = [];
     try {
       const req = await fetch(`https://cc-api-behance.adobe.io/v2/users/${$userId}?api_key=SUSI2`);
       const res = await req.json();
-      let $avatarUrl = res?.user?.images?.['138'] ?? '/hlx_statics/icons/avatar.svg';
+      let $avatarUrl = res?.user?.images?.['138'] ?? fixHlxPath('/hlx_statics/icons/avatar.svg');
       document.querySelector('#nav-profile-popover-avatar-img').src = $avatarUrl;
       
       let $profileButton = document.querySelector('#nav-profile-dropdown-button');
@@ -1504,9 +1505,18 @@ let $CURRENT_API_FILTERS = [];
     document.querySelectorAll('img.icon').forEach(($icon) => {
       // fix up paths for icons that are injected into the doc when using :icon:
       if($icon.getAttribute('src').indexOf('hlx_statics') === -1){
-        $icon.setAttribute('src',  '/hlx_statics' + $icon.getAttribute('src') );
+        $icon.setAttribute('src',  fixHlxPath('/hlx_statics' + $icon.getAttribute('src')));
       }
     });
+  }
+
+  function fixHlxPath(path) {
+    // make sure to reference hlx_statics always to the root
+    if(path.indexOf('hlx.page') > 0 || path.indexOf('hlx.live') > 0) {
+      return window.location.hostname + path;
+    } else {
+      return path
+    }
   }
 
   function toggleScale() {
