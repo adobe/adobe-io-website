@@ -846,7 +846,7 @@ let $CURRENT_API_FILTERS = [];
   }
 
   async function fetchProfileAvatar($userId) {
-    const req = await fetch(`https://cc-api-behance.adobe.io/v2/users/${userId}?api_key=SUSI2`);
+    const req = await fetch(`https://cc-api-behance.adobe.io/v2/users/${$userId}?api_key=SUSI2`);
     const res = await req.json();
     console.log(res?.user?.images?.['138'] ?? DEFAULT_AVATAR);
   }
