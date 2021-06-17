@@ -32,8 +32,8 @@ window.adobeIMSMethods = {
     adobeIMS.getProfile().then(profile => {
       window.adobeid.profile = profile;
       window.adobeid.profile.avatarUrl = fixHlxPath('/hlx_statics/icons/avatar.svg');
-      fetchProfileAvatar(window.adobeid.profile.userId);
       decorateProfile(window.adobeid.profile);
+      fetchProfileAvatar(window.adobeid.profile.userId);
     })
     .catch( ex => {
       window.adobeid.profile = ex;
@@ -851,8 +851,10 @@ let $CURRENT_API_FILTERS = [];
       const req = await fetch(`https://cc-api-behance.adobe.io/v2/users/${$userId}?api_key=SUSI2`);
       const res = await req.json();
       let $avatarUrl = res?.user?.images?.['138'] ?? fixHlxPath('/hlx_statics/icons/avatar.svg');
-      document.querySelector('#nav-profile-popover-avatar-img').src = $avatarUrl;
-      
+      if(document.querySelector('#nav-profile-popover-avatar-img')){
+        document.querySelector('#nav-profile-popover-avatar-img').src = $avatarUrl;
+      }
+
       let $profileButton = document.querySelector('#nav-profile-dropdown-button');
       if($profileButton.querySelector('svg')) { 
         $profileButton.querySelector('svg').remove; 
