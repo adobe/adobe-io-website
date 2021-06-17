@@ -854,7 +854,9 @@ let $CURRENT_API_FILTERS = [];
       document.querySelector('#nav-profile-popover-avatar-img').src = $avatarUrl;
       
       let $profileButton = document.querySelector('#nav-profile-dropdown-button');
-      $profileButton.querySelector('svg').remove();
+      if($profileButton.querySelector('svg')) { 
+        $profileButton.querySelector('svg').remove; 
+      }
       $profileButton.innerHTML = `
         <div class="nav-profile-popover-avatar-button">
           <img alt="Avatar" src=${$avatarUrl} />
@@ -1512,7 +1514,7 @@ let $CURRENT_API_FILTERS = [];
 
   function fixHlxPath(path) {
     // make sure to reference hlx_statics always to the root
-    if(path.indexOf('hlx.page') > 0 || path.indexOf('hlx.live') > 0) {
+    if(path.indexOf('hlx.page') > 0 || path.indexOf('hlx.live') > 0 || path.indexOf('localhost') > 0) {
       return window.location.hostname + path;
     } else {
       return path

@@ -75,10 +75,21 @@ governing permissions and limitations under the License.
     }
   }
 
+  function fixHlxPath(path) {
+    // make sure to reference hlx_statics always to the root
+    if(path.indexOf('hlx.page') > 0 || path.indexOf('hlx.live') > 0 || path.indexOf('localhost') > 0) {
+      return window.location.hostname + path;
+    } else {
+      return path
+    }
+  }
+  
   function loadIcons(svgURL, callback) {
     // Request the SVG sprite
+    svgURL = fixHlxPath(svgURL);
     var req = new XMLHttpRequest();
     req.open('GET', svgURL, true);
+
     req.addEventListener('load', injectSVG.bind(req, svgURL, callback));
     req.addEventListener('error', function(event) {
       handleError('Request failed');
