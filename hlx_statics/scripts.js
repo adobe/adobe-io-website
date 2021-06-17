@@ -856,7 +856,7 @@ let $CURRENT_API_FILTERS = [];
       $profileButton.querySelector('svg').remove();
       $profileButton.innerHTML = `
         <div class="nav-profile-popover-avatar-button">
-          <img alt="Avatar" src=${profile.avatarUrl} />
+          <img alt="Avatar" src=${$avatarUrl} />
         </div>
       `
     } catch (e) {
