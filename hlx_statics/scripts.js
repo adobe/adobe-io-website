@@ -31,7 +31,8 @@ window.adobeIMSMethods = {
   getProfile(){
     adobeIMS.getProfile().then(profile => {
       window.adobeid.profile = profile;
-      window.adobeid.profile.avatarUrl = adobeIMS.avatarUrl(adobeid.profile.userId);
+      window.adobeid.profile.avatarUrl = '/hlx_statics/icons/avatar.svg';
+      fetchProfileAvatar(window.adobeid.profile.userId);
       decorateProfile(window.adobeid.profile);
     })
     .catch( ex => {
@@ -842,6 +843,12 @@ let $CURRENT_API_FILTERS = [];
         </div>
       </div>
     `
+  }
+
+  async function fetchProfileAvatar($userId) {
+    const req = await fetch(`https://cc-api-behance.adobe.io/v2/users/${userId}?api_key=SUSI2`);
+    const res = await req.json();
+    console.log(res?.user?.images?.['138'] ?? DEFAULT_AVATAR);
   }
 
   async function fetchNav() {
