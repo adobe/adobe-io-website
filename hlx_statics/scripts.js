@@ -820,7 +820,7 @@ let $CURRENT_API_FILTERS = [];
           <div id="nav-profile-dropdown-popover" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet">
             <div class="nav-profile-popover-innerContainer">
               <div class="nav-profile-popover-avatar">
-                <img alt="Avatar" src=${profile.avatarUrl} />
+                <img alt="Avatar" id="nav-profile-popover-avatar-img" src=${profile.avatarUrl} />
               </div>
 
               <div class="nav-profile-popover-name">
@@ -846,9 +846,22 @@ let $CURRENT_API_FILTERS = [];
   }
 
   async function fetchProfileAvatar($userId) {
-    const req = await fetch(`https://cc-api-behance.adobe.io/v2/users/${$userId}?api_key=SUSI2`);
-    const res = await req.json();
-    console.log(res?.user?.images?.['138'] ?? DEFAULT_AVATAR);
+    try {
+      const req = await fetch(`https://cc-api-behance.adobe.io/v2/users/${$userId}?api_key=SUSI2`);
+      const res = await req.json();
+      let $avatarUrl = res?.user?.images?.['138'] ?? '/hlx_statics/icons/avatar.svg';
+      document.querySelector('#nav-profile-popover-avatar-img').src = $avatarUrl;
+      
+      let $profileButton = document.querySelector('#nav-profile-dropdown-button');
+      $profileButton.querySelector('svg').remove();
+      $profileButton.innerHTML = `
+        <div class="nav-profile-popover-avatar-button">
+          <img alt="Avatar" src=${profile.avatarUrl} />
+        </div>
+      `
+    } catch (e) {
+      console.warn(e);
+    }
   }
 
   async function fetchNav() {
