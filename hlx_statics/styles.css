@@ -215,18 +215,11 @@ header.global-nav-header p {
 }
 
 header.global-nav-header strong.icon-adobe-label {
-  color: #000000;
-  font-size: var(--spectrum-global-dimension-size-200);
-  white-space: nowrap;
-}
-
-/* Not ready for Adobe Developer logo change
-header.global-nav-header strong.icon-adobe-label {
   color: #fa0f00;
   font-size: 15px;
   white-space: nowrap;
 }
-*/
+
 
 header.global-nav-header div.nav-view-docs-button {
   display: flex;

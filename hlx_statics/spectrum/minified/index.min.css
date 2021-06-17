@@ -6940,13 +6940,11 @@ header.global-nav-header strong.icon-adobe-label {
   white-space: nowrap;
 }
 
-/* Not ready for Adobe Developer logo change
 header.global-nav-header strong.icon-adobe-label {
   color: #fa0f00;
   font-size: 15px;
   white-space: nowrap;
 }
-*/
 
 header.global-nav-header div.nav-view-docs-button {
   display: flex;

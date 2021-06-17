@@ -689,7 +689,7 @@ let $CURRENT_API_FILTERS = [];
     return `
       <p>
         <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
-        <strong class="spectrum-Heading spectrum-Heading--sizeXXS">Adobe I/O</strong>
+        <strong class="spectrum-Heading spectrum-Heading--sizeXXS">Adobe Developer</strong>
       </p>
 
       <ul id="navigation-links">
@@ -713,7 +713,7 @@ let $CURRENT_API_FILTERS = [];
       <p class="icon-adobe-container">
         <a href="https://adobe.io" class="nav-console-adobeio-link">
           <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
-          <strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">Adobe I/O</strong>
+          <strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">Adobe Developer</strong>
         </a>
       </p>
 
