@@ -9,3 +9,11 @@ main div.info {
 main div.info h2 {
   margin-top: var(--spectrum-global-dimension-size-800);
 }
+
+main div.info code {
+  display: inline-block;
+  min-width: auto;
+  background-color: var(--spectrum-global-color-gray-100);
+  padding: 0 var(--spectrum-global-dimension-size-50);
+  margin: 0;
+}
