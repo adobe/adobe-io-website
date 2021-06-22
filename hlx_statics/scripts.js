@@ -1470,19 +1470,18 @@ let $CURRENT_API_FILTERS = [];
 
   function decorateInfo() {
     document.querySelectorAll(".info").forEach(($info) => {
-      removeEmptyPTags($info);
+
       $info.classList.add('spectrum--light');
 
       //removeEmptyPTags($summary);
-      let $title = $info.querySelector('h2');
-      if($title) {
+      $info.querySelectorAll('h2').forEach(($title)=> {
+        $title.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
         let $divider = createTag('hr', {class:`spectrum-Divider spectrum-Divider--sizeL`});
         $title.after($divider);
-      }
-
+      })
 
       $info.querySelectorAll('p').forEach(($p) => {
-        
+        $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
       });
     });
   }

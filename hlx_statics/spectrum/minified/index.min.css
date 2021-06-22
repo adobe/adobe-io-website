@@ -6717,6 +6717,18 @@ main div.summary p a:hover {
   color: var(--spectrum-global-color-gray-300);
 }
 
+main div.info {
+  width: 90%;
+  margin: 0 auto;
+  background: var(--spectrum-global-color-gray-100);
+  justify-content: center;
+  margin-bottom: 64px;
+}
+
+main div.info h2 {
+  margin-top: var(--spectrum-global-dimension-size-800);
+}
+
 /*
   Stop the page from drawing until we're ready
   We'll remove this class when we're done rendering blocks
@@ -6932,12 +6944,6 @@ header.global-nav-header p {
   margin: 0;
   font-weight: 700;
   font-size: 18px;
-}
-
-header.global-nav-header strong.icon-adobe-label {
-  color: #000000;
-  font-size: var(--spectrum-global-dimension-size-200);
-  white-space: nowrap;
 }
 
 header.global-nav-header strong.icon-adobe-label {
