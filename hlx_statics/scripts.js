@@ -1470,7 +1470,6 @@ let $CURRENT_API_FILTERS = [];
 
   function decorateInfo() {
     document.querySelectorAll(".info").forEach(($info) => {
-
       $info.classList.add('spectrum--light');
 
       //removeEmptyPTags($summary);
@@ -1482,6 +1481,10 @@ let $CURRENT_API_FILTERS = [];
 
       $info.querySelectorAll('p').forEach(($p) => {
         $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
+      });
+
+      $info.querySelectorAll('code').forEach(($code) => {
+        $code.classList.add('spectrum-Code', 'spectrum-Code--sizes', 'spectrum-Well');
       });
     });
   }

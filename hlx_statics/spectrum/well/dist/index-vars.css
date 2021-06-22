@@ -1,0 +1,29 @@
+.spectrum-Well {
+  --spectrum-well-padding: var(--spectrum-global-dimension-size-200);
+  --spectrum-well-border-width: var(--spectrum-alias-border-size-thin, var(--spectrum-global-dimension-static-size-10));
+  --spectrum-well-margin-top: var(--spectrum-global-dimension-size-50);
+  --spectrum-well-min-width: var(--spectrum-global-dimension-size-3000);
+}
+
+[dir="ltr"] .spectrum-Well {
+  text-align: left;
+}
+
+[dir="rtl"] .spectrum-Well {
+  text-align: right;
+}
+
+.spectrum-Well {
+  display: block;
+  min-width: var(--spectrum-well-min-width);
+  padding: var(--spectrum-well-padding, var(--spectrum-global-dimension-size-200));
+  margin-top: var(--spectrum-well-margin-top);
+  border-width: var(--spectrum-well-border-width, var(--spectrum-alias-border-size-thin));
+  border-style: solid;
+  border-radius: var(--spectrum-alias-border-radius-regular, var(--spectrum-global-dimension-size-50));
+}
+
+.spectrum-Well {
+  background-color: var(--spectrum-well-background-color);
+  border-color: var(--spectrum-well-border-color);
+}
