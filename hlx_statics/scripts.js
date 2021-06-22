@@ -1468,6 +1468,25 @@ let $CURRENT_API_FILTERS = [];
     });
   }
 
+  function decorateInfo() {
+    document.querySelectorAll(".info").forEach(($info) => {
+      removeEmptyPTags($info);
+      $info.classList.add('spectrum--light');
+
+      //removeEmptyPTags($summary);
+      let $title = $info.querySelector('h2');
+      if($title) {
+        let $divider = createTag('hr', {class:`spectrum-Divider spectrum-Divider--sizeL`});
+        $title.after($divider);
+      }
+
+
+      $info.querySelectorAll('p').forEach(($p) => {
+        
+      });
+    });
+  }
+
   function decorateSummary() {
     decorateButtons('.summary-container');
     document.querySelectorAll(".summary-container").forEach(($summary) => {
@@ -1571,6 +1590,7 @@ let $CURRENT_API_FILTERS = [];
     decorateAnnouncement();
     decorateAPIBrowser()
     decorateResourceCards();
+    decorateInfo();
     decorateSummary();
     fixIcons();
     later();
