@@ -21,8 +21,14 @@
 <script src="/hlx_statics/loadIcons.js"></script>
 <script type="text/javascript">
   // Get icons loading immediately, they're async and non-blocking
-  loadIcons('hlx_statics/spectrum/icon/dist/spectrum-css-icons.svg');
-  loadIcons('hlx_statics/spectrum/spectrum-css-workflow-icons/dist/spectrum-icons.svg');
+  if(window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf('hlx.live') >= 0){
+    loadIcons(window.location.host + '/hlx_statics/spectrum/icon/dist/spectrum-css-icons.svg');
+    loadIcons(window.location.host + '/hlx_statics/spectrum/spectrum-css-workflow-icons/dist/spectrum-icons.svg');
+  } else {
+    loadIcons('hlx_statics/spectrum/icon/dist/spectrum-css-icons.svg');
+    loadIcons('hlx_statics/spectrum/spectrum-css-workflow-icons/dist/spectrum-icons.svg');
+  }
+
 </script>
 
 <script src="/hlx_statics/loadIms.js"></script>
