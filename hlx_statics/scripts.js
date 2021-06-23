@@ -1,6 +1,75 @@
+window.adobeid = {
+  client_id: "helix_adobeio",
+  scope:
+    "AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk",
+  locale: "en_US",
+  environment: "stg1",
+  useLocalStorage: false,
+  logsEnabled: true,
+  redirect_uri: window.location.href,
+  isSignedIn: false,
+  onError: function (error) {
+    console.log(error);
+  },
+  onReady: function(ims) {
+    if(window.adobeIMSMethods.isSignedIn()) {
+      window.adobeIMSMethods.getProfile();
+    }
+  }
+};
+
+window.adobeIMSMethods = {
+  isSignedIn: function() {
+    return adobeIMS.isSignedInUser();
+  },
+  signIn: function () {
+      adobeIMS.signIn();
+  },
+  signOut(){
+      adobeIMS.signOut({});
+  },
+  getProfile(){
+    adobeIMS.getProfile().then(profile => {
+      window.adobeid.profile = profile;
+      window.adobeid.profile.avatarUrl = fixHlxPath('/hlx_statics/icons/avatar.svg');
+      decorateProfile(window.adobeid.profile);
+      fetchProfileAvatar(window.adobeid.profile.userId);
+    })
+    .catch( ex => {
+      window.adobeid.profile = ex;
+    })
+  },
+};
+
 // See https://github.com/adobe/react-spectrum/blob/dac6d273a9843694a652d7513ff88f6a9c773887/packages/%40react-spectrum/utils/src/useIsMobileDevice.ts#L15
 const MOBILE_SCREEN_WIDTH = 700;
 const LARGE_SCREEN_WIDTH = 1280;
+
+const $HEADER_LINKS = 
+[
+  {
+    "name" : "Home",
+    "links" : [
+      { "url": 'https://www.adobe.io' }
+    ]
+  },
+  {
+    "name" : "Products",
+    "links" : [
+      { "url": 'https://www.adobe.io/apis' }
+    ]
+  },
+  {
+    "name" : "Community",
+    "links" : [
+      { "name": "Tech Blog", "url": 'https://medium.com/adobetech' },
+      { "name": "Open Source at Adobe", "url": 'https://www.adobe.io/open' },
+      { "name": "Adobe on Github", "url": 'https://github.com/adobe' },
+      { "name": "Developer Support", "url": 'https://www.adobe.io/support' },
+      { "name": "Experience League Community", "url": 'https://www.adobe.com/communities/index.html' },
+    ]
+  }
+];
 
 const $FOOTER_LINKS =
 [
@@ -62,6 +131,7 @@ const $FOOTER_LINKS =
 ];
 
 let $CURRENT_API_FILTERS = [];
+
   /**
    * Creates a tag with the given name and attributes.
    * @param {string} name The tag name
@@ -445,7 +515,7 @@ let $CURRENT_API_FILTERS = [];
       let $heroImageSrc = $heroSection.querySelector('img') ? $heroSection.querySelector('img').src : null;
 
       $heroSection.querySelectorAll('picture source').forEach(($picture) => {
-        //remove weird max-width attribute 
+        //remove weird max-width attribute
         $picture.media = "";
         $picture.parentElement.parentElement.remove();
       });
@@ -487,7 +557,7 @@ let $CURRENT_API_FILTERS = [];
       });
 
       $heroSection.querySelectorAll('picture source').forEach(($picture) => {
-        //remove weird max-width attribute 
+        //remove weird max-width attribute
         $picture.media = "";
       });
       // put buttons into their own div
@@ -568,11 +638,11 @@ let $CURRENT_API_FILTERS = [];
           if (card[b] !== "") {
 
             if(b === "Learn More"){
-              buttonTemplate += 
+              buttonTemplate +=
                 `<a href="${card[b]}" class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet spectrum-Button--sizeM" >
                   <span class="spectrum-Button-label">${b}</span>
                 </a>`
-            
+
             } else {
               buttonTemplate +=
               `
@@ -580,7 +650,7 @@ let $CURRENT_API_FILTERS = [];
                 <span class="spectrum-Button-label">${b}</span>
               </a>
               `
-            
+
             }
           }
         });
@@ -628,7 +698,7 @@ let $CURRENT_API_FILTERS = [];
     return `
       <p>
         <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
-        <strong class="spectrum-Heading spectrum-Heading--sizeXXS">Adobe I/O</strong>
+        <strong class="spectrum-Heading spectrum-Heading--sizeXXS">Adobe Developer</strong>
       </p>
 
       <ul id="navigation-links">
@@ -647,12 +717,18 @@ let $CURRENT_API_FILTERS = [];
     `
   }
 
-  async function fetchNav() {
-    const $localNavPath = window.location.pathname.split('/')[1];
-    const resp = await fetch(`/${$localNavPath}/nav.json`);
-    return (await resp.json()).data;
-  }
+  function globalNavTemplate(links, searchButton = '') {
+    return `
+      <p class="icon-adobe-container">
+        <a href="https://adobe.io" class="nav-console-adobeio-link">
+          <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
+        </a>
+        <a href="https://adobe.io" class="nav-console-adobeio-link-text">
+          <strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">Adobe Developer</strong>
+        </a>
+      </p>
 
+<<<<<<< HEAD
   function isTopLevelNav(urlPathname) {
     switch(urlPathname) {
       case '/apis': return true;
@@ -689,53 +765,399 @@ let $CURRENT_API_FILTERS = [];
             </a>
           </li>
         `;
+=======
+      ${links}
+>>>>>>> nav-refresh
 
-        const $mainHeaderTemplate = `
-          <nav class="header-nav">
-          <a href="/" class="header-main-link">
-            <span class="header-label">
-              Adobe I/O
+      <div class ="nav-console-right-container">
+        ${searchButton}
+
+        <div class="nav-console-button">
+          <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+            <span class="spectrum-Button-label">
+              Console
             </span>
           </a>
-          <div class="header-link-container">
-            <ul class="header-list">
-              ${$mainHeaderLinks}
-            </ul>
+        </div>
+
+        <div class="nav-sign-in">
+          <button class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet">
+            <span id="signIn" class="spectrum-ActionButton-label">Sign in</span>
+          </button>
+        </div>
+      </div>
+    `
+  }
+
+  function globalNavLinks(links) {
+    return `
+      <ul id="navigation-links">
+        ${links}
+      </ul>
+    `;
+  }
+
+  function globalNavLinkItem(name, url, isProduct = false) {
+    return `
+      <li class="${isProduct ? 'navigation-products' : ''}">
+        <a href="${url}">${name}</a>
+      </li>
+    `;
+
+  }
+
+  function globalNavLinkItemDropdown(id, name, links) {
+    return `
+      <li>
+        <button id="nav-dropdown-button_${id}" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet navigation-dropdown" aria-haspopup="listbox">
+          <span class="spectrum-Picker-label">
+            ${name}
+          </span>
+          <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
+            <use xlink:href="#spectrum-css-icon-Chevron100" />
+          </svg>
+        </button>
+        <div id="nav-dropdown-popover_${id}" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover nav-dropdown-popover">
+          <ul class="spectrum-Menu" role="menu">
+            ${links}
+          </ul>
+        </div>
+      </li>
+    `;
+  }
+
+  function globalNavLinkItemDropdownItem(link) {
+    return `
+      <li class="spectrum-Menu-item">
+        <span class="spectrum-Menu-itemLabel"><a href="${link.url}" class="nav-dropdown-links">${link.name}</a></span>
+      </li>
+    `;
+  }
+
+  function globalNavViewDocsButton(url) {
+    return `
+      <div class="nav-view-docs-button">
+        <a href="${url}" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+          <span class="spectrum-Button-label">
+            View Docs
+          </span>
+        </a>
+      </div>
+    `;
+  }
+
+  function globalNavSearchButton() {
+    return `
+      <div class="nav-console-search-button">
+        <button id="nav-dropdown-search" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--emphasized spectrum-ActionButton--quiet">
+          <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Edit">
+            <use xlink:href="#spectrum-icon-24-Search"></use>
+          </svg>
+        </button>
+      </div>
+    `;
+  }
+
+  function globalNavProfileTemplate(profile) {
+    return `
+      <div class="nav-profile spectrum--lightest">
+        <button id="nav-profile-dropdown-button" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet  navigation-dropdown">
+          <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Profile">
+            <use xlink:href="#spectrum-icon-24-RealTimeCustomerProfile"></use>
+          </svg>
+        </button>
+
+          <div id="nav-profile-dropdown-popover" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet">
+            <div class="nav-profile-popover-innerContainer">
+              <div class="nav-profile-popover-avatar">
+                <img alt="Avatar" id="nav-profile-popover-avatar-img" src=${profile.avatarUrl} />
+              </div>
+
+              <div class="nav-profile-popover-name">
+                <h1 class="spectrum-Heading spectrum-Heading--sizeM">
+                  ${profile.name}
+                </h1>
+              </div>
+
+              <div class="nav-profile-popover-divider">
+                <hr />
+              </div>
+              <a href="https://account.adobe.com/" class="spectrum-Button spectrum-Button--primary spectrum-Button--quiet spectrum-Button--sizeM nav-profile-popover-edit">
+                Edit Profile
+              </a>
+              <a href="#" id="signOut" class="spectrum-Button spectrum-Button--secondary spectrum-Button--sizeM nav-profile-popover-sign-out">
+                Sign out
+              </a>
+            </div>
           </div>
-        </nav>
-        `;
+        </div>
+      </div>
+    `
+  }
 
-        $header.innerHTML = $mainHeaderTemplate;
-      });
-    } else {
-      document.querySelectorAll('header').forEach(($header) => {
-        $header.classList.add('main-header');
-        $header.classList.add('global-header');
-        $header.innerHTML = globalHeaderTemplate('');
-      });
+  async function fetchProfileAvatar($userId) {
+    try {
+      const req = await fetch(`https://cc-api-behance.adobe.io/v2/users/${$userId}?api_key=SUSI2`);
+      const res = await req.json();
+      let $avatarUrl = res?.user?.images?.['138'] ?? fixHlxPath('/hlx_statics/icons/avatar.svg');
+      if(document.querySelector('#nav-profile-popover-avatar-img')){
+        document.querySelector('#nav-profile-popover-avatar-img').src = $avatarUrl;
+      }
 
-      fetchNav().then($links => {
-        const $headerLinks = document.querySelector('#navigation-links');
-        $links.forEach(($link) => {
-          let $liItem = createTag('li');
-          let $aItem = createTag('a');
-          // fix link urls - there's a weird bug with a urls that end
-          // with trailing slashes and relative links
-          if(window.location.pathname.substr(-1) !== '/') {
-            if($link.Url.charAt(0) === '.') {
-              let $tempUrl = $link.Url.split('.');
-              $aItem.href = './' + window.location.pathname.split('/')[1] + $tempUrl[1];
-            }
-          } else {
-            $aItem.href = $link.Url;
-          }
-
-          $aItem.innerText = $link.Title;
-          $liItem.append($aItem);
-          $headerLinks.append($liItem);
-        })
-      })
+      let $profileButton = document.querySelector('#nav-profile-dropdown-button');
+      if($profileButton.querySelector('svg')) { 
+        $profileButton.querySelector('svg').remove; 
+      }
+      $profileButton.innerHTML = `
+        <div class="nav-profile-popover-avatar-button">
+          <img alt="Avatar" src=${$avatarUrl} />
+        </div>
+      `
+    } catch (e) {
+      console.warn(e);
     }
+  }
+
+  async function fetchNav() {
+    let $localNavPath = window.location.pathname.split('/')[1];
+    if($localNavPath === '') {
+      $localNavPath = '/nav';
+    } else {
+      $localNavPath = `/${$localNavPath}/nav`;
+    }
+    const $resp = await fetch($localNavPath);
+    let $html = await $resp.text();
+
+    const $parser = new DOMParser();
+    const $doc = $parser.parseFromString($html, 'text/html');
+    const $navItems = $doc.querySelectorAll('.nav div > ul');
+    let $navJSON = [];
+    if($navItems.length > 0) {
+      $navItems[0].childNodes.forEach(($node) => {
+        // find child nodes that aren't text
+        if($node.nodeType === 1) {
+          if($node.querySelector('ul') !== null) {
+            let $nestedLink = { "name" : $node.childNodes[0].wholeText, "links" : [] };
+            $node.querySelectorAll('li').forEach(($nestedNode) => {
+              let $url = $nestedNode.querySelector('a');
+              $nestedLink["links"].push({ "name" : $nestedNode.innerText, "url": $url.href })
+            });
+            $navJSON.push($nestedLink);
+          } else {
+            let $url = $node.querySelector('a');
+            let $nestedLink = { "name" : $node.innerText, "links" : [{ "url": $url.href }] };
+            $navJSON.push($nestedLink);
+          }
+        }
+      });
+    }
+    return $navJSON;
+  }
+
+  function activeTabTemplate($width, $isMainPage = false){
+    const $calcWidth = parseInt($width)-24;
+    return `<div class="nav-link-active" style="width: ${$calcWidth}px; transform:translate(12px,0); bottom: ${!$isMainPage ? '0.5px' : '-1px'}"></div>`;
+  }
+
+  function fixRelativeLinks(link) {
+    // gdoc is annoying in that any link turns into a http
+    // if authors prepend their relative links with 'rel' 
+    // search for that and fix the link
+    if(link.indexOf('http://rel') === 0) {
+      link = link.replace('http://rel', '.')
+    } else if(link.indexOf('https://rel') === 0 ) {
+      link = link.replace('https://rel', '.')
+    }
+
+    return link;
+  }
+
+  function setActiveTab($isMainPage) {
+    const $nav = document.querySelector('#navigation-links');
+    let $currentPath = window.location.pathname;
+
+    $nav.querySelectorAll('li > a').forEach(($tabItem) => {
+      let $hrefPath = new URL($tabItem.href);
+
+      if($hrefPath && $hrefPath.pathname) {
+        // remove trailing slashes before we compare
+        let $hrefPathname = $hrefPath.pathname.replace(/\/$/, "");
+        $currentPath = $currentPath.replace(/\/$/, "");
+        if($currentPath === $hrefPathname) {
+          let $parentWidth = $tabItem.parentElement.offsetWidth;
+          $tabItem.parentElement.innerHTML += activeTabTemplate($parentWidth, $isMainPage);
+        }
+      }
+    });
+  }
+
+  function decorateProfile(profile) {
+    // replace sign-in link with profile
+    let $signIn = document.querySelector('div.nav-sign-in');
+    let $parentContainer = $signIn.parentElement;
+    $signIn.remove();
+    $parentContainer.innerHTML += globalNavProfileTemplate(profile);
+
+    let $profileDropdownPopover = $parentContainer.querySelector('div#nav-profile-dropdown-popover');
+    let $button = $parentContainer.querySelector('button#nav-profile-dropdown-button');
+
+    $button.addEventListener('click', (evt) => {
+      if(!evt.currentTarget.classList.contains('is-open')){
+        $button.classList.add('is-open');
+        $profileDropdownPopover.classList.add('is-open');
+        $profileDropdownPopover.ariaHidden = false;
+      } else {
+        $button.classList.remove('is-open');
+        $profileDropdownPopover.classList.remove('is-open');
+        $profileDropdownPopover.ariaHidden = false;
+      }
+    });
+
+    const $signOut = $parentContainer.querySelector('#signOut');
+    $signOut.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      adobeIMSMethods.signOut();
+    });
+  }
+
+  function decorateHeader() {
+    document.querySelectorAll('header').forEach(($header) => {
+      $header.classList.add('main-header');
+      $header.classList.add('global-nav-header');
+
+      // TODO simplfy this as it's doing the same thing almost twice
+      // also add whitelist of paths instead of this 
+      let $linkHTML = '';
+      if(window.location.pathname === '/apis' || 
+          window.location.pathname === '/apis/' || 
+          window.location.pathname === '/open' || 
+          window.location.pathname === '/open/') {
+            
+        $HEADER_LINKS.forEach(($link, index) => {
+          if($link.links.length === 1) {
+            $linkHTML += globalNavLinkItem($link.name, fixRelativeLinks($link.links[0].url), false);
+          } else {
+            let $dropdownLinkHTML = '';
+            $link.links.forEach(($dropDownLink) => {
+              $dropdownLinkHTML += globalNavLinkItemDropdownItem($dropDownLink);
+            });
+
+            // use the index from the array to assign unique dropdown id
+            $linkHTML += globalNavLinkItemDropdown(index, $link.name, $dropdownLinkHTML);
+          }
+        });
+
+        $linkContainerHTML = globalNavLinks($linkHTML);
+        $header.innerHTML = globalNavTemplate($linkContainerHTML);
+
+        let $currentHeader = $header;
+        $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
+          if($button.id.indexOf('nav-dropdown-button') >= 0) {
+            let $index = $button.id.split('_')[1];
+            let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
+
+            $button.addEventListener('click', (evt) => {
+              if(!evt.currentTarget.classList.contains('is-open')){
+                $button.classList.add('is-open');
+                $dropdownPopover.classList.add('is-open');
+                $dropdownPopover.ariaHidden = false;
+              } else {
+                $button.classList.remove('is-open');
+                $dropdownPopover.classList.remove('is-open');
+                $dropdownPopover.ariaHidden = false;
+              }
+            });
+          } else if($button.id.indexOf('nav-profile-dropdown-button') >=0 ) {
+
+            let $profileDropdownPopover = $currentHeader.querySelector('div#nav-profile-dropdown-popover');
+
+            $button.addEventListener('click', (evt) => {
+              if(!evt.currentTarget.classList.contains('is-open')){
+                $button.classList.add('is-open');
+                $profileDropdownPopover.classList.add('is-open');
+                $profileDropdownPopover.ariaHidden = false;
+              } else {
+                $button.classList.remove('is-open');
+                $profileDropdownPopover.classList.remove('is-open');
+                $profileDropdownPopover.ariaHidden = false;
+              }
+            });
+          }
+        });
+
+        let $signIn = $header.querySelector('#signIn');
+        $signIn.addEventListener('click', (evt) => {
+          adobeIMSMethods.signIn();
+        });
+      } else {
+        $linkHTML += globalNavLinkItem('Products', '/apis', true);
+        fetchNav().then($discoveryLinks => {
+          $discoveryLinks.forEach(($link, index) => {
+            if($link.links.length === 1) {
+              if($link.name === 'View docs') {
+                $linkHTML += globalNavViewDocsButton(fixRelativeLinks($link.links[0].url));
+              } else {
+                $linkHTML += globalNavLinkItem($link.name, fixRelativeLinks($link.links[0].url), false);
+              }
+
+            } else {
+              let $dropdownLinkHTML = '';
+              $link.links.forEach(($dropDownLink) => {
+                $dropdownLinkHTML += globalNavLinkItemDropdownItem($dropDownLink);
+              });
+  
+              // use the index from the array to assign unique dropdown id
+              $linkHTML += globalNavLinkItemDropdown(index, $link.name, $dropdownLinkHTML);
+            }
+          });
+          $linkContainerHTML = globalNavLinks($linkHTML);
+          $header.innerHTML = globalNavTemplate($linkContainerHTML);
+
+          let $currentHeader = $header;
+          $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
+            if($button.id.indexOf('nav-dropdown-button') >= 0) {
+              let $index = $button.id.split('_')[1];
+              let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
+
+              $button.addEventListener('click', (evt) => {
+                if(!evt.currentTarget.classList.contains('is-open')){
+                  $button.classList.add('is-open');
+                  $dropdownPopover.classList.add('is-open');
+                  $dropdownPopover.ariaHidden = false;
+                } else {
+                  $button.classList.remove('is-open');
+                  $dropdownPopover.classList.remove('is-open');
+                  $dropdownPopover.ariaHidden = false;
+                }
+              });
+            } else if($button.id.indexOf('nav-profile-dropdown-button') >=0 ) {
+
+              let $profileDropdownPopover = $currentHeader.querySelector('div#nav-profile-dropdown-popover');
+
+              $button.addEventListener('click', (evt) => {
+                if(!evt.currentTarget.classList.contains('is-open')){
+                  $button.classList.add('is-open');
+                  $profileDropdownPopover.classList.add('is-open');
+                  $profileDropdownPopover.ariaHidden = false;
+                } else {
+                  $button.classList.remove('is-open');
+                  $profileDropdownPopover.classList.remove('is-open');
+                  $profileDropdownPopover.ariaHidden = false;
+                }
+              });
+            }
+          });
+
+          let $signIn = $header.querySelector('#signIn');
+          $signIn.addEventListener('click', (evt) => {
+            adobeIMSMethods.signIn();
+          });
+          
+          setActiveTab();
+          window.adobeIMSMethods.getProfile();
+        });
+      }
+    });
   }
 
   function decorateAnnouncement() {
@@ -929,7 +1351,7 @@ let $CURRENT_API_FILTERS = [];
         $card.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
           $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
         })
-  
+
         $card.querySelectorAll('p').forEach(($p) => {
           $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
         });
@@ -976,7 +1398,7 @@ let $CURRENT_API_FILTERS = [];
 
       $column.querySelectorAll('a').forEach(($a) => {
         $a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
-        
+
         if(isLinkExternal($a.href)) {
           $a.target = '_blank';
           $a.rel = 'noopener noreferrer';
@@ -999,7 +1421,7 @@ let $CURRENT_API_FILTERS = [];
   function decorateColumnsDark() {
     document.querySelectorAll('.columns-dark').forEach(($column) => {
     });
-    
+
     //document.querySelectorAll('.columns').forEach(($column) => {
     // document.querySelectorAll('.columns-dark').forEach(($column) => {
     //   removeEmptyPTags($column);
@@ -1009,20 +1431,20 @@ let $CURRENT_API_FILTERS = [];
     //     if($row.childNodes.length > 1) {
     //       let $textColumnContainer = createTag('div', { class : 'columns-text'});
 
-    //       // find the text column in the row and wrap it then insert it 
+    //       // find the text column in the row and wrap it then insert it
     //       // may have to expand search to allow all media types instead of just iframe
     //       let $cloneNodes;
     //       if(!$row.childNodes[0].querySelector('iframe')) {
     //         $cloneNodes = $row.childNodes[0].cloneNode(true);
-    //         $textColumnContainer.append($cloneNodes); 
+    //         $textColumnContainer.append($cloneNodes);
     //         $row.replaceChild($textColumnContainer, $row.childNodes[0]);
 
     //       } else if(!$row.childNodes[1].querySelector('iframe')) {
     //         $cloneNodes = $row.childNodes[1].cloneNode(true);
-    //         $textColumnContainer.append($cloneNodes); 
+    //         $textColumnContainer.append($cloneNodes);
     //         $row.replaceChild($textColumnContainer, $row.childNodes[1]);
     //       }
-    //     } 
+    //     }
     //   });
     // });
   }
@@ -1082,10 +1504,10 @@ let $CURRENT_API_FILTERS = [];
           let $text = $resourceLarge.querySelector('p').innerText;
 
           $leftResourceCardContainer.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
-  
+
           $resourceLarge.remove();
         });
-  
+
         $section.querySelectorAll('.resource-card-small').forEach(($resourceSmall, index, array) => {
           removeEmptyPTags($resourceSmall);
           //$smallResourceCardCount = array.length;
@@ -1093,13 +1515,34 @@ let $CURRENT_API_FILTERS = [];
           let $heading = $resourceSmall.querySelector('a').innerText;
           let $imgSrc = $resourceSmall.querySelector('img').src;
           let $text = $resourceSmall.querySelector('p').innerText;
-  
+
           $rightResourceCardContainer.innerHTML += getResourceCard('small', $linkHref, $imgSrc, $heading, $text);
           toggleScale();
           $resourceSmall.remove();
         });
         focusRing($resourceCardsContainer);
       }
+    });
+  }
+
+  function decorateInfo() {
+    document.querySelectorAll(".info").forEach(($info) => {
+      $info.classList.add('spectrum--light');
+
+      //removeEmptyPTags($summary);
+      $info.querySelectorAll('h2').forEach(($title)=> {
+        $title.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
+        let $divider = createTag('hr', {class:`spectrum-Divider spectrum-Divider--sizeL`});
+        $title.after($divider);
+      })
+
+      $info.querySelectorAll('p').forEach(($p) => {
+        $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
+      });
+
+      $info.querySelectorAll('code').forEach(($code) => {
+        $code.classList.add('spectrum-Code', 'spectrum-Code--sizes', 'spectrum-Well');
+      });
     });
   }
 
@@ -1119,7 +1562,7 @@ let $CURRENT_API_FILTERS = [];
         // don't attach to icon container or if p tag contains links
         if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
           $p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
-        } 
+        }
         $hasLinks.forEach(($button) => {
           $button.classList.add('spectrum-Button--overBackground');
         })
@@ -1129,7 +1572,7 @@ let $CURRENT_API_FILTERS = [];
       let $summaryImageSrc = $summary.querySelector('img') ? $summary.querySelector('img').src : null;
 
       $summary.querySelectorAll('picture').forEach(($picture) => {
-        //remove weird max-width attribute 
+        //remove weird max-width attribute
 
         //$picture.media = "";
         $picture.parentElement.parentElement.remove();
@@ -1142,13 +1585,14 @@ let $CURRENT_API_FILTERS = [];
 
   function fixIcons() {
     document.querySelectorAll('img.icon').forEach(($icon) => {
-      // fix up paths for icons that are injected into the doc when using :icon: 
+      // fix up paths for icons that are injected into the doc when using :icon:
       if($icon.getAttribute('src').indexOf('hlx_statics') === -1){
-        $icon.setAttribute('src',  '/hlx_statics' + $icon.getAttribute('src') );
+        $icon.setAttribute('src',  fixHlxPath('/hlx_statics' + $icon.getAttribute('src')));
       }
     });
   }
 
+<<<<<<< HEAD
   function focusRing(domObj=document) {
     domObj.querySelectorAll('a.spectrum-Link').forEach(($a) => {
       $a.addEventListener('focus', () => {
@@ -1211,6 +1655,15 @@ let $CURRENT_API_FILTERS = [];
     });
 
 
+=======
+  function fixHlxPath(path) {
+    // make sure to reference hlx_statics always to the root
+    if(path.indexOf('hlx.page') > 0 || path.indexOf('hlx.live') > 0 || path.indexOf('localhost') > 0) {
+      return window.location.hostname + path;
+    } else {
+      return path
+    }
+>>>>>>> nav-refresh
   }
 
   function toggleScale() {
@@ -1235,7 +1688,17 @@ let $CURRENT_API_FILTERS = [];
 
     // We're done, let the page render
     document.documentElement.classList.remove('helix-loading');
+<<<<<<< HEAD
     focusRing();
+=======
+
+    window.adobeImsFactory.createIMSLib(window.adobeid);
+    adobeIMS.initialize();
+
+    if(window.location.pathname === '/apis' || window.location.pathname === '/apis/') {
+      setActiveTab(true);
+    }
+>>>>>>> nav-refresh
   }
 
   async function decoratePage() {
@@ -1255,6 +1718,7 @@ let $CURRENT_API_FILTERS = [];
     decorateAnnouncement();
     decorateAPIBrowser()
     decorateResourceCards();
+    decorateInfo();
     decorateSummary();
     fixIcons();
     later();

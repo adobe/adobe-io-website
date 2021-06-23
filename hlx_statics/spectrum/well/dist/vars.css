@@ -1,0 +1,9 @@
+
+.spectrum-Well {
+  --spectrum-alias-border-size-thin: var(--spectrum-global-dimension-static-size-10);
+  --spectrum-well-padding: var(--spectrum-global-dimension-size-200);
+  --spectrum-well-border-width: var(--spectrum-alias-border-size-thin);
+  --spectrum-alias-border-radius-regular: var(--spectrum-global-dimension-size-50);
+  --spectrum-well-background-color: undefined;
+  --spectrum-well-border-color: undefined;
+}

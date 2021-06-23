@@ -1,0 +1,32 @@
+{
+  "name": "adobe-io-website",
+  "version": "1.0.0",
+  "scripts": {
+    "buildCss": "mkdir -p hlx_statics/spectrum/minified/ && postcss -o hlx_statics/spectrum/minified/index.min.css styles-includes.css"
+  },
+  "devDependencies": {
+    "@spectrum-css/actionbutton": "^1.0.3",
+    "@spectrum-css/button": "^3.0.0",
+    "@spectrum-css/card": "^3.0.0",
+    "@spectrum-css/checkbox": "^3.0.0",
+    "@spectrum-css/link": "^3.0.0",
+    "@spectrum-css/divider": "^1.0.0",
+    "@spectrum-css/page": "^3.0.0",
+    "@spectrum-css/typography": "^3.0.0",
+    "@spectrum-css/vars": "^3.0.0",
+    "gh-pages": "^3.1.0",
+    "postcss": "^8.2.6",
+    "postcss-cli": "^8.3.1",
+    "postcss-dropunusedvars": "^1.2.0",
+    "postcss-transformselectors": "^1.1.0",
+    "postcss-varfallback": "^1.1.0",
+    "postcss-import": "^14.0.0"
+  },
+  "dependencies": {
+    "@spectrum-css/icon": "^3.0.1",
+    "@spectrum-css/menu": "^3.0.1",
+    "@spectrum-css/picker": "^1.0.1",
+    "@spectrum-css/popover": "^3.0.1",
+    "@spectrum-css/well": "^3.0.2"
+  }
+}
