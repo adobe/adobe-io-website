@@ -911,39 +911,43 @@ let $CURRENT_API_FILTERS = [];
   }
 
   async function fetchNav() {
-    let $localNavPath = window.location.pathname.split('/')[1];
-    if($localNavPath === '') {
-      $localNavPath = '/nav';
-    } else {
-      $localNavPath = `/${$localNavPath}/nav`;
-    }
-    const $resp = await fetch($localNavPath);
-    let $html = await $resp.text();
-
-    const $parser = new DOMParser();
-    const $doc = $parser.parseFromString($html, 'text/html');
-    const $navItems = $doc.querySelectorAll('.nav div > ul');
-    let $navJSON = [];
-    if($navItems.length > 0) {
-      $navItems[0].childNodes.forEach(($node) => {
-        // find child nodes that aren't text
-        if($node.nodeType === 1) {
-          if($node.querySelector('ul') !== null) {
-            let $nestedLink = { "name" : $node.childNodes[0].wholeText, "links" : [] };
-            $node.querySelectorAll('li').forEach(($nestedNode) => {
-              let $url = $nestedNode.querySelector('a');
-              $nestedLink["links"].push({ "name" : $nestedNode.innerText, "url": $url.href })
-            });
-            $navJSON.push($nestedLink);
-          } else {
-            let $url = $node.querySelector('a');
-            let $nestedLink = { "name" : $node.innerText, "links" : [{ "url": $url.href }] };
-            $navJSON.push($nestedLink);
+    try{
+      let $localNavPath = window.location.pathname.split('/')[1];
+      if($localNavPath === '') {
+        $localNavPath = '/nav';
+      } else {
+        $localNavPath = `/${$localNavPath}/nav`;
+      }
+      const $resp = await fetch($localNavPath);
+      let $html = await $resp.text();
+  
+      const $parser = new DOMParser();
+      const $doc = $parser.parseFromString($html, 'text/html');
+      const $navItems = $doc.querySelectorAll('.nav div > ul');
+      let $navJSON = [];
+      if($navItems.length > 0) {
+        $navItems[0].childNodes.forEach(($node) => {
+          // find child nodes that aren't text
+          if($node.nodeType === 1) {
+            if($node.querySelector('ul') !== null) {
+              let $nestedLink = { "name" : $node.childNodes[0].wholeText, "links" : [] };
+              $node.querySelectorAll('li').forEach(($nestedNode) => {
+                let $url = $nestedNode.querySelector('a');
+                $nestedLink["links"].push({ "name" : $nestedNode.innerText, "url": $url.href })
+              });
+              $navJSON.push($nestedLink);
+            } else {
+              let $url = $node.querySelector('a');
+              let $nestedLink = { "name" : $node.innerText, "links" : [{ "url": $url.href }] };
+              $navJSON.push($nestedLink);
+            }
           }
-        }
-      });
+        });
+      }
+      return $navJSON;
+    } catch(e){
+      console.warn('Unable to fetch nav');
     }
-    return $navJSON;
   }
 
   function activeTabTemplate($width, $isMainPage = false){
@@ -1030,11 +1034,7 @@ let $CURRENT_API_FILTERS = [];
       // TODO simplfy this as it's doing the same thing almost twice
       // also add whitelist of paths instead of this 
       let $linkHTML = '';
-      if(window.location.pathname === '/apis' || 
-          window.location.pathname === '/apis/' || 
-          window.location.pathname === '/open' || 
-          window.location.pathname === '/open/') {
-            
+      if(isTopLevelNav(window.location.pathname)) {
         $HEADER_LINKS.forEach(($link, index) => {
           if($link.links.length === 1) {
             $linkHTML += globalNavLinkItem($link.name, fixRelativeLinks($link.links[0].url), false);
@@ -1093,6 +1093,7 @@ let $CURRENT_API_FILTERS = [];
         });
       } else {
         $linkHTML += globalNavLinkItem('Products', '/apis', true);
+        globalNavLinks($linkHTML);
         fetchNav().then($discoveryLinks => {
           $discoveryLinks.forEach(($link, index) => {
             if($link.links.length === 1) {
@@ -1541,6 +1542,10 @@ let $CURRENT_API_FILTERS = [];
         $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
       });
 
+      $info.querySelectorAll('a').forEach(($a) => {
+        $a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
+      });
+
       $info.querySelectorAll('code').forEach(($code) => {
         $code.classList.add('spectrum-Code', 'spectrum-Code--sizes', 'spectrum-Well');
       });
@@ -1696,10 +1701,16 @@ let $CURRENT_API_FILTERS = [];
     document.documentElement.classList.remove('helix-loading');
 
     focusRing();
-    window.adobeImsFactory.createIMSLib(window.adobeid);
-    adobeIMS.initialize();
 
-    if(window.location.pathname === '/apis' || window.location.pathname === '/apis/') {
+    if(window.adobeImsFactory && window.adobeImsFactory.createIMSLib){
+      window.adobeImsFactory.createIMSLib(window.adobeid);
+    }
+
+    if(window.adobeIMS && window.adobeIMS.initialize){
+      window.adobeIMS.initialize();
+    }
+
+    if(isTopLevelNav(window.location.pathname)) {
       setActiveTab(true);
     }
   }
