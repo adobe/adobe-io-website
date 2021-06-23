@@ -5,7 +5,7 @@ if(window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf
   $IS_HLX_PATH = true;
 }
 
-if(window.location.host.indexOf('stage.adobe.io') >= 0 ){
+if(window.location.host.indexOf('stage.adobe.io') >= 0 || window.location.host.indexOf('developers-stage.adobe.io') >= 0){
   $IS_STAGE = true;
 }
 
