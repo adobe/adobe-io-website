@@ -728,46 +728,7 @@ let $CURRENT_API_FILTERS = [];
         </a>
       </p>
 
-<<<<<<< HEAD
-  function isTopLevelNav(urlPathname) {
-    switch(urlPathname) {
-      case '/apis': return true;
-      case '/apis/': return true;
-      case '/open': return true;
-      case '/open/': return true;
-      default: return false;
-    }
-  }
-
-  function decorateHeader() {
-    if(isTopLevelNav(window.location.pathname)) {
-      document.querySelectorAll('header').forEach(($header) => {
-        $header.classList.add('main-header');
-        const $mainHeaderLinks = `
-          <li class="header-list-item">
-            <a href="/apis" class="header-list-item-link">
-              Discover
-            </a>
-          </li>
-          <li class="header-list-item">
-            <a href="/open" class="header-list-item-link">
-              Open Source
-            </a>
-          </li>
-          <li class="header-list-item">
-            <a href="https://medium.com/adobetech" class="header-list-item-link">
-              Blog
-            </a>
-          </li>
-          <li class="header-list-item header-list-item-button">
-            <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--cta spectrum-Button--sizeM">
-              <span class="spectrum-Button-label">Console</span>
-            </a>
-          </li>
-        `;
-=======
       ${links}
->>>>>>> nav-refresh
 
       <div class ="nav-console-right-container">
         ${searchButton}
@@ -1592,7 +1553,6 @@ let $CURRENT_API_FILTERS = [];
     });
   }
 
-<<<<<<< HEAD
   function focusRing(domObj=document) {
     domObj.querySelectorAll('a.spectrum-Link').forEach(($a) => {
       $a.addEventListener('focus', () => {
@@ -1653,9 +1613,8 @@ let $CURRENT_API_FILTERS = [];
         $button.classList.remove('focus-ring');
       });
     });
+  }
 
-
-=======
   function fixHlxPath(path) {
     // make sure to reference hlx_statics always to the root
     if(path.indexOf('hlx.page') > 0 || path.indexOf('hlx.live') > 0 || path.indexOf('localhost') > 0) {
@@ -1663,7 +1622,6 @@ let $CURRENT_API_FILTERS = [];
     } else {
       return path
     }
->>>>>>> nav-refresh
   }
 
   function toggleScale() {
@@ -1688,9 +1646,7 @@ let $CURRENT_API_FILTERS = [];
 
     // We're done, let the page render
     document.documentElement.classList.remove('helix-loading');
-<<<<<<< HEAD
     focusRing();
-=======
 
     window.adobeImsFactory.createIMSLib(window.adobeid);
     adobeIMS.initialize();
@@ -1698,7 +1654,6 @@ let $CURRENT_API_FILTERS = [];
     if(window.location.pathname === '/apis' || window.location.pathname === '/apis/') {
       setActiveTab(true);
     }
->>>>>>> nav-refresh
   }
 
   async function decoratePage() {
