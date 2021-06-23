@@ -1,7 +1,12 @@
 let $IS_HLX_PATH = false;
+let $IS_STAGE = false;
 
-if(window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf('hlx.live') >= 0 || window.location.host.indexOf('localhost') >= 0 ){
+if(window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf('hlx.live') >= 0 || window.location.host.indexOf('localhost') >= 0){
   $IS_HLX_PATH = true;
+}
+
+if(window.location.host.indexOf('stage.adobe.io') >= 0 ){
+  $IS_STAGE = true;
 }
 
 window.adobeid = {};
@@ -26,7 +31,7 @@ if($IS_HLX_PATH) {
       }
     }
   };
-} else {
+} else if(!$IS_HLX_PATH && $IS_STAGE) {
   window.adobeid = {
     client_id: "stage_adobe_io",
     scope:
@@ -46,6 +51,8 @@ if($IS_HLX_PATH) {
       }
     }
   };
+} else if(!$IS_HLX_PATH && !$IS_STAGE) {
+  // prod
 }
 
 window.adobeIMSMethods = {
