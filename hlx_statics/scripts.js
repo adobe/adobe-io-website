@@ -18,7 +18,7 @@ if($IS_HLX_PATH) {
       "AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk",
     locale: "en_US",
     environment: "stg1",
-    useLocalStorage: false,
+    useLocalStorage: true,
     logsEnabled: true,
     redirect_uri: window.location.href,
     isSignedIn: false,
@@ -38,7 +38,7 @@ if($IS_HLX_PATH) {
       "AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk",
     locale: "en_US",
     environment: "stg1",
-    useLocalStorage: false,
+    useLocalStorage: true,
     logsEnabled: true,
     redirect_uri: window.location.href,
     isSignedIn: false,
@@ -52,7 +52,25 @@ if($IS_HLX_PATH) {
     }
   };
 } else if(!$IS_HLX_PATH && !$IS_STAGE) {
-  // prod
+  window.adobeid = {
+    client_id: "adobe_io",
+    scope:
+      "AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk",
+    locale: "en_US",
+    environment: "prod",
+    useLocalStorage: true,
+    logsEnabled: false,
+    redirect_uri: window.location.href,
+    isSignedIn: false,
+    onError: function (error) {
+      console.log(error);
+    },
+    onReady: function(ims) {
+      if(window.adobeIMSMethods.isSignedIn()) {
+        window.adobeIMSMethods.getProfile();
+      }
+    }
+  };
 }
 
 window.adobeIMSMethods = {
