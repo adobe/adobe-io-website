@@ -1,22 +1,52 @@
-window.adobeid = {
-  client_id: "helix_adobeio",
-  scope:
-    "AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk",
-  locale: "en_US",
-  environment: "stg1",
-  useLocalStorage: false,
-  logsEnabled: true,
-  redirect_uri: window.location.href,
-  isSignedIn: false,
-  onError: function (error) {
-    console.log(error);
-  },
-  onReady: function(ims) {
-    if(window.adobeIMSMethods.isSignedIn()) {
-      window.adobeIMSMethods.getProfile();
+let $IS_HLX_PATH = false;
+
+if(window.location.path.indexOf('hlx.page') >= 0 || window.location.path.indexOf('hlx.live') >= 0 ){
+  $IS_HLX_PATH = true;
+}
+
+window.adobeid = {};
+
+if($IS_HLX_PATH) {
+  window.adobeid = {
+    client_id: "helix_adobeio",
+    scope:
+      "AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk",
+    locale: "en_US",
+    environment: "stg1",
+    useLocalStorage: false,
+    logsEnabled: true,
+    redirect_uri: window.location.href,
+    isSignedIn: false,
+    onError: function (error) {
+      console.log(error);
+    },
+    onReady: function(ims) {
+      if(window.adobeIMSMethods.isSignedIn()) {
+        window.adobeIMSMethods.getProfile();
+      }
     }
-  }
-};
+  };
+} else {
+  window.adobeid = {
+    client_id: "stage_adobe_io",
+    scope:
+      "AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk",
+    locale: "en_US",
+    environment: "stg1",
+    useLocalStorage: false,
+    logsEnabled: true,
+    redirect_uri: window.location.href,
+    isSignedIn: false,
+    onError: function (error) {
+      console.log(error);
+    },
+    onReady: function(ims) {
+      if(window.adobeIMSMethods.isSignedIn()) {
+        window.adobeIMSMethods.getProfile();
+      }
+    }
+  };
+}
 
 window.adobeIMSMethods = {
   isSignedIn: function() {
@@ -131,6 +161,7 @@ const $FOOTER_LINKS =
 ];
 
 let $CURRENT_API_FILTERS = [];
+
 
   /**
    * Creates a tag with the given name and attributes.
