@@ -714,6 +714,8 @@ let $CURRENT_API_FILTERS = [];
       <p class="icon-adobe-container">
         <a href="https://adobe.io" class="nav-console-adobeio-link">
           <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
+        </a>
+        <a href="https://adobe.io" class="nav-console-adobeio-link-text">
           <strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">Adobe Developer</strong>
         </a>
       </p>
@@ -977,8 +979,13 @@ let $CURRENT_API_FILTERS = [];
       $header.classList.add('global-nav-header');
 
       // TODO simplfy this as it's doing the same thing almost twice
+      // also add whitelist of paths instead of this 
       let $linkHTML = '';
-      if(window.location.pathname === '/apis' || window.location.pathname === '/apis/') {
+      if(window.location.pathname === '/apis' || 
+          window.location.pathname === '/apis/' || 
+          window.location.pathname === '/open' || 
+          window.location.pathname === '/open/') {
+            
         $HEADER_LINKS.forEach(($link, index) => {
           if($link.links.length === 1) {
             $linkHTML += globalNavLinkItem($link.name, fixRelativeLinks($link.links[0].url), false);
