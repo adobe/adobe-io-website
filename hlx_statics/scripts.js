@@ -1547,6 +1547,14 @@ let $CURRENT_API_FILTERS = [];
     });
   }
 
+  function decorateBanner() {
+    document.querySelectorAll(".banner").forEach(($banner) => {
+      $banner.querySelectorAll('h1').forEach(($title)=> {
+        $title.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXL');
+      })
+    });
+  }
+
   function decorateSummary() {
     decorateButtons('.summary-container');
     document.querySelectorAll(".summary-container").forEach(($summary) => {
@@ -1714,6 +1722,7 @@ let $CURRENT_API_FILTERS = [];
     decorateAPIBrowser()
     decorateResourceCards();
     decorateInfo();
+    decorateBanner();
     decorateSummary();
     fixIcons();
     later();
