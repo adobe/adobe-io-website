@@ -283,6 +283,7 @@ let $CURRENT_API_FILTERS = [];
       $a.innerHTML = `<span class="spectrum-Button-label">${$a.innerHTML}</span>`
       const $up = $a.parentElement;
       const $twoup = $a.parentElement.parentElement;
+      $a.tabindex = 0;
       if ($up.childNodes.length == 1 && $up.tagName == "P") {
         $a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
       }
@@ -973,6 +974,16 @@ let $CURRENT_API_FILTERS = [];
     });
   }
 
+  function isTopLevelNav(urlPathname) {
+    switch(urlPathname) {
+      case '/apis': return true;
+      case '/apis/': return true;
+      case '/open': return true;
+      case '/open/': return true;
+      default: return false;
+    }
+  }
+
   function decorateHeader() {
     document.querySelectorAll('header').forEach(($header) => {
       $header.classList.add('main-header');
@@ -1290,6 +1301,7 @@ let $CURRENT_API_FILTERS = [];
             displayFilteredCards(catalog, $cards, buttons, config.limit);
           });
         })
+        focusRing($apiBrowser);
       }
     });
   }
@@ -1471,6 +1483,7 @@ let $CURRENT_API_FILTERS = [];
           toggleScale();
           $resourceSmall.remove();
         });
+        focusRing($resourceCardsContainer);
       }
     });
   }
@@ -1551,6 +1564,68 @@ let $CURRENT_API_FILTERS = [];
     }
   }
 
+  function focusRing(domObj=document) {
+    domObj.querySelectorAll('a.spectrum-Link').forEach(($a) => {
+      $a.addEventListener('focus', () => {
+        $a.classList.add('focus-ring');
+      });
+
+      $a.addEventListener('blur', () => {
+        $a.classList.remove('focus-ring');
+      });
+    });
+
+    domObj.querySelectorAll('a.spectrum-Button').forEach(($button) => {
+      $button.addEventListener('focus', () => {
+        $button.classList.add('focus-ring');
+      });
+
+      $button.addEventListener('blur', () => {
+        $button.classList.remove('focus-ring');
+      });
+    });
+
+    domObj.querySelectorAll('div.spectrum-Card').forEach(($card) => {
+      $card.addEventListener('focus', () => {
+        $card.classList.add('focus-ring');
+      });
+
+      $card.addEventListener('blur', () => {
+        $card.classList.remove('focus-ring');
+      });
+    });
+
+    domObj.querySelectorAll('a.spectrum-Card').forEach(($card) => {
+      $card.addEventListener('focus', () => {
+        $card.classList.add('focus-ring');
+      });
+
+      $card.addEventListener('blur', () => {
+        $card.classList.remove('focus-ring');
+      });
+    });
+
+    domObj.querySelectorAll('input.spectrum-Checkbox-input').forEach(($input) => {
+      $input.addEventListener('focus', () => {
+        $input.classList.add('focus-ring');
+      });
+
+      $input.addEventListener('blur', () => {
+        $input.classList.remove('focus-ring');
+      });
+    });
+
+    domObj.querySelectorAll('button.spectrum-Picker').forEach(($button) => {
+      $button.addEventListener('focus', () => {
+        $button.classList.add('focus-ring');
+      });
+
+      $button.addEventListener('blur', () => {
+        $button.classList.remove('focus-ring');
+      });
+    });
+  }
+
   function toggleScale() {
     const doc = document.documentElement;
     const isLargeScale = doc.clientWidth < MOBILE_SCREEN_WIDTH;
@@ -1574,6 +1649,7 @@ let $CURRENT_API_FILTERS = [];
     // We're done, let the page render
     document.documentElement.classList.remove('helix-loading');
 
+    focusRing();
     window.adobeImsFactory.createIMSLib(window.adobeid);
     adobeIMS.initialize();
 
