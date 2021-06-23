@@ -223,7 +223,7 @@ header.global-nav-header a.nav-console-adobeio-link-text {
 }
 
 header.global-nav-header strong.icon-adobe-label {
-  color: #fa0f00;
+  color: var(--spectrum-heading-xxs-text-color,var(--spectrum-alias-heading-text-color));
   font-size: 15px;
   white-space: nowrap;
 }
