@@ -21,7 +21,6 @@
   /* spectrum-dimensionGlobals.css */
   --spectrum-global-dimension-static-size-10: 1px;
   --spectrum-global-dimension-static-size-25: 2px;
-  --spectrum-global-dimension-static-size-40: 3px;
   --spectrum-global-dimension-static-size-50: 4px;
   --spectrum-global-dimension-static-size-65: 5px;
   --spectrum-global-dimension-static-size-75: 6px;
@@ -193,6 +192,7 @@
   --spectrum-alias-text-color-down: var(--spectrum-global-color-gray-900);
   --spectrum-alias-text-color-key-focus: var(--spectrum-global-color-blue-600);
   --spectrum-alias-text-color-disabled: var(--spectrum-global-color-gray-500);
+  --spectrum-alias-text-color-over-background: var(--spectrum-global-color-static-white);
   --spectrum-alias-heading-text-color: var(--spectrum-global-color-gray-900);
   --spectrum-alias-border-color: var(--spectrum-global-color-gray-400);
   --spectrum-alias-border-color-hover: var(--spectrum-global-color-gray-500);
@@ -2916,6 +2916,13 @@ a.spectrum-Button {
     overflow: hidden;
   }
 
+@media (forced-colors: active) {
+  .spectrum-Icon,
+  .spectrum-UIIcon {
+    forced-color-adjust: auto;
+  }
+}
+
 .spectrum-Icon {
   --spectrum-icon-size-s: var(--spectrum-global-dimension-size-200);
   --spectrum-icon-size-m: var(--spectrum-global-dimension-size-225);
@@ -4158,6 +4165,7 @@ a.spectrum-Button {
     }
 
 .spectrum-Checkbox-input.focus-ring + .spectrum-Checkbox-box:after {
+      forced-color-adjust:none;
       box-shadow: 0 0 0 var(--spectrum-alias-focus-ring-size)
         var(--spectrum-alias-focus-ring-color);
     }
@@ -4219,28 +4227,67 @@ a.spectrum-Button {
     }
 
 @media (forced-colors: active) {
-    .spectrum-Checkbox-input.focus-ring + .spectrum-Checkbox-box {
-      forced-color-adjust: none;
-      outline-color: var(--spectrum-alias-focus-ring-color);
-      outline-style: auto;
-      outline-offset: var(--spectrum-alias-focus-ring-gap);
-      outline-width: var(--spectrum-alias-focus-ring-size);
-    }
-
   .spectrum-Checkbox {
-    --spectrum-checkbox-m-text-color-disabled: GrayText;
-    --spectrum-checkbox-m-box-border-color-key-focus: FieldText;
+    --spectrum-checkbox-m-box-background-color-disabled: ButtonFace;
+    --spectrum-checkbox-m-box-background-color: ButtonFace;
+    --spectrum-checkbox-m-box-border-color-disabled: GrayText;
+    --spectrum-checkbox-m-box-border-color-down: Highlight;
+    --spectrum-checkbox-m-box-border-color-error-down: Highlight;
+    --spectrum-checkbox-m-box-border-color-error-hover: Highlight;
+    --spectrum-checkbox-m-box-border-color-error: Highlight;
+    --spectrum-checkbox-m-box-border-color-hover: Highlight;
+    --spectrum-checkbox-m-box-border-color-key-focus: Highlight;
+    --spectrum-checkbox-m-box-border-color-selected-down: Highlight;
     --spectrum-checkbox-m-box-border-color-selected-hover: Highlight;
+    --spectrum-checkbox-m-box-border-color-selected-key-focus: Highlight;
+    --spectrum-checkbox-m-box-border-color-selected: Highlight;
+    --spectrum-checkbox-m-box-border-color: ButtonText;
+    --spectrum-checkbox-m-checkmark-color: HighlightText;
+    --spectrum-checkbox-m-emphasized-box-border-color-selected-down: Highlight;
     --spectrum-checkbox-m-emphasized-box-border-color-selected-hover: Highlight;
     --spectrum-checkbox-m-emphasized-box-border-color-selected: Highlight;
-    --spectrum-checkbox-m-checkmark-color: HighlightText;
-    --spectrum-checkbox-m-focus-ring-color-key-focus: Highlight;
-    --spectrum-checkbox-m-focus-ring-gap-key-focus: 2px;
-    --spectrum-checkbox-m-focus-ring-size-key-focus: 3px;
-    --spectrum-checkbox-m-box-border-color-error: FieldText;
-    --spectrum-checkbox-m-box-border-color-error-hover: FieldText;
+    --spectrum-checkbox-m-focus-ring-color-key-focus: FieldText;
+    --spectrum-checkbox-m-text-color-disabled: GrayText;
+    --spectrum-checkbox-m-text-color-down: FieldText;
+    --spectrum-checkbox-m-text-color-error-down: FieldText;
+    --spectrum-checkbox-m-text-color-error-hover: FieldText;
     --spectrum-checkbox-m-text-color-error: FieldText;
+    --spectrum-checkbox-m-text-color-hover: FieldText;
+    --spectrum-checkbox-m-text-color-key-focus: FieldText;
+    --spectrum-checkbox-m-text-color: FieldText;
   }
+        .spectrum-Checkbox.is-invalid .spectrum-Checkbox-box:before {
+          border-color: var(--spectrum-global-color-gray-600);
+        }
+          .spectrum-Checkbox.is-invalid.is-indeterminate .spectrum-Checkbox-box:before {
+            border-color: var(--spectrum-global-color-red-500);
+          }
+        .spectrum-Checkbox.is-invalid .spectrum-Checkbox-input:checked + .spectrum-Checkbox-box:before {
+          border-color: var(--spectrum-global-color-red-500);
+        }
+}
+
+.spectrum-Link--sizeS {
+  --spectrum-link-primary-text-size: var(--spectrum-alias-item-text-size-s);
+}
+
+.spectrum-Link--sizeM {
+  --spectrum-link-primary-text-size: var(--spectrum-alias-item-text-size-m);
+}
+
+.spectrum-Link--sizeL {
+  --spectrum-link-primary-text-size: var(--spectrum-alias-item-text-size-l);
+}
+
+.spectrum-Link--sizeXL {
+  --spectrum-link-primary-text-size: var(--spectrum-alias-item-text-size-xl);
+}
+
+.spectrum-Link--sizeS,
+.spectrum-Link--sizeM,
+.spectrum-Link--sizeL,
+.spectrum-Link--sizeXL {
+  font-size: var(--spectrum-link-primary-text-size);
 }
 
 .spectrum-Link {
@@ -4282,7 +4329,7 @@ a.spectrum-Button {
     color: var(--spectrum-alias-text-color-key-focus);
   }
 
-.spectrum-Link--secondary{
+.spectrum-Link--secondary {
   color: inherit;
 }
 
@@ -4299,20 +4346,38 @@ a.spectrum-Button {
   }
 
 .spectrum-Link--overBackground {
-  color: var(--spectrum-global-color-static-white);
+  color: var(--spectrum-alias-text-color-over-background);
 }
 
 .spectrum-Link--overBackground:hover {
-    color: var(--spectrum-global-color-static-white);
+    color: var(--spectrum-alias-text-color-over-background);
   }
 
 .spectrum-Link--overBackground:active {
-    color: var(--spectrum-global-color-static-white);
+    color: var(--spectrum-alias-text-color-over-background);
   }
 
 .spectrum-Link--overBackground:focus {
-    color: var(--spectrum-global-color-static-white);
+    color: var(--spectrum-alias-text-color-over-background);
   }
+
+@media (forced-colors: active) {
+  .spectrum-Link--secondary {
+    color: linktext;
+  }
+  
+    .spectrum-Link--secondary:hover {
+      color: linktext;
+    }
+  
+    .spectrum-Link--secondary:active {
+      color: linktext;
+    }
+  
+    .spectrum-Link--secondary:focus {
+      color: linktext;
+    }
+}
 
 .spectrum-Divider--sizeS {
   --spectrum-divider-height: var(--spectrum-global-dimension-size-10);
@@ -6647,7 +6712,7 @@ main div.site-hero-container {
 main div.site-hero {
   position: relative;
   width: 100%;
-  height: calc(var(--spectrum-global-dimension-size-6000) + var(--spectrum-global-dimension-size-250));
+  height: 350px;
 }
 
 @media screen and (max-width: 1280px) {
