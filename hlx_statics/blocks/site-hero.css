@@ -7,7 +7,7 @@ main div.site-hero-container {
 main div.site-hero {
   position: relative;
   width: 100%;
-  height: calc(var(--spectrum-global-dimension-size-6000) + var(--spectrum-global-dimension-size-250));
+  height: 350px;
 }
 
 @media screen and (max-width: 1280px) {
@@ -59,4 +59,3 @@ main .site-hero .hero-button-container {
   margin-top: var(--spectrum-global-dimension-size-300);
   gap: var(--spectrum-global-dimension-size-200, var(--spectrum-alias-size-200));
 }
-
