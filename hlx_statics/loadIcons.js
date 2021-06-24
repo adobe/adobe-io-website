@@ -74,15 +74,6 @@ governing permissions and limitations under the License.
       handleError('Parsed SVG document contained something other than an SVG');
     }
   }
-
-  function fixHlxPath(path) {
-    // make sure to reference hlx_statics always to the root
-    if(window.location.hostname.indexOf('hlx.page') >= 0 || window.location.hostname.indexOf('hlx.live') >= 0 || window.location.hostname.indexOf('localhost') >= 0) {
-      return window.location.hostname + path;
-    } else {
-      return path
-    }
-  }
   
   function loadIcons(svgURL, callback) {
     // Request the SVG sprite
