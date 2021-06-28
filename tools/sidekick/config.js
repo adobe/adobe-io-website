@@ -11,7 +11,7 @@
  */
 
 // This file contains the project-specific configuration for the sidekick.
-const sk = window.hlx.initSidekick({
+window.hlx.initSidekick({
   project: 'Adobe I/O',
   host: 'www.adobe.io',
   byocdn: true,
