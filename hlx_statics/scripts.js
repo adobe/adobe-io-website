@@ -1068,7 +1068,8 @@ let $CURRENT_API_FILTERS = [];
         });
 
         $linkContainerHTML = globalNavLinks($linkHTML);
-        $header.innerHTML = globalNavTemplate($linkContainerHTML);
+        
+        $header.innerHTML = globalNavTemplate($linkContainerHTML, globalNavSearchButton());
 
         let $currentHeader = $header;
         $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
@@ -1132,7 +1133,7 @@ let $CURRENT_API_FILTERS = [];
             }
           });
           $linkContainerHTML = globalNavLinks($linkHTML);
-          $header.innerHTML = globalNavTemplate($linkContainerHTML);
+          $header.innerHTML = globalNavTemplate($linkContainerHTML, globalNavSearchButton());
 
           let $currentHeader = $header;
           $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
