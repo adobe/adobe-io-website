@@ -5982,6 +5982,10 @@ main div.announcement-container {
   }
 }
 
+main div.announcement {
+  max-width: 1280px;
+}
+
 main div.announcement-container > div {
   width: 100%;
 }
@@ -6028,6 +6032,7 @@ main .filter-by-popover {
 }
 
 main .api-browser {
+    /* this is 1280px */
     max-width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
     margin: var(--spectrum-global-dimension-size-400) auto;
     margin-bottom: 0;
@@ -6205,6 +6210,11 @@ main div.background-image a.button.secondary {
     border-color: white;
 }
 
+main div.cards-container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
 main div.cards {
     width: var(--spectrum-global-dimension-static-grid-fluid-width);
     background: var(--spectrum-global-color-gray-100);
@@ -6272,6 +6282,8 @@ main div.cards a.card-button {
 main div.columns-container {
     width: 100%;
     background: var(--spectrum-global-color-gray-100);
+    max-width: 1280px;
+    margin: 0 auto;
 }
 
 main div.columns {
@@ -6707,6 +6719,8 @@ main div.summary-container {
 }
 
 main div.summary {
+  max-width: 1280px;
+  margin: 0 auto;
   position: relative;
   width: 100%;
   height: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-225));
@@ -6756,6 +6770,7 @@ main div.summary p a:hover {
 }
 
 main div.info {
+  max-width: 1280px;
   width: 90%;
   margin: 0 auto;
   background: var(--spectrum-global-color-gray-100);
@@ -6784,6 +6799,7 @@ main div.banner {
   text-align: left;
   height: 210px;
   margin: 0 auto;
+  max-width: 1280px;
 }
 
 main div.banner h1 {
@@ -7350,6 +7366,8 @@ footer .footer-horizontal {
 }
 
 .resource-cards-container {
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
 }
 

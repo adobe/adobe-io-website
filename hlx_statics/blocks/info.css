@@ -1,4 +1,5 @@
 main div.info {
+  max-width: 1280px;
   width: 90%;
   margin: 0 auto;
   background: var(--spectrum-global-color-gray-100);

@@ -23,6 +23,7 @@ main .filter-by-popover {
 }
 
 main .api-browser {
+    /* this is 1280px */
     max-width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
     margin: var(--spectrum-global-dimension-size-400) auto;
     margin-bottom: 0;

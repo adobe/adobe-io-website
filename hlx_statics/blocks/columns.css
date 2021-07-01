@@ -2,6 +2,8 @@
 main div.columns-container {
     width: 100%;
     background: var(--spectrum-global-color-gray-100);
+    max-width: 1280px;
+    margin: 0 auto;
 } 
 
 main div.columns {

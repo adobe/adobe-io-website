@@ -13,6 +13,10 @@ main div.announcement-container {
   }
 }
 
+main div.announcement {
+  max-width: 1280px;
+}
+
 main div.announcement-container > div {
   width: 100%;
 }

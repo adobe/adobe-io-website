@@ -5,6 +5,8 @@ main div.summary-container {
 }
 
 main div.summary {
+  max-width: 1280px;
+  margin: 0 auto;
   position: relative;
   width: 100%;
   height: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-225));
