@@ -1,4 +1,6 @@
 main div.hero {
+  max-width: 1280px;
+  margin: 0 auto;
   background: var(--spectrum-global-color-gray-50);
   height: calc(var(--spectrum-global-dimension-size-6000) + var(--spectrum-global-dimension-size-250));
   overflow: hidden;
