@@ -2,6 +2,7 @@
   "name": "adobe-io-website",
   "version": "1.0.0",
   "scripts": {
+    "buildIndex": "./tools/algolia/index.js --config config.yaml",
     "buildCss": "mkdir -p hlx_statics/spectrum/minified/ && postcss -o hlx_statics/spectrum/minified/index.min.css styles-includes.css"
   },
   "devDependencies": {
@@ -27,6 +28,7 @@
     "@spectrum-css/menu": "^3.0.1",
     "@spectrum-css/picker": "^1.0.1",
     "@spectrum-css/popover": "^3.0.1",
-    "@spectrum-css/well": "^3.0.2"
+    "@spectrum-css/well": "^3.0.2",
+    "minimist": "^1.2.5"
   }
 }
