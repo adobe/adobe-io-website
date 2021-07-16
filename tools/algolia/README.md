@@ -53,9 +53,10 @@ See appropriate description in `Env variables` section.
 
 ## Example of usage
 
-1. Copy `.env.example` to `.env`
-2. Add the appropriate values in the `.env` file
-3. Run `node index.js --ALGOLIA_INDEXATION_MODE=index --ALGOLIA_INDEX_NAME=DEVSITE-96 --PAGES_LIST_JSON_FILE=https://adobe-io-website--adobe.hlx.live/algolia/index.json`
+1. Run `npm install` in the root folder of tool;
+2. Copy `.env.example` to `.env`;
+3. Add the appropriate values in the `.env` file;
+4. Run `node index.js --ALGOLIA_INDEXATION_MODE=index --ALGOLIA_INDEX_NAME=DEVSITE-96 --PAGES_LIST_JSON_FILE=https://adobe-io-website--adobe.hlx.live/algolia/index.json`;
 
 **The .env should not be committed.**
 
