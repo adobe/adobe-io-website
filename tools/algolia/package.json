@@ -1,0 +1,15 @@
+{
+  "name": "adobe-io-website-algolia-index-generation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "description": "Generate index records from remote URLs and push data to Algolia index",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "algolia-html-extractor": "0.0.1",
+    "algoliasearch": "^4.10.3",
+    "dotenv": "^10.0.0",
+    "minimist": "^1.2.5",
+    "request": "^2.88.2"
+  }
+}
