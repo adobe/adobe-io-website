@@ -276,6 +276,12 @@ let $CURRENT_API_FILTERS = [];
     });
   }
 
+  function decorateLists() {
+    document.querySelectorAll("main ul, main ol").forEach(($list) => {
+      $list.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
+    });
+  }
+
   function decorateBlocks() {
     document
       .querySelectorAll("main>div.section-wrapper>div>div")
@@ -1736,6 +1742,7 @@ let $CURRENT_API_FILTERS = [];
   async function decoratePage() {
     toggleScale();
     decorateTables();
+    decorateLists();
     wrapSections("main>div");
     decorateBlocks();
     wrapSections("header>div, footer>div");
