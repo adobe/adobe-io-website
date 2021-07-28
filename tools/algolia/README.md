@@ -17,7 +17,7 @@ Generate index records from remote URLs and push data to Algolia
 - `ALGOLIA_INDEXATION_MODE` `[console | index]`
   - `console` mode - index data will be published to console, but not pushed to real search index (default value);
   - `index` mode - index data will be pushed to real search index.
-- `PAGES_LIST_JSON_FILE` - List of pages for parsing in JSON format. Should be remote URL.
+- `PAGES_LIST_JSON_FILE` `(string)` - List of pages for parsing in JSON format. Should be remote URL.
 
 Example of pages declaration (`PAGES_LIST_JSON_FILE`):
 
@@ -56,7 +56,7 @@ See appropriate description in `Env variables` section.
 1. Run `npm install` in the root folder of tool;
 2. Copy `.env.example` to `.env`;
 3. Add the appropriate values in the `.env` file;
-4. Run `node index.js --ALGOLIA_INDEXATION_MODE=index --ALGOLIA_INDEX_NAME=DEVSITE-96 --PAGES_LIST_JSON_FILE=https://adobe-io-website--adobe.hlx.live/algolia/index.json`;
+4. Run `node index.js --ALGOLIA_INDEXATION_MODE=index --ALGOLIA_INDEX_NAME=DEVSITE-96 --PAGES_LIST_JSON_FILE=https://adobe-io-website--adobe.hlx.live/algolia/index.json`.
 
 **The .env should not be committed.**
 
