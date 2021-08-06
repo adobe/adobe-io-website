@@ -76,7 +76,7 @@ class Indexer {
 
     let records = [];
     for (const page of pagesList.data) {
-      if (!page.Url || !page.Name) {
+      if (!page.Url || !page.Name || !page.Index ) {
         throw new Error('Wrong page declaration: ' + JSON.stringify(page));
       }
       const pageContent = await this.loadContentByUrl.execute(page.Url);
@@ -87,10 +87,11 @@ class Indexer {
         headings: htmlTag.headings,
         customRanking: htmlTag.customRanking,
         objectID: htmlTag.objectID,
-        url: page.Url
+        url: page.Url,
+        index: page.Index
       }));
 
-      console.log(` - ${recordsBunch.length} record(s) for "${page.Name}|${page.Url}";`);
+      console.log(` - ${recordsBunch.length} record(s) for "${page.Name} | ${page.Url} | with index: ${page.Index}";`);
       records = [...records, ...recordsBunch];
     }
     console.log(`Creating a list of index records completed. Total record(s): ${records.length}.`);
@@ -114,6 +115,19 @@ class Indexer {
       );
   }
 
+    /**
+   * @private
+   * @param {Array} records
+   * @returns {Array}
+   */
+     getUniqueIndexes(records) {
+      const indexes = records.map((item) => {
+        return item.index
+      });
+      const uniqueIndexes = [...new Set(indexes)];
+      return uniqueIndexes;
+    }
+
   /**
    * @private
    * @param {Object} records
@@ -133,15 +147,20 @@ class Indexer {
         console.log(`Indexation mode is "${mode}". Index records will be published to Algolia index.`);
 
         const client = algoliasearch(options.algoliaAppId, options.algoliaWriteAppKey);
-        const index = client.initIndex(options.algoliaIndexName);
-        await index
-          .saveObjects(records)
-          .then(({ objectIDs }) => {
-            console.log(`Data have been pushed to Algolia index.`);
-          })
-          .catch((err) => {
-            throw new Error(`Error during pushing data to Algolia: ${err.message}`);
-          });
+        const indexes = this.getUniqueIndexes(records);
+
+        for(const index of indexes ){
+          const clientIndex = client.initIndex(index);
+          await clientIndex
+            .saveObjects(records)
+            .then(({ objectIDs }) => {
+              console.log(`Data have been pushed to Algolia index: ${index}`);
+            })
+            .catch((err) => {
+              throw new Error(`Error during pushing data to Algolia: ${err.message}`);
+            });
+        }
+
         break;
       default:
         throw new Error(`Wrong indexation mode. Should be [${INDEXATION_MODE_CONSOLE}|${INDEXATION_MODE_INDEX}]`);
