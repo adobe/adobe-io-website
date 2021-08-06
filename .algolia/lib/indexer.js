@@ -148,11 +148,13 @@ class Indexer {
 
         const client = algoliasearch(options.algoliaAppId, options.algoliaWriteAppKey);
         const indexes = this.getUniqueIndexes(records);
-
         for(const index of indexes ){
+          // group records together by index and upload
+          const recordsOfIndex = records.filter(record => record.index === index);
           const clientIndex = client.initIndex(index);
+
           await clientIndex
-            .saveObjects(records)
+            .saveObjects(recordsOfIndex)
             .then(({ objectIDs }) => {
               console.log(`Data have been pushed to Algolia index: ${index}`);
             })
