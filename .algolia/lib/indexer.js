@@ -82,7 +82,16 @@ class Indexer {
       const pageContent = await this.loadContentByUrl.execute(page.Url);
 
       const extractedData = this.splitPageContent(pageContent, options);
+
+      const titleOptions = JSON.parse(JSON.stringify(options));
+      titleOptions.tagsToIndex = 'title';
+      titleOptions.minWordsCount = 1;
+      titleOptions.minCharsLength = 5;
+      const title = this.splitPageContent(pageContent, titleOptions );
+      const theTitle = title.length > 0 ? title[0].content : '';
+
       const recordsBunch = extractedData.map((htmlTag) => ({
+        title: theTitle,
         content: htmlTag.content,
         headings: htmlTag.headings,
         customRanking: htmlTag.customRanking,
