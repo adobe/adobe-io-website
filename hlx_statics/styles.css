@@ -360,6 +360,7 @@ header.global-nav-header div.nav-profile-popover-innerContainer {
 header.global-nav-header div.nav-profile-popover-avatar-button > img {
   width: 32px;
   height: 32px;
+  border-radius: 50%;
 }
 
 header.global-nav-header div.nav-profile-popover-avatar {
