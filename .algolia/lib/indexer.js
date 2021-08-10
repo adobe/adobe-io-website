@@ -76,10 +76,10 @@ class Indexer {
 
     let records = [];
     for (const page of pagesList.data) {
-      if (!page.Url || !page.Name || !page.Index ) {
+      if (!page.Url || !page.AbsoluteUrl || !page.Name || !page.Index ) {
         throw new Error('Wrong page declaration: ' + JSON.stringify(page));
       }
-      const pageContent = await this.loadContentByUrl.execute(page.Url);
+      const pageContent = await this.loadContentByUrl.execute(page.AbsoluteUrl);
 
       const extractedData = this.splitPageContent(pageContent, options);
 
@@ -96,6 +96,7 @@ class Indexer {
         headings: htmlTag.headings,
         customRanking: htmlTag.customRanking,
         objectID: htmlTag.objectID,
+        absoluteUrl: page.AbsoluteUrl,
         url: page.Url,
         index: page.Index
       }));
