@@ -1505,17 +1505,19 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function decorateResourceCards() {
-    document.querySelectorAll('.resource-card').forEach(($resourceLarge, index, array) => {
-      removeEmptyPTags($resourceLarge);
+    document.querySelectorAll('.section-wrapper').forEach(($section) => {
+      $section.querySelectorAll('.resource-card > div').forEach(($resource) => {
+        removeEmptyPTags($resource);
 
-      // let $linkHref = $resourceLarge.querySelector('a')?.href;
-      // let $heading = $resourceLarge.querySelector('a')?.innerText;
-      // let $imgSrc = $resourceLarge.querySelector('img')?.src;
-      // let $text = $resourceLarge.querySelector('p')?.innerText;
+        let $resourceCard = createTag('div', { class: 'resource-cards-card'});
 
-      //$leftResourceCardContainer.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
-
-      //$resourceLarge.remove();
+        let $linkHref = $resource.querySelector('a')?.href;
+        let $heading = $resource.querySelector('a')?.innerText;
+        let $imgSrc = $resource.querySelector('img')?.src;
+        let $text = $resource.querySelector('p')?.innerText;
+  
+        $resource.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
+      });
     });
     /*
     document.querySelectorAll('.section-wrapper').forEach(($section) => {

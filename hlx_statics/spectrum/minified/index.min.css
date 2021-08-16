@@ -6711,6 +6711,22 @@ main div.resource-card {
   flex-direction: row;
 }
 
+@media screen and (max-width: 1280px) {
+  main div.resource-card {
+      flex-direction: column;
+  }
+}
+
+main div.resource-card > div {
+  text-align: center;
+  display: table-cell;
+  padding: var(--spectrum-global-dimension-size-1000) 0;
+}
+
+main div.resource-card img {
+  max-height: 200px;
+}
+
 main div.site-hero-container {
   background: var(--spectrum-global-color-gray-50);
   background-position: center;
