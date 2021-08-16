@@ -1476,23 +1476,23 @@ let $CURRENT_API_FILTERS = [];
   }
   function getResourceCard(size,linkHref, imgSrc, heading, text) {
     return `
-          <a class="spectrum-Card ${size === 'small' ? 'spectrum-Card--horizontal' : ''} resource-card-${size}-container-inner"
+          <a class="spectrum-Card"
              href=${linkHref}
           >
-            <div class="spectrum-Card-preview resource-card-${size}-preview">
-              <div class="resource-card-${size}-image-container spectrum-Asset">
+            <div class="spectrum-Card-preview resource-card-preview">
+              <div class="resource-card-image-container spectrum-Asset">
                 <img class="spectrum-Asset-image" src=${imgSrc} />
               </div>
             </div>
-            <div class="spectrum-Card-body resource-card-${size}-body">
-              <div class="spectrum-Card-header resource-card-${size}-header">
-                <div class="spectrum-Card-title resource-card-${size}-title">
+            <div class="spectrum-Card-body resource-card-body">
+              <div class="spectrum-Card-header resource-card-header">
+                <div class="spectrum-Card-title resource-card-title">
                   <h3 class="spectrum-Heading spectrum-Heading--sizeM">
                     ${heading}
                   </h3>
                 </div>
               </div>
-              <div class="spectrum-Card-content">
+              <div class="spectrum-Card-content resource-card-content">
                 <div class="spectrum-Card-subtitle">
                   <p className="spectrum-Body spectrum-Body-S">
                     ${text}
