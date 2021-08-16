@@ -1515,7 +1515,7 @@ let $CURRENT_API_FILTERS = [];
 
       //$leftResourceCardContainer.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
 
-      $resourceLarge.remove();
+      //$resourceLarge.remove();
     });
     /*
     document.querySelectorAll('.section-wrapper').forEach(($section) => {

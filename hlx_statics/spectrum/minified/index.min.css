@@ -6703,6 +6703,14 @@ main div.resource-card-small p {
   margin-top: 0;
 }
 
+main div.resource-card {
+  width: var(--spectrum-global-dimension-static-grid-fluid-width);
+  background: var(--spectrum-global-color-gray-100);
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
 main div.site-hero-container {
   background: var(--spectrum-global-color-gray-50);
   background-position: center;
