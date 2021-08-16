@@ -1505,6 +1505,19 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function decorateResourceCards() {
+    document.querySelectorAll('.resource-card').forEach(($resourceLarge, index, array) => {
+      removeEmptyPTags($resourceLarge);
+
+      // let $linkHref = $resourceLarge.querySelector('a')?.href;
+      // let $heading = $resourceLarge.querySelector('a')?.innerText;
+      // let $imgSrc = $resourceLarge.querySelector('img')?.src;
+      // let $text = $resourceLarge.querySelector('p')?.innerText;
+
+      //$leftResourceCardContainer.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
+
+      $resourceLarge.remove();
+    });
+    /*
     document.querySelectorAll('.section-wrapper').forEach(($section) => {
       // resource cards are special in that multiple cards will be grouped together within
       // a section so need to find out how many and what format it is
@@ -1524,10 +1537,10 @@ let $CURRENT_API_FILTERS = [];
         $section.querySelectorAll('.resource-card-large').forEach(($resourceLarge, index, array) => {
           removeEmptyPTags($resourceLarge);
           //$largeResourceCardCount = array.length;
-          let $linkHref = $resourceLarge.querySelector('a').href;
-          let $heading = $resourceLarge.querySelector('a').innerText;
-          let $imgSrc = $resourceLarge.querySelector('img').src;
-          let $text = $resourceLarge.querySelector('p').innerText;
+          let $linkHref = $resourceLarge.querySelector('a')?.href;
+          let $heading = $resourceLarge.querySelector('a')?.innerText;
+          let $imgSrc = $resourceLarge.querySelector('img')?.src;
+          let $text = $resourceLarge.querySelector('p')?.innerText;
 
           $leftResourceCardContainer.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
 
@@ -1546,9 +1559,11 @@ let $CURRENT_API_FILTERS = [];
           toggleScale();
           $resourceSmall.remove();
         });
+
         focusRing($resourceCardsContainer);
       }
     });
+        */
   }
 
   function decorateInfo() {
@@ -1574,6 +1589,7 @@ let $CURRENT_API_FILTERS = [];
         $code.classList.add('spectrum-Code', 'spectrum-Code--sizes', 'spectrum-Well');
       });
     });
+
   }
 
   function decorateBanner() {

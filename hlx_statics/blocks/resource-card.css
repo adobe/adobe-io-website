@@ -1,0 +1,7 @@
+main div.resource-card {
+  width: var(--spectrum-global-dimension-static-grid-fluid-width);
+  background: var(--spectrum-global-color-gray-100);
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+} 
