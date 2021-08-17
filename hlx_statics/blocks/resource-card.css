@@ -1,23 +1,41 @@
 main div.resource-card {
   width: var(--spectrum-global-dimension-static-grid-fluid-width);
-
   background: var(--spectrum-global-color-gray-100);
   display: flex;
   justify-content: center;
   flex-direction: row;
 } 
 
-@media screen and (max-width: 1280px) {
+main div.resource-card > div {
+  width: calc(33.33vw - 48px);
+  padding: var(--spectrum-global-dimension-size-1000) 0;
+} 
+
+@media screen and (max-width: 768px) {
   main div.resource-card {
-      flex-direction: column;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  main div.resource-card > div {
+    min-width: var(--spectrum-global-dimension-size-4600);
+  } 
+
+  main div.resource-card > div:first-child {
+    padding-left: 0 !important;
+  } 
+  main div.resource-card > div:nth-child(2){
+    padding-left: 0;
+    padding-right: 0;
+  } 
+
+  main div.resource-card-image-container img {
+    object-fit: cover;
+    max-width: var(--spectrum-global-dimension-size-4600) !important;
   }
 }
 
-main div.resource-card > div {
-  width: calc(33.33vw - 48px);
-
-  padding: var(--spectrum-global-dimension-size-1000) 0;
-} 
 
 main div.resource-card > div:first-child {
   padding-left: 12px;
