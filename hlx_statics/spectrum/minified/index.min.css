@@ -6703,6 +6703,11 @@ main div.resource-card-small p {
   margin-top: 0;
 }
 
+main div.resource-card-container {
+  max-width: 1280px;
+  margin: auto;
+}
+
 main div.resource-card {
   width: var(--spectrum-global-dimension-static-grid-fluid-width);
   background: var(--spectrum-global-color-gray-100);
