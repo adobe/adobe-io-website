@@ -32,7 +32,7 @@ main div.resource-card > div {
 
   main div.resource-card-image-container img {
     object-fit: cover;
-    max-width: var(--spectrum-global-dimension-size-4600) !important;
+    width: 100% !important;
   }
 }
 
@@ -66,7 +66,7 @@ main div.resource-card-image-container {
 
 main div.resource-card-image-container img {
   object-fit: cover;
-  max-width: calc(33.33vw - 48px);
+  width: calc(33.33vw - 48px);
 }
 
 main div.resource-card-body {
