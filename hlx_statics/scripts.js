@@ -1597,17 +1597,17 @@ let $CURRENT_API_FILTERS = [];
       $banner.querySelectorAll('h1').forEach(($title)=> {
         $title.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXL');
       })
-    });
 
-    // delete image and re-insert as bg
-    let $bannerImageSrc = $info.querySelector('img') ? $info.querySelector('img').src : null;
-    if($bannerImageSrc){
-      $banner.querySelectorAll('picture').forEach(($picture) => {
-        //remove weird max-width attribute
-        $picture.parentElement.parentElement.remove();
-      });
-      $banner.style.backgroundImage = `url(${$infoImageSrc})`;
-    }
+      // delete image and re-insert as bg
+      let $bannerImageSrc = $banner.querySelector('img') ? $banner.querySelector('img').src : null;
+      if($bannerImageSrc){
+        $banner.querySelectorAll('picture').forEach(($picture) => {
+          //remove weird max-width attribute
+          $picture.parentElement.parentElement.remove();
+        });
+        $banner.style.backgroundImage = `url(${$bannerImageSrc})`;
+      }
+    });
   }
 
   function decorateSummary() {
