@@ -1,5 +1,7 @@
 main div.banner-container {
   background-color: var(--spectrum-global-color-blue-700);
+  background-position: center;
+  background-size: cover;
 }
 
 main div.banner {

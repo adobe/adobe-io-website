@@ -1589,19 +1589,7 @@ let $CURRENT_API_FILTERS = [];
       $info.querySelectorAll('code').forEach(($code) => {
         $code.classList.add('spectrum-Code', 'spectrum-Code--sizes', 'spectrum-Well');
       });
-
-      // delete image and re-insert as bg
-      let $infoImageSrc = $info.querySelector('img') ? $info.querySelector('img').src : null;
-      if($infoImageSrc){
-        $infoImageSrc.querySelectorAll('picture').forEach(($picture) => {
-          //remove weird max-width attribute
-          $picture.parentElement.parentElement.remove();
-        });
-        $infoImageSrc.style.backgroundImage = `url(${$infoImageSrc})`;
-      }
-
     });
-
   }
 
   function decorateBanner() {
@@ -1610,6 +1598,16 @@ let $CURRENT_API_FILTERS = [];
         $title.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXL');
       })
     });
+
+    // delete image and re-insert as bg
+    let $bannerImageSrc = $info.querySelector('img') ? $info.querySelector('img').src : null;
+    if($bannerImageSrc){
+      $banner.querySelectorAll('picture').forEach(($picture) => {
+        //remove weird max-width attribute
+        $picture.parentElement.parentElement.remove();
+      });
+      $banner.style.backgroundImage = `url(${$infoImageSrc})`;
+    }
   }
 
   function decorateSummary() {
