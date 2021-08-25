@@ -1572,12 +1572,11 @@ let $CURRENT_API_FILTERS = [];
     document.querySelectorAll(".info").forEach(($info) => {
       $info.classList.add('spectrum--light');
 
-      //removeEmptyPTags($summary);
       $info.querySelectorAll('h2').forEach(($title)=> {
         $title.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
         let $divider = createTag('hr', {class:`spectrum-Divider spectrum-Divider--sizeL`});
         $title.after($divider);
-      })
+      });
 
       $info.querySelectorAll('p').forEach(($p) => {
         $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
@@ -1590,6 +1589,19 @@ let $CURRENT_API_FILTERS = [];
       $info.querySelectorAll('code').forEach(($code) => {
         $code.classList.add('spectrum-Code', 'spectrum-Code--sizes', 'spectrum-Well');
       });
+
+      // delete image and re-insert as bg
+      let $infoImageSrc = $info.querySelector('img') ? $info.querySelector('img').src : null;
+
+      $infoImageSrc.querySelectorAll('picture').forEach(($picture) => {
+        //remove weird max-width attribute
+
+        //$picture.media = "";
+        $picture.parentElement.parentElement.remove();
+        //$picture.remove();
+      });
+
+      $infoImageSrc.style.backgroundImage = `url(${$infoImageSrc})`;
     });
 
   }
