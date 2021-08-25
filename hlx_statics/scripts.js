@@ -1592,16 +1592,14 @@ let $CURRENT_API_FILTERS = [];
 
       // delete image and re-insert as bg
       let $infoImageSrc = $info.querySelector('img') ? $info.querySelector('img').src : null;
+      if($infoImageSrc){
+        $infoImageSrc.querySelectorAll('picture').forEach(($picture) => {
+          //remove weird max-width attribute
+          $picture.parentElement.parentElement.remove();
+        });
+        $infoImageSrc.style.backgroundImage = `url(${$infoImageSrc})`;
+      }
 
-      $infoImageSrc.querySelectorAll('picture').forEach(($picture) => {
-        //remove weird max-width attribute
-
-        //$picture.media = "";
-        $picture.parentElement.parentElement.remove();
-        //$picture.remove();
-      });
-
-      $infoImageSrc.style.backgroundImage = `url(${$infoImageSrc})`;
     });
 
   }
@@ -1639,15 +1637,14 @@ let $CURRENT_API_FILTERS = [];
       // delete image and re-insert as bg
       let $summaryImageSrc = $summary.querySelector('img') ? $summary.querySelector('img').src : null;
 
-      $summary.querySelectorAll('picture').forEach(($picture) => {
-        //remove weird max-width attribute
+      if($summaryImageSrc) {
+        $summary.querySelectorAll('picture').forEach(($picture) => {
+          //remove weird max-width attribute
+          $picture.parentElement.parentElement.remove();
+        });
+        $summary.style.backgroundImage = `url(${$summaryImageSrc})`;
+      }
 
-        //$picture.media = "";
-        $picture.parentElement.parentElement.remove();
-        //$picture.remove();
-      });
-
-      $summary.style.backgroundImage = `url(${$summaryImageSrc})`;
     });
   }
 
