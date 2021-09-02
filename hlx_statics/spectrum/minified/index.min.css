@@ -244,6 +244,7 @@
   --spectrum-global-dimension-size-900: 72px;
   --spectrum-global-dimension-size-1000: 80px;
   --spectrum-global-dimension-size-1125: 90px;
+  --spectrum-global-dimension-size-1200: 96px;
   --spectrum-global-dimension-size-1250: 100px;
   --spectrum-global-dimension-size-1600: 128px;
   --spectrum-global-dimension-size-1700: 136px;
@@ -354,6 +355,7 @@
   --spectrum-global-dimension-size-900: 90px;
   --spectrum-global-dimension-size-1000: 100px;
   --spectrum-global-dimension-size-1125: 112px;
+  --spectrum-global-dimension-size-1200: 120px;
   --spectrum-global-dimension-size-1250: 125px;
   --spectrum-global-dimension-size-1600: 160px;
   --spectrum-global-dimension-size-1700: 170px;
@@ -7299,6 +7301,34 @@ header.global-nav-header div.nav-console-right-container {
 
 header.global-nav-header div.nav-console-search-button {
   margin-right: 24px;
+}
+
+header.global-nav-header div.nav-search-popdown {
+  position: fixed;
+  top: var(--spectrum-global-dimension-size-800);
+  left: 0;
+  right: 0;
+  /* ${showSearchResults && 'bottom: 0;'} */
+  background-color: var(--spectrum-global-color-static-white);
+  z-index: 10;
+}
+
+@media screen and (max-width: 1280px) {
+  header.global-nav-header div.nav-search-popdown  {
+    top: var(--spectrum-global-dimension-size-1200);
+  }
+}
+
+header.global-nav-header div.nav-search-popdown-container {
+  position: relative;
+  margin: var(--spectrum-global-dimension-size-400) auto;
+  max-width: 688px;
+}
+
+@media screen and (max-width: 1280px) {
+  header.global-nav-header div.nav-search-popdown-container  {
+    max-width: calc(100vw - var(--spectrum-global-dimension-size-800));
+  }
 }
 
 header.global-nav-header div.nav-console-button {

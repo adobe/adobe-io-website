@@ -890,6 +890,14 @@ let $CURRENT_API_FILTERS = [];
     `;
   }
 
+  function globalNavSearchPopDown() {
+    return `
+      <div class="nav-search-popdown">
+        <div class="nav-search-popdown-container">
+        </div>
+      </div>
+    `;
+  }
   function globalNavProfileTemplate(profile) {
     return `
       <div class="nav-profile spectrum--lightest">
@@ -1090,9 +1098,12 @@ let $CURRENT_API_FILTERS = [];
         });
 
         $linkContainerHTML = globalNavLinks($linkHTML);
-        $header.innerHTML = globalNavTemplate($linkContainerHTML);
+        let $searchButtonHTML = globalNavSearchButton();
+        $header.innerHTML = globalNavTemplate($linkContainerHTML, $searchButtonHTML);
 
         let $currentHeader = $header;
+        let $searchButton;
+
         $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
           if($button.id.indexOf('nav-dropdown-button') >= 0) {
             let $index = $button.id.split('_')[1];
@@ -1126,6 +1137,12 @@ let $CURRENT_API_FILTERS = [];
             });
           }
         });
+        $searchButton = $header.querySelector('#nav-dropdown-search');
+        if($searchButton) {
+          $searchButton.addEventListener('click', (evt) => {
+            $header.innerHTML += globalNavSearchPopDown();
+          });
+        }
 
         let $signIn = $header.querySelector('#signIn');
         $signIn.addEventListener('click', (evt) => {
@@ -1154,7 +1171,8 @@ let $CURRENT_API_FILTERS = [];
             }
           });
           $linkContainerHTML = globalNavLinks($linkHTML);
-          $header.innerHTML = globalNavTemplate($linkContainerHTML);
+          let $searchButton = globalNavSearchButton();
+          $header.innerHTML = globalNavTemplate($linkContainerHTML, $searchButton);
 
           let $currentHeader = $header;
           $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
@@ -1190,6 +1208,13 @@ let $CURRENT_API_FILTERS = [];
               });
             }
           });
+
+          $searchButton = $header.querySelector('#nav-dropdown-search');
+          if($searchButton) {
+            $searchButton.addEventListener('click', (evt) => {
+              $header.innerHTML += globalNavSearchPopDown();
+            });
+          }
 
           let $signIn = $header.querySelector('#signIn');
           $signIn.addEventListener('click', (evt) => {
@@ -1535,53 +1560,6 @@ let $CURRENT_API_FILTERS = [];
         $resource.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
       });
     });
-    /*
-    document.querySelectorAll('.section-wrapper').forEach(($section) => {
-      // resource cards are special in that multiple cards will be grouped together within
-      // a section so need to find out how many and what format it is
-      // let $smallResourceCardCount = 0;
-      // let $largeResourceCardCount = 0;
-
-      // make sure section has resource cards
-      if($section.querySelector('.resource-card-large, .resource-card-small')){
-        let $leftResourceCardContainer = createTag('div', { class: 'resource-cards-left'});
-        let $rightResourceCardContainer = createTag('div', { class: 'resource-cards-right'});
-
-        let $resourceCardsContainer = createTag('div', { class: 'resource-cards-container'});
-        $section.append($resourceCardsContainer);
-        $resourceCardsContainer.append($leftResourceCardContainer);
-        $resourceCardsContainer.append($rightResourceCardContainer);
-
-        $section.querySelectorAll('.resource-card-large').forEach(($resourceLarge, index, array) => {
-          removeEmptyPTags($resourceLarge);
-          //$largeResourceCardCount = array.length;
-          let $linkHref = $resourceLarge.querySelector('a')?.href;
-          let $heading = $resourceLarge.querySelector('a')?.innerText;
-          let $imgSrc = $resourceLarge.querySelector('img')?.src;
-          let $text = $resourceLarge.querySelector('p')?.innerText;
-
-          $leftResourceCardContainer.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
-
-          $resourceLarge.remove();
-        });
-
-        $section.querySelectorAll('.resource-card-small').forEach(($resourceSmall, index, array) => {
-          removeEmptyPTags($resourceSmall);
-          //$smallResourceCardCount = array.length;
-          let $linkHref = $resourceSmall.querySelector('a').href;
-          let $heading = $resourceSmall.querySelector('a').innerText;
-          let $imgSrc = $resourceSmall.querySelector('img').src;
-          let $text = $resourceSmall.querySelector('p').innerText;
-
-          $rightResourceCardContainer.innerHTML += getResourceCard('small', $linkHref, $imgSrc, $heading, $text);
-          toggleScale();
-          $resourceSmall.remove();
-        });
-
-        focusRing($resourceCardsContainer);
-      }
-    });
-        */
   }
 
   function decorateInfo() {
