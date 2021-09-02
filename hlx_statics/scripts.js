@@ -1077,13 +1077,61 @@ let $CURRENT_API_FILTERS = [];
     }
   }
 
+  function decorateHeaderRight($header) {
+    let $currentHeader = $header;
+    let $searchButton;
+
+    $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
+      if($button.id.indexOf('nav-dropdown-button') >= 0) {
+        let $index = $button.id.split('_')[1];
+        let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
+
+        $button.addEventListener('click', (evt) => {
+          if(!evt.currentTarget.classList.contains('is-open')){
+            $button.classList.add('is-open');
+            $dropdownPopover.classList.add('is-open');
+            $dropdownPopover.ariaHidden = false;
+          } else {
+            $button.classList.remove('is-open');
+            $dropdownPopover.classList.remove('is-open');
+            $dropdownPopover.ariaHidden = false;
+          }
+        });
+      } else if($button.id.indexOf('nav-profile-dropdown-button') >=0 ) {
+
+        let $profileDropdownPopover = $currentHeader.querySelector('div#nav-profile-dropdown-popover');
+
+        $button.addEventListener('click', (evt) => {
+          if(!evt.currentTarget.classList.contains('is-open')){
+            $button.classList.add('is-open');
+            $profileDropdownPopover.classList.add('is-open');
+            $profileDropdownPopover.ariaHidden = false;
+          } else {
+            $button.classList.remove('is-open');
+            $profileDropdownPopover.classList.remove('is-open');
+            $profileDropdownPopover.ariaHidden = false;
+          }
+        });
+      }
+    });
+    $searchButton = $header.querySelector('#nav-dropdown-search');
+    if($searchButton) {
+      $searchButton.addEventListener('click', (evt) => {
+        $header.innerHTML += globalNavSearchPopDown();
+      });
+    }
+
+    let $signIn = $header.querySelector('#signIn');
+    $signIn.addEventListener('click', (evt) => {
+      adobeIMSMethods.signIn();
+    });
+  }
+
   function decorateHeader() {
     document.querySelectorAll('header').forEach(($header) => {
       $header.classList.add('main-header');
       $header.classList.add('global-nav-header');
 
-      // TODO simplfy this as it's doing the same thing almost twice
-      // also add whitelist of paths instead of this 
       let $linkHTML = '';
       if(isTopLevelNav(window.location.pathname)) {
         $HEADER_LINKS.forEach(($link, index) => {
@@ -1104,53 +1152,9 @@ let $CURRENT_API_FILTERS = [];
         let $searchButtonHTML = globalNavSearchButton();
         $header.innerHTML = globalNavTemplate($linkContainerHTML, $searchButtonHTML);
 
-        let $currentHeader = $header;
-        let $searchButton;
+        decorateHeaderRight($header);
 
-        $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
-          if($button.id.indexOf('nav-dropdown-button') >= 0) {
-            let $index = $button.id.split('_')[1];
-            let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
-
-            $button.addEventListener('click', (evt) => {
-              if(!evt.currentTarget.classList.contains('is-open')){
-                $button.classList.add('is-open');
-                $dropdownPopover.classList.add('is-open');
-                $dropdownPopover.ariaHidden = false;
-              } else {
-                $button.classList.remove('is-open');
-                $dropdownPopover.classList.remove('is-open');
-                $dropdownPopover.ariaHidden = false;
-              }
-            });
-          } else if($button.id.indexOf('nav-profile-dropdown-button') >=0 ) {
-
-            let $profileDropdownPopover = $currentHeader.querySelector('div#nav-profile-dropdown-popover');
-
-            $button.addEventListener('click', (evt) => {
-              if(!evt.currentTarget.classList.contains('is-open')){
-                $button.classList.add('is-open');
-                $profileDropdownPopover.classList.add('is-open');
-                $profileDropdownPopover.ariaHidden = false;
-              } else {
-                $button.classList.remove('is-open');
-                $profileDropdownPopover.classList.remove('is-open');
-                $profileDropdownPopover.ariaHidden = false;
-              }
-            });
-          }
-        });
-        $searchButton = $header.querySelector('#nav-dropdown-search');
-        if($searchButton) {
-          $searchButton.addEventListener('click', (evt) => {
-            $header.innerHTML += globalNavSearchPopDown();
-          });
-        }
-
-        let $signIn = $header.querySelector('#signIn');
-        $signIn.addEventListener('click', (evt) => {
-          adobeIMSMethods.signIn();
-        });
+        window.adobeIMSMethods.getProfile();
       } else {
         $linkHTML += globalNavLinkItem('Products', '/apis', true);
         globalNavLinks($linkHTML);
@@ -1177,52 +1181,7 @@ let $CURRENT_API_FILTERS = [];
           let $searchButton = globalNavSearchButton();
           $header.innerHTML = globalNavTemplate($linkContainerHTML, $searchButton);
 
-          let $currentHeader = $header;
-          $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
-            if($button.id.indexOf('nav-dropdown-button') >= 0) {
-              let $index = $button.id.split('_')[1];
-              let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
-
-              $button.addEventListener('click', (evt) => {
-                if(!evt.currentTarget.classList.contains('is-open')){
-                  $button.classList.add('is-open');
-                  $dropdownPopover.classList.add('is-open');
-                  $dropdownPopover.ariaHidden = false;
-                } else {
-                  $button.classList.remove('is-open');
-                  $dropdownPopover.classList.remove('is-open');
-                  $dropdownPopover.ariaHidden = false;
-                }
-              });
-            } else if($button.id.indexOf('nav-profile-dropdown-button') >=0 ) {
-
-              let $profileDropdownPopover = $currentHeader.querySelector('div#nav-profile-dropdown-popover');
-
-              $button.addEventListener('click', (evt) => {
-                if(!evt.currentTarget.classList.contains('is-open')){
-                  $button.classList.add('is-open');
-                  $profileDropdownPopover.classList.add('is-open');
-                  $profileDropdownPopover.ariaHidden = false;
-                } else {
-                  $button.classList.remove('is-open');
-                  $profileDropdownPopover.classList.remove('is-open');
-                  $profileDropdownPopover.ariaHidden = false;
-                }
-              });
-            }
-          });
-
-          $searchButton = $header.querySelector('#nav-dropdown-search');
-          if($searchButton) {
-            $searchButton.addEventListener('click', (evt) => {
-              $header.innerHTML += globalNavSearchPopDown();
-            });
-          }
-
-          let $signIn = $header.querySelector('#signIn');
-          $signIn.addEventListener('click', (evt) => {
-            adobeIMSMethods.signIn();
-          });
+          decorateHeaderRight($header);
           
           setActiveTab();
           window.adobeIMSMethods.getProfile();
