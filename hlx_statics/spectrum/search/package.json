@@ -1,0 +1,64 @@
+{
+  "_from": "@spectrum-css/search",
+  "_id": "@spectrum-css/search@3.0.3",
+  "_inBundle": false,
+  "_integrity": "sha1-NBXcEGrKDV3ZluhwhKG0fCuVqII=",
+  "_location": "/@spectrum-css/search",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@spectrum-css/search",
+    "name": "@spectrum-css/search",
+    "escapedName": "@spectrum-css%2fsearch",
+    "scope": "@spectrum-css",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://artifactory.corp.adobe.com/artifactory/api/npm/npm-adobe-release/@spectrum-css/search/-/search-3.0.3.tgz",
+  "_shasum": "3415dc106aca0d5dd996e87084a1b47c2b95a882",
+  "_spec": "@spectrum-css/search",
+  "_where": "/Users/timk/repo/adobe-docs/adobe-io-website",
+  "bugs": {
+    "url": "https://github.com/adobe/spectrum-css/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "The Spectrum CSS search component",
+  "devDependencies": {
+    "@spectrum-css/button": "^3.0.3",
+    "@spectrum-css/component-builder": "^2.0.1",
+    "@spectrum-css/icon": "^3.0.3",
+    "@spectrum-css/textfield": "^3.0.2",
+    "@spectrum-css/vars": "^3.0.2",
+    "gulp": "^4.0.0"
+  },
+  "gitHead": "f5b7ae9ed7bdcbe9f66def1ead3d897760724ad1",
+  "homepage": "https://opensource.adobe.com/spectrum-css/",
+  "license": "Apache-2.0",
+  "main": "dist/index-vars.css",
+  "name": "@spectrum-css/search",
+  "peerDependencies": {
+    "@spectrum-css/button": "^3.0.1",
+    "@spectrum-css/icon": "^3.0.1",
+    "@spectrum-css/textfield": "^3.0.1",
+    "@spectrum-css/vars": "^3.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adobe/spectrum-css.git",
+    "directory": "components/search"
+  },
+  "scripts": {
+    "build": "gulp"
+  },
+  "version": "3.0.3"
+}

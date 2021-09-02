@@ -894,6 +894,9 @@ let $CURRENT_API_FILTERS = [];
     return `
       <div class="nav-search-popdown">
         <div class="nav-search-popdown-container">
+        <form class="nav-search-form spectrum-Search"
+
+
         </div>
       </div>
     `;
