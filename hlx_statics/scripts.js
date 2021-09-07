@@ -1,6 +1,6 @@
 let $IS_HLX_PATH = false;
 let $IS_STAGE = false;
-
+console.log(instantsearch)
 if(window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf('hlx.live') >= 0 || window.location.host.indexOf('localhost') >= 0){
   $IS_HLX_PATH = true;
 }
