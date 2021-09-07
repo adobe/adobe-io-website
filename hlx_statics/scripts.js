@@ -1,6 +1,14 @@
 let $IS_HLX_PATH = false;
 let $IS_STAGE = false;
-console.log(instantsearch)
+let $ALGOLIA_APP_ID = "E642SEDTHL";
+let $ALGOLIA_API_KEY = "36561fc0f6d8f1ecf996bc7bf41af00f";
+
+let search = instantsearch({
+  appId: $ALGOLIA_APP_ID,
+  apiKey: $ALGOLIA_API_KEY,
+  indexName: 'photoshop'
+});
+
 if(window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf('hlx.live') >= 0 || window.location.host.indexOf('localhost') >= 0){
   $IS_HLX_PATH = true;
 }
@@ -900,10 +908,11 @@ let $CURRENT_API_FILTERS = [];
               <use xlink:href="#spectrum-icon-24-Magnify"></use>
             </svg>
             <input
+              id="nav-search-input"
               aria-label="Search"
               type="search"
               placeholder="Search"
-              className="spectrum-Textfield-input spectrum-Search-input"
+              class="spectrum-Textfield-input spectrum-Search-input"
               autoComplete="off"
             />
           </div>
@@ -1128,6 +1137,11 @@ let $CURRENT_API_FILTERS = [];
     if($searchButton) {
       $searchButton.addEventListener('click', (evt) => {
         $header.innerHTML += globalNavSearchPopDown();
+
+        var searchBox = instantsearch.widgets.searchBox({
+          container: document.querySelector('#nav-search-input')
+        });
+        search.start();
       });
     }
 
