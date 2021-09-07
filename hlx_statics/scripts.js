@@ -167,7 +167,7 @@ const $FOOTER_LINKS =
   {
     "name": "Developer",
       "links": [
-      { "name": "Adobe I/O console", "url": "https://console.adobe.io/" },
+      { "name": "Adobe Developer Console", "url": "https://www.adobe.io/console" },
       { "name": "Open source at Adobe", "url": "https://www.adobe.io/open" },
       { "name": "Download SDKs", "url": "https://console.adobe.io/downloads" },
       { "name": "Authentication", "url": "https://www.adobe.io/authentication.html" },
