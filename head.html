@@ -33,7 +33,11 @@
 
 <script src="/hlx_statics/loadIms.js"></script>
 
-<script src="https://unpkg.com/penpal@^5/dist/penpal.min.js" type="text/javascript"></script>
+<script type="module">
+  // for the default version
+  import algoliasearch from 'https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch.esm.browser.js';
+</script>
 
 <!-- Finally, load scripts and execute them right before DOMContentLoaded -->
 <script src="/hlx_statics/scripts.js" defer></script>
+

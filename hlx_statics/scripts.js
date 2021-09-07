@@ -895,8 +895,18 @@ let $CURRENT_API_FILTERS = [];
       <div class="nav-search-popdown">
         <div class="nav-search-popdown-container">
         <form class="nav-search-form spectrum-Search"
-
-
+          <div class="spectrum-Textfield nav-search-text">
+            <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Edit">
+              <use xlink:href="#spectrum-icon-24-Magnify"></use>
+            </svg>
+            <input
+              aria-label="Search"
+              type="search"
+              placeholder="Search"
+              className="spectrum-Textfield-input spectrum-Search-input"
+              autoComplete="off"
+            />
+          </div>
         </div>
       </div>
     `;

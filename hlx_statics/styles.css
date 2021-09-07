@@ -366,6 +366,11 @@ header.global-nav-header div.nav-search-form {
   width: 100%;
 }
 
+header.global-nav-header div.nav-search-text {
+  min-width: auto;
+  width: 100%;
+}
+
 header.global-nav-header div.nav-console-button {
   margin-right: 16px;
 }
