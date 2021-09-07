@@ -662,6 +662,14 @@ let $CURRENT_API_FILTERS = [];
     return config;
   }
 
+  function makeApiLinkRelative(link) {
+    if(link.indexOf('https://www.adobe.io') >= 0){
+      return link.replace('https://www.adobe.io','.');
+    } else {
+      return link;
+    }
+  }
+
   function displayFilteredCards(catalog, $cards, buttons, limit) {
     $cards.innerHTML = "";
     let counter = 0;
@@ -691,17 +699,19 @@ let $CURRENT_API_FILTERS = [];
         let buttonTemplate = '';
         buttons.forEach((b, i) => {
           if (card[b] !== "") {
-
+            let $link;
             if(b === "Learn More"){
+              $link = makeApiLinkRelative(card[b]);
               buttonTemplate +=
-                `<a href="${card[b]}" class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet spectrum-Button--sizeM" >
+                `<a href="${$link}" class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet spectrum-Button--sizeM" >
                   <span class="spectrum-Button-label">${b}</span>
                 </a>`
 
             } else {
+              $link = makeApiLinkRelative(card[b]);
               buttonTemplate +=
               `
-              <a href="${card[b]}" class="spectrum-Button spectrum-Button--primary spectrum-Button--sizeM">
+              <a href="${$link}" class="spectrum-Button spectrum-Button--primary spectrum-Button--sizeM">
                 <span class="spectrum-Button-label">${b}</span>
               </a>
               `
