@@ -24,11 +24,16 @@
     "postcss-import": "^14.0.0"
   },
   "dependencies": {
+    "@spectrum-css/buttongroup": "^3.0.3",
+    "@spectrum-css/dialog": "^3.0.3",
     "@spectrum-css/icon": "^3.0.1",
     "@spectrum-css/menu": "^3.0.1",
+    "@spectrum-css/modal": "^3.0.2",
     "@spectrum-css/picker": "^1.0.1",
     "@spectrum-css/popover": "^3.0.1",
     "@spectrum-css/search": "^3.0.3",
+    "@spectrum-css/textfield": "^3.0.2",
+    "@spectrum-css/underlay": "^2.0.10",
     "@spectrum-css/well": "^3.0.2",
     "algoliasearch": "^4.10.5",
     "minimist": "^1.2.5"

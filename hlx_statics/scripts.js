@@ -902,24 +902,44 @@ let $CURRENT_API_FILTERS = [];
     return `
       <div class="nav-search-popdown">
         <div class="nav-search-popdown-container">
-        <form class="nav-search-form spectrum-Search"
-          <div class="spectrum-Textfield nav-search-text">
-            <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Edit">
-              <use xlink:href="#spectrum-icon-24-Magnify"></use>
-            </svg>
-            <input
-              id="nav-search-input"
-              aria-label="Search"
-              type="search"
-              placeholder="Search"
-              class="spectrum-Textfield-input spectrum-Search-input"
-              autoComplete="off"
-            />
-          </div>
+          <form class="spectrum-Search"
+            <div class="spectrum-Textfield">
+              <svg class="spectrum-Icon spectrum-Icon--sizeM spectrum-Textfield-icon" focusable="false" aria-hidden="true" aria-label="Edit">
+                <use xlink:href="#spectrum-icon-18-Magnify"></use>
+              </svg>
+              <input
+                id="nav-search-input"
+                aria-label="Search"
+                type="search"
+                placeholder="Search"
+                class="spectrum-Textfield-input spectrum-Search-input"
+                autoComplete="off"
+              />
+
+              <button type="reset" class="spectrum-ClearButton spectrum-Search-clearButton">
+              <svg class="spectrum-Icon spectrum-UIIcon-Cross75" focusable="false" aria-hidden="true">
+                <use xlink:href="#spectrum-css-icon-Cross75" />
+              </svg>
+            </button>
+            </div>
+          </form>
         </div>
       </div>
     `;
   }
+
+  function globalNavSearchPopOver() {
+    return `
+      <div class="spectrum-Popover nav-search-popover">
+        <ul class="spectrum-Menu" role="listbox">
+          <li class="spectrum-Menu-item is-selected" role="option" aria-selected="true" tabindex="0">
+            <span class="spectrum-Menu-itemLabel">Ballard</span>
+          </li>
+        </ul>
+      </div>
+    `;
+  }
+
   function globalNavProfileTemplate(profile) {
     return `
       <div class="nav-profile spectrum--lightest">
