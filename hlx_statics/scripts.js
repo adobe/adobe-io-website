@@ -663,8 +663,10 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function makeApiLinkRelative(link) {
-    if(link.indexOf('https://www.adobe.io') >= 0){
-      return link.replace('https://www.adobe.io','.');
+    if(link.indexOf('https://www.adobe.io/apis') >= 0){
+      return link.replace('https://www.adobe.io/apis','./apis');
+    } else if (link.indexOf('https://www.adobe.io') >= 0) {
+      return link.replace('https://www.adobe.io','..');
     } else {
       return link;
     }
