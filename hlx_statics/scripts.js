@@ -667,7 +667,7 @@ let $CURRENT_API_FILTERS = [];
       if(window.location.pathname === '/apis') {
         return link.replace('https://www.adobe.io/apis/','apis/');
       } else if(window.location.pathname === '/apis/'){
-        return link.replace('https://www.adobe.io/apis/','/');
+        return link.replace('https://www.adobe.io/apis/','./');
       }
     } else if (link.indexOf('https://www.adobe.io') >= 0) {
       return link.replace('https://www.adobe.io','..');
