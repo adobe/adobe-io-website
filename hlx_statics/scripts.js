@@ -902,7 +902,7 @@ let $CURRENT_API_FILTERS = [];
     return `
       <div class="nav-search-popdown">
         <div class="nav-search-popdown-container">
-          <form class="spectrum-Search"
+          <form class="spectrum-Search">
             <div class="spectrum-Textfield">
               <svg class="spectrum-Icon spectrum-Icon--sizeM spectrum-Textfield-icon" focusable="false" aria-hidden="true" aria-label="Edit">
                 <use xlink:href="#spectrum-icon-18-Magnify"></use>
@@ -917,10 +917,10 @@ let $CURRENT_API_FILTERS = [];
               />
 
               <button type="reset" class="spectrum-ClearButton spectrum-Search-clearButton">
-              <svg class="spectrum-Icon spectrum-UIIcon-Cross75" focusable="false" aria-hidden="true">
-                <use xlink:href="#spectrum-css-icon-Cross75" />
-              </svg>
-            </button>
+                <svg class="spectrum-Icon spectrum-UIIcon-Cross75" focusable="false" aria-hidden="true">
+                  <use xlink:href="#spectrum-css-icon-Cross75" />
+                </svg>
+              </button>
             </div>
           </form>
         </div>
