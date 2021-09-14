@@ -3,10 +3,11 @@ let $IS_STAGE = false;
 let $ALGOLIA_APP_ID = "E642SEDTHL";
 let $ALGOLIA_API_KEY = "36561fc0f6d8f1ecf996bc7bf41af00f";
 
-let search = instantsearch({
-  appId: $ALGOLIA_APP_ID,
-  apiKey: $ALGOLIA_API_KEY,
-  indexName: 'photoshop'
+
+const searchClient = algoliasearch($ALGOLIA_APP_ID, $ALGOLIA_API_KEY);
+const search = instantsearch({
+  indexName: 'photoshop',
+  searchClient,
 });
 
 if(window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf('hlx.live') >= 0 || window.location.host.indexOf('localhost') >= 0){
