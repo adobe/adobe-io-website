@@ -826,6 +826,7 @@ let $CURRENT_API_FILTERS = [];
           </button>
         </div>
       </div>
+      ${globalNavSearchPopDown()}
     `
   }
 
@@ -900,10 +901,10 @@ let $CURRENT_API_FILTERS = [];
 
   function globalNavSearchPopDown() {
     return `
-      <div class="nav-search-popdown">
+      <div id="nav-search" class="nav-search-popdown isClosed">
         <div class="nav-search-popdown-container">
-          <form class="spectrum-Search">
-            <div class="spectrum-Textfield">
+          <form class="spectrum-Search nav-search-form">
+            <div class="spectrum-Textfield nav-search-text">
               <svg class="spectrum-Icon spectrum-Icon--sizeM spectrum-Textfield-icon" focusable="false" aria-hidden="true" aria-label="Edit">
                 <use xlink:href="#spectrum-icon-18-Magnify"></use>
               </svg>
@@ -1156,8 +1157,8 @@ let $CURRENT_API_FILTERS = [];
     $searchButton = $header.querySelector('#nav-dropdown-search');
     if($searchButton) {
       $searchButton.addEventListener('click', (evt) => {
-        $header.innerHTML += globalNavSearchPopDown();
-
+        let $searchForm = $header.querySelector('#nav-search');
+        $searchForm.classList.toggle('isClosed');
         var searchBox = instantsearch.widgets.searchBox({
           container: document.querySelector('#nav-search-input')
         });
