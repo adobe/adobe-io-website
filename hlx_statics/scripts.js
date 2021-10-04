@@ -143,7 +143,7 @@ const $FOOTER_LINKS =
       { "name": "Adobe XD", "url": "https://www.adobe.io/apis/creativecloud/xd" },
       { "name": "Adobe Target", "url": "https://www.adobe.io/apis/experiencecloud/target" },
       { "name": "Adobe Analytics", "url": "https://www.adobe.io/apis/experiencecloud/analytics" },
-      { "name": "Project Firefly", "url": "https://www.adobe.io/project-firefly/" }
+      { "name": "App Builder", "url": "https://developer.adobe.com/app-builder" }
     ]
   },
   {
