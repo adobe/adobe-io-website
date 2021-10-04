@@ -152,7 +152,7 @@ const $FOOTER_LINKS =
       { "name": "Adobe XD", "url": "https://www.adobe.io/apis/creativecloud/xd" },
       { "name": "Adobe Target", "url": "https://www.adobe.io/apis/experiencecloud/target" },
       { "name": "Adobe Analytics", "url": "https://www.adobe.io/apis/experiencecloud/analytics" },
-      { "name": "Project Firefly", "url": "https://www.adobe.io/project-firefly/" }
+      { "name": "App Builder", "url": "https://developer.adobe.com/app-builder" }
     ]
   },
   {
@@ -925,19 +925,9 @@ let $CURRENT_API_FILTERS = [];
               </button>
             </div>
           </form>
+          <div id="search-results" class="nav-search-popover spectrum-Popover">
+          </div>
         </div>
-      </div>
-    `;
-  }
-
-  function globalNavSearchPopOver() {
-    return `
-      <div class="spectrum-Popover nav-search-popover">
-        <ul class="spectrum-Menu" role="listbox">
-          <li class="spectrum-Menu-item is-selected" role="option" aria-selected="true" tabindex="0">
-            <span class="spectrum-Menu-itemLabel">Ballard</span>
-          </li>
-        </ul>
       </div>
     `;
   }
@@ -1118,6 +1108,30 @@ let $CURRENT_API_FILTERS = [];
     }
   }
 
+  const renderHits = (renderOptions, isFirstRender) => {
+    const { hits, widgetParams } = renderOptions;
+  
+    widgetParams.container.innerHTML = `
+      <ul id="search-results-list" class="spectrum-Menu" role="listbox">
+        ${hits
+          .map(
+            item =>
+              `<li class="spectrum-Menu-item">
+                <span class="spectrum-Menu-itemLabel">
+                <strong>
+                  ${item.title}
+                <strong>
+                <p>${item.absoluteUrl}</p>
+                <p>${item.description}</p>
+                </span>
+              </li>`
+          )
+          .join('')}
+      </ul>
+    `;
+  };
+  const spectrumHits = instantsearch.connectors.connectHits(renderHits);
+
   function decorateHeaderRight($header) {
     let $currentHeader = $header;
     let $searchButton;
@@ -1159,12 +1173,30 @@ let $CURRENT_API_FILTERS = [];
     if($searchButton) {
       $searchButton.addEventListener('click', (evt) => {
         let $searchForm = $header.querySelector('#nav-search');
+        let $searchResults = $header.querySelector('#search-results')
+
         $searchForm.classList.toggle('isClosed');
-        var searchBox = instantsearch.widgets.searchBox({
-          container: document.querySelector('#nav-search-input')
-        });
-        search.start();
+        $searchResults.classList.toggle('is-open');
       });
+
+      search.addWidgets([
+        instantsearch.widgets.searchBox({
+          container: '#nav-search-input',
+        }),
+        spectrumHits({
+          container: document.querySelector('#search-results'),
+        })
+      ]);
+
+      search.start();
+
+      let $form = $header.querySelector('form.nav-search-form');
+      if($form){
+        $form.addEventListener('submit', (evt) =>{
+          evt.preventDefault();
+
+        });
+      }
     }
 
     let $signIn = $header.querySelector('#signIn');

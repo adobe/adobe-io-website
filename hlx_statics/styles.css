@@ -374,6 +374,29 @@ header.global-nav-header div.nav-search-text {
   width: 100%;
 }
 
+header.global-nav-header div.nav-search-popover {
+  display: flex;
+  position: absolute;
+  top: var(--spectrum-global-dimension-size-400);
+  width: 688px;
+  max-height: calc(100vh - var(--spectrum-global-dimension-size-2400));
+  overflow: auto;
+}
+
+
+@media screen and (max-width: 1280px) {
+  header.global-nav-header div.nav-search-popover {
+    max-width: calc(100vw - var(--spectrum-global-dimension-size-800));
+  }
+}
+
+/* @media screen and (max-width: ${MOBILE_SCREEN_WIDTH}) {
+  header.global-nav-header div.nav-search-popover {
+    height: auto;
+    overflow: inherit;
+  }
+} */
+
 header.global-nav-header div.nav-console-button {
   margin-right: 16px;
 }
