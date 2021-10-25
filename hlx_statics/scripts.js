@@ -1057,12 +1057,12 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function isTopLevelNav(urlPathname) {
-    switch(urlPathname) {
-      case '/apis': return true;
-      case '/apis/': return true;
-      case '/open': return true;
-      case '/open/': return true;
-      default: return false;
+    if(urlPathname === '/apis' || urlPathname === '/apis/'){
+      return true;
+    } else if(urlPathname.indexOf('/open') === 0) {
+      return true;
+    } else {
+      return false;
     }
   }
 
