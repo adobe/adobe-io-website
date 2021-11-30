@@ -169,7 +169,7 @@ const $FOOTER_LINKS =
       "links": [
       { "name": "Adobe Developer Console", "url": "https://www.adobe.io/console" },
       { "name": "Open source at Adobe", "url": "https://www.adobe.io/open" },
-      { "name": "Download SDKs", "url": "https://console.adobe.io/downloads" },
+      { "name": "Download SDKs", "url": "https://developer.adobe.com/console/downloads" },
       { "name": "Authentication", "url": "https://www.adobe.io/authentication.html" },
       { "name": "Careers", "url": "https://adobe.com/careers.html" }
     ]
@@ -779,7 +779,7 @@ let $CURRENT_API_FILTERS = [];
       </ul>
 
       <div>
-        <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+        <a href="https://developer.adobe.com/console/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
           <span class="spectrum-Button-label">
             Console
           </span>
@@ -805,7 +805,7 @@ let $CURRENT_API_FILTERS = [];
         ${searchButton}
 
         <div class="nav-console-button">
-          <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+          <a href="https://developer.adobe.com/console/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
             <span class="spectrum-Button-label">
               Console
             </span>
