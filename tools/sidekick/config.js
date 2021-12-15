@@ -15,4 +15,5 @@ window.hlx.initSidekick({
   project: 'Adobe I/O',
   host: 'www.adobe.io',
   byocdn: true,
+  hlx3: true,
 });
