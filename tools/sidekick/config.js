@@ -13,6 +13,7 @@
 // This file contains the project-specific configuration for the sidekick.
 window.hlx.initSidekick({
   project: 'Adobe I/O',
-  host: 'www.adobe.io',
+  host: 'developer.adobe.com',
   byocdn: true,
+  hlx3: true,
 });

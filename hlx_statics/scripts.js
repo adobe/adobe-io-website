@@ -1228,7 +1228,7 @@ let $CURRENT_API_FILTERS = [];
       $apiBrowser.classList.add('spectrum--light');
       const config = readBlockConfig($apiBrowser);
       window.aio = window.aio || {};
-      const resp = await fetch("/hlx_api_catalog.json");
+      const resp = await fetch("/hlx-api-catalog.json");
       window.aio.apiCatalog = (await resp.json()).data;
       const catalog = window.aio.apiCatalog;
       let buttons = ["Learn More", "View Docs"];
@@ -1865,7 +1865,26 @@ let $CURRENT_API_FILTERS = [];
     });
   }
 
+  function decorateHelix2Embeds() {
+    document.querySelectorAll('main > div > p > a[href^="https://youtu.be"], main > div > p > a[href^="https://www.youtube.com"]').forEach((yta) => {
+      let ytId = '';
+      if (yta.href.startsWith('https://youtu.be/')) ytId = new URL(yta.href).pathname;
+      if (yta.href.startsWith('https://www.youtube.com/')) ytId = new URLSearchParams(new URL(yta.href).search).get('v');
+
+      const $embed = createTag('div', {
+        class: 'embed embed-oembed embed-youtu',
+        'data-url': `https://youtu.be/${ytId}`,
+      });
+      $embed.innerHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+      <iframe src="https://www.youtube.com/embed/${ytId}?rel=0&amp;kind=embed-youtu&amp;provider=youtu" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen="" scrolling="no" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" title="content from youtu" loading="lazy">
+      </iframe></div>`;
+      yta.closest('div').replaceChild($embed, yta.closest('p'));
+    });
+
+  }
+
   async function decoratePage() {
+    decorateHelix2Embeds();
     decorateMain();
     toggleScale();
     decorateTables();
