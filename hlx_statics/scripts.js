@@ -1866,8 +1866,11 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function decorateHelix2Embeds() {
-    document.querySelectorAll('main > div > p > a[href^="https://youtu.be/"]').forEach((yta) => {
-      const ytId = new URL(yta).pathname;
+    document.querySelectorAll('main > div > p > a[href^="https://youtu.be"], main > div > p > a[href^="https://www.youtube.com"]').forEach((yta) => {
+      let ytId = '';
+      if (yta.href.startsWith('https://youtu.be/')) ytId = new URL(yta.href).pathname;
+      if (yta.href.startsWith('https://www.youtube.com/')) ytId = new URLSearchParams(new URL(yta.href).search).get('v');
+
       const $embed = createTag('div', {
         class: 'embed embed-oembed embed-youtu',
         'data-url': `https://youtu.be/${ytId}`,
