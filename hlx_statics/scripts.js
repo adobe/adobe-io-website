@@ -1228,7 +1228,7 @@ let $CURRENT_API_FILTERS = [];
       $apiBrowser.classList.add('spectrum--light');
       const config = readBlockConfig($apiBrowser);
       window.aio = window.aio || {};
-      const resp = await fetch("/hlx-api-catalog.json");
+      const resp = await fetch("/hlx_api_catalog.json");
       window.aio.apiCatalog = (await resp.json()).data;
       const catalog = window.aio.apiCatalog;
       let buttons = ["Learn More", "View Docs"];
