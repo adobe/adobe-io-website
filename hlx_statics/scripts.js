@@ -1884,6 +1884,7 @@ let $CURRENT_API_FILTERS = [];
   }
 
   async function decoratePage() {
+    console.log('hi!')
     decorateHelix2Embeds();
     decorateMain();
     toggleScale();
