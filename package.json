@@ -15,20 +15,20 @@
     "postcss-import": "^14.0.0"
   },
   "dependencies": {
-    "@spectrum-css/actionbutton": "^1.0.3",
-    "@spectrum-css/button": "^3.0.0",
-    "@spectrum-css/card": "^3.0.0",
-    "@spectrum-css/checkbox": "^3.0.0",
-    "@spectrum-css/divider": "^1.0.0",
-    "@spectrum-css/link": "^3.0.0",
-    "@spectrum-css/icon": "^3.0.1",
-    "@spectrum-css/menu": "^3.0.1",
-    "@spectrum-css/page": "^3.0.0",
-    "@spectrum-css/picker": "^1.0.1",
-    "@spectrum-css/popover": "^3.0.1",
-    "@spectrum-css/typography": "^3.0.0",
-    "@spectrum-css/vars": "^3.0.0",
-    "@spectrum-css/well": "^3.0.2",
-    "minimist": "^1.2.5"
+    "@spectrum-css/actionbutton": "1.0.3",
+    "@spectrum-css/button": "3.0.0",
+    "@spectrum-css/card": "3.0.0",
+    "@spectrum-css/checkbox": "3.0.0",
+    "@spectrum-css/divider": "1.0.0",
+    "@spectrum-css/link": "3.0.0",
+    "@spectrum-css/icon": "3.0.1",
+    "@spectrum-css/menu": "3.0.1",
+    "@spectrum-css/page": "3.0.0",
+    "@spectrum-css/picker": "1.0.1",
+    "@spectrum-css/popover": "3.0.1",
+    "@spectrum-css/typography": "3.0.0",
+    "@spectrum-css/vars": "3.0.0",
+    "@spectrum-css/well": "3.0.2",
+    "minimist": "1.2.5"
   }
 }
