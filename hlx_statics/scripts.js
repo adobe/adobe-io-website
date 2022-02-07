@@ -1883,6 +1883,50 @@ let $CURRENT_API_FILTERS = [];
 
   }
 
+  function decorateInfoColumns() {
+    document.querySelectorAll('.info-columns > div > div').forEach(($column) => {
+      $column.classList.add('info-column');
+    });
+
+    document.querySelectorAll('.info-columns').forEach(($column) => {
+      $column.classList.add('spectrum--light');
+      removeEmptyPTags($column);
+      $column.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
+        $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
+      })
+
+      $column.querySelectorAll('p').forEach(($p) => {
+        const $hasLinks = $p.querySelectorAll('a, button');
+        // don't attach to icon container or if p tag contains links
+        if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
+          $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
+        } else {
+          $p.classList.add('icon-container')
+        }
+      });
+
+      $column.querySelectorAll('a').forEach(($a) => {
+        $a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
+
+        if(isLinkExternal($a.href)) {
+          $a.target = '_blank';
+          $a.rel = 'noopener noreferrer';
+        }
+      });
+
+      $column.querySelectorAll('div > div.info-column').forEach(($infoColumn) => {
+        let $productLinkContainer = createTag('div', { class : 'product-link-container'});
+
+        $infoColumn.querySelectorAll('p.icon-container').forEach(($innerSecond) => {
+
+          $productLinkContainer.append($innerSecond);
+        });
+        $infoColumn.append($productLinkContainer);
+      });
+
+    });
+  }
+
   async function decoratePage() {
     decorateHelix2Embeds();
     decorateMain();
@@ -1904,6 +1948,7 @@ let $CURRENT_API_FILTERS = [];
     decorateAPIBrowser()
     decorateResourceCards();
     decorateInfo();
+    decorateInfoColumns();
     decorateBanner();
     decorateSummary();
     fixIcons();
