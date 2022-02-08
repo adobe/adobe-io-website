@@ -1058,6 +1058,8 @@ let $CURRENT_API_FILTERS = [];
       return true;
     } else if(urlPathname.indexOf('/open') === 0) {
       return true;
+    } else if(urlPathname.indexOf('/developer-support') === 0) {
+      return true;
     } else {
       return false;
     }
