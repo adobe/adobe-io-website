@@ -5,7 +5,7 @@ if(window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf
   $IS_HLX_PATH = true;
 }
 
-if(window.location.host.indexOf('stage.adobe.io') >= 0 || window.location.host.indexOf('developers-stage') >= 0){
+if(window.location.host.indexOf('stage.adobe.io') >= 0 || window.location.host.indexOf('developer-stage') >= 0){
   $IS_STAGE = true;
 }
 
@@ -105,22 +105,22 @@ const $HEADER_LINKS =
   {
     "name" : "Home",
     "links" : [
-      { "url": 'https://www.adobe.io' }
+      { "url": 'https://developer.adobe.com/' }
     ]
   },
   {
     "name" : "Products",
     "links" : [
-      { "url": 'https://www.adobe.io/apis' }
+      { "url": 'https://developer.adobe.com/apis' }
     ]
   },
   {
     "name" : "Community",
     "links" : [
       { "name": "Tech Blog", "url": 'https://medium.com/adobetech' },
-      { "name": "Open Source at Adobe", "url": 'https://www.adobe.io/open' },
+      { "name": "Open Source at Adobe", "url": 'https://developer.adobe.com/open' },
       { "name": "Adobe on Github", "url": 'https://github.com/adobe' },
-      { "name": "Developer Support", "url": 'https://www.adobe.io/support' },
+      { "name": "Adobe Developer Support", "url": 'https://developer.adobe.com/developer-support/' },
       { "name": "Experience League Community", "url": 'https://www.adobe.com/communities/index.html' },
     ]
   }
@@ -131,18 +131,16 @@ const $FOOTER_LINKS =
   {
     "name": "Api",
     "links": [
-      { "name": "Adobe Creative Cloud", "url": "https://www.adobe.io/apis/creativecloud" },
-      { "name": "Adobe Experience Platform", "url": "https://www.adobe.io/apis/experienceplatform/home" },
-      { "name": "Adobe Document Cloud", "url": "https://www.adobe.io/apis/documentcloud" },
-      { "name": "Adobe Experience Cloud", "url": "https://www.adobe.io/apis/experiencecloud" }
+      { "name": "Adobe Creative Cloud", "url": "https://developer.adobe.com/creative-cloud/" },
+      { "name": "Adobe Experience Platform", "url": "https://developer.adobe.com/experience-platform-apis/" },
+      { "name": "Adobe Document Cloud", "url": "https://developer.adobe.com/document-services/homepage" },
   ]
   },
   {
     "name": "Service",
     "links": [
-      { "name": "Adobe XD", "url": "https://www.adobe.io/apis/creativecloud/xd" },
-      { "name": "Adobe Target", "url": "https://www.adobe.io/apis/experiencecloud/target" },
-      { "name": "Adobe Analytics", "url": "https://www.adobe.io/apis/experiencecloud/analytics" },
+      { "name": "Adobe Cloud Manager", "url": "https://developer.adobe.com/experience-cloud/cloud-manager/"},
+      { "name": "Adobe Analytics", "url": "https://developer.adobe.com/analytics-apis/docs/2.0/" },
       { "name": "App Builder", "url": "https://developer.adobe.com/app-builder" }
     ]
   },
@@ -159,18 +157,17 @@ const $FOOTER_LINKS =
   {
     "name": "Support",
     "links": [
-      { "name": "Contact us", "url": "https://www.adobe.io/contactus" },
-      { "name": "Adobe Developer support", "url": "https://www.adobe.io/support" },
-      { "name": "Adobe Product support", "url": "https://helpx.adobe.com/contact/enterprise-support.html" }
+      { "name": "Adobe Developer Support", "url": "https://developer.adobe.com/developer-support/" },
+      { "name": "Adobe Product Support", "url": "https://helpx.adobe.com/contact/enterprise-support.html" }
     ]
   },
   {
     "name": "Developer",
       "links": [
       { "name": "Adobe Developer Console", "url": "https://developer.adobe.com/developer-console" },
-      { "name": "Open source at Adobe", "url": "https://www.adobe.io/open" },
+      { "name": "Open source at Adobe", "url": "https://developer.adobe.com/open" },
       { "name": "Download SDKs", "url": "https://developer.adobe.com/console/downloads" },
-      { "name": "Authentication", "url": "https://www.adobe.io/authentication.html" },
+      { "name": "Authentication", "url": "https://developer.adobe.com/developer-console/docs/guides/authentication/" },
       { "name": "Careers", "url": "https://adobe.com/careers.html" }
     ]
   },
@@ -333,7 +330,7 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function isLinkExternal(url) {
-    if(url.indexOf('adobe.io') > -1 || url.indexOf('hlx.page') > -1 ){
+    if(url.indexOf('developer.adobe.com') > -1 || url.indexOf('hlx.page') > -1 ){
       return false;
     } else {
       return true;
@@ -427,7 +424,7 @@ let $CURRENT_API_FILTERS = [];
             <ul class="spectrum-Body spectrum-Body--sizeS">
               ${$apiLinksHTML}
               <li>
-                <a href="https://www.adobe.io/apis/" class="spectrum-Link spectrum-Link--quiet">
+                <a href="https://developer.adobe.com/apis/" class="spectrum-Link spectrum-Link--quiet">
                   <strong>
                     View all
                   </strong>
@@ -663,14 +660,14 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function makeApiLinkRelative(link) {
-    if(link.indexOf('https://www.adobe.io/apis') >= 0){
+    if(link.indexOf('https://developer.adobe.com/apis') >= 0){
       if(window.location.pathname === '/apis') {
-        return link.replace('https://www.adobe.io/apis/','apis/');
+        return link.replace('https://developer.adobe.com/apis','apis/');
       } else if(window.location.pathname === '/apis/'){
-        return link.replace('https://www.adobe.io/apis/','./');
+        return link.replace('https://developer.adobe.com/apis','./');
       }
-    } else if (link.indexOf('https://www.adobe.io') >= 0) {
-      return link.replace('https://www.adobe.io','..');
+    } else if (link.indexOf('https://developer.adobe.com') >= 0) {
+      return link.replace('https://developer.adobe.com','..');
     } else {
       return link;
     }
@@ -791,10 +788,10 @@ let $CURRENT_API_FILTERS = [];
   function globalNavTemplate(links, searchButton = '') {
     return `
       <p class="icon-adobe-container">
-        <a href="https://adobe.io" class="nav-console-adobeio-link">
+        <a href="https://developer.adobe.com" class="nav-console-adobeio-link">
           <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
         </a>
-        <a href="https://adobe.io" class="nav-console-adobeio-link-text">
+        <a href="https://developer.adobe.com" class="nav-console-adobeio-link-text">
           <strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">Adobe Developer</strong>
         </a>
       </p>
