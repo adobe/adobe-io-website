@@ -14,7 +14,7 @@ if(window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf
   $IS_HLX_PATH = true;
 }
 
-if(window.location.host.indexOf('stage.adobe.io') >= 0 || window.location.host.indexOf('developers-stage') >= 0){
+if(window.location.host.indexOf('stage.adobe.io') >= 0 || window.location.host.indexOf('developer-stage') >= 0){
   $IS_STAGE = true;
 }
 
@@ -114,22 +114,22 @@ const $HEADER_LINKS =
   {
     "name" : "Home",
     "links" : [
-      { "url": 'https://www.adobe.io' }
+      { "url": 'https://developer.adobe.com/' }
     ]
   },
   {
     "name" : "Products",
     "links" : [
-      { "url": 'https://www.adobe.io/apis' }
+      { "url": 'https://developer.adobe.com/apis' }
     ]
   },
   {
     "name" : "Community",
     "links" : [
       { "name": "Tech Blog", "url": 'https://medium.com/adobetech' },
-      { "name": "Open Source at Adobe", "url": 'https://www.adobe.io/open' },
+      { "name": "Open Source at Adobe", "url": 'https://developer.adobe.com/open' },
       { "name": "Adobe on Github", "url": 'https://github.com/adobe' },
-      { "name": "Developer Support", "url": 'https://www.adobe.io/support' },
+      { "name": "Adobe Developer Support", "url": 'https://developer.adobe.com/developer-support/' },
       { "name": "Experience League Community", "url": 'https://www.adobe.com/communities/index.html' },
     ]
   }
@@ -140,18 +140,16 @@ const $FOOTER_LINKS =
   {
     "name": "Api",
     "links": [
-      { "name": "Adobe Creative Cloud", "url": "https://www.adobe.io/apis/creativecloud" },
-      { "name": "Adobe Experience Platform", "url": "https://www.adobe.io/apis/experienceplatform/home" },
-      { "name": "Adobe Document Cloud", "url": "https://www.adobe.io/apis/documentcloud" },
-      { "name": "Adobe Experience Cloud", "url": "https://www.adobe.io/apis/experiencecloud" }
+      { "name": "Adobe Creative Cloud", "url": "https://developer.adobe.com/creative-cloud/" },
+      { "name": "Adobe Experience Platform", "url": "https://developer.adobe.com/experience-platform-apis/" },
+      { "name": "Adobe Document Cloud", "url": "https://developer.adobe.com/document-services/homepage" },
   ]
   },
   {
     "name": "Service",
     "links": [
-      { "name": "Adobe XD", "url": "https://www.adobe.io/apis/creativecloud/xd" },
-      { "name": "Adobe Target", "url": "https://www.adobe.io/apis/experiencecloud/target" },
-      { "name": "Adobe Analytics", "url": "https://www.adobe.io/apis/experiencecloud/analytics" },
+      { "name": "Adobe Cloud Manager", "url": "https://developer.adobe.com/experience-cloud/cloud-manager/"},
+      { "name": "Adobe Analytics", "url": "https://developer.adobe.com/analytics-apis/docs/2.0/" },
       { "name": "App Builder", "url": "https://developer.adobe.com/app-builder" }
     ]
   },
@@ -168,18 +166,17 @@ const $FOOTER_LINKS =
   {
     "name": "Support",
     "links": [
-      { "name": "Contact us", "url": "https://www.adobe.io/contactus" },
-      { "name": "Adobe Developer support", "url": "https://www.adobe.io/support" },
-      { "name": "Adobe Product support", "url": "https://helpx.adobe.com/contact/enterprise-support.html" }
+      { "name": "Adobe Developer Support", "url": "https://developer.adobe.com/developer-support/" },
+      { "name": "Adobe Product Support", "url": "https://helpx.adobe.com/contact/enterprise-support.html" }
     ]
   },
   {
     "name": "Developer",
       "links": [
-      { "name": "Adobe Developer Console", "url": "https://www.adobe.io/console" },
-      { "name": "Open source at Adobe", "url": "https://www.adobe.io/open" },
-      { "name": "Download SDKs", "url": "https://console.adobe.io/downloads" },
-      { "name": "Authentication", "url": "https://www.adobe.io/authentication.html" },
+      { "name": "Adobe Developer Console", "url": "https://developer.adobe.com/developer-console" },
+      { "name": "Open source at Adobe", "url": "https://developer.adobe.com/open" },
+      { "name": "Download SDKs", "url": "https://developer.adobe.com/console/downloads" },
+      { "name": "Authentication", "url": "https://developer.adobe.com/developer-console/docs/guides/authentication/" },
       { "name": "Careers", "url": "https://adobe.com/careers.html" }
     ]
   },
@@ -342,7 +339,7 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function isLinkExternal(url) {
-    if(url.indexOf('adobe.io') > -1 || url.indexOf('hlx.page') > -1 ){
+    if(url.indexOf('developer.adobe.com') > -1 || url.indexOf('hlx.page') > -1 ){
       return false;
     } else {
       return true;
@@ -436,7 +433,7 @@ let $CURRENT_API_FILTERS = [];
             <ul class="spectrum-Body spectrum-Body--sizeS">
               ${$apiLinksHTML}
               <li>
-                <a href="https://www.adobe.io/apis/" class="spectrum-Link spectrum-Link--quiet">
+                <a href="https://developer.adobe.com/apis/" class="spectrum-Link spectrum-Link--quiet">
                   <strong>
                     View all
                   </strong>
@@ -672,14 +669,14 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function makeApiLinkRelative(link) {
-    if(link.indexOf('https://www.adobe.io/apis') >= 0){
+    if(link.indexOf('https://developer.adobe.com/apis') >= 0){
       if(window.location.pathname === '/apis') {
-        return link.replace('https://www.adobe.io/apis/','apis/');
+        return link.replace('https://developer.adobe.com/apis','apis/');
       } else if(window.location.pathname === '/apis/'){
-        return link.replace('https://www.adobe.io/apis/','./');
+        return link.replace('https://developer.adobe.com/apis','./');
       }
-    } else if (link.indexOf('https://www.adobe.io') >= 0) {
-      return link.replace('https://www.adobe.io','..');
+    } else if (link.indexOf('https://developer.adobe.com') >= 0) {
+      return link.replace('https://developer.adobe.com','..');
     } else {
       return link;
     }
@@ -788,7 +785,7 @@ let $CURRENT_API_FILTERS = [];
       </ul>
 
       <div>
-        <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+        <a href="https://developer.adobe.com/console/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
           <span class="spectrum-Button-label">
             Console
           </span>
@@ -800,10 +797,10 @@ let $CURRENT_API_FILTERS = [];
   function globalNavTemplate(links, searchButton = '') {
     return `
       <p class="icon-adobe-container">
-        <a href="https://adobe.io" class="nav-console-adobeio-link">
+        <a href="https://developer.adobe.com" class="nav-console-adobeio-link">
           <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
         </a>
-        <a href="https://adobe.io" class="nav-console-adobeio-link-text">
+        <a href="https://developer.adobe.com" class="nav-console-adobeio-link-text">
           <strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">Adobe Developer</strong>
         </a>
       </p>
@@ -814,7 +811,7 @@ let $CURRENT_API_FILTERS = [];
         ${searchButton}
 
         <div class="nav-console-button">
-          <a href="https://console.adobe.io/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+          <a href="https://developer.adobe.com/console/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
             <span class="spectrum-Button-label">
               Console
             </span>
@@ -1099,12 +1096,14 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function isTopLevelNav(urlPathname) {
-    switch(urlPathname) {
-      case '/apis': return true;
-      case '/apis/': return true;
-      case '/open': return true;
-      case '/open/': return true;
-      default: return false;
+    if(urlPathname === '/apis' || urlPathname === '/apis/'){
+      return true;
+    } else if(urlPathname.indexOf('/open') === 0) {
+      return true;
+    } else if(urlPathname.indexOf('/developer-support') === 0) {
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -1293,7 +1292,7 @@ let $CURRENT_API_FILTERS = [];
       $apiBrowser.classList.add('spectrum--light');
       const config = readBlockConfig($apiBrowser);
       window.aio = window.aio || {};
-      const resp = await fetch("/hlx_api_catalog.json");
+      const resp = await fetch("/hlx-api-catalog.json");
       window.aio.apiCatalog = (await resp.json()).data;
       const catalog = window.aio.apiCatalog;
       let buttons = ["Learn More", "View Docs"];
@@ -1883,7 +1882,70 @@ let $CURRENT_API_FILTERS = [];
     });
   }
 
+  function decorateHelix2Embeds() {
+    document.querySelectorAll('main > div > p > a[href^="https://youtu.be"], main > div > p > a[href^="https://www.youtube.com"]').forEach((yta) => {
+      let ytId = '';
+      if (yta.href.startsWith('https://youtu.be/')) ytId = new URL(yta.href).pathname;
+      if (yta.href.startsWith('https://www.youtube.com/')) ytId = new URLSearchParams(new URL(yta.href).search).get('v');
+
+      const $embed = createTag('div', {
+        class: 'embed embed-oembed embed-youtu',
+        'data-url': `https://youtu.be/${ytId}`,
+      });
+      $embed.innerHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+      <iframe src="https://www.youtube.com/embed/${ytId}?rel=0&amp;kind=embed-youtu&amp;provider=youtu" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen="" scrolling="no" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" title="content from youtu" loading="lazy">
+      </iframe></div>`;
+      yta.closest('div').replaceChild($embed, yta.closest('p'));
+    });
+
+  }
+
+  function decorateInfoColumns() {
+    document.querySelectorAll('.info-columns > div > div').forEach(($column) => {
+      $column.classList.add('info-column');
+    });
+
+    document.querySelectorAll('.info-columns').forEach(($column) => {
+      $column.classList.add('spectrum--light');
+      removeEmptyPTags($column);
+      $column.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
+        $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
+      })
+
+      $column.querySelectorAll('p').forEach(($p) => {
+        const $hasLinks = $p.querySelectorAll('a, button');
+        // don't attach to icon container or if p tag contains links
+        if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
+          $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
+        } else {
+          $p.classList.add('icon-container')
+        }
+      });
+
+      $column.querySelectorAll('a').forEach(($a) => {
+        $a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
+
+        if(isLinkExternal($a.href)) {
+          $a.target = '_blank';
+          $a.rel = 'noopener noreferrer';
+        }
+      });
+
+      $column.querySelectorAll('div > div.info-column').forEach(($infoColumn) => {
+        let $productLinkContainer = createTag('div', { class : 'product-link-container'});
+
+        $infoColumn.querySelectorAll('p.icon-container').forEach(($innerSecond) => {
+
+          $productLinkContainer.append($innerSecond);
+        });
+        $infoColumn.append($productLinkContainer);
+      });
+
+    });
+  }
+
   async function decoratePage() {
+    decorateHelix2Embeds();
     decorateMain();
     toggleScale();
     decorateTables();
@@ -1903,6 +1965,7 @@ let $CURRENT_API_FILTERS = [];
     decorateAPIBrowser()
     decorateResourceCards();
     decorateInfo();
+    decorateInfoColumns();
     decorateBanner();
     decorateSummary();
     fixIcons();
