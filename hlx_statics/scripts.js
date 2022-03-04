@@ -693,16 +693,18 @@ let $CURRENT_API_FILTERS = [];
   }
 
   function makeApiLinkRelative(link) {
-    if(link.indexOf('https://developer.adobe.com/apis') >= 0){
-      if(window.location.pathname === '/apis') {
-        return link.replace('https://developer.adobe.com/apis','apis/');
-      } else if(window.location.pathname === '/apis/'){
-        return link.replace('https://developer.adobe.com/apis','./');
+    if(link) {
+      if(link.indexOf('https://developer.adobe.com/apis') >= 0){
+        if(window.location.pathname === '/apis') {
+          return link.replace('https://developer.adobe.com/apis','apis/');
+        } else if(window.location.pathname === '/apis/'){
+          return link.replace('https://developer.adobe.com/apis','./');
+        }
+      } else if (link.indexOf('https://developer.adobe.com') >= 0) {
+        return link.replace('https://developer.adobe.com','..');
+      } else {
+        return link;
       }
-    } else if (link.indexOf('https://developer.adobe.com') >= 0) {
-      return link.replace('https://developer.adobe.com','..');
-    } else {
-      return link;
     }
   }
 
