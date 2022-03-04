@@ -31,6 +31,17 @@ if($IS_HLX_PATH) {
       }
     }
   };
+  window.marketingtech = {
+    'adobe': {
+      'launch': {
+        'property': 'global',
+        'environment': 'dev'
+      },
+      'analytics': {
+        'additionalAccounts': 'pgeo1xxpnwadobeio-qa'
+      }
+    }
+  };
 } else if(!$IS_HLX_PATH && $IS_STAGE) {
   window.adobeid = {
     client_id: "stage_adobe_io",
@@ -51,6 +62,17 @@ if($IS_HLX_PATH) {
       }
     }
   };
+  window.marketingtech = {
+    'adobe': {
+      'launch': {
+        'property': 'global',
+        'environment': 'dev'
+      },
+      'analytics': {
+        'additionalAccounts': 'pgeo1xxpnwadobeio-qa'
+      }
+    }
+  };
 } else if(!$IS_HLX_PATH && !$IS_STAGE) {
   window.adobeid = {
     client_id: "adobe_io",
@@ -68,6 +90,17 @@ if($IS_HLX_PATH) {
     onReady: function(ims) {
       if(window.adobeIMSMethods.isSignedIn()) {
         window.adobeIMSMethods.getProfile();
+      }
+    }
+  };
+  window.marketingtech = {
+    'adobe': {
+      'launch': {
+        'property': 'global',
+        'environment': 'prod'
+      },
+      'analytics': {
+        'additionalAccounts': 'pgeo1xxpnwadobeio-prod'
       }
     }
   };
@@ -1837,7 +1870,7 @@ let $CURRENT_API_FILTERS = [];
 
   function later() {
     const $adobeAnalytics = document.createElement('script');
-    $adobeAnalytics.src = '//assets.adobedtm.com/f9ca2ebf8aa5/cfdcfc3c597a/launch-8857f8f8b05b.min.js';
+    $adobeAnalytics.src = 'https://www.adobe.com/marketingtech/main.min.js';
     document.body.appendChild($adobeAnalytics);
 
     // We're done, let the page render
