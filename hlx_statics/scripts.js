@@ -3,24 +3,30 @@ let $IS_STAGE = false;
 let $ALGOLIA_APP_ID = "E642SEDTHL";
 let $ALGOLIA_API_KEY = "36561fc0f6d8f1ecf996bc7bf41af00f";
 
-
 const searchClient = algoliasearch($ALGOLIA_APP_ID, $ALGOLIA_API_KEY);
 const search = instantsearch({
-  indexName: 'photoshop',
+  indexName: "stock",
   searchClient,
 });
 
-if(window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf('hlx.live') >= 0 || window.location.host.indexOf('localhost') >= 0){
+if (
+  window.location.host.indexOf("hlx.page") >= 0 ||
+  window.location.host.indexOf("hlx.live") >= 0 ||
+  window.location.host.indexOf("localhost") >= 0
+) {
   $IS_HLX_PATH = true;
 }
 
-if(window.location.host.indexOf('stage.adobe.io') >= 0 || window.location.host.indexOf('developer-stage') >= 0){
+if (
+  window.location.host.indexOf("stage.adobe.io") >= 0 ||
+  window.location.host.indexOf("developer-stage") >= 0
+) {
   $IS_STAGE = true;
 }
 
 window.adobeid = {};
 
-if($IS_HLX_PATH) {
+if ($IS_HLX_PATH) {
   window.adobeid = {
     client_id: "helix_adobeio",
     scope:
@@ -34,13 +40,13 @@ if($IS_HLX_PATH) {
     onError: function (error) {
       console.log(error);
     },
-    onReady: function(ims) {
-      if(window.adobeIMSMethods.isSignedIn()) {
+    onReady: function (ims) {
+      if (window.adobeIMSMethods.isSignedIn()) {
         window.adobeIMSMethods.getProfile();
       }
-    }
+    },
   };
-} else if(!$IS_HLX_PATH && $IS_STAGE) {
+} else if (!$IS_HLX_PATH && $IS_STAGE) {
   window.adobeid = {
     client_id: "stage_adobe_io",
     scope:
@@ -54,13 +60,13 @@ if($IS_HLX_PATH) {
     onError: function (error) {
       console.log(error);
     },
-    onReady: function(ims) {
-      if(window.adobeIMSMethods.isSignedIn()) {
+    onReady: function (ims) {
+      if (window.adobeIMSMethods.isSignedIn()) {
         window.adobeIMSMethods.getProfile();
       }
-    }
+    },
   };
-} else if(!$IS_HLX_PATH && !$IS_STAGE) {
+} else if (!$IS_HLX_PATH && !$IS_STAGE) {
   window.adobeid = {
     client_id: "adobe_io",
     scope:
@@ -74,34 +80,38 @@ if($IS_HLX_PATH) {
     onError: function (error) {
       console.log(error);
     },
-    onReady: function(ims) {
-      if(window.adobeIMSMethods.isSignedIn()) {
+    onReady: function (ims) {
+      if (window.adobeIMSMethods.isSignedIn()) {
         window.adobeIMSMethods.getProfile();
       }
-    }
+    },
   };
 }
 
 window.adobeIMSMethods = {
-  isSignedIn: function() {
+  isSignedIn: function () {
     return adobeIMS.isSignedInUser();
   },
   signIn: function () {
-      adobeIMS.signIn();
+    adobeIMS.signIn();
   },
-  signOut(){
-      adobeIMS.signOut({});
+  signOut() {
+    adobeIMS.signOut({});
   },
-  getProfile(){
-    adobeIMS.getProfile().then(profile => {
-      window.adobeid.profile = profile;
-      window.adobeid.profile.avatarUrl = fixHlxPath('/hlx_statics/icons/avatar.svg');
-      decorateProfile(window.adobeid.profile);
-      fetchProfileAvatar(window.adobeid.profile.userId);
-    })
-    .catch( ex => {
-      window.adobeid.profile = ex;
-    })
+  getProfile() {
+    adobeIMS
+      .getProfile()
+      .then((profile) => {
+        window.adobeid.profile = profile;
+        window.adobeid.profile.avatarUrl = fixHlxPath(
+          "/hlx_statics/icons/avatar.svg"
+        );
+        decorateProfile(window.adobeid.profile);
+        fetchProfileAvatar(window.adobeid.profile.userId);
+      })
+      .catch((ex) => {
+        window.adobeid.profile = ex;
+      });
   },
 };
 
@@ -109,323 +119,365 @@ window.adobeIMSMethods = {
 const MOBILE_SCREEN_WIDTH = 700;
 const LARGE_SCREEN_WIDTH = 1280;
 
-const $HEADER_LINKS = 
-[
+const $HEADER_LINKS = [
   {
-    "name" : "Home",
-    "links" : [
-      { "url": 'https://developer.adobe.com/' }
-    ]
+    name: "Home",
+    links: [{ url: "https://developer.adobe.com/" }],
   },
   {
-    "name" : "Products",
-    "links" : [
-      { "url": 'https://developer.adobe.com/apis' }
-    ]
+    name: "Products",
+    links: [{ url: "https://developer.adobe.com/apis" }],
   },
   {
-    "name" : "Community",
-    "links" : [
-      { "name": "Tech Blog", "url": 'https://medium.com/adobetech' },
-      { "name": "Open Source at Adobe", "url": 'https://developer.adobe.com/open' },
-      { "name": "Adobe on Github", "url": 'https://github.com/adobe' },
-      { "name": "Adobe Developer Support", "url": 'https://developer.adobe.com/developer-support/' },
-      { "name": "Experience League Community", "url": 'https://www.adobe.com/communities/index.html' },
-    ]
-  }
+    name: "Community",
+    links: [
+      { name: "Tech Blog", url: "https://medium.com/adobetech" },
+      { name: "Open Source at Adobe", url: "https://developer.adobe.com/open" },
+      { name: "Adobe on Github", url: "https://github.com/adobe" },
+      {
+        name: "Adobe Developer Support",
+        url: "https://developer.adobe.com/developer-support/",
+      },
+      {
+        name: "Experience League Community",
+        url: "https://www.adobe.com/communities/index.html",
+      },
+    ],
+  },
 ];
 
-const $FOOTER_LINKS =
-[
+const $FOOTER_LINKS = [
   {
-    "name": "Api",
-    "links": [
-      { "name": "Adobe Creative Cloud", "url": "https://developer.adobe.com/creative-cloud/" },
-      { "name": "Adobe Experience Platform", "url": "https://developer.adobe.com/experience-platform-apis/" },
-      { "name": "Adobe Document Cloud", "url": "https://developer.adobe.com/document-services/homepage" },
-  ]
+    name: "Api",
+    links: [
+      {
+        name: "Adobe Creative Cloud",
+        url: "https://developer.adobe.com/creative-cloud/",
+      },
+      {
+        name: "Adobe Experience Platform",
+        url: "https://developer.adobe.com/experience-platform-apis/",
+      },
+      {
+        name: "Adobe Document Cloud",
+        url: "https://developer.adobe.com/document-services/homepage",
+      },
+    ],
   },
   {
-    "name": "Service",
-    "links": [
-      { "name": "Adobe Cloud Manager", "url": "https://developer.adobe.com/experience-cloud/cloud-manager/"},
-      { "name": "Adobe Analytics", "url": "https://developer.adobe.com/analytics-apis/docs/2.0/" },
-      { "name": "App Builder", "url": "https://developer.adobe.com/app-builder" }
-    ]
+    name: "Service",
+    links: [
+      {
+        name: "Adobe Cloud Manager",
+        url: "https://developer.adobe.com/experience-cloud/cloud-manager/",
+      },
+      {
+        name: "Adobe Analytics",
+        url: "https://developer.adobe.com/analytics-apis/docs/2.0/",
+      },
+      { name: "App Builder", url: "https://developer.adobe.com/app-builder" },
+    ],
   },
   {
-    "name": "Community",
-    "links": [
-      { "name": "Adobe Tech Blog", "url": "https://medium.com/adobetech" },
-      { "name": "Adobe on GitHub", "url": "https://github.com/adobe" },
-      { "name": "Adobe Developer on YouTube", "url": "https://youtube.com/channel/UCDtYqOjS9Eq9gacLcbMwhhQ" },
-      { "name": "Adobe Developer on Twitter", "url": "https://twitter.com/adobedevs" },
-      { "name": "Community Forums", "url": "https://adobe.com/communities/index.html" }
-    ]
+    name: "Community",
+    links: [
+      { name: "Adobe Tech Blog", url: "https://medium.com/adobetech" },
+      { name: "Adobe on GitHub", url: "https://github.com/adobe" },
+      {
+        name: "Adobe Developer on YouTube",
+        url: "https://youtube.com/channel/UCDtYqOjS9Eq9gacLcbMwhhQ",
+      },
+      {
+        name: "Adobe Developer on Twitter",
+        url: "https://twitter.com/adobedevs",
+      },
+      {
+        name: "Community Forums",
+        url: "https://adobe.com/communities/index.html",
+      },
+    ],
   },
   {
-    "name": "Support",
-    "links": [
-      { "name": "Adobe Developer Support", "url": "https://developer.adobe.com/developer-support/" },
-      { "name": "Adobe Product Support", "url": "https://helpx.adobe.com/contact/enterprise-support.html" }
-    ]
+    name: "Support",
+    links: [
+      {
+        name: "Adobe Developer Support",
+        url: "https://developer.adobe.com/developer-support/",
+      },
+      {
+        name: "Adobe Product Support",
+        url: "https://helpx.adobe.com/contact/enterprise-support.html",
+      },
+    ],
   },
   {
-    "name": "Developer",
-      "links": [
-      { "name": "Adobe Developer Console", "url": "https://developer.adobe.com/developer-console" },
-      { "name": "Open source at Adobe", "url": "https://developer.adobe.com/open" },
-      { "name": "Download SDKs", "url": "https://developer.adobe.com/console/downloads" },
-      { "name": "Authentication", "url": "https://developer.adobe.com/developer-console/docs/guides/authentication/" },
-      { "name": "Careers", "url": "https://adobe.com/careers.html" }
-    ]
+    name: "Developer",
+    links: [
+      {
+        name: "Adobe Developer Console",
+        url: "https://developer.adobe.com/developer-console",
+      },
+      { name: "Open source at Adobe", url: "https://developer.adobe.com/open" },
+      {
+        name: "Download SDKs",
+        url: "https://developer.adobe.com/console/downloads",
+      },
+      {
+        name: "Authentication",
+        url: "https://developer.adobe.com/developer-console/docs/guides/authentication/",
+      },
+      { name: "Careers", url: "https://adobe.com/careers.html" },
+    ],
   },
   {
-    "name": "Legal",
-      "links": [
-      { "name": "Terms of use", "url": "https://adobe.com/legal/terms.html" },
-      { "name": "Privacy policy", "url": "https://adobe.com/privacy.html" },
-      { "name": "Cookies", "url": "https://adobe.com/privacy/cookies.html" },
-      { "name": "AdChoices", "url": "https://adobe.com/privacy/opt-out.html#interest-based-ads" }
-    ]
+    name: "Legal",
+    links: [
+      { name: "Terms of use", url: "https://adobe.com/legal/terms.html" },
+      { name: "Privacy policy", url: "https://adobe.com/privacy.html" },
+      { name: "Cookies", url: "https://adobe.com/privacy/cookies.html" },
+      {
+        name: "AdChoices",
+        url: "https://adobe.com/privacy/opt-out.html#interest-based-ads",
+      },
+    ],
   },
 ];
 
 let $CURRENT_API_FILTERS = [];
 
-
-  /**
-   * Creates a tag with the given name and attributes.
-   * @param {string} name The tag name
-   * @param {object} attrs An object containing the attributes
-   * @returns The new tag
-   */
-  function createTag(name, attrs) {
-    const el = document.createElement(name);
-    if (typeof attrs === "object") {
-      for (let [key, value] of Object.entries(attrs)) {
-        el.setAttribute(key, value);
-      }
+/**
+ * Creates a tag with the given name and attributes.
+ * @param {string} name The tag name
+ * @param {object} attrs An object containing the attributes
+ * @returns The new tag
+ */
+function createTag(name, attrs) {
+  const el = document.createElement(name);
+  if (typeof attrs === "object") {
+    for (let [key, value] of Object.entries(attrs)) {
+      el.setAttribute(key, value);
     }
-    return el;
   }
+  return el;
+}
 
-  function toClassName(name) {
-    return name.toLowerCase().replace(/[^0-9a-z]/gi, "-");
-  }
+function toClassName(name) {
+  return name.toLowerCase().replace(/[^0-9a-z]/gi, "-");
+}
 
-  /**
-   * Loads a CSS file.
-   * @param {string} href The path to the CSS file
-   */
-  function loadCSS(href) {
-    const link = document.createElement("link");
-    link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", href);
-    document.head.appendChild(link);
-  }
+/**
+ * Loads a CSS file.
+ * @param {string} href The path to the CSS file
+ */
+function loadCSS(href) {
+  const link = document.createElement("link");
+  link.setAttribute("rel", "stylesheet");
+  link.setAttribute("href", href);
+  document.head.appendChild(link);
+}
 
-  /**
-   * Turn tables to DIV.
-   * @param {object} $table Table element
-   */
+/**
+ * Turn tables to DIV.
+ * @param {object} $table Table element
+ */
 
-  function tableToDivs($table) {
-    const $rows = $table.querySelectorAll("tbody tr");
-    const blockname = $table.querySelector("th").textContent;
-    const $block = createTag("div", { class: `${toClassName(blockname)}` });
-    $rows.forEach(($tr) => {
-      const $row = createTag("div");
-      $tr.querySelectorAll("td").forEach(($td, i) => {
-        const $div = createTag("div");
-        $div.innerHTML = $td.innerHTML;
-        $row.append($div);
-      });
-      $block.append($row);
+function tableToDivs($table) {
+  const $rows = $table.querySelectorAll("tbody tr");
+  const blockname = $table.querySelector("th").textContent;
+  const $block = createTag("div", { class: `${toClassName(blockname)}` });
+  $rows.forEach(($tr) => {
+    const $row = createTag("div");
+    $tr.querySelectorAll("td").forEach(($td, i) => {
+      const $div = createTag("div");
+      $div.innerHTML = $td.innerHTML;
+      $row.append($div);
     });
-    return $block;
-  }
+    $block.append($row);
+  });
+  return $block;
+}
 
-  function removeEmptyPTags($theElement){
-    $theElement.querySelectorAll('p').forEach(($pElement) => {
-      // get rid of empty p tags
-      if(!$pElement.hasChildNodes()){
-        $pElement.remove();
-      }
-    })
-  }
+function removeEmptyPTags($theElement) {
+  $theElement.querySelectorAll("p").forEach(($pElement) => {
+    // get rid of empty p tags
+    if (!$pElement.hasChildNodes()) {
+      $pElement.remove();
+    }
+  });
+}
 
-  function sortDate( a, b ) {
-    if ( a['Last Updated'] > b['Last Updated']  ){
-      return -1;
-    }
-    if ( a['Last Updated'] < b['Last Updated']  ){
-      return 1;
-    }
-    return 0;
+function sortDate(a, b) {
+  if (a["Last Updated"] > b["Last Updated"]) {
+    return -1;
   }
-
-  function sortTitle( a, b ) {
-    if ( a['Title'] < b['Title']  ){
-      return -1;
-    }
-    if ( a['Title'] > b['Title']  ){
-      return 1;
-    }
-    return 0;
+  if (a["Last Updated"] < b["Last Updated"]) {
+    return 1;
   }
+  return 0;
+}
 
-  function decorateTables() {
-    document.querySelectorAll("main div>table").forEach(($table) => {
-      const $div = tableToDivs($table);
-      $table.parentNode.replaceChild($div, $table);
+function sortTitle(a, b) {
+  if (a["Title"] < b["Title"]) {
+    return -1;
+  }
+  if (a["Title"] > b["Title"]) {
+    return 1;
+  }
+  return 0;
+}
+
+function decorateTables() {
+  document.querySelectorAll("main div>table").forEach(($table) => {
+    const $div = tableToDivs($table);
+    $table.parentNode.replaceChild($div, $table);
+  });
+}
+
+function decorateLists() {
+  document.querySelectorAll("main ul, main ol").forEach(($list) => {
+    $list.classList.add("spectrum-Body", "spectrum-Body--sizeM");
+  });
+}
+
+function decorateBlocks() {
+  document
+    .querySelectorAll("main>div.section-wrapper>div>div")
+    .forEach(($block) => {
+      const classes = Array.from($block.classList.values());
+      $block
+        .closest(".section-wrapper")
+        .classList.add(`${classes[0]}-container`);
     });
-  }
+}
 
-  function decorateLists() {
-    document.querySelectorAll("main ul, main ol").forEach(($list) => {
-      $list.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
-    });
-  }
+function decorateBackgroundImageBlocks() {
+  document
+    .querySelectorAll("main div.background-image")
+    .forEach(($bgImgDiv) => {
+      const $images = $bgImgDiv.querySelectorAll("img");
+      const $lastImage = $images[$images.length - 1];
 
-  function decorateBlocks() {
-    document
-      .querySelectorAll("main>div.section-wrapper>div>div")
-      .forEach(($block) => {
-        const classes = Array.from($block.classList.values());
-        $block
-          .closest(".section-wrapper")
-          .classList.add(`${classes[0]}-container`);
-      });
-  }
-
-  function decorateBackgroundImageBlocks() {
-    document
-      .querySelectorAll("main div.background-image")
-      .forEach(($bgImgDiv) => {
-        const $images = $bgImgDiv.querySelectorAll("img");
-        const $lastImage = $images[$images.length - 1];
-
-        const $section = $bgImgDiv.closest(".section-wrapper");
-        if ($section && $lastImage) {
-          $section.style.backgroundImage = `url(${$lastImage.src})`;
-          let $caption = $lastImage.nextElementSibling;
-          if ($caption) {
-            if ($caption.textContent == "")
-              $caption = $caption.nextElementSibling;
-            if ($caption) $caption.classList.add("background-image-caption");
-          }
-          $lastImage.remove();
+      const $section = $bgImgDiv.closest(".section-wrapper");
+      if ($section && $lastImage) {
+        $section.style.backgroundImage = `url(${$lastImage.src})`;
+        let $caption = $lastImage.nextElementSibling;
+        if ($caption) {
+          if ($caption.textContent == "")
+            $caption = $caption.nextElementSibling;
+          if ($caption) $caption.classList.add("background-image-caption");
         }
-      });
-  }
-
-  function decorateEmbeds() {
-    document.querySelectorAll('.embed-container').forEach(($embed) => {
-      $embed.classList.add('spectrum--lightest');
-      $embed.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
-        $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
-      })
-
-      $embed.querySelectorAll('p').forEach(($p) => {
-        const $hasLinks = $p.querySelectorAll('a, button');
-        // don't attach to icon container or if p tag contains links
-        if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
-          $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
-        }
-      });
-
+        $lastImage.remove();
+      }
     });
-  }
+}
 
-  function isLinkExternal(url) {
-    if(url.indexOf('developer.adobe.com') > -1 || url.indexOf('hlx.page') > -1 ){
-      return false;
-    } else {
-      return true;
+function decorateEmbeds() {
+  document.querySelectorAll(".embed-container").forEach(($embed) => {
+    $embed.classList.add("spectrum--lightest");
+    $embed.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(($header) => {
+      $header.classList.add("spectrum-Heading", "spectrum-Heading--sizeM");
+    });
+
+    $embed.querySelectorAll("p").forEach(($p) => {
+      const $hasLinks = $p.querySelectorAll("a, button");
+      // don't attach to icon container or if p tag contains links
+      if (!$p.classList.contains("icon-container") && $hasLinks.length === 0) {
+        $p.classList.add("spectrum-Body", "spectrum-Body--sizeM");
+      }
+    });
+  });
+}
+
+function isLinkExternal(url) {
+  if (url.indexOf("developer.adobe.com") > -1 || url.indexOf("hlx.page") > -1) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function decorateButtons(section) {
+  document.querySelectorAll(`${section} a`).forEach(($a) => {
+    $a.innerHTML = `<span class="spectrum-Button-label">${$a.innerHTML}</span>`;
+    const $up = $a.parentElement;
+    const $twoup = $a.parentElement.parentElement;
+    $a.tabindex = 0;
+    if ($up.childNodes.length == 1 && $up.tagName == "P") {
+      $a.className =
+        "spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM";
     }
-  }
 
-  function decorateButtons(section) {
-    document.querySelectorAll(`${section} a`).forEach(($a) => {
-      $a.innerHTML = `<span class="spectrum-Button-label">${$a.innerHTML}</span>`
-      const $up = $a.parentElement;
-      const $twoup = $a.parentElement.parentElement;
-      $a.tabindex = 0;
-      if ($up.childNodes.length == 1 && $up.tagName == "P") {
-        $a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
-      }
+    if (isLinkExternal($a.href)) {
+      $a.target = "_blank";
+      $a.rel = "noopener noreferrer";
+    }
 
-      if(isLinkExternal($a.href)) {
-        $a.target = '_blank';
-        $a.rel = 'noopener noreferrer';
-      }
+    if (
+      $up.childNodes.length == 1 &&
+      $up.tagName == "STRONG" &&
+      $twoup.childNodes.length == 1 &&
+      $twoup.tagName == "P"
+    ) {
+      $a.className =
+        "spectrum-Button spectrum-Button--cta  spectrum-Button--sizeM";
+      $twoup.replaceChild($a, $up);
+    }
+  });
+}
 
-      if (
-        $up.childNodes.length == 1 &&
-        $up.tagName == "STRONG" &&
-        $twoup.childNodes.length == 1 &&
-        $twoup.tagName == "P"
-      ) {
-        $a.className = 'spectrum-Button spectrum-Button--cta  spectrum-Button--sizeM';
-        $twoup.replaceChild($a, $up);
-      }
-    });
-  }
+function decorateIframe() {
+  document.querySelectorAll(".iframe a").forEach(($a) => {
+    if ($a.textContent.startsWith("https://")) {
+      const url = new URL($a.href);
 
-  function decorateIframe() {
-    document.querySelectorAll(".iframe a").forEach(($a) => {
-      if ($a.textContent.startsWith("https://")) {
-        const url = new URL($a.href);
-
-        let embedHTML = `<div>
+      let embedHTML = `<div>
       <iframe src="${$a.href}" style="border: 0; width: 100%; height: 100%; position: absolute;"></iframe>
       </div>
       `;
 
-        let type = "iframe";
+      let type = "iframe";
 
-        if (type) {
-          const $embed = createTag("div", {
-            class: `embed embed-oembed embed-${type}`,
-          });
-          const $div = $a.closest("div");
-          $embed.innerHTML = embedHTML;
-          $div.parentElement.replaceChild($embed, $div);
-        }
+      if (type) {
+        const $embed = createTag("div", {
+          class: `embed embed-oembed embed-${type}`,
+        });
+        const $div = $a.closest("div");
+        $embed.innerHTML = embedHTML;
+        $div.parentElement.replaceChild($embed, $div);
       }
-    });
-  }
+    }
+  });
+}
 
-  function wrapSections(element) {
-    document.querySelectorAll(element).forEach(($div) => {
-      const $wrapper = createTag("div", { class: "section-wrapper" });
-      $div.parentNode.appendChild($wrapper);
-      $wrapper.appendChild($div);
-    });
-  }
+function wrapSections(element) {
+  document.querySelectorAll(element).forEach(($div) => {
+    const $wrapper = createTag("div", { class: "section-wrapper" });
+    $div.parentNode.appendChild($wrapper);
+    $wrapper.appendChild($div);
+  });
+}
 
-  function footerListItem(name, url) {
-    return `
+function footerListItem(name, url) {
+  return `
       <li>
         <a href="${url}" class="spectrum-Link spectrum-Link--secondary spectrum-Link--quiet">${name}</a>
       </li>
     `;
-  }
+}
 
-  function decorateFooter() {
-    document.querySelectorAll('footer').forEach(($footer) => {
-      let $apiLinksHTML = '';
-      $FOOTER_LINKS[0].links.forEach(($link) => {
-        $apiLinksHTML += footerListItem($link.name, $link.url)
-      });
+function decorateFooter() {
+  document.querySelectorAll("footer").forEach(($footer) => {
+    let $apiLinksHTML = "";
+    $FOOTER_LINKS[0].links.forEach(($link) => {
+      $apiLinksHTML += footerListItem($link.name, $link.url);
+    });
 
-      let $servicesLinksHTML = '';
-      $FOOTER_LINKS[1].links.forEach(($link) => {
-        $servicesLinksHTML += footerListItem($link.name, $link.url)
-      });
+    let $servicesLinksHTML = "";
+    $FOOTER_LINKS[1].links.forEach(($link) => {
+      $servicesLinksHTML += footerListItem($link.name, $link.url);
+    });
 
-      let $apisTemplate = `
+    let $apisTemplate = `
       <div class="footer-apis">
         <div class="footer-apis-container">
           <div class="footer-apis-inner">
@@ -453,12 +505,12 @@ let $CURRENT_API_FILTERS = [];
       </div>
       `;
 
-      let $communityLinksHTML = '';
-      $FOOTER_LINKS[2].links.forEach(($link) => {
-        $communityLinksHTML += footerListItem($link.name, $link.url)
-      });
+    let $communityLinksHTML = "";
+    $FOOTER_LINKS[2].links.forEach(($link) => {
+      $communityLinksHTML += footerListItem($link.name, $link.url);
+    });
 
-      let $communityTemplate = `
+    let $communityTemplate = `
       <div class="footer-community">
         <div class="footer-community-container">
           <div>
@@ -474,12 +526,12 @@ let $CURRENT_API_FILTERS = [];
       </div>
       `;
 
-      let $supportLinksHTML = '';
-      $FOOTER_LINKS[3].links.forEach(($link) => {
-        $supportLinksHTML += footerListItem($link.name, $link.url)
-      });
+    let $supportLinksHTML = "";
+    $FOOTER_LINKS[3].links.forEach(($link) => {
+      $supportLinksHTML += footerListItem($link.name, $link.url);
+    });
 
-      let $supportTemplate = `
+    let $supportTemplate = `
       <div class="footer-support">
       <div class="footer-support-container">
         <div>
@@ -495,13 +547,12 @@ let $CURRENT_API_FILTERS = [];
     </div>
       `;
 
+    let $developerLinksHTML = "";
+    $FOOTER_LINKS[4].links.forEach(($link) => {
+      $developerLinksHTML += footerListItem($link.name, $link.url);
+    });
 
-      let $developerLinksHTML = '';
-      $FOOTER_LINKS[4].links.forEach(($link) => {
-        $developerLinksHTML += footerListItem($link.name, $link.url)
-      });
-
-      let $developerTemplate = `
+    let $developerTemplate = `
       <div class="footer-developer">
       <div class="footer-developer-container">
         <div>
@@ -517,12 +568,12 @@ let $CURRENT_API_FILTERS = [];
     </div>
       `;
 
-      let $legalLinksHTML = '';
-      $FOOTER_LINKS[5].links.forEach(($link) => {
-        $legalLinksHTML += footerListItem($link.name, $link.url)
-      });
+    let $legalLinksHTML = "";
+    $FOOTER_LINKS[5].links.forEach(($link) => {
+      $legalLinksHTML += footerListItem($link.name, $link.url);
+    });
 
-      let $legalLinksTemplate = `
+    let $legalLinksTemplate = `
       <div
         class="spectrum-Divider spectrum-Divider--sizeM footer-horizontal"
       ></div>
@@ -543,7 +594,7 @@ let $CURRENT_API_FILTERS = [];
       </div>
       `;
 
-      let $footerTemplate = `
+    let $footerTemplate = `
         <div class="footer-links-container">
           <div class="footer-links-container-inner">
             ${$apisTemplate}
@@ -554,149 +605,174 @@ let $CURRENT_API_FILTERS = [];
           ${$legalLinksTemplate}
         </div>
       `;
-      const $footerContainer = createTag('div', {class: 'footer-links-container'});
-      $footerContainer.innerHTML = $footerTemplate;
-      $footer.prepend($footerContainer);
+    const $footerContainer = createTag("div", {
+      class: "footer-links-container",
     });
-  }
+    $footerContainer.innerHTML = $footerTemplate;
+    $footer.prepend($footerContainer);
+  });
+}
 
-  function decorateSiteHero() {
-    document.querySelectorAll('.site-hero-container').forEach(($heroSection) => {
-      removeEmptyPTags($heroSection);
+function decorateSiteHero() {
+  document.querySelectorAll(".site-hero-container").forEach(($heroSection) => {
+    removeEmptyPTags($heroSection);
 
-      $heroSection.classList.add('spectrum--dark');
+    $heroSection.classList.add("spectrum--dark");
 
-      $heroSection.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
-        $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
-      })
-
-      $heroSection.querySelectorAll('p').forEach(($p) => {
-        const $hasLinks = $p.querySelectorAll('a, button');
-        // don't attach to icon container or if p tag contains links
-        if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
-          $p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
-        }
+    $heroSection
+      .querySelectorAll("h1, h2, h3, h4, h5, h6")
+      .forEach(($header) => {
+        $header.classList.add(
+          "spectrum-Heading",
+          "spectrum-Heading--sizeXXL",
+          "spectrum-Heading--serif"
+        );
       });
 
-      // delete image and re-insert as bg
-      let $heroImageSrc = $heroSection.querySelector('img') ? $heroSection.querySelector('img').src : null;
-
-      $heroSection.querySelectorAll('picture source').forEach(($picture) => {
-        //remove weird max-width attribute
-        $picture.media = "";
-        $picture.parentElement.parentElement.remove();
-      });
-
-      $heroSection.style.backgroundImage = `url(${$heroImageSrc})`;
-    });
-  }
-
-  function decorateHero() {
-    decorateButtons('.hero-container');
-
-    document.querySelectorAll('.hero-container').forEach(($heroSection) => {
-      removeEmptyPTags($heroSection);
-
-      $heroSection.querySelectorAll('.hero').forEach(($hero) => {
-        $hero.classList.add('spectrum--lightest')
-      });
-
-      $heroSection.querySelectorAll('img.icon').forEach(($heroIcon) => {
-        $heroIcon.parentElement.classList.add('icon-container');
-      })
-
-      $heroSection.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
-        $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
-      })
-
-      $heroSection.querySelectorAll('p').forEach(($p) => {
-        const $hasLinks = $p.querySelectorAll('a, button');
-        // don't attach to icon container or if p tag contains links
-        if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
-          $p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
-        }
-      });
-
-      $heroSection.querySelectorAll('picture source').forEach(($picture) => {
-        //remove weird max-width attribute
-        $picture.media = "";
-      });
-      // put buttons into their own div
-      const $buttonContainer = createTag('div', {class: 'hero-button-container'});
-      $heroSection.querySelectorAll('a').forEach(($button) => {
-        $button.classList.add('spectrum-Button--quiet')
-        $buttonContainer.append($button);
-      });
-
-      // have to remove ps after moving buttons
-      removeEmptyPTags($heroSection);
-
-      const $firstSection = $heroSection.querySelector('div.hero>div>div');
-      $firstSection.append($buttonContainer);
-    });
-  }
-
-  function decorateTitle($container, $containerClass) {
-    // search container for h's and p's not inside a container and apply title block classes
-    $container.querySelectorAll('p').forEach(($pTag) => {
-      const $mainContainer = $container.querySelector('div.'+ $containerClass);
-      if(!$mainContainer.contains($pTag)) {
-        $pTag.classList.add('title-body', 'spectrum-Body--sizeL', 'spectrum-Body--light');
-      }
-    })
-
-    $container.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($hTag) => {
-      const $mainContainer = $container.querySelector('div.'+ $containerClass);
-      if(!$mainContainer.contains($hTag)) {
-        $hTag.classList.add('title-header', 'spectrum-Heading--sizeL', 'spectrum-Heading--light');
-      }
-    })
-  }
-
-  function readBlockConfig($block) {
-    const config = {};
-    $block.querySelectorAll(":scope>div").forEach(($row) => {
-      if ($row.children && $row.children[1]) {
-        const name = toClassName($row.children[0].textContent);
-        const $a = $row.children[1].querySelector("a");
-        let value = "";
-        if ($a) value = $a.href;
-        else value = $row.children[1].textContent;
-        config[name] = value;
+    $heroSection.querySelectorAll("p").forEach(($p) => {
+      const $hasLinks = $p.querySelectorAll("a, button");
+      // don't attach to icon container or if p tag contains links
+      if (!$p.classList.contains("icon-container") && $hasLinks.length === 0) {
+        $p.classList.add("spectrum-Body", "spectrum-Body--sizeL");
       }
     });
-    return config;
-  }
 
-  function makeApiLinkRelative(link) {
-    if(link.indexOf('https://developer.adobe.com/apis') >= 0){
-      if(window.location.pathname === '/apis') {
-        return link.replace('https://developer.adobe.com/apis','apis/');
-      } else if(window.location.pathname === '/apis/'){
-        return link.replace('https://developer.adobe.com/apis','./');
+    // delete image and re-insert as bg
+    let $heroImageSrc = $heroSection.querySelector("img")
+      ? $heroSection.querySelector("img").src
+      : null;
+
+    $heroSection.querySelectorAll("picture source").forEach(($picture) => {
+      //remove weird max-width attribute
+      $picture.media = "";
+      $picture.parentElement.parentElement.remove();
+    });
+
+    $heroSection.style.backgroundImage = `url(${$heroImageSrc})`;
+  });
+}
+
+function decorateHero() {
+  decorateButtons(".hero-container");
+
+  document.querySelectorAll(".hero-container").forEach(($heroSection) => {
+    removeEmptyPTags($heroSection);
+
+    $heroSection.querySelectorAll(".hero").forEach(($hero) => {
+      $hero.classList.add("spectrum--lightest");
+    });
+
+    $heroSection.querySelectorAll("img.icon").forEach(($heroIcon) => {
+      $heroIcon.parentElement.classList.add("icon-container");
+    });
+
+    $heroSection
+      .querySelectorAll("h1, h2, h3, h4, h5, h6")
+      .forEach(($header) => {
+        $header.classList.add(
+          "spectrum-Heading",
+          "spectrum-Heading--sizeXXL",
+          "spectrum-Heading--serif"
+        );
+      });
+
+    $heroSection.querySelectorAll("p").forEach(($p) => {
+      const $hasLinks = $p.querySelectorAll("a, button");
+      // don't attach to icon container or if p tag contains links
+      if (!$p.classList.contains("icon-container") && $hasLinks.length === 0) {
+        $p.classList.add("spectrum-Body", "spectrum-Body--sizeL");
       }
-    } else if (link.indexOf('https://developer.adobe.com') >= 0) {
-      return link.replace('https://developer.adobe.com','..');
-    } else {
-      return link;
+    });
+
+    $heroSection.querySelectorAll("picture source").forEach(($picture) => {
+      //remove weird max-width attribute
+      $picture.media = "";
+    });
+    // put buttons into their own div
+    const $buttonContainer = createTag("div", {
+      class: "hero-button-container",
+    });
+    $heroSection.querySelectorAll("a").forEach(($button) => {
+      $button.classList.add("spectrum-Button--quiet");
+      $buttonContainer.append($button);
+    });
+
+    // have to remove ps after moving buttons
+    removeEmptyPTags($heroSection);
+
+    const $firstSection = $heroSection.querySelector("div.hero>div>div");
+    $firstSection.append($buttonContainer);
+  });
+}
+
+function decorateTitle($container, $containerClass) {
+  // search container for h's and p's not inside a container and apply title block classes
+  $container.querySelectorAll("p").forEach(($pTag) => {
+    const $mainContainer = $container.querySelector("div." + $containerClass);
+    if (!$mainContainer.contains($pTag)) {
+      $pTag.classList.add(
+        "title-body",
+        "spectrum-Body--sizeL",
+        "spectrum-Body--light"
+      );
     }
+  });
+
+  $container.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(($hTag) => {
+    const $mainContainer = $container.querySelector("div." + $containerClass);
+    if (!$mainContainer.contains($hTag)) {
+      $hTag.classList.add(
+        "title-header",
+        "spectrum-Heading--sizeL",
+        "spectrum-Heading--light"
+      );
+    }
+  });
+}
+
+function readBlockConfig($block) {
+  const config = {};
+  $block.querySelectorAll(":scope>div").forEach(($row) => {
+    if ($row.children && $row.children[1]) {
+      const name = toClassName($row.children[0].textContent);
+      const $a = $row.children[1].querySelector("a");
+      let value = "";
+      if ($a) value = $a.href;
+      else value = $row.children[1].textContent;
+      config[name] = value;
+    }
+  });
+  return config;
+}
+
+function makeApiLinkRelative(link) {
+  if (link.indexOf("https://developer.adobe.com/apis") >= 0) {
+    if (window.location.pathname === "/apis") {
+      return link.replace("https://developer.adobe.com/apis", "apis/");
+    } else if (window.location.pathname === "/apis/") {
+      return link.replace("https://developer.adobe.com/apis", "./");
+    }
+  } else if (link.indexOf("https://developer.adobe.com") >= 0) {
+    return link.replace("https://developer.adobe.com", "..");
+  } else {
+    return link;
   }
+}
 
-  function displayFilteredCards(catalog, $cards, buttons, limit) {
-    $cards.innerHTML = "";
-    let counter = 0;
-    catalog.forEach((card) => {
-      let show = true;
-      if ($CURRENT_API_FILTERS.length > 0) {
-        if (!$CURRENT_API_FILTERS.includes(card.Category)) show = false;
-      }
+function displayFilteredCards(catalog, $cards, buttons, limit) {
+  $cards.innerHTML = "";
+  let counter = 0;
+  catalog.forEach((card) => {
+    let show = true;
+    if ($CURRENT_API_FILTERS.length > 0) {
+      if (!$CURRENT_API_FILTERS.includes(card.Category)) show = false;
+    }
 
-      if (counter >= limit) show = false;
-      if (show) {
-
-        let iconTemplate = '';
-        if(card.Icon) {
-          iconTemplate = `
+    if (counter >= limit) show = false;
+    if (show) {
+      let iconTemplate = "";
+      if (card.Icon) {
+        iconTemplate = `
             <div class="api-card-icon-container">
               <img
                 width="48px"
@@ -705,34 +781,30 @@ let $CURRENT_API_FILTERS = [];
                 src="/hlx_statics/icons/${card.Icon}.svg"
               />
             </div>
-          `
-        }
+          `;
+      }
 
-        let buttonTemplate = '';
-        buttons.forEach((b, i) => {
-          if (card[b] !== "") {
-            let $link;
-            if(b === "Learn More"){
-              $link = makeApiLinkRelative(card[b]);
-              buttonTemplate +=
-                `<a href="${$link}" class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet spectrum-Button--sizeM" >
+      let buttonTemplate = "";
+      buttons.forEach((b, i) => {
+        if (card[b] !== "") {
+          let $link;
+          if (b === "Learn More") {
+            $link = makeApiLinkRelative(card[b]);
+            buttonTemplate += `<a href="${$link}" class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet spectrum-Button--sizeM" >
                   <span class="spectrum-Button-label">${b}</span>
-                </a>`
-
-            } else {
-              $link = makeApiLinkRelative(card[b]);
-              buttonTemplate +=
-              `
+                </a>`;
+          } else {
+            $link = makeApiLinkRelative(card[b]);
+            buttonTemplate += `
               <a href="${$link}" class="spectrum-Button spectrum-Button--primary spectrum-Button--sizeM">
                 <span class="spectrum-Button-label">${b}</span>
               </a>
-              `
-
-            }
+              `;
           }
-        });
+        }
+      });
 
-        let cardTemplate = `
+      let cardTemplate = `
 <div class="api-card spectrum--lightest">
   <div
     class="spectrum-Card api-card-inner"
@@ -765,14 +837,14 @@ let $CURRENT_API_FILTERS = [];
 </div>
 `;
 
-        $cards.innerHTML += cardTemplate;
-        counter++;
-      }
-    });
-  }
+      $cards.innerHTML += cardTemplate;
+      counter++;
+    }
+  });
+}
 
-  function globalHeaderTemplate() {
-    return `
+function globalHeaderTemplate() {
+  return `
       <p>
         <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
         <strong class="spectrum-Heading spectrum-Heading--sizeXXS">Adobe Developer</strong>
@@ -791,11 +863,11 @@ let $CURRENT_API_FILTERS = [];
           </span>
         </a>
       </div>
-    `
-  }
+    `;
+}
 
-  function globalNavTemplate(links, searchButton = '') {
-    return `
+function globalNavTemplate(links, searchButton = "") {
+  return `
       <p class="icon-adobe-container">
         <a href="https://developer.adobe.com" class="nav-console-adobeio-link">
           <img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">
@@ -825,28 +897,27 @@ let $CURRENT_API_FILTERS = [];
         </div>
       </div>
       ${globalNavSearchPopDown()}
-    `
-  }
+    `;
+}
 
-  function globalNavLinks(links) {
-    return `
+function globalNavLinks(links) {
+  return `
       <ul id="navigation-links">
         ${links}
       </ul>
     `;
-  }
+}
 
-  function globalNavLinkItem(name, url, isProduct = false) {
-    return `
-      <li class="${isProduct ? 'navigation-products' : ''}">
+function globalNavLinkItem(name, url, isProduct = false) {
+  return `
+      <li class="${isProduct ? "navigation-products" : ""}">
         <a href="${url}">${name}</a>
       </li>
     `;
+}
 
-  }
-
-  function globalNavLinkItemDropdown(id, name, links) {
-    return `
+function globalNavLinkItemDropdown(id, name, links) {
+  return `
       <li>
         <button id="nav-dropdown-button_${id}" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet navigation-dropdown" aria-haspopup="listbox">
           <span class="spectrum-Picker-label">
@@ -863,18 +934,18 @@ let $CURRENT_API_FILTERS = [];
         </div>
       </li>
     `;
-  }
+}
 
-  function globalNavLinkItemDropdownItem(link) {
-    return `
+function globalNavLinkItemDropdownItem(link) {
+  return `
       <li class="spectrum-Menu-item">
         <span class="spectrum-Menu-itemLabel"><a href="${link.url}" class="nav-dropdown-links">${link.name}</a></span>
       </li>
     `;
-  }
+}
 
-  function globalNavViewDocsButton(url) {
-    return `
+function globalNavViewDocsButton(url) {
+  return `
       <div class="nav-view-docs-button">
         <a href="${url}" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
           <span class="spectrum-Button-label">
@@ -883,10 +954,10 @@ let $CURRENT_API_FILTERS = [];
         </a>
       </div>
     `;
-  }
+}
 
-  function globalNavSearchButton() {
-    return `
+function globalNavSearchButton() {
+  return `
       <div class="nav-console-search-button">
         <button id="nav-dropdown-search" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--emphasized spectrum-ActionButton--quiet">
           <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Edit">
@@ -895,10 +966,10 @@ let $CURRENT_API_FILTERS = [];
         </button>
       </div>
     `;
-  }
+}
 
-  function globalNavSearchPopDown() {
-    return `
+function globalNavSearchPopDown() {
+  return `
       <div id="nav-search" class="nav-search-popdown isClosed">
         <div class="nav-search-popdown-container">
           <form class="spectrum-Search nav-search-form">
@@ -927,10 +998,10 @@ let $CURRENT_API_FILTERS = [];
         </div>
       </div>
     `;
-  }
+}
 
-  function globalNavProfileTemplate(profile) {
-    return `
+function globalNavProfileTemplate(profile) {
+  return `
       <div class="nav-profile spectrum--lightest">
         <button id="nav-profile-dropdown-button" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet  navigation-dropdown">
           <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Profile">
@@ -963,158 +1034,180 @@ let $CURRENT_API_FILTERS = [];
           </div>
         </div>
       </div>
-    `
-  }
+    `;
+}
 
-  async function fetchProfileAvatar($userId) {
-    try {
-      const req = await fetch(`https://cc-api-behance.adobe.io/v2/users/${$userId}?api_key=SUSI2`);
-      const res = await req.json();
-      let $avatarUrl = res?.user?.images?.['138'] ?? fixHlxPath('/hlx_statics/icons/avatar.svg');
-      if(document.querySelector('#nav-profile-popover-avatar-img')){
-        document.querySelector('#nav-profile-popover-avatar-img').src = $avatarUrl;
-      }
+async function fetchProfileAvatar($userId) {
+  try {
+    const req = await fetch(
+      `https://cc-api-behance.adobe.io/v2/users/${$userId}?api_key=SUSI2`
+    );
+    const res = await req.json();
+    let $avatarUrl =
+      res?.user?.images?.["138"] ?? fixHlxPath("/hlx_statics/icons/avatar.svg");
+    if (document.querySelector("#nav-profile-popover-avatar-img")) {
+      document.querySelector("#nav-profile-popover-avatar-img").src =
+        $avatarUrl;
+    }
 
-      let $profileButton = document.querySelector('#nav-profile-dropdown-button');
-      if($profileButton.querySelector('svg')) { 
-        $profileButton.querySelector('svg').remove; 
-      }
-      $profileButton.innerHTML = `
+    let $profileButton = document.querySelector("#nav-profile-dropdown-button");
+    if ($profileButton.querySelector("svg")) {
+      $profileButton.querySelector("svg").remove;
+    }
+    $profileButton.innerHTML = `
         <div class="nav-profile-popover-avatar-button">
           <img alt="Avatar" src=${$avatarUrl} />
         </div>
-      `
-    } catch (e) {
-      console.warn(e);
-    }
+      `;
+  } catch (e) {
+    console.warn(e);
   }
+}
 
-  async function fetchNav() {
-    try{
-      let $localNavPath = window.location.pathname.split('/')[1];
-      if($localNavPath === '') {
-        $localNavPath = '/nav';
-      } else {
-        $localNavPath = `/${$localNavPath}/nav`;
-      }
-      const $resp = await fetch($localNavPath);
-      let $html = await $resp.text();
-  
-      const $parser = new DOMParser();
-      const $doc = $parser.parseFromString($html, 'text/html');
-      const $navItems = $doc.querySelectorAll('.nav div > ul');
-      let $navJSON = [];
-      if($navItems.length > 0) {
-        $navItems[0].childNodes.forEach(($node) => {
-          // find child nodes that aren't text
-          if($node.nodeType === 1) {
-            if($node.querySelector('ul') !== null) {
-              let $nestedLink = { "name" : $node.childNodes[0].wholeText, "links" : [] };
-              $node.querySelectorAll('li').forEach(($nestedNode) => {
-                let $url = $nestedNode.querySelector('a');
-                $nestedLink["links"].push({ "name" : $nestedNode.innerText, "url": $url.href })
-              });
-              $navJSON.push($nestedLink);
-            } else {
-              let $url = $node.querySelector('a');
-              let $nestedLink = { "name" : $node.innerText, "links" : [{ "url": $url.href }] };
-              $navJSON.push($nestedLink);
-            }
-          }
-        });
-      }
-      return $navJSON;
-    } catch(e){
-      console.warn('Unable to fetch nav');
-    }
-  }
-
-  function activeTabTemplate($width, $isMainPage = false){
-    const $calcWidth = parseInt($width)-24;
-    return `<div class="nav-link-active" style="width: ${$calcWidth}px; transform:translate(12px,0); bottom: ${!$isMainPage ? '0.5px' : '-1px'}"></div>`;
-  }
-
-  function fixRelativeLinks(link) {
-    // gdoc is annoying in that any link turns into a http
-    // if authors prepend their relative links with 'rel' 
-    // search for that and fix the link
-    if(link.indexOf('http://rel') === 0) {
-      link = link.replace('http://rel', '.')
-    } else if(link.indexOf('https://rel') === 0 ) {
-      link = link.replace('https://rel', '.')
-    }
-
-    return link;
-  }
-
-  function setActiveTab($isMainPage) {
-    const $nav = document.querySelector('#navigation-links');
-    let $currentPath = window.location.pathname;
-
-    $nav.querySelectorAll('li > a').forEach(($tabItem) => {
-      let $hrefPath = new URL($tabItem.href);
-
-      if($hrefPath && $hrefPath.pathname) {
-        // remove trailing slashes before we compare
-        let $hrefPathname = $hrefPath.pathname.replace(/\/$/, "");
-        $currentPath = $currentPath.replace(/\/$/, "");
-        if($currentPath === $hrefPathname) {
-          let $parentWidth = $tabItem.parentElement.offsetWidth;
-          $tabItem.parentElement.innerHTML += activeTabTemplate($parentWidth, $isMainPage);
-        }
-      }
-    });
-  }
-
-  function decorateProfile(profile) {
-    // replace sign-in link with profile
-    let $signIn = document.querySelector('div.nav-sign-in');
-    let $parentContainer = $signIn.parentElement;
-    $signIn.remove();
-    $parentContainer.innerHTML += globalNavProfileTemplate(profile);
-
-    let $profileDropdownPopover = $parentContainer.querySelector('div#nav-profile-dropdown-popover');
-    let $button = $parentContainer.querySelector('button#nav-profile-dropdown-button');
-
-    $button.addEventListener('click', (evt) => {
-      if(!evt.currentTarget.classList.contains('is-open')){
-        $button.classList.add('is-open');
-        $profileDropdownPopover.classList.add('is-open');
-        $profileDropdownPopover.ariaHidden = false;
-      } else {
-        $button.classList.remove('is-open');
-        $profileDropdownPopover.classList.remove('is-open');
-        $profileDropdownPopover.ariaHidden = false;
-      }
-    });
-
-    const $signOut = $parentContainer.querySelector('#signOut');
-    $signOut.addEventListener('click', (evt) => {
-      evt.preventDefault();
-      adobeIMSMethods.signOut();
-    });
-  }
-
-  function isTopLevelNav(urlPathname) {
-    if(urlPathname === '/apis' || urlPathname === '/apis/'){
-      return true;
-    } else if(urlPathname.indexOf('/open') === 0) {
-      return true;
-    } else if(urlPathname.indexOf('/developer-support') === 0) {
-      return true;
+async function fetchNav() {
+  try {
+    let $localNavPath = window.location.pathname.split("/")[1];
+    if ($localNavPath === "") {
+      $localNavPath = "/nav";
     } else {
-      return false;
+      $localNavPath = `/${$localNavPath}/nav`;
     }
+    const $resp = await fetch($localNavPath);
+    let $html = await $resp.text();
+
+    const $parser = new DOMParser();
+    const $doc = $parser.parseFromString($html, "text/html");
+    const $navItems = $doc.querySelectorAll(".nav div > ul");
+    let $navJSON = [];
+    if ($navItems.length > 0) {
+      $navItems[0].childNodes.forEach(($node) => {
+        // find child nodes that aren't text
+        if ($node.nodeType === 1) {
+          if ($node.querySelector("ul") !== null) {
+            let $nestedLink = {
+              name: $node.childNodes[0].wholeText,
+              links: [],
+            };
+            $node.querySelectorAll("li").forEach(($nestedNode) => {
+              let $url = $nestedNode.querySelector("a");
+              $nestedLink["links"].push({
+                name: $nestedNode.innerText,
+                url: $url.href,
+              });
+            });
+            $navJSON.push($nestedLink);
+          } else {
+            let $url = $node.querySelector("a");
+            let $nestedLink = {
+              name: $node.innerText,
+              links: [{ url: $url.href }],
+            };
+            $navJSON.push($nestedLink);
+          }
+        }
+      });
+    }
+    return $navJSON;
+  } catch (e) {
+    console.warn("Unable to fetch nav");
+  }
+}
+
+function activeTabTemplate($width, $isMainPage = false) {
+  const $calcWidth = parseInt($width) - 24;
+  return `<div class="nav-link-active" style="width: ${$calcWidth}px; transform:translate(12px,0); bottom: ${
+    !$isMainPage ? "0.5px" : "-1px"
+  }"></div>`;
+}
+
+function fixRelativeLinks(link) {
+  // gdoc is annoying in that any link turns into a http
+  // if authors prepend their relative links with 'rel'
+  // search for that and fix the link
+  if (link.indexOf("http://rel") === 0) {
+    link = link.replace("http://rel", ".");
+  } else if (link.indexOf("https://rel") === 0) {
+    link = link.replace("https://rel", ".");
   }
 
-  const renderHits = (renderOptions, isFirstRender) => {
-    const { hits, widgetParams } = renderOptions;
-  
-    widgetParams.container.innerHTML = `
+  return link;
+}
+
+function setActiveTab($isMainPage) {
+  const $nav = document.querySelector("#navigation-links");
+  let $currentPath = window.location.pathname;
+
+  $nav.querySelectorAll("li > a").forEach(($tabItem) => {
+    let $hrefPath = new URL($tabItem.href);
+
+    if ($hrefPath && $hrefPath.pathname) {
+      // remove trailing slashes before we compare
+      let $hrefPathname = $hrefPath.pathname.replace(/\/$/, "");
+      $currentPath = $currentPath.replace(/\/$/, "");
+      if ($currentPath === $hrefPathname) {
+        let $parentWidth = $tabItem.parentElement.offsetWidth;
+        $tabItem.parentElement.innerHTML += activeTabTemplate(
+          $parentWidth,
+          $isMainPage
+        );
+      }
+    }
+  });
+}
+
+function decorateProfile(profile) {
+  // replace sign-in link with profile
+  let $signIn = document.querySelector("div.nav-sign-in");
+  let $parentContainer = $signIn.parentElement;
+  $signIn.remove();
+  $parentContainer.innerHTML += globalNavProfileTemplate(profile);
+
+  let $profileDropdownPopover = $parentContainer.querySelector(
+    "div#nav-profile-dropdown-popover"
+  );
+  let $button = $parentContainer.querySelector(
+    "button#nav-profile-dropdown-button"
+  );
+
+  $button.addEventListener("click", (evt) => {
+    if (!evt.currentTarget.classList.contains("is-open")) {
+      $button.classList.add("is-open");
+      $profileDropdownPopover.classList.add("is-open");
+      $profileDropdownPopover.ariaHidden = false;
+    } else {
+      $button.classList.remove("is-open");
+      $profileDropdownPopover.classList.remove("is-open");
+      $profileDropdownPopover.ariaHidden = false;
+    }
+  });
+
+  const $signOut = $parentContainer.querySelector("#signOut");
+  $signOut.addEventListener("click", (evt) => {
+    evt.preventDefault();
+    adobeIMSMethods.signOut();
+  });
+}
+
+function isTopLevelNav(urlPathname) {
+  if (urlPathname === "/apis" || urlPathname === "/apis/") {
+    return true;
+  } else if (urlPathname.indexOf("/open") === 0) {
+    return true;
+  } else if (urlPathname.indexOf("/developer-support") === 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+const renderHits = (renderOptions, isFirstRender) => {
+  const { hits, widgetParams } = renderOptions;
+
+  widgetParams.container.innerHTML = `
       <ul id="search-results-list" class="spectrum-Menu" role="listbox">
         ${hits
           .map(
-            item =>
+            (item) =>
               `<li class="spectrum-Menu-item">
                 <span class="spectrum-Menu-itemLabel">
                 <strong>
@@ -1125,198 +1218,247 @@ let $CURRENT_API_FILTERS = [];
                 </span>
               </li>`
           )
-          .join('')}
+          .join("")}
       </ul>
     `;
-  };
-  const spectrumHits = instantsearch.connectors.connectHits(renderHits);
+};
+const spectrumHits = instantsearch.connectors.connectHits(renderHits);
 
-  function decorateHeaderRight($header) {
-    let $currentHeader = $header;
-    let $searchButton;
+function decorateHeaderRight($header) {
+  let $currentHeader = $header;
+  let $searchButton;
 
-    $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
-      if($button.id.indexOf('nav-dropdown-button') >= 0) {
-        let $index = $button.id.split('_')[1];
-        let $dropdownPopover = $currentHeader.querySelector('div#nav-dropdown-popover_' + $index);
+  $header.querySelectorAll("button.navigation-dropdown").forEach(($button) => {
+    if ($button.id.indexOf("nav-dropdown-button") >= 0) {
+      let $index = $button.id.split("_")[1];
+      let $dropdownPopover = $currentHeader.querySelector(
+        "div#nav-dropdown-popover_" + $index
+      );
 
-        $button.addEventListener('click', (evt) => {
-          if(!evt.currentTarget.classList.contains('is-open')){
-            $button.classList.add('is-open');
-            $dropdownPopover.classList.add('is-open');
-            $dropdownPopover.ariaHidden = false;
-          } else {
-            $button.classList.remove('is-open');
-            $dropdownPopover.classList.remove('is-open');
-            $dropdownPopover.ariaHidden = false;
-          }
-        });
-      } else if($button.id.indexOf('nav-profile-dropdown-button') >=0 ) {
-
-        let $profileDropdownPopover = $currentHeader.querySelector('div#nav-profile-dropdown-popover');
-
-        $button.addEventListener('click', (evt) => {
-          if(!evt.currentTarget.classList.contains('is-open')){
-            $button.classList.add('is-open');
-            $profileDropdownPopover.classList.add('is-open');
-            $profileDropdownPopover.ariaHidden = false;
-          } else {
-            $button.classList.remove('is-open');
-            $profileDropdownPopover.classList.remove('is-open');
-            $profileDropdownPopover.ariaHidden = false;
-          }
-        });
-      }
-    });
-    $searchButton = $header.querySelector('#nav-dropdown-search');
-    if($searchButton) {
-      $searchButton.addEventListener('click', (evt) => {
-        let $searchForm = $header.querySelector('#nav-search');
-        let $searchResults = $header.querySelector('#search-results')
-
-        $searchForm.classList.toggle('isClosed');
-        $searchResults.classList.toggle('is-open');
+      $button.addEventListener("click", (evt) => {
+        if (!evt.currentTarget.classList.contains("is-open")) {
+          $button.classList.add("is-open");
+          $dropdownPopover.classList.add("is-open");
+          $dropdownPopover.ariaHidden = false;
+        } else {
+          $button.classList.remove("is-open");
+          $dropdownPopover.classList.remove("is-open");
+          $dropdownPopover.ariaHidden = false;
+        }
       });
+    } else if ($button.id.indexOf("nav-profile-dropdown-button") >= 0) {
+      let $profileDropdownPopover = $currentHeader.querySelector(
+        "div#nav-profile-dropdown-popover"
+      );
 
-      search.addWidgets([
-        instantsearch.widgets.searchBox({
-          container: '#nav-search-input',
-        }),
-        spectrumHits({
-          container: document.querySelector('#search-results'),
-        })
-      ]);
+      $button.addEventListener("click", (evt) => {
+        if (!evt.currentTarget.classList.contains("is-open")) {
+          $button.classList.add("is-open");
+          $profileDropdownPopover.classList.add("is-open");
+          $profileDropdownPopover.ariaHidden = false;
+        } else {
+          $button.classList.remove("is-open");
+          $profileDropdownPopover.classList.remove("is-open");
+          $profileDropdownPopover.ariaHidden = false;
+        }
+      });
+    }
+  });
+  $searchButton = $header.querySelector("#nav-dropdown-search");
+  if ($searchButton) {
+    $searchButton.addEventListener("click", (evt) => {
+      let $searchForm = $header.querySelector("#nav-search");
 
-      search.start();
+      $searchForm.classList.toggle("isClosed");
+    });
 
-      let $form = $header.querySelector('form.nav-search-form');
-      if($form){
-        $form.addEventListener('submit', (evt) =>{
-          evt.preventDefault();
+    search.addWidgets([
+      instantsearch.widgets.searchBox({
+        container: "#nav-search-input",
+      }),
+      // spectrumHits({
+      //   container: '#search-results',
+      // }),
+      instantsearch.widgets.hits({
+        container: "#search-results",
+      }),
+    ]);
 
-        });
-      }
+    search.start();
+
+    let $form = $header.querySelector("form.nav-search-form");
+    if ($form) {
+      $form.addEventListener("submit", (evt) => {
+        evt.preventDefault();
+      });
     }
 
-    let $signIn = $header.querySelector('#signIn');
-    $signIn.addEventListener('click', (evt) => {
-      adobeIMSMethods.signIn();
-    });
+    const $searchInput = $header.querySelector("#nav-search-input");
+    if ($searchInput) {
+      let $searchQuery = $searchInput.value;
+      const $searchResults = $header.querySelector("#search-results");
+
+      $searchInput.addEventListener("input", (evt) => {
+        evt.preventDefault();
+        $searchQuery = evt.target.value;
+        console.log($searchQuery);
+        if ($searchResults) {
+          if (!$searchResults.children.length) {
+            $searchResults.classList.contains("is-open") ? $searchResults.classList.remove("is-open") : "";
+          } else {
+            $searchResults.classList.contains("is-open") ? "" : $searchResults.classList.add("is-open");
+          }
+        }
+      });
+    }
   }
 
-  function decorateHeader() {
-    document.querySelectorAll('header').forEach(($header) => {
-      $header.classList.add('main-header');
-      $header.classList.add('global-nav-header');
+  let $signIn = $header.querySelector("#signIn");
+  $signIn.addEventListener("click", (evt) => {
+    adobeIMSMethods.signIn();
+  });
+}
 
-      let $linkHTML = '';
-      if(isTopLevelNav(window.location.pathname)) {
-        $HEADER_LINKS.forEach(($link, index) => {
-          if($link.links.length === 1) {
-            $linkHTML += globalNavLinkItem($link.name, fixRelativeLinks($link.links[0].url), false);
+function decorateHeader() {
+  document.querySelectorAll("header").forEach(($header) => {
+    $header.classList.add("main-header");
+    $header.classList.add("global-nav-header");
+
+    let $linkHTML = "";
+    if (isTopLevelNav(window.location.pathname)) {
+      $HEADER_LINKS.forEach(($link, index) => {
+        if ($link.links.length === 1) {
+          $linkHTML += globalNavLinkItem(
+            $link.name,
+            fixRelativeLinks($link.links[0].url),
+            false
+          );
+        } else {
+          let $dropdownLinkHTML = "";
+          $link.links.forEach(($dropDownLink) => {
+            $dropdownLinkHTML += globalNavLinkItemDropdownItem($dropDownLink);
+          });
+
+          // use the index from the array to assign unique dropdown id
+          $linkHTML += globalNavLinkItemDropdown(
+            index,
+            $link.name,
+            $dropdownLinkHTML
+          );
+        }
+      });
+
+      $linkContainerHTML = globalNavLinks($linkHTML);
+      let $searchButtonHTML = globalNavSearchButton();
+      $header.innerHTML = globalNavTemplate(
+        $linkContainerHTML,
+        $searchButtonHTML
+      );
+
+      decorateHeaderRight($header);
+
+      window.adobeIMSMethods.getProfile();
+    } else {
+      $linkHTML += globalNavLinkItem("Products", "/apis", true);
+      globalNavLinks($linkHTML);
+      fetchNav().then(($discoveryLinks) => {
+        $discoveryLinks.forEach(($link, index) => {
+          if ($link.links.length === 1) {
+            if ($link.name === "View docs") {
+              $linkHTML += globalNavViewDocsButton(
+                fixRelativeLinks($link.links[0].url)
+              );
+            } else {
+              $linkHTML += globalNavLinkItem(
+                $link.name,
+                fixRelativeLinks($link.links[0].url),
+                false
+              );
+            }
           } else {
-            let $dropdownLinkHTML = '';
+            let $dropdownLinkHTML = "";
             $link.links.forEach(($dropDownLink) => {
               $dropdownLinkHTML += globalNavLinkItemDropdownItem($dropDownLink);
             });
 
             // use the index from the array to assign unique dropdown id
-            $linkHTML += globalNavLinkItemDropdown(index, $link.name, $dropdownLinkHTML);
+            $linkHTML += globalNavLinkItemDropdown(
+              index,
+              $link.name,
+              $dropdownLinkHTML
+            );
           }
         });
-
         $linkContainerHTML = globalNavLinks($linkHTML);
-        let $searchButtonHTML = globalNavSearchButton();
-        $header.innerHTML = globalNavTemplate($linkContainerHTML, $searchButtonHTML);
+        let $searchButton = globalNavSearchButton();
+        $header.innerHTML = globalNavTemplate(
+          $linkContainerHTML,
+          $searchButton
+        );
 
         decorateHeaderRight($header);
 
+        setActiveTab();
         window.adobeIMSMethods.getProfile();
-      } else {
-        $linkHTML += globalNavLinkItem('Products', '/apis', true);
-        globalNavLinks($linkHTML);
-        fetchNav().then($discoveryLinks => {
-          $discoveryLinks.forEach(($link, index) => {
-            if($link.links.length === 1) {
-              if($link.name === 'View docs') {
-                $linkHTML += globalNavViewDocsButton(fixRelativeLinks($link.links[0].url));
-              } else {
-                $linkHTML += globalNavLinkItem($link.name, fixRelativeLinks($link.links[0].url), false);
-              }
+      });
+    }
+  });
+}
 
-            } else {
-              let $dropdownLinkHTML = '';
-              $link.links.forEach(($dropDownLink) => {
-                $dropdownLinkHTML += globalNavLinkItemDropdownItem($dropDownLink);
-              });
-  
-              // use the index from the array to assign unique dropdown id
-              $linkHTML += globalNavLinkItemDropdown(index, $link.name, $dropdownLinkHTML);
-            }
-          });
-          $linkContainerHTML = globalNavLinks($linkHTML);
-          let $searchButton = globalNavSearchButton();
-          $header.innerHTML = globalNavTemplate($linkContainerHTML, $searchButton);
+function decorateAnnouncement() {
+  decorateButtons(".announcement-container");
+  document.querySelectorAll(".announcement").forEach(($announcement) => {
+    removeEmptyPTags($announcement);
 
-          decorateHeaderRight($header);
-          
-          setActiveTab();
-          window.adobeIMSMethods.getProfile();
+    $announcement.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(($h) => {
+      $h.classList.add(
+        "spectrum-Heading",
+        "spectrum-Heading--sizeM",
+        "announce-heading"
+      );
+    });
+
+    $announcement.querySelectorAll("p a").forEach(($link) => {
+      $link.parentElement.classList.add("announce-link");
+    });
+  });
+}
+
+function decorateAPIBrowser() {
+  document
+    .querySelectorAll(".api-browser-container")
+    .forEach(($apiBrowserContainer) => {
+      decorateTitle($apiBrowserContainer, "api-browser");
+    });
+
+  document.querySelectorAll(".api-browser").forEach(async ($apiBrowser) => {
+    $apiBrowser.classList.add("spectrum--light");
+    const config = readBlockConfig($apiBrowser);
+    window.aio = window.aio || {};
+    const resp = await fetch("/hlx-api-catalog.json");
+    window.aio.apiCatalog = (await resp.json()).data;
+    const catalog = window.aio.apiCatalog;
+    let buttons = ["Learn More", "View Docs"];
+
+    if (config.display)
+      buttons = config.display.split(",").map((e) => e.trim());
+
+    $apiBrowser.innerHTML = "";
+    if (config.filters == "Show") {
+      const categories = catalog
+        .map((e) => e.Category)
+        .filter((v, i, self) => {
+          return self.indexOf(v) === i;
         });
-      }
-    });
-  }
 
-  function decorateAnnouncement() {
-    decorateButtons('.announcement-container');
-    document.querySelectorAll(".announcement").forEach(($announcement) => {
-      removeEmptyPTags($announcement);
+      const $cards = createTag("div", { class: "api-cards" });
 
-      $announcement.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($h) => {
-        $h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'announce-heading');
-      });
+      const $apiCardsInner = createTag("div", { class: "api-cards-inner" });
+      const $filters = createTag("div", { class: "filters" });
 
-      $announcement.querySelectorAll('p a').forEach(($link) => {
-        $link.parentElement.classList.add('announce-link');
-      });
-
-    });
-  }
-
-  function decorateAPIBrowser() {
-    document.querySelectorAll('.api-browser-container').forEach(($apiBrowserContainer) => {
-      decorateTitle($apiBrowserContainer, 'api-browser');
-    });
-
-    document.querySelectorAll(".api-browser").forEach(async ($apiBrowser) => {
-      $apiBrowser.classList.add('spectrum--light');
-      const config = readBlockConfig($apiBrowser);
-      window.aio = window.aio || {};
-      const resp = await fetch("/hlx-api-catalog.json");
-      window.aio.apiCatalog = (await resp.json()).data;
-      const catalog = window.aio.apiCatalog;
-      let buttons = ["Learn More", "View Docs"];
-
-      if (config.display)
-        buttons = config.display.split(",").map((e) => e.trim());
-
-      $apiBrowser.innerHTML = "";
-      if (config.filters == "Show") {
-        const categories = catalog
-          .map((e) => e.Category)
-          .filter((v, i, self) => {
-            return self.indexOf(v) === i;
-          });
-
-        const $cards = createTag("div", { class: "api-cards" });
-
-        const $apiCardsInner = createTag("div", { class: 'api-cards-inner' });
-        const $filters = createTag('div', {class: 'filters'});
-
-
-        const $pickerContainer = createTag('div', {class: 'picker'});
-        $apiBrowser.append($pickerContainer);
-        let $pickerHtml = `
+      const $pickerContainer = createTag("div", { class: "picker" });
+      $apiBrowser.append($pickerContainer);
+      let $pickerHtml = `
         <button id="filter-dropdown-picker" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet" aria-haspopup="listbox">
           <span id="filter-label" class="spectrum-Picker-label">Last updated</span>
           <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
@@ -1341,67 +1483,81 @@ let $CURRENT_API_FILTERS = [];
         </div>
         `;
 
-        $pickerContainer.innerHTML = $pickerHtml;
+      $pickerContainer.innerHTML = $pickerHtml;
 
-        const $dropdownPicker = document.querySelector('#filter-dropdown-picker');
-        const $dropdownPopover = document.querySelector('#filter-dropdown-popover');
+      const $dropdownPicker = document.querySelector("#filter-dropdown-picker");
+      const $dropdownPopover = document.querySelector(
+        "#filter-dropdown-popover"
+      );
 
-        $dropdownPicker.addEventListener('click', (evt) => {
-          if(!evt.currentTarget.classList.contains('is-open')){
-            $dropdownPicker.classList.add('is-open');
-            $dropdownPopover.classList.add('is-open');
-            $dropdownPopover.ariaHidden = false;
-          } else {
-            $dropdownPicker.classList.remove('is-open');
-            $dropdownPopover.classList.remove('is-open');
-            $dropdownPopover.ariaHidden = true;
-          }
-        });
+      $dropdownPicker.addEventListener("click", (evt) => {
+        if (!evt.currentTarget.classList.contains("is-open")) {
+          $dropdownPicker.classList.add("is-open");
+          $dropdownPopover.classList.add("is-open");
+          $dropdownPopover.ariaHidden = false;
+        } else {
+          $dropdownPicker.classList.remove("is-open");
+          $dropdownPopover.classList.remove("is-open");
+          $dropdownPopover.ariaHidden = true;
+        }
+      });
 
-        const $filterLabel = document.querySelector('#filter-label');
-        const $filterListLastUpdated = document.querySelector('#filter-list-last-updated');
-        const $filterListName = document.querySelector('#filter-list-name');
+      const $filterLabel = document.querySelector("#filter-label");
+      const $filterListLastUpdated = document.querySelector(
+        "#filter-list-last-updated"
+      );
+      const $filterListName = document.querySelector("#filter-list-name");
 
-        $filterListLastUpdated.addEventListener('click', (evt) => {
-          if(!$filterListLastUpdated.classList.contains('is-selected')){
-            $filterListLastUpdated.classList.add('is-selected');
-            $filterListLastUpdated.ariaSelected = true;
-            $filterListName.classList.remove('is-selected');
-            $filterListName.ariaSelected = false;
+      $filterListLastUpdated.addEventListener("click", (evt) => {
+        if (!$filterListLastUpdated.classList.contains("is-selected")) {
+          $filterListLastUpdated.classList.add("is-selected");
+          $filterListLastUpdated.ariaSelected = true;
+          $filterListName.classList.remove("is-selected");
+          $filterListName.ariaSelected = false;
 
-            $filterLabel.innerText = 'Last updated';
+          $filterLabel.innerText = "Last updated";
 
-            $dropdownPicker.classList.remove('is-open');
-            $dropdownPopover.classList.remove('is-open');
-            $dropdownPopover.ariaHidden = true;
+          $dropdownPicker.classList.remove("is-open");
+          $dropdownPopover.classList.remove("is-open");
+          $dropdownPopover.ariaHidden = true;
 
-            displayFilteredCards(catalog.sort(sortDate), $cards, buttons, config.limit);
-          }
-        });
+          displayFilteredCards(
+            catalog.sort(sortDate),
+            $cards,
+            buttons,
+            config.limit
+          );
+        }
+      });
 
-        $filterListName.addEventListener('click', (evt) => {
-          if(!$filterListName.classList.contains('is-selected')){
-            $filterListLastUpdated.classList.remove('is-selected');
-            $filterListLastUpdated.ariaSelected = false;
-            $filterListName.classList.add('is-selected');
-            $filterListName.ariaSelected = true;
+      $filterListName.addEventListener("click", (evt) => {
+        if (!$filterListName.classList.contains("is-selected")) {
+          $filterListLastUpdated.classList.remove("is-selected");
+          $filterListLastUpdated.ariaSelected = false;
+          $filterListName.classList.add("is-selected");
+          $filterListName.ariaSelected = true;
 
-            $filterLabel.innerText = 'Name';
+          $filterLabel.innerText = "Name";
 
-            $dropdownPicker.classList.remove('is-open');
-            $dropdownPopover.classList.remove('is-open');
-            $dropdownPopover.ariaHidden = true;
-            displayFilteredCards(catalog.sort(sortTitle), $cards, buttons, config.limit);
-          }
-        });
+          $dropdownPicker.classList.remove("is-open");
+          $dropdownPopover.classList.remove("is-open");
+          $dropdownPopover.ariaHidden = true;
+          displayFilteredCards(
+            catalog.sort(sortTitle),
+            $cards,
+            buttons,
+            config.limit
+          );
+        }
+      });
 
-        $apiCardsInner.append($filters);
+      $apiCardsInner.append($filters);
 
-        let $filterHtml = '';
-        categories.forEach((c) => {
-          const id = toClassName(c);
+      let $filterHtml = "";
+      categories.forEach((c) => {
+        const id = toClassName(c);
 
-          $filterHtml += `
+        $filterHtml += `
             <label class="spectrum-Checkbox spectrum-Checkbox--emphasized spectrum-Checkbox--sizeM" for="${id}">
               <input type="checkbox" class="spectrum-Checkbox-input" id="${id}" name="${id}" value="${c}">
               <span class="spectrum-Checkbox-box">
@@ -1415,9 +1571,9 @@ let $CURRENT_API_FILTERS = [];
               <span class="spectrum-Checkbox-label filter-label">${c}</span>
             </label>
         `;
-        });
+      });
 
-        let $filtersTemplate = `
+      let $filtersTemplate = `
         <div class="filters-inner">
           <strong><h4 class="spectrum-Heading--sizeXS">Filter by</h4></strong>
           <div class="filters-list">
@@ -1426,136 +1582,158 @@ let $CURRENT_API_FILTERS = [];
         </div>
         `;
 
-        $filters.innerHTML = $filtersTemplate;
-        $apiCardsInner.append($cards);
-        $apiBrowser.append($apiCardsInner);
+      $filters.innerHTML = $filtersTemplate;
+      $apiCardsInner.append($cards);
+      $apiBrowser.append($apiCardsInner);
 
-        displayFilteredCards(catalog, $cards, buttons, config.limit);
+      displayFilteredCards(catalog, $cards, buttons, config.limit);
 
-        document.querySelectorAll('.filters-list input').forEach(($filterItem) => {
-          $filterItem.addEventListener('change', (evt) => {
-            if(evt.currentTarget.checked) {
-              if($CURRENT_API_FILTERS.indexOf(evt.currentTarget.value) < 0){
+      document
+        .querySelectorAll(".filters-list input")
+        .forEach(($filterItem) => {
+          $filterItem.addEventListener("change", (evt) => {
+            if (evt.currentTarget.checked) {
+              if ($CURRENT_API_FILTERS.indexOf(evt.currentTarget.value) < 0) {
                 $CURRENT_API_FILTERS.push(evt.currentTarget.value);
               }
             } else {
-              $CURRENT_API_FILTERS.splice($CURRENT_API_FILTERS.indexOf(evt.currentTarget.value),1);
+              $CURRENT_API_FILTERS.splice(
+                $CURRENT_API_FILTERS.indexOf(evt.currentTarget.value),
+                1
+              );
             }
             displayFilteredCards(catalog, $cards, buttons, config.limit);
           });
-        })
-        focusRing($apiBrowser);
+        });
+      focusRing($apiBrowser);
+    }
+  });
+}
+
+function decorateCards() {
+  decorateButtons(".cards-container");
+  document.querySelectorAll(".cards-container").forEach(($cardContainer) => {
+    $cardContainer
+      .querySelectorAll(".cards > div")
+      .forEach(($card, index, $array) => {
+        $card.classList.add("spectrum--light");
+        $card.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(($header) => {
+          $header.classList.add("spectrum-Heading", "spectrum-Heading--sizeM");
+        });
+
+        $card.querySelectorAll("p").forEach(($p) => {
+          $p.classList.add("spectrum-Body", "spectrum-Body--sizeM");
+        });
+
+        $card.querySelectorAll("p > a").forEach(($button) => {
+          $button.classList.remove("spectrum-Button--secondary");
+          $button.classList.add(
+            "spectrum-Button--cta",
+            "spectrum-Button--quiet",
+            "card-button"
+          );
+        });
+
+        if ($array.length === 3) {
+          $card.classList.add("three-card");
+        } else if ($array.length === 4) {
+          $card.classList.add("four-card");
+        }
+      });
+  });
+}
+
+function decorateColumns() {
+  document
+    .querySelectorAll(".columns > div > div:first-child")
+    .forEach(($column) => {
+      $column.classList.add("first-column");
+    });
+
+  document
+    .querySelectorAll(".columns > div > div:nth-child(2)")
+    .forEach(($column) => {
+      $column.classList.add("second-column");
+    });
+
+  document.querySelectorAll(".columns").forEach(($column) => {
+    $column.classList.add("spectrum--light");
+    removeEmptyPTags($column);
+    $column.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(($header) => {
+      $header.classList.add(
+        "spectrum-Heading",
+        "spectrum-Heading--sizeM",
+        "column-header"
+      );
+    });
+
+    $column.querySelectorAll("p").forEach(($p) => {
+      const $hasLinks = $p.querySelectorAll("a, button");
+      // don't attach to icon container or if p tag contains links
+      if (!$p.classList.contains("icon-container") && $hasLinks.length === 0) {
+        $p.classList.add("spectrum-Body", "spectrum-Body--sizeM");
+      } else {
+        $p.classList.add("icon-container");
       }
     });
-  }
 
-  function decorateCards() {
-    decorateButtons('.cards-container');
-    document.querySelectorAll('.cards-container').forEach(($cardContainer) => {
-      $cardContainer.querySelectorAll('.cards > div').forEach(($card, index, $array) => {
-        $card.classList.add('spectrum--light');
-        $card.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
-          $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
-        })
+    $column.querySelectorAll("a").forEach(($a) => {
+      $a.classList.add("spectrum-Link", "spectrum-Link--quiet");
 
-        $card.querySelectorAll('p').forEach(($p) => {
-          $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
-        });
-
-        $card.querySelectorAll('p > a').forEach(($button) => {
-          $button.classList.remove('spectrum-Button--secondary')
-          $button.classList.add('spectrum-Button--cta', 'spectrum-Button--quiet', 'card-button');
-        });
-
-        if($array.length === 3) {
-          $card.classList.add('three-card');
-        } else if($array.length === 4) {
-          $card.classList.add('four-card');
-        }
-      })
-    })
-  }
-
-  function decorateColumns() {
-    document.querySelectorAll('.columns > div > div:first-child').forEach(($column) => {
-      $column.classList.add('first-column');
+      if (isLinkExternal($a.href)) {
+        $a.target = "_blank";
+        $a.rel = "noopener noreferrer";
+      }
     });
 
-    document.querySelectorAll('.columns > div > div:nth-child(2)').forEach(($column) => {
-      $column.classList.add('second-column');
-    });
-
-    document.querySelectorAll('.columns').forEach(($column) => {
-      $column.classList.add('spectrum--light');
-      removeEmptyPTags($column);
-      $column.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
-        $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
-      })
-
-      $column.querySelectorAll('p').forEach(($p) => {
-        const $hasLinks = $p.querySelectorAll('a, button');
-        // don't attach to icon container or if p tag contains links
-        if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
-          $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
-        } else {
-          $p.classList.add('icon-container')
-        }
-      });
-
-      $column.querySelectorAll('a').forEach(($a) => {
-        $a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
-
-        if(isLinkExternal($a.href)) {
-          $a.target = '_blank';
-          $a.rel = 'noopener noreferrer';
-        }
-      });
-
-      $column.querySelectorAll('div > div.second-column').forEach(($secondColumn) => {
-        let $productLinkContainer = createTag('div', { class : 'product-link-container'});
-
-        $secondColumn.querySelectorAll('p.icon-container').forEach(($innerSecond) => {
-
-          $productLinkContainer.append($innerSecond);
+    $column
+      .querySelectorAll("div > div.second-column")
+      .forEach(($secondColumn) => {
+        let $productLinkContainer = createTag("div", {
+          class: "product-link-container",
         });
+
+        $secondColumn
+          .querySelectorAll("p.icon-container")
+          .forEach(($innerSecond) => {
+            $productLinkContainer.append($innerSecond);
+          });
         $secondColumn.append($productLinkContainer);
       });
+  });
+}
 
-    });
-  }
+function decorateColumnsDark() {
+  document.querySelectorAll(".columns-dark").forEach(($column) => {});
 
-  function decorateColumnsDark() {
-    document.querySelectorAll('.columns-dark').forEach(($column) => {
-    });
+  //document.querySelectorAll('.columns').forEach(($column) => {
+  // document.querySelectorAll('.columns-dark').forEach(($column) => {
+  //   removeEmptyPTags($column);
 
-    //document.querySelectorAll('.columns').forEach(($column) => {
-    // document.querySelectorAll('.columns-dark').forEach(($column) => {
-    //   removeEmptyPTags($column);
+  //   // re-wrap second container so it's easier to vertically align
+  //   $column.childNodes.forEach(($row) => {
+  //     if($row.childNodes.length > 1) {
+  //       let $textColumnContainer = createTag('div', { class : 'columns-text'});
 
-    //   // re-wrap second container so it's easier to vertically align
-    //   $column.childNodes.forEach(($row) => {
-    //     if($row.childNodes.length > 1) {
-    //       let $textColumnContainer = createTag('div', { class : 'columns-text'});
+  //       // find the text column in the row and wrap it then insert it
+  //       // may have to expand search to allow all media types instead of just iframe
+  //       let $cloneNodes;
+  //       if(!$row.childNodes[0].querySelector('iframe')) {
+  //         $cloneNodes = $row.childNodes[0].cloneNode(true);
+  //         $textColumnContainer.append($cloneNodes);
+  //         $row.replaceChild($textColumnContainer, $row.childNodes[0]);
 
-    //       // find the text column in the row and wrap it then insert it
-    //       // may have to expand search to allow all media types instead of just iframe
-    //       let $cloneNodes;
-    //       if(!$row.childNodes[0].querySelector('iframe')) {
-    //         $cloneNodes = $row.childNodes[0].cloneNode(true);
-    //         $textColumnContainer.append($cloneNodes);
-    //         $row.replaceChild($textColumnContainer, $row.childNodes[0]);
-
-    //       } else if(!$row.childNodes[1].querySelector('iframe')) {
-    //         $cloneNodes = $row.childNodes[1].cloneNode(true);
-    //         $textColumnContainer.append($cloneNodes);
-    //         $row.replaceChild($textColumnContainer, $row.childNodes[1]);
-    //       }
-    //     }
-    //   });
-    // });
-  }
-  function getResourceCard(size,linkHref, imgSrc, heading, text) {
-    return `
+  //       } else if(!$row.childNodes[1].querySelector('iframe')) {
+  //         $cloneNodes = $row.childNodes[1].cloneNode(true);
+  //         $textColumnContainer.append($cloneNodes);
+  //         $row.replaceChild($textColumnContainer, $row.childNodes[1]);
+  //       }
+  //     }
+  //   });
+  // });
+}
+function getResourceCard(size, linkHref, imgSrc, heading, text) {
+  return `
           <a class="spectrum-Card"
              href=${linkHref}
           >
@@ -1582,396 +1760,433 @@ let $CURRENT_API_FILTERS = [];
             </div>
           </a>
     `;
-  }
+}
 
-  function decorateResourceCards() {
-    document.querySelectorAll('.section-wrapper').forEach(($section) => {
-      $section.querySelectorAll('.resource-card > div').forEach(($resource) => {
-        removeEmptyPTags($resource);
+function decorateResourceCards() {
+  document.querySelectorAll(".section-wrapper").forEach(($section) => {
+    $section.querySelectorAll(".resource-card > div").forEach(($resource) => {
+      removeEmptyPTags($resource);
 
-        let $resourceCard = createTag('div', { class: 'resource-cards-card'});
+      let $resourceCard = createTag("div", { class: "resource-cards-card" });
 
-        let $linkHref = $resource.querySelector('a')?.href;
-        let $heading = $resource.querySelector('a')?.innerText;
-        let $imgSrc = $resource.querySelector('img')?.src;
-        let $text = $resource.querySelector('p')?.innerText;
-  
-        $resource.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
-      });
+      let $linkHref = $resource.querySelector("a")?.href;
+      let $heading = $resource.querySelector("a")?.innerText;
+      let $imgSrc = $resource.querySelector("img")?.src;
+      let $text = $resource.querySelector("p")?.innerText;
+
+      $resource.innerHTML = getResourceCard(
+        "large",
+        $linkHref,
+        $imgSrc,
+        $heading,
+        $text
+      );
     });
-  }
+  });
+}
 
-  function decorateInfo() {
-    document.querySelectorAll(".info").forEach(($info) => {
-      $info.classList.add('spectrum--light');
+function decorateInfo() {
+  document.querySelectorAll(".info").forEach(($info) => {
+    $info.classList.add("spectrum--light");
 
-      //removeEmptyPTags($summary);
-      $info.querySelectorAll('h2').forEach(($title)=> {
-        $title.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
-        let $divider = createTag('hr', {class:`spectrum-Divider spectrum-Divider--sizeL`});
-        $title.after($divider);
-      })
-
-      $info.querySelectorAll('p').forEach(($p) => {
-        $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
+    //removeEmptyPTags($summary);
+    $info.querySelectorAll("h2").forEach(($title) => {
+      $title.classList.add("spectrum-Heading", "spectrum-Heading--sizeM");
+      let $divider = createTag("hr", {
+        class: `spectrum-Divider spectrum-Divider--sizeL`,
       });
-
-      $info.querySelectorAll('a').forEach(($a) => {
-        $a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
-      });
-
-      $info.querySelectorAll('code').forEach(($code) => {
-        $code.classList.add('spectrum-Code', 'spectrum-Code--sizes', 'spectrum-Well');
-      });
+      $title.after($divider);
     });
 
-  }
-
-  function decorateBanner() {
-    document.querySelectorAll(".banner").forEach(($banner) => {
-      $banner.querySelectorAll('h1').forEach(($title)=> {
-        $title.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXL');
-      })
+    $info.querySelectorAll("p").forEach(($p) => {
+      $p.classList.add("spectrum-Body", "spectrum-Body--sizeM");
     });
-  }
 
-  function decorateSummary() {
-    decorateButtons('.summary-container');
-    document.querySelectorAll(".summary-container").forEach(($summary) => {
-      removeEmptyPTags($summary);
-      $summary.classList.add('spectrum--dark');
-
-      //removeEmptyPTags($summary);
-      $summary.querySelectorAll('h2').forEach(($header) => {
-        $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL');
-      })
-
-      $summary.querySelectorAll('p').forEach(($p) => {
-        const $hasLinks = $p.querySelectorAll('a, button');
-        // don't attach to icon container or if p tag contains links
-        if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
-          $p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
-        }
-        $hasLinks.forEach(($button) => {
-          $button.classList.add('spectrum-Button--overBackground');
-        })
-      });
-
-      // delete image and re-insert as bg
-      let $summaryImageSrc = $summary.querySelector('img') ? $summary.querySelector('img').src : null;
-
-      $summary.querySelectorAll('picture').forEach(($picture) => {
-        //remove weird max-width attribute
-
-        //$picture.media = "";
-        $picture.parentElement.parentElement.remove();
-        //$picture.remove();
-      });
-
-      $summary.style.backgroundImage = `url(${$summaryImageSrc})`;
+    $info.querySelectorAll("a").forEach(($a) => {
+      $a.classList.add("spectrum-Link", "spectrum-Link--quiet");
     });
-  }
 
-  function fixIcons() {
-    document.querySelectorAll('img.icon').forEach(($icon) => {
-      // fix up paths for icons that are injected into the doc when using :icon:
-      if($icon.getAttribute('src').indexOf('hlx_statics') === -1){
-        $icon.setAttribute('src',  fixHlxPath('/hlx_statics' + $icon.getAttribute('src')));
+    $info.querySelectorAll("code").forEach(($code) => {
+      $code.classList.add(
+        "spectrum-Code",
+        "spectrum-Code--sizes",
+        "spectrum-Well"
+      );
+    });
+  });
+}
+
+function decorateBanner() {
+  document.querySelectorAll(".banner").forEach(($banner) => {
+    $banner.querySelectorAll("h1").forEach(($title) => {
+      $title.classList.add("spectrum-Heading", "spectrum-Heading--sizeXL");
+    });
+  });
+}
+
+function decorateSummary() {
+  decorateButtons(".summary-container");
+  document.querySelectorAll(".summary-container").forEach(($summary) => {
+    removeEmptyPTags($summary);
+    $summary.classList.add("spectrum--dark");
+
+    //removeEmptyPTags($summary);
+    $summary.querySelectorAll("h2").forEach(($header) => {
+      $header.classList.add("spectrum-Heading", "spectrum-Heading--sizeL");
+    });
+
+    $summary.querySelectorAll("p").forEach(($p) => {
+      const $hasLinks = $p.querySelectorAll("a, button");
+      // don't attach to icon container or if p tag contains links
+      if (!$p.classList.contains("icon-container") && $hasLinks.length === 0) {
+        $p.classList.add("spectrum-Body", "spectrum-Body--sizeL");
       }
+      $hasLinks.forEach(($button) => {
+        $button.classList.add("spectrum-Button--overBackground");
+      });
     });
-  }
 
-  function fixHlxPath(path) {
-    // make sure to reference hlx_statics always to the root
-    if(path.indexOf('hlx.page') > 0 || path.indexOf('hlx.live') > 0 || path.indexOf('localhost') > 0) {
-      return window.location.hostname + path;
-    } else {
-      return path
+    // delete image and re-insert as bg
+    let $summaryImageSrc = $summary.querySelector("img")
+      ? $summary.querySelector("img").src
+      : null;
+
+    $summary.querySelectorAll("picture").forEach(($picture) => {
+      //remove weird max-width attribute
+
+      //$picture.media = "";
+      $picture.parentElement.parentElement.remove();
+      //$picture.remove();
+    });
+
+    $summary.style.backgroundImage = `url(${$summaryImageSrc})`;
+  });
+}
+
+function fixIcons() {
+  document.querySelectorAll("img.icon").forEach(($icon) => {
+    // fix up paths for icons that are injected into the doc when using :icon:
+    if ($icon.getAttribute("src").indexOf("hlx_statics") === -1) {
+      $icon.setAttribute(
+        "src",
+        fixHlxPath("/hlx_statics" + $icon.getAttribute("src"))
+      );
     }
+  });
+}
+
+function fixHlxPath(path) {
+  // make sure to reference hlx_statics always to the root
+  if (
+    path.indexOf("hlx.page") > 0 ||
+    path.indexOf("hlx.live") > 0 ||
+    path.indexOf("localhost") > 0
+  ) {
+    return window.location.hostname + path;
+  } else {
+    return path;
   }
+}
 
-  function focusRing(domObj=document) {
-    domObj.querySelectorAll('a.spectrum-Link').forEach(($a) => {
-      $a.addEventListener('focus', () => {
-        $a.classList.add('focus-ring');
-      });
-
-      $a.addEventListener('blur', () => {
-        $a.classList.remove('focus-ring');
-      });
+function focusRing(domObj = document) {
+  domObj.querySelectorAll("a.spectrum-Link").forEach(($a) => {
+    $a.addEventListener("focus", () => {
+      $a.classList.add("focus-ring");
     });
 
-    domObj.querySelectorAll('a.spectrum-Button').forEach(($button) => {
-      $button.addEventListener('focus', () => {
-        $button.classList.add('focus-ring');
-      });
+    $a.addEventListener("blur", () => {
+      $a.classList.remove("focus-ring");
+    });
+  });
 
-      $button.addEventListener('blur', () => {
-        $button.classList.remove('focus-ring');
-      });
+  domObj.querySelectorAll("a.spectrum-Button").forEach(($button) => {
+    $button.addEventListener("focus", () => {
+      $button.classList.add("focus-ring");
     });
 
-    domObj.querySelectorAll('div.spectrum-Card').forEach(($card) => {
-      $card.addEventListener('focus', () => {
-        $card.classList.add('focus-ring');
-      });
+    $button.addEventListener("blur", () => {
+      $button.classList.remove("focus-ring");
+    });
+  });
 
-      $card.addEventListener('blur', () => {
-        $card.classList.remove('focus-ring');
-      });
+  domObj.querySelectorAll("div.spectrum-Card").forEach(($card) => {
+    $card.addEventListener("focus", () => {
+      $card.classList.add("focus-ring");
     });
 
-    domObj.querySelectorAll('a.spectrum-Card').forEach(($card) => {
-      $card.addEventListener('focus', () => {
-        $card.classList.add('focus-ring');
-      });
+    $card.addEventListener("blur", () => {
+      $card.classList.remove("focus-ring");
+    });
+  });
 
-      $card.addEventListener('blur', () => {
-        $card.classList.remove('focus-ring');
-      });
+  domObj.querySelectorAll("a.spectrum-Card").forEach(($card) => {
+    $card.addEventListener("focus", () => {
+      $card.classList.add("focus-ring");
     });
 
-    domObj.querySelectorAll('input.spectrum-Checkbox-input').forEach(($input) => {
-      $input.addEventListener('focus', () => {
-        $input.classList.add('focus-ring');
-      });
+    $card.addEventListener("blur", () => {
+      $card.classList.remove("focus-ring");
+    });
+  });
 
-      $input.addEventListener('blur', () => {
-        $input.classList.remove('focus-ring');
-      });
+  domObj.querySelectorAll("input.spectrum-Checkbox-input").forEach(($input) => {
+    $input.addEventListener("focus", () => {
+      $input.classList.add("focus-ring");
     });
 
-    domObj.querySelectorAll('button.spectrum-Picker').forEach(($button) => {
-      $button.addEventListener('focus', () => {
-        $button.classList.add('focus-ring');
-      });
-
-      $button.addEventListener('blur', () => {
-        $button.classList.remove('focus-ring');
-      });
+    $input.addEventListener("blur", () => {
+      $input.classList.remove("focus-ring");
     });
-  }
+  });
 
-  /**
-   * Official Google WEBP detection.
-   * @param {Function} callback The callback function
-   */
-  function checkWebpFeature(callback) {
-    const webpSupport = sessionStorage.getItem('webpSupport');
-    if (!webpSupport) {
-      const kTestImages = 'UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';
-      const img = new Image();
-      img.onload = () => {
-        const result = (img.width > 0) && (img.height > 0);
-        window.webpSupport = result;
-        sessionStorage.setItem('webpSupport', result);
-        callback();
-      };
-      img.onerror = () => {
-        sessionStorage.setItem('webpSupport', false);
-        window.webpSupport = false;
-        callback();
-      };
-      img.src = `data:image/webp;base64,${kTestImages}`;
-    } else {
-      window.webpSupport = (webpSupport === 'true');
+  domObj.querySelectorAll("button.spectrum-Picker").forEach(($button) => {
+    $button.addEventListener("focus", () => {
+      $button.classList.add("focus-ring");
+    });
+
+    $button.addEventListener("blur", () => {
+      $button.classList.remove("focus-ring");
+    });
+  });
+}
+
+/**
+ * Official Google WEBP detection.
+ * @param {Function} callback The callback function
+ */
+function checkWebpFeature(callback) {
+  const webpSupport = sessionStorage.getItem("webpSupport");
+  if (!webpSupport) {
+    const kTestImages =
+      "UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA";
+    const img = new Image();
+    img.onload = () => {
+      const result = img.width > 0 && img.height > 0;
+      window.webpSupport = result;
+      sessionStorage.setItem("webpSupport", result);
       callback();
-    }
+    };
+    img.onerror = () => {
+      sessionStorage.setItem("webpSupport", false);
+      window.webpSupport = false;
+      callback();
+    };
+    img.src = `data:image/webp;base64,${kTestImages}`;
+  } else {
+    window.webpSupport = webpSupport === "true";
+    callback();
   }
+}
 
-  /**
-   * Returns an image URL with optimization parameters
-   * @param {string} url The image URL
-   */
-  function getOptimizedImageURL(src) {
-    const url = new URL(src, window.location.href);
-    let result = src;
-    const { pathname, search } = url;
-    if (pathname.includes('media_')) {
-      const usp = new URLSearchParams(search);
-      usp.delete('auto');
-      if (!window.webpSupport) {
-        if (pathname.endsWith('.png')) {
-          usp.set('format', 'png');
-        } else if (pathname.endsWith('.gif')) {
-          usp.set('format', 'gif');
-        } else {
-          usp.set('format', 'pjpg');
-        }
-      } else {
-        usp.set('format', 'webply');
-      }
-      result = `${src.split('?')[0]}?${usp.toString()}`;
-    }
-    return (result);
-  }
-
-  /**
-   * Resets an elelemnt's attribute to the optimized image URL.
-   * @see getOptimizedImageURL
-   * @param {Element} $elem The element
-   * @param {string} attrib The attribute
-   */
-  function resetOptimizedImageURL($elem, attrib) {
-    const src = $elem.getAttribute(attrib);
-    if (src) {
-      const oSrc = getOptimizedImageURL(src);
-      if (oSrc !== src) {
-        $elem.setAttribute(attrib, oSrc);
-      }
-    }
-  }
-
-  /**
-   * WEBP Polyfill for older browser versions.
-   * @param {Element} $elem The container element
-   */
-  function webpPolyfill($elem) {
+/**
+ * Returns an image URL with optimization parameters
+ * @param {string} url The image URL
+ */
+function getOptimizedImageURL(src) {
+  const url = new URL(src, window.location.href);
+  let result = src;
+  const { pathname, search } = url;
+  if (pathname.includes("media_")) {
+    const usp = new URLSearchParams(search);
+    usp.delete("auto");
     if (!window.webpSupport) {
-      $elem.querySelectorAll('img').forEach(($img) => {
-        resetOptimizedImageURL($img, 'src');
-      });
-      $elem.querySelectorAll('picture source').forEach(($source) => {
-        resetOptimizedImageURL($source, 'srcset');
-      });
+      if (pathname.endsWith(".png")) {
+        usp.set("format", "png");
+      } else if (pathname.endsWith(".gif")) {
+        usp.set("format", "gif");
+      } else {
+        usp.set("format", "pjpg");
+      }
+    } else {
+      usp.set("format", "webply");
+    }
+    result = `${src.split("?")[0]}?${usp.toString()}`;
+  }
+  return result;
+}
+
+/**
+ * Resets an elelemnt's attribute to the optimized image URL.
+ * @see getOptimizedImageURL
+ * @param {Element} $elem The element
+ * @param {string} attrib The attribute
+ */
+function resetOptimizedImageURL($elem, attrib) {
+  const src = $elem.getAttribute(attrib);
+  if (src) {
+    const oSrc = getOptimizedImageURL(src);
+    if (oSrc !== src) {
+      $elem.setAttribute(attrib, oSrc);
     }
   }
+}
 
-  function toggleScale() {
-    const doc = document.documentElement;
-    const isLargeScale = doc.clientWidth < MOBILE_SCREEN_WIDTH;
-    const mobileBreak = doc.clientWidth < LARGE_SCREEN_WIDTH;
-
-    doc.classList.toggle('spectrum--medium', !isLargeScale);
-    doc.classList.toggle('spectrum--large', isLargeScale);
-
-    // have to toggle dumb small resource cards
-    document.querySelectorAll('.resource-card-small-container-inner').forEach(($smallResourceCards) => {
-      $smallResourceCards.classList.toggle('spectrum-Card--horizontal', !mobileBreak);
+/**
+ * WEBP Polyfill for older browser versions.
+ * @param {Element} $elem The container element
+ */
+function webpPolyfill($elem) {
+  if (!window.webpSupport) {
+    $elem.querySelectorAll("img").forEach(($img) => {
+      resetOptimizedImageURL($img, "src");
     });
-
-  }
-
-  function later() {
-    const $adobeAnalytics = document.createElement('script');
-    $adobeAnalytics.src = '//assets.adobedtm.com/f9ca2ebf8aa5/cfdcfc3c597a/launch-8857f8f8b05b.min.js';
-    document.body.appendChild($adobeAnalytics);
-
-    // We're done, let the page render
-    document.documentElement.classList.remove('helix-loading');
-
-    focusRing();
-
-    if(window.adobeImsFactory && window.adobeImsFactory.createIMSLib){
-      window.adobeImsFactory.createIMSLib(window.adobeid);
-    }
-
-    if(window.adobeIMS && window.adobeIMS.initialize){
-      window.adobeIMS.initialize();
-    }
-
-    if(isTopLevelNav(window.location.pathname)) {
-      setActiveTab(true);
-    }
-  }
-
-  async function decorateMain() {
-    const $main = document.querySelector('main');
-    checkWebpFeature(() => {
-      webpPolyfill($main);
+    $elem.querySelectorAll("picture source").forEach(($source) => {
+      resetOptimizedImageURL($source, "srcset");
     });
   }
+}
 
-  function decorateHelix2Embeds() {
-    document.querySelectorAll('main > div > p > a[href^="https://youtu.be"], main > div > p > a[href^="https://www.youtube.com"]').forEach((yta) => {
-      let ytId = '';
-      if (yta.href.startsWith('https://youtu.be/')) ytId = new URL(yta.href).pathname;
-      if (yta.href.startsWith('https://www.youtube.com/')) ytId = new URLSearchParams(new URL(yta.href).search).get('v');
+function toggleScale() {
+  const doc = document.documentElement;
+  const isLargeScale = doc.clientWidth < MOBILE_SCREEN_WIDTH;
+  const mobileBreak = doc.clientWidth < LARGE_SCREEN_WIDTH;
 
-      const $embed = createTag('div', {
-        class: 'embed embed-oembed embed-youtu',
-        'data-url': `https://youtu.be/${ytId}`,
+  doc.classList.toggle("spectrum--medium", !isLargeScale);
+  doc.classList.toggle("spectrum--large", isLargeScale);
+
+  // have to toggle dumb small resource cards
+  document
+    .querySelectorAll(".resource-card-small-container-inner")
+    .forEach(($smallResourceCards) => {
+      $smallResourceCards.classList.toggle(
+        "spectrum-Card--horizontal",
+        !mobileBreak
+      );
+    });
+}
+
+function later() {
+  const $adobeAnalytics = document.createElement("script");
+  $adobeAnalytics.src =
+    "//assets.adobedtm.com/f9ca2ebf8aa5/cfdcfc3c597a/launch-8857f8f8b05b.min.js";
+  document.body.appendChild($adobeAnalytics);
+
+  // We're done, let the page render
+  document.documentElement.classList.remove("helix-loading");
+
+  focusRing();
+
+  if (window.adobeImsFactory && window.adobeImsFactory.createIMSLib) {
+    window.adobeImsFactory.createIMSLib(window.adobeid);
+  }
+
+  if (window.adobeIMS && window.adobeIMS.initialize) {
+    window.adobeIMS.initialize();
+  }
+
+  if (isTopLevelNav(window.location.pathname)) {
+    setActiveTab(true);
+  }
+}
+
+async function decorateMain() {
+  const $main = document.querySelector("main");
+  checkWebpFeature(() => {
+    webpPolyfill($main);
+  });
+}
+
+function decorateHelix2Embeds() {
+  document
+    .querySelectorAll(
+      'main > div > p > a[href^="https://youtu.be"], main > div > p > a[href^="https://www.youtube.com"]'
+    )
+    .forEach((yta) => {
+      let ytId = "";
+      if (yta.href.startsWith("https://youtu.be/"))
+        ytId = new URL(yta.href).pathname;
+      if (yta.href.startsWith("https://www.youtube.com/"))
+        ytId = new URLSearchParams(new URL(yta.href).search).get("v");
+
+      const $embed = createTag("div", {
+        class: "embed embed-oembed embed-youtu",
+        "data-url": `https://youtu.be/${ytId}`,
       });
       $embed.innerHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
       <iframe src="https://www.youtube.com/embed/${ytId}?rel=0&amp;kind=embed-youtu&amp;provider=youtu" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen="" scrolling="no" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" title="content from youtu" loading="lazy">
       </iframe></div>`;
-      yta.closest('div').replaceChild($embed, yta.closest('p'));
+      yta.closest("div").replaceChild($embed, yta.closest("p"));
+    });
+}
+
+function decorateInfoColumns() {
+  document.querySelectorAll(".info-columns > div > div").forEach(($column) => {
+    $column.classList.add("info-column");
+  });
+
+  document.querySelectorAll(".info-columns").forEach(($column) => {
+    $column.classList.add("spectrum--light");
+    removeEmptyPTags($column);
+    $column.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(($header) => {
+      $header.classList.add(
+        "spectrum-Heading",
+        "spectrum-Heading--sizeM",
+        "column-header"
+      );
     });
 
-  }
-
-  function decorateInfoColumns() {
-    document.querySelectorAll('.info-columns > div > div').forEach(($column) => {
-      $column.classList.add('info-column');
+    $column.querySelectorAll("p").forEach(($p) => {
+      const $hasLinks = $p.querySelectorAll("a, button");
+      // don't attach to icon container or if p tag contains links
+      if (!$p.classList.contains("icon-container") && $hasLinks.length === 0) {
+        $p.classList.add("spectrum-Body", "spectrum-Body--sizeM");
+      } else {
+        $p.classList.add("icon-container");
+      }
     });
 
-    document.querySelectorAll('.info-columns').forEach(($column) => {
-      $column.classList.add('spectrum--light');
-      removeEmptyPTags($column);
-      $column.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(($header) => {
-        $header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
-      })
+    $column.querySelectorAll("a").forEach(($a) => {
+      $a.classList.add("spectrum-Link", "spectrum-Link--quiet");
 
-      $column.querySelectorAll('p').forEach(($p) => {
-        const $hasLinks = $p.querySelectorAll('a, button');
-        // don't attach to icon container or if p tag contains links
-        if(!$p.classList.contains('icon-container') && $hasLinks.length === 0) {
-          $p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
-        } else {
-          $p.classList.add('icon-container')
-        }
+      if (isLinkExternal($a.href)) {
+        $a.target = "_blank";
+        $a.rel = "noopener noreferrer";
+      }
+    });
+
+    $column.querySelectorAll("div > div.info-column").forEach(($infoColumn) => {
+      let $productLinkContainer = createTag("div", {
+        class: "product-link-container",
       });
 
-      $column.querySelectorAll('a').forEach(($a) => {
-        $a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
-
-        if(isLinkExternal($a.href)) {
-          $a.target = '_blank';
-          $a.rel = 'noopener noreferrer';
-        }
-      });
-
-      $column.querySelectorAll('div > div.info-column').forEach(($infoColumn) => {
-        let $productLinkContainer = createTag('div', { class : 'product-link-container'});
-
-        $infoColumn.querySelectorAll('p.icon-container').forEach(($innerSecond) => {
-
+      $infoColumn
+        .querySelectorAll("p.icon-container")
+        .forEach(($innerSecond) => {
           $productLinkContainer.append($innerSecond);
         });
-        $infoColumn.append($productLinkContainer);
-      });
-
+      $infoColumn.append($productLinkContainer);
     });
-  }
+  });
+}
 
-  async function decoratePage() {
-    decorateHelix2Embeds();
-    decorateMain();
-    toggleScale();
-    decorateTables();
-    decorateLists();
-    wrapSections("main>div");
-    decorateBlocks();
-    wrapSections("header>div, footer>div");
-    decorateFooter();
-    decorateHeader();
-    decorateSiteHero();
-    decorateHero();
-    decorateEmbeds();
-    decorateCards();
-    decorateColumns();
-    // decorateColumnsDark();
-    decorateAnnouncement();
-    decorateAPIBrowser()
-    decorateResourceCards();
-    decorateInfo();
-    decorateInfoColumns();
-    decorateBanner();
-    decorateSummary();
-    fixIcons();
-    later();
-  }
+async function decoratePage() {
+  decorateHelix2Embeds();
+  decorateMain();
+  toggleScale();
+  decorateTables();
+  decorateLists();
+  wrapSections("main>div");
+  decorateBlocks();
+  wrapSections("header>div, footer>div");
+  decorateFooter();
+  decorateHeader();
+  decorateSiteHero();
+  decorateHero();
+  decorateEmbeds();
+  decorateCards();
+  decorateColumns();
+  // decorateColumnsDark();
+  decorateAnnouncement();
+  decorateAPIBrowser();
+  decorateResourceCards();
+  decorateInfo();
+  decorateInfoColumns();
+  decorateBanner();
+  decorateSummary();
+  fixIcons();
+  later();
+}
 
-  decoratePage();
+decoratePage();
 
-  window.addEventListener('resize', toggleScale);
+window.addEventListener("resize", toggleScale);
