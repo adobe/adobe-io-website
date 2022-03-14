@@ -694,6 +694,7 @@ let $CURRENT_API_FILTERS = [];
                 height="48px"
                 class="api-card-icon"
                 src="/hlx_statics/icons/${card.Icon}.svg"
+                alt="${card.Title} Icon"
               />
             </div>
           `
