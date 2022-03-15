@@ -1180,7 +1180,7 @@ function isTopLevelNav(urlPathname) {
 }
 
 const renderSearchBox = (renderOptions, isFirstRender) => {
-  const { query, refine, clear, isSearchStalled, widgetParams } = renderOptions;
+  const { query, refine, clear, widgetParams } = renderOptions;
 
   if (isFirstRender) {
     widgetParams.container.querySelector("#search-box").innerHTML = `
@@ -1228,9 +1228,6 @@ const renderSearchBox = (renderOptions, isFirstRender) => {
       });
     }
 
-    // const loadingIndicator = document.createElement("span");
-    // loadingIndicator.textContent = "Loading...";
-
     const $button = $header.querySelector("#search-clear-button");
 
     $button.addEventListener("click", () => {
@@ -1238,8 +1235,7 @@ const renderSearchBox = (renderOptions, isFirstRender) => {
     });
   }
 
-  widgetParams.container.querySelector("#nav-search-input").value = query;
-  // widgetParams.container.querySelector("span").hidden = !isSearchStalled;
+  // widgetParams.container.querySelector("#nav-search-input").value = query;
 };
 
 const spectrumSearchBox =

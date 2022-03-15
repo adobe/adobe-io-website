@@ -278,9 +278,9 @@
   --spectrum-alias-toggle-background-color-hover: var(--spectrum-global-color-gray-800);
   --spectrum-alias-toggle-background-color-down: var(--spectrum-global-color-gray-900);
   --spectrum-alias-toggle-background-color-key-focus: var(--spectrum-global-color-gray-800);
-  --spectrum-alias-toggle-background-color-emphasized-selected-default: var(--spectrum-semantic-cta-background-color-default);
-  --spectrum-alias-toggle-background-color-emphasized-selected-hover: var(--spectrum-semantic-cta-background-color-hover);
-  --spectrum-alias-toggle-background-color-emphasized-selected-down: var(--spectrum-semantic-cta-background-color-down);
+  --spectrum-alias-toggle-background-color-emphasized-selected-default: var(--spectrum-global-color-blue-500);
+  --spectrum-alias-toggle-background-color-emphasized-selected-hover: var(--spectrum-global-color-blue-600);
+  --spectrum-alias-toggle-background-color-emphasized-selected-down: var(--spectrum-global-color-blue-700);
   --spectrum-alias-toggle-border-color-default: var(--spectrum-global-color-gray-700);
   --spectrum-alias-toggle-border-color-hover: var(--spectrum-global-color-gray-800);
   --spectrum-alias-toggle-border-color-down: var(--spectrum-global-color-gray-900);
@@ -358,6 +358,9 @@
   --spectrum-alias-icon-color-disabled: var(--spectrum-global-color-gray-400);
   --spectrum-alias-icon-color-selected-neutral-subdued: var(--spectrum-global-color-gray-800);
   --spectrum-alias-icon-color-selected: var(--spectrum-global-color-blue-500);
+}
+
+.spectrum {
 }
 
 .spectrum--medium {
@@ -477,6 +480,7 @@
   --spectrum-dialog-confirm-padding: var(--spectrum-global-dimension-static-size-500);
   --spectrum-listitem-m-texticon-padding-left: var(--spectrum-global-dimension-size-125);
   --spectrum-listitem-m-textthumbnail-padding-left: var(--spectrum-global-dimension-size-125);
+  --spectrum-picker-m-texticon-padding-left: var(--spectrum-global-dimension-size-125);
   --spectrum-textfield-m-texticon-padding-left: var(--spectrum-global-dimension-size-125);
 }
 
@@ -597,6 +601,7 @@
   --spectrum-dialog-confirm-padding: var(--spectrum-global-dimension-static-size-300);
   --spectrum-listitem-m-texticon-padding-left: var(--spectrum-global-dimension-static-size-150);
   --spectrum-listitem-m-textthumbnail-padding-left: var(--spectrum-global-dimension-static-size-150);
+  --spectrum-picker-m-texticon-padding-left: var(--spectrum-global-dimension-static-size-150);
   --spectrum-textfield-m-texticon-padding-left: var(--spectrum-global-dimension-static-size-150);
 }
 
@@ -2417,7 +2422,7 @@ a.spectrum-Button {
           }
 
 .spectrum-Button.spectrum-Button--staticWhite.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled) {
-          background-color: var(--spectrum-global-color-static-transparent-white-300);
+          background-color: var(--spectrum-global-color-static-transparent-white-200);
         }
 
 .spectrum-Button.spectrum-Button--staticWhite.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled) .spectrum-Icon {
@@ -2429,19 +2434,19 @@ a.spectrum-Button {
           }
 
 .spectrum-Button.spectrum-Button--staticWhite.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled):hover {
-            background-color: var(--spectrum-global-color-static-transparent-white-400);
+            background-color: var(--spectrum-global-color-static-transparent-white-300);
           }
 
 .spectrum-Button.spectrum-Button--staticWhite.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled):active {
-            background-color: var(--spectrum-global-color-static-transparent-white-500);
+            background-color: var(--spectrum-global-color-static-transparent-white-400);
           }
 
 .spectrum-Button.spectrum-Button--staticWhite.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled):focus-visible {
-            background-color: var(--spectrum-global-color-static-transparent-white-400)
+            background-color: var(--spectrum-global-color-static-transparent-white-300)
           }
 
 .spectrum-Button.spectrum-Button--staticWhite.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled).is-keyboardFocused {
-            background-color: var(--spectrum-global-color-static-transparent-white-400)
+            background-color: var(--spectrum-global-color-static-transparent-white-300)
           }
 
 .spectrum-Button.spectrum-Button--staticWhite.spectrum-Button--fill:disabled {
@@ -2524,7 +2529,7 @@ a.spectrum-Button {
           }
 
 .spectrum-Button.spectrum-Button--staticBlack.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled) {
-          background-color: var(--spectrum-global-color-static-transparent-black-300);
+          background-color: var(--spectrum-global-color-static-transparent-black-200);
         }
 
 .spectrum-Button.spectrum-Button--staticBlack.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled) .spectrum-Icon {
@@ -2536,19 +2541,19 @@ a.spectrum-Button {
           }
 
 .spectrum-Button.spectrum-Button--staticBlack.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled):hover {
-            background-color: var(--spectrum-global-color-static-transparent-black-400)
+            background-color: var(--spectrum-global-color-static-transparent-black-300)
           }
 
 .spectrum-Button.spectrum-Button--staticBlack.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled):active {
-            background-color: var(--spectrum-global-color-static-transparent-black-500)
+            background-color: var(--spectrum-global-color-static-transparent-black-400)
           }
 
 .spectrum-Button.spectrum-Button--staticBlack.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled):focus-visible {
-            background-color: var(--spectrum-global-color-static-transparent-black-400)
+            background-color: var(--spectrum-global-color-static-transparent-black-300)
           }
 
 .spectrum-Button.spectrum-Button--staticBlack.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled).is-keyboardFocused {
-            background-color: var(--spectrum-global-color-static-transparent-black-400)
+            background-color: var(--spectrum-global-color-static-transparent-black-300)
           }
 
 .spectrum-Button.spectrum-Button--staticBlack.spectrum-Button--fill:disabled {
@@ -3284,7 +3289,7 @@ a.spectrum-Button {
           }
 
 .spectrum-Button.spectrum-Button--staticWhite.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled) {
-          background-color: var(--spectrum-global-color-static-transparent-white-300);
+          background-color: var(--spectrum-global-color-static-transparent-white-200);
         }
 
 .spectrum-Button.spectrum-Button--staticWhite.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled) .spectrum-Icon {
@@ -3296,19 +3301,19 @@ a.spectrum-Button {
           }
 
 .spectrum-Button.spectrum-Button--staticWhite.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled):hover {
-            background-color: var(--spectrum-global-color-static-transparent-white-400);
+            background-color: var(--spectrum-global-color-static-transparent-white-300);
           }
 
 .spectrum-Button.spectrum-Button--staticWhite.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled):active {
-            background-color: var(--spectrum-global-color-static-transparent-white-500);
+            background-color: var(--spectrum-global-color-static-transparent-white-400);
           }
 
 .spectrum-Button.spectrum-Button--staticWhite.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled):focus-visible {
-            background-color: var(--spectrum-global-color-static-transparent-white-400)
+            background-color: var(--spectrum-global-color-static-transparent-white-300)
           }
 
 .spectrum-Button.spectrum-Button--staticWhite.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled).is-keyboardFocused {
-            background-color: var(--spectrum-global-color-static-transparent-white-400)
+            background-color: var(--spectrum-global-color-static-transparent-white-300)
           }
 
 .spectrum-Button.spectrum-Button--staticWhite.spectrum-Button--fill:disabled {
@@ -3391,7 +3396,7 @@ a.spectrum-Button {
           }
 
 .spectrum-Button.spectrum-Button--staticBlack.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled) {
-          background-color: var(--spectrum-global-color-static-transparent-black-300);
+          background-color: var(--spectrum-global-color-static-transparent-black-200);
         }
 
 .spectrum-Button.spectrum-Button--staticBlack.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled) .spectrum-Icon {
@@ -3403,19 +3408,19 @@ a.spectrum-Button {
           }
 
 .spectrum-Button.spectrum-Button--staticBlack.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled):hover {
-            background-color: var(--spectrum-global-color-static-transparent-black-400)
+            background-color: var(--spectrum-global-color-static-transparent-black-300)
           }
 
 .spectrum-Button.spectrum-Button--staticBlack.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled):active {
-            background-color: var(--spectrum-global-color-static-transparent-black-500)
+            background-color: var(--spectrum-global-color-static-transparent-black-400)
           }
 
 .spectrum-Button.spectrum-Button--staticBlack.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled):focus-visible {
-            background-color: var(--spectrum-global-color-static-transparent-black-400)
+            background-color: var(--spectrum-global-color-static-transparent-black-300)
           }
 
 .spectrum-Button.spectrum-Button--staticBlack.spectrum-Button--fill.spectrum-Button--secondary:not(:disabled).is-keyboardFocused {
-            background-color: var(--spectrum-global-color-static-transparent-black-400)
+            background-color: var(--spectrum-global-color-static-transparent-black-300)
           }
 
 .spectrum-Button.spectrum-Button--staticBlack.spectrum-Button--fill:disabled {
@@ -5955,13 +5960,13 @@ a.spectrum-Button {
   }
 
 [dir="ltr"] .spectrum-Picker {
-  padding-left: var(--spectrum-picker-textonly-padding-left);
-  padding-right: var(--spectrum-picker-textonly-padding-right);
+  padding-left: var(--spectrum-picker-textonly-padding-left-adjusted);
+  padding-right: var(--spectrum-picker-textonly-padding-right-adjusted);
 }
 
 [dir="rtl"] .spectrum-Picker {
-  padding-right: var(--spectrum-picker-textonly-padding-left);
-  padding-left: var(--spectrum-picker-textonly-padding-right);
+  padding-right: var(--spectrum-picker-textonly-padding-left-adjusted);
+  padding-left: var(--spectrum-picker-textonly-padding-right-adjusted);
 }
 
 .spectrum-Picker {
@@ -6011,11 +6016,11 @@ a.spectrum-Button {
   }
 
 [dir="ltr"] .spectrum-Picker .spectrum-Picker-label + .spectrum-Picker-icon {
-    margin-left: var(--spectrum-picker-texticon-icon-gap);
+    margin-left: calc(-1 * (var(--spectrum-picker-textonly-padding-left-adjusted) - var(--spectrum-picker-padding-left-adjusted)));
 }
 
 [dir="rtl"] .spectrum-Picker .spectrum-Picker-label + .spectrum-Picker-icon {
-    margin-right: var(--spectrum-picker-texticon-icon-gap);
+    margin-right: calc(-1 * (var(--spectrum-picker-textonly-padding-left-adjusted) - var(--spectrum-picker-padding-left-adjusted)));
 }
 
 .spectrum-Picker--sizeS {
@@ -6027,15 +6032,19 @@ a.spectrum-Button {
   --spectrum-picker-texticon-error-icon-margin-left: var(--spectrum-global-dimension-size-100);
   --spectrum-picker-texticon-ui-icon-gap: var(--spectrum-global-dimension-size-85);
   --spectrum-picker-texticon-popover-max-width: var(--spectrum-global-dimension-size-1800);
+  --spectrum-picker-texticon-padding-left: var(--spectrum-global-dimension-size-85);
   --spectrum-picker-texticon-height: var(--spectrum-global-dimension-size-300);
   --spectrum-picker-texticon-min-width: var(--spectrum-global-dimension-size-450);
   --spectrum-picker-texticon-width: var(--spectrum-global-dimension-size-2000);
   --spectrum-picker-texticon-border-radius: var(--spectrum-alias-component-border-radius);
+  --spectrum-picker-textonly-border-size: var(--spectrum-alias-border-size-thin);
   --spectrum-picker-textonly-padding-left: var(--spectrum-global-dimension-size-115);
   --spectrum-picker-textonly-padding-right: var(--spectrum-global-dimension-size-115);
+  --spectrum-picker-textonly-border-radius: var(--spectrum-alias-component-border-radius);
 }
 
 .spectrum-Picker--sizeM {
+  --spectrum-picker-texticon-padding-left: var(--spectrum-picker-m-texticon-padding-left);
   --spectrum-picker-texticon-border-size: var(--spectrum-alias-border-size-thin);
   --spectrum-picker-texticon-text-size: var(--spectrum-global-dimension-font-size-100);
   --spectrum-picker-texticon-icon-gap: var(--spectrum-global-dimension-size-100);
@@ -6048,8 +6057,10 @@ a.spectrum-Button {
   --spectrum-picker-texticon-min-width: var(--spectrum-global-dimension-size-600);
   --spectrum-picker-texticon-width: var(--spectrum-global-dimension-size-2400);
   --spectrum-picker-texticon-border-radius: var(--spectrum-alias-component-border-radius);
+  --spectrum-picker-textonly-border-size: var(--spectrum-alias-border-size-thin);
   --spectrum-picker-textonly-padding-left: var(--spectrum-global-dimension-size-150);
   --spectrum-picker-textonly-padding-right: var(--spectrum-global-dimension-size-150);
+  --spectrum-picker-textonly-border-radius: var(--spectrum-alias-component-border-radius);
 }
 
 .spectrum-Picker--sizeL {
@@ -6061,12 +6072,15 @@ a.spectrum-Button {
   --spectrum-picker-texticon-error-icon-margin-left: var(--spectrum-global-dimension-size-185);
   --spectrum-picker-texticon-ui-icon-gap: var(--spectrum-global-dimension-size-115);
   --spectrum-picker-texticon-popover-max-width: var(--spectrum-global-dimension-size-3000);
+  --spectrum-picker-texticon-padding-left: var(--spectrum-global-dimension-size-160);
   --spectrum-picker-texticon-height: var(--spectrum-global-dimension-size-500);
   --spectrum-picker-texticon-min-width: var(--spectrum-global-dimension-size-750);
   --spectrum-picker-texticon-width: var(--spectrum-global-dimension-size-2500);
   --spectrum-picker-texticon-border-radius: var(--spectrum-alias-component-border-radius);
+  --spectrum-picker-textonly-border-size: var(--spectrum-alias-border-size-thin);
   --spectrum-picker-textonly-padding-left: var(--spectrum-global-dimension-size-185);
   --spectrum-picker-textonly-padding-right: var(--spectrum-global-dimension-size-185);
+  --spectrum-picker-textonly-border-radius: var(--spectrum-alias-component-border-radius);
 }
 
 .spectrum-Picker--sizeXL {
@@ -6078,12 +6092,15 @@ a.spectrum-Button {
   --spectrum-picker-texticon-error-icon-margin-left: var(--spectrum-global-dimension-size-225);
   --spectrum-picker-texticon-ui-icon-gap: var(--spectrum-global-dimension-size-125);
   --spectrum-picker-texticon-popover-max-width: var(--spectrum-global-dimension-size-3600);
+  --spectrum-picker-texticon-padding-left: var(--spectrum-global-dimension-size-185);
   --spectrum-picker-texticon-height: var(--spectrum-global-dimension-size-600);
   --spectrum-picker-texticon-min-width: var(--spectrum-global-dimension-size-900);
   --spectrum-picker-texticon-width: var(--spectrum-global-dimension-size-3000);
   --spectrum-picker-texticon-border-radius: var(--spectrum-alias-component-border-radius);
+  --spectrum-picker-textonly-border-size: var(--spectrum-alias-border-size-thin);
   --spectrum-picker-textonly-padding-left: var(--spectrum-global-dimension-size-225);
   --spectrum-picker-textonly-padding-right: var(--spectrum-global-dimension-size-225);
+  --spectrum-picker-textonly-border-radius: var(--spectrum-alias-component-border-radius);
 }
 
 .spectrum-Picker {
@@ -6093,7 +6110,40 @@ a.spectrum-Button {
   --spectrum-picker-texticon-popover-max-width: var(--spectrum-global-dimension-size-3000);
   --spectrum-picker-texticon-width: var(--spectrum-global-dimension-size-2400);
   --spectrum-picker-texticon-border-size-increase-focus: 1px;
+  --spectrum-picker-padding-left-adjusted: calc(var(--spectrum-picker-texticon-padding-left) - var(--spectrum-picker-texticon-border-size));
+  --spectrum-picker-textonly-padding-left-adjusted: calc(var(--spectrum-picker-textonly-padding-left) - var(--spectrum-picker-textonly-border-size));
+  --spectrum-picker-textonly-padding-right-adjusted: calc(var(--spectrum-picker-textonly-padding-right) - var(--spectrum-picker-textonly-border-size));
+  --spectrum-picker-focus-ring-border-radius-adjusted: calc(var(--spectrum-picker-textonly-border-radius) + var(--spectrum-picker-focus-ring-gap));
 }
+
+.spectrum-Picker {
+  --spectrum-picker-focus-ring-gap: var(--spectrum-global-dimension-static-size-0);
+  --spectrum-picker-focus-ring-size: var(--spectrum-global-dimension-static-size-10);
+  --spectrum-picker-focus-ring-color: var(--spectrum-alias-focus-ring-color);
+
+  transition: border-color 130ms ease-in-out;
+}
+
+.spectrum-Picker:after {
+    pointer-events: none;
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: calc((var(--spectrum-picker-focus-ring-gap) + var(--spectrum-picker-textonly-border-size)) * -1);
+    border-radius: var(--spectrum-picker-focus-ring-border-radius-adjusted);
+    transition: box-shadow 130ms ease-in-out;
+  }
+
+.spectrum-Picker.focus-ring {
+    box-shadow: none !important;
+  }
+
+.spectrum-Picker.focus-ring:after {
+      box-shadow: 0 0 0 var(--spectrum-picker-focus-ring-size) var(--spectrum-picker-focus-ring-color);
+    }
 
 .spectrum-Picker--quiet {
   --spectrum-picker-texticon-border-size: 0;
