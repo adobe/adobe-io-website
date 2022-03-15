@@ -972,29 +972,8 @@ function globalNavSearchPopDown() {
   return `
       <div id="nav-search" class="nav-search-popdown isClosed">
         <div class="nav-search-popdown-container">
-          <form class="spectrum-Search nav-search-form">
-            <div class="spectrum-Textfield nav-search-text">
-              <svg class="spectrum-Icon spectrum-Icon--sizeM spectrum-Textfield-icon" focusable="false" aria-hidden="true" aria-label="Edit">
-                <use xlink:href="#spectrum-icon-18-Magnify"></use>
-              </svg>
-              <input
-                id="nav-search-input"
-                aria-label="Search"
-                type="search"
-                placeholder="Search"
-                class="spectrum-Textfield-input spectrum-Search-input"
-                autoComplete="off"
-              />
-
-              <button type="reset" class="spectrum-ClearButton spectrum-Search-clearButton">
-                <svg class="spectrum-Icon spectrum-UIIcon-Cross75" focusable="false" aria-hidden="true">
-                  <use xlink:href="#spectrum-css-icon-Cross75" />
-                </svg>
-              </button>
-            </div>
-          </form>
-          <div id="search-results" class="nav-search-popover spectrum-Popover">
-          </div>
+          <form id="search-box" class="spectrum-Search nav-search-form"></form> 
+          <div id="search-results" class="nav-search-popover spectrum-Popover"></div>
         </div>
       </div>
     `;
@@ -1200,6 +1179,72 @@ function isTopLevelNav(urlPathname) {
   }
 }
 
+const renderSearchBox = (renderOptions, isFirstRender) => {
+  const { query, refine, clear, isSearchStalled, widgetParams } = renderOptions;
+
+  if (isFirstRender) {
+    widgetParams.container.querySelector("#search-box").innerHTML = `
+    <div class="spectrum-Textfield nav-search-text">
+      <svg class="spectrum-Icon spectrum-Icon--sizeM spectrum-Textfield-icon" focusable="false" aria-hidden="true" aria-label="Edit">
+        <use xlink:href="#spectrum-icon-18-Magnify"></use>
+      </svg>
+      <input
+        id="nav-search-input"
+        aria-label="Search"
+        type="search"
+        placeholder="Search"
+        class="spectrum-Textfield-input spectrum-Search-input"
+        autoComplete="off"
+      />
+
+      <button id="search-clear-button" type="reset" class="spectrum-ClearButton spectrum-Search-clearButton">
+        <svg class="spectrum-Icon spectrum-UIIcon-Cross75" focusable="false" aria-hidden="true">
+          <use xlink:href="#spectrum-css-icon-Cross75" />
+        </svg>
+      </button>
+    </div>
+    `;
+
+    const $searchInput =
+      widgetParams.container.querySelector("#nav-search-input");
+    const $searchResults =
+      widgetParams.container.querySelector("#search-results");
+
+    if ($searchInput) {
+      $searchInput.addEventListener("input", (evt) => {
+        const $searchQuery = evt.target.value;
+
+        refine($searchQuery);
+
+        if ($searchResults) {
+          const isOpen = $searchResults.classList.contains("is-open");
+
+          if (!$searchQuery.length) {
+            isOpen ? $searchResults.classList.remove("is-open") : "";
+          } else {
+            isOpen ? "" : $searchResults.classList.add("is-open");
+          }
+        }
+      });
+    }
+
+    // const loadingIndicator = document.createElement("span");
+    // loadingIndicator.textContent = "Loading...";
+
+    const $button = $header.querySelector("#search-clear-button");
+
+    $button.addEventListener("click", () => {
+      clear();
+    });
+  }
+
+  widgetParams.container.querySelector("#nav-search-input").value = query;
+  // widgetParams.container.querySelector("span").hidden = !isSearchStalled;
+};
+
+const spectrumSearchBox =
+  instantsearch.connectors.connectSearchBox(renderSearchBox);
+
 const renderHits = (renderOptions, isFirstRender) => {
   const { hits, widgetParams } = renderOptions;
 
@@ -1222,6 +1267,7 @@ const renderHits = (renderOptions, isFirstRender) => {
       </ul>
     `;
 };
+
 const spectrumHits = instantsearch.connectors.connectHits(renderHits);
 
 function decorateHeaderRight($header) {
@@ -1264,7 +1310,9 @@ function decorateHeaderRight($header) {
       });
     }
   });
+
   $searchButton = $header.querySelector("#nav-dropdown-search");
+
   if ($searchButton) {
     $searchButton.addEventListener("click", (evt) => {
       let $searchForm = $header.querySelector("#nav-search");
@@ -1273,14 +1321,11 @@ function decorateHeaderRight($header) {
     });
 
     search.addWidgets([
-      instantsearch.widgets.searchBox({
-        container: "#nav-search-input",
+      spectrumSearchBox({
+        container: $header.querySelector("#nav-search"),
       }),
-      // spectrumHits({
-      //   container: '#search-results',
-      // }),
-      instantsearch.widgets.hits({
-        container: "#search-results",
+      spectrumHits({
+        container: $header.querySelector("#search-results"),
       }),
     ]);
 
@@ -1290,25 +1335,6 @@ function decorateHeaderRight($header) {
     if ($form) {
       $form.addEventListener("submit", (evt) => {
         evt.preventDefault();
-      });
-    }
-
-    const $searchInput = $header.querySelector("#nav-search-input");
-    if ($searchInput) {
-      let $searchQuery = $searchInput.value;
-      const $searchResults = $header.querySelector("#search-results");
-
-      $searchInput.addEventListener("input", (evt) => {
-        evt.preventDefault();
-        $searchQuery = evt.target.value;
-        console.log($searchQuery);
-        if ($searchResults) {
-          if (!$searchResults.children.length) {
-            $searchResults.classList.contains("is-open") ? $searchResults.classList.remove("is-open") : "";
-          } else {
-            $searchResults.classList.contains("is-open") ? "" : $searchResults.classList.add("is-open");
-          }
-        }
       });
     }
   }

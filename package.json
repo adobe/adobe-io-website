@@ -35,7 +35,8 @@
     "@spectrum-css/underlay": "^2.0.23",
     "@spectrum-css/vars": "^6.1.1",
     "@spectrum-css/well": "^3.0.14",
-    "algoliasearch": "^4.12.2",
+    "algoliasearch": "^4.13.0",
+    "instantsearch.js": "^4.39.2",
     "minimist": "^1.2.5"
   }
 }
