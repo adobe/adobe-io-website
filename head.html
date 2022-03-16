@@ -2,10 +2,10 @@
 <link id="favicon" rel="icon" type="image/svg+xml" href="/hlx_statics/icons/adobe.svg">
 
 <script type="text/javascript">
-  // First things first, hide the page until we're ready
+  /* First things first, hide the page until we're ready */
   document.documentElement.classList.add('helix-loading');
 
-  // Set up the outer classnames that are required for rendering
+  /* Set up the outer classnames that are required for rendering */
   document.documentElement.classList.add('spectrum', 'spectrum--light', 'spectrum--medium');
   document.documentElement.dir = 'ltr';
 </script>
@@ -20,7 +20,7 @@
 <!-- Get loadIcons coming so we can use it immediately -->
 <script src="/hlx_statics/loadIcons.js"></script>
 <script type="text/javascript">
-  // Get icons loading immediately, they're async and non-blocking
+  /* Get icons loading immediately, they're async and non-blocking */
   if(window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf('hlx.live') >= 0){
     loadIcons(`https://${window.location.host}/hlx_statics/spectrum/icon/dist/spectrum-css-icons.svg`);
     loadIcons(`https://${window.location.host}/hlx_statics/spectrum/spectrum-css-workflow-icons/dist/spectrum-icons.svg`);
