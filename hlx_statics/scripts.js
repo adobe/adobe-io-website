@@ -1228,7 +1228,7 @@ const renderSearchBox = (renderOptions, isFirstRender) => {
       });
     }
 
-    const $button = $header.querySelector("#search-clear-button");
+    const $button = widgetParams.container.querySelector("#search-clear-button");
 
     $button.addEventListener("click", () => {
       clear();
