@@ -1246,7 +1246,7 @@ const renderHits = (renderOptions, isFirstRender) => {
   const { hits, widgetParams } = renderOptions;
 
   widgetParams.container.innerHTML = `
-      <ul id="search-results-list" class="spectrum-Menu" role="listbox">
+      <ul id="search-results-list" class="nav-search-results spectrum-Menu" role="listbox">
         ${hits
           .map(
             (item) =>

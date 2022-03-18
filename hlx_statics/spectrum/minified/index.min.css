@@ -10137,7 +10137,7 @@ header.global-nav-header div.nav-search-popdown {
   z-index: 10;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 768px) {
   header.global-nav-header div.nav-search-popdown  {
     top: var(--spectrum-global-dimension-size-1200);
   }
@@ -10149,7 +10149,7 @@ header.global-nav-header div.nav-search-popdown-container {
   max-width: 688px;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 768px) {
   header.global-nav-header div.nav-search-popdown-container  {
     max-width: calc(100vw - var(--spectrum-global-dimension-size-800));
   }
@@ -10177,7 +10177,7 @@ header.global-nav-header div.nav-search-popover {
   overflow: auto;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 768px) {
   header.global-nav-header div.nav-search-popover {
     max-width: calc(100vw - var(--spectrum-global-dimension-size-800));
   }
