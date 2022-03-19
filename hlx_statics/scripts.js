@@ -974,7 +974,7 @@ function globalNavSearchPopDown() {
       <div id="nav-search" class="nav-search-popdown isClosed">
         <div class="nav-search-popdown-container">
           <form id="search-box" class="spectrum-Search nav-search-form"></form> 
-          <div id="search-results" class="nav-search-popover spectrum-Popover"></div>
+          <div id="search-results" class="nav-search-popover spectrum-Popover spectrum-Popover--bottom"></div>
         </div>
       </div>
     `;
@@ -1197,13 +1197,14 @@ const renderSearchBox = (renderOptions, isFirstRender) => {
         class="spectrum-Textfield-input spectrum-Search-input"
         autoComplete="off"
       />
-
-      <button id="search-clear-button" type="reset" class="spectrum-ClearButton spectrum-Search-clearButton">
+    </div>
+    <button id="search-clear-button" type="reset" class="spectrum-ClearButton spectrum-ClearButton--sizeM spectrum-Search-clearButton">
+      <div class="spectrum-ClearButton-fill">  
         <svg class="spectrum-Icon spectrum-UIIcon-Cross75" focusable="false" aria-hidden="true">
           <use xlink:href="#spectrum-css-icon-Cross75" />
         </svg>
-      </button>
-    </div>
+      </div>
+    </button>
     `;
 
     const $searchInput =
@@ -1229,7 +1230,9 @@ const renderSearchBox = (renderOptions, isFirstRender) => {
       });
     }
 
-    const $button = widgetParams.container.querySelector("#search-clear-button");
+    const $button = widgetParams.container.querySelector(
+      "#search-clear-button"
+    );
 
     $button.addEventListener("click", () => {
       clear();
@@ -1250,14 +1253,12 @@ const renderHits = (renderOptions, isFirstRender) => {
         ${hits
           .map(
             (item) =>
-              `<li class="spectrum-Menu-item">
-                <span class="spectrum-Menu-itemLabel">
-                <strong>
+              `<li class="nav-search-results-item spectrum-Menu-item">
+                <strong class="spectrum-Body spectrum-Body--sizeM">
                   ${item.title}
                 <strong>
-                <p>${item.absoluteUrl}</p>
-                <p>${item.description}</p>
-                </span>
+                <p style="font-style: italic; margin-bottom: var(--spectrum-global-dimension-size-100);">${item.absoluteUrl}</p>
+                <p style="margin: var(--spectrum-global-dimension-size-100) 0;" class="spectrum-Body spectrum-Body--sizeS">${item.description}</p>
               </li>`
           )
           .join("")}

@@ -170,6 +170,14 @@
   --spectrum-alias-control-two-size-m: var(--spectrum-global-dimension-size-175);
   --spectrum-alias-control-two-size-l: var(--spectrum-global-dimension-size-200);
   --spectrum-alias-control-two-size-xl: var(--spectrum-global-dimension-size-225);
+  --spectrum-alias-infieldbutton-padding-s: 0;
+  --spectrum-alias-infieldbutton-padding-m: 0;
+  --spectrum-alias-infieldbutton-padding-l: 0;
+  --spectrum-alias-infieldbutton-padding-xl: 0;
+  --spectrum-alias-infieldbutton-full-height-s: var(--spectrum-global-dimension-size-300);
+  --spectrum-alias-infieldbutton-full-height-m: var(--spectrum-global-dimension-size-400);
+  --spectrum-alias-infieldbutton-full-height-l: var(--spectrum-global-dimension-size-500);
+  --spectrum-alias-infieldbutton-full-height-xl: var(--spectrum-global-dimension-size-600);
   --spectrum-alias-search-border-radius: var(--spectrum-global-dimension-size-50);
   --spectrum-alias-search-border-radius-quiet: 0;
   --spectrum-alias-border-size-thin: var(--spectrum-global-dimension-static-size-10);
@@ -300,6 +308,10 @@
   --spectrum-alias-input-border-color-invalid-hover: var(--spectrum-semantic-negative-color-hover);
   --spectrum-alias-input-border-color-invalid-mouse-focus: var(--spectrum-semantic-negative-color-hover);
   --spectrum-alias-input-border-color-invalid-key-focus: var(--spectrum-alias-border-color-key-focus);
+  --spectrum-alias-infieldbutton-fill-loudnessLow-background-color-default: transparent;
+  --spectrum-alias-infieldbutton-fill-loudnessLow-background-color-hover: transparent;
+  --spectrum-alias-infieldbutton-fill-loudnessLow-background-color-down: transparent;
+  --spectrum-alias-infieldbutton-fill-loudnessLow-background-color-key-focus: transparent;
   --spectrum-alias-actionbutton-staticBlack-border-color-default: rgba(0,0,0,0.4);
   --spectrum-alias-actionbutton-staticBlack-background-color-default: transparent;
   --spectrum-alias-actionbutton-staticBlack-border-color-hover: rgba(0,0,0,0.55);
@@ -353,9 +365,11 @@
   --spectrum-alias-focus-color: var(--spectrum-global-color-blue-400);
   --spectrum-alias-focus-ring-color: var(--spectrum-alias-focus-color);
   --spectrum-alias-icon-color: var(--spectrum-global-color-gray-700);
+  --spectrum-alias-icon-color-overbackground: var(--spectrum-global-color-static-white);
   --spectrum-alias-icon-color-hover: var(--spectrum-global-color-gray-900);
   --spectrum-alias-icon-color-down: var(--spectrum-global-color-gray-900);
   --spectrum-alias-icon-color-disabled: var(--spectrum-global-color-gray-400);
+  --spectrum-alias-icon-color-overbackground-disabled: rgba(255,255,255,0.2);
   --spectrum-alias-icon-color-selected-neutral-subdued: var(--spectrum-global-color-gray-800);
   --spectrum-alias-icon-color-selected: var(--spectrum-global-color-blue-500);
 }
@@ -4425,6 +4439,259 @@ a.spectrum-Button {
     .spectrum-Link--secondary:focus {
       color: linktext;
     }
+}
+
+.spectrum-ClearButton {
+  position: relative;
+
+  display: -ms-inline-flexbox;
+
+  display: inline-flex;
+  box-sizing: border-box;
+
+  -ms-flex-align: center;
+
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  overflow: visible;
+  margin: 0;
+
+  border-style: solid;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-appearance: button;
+  vertical-align: top;
+
+  transition: background 130ms ease-out,
+    border-color 130ms ease-out,
+    color 130ms ease-out,
+    box-shadow 130ms ease-out;
+
+  text-decoration: none;
+  font-family: var(--spectrum-global-font-family-base);
+
+  line-height: var(--spectrum-global-font-line-height-small);
+
+  -ms-user-select: none;
+
+      user-select: none;
+  -webkit-user-select: none;
+
+  cursor: pointer;
+}
+
+.spectrum-ClearButton:focus {
+    outline: none;
+  }
+
+.spectrum-ClearButton::-moz-focus-inner {
+    border: 0;
+    border-style: none;
+    padding: 0;
+    margin-top: -2px;
+    margin-bottom: -2px;
+  }
+
+.spectrum-ClearButton:disabled {
+    cursor: default;
+  }
+
+.spectrum-ClearButton {
+
+  border-radius: 100%;
+
+  background-color: transparent;
+  padding: var(--spectrum-clearbutton-padding);
+  margin: 0;
+
+  border: none;
+}
+
+.spectrum-ClearButton > .spectrum-Icon {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.spectrum-ClearButton--sizeS {
+  --spectrum-clearbutton-fill-uiicon-color-disabled: var(--spectrum-alias-component-icon-color-disabled);
+  --spectrum-clearbutton-fill-background-color-disabled: var(--spectrum-alias-background-color-transparent);
+  --spectrum-clearbutton-fill-uiicon-color: var(--spectrum-alias-component-icon-color-default);
+  --spectrum-clearbutton-fill-background-color: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-default);
+  --spectrum-clearbutton-fill-uiicon-color-down: var(--spectrum-alias-component-icon-color-down);
+  --spectrum-clearbutton-fill-background-color-down: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-down);
+  --spectrum-clearbutton-fill-background-color-hover: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-hover);
+  --spectrum-clearbutton-fill-uiicon-color-key-focus: var(--spectrum-alias-component-icon-color-key-focus);
+  --spectrum-clearbutton-fill-background-color-key-focus: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-key-focus);
+  --spectrum-clearbutton-fill-size: var(--spectrum-alias-infieldbutton-full-height-s);
+  --spectrum-clearbutton-padding: var(--spectrum-alias-infieldbutton-padding-s);
+}
+
+.spectrum-ClearButton--sizeM {
+  --spectrum-clearbutton-fill-uiicon-color-disabled: var(--spectrum-alias-component-icon-color-disabled);
+  --spectrum-clearbutton-fill-background-color-disabled: var(--spectrum-alias-background-color-transparent);
+  --spectrum-clearbutton-fill-uiicon-color: var(--spectrum-alias-component-icon-color-default);
+  --spectrum-clearbutton-fill-background-color: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-default);
+  --spectrum-clearbutton-fill-uiicon-color-down: var(--spectrum-alias-component-icon-color-down);
+  --spectrum-clearbutton-fill-background-color-down: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-down);
+  --spectrum-clearbutton-fill-background-color-hover: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-hover);
+  --spectrum-clearbutton-fill-uiicon-color-key-focus: var(--spectrum-alias-component-icon-color-key-focus);
+  --spectrum-clearbutton-fill-background-color-key-focus: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-key-focus);
+  --spectrum-clearbutton-fill-size: var(--spectrum-alias-infieldbutton-full-height-m);
+  --spectrum-clearbutton-padding: var(--spectrum-alias-infieldbutton-padding-m);
+}
+
+.spectrum-ClearButton--sizeL {
+  --spectrum-clearbutton-fill-uiicon-color-disabled: var(--spectrum-alias-component-icon-color-disabled);
+  --spectrum-clearbutton-fill-background-color-disabled: var(--spectrum-alias-background-color-transparent);
+  --spectrum-clearbutton-fill-uiicon-color: var(--spectrum-alias-component-icon-color-default);
+  --spectrum-clearbutton-fill-background-color: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-default);
+  --spectrum-clearbutton-fill-uiicon-color-down: var(--spectrum-alias-component-icon-color-down);
+  --spectrum-clearbutton-fill-background-color-down: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-down);
+  --spectrum-clearbutton-fill-background-color-hover: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-hover);
+  --spectrum-clearbutton-fill-uiicon-color-key-focus: var(--spectrum-alias-component-icon-color-key-focus);
+  --spectrum-clearbutton-fill-background-color-key-focus: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-key-focus);
+  --spectrum-clearbutton-fill-size: var(--spectrum-alias-infieldbutton-full-height-l);
+  --spectrum-clearbutton-padding: var(--spectrum-alias-infieldbutton-padding-l);
+}
+
+.spectrum-ClearButton--sizeXL {
+  --spectrum-clearbutton-fill-uiicon-color-disabled: var(--spectrum-alias-component-icon-color-disabled);
+  --spectrum-clearbutton-fill-background-color-disabled: var(--spectrum-alias-background-color-transparent);
+  --spectrum-clearbutton-fill-uiicon-color: var(--spectrum-alias-component-icon-color-default);
+  --spectrum-clearbutton-fill-background-color: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-default);
+  --spectrum-clearbutton-fill-uiicon-color-down: var(--spectrum-alias-component-icon-color-down);
+  --spectrum-clearbutton-fill-background-color-down: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-down);
+  --spectrum-clearbutton-fill-background-color-hover: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-hover);
+  --spectrum-clearbutton-fill-uiicon-color-key-focus: var(--spectrum-alias-component-icon-color-key-focus);
+  --spectrum-clearbutton-fill-background-color-key-focus: var(--spectrum-alias-infieldbutton-fill-loudnessLow-background-color-key-focus);
+  --spectrum-clearbutton-fill-size: var(--spectrum-alias-infieldbutton-full-height-xl);
+  --spectrum-clearbutton-padding: var(--spectrum-alias-infieldbutton-padding-xl);
+}
+
+.spectrum-ClearButton-fill {
+  background-color: var(--spectrum-clearbutton-fill-background-color);
+
+  width: var(--spectrum-clearbutton-fill-size);
+  height: var(--spectrum-clearbutton-fill-size);
+  border-radius: 100%;
+
+  display: -ms-flexbox;
+
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.spectrum-ClearButton {
+  color: var(--spectrum-alias-component-icon-color-default);
+}
+
+.spectrum-ClearButton:hover {
+    color: var(--spectrum-clearbutton-fill-uiicon-color);
+  }
+
+.spectrum-ClearButton:active {
+    color: var(--spectrum-clearbutton-fill-uiicon-color-down);
+  }
+
+.spectrum-ClearButton.focus-ring {
+    color: var(--spectrum-clearbutton-fill-uiicon-color-key-focus);
+  }
+
+.spectrum-ClearButton:disabled,
+  .spectrum-ClearButton.is-disabled {
+    color: var(--spectrum-clearbutton-fill-uiicon-color-disabled);
+  }
+
+.spectrum-ClearButton:hover .spectrum-ClearButton-fill {
+    background-color: var(--spectrum-clearbutton-fill-background-color-hover);
+  }
+
+.spectrum-ClearButton:active .spectrum-ClearButton-fill {
+    background-color: var(--spectrum-clearbutton-fill-background-color-down);
+  }
+
+.spectrum-ClearButton.focus-ring .spectrum-ClearButton-fill {
+    background-color: var(--spectrum-clearbutton-fill-background-color-key-focus);
+  }
+
+.spectrum-ClearButton:disabled .spectrum-ClearButton-fill, .spectrum-ClearButton.is-disabled .spectrum-ClearButton-fill {
+      background-color: var(--spectrum-clearbutton-fill-background-color-disabled);
+    }
+
+.spectrum-ClearButton--overBackground {
+  color: var(--spectrum-global-color-static-white);
+}
+
+.spectrum-ClearButton--overBackground:hover {
+    color: var(--spectrum-global-color-static-white);
+  }
+
+.spectrum-ClearButton--overBackground:active {
+    color: var(--spectrum-global-color-static-white);
+  }
+
+.spectrum-ClearButton--overBackground.focus-ring {
+    color: var(--spectrum-global-color-static-white);
+  }
+
+.spectrum-ClearButton--overBackground:disabled,
+  .spectrum-ClearButton--overBackground.is-disabled .spectrum-ClearButton-fill {
+    background-color: rgba(255,255,255,0.2);
+  }
+
+.spectrum-ClearButton--overBackground {
+  background-color: var(--spectrum-alias-background-color-transparent);
+  border-color: var(--spectrum-global-color-static-white);
+  color: var(--spectrum-global-color-static-white);
+}
+
+.spectrum-ClearButton--overBackground:hover {
+    background-color: var(--spectrum-global-color-static-transparent-white-300);
+    border-color: var(--spectrum-global-color-static-white);
+    color: var(--spectrum-global-color-static-white);
+  }
+
+.spectrum-ClearButton--overBackground.focus-ring {
+    background-color: var(--spectrum-global-color-static-transparent-white-300);
+    border-color: var(--spectrum-global-color-static-white);
+    color: var(--spectrum-global-color-static-white);
+    box-shadow: none;
+  }
+
+.spectrum-ClearButton--overBackground.focus-ring:after {
+      box-shadow: 0 0 0 var(--spectrum-global-dimension-static-size-25) var(--spectrum-global-color-static-white);
+    }
+
+.spectrum-ClearButton--overBackground:active {
+    background-color: var(--spectrum-global-color-static-transparent-white-400);
+    border-color: var(--spectrum-global-color-static-white);
+    color: var(--spectrum-global-color-static-white);
+  }
+
+.spectrum-ClearButton--overBackground:disabled,
+  .spectrum-ClearButton--overBackground.is-disabled {
+    background-color: var(--spectrum-alias-background-color-transparent);
+    border-color: var(--spectrum-global-color-static-transparent-white-200);
+    color: var(--spectrum-global-color-static-transparent-white-500);
+  }
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .spectrum-ClearButton > .spectrum-Icon {
+      margin: 0;
+    }
+}
+
+@media (forced-colors: active) {
+  .spectrum-ClearButton {
+    forced-color-adjust: none;
+  }
 }
 
 .spectrum-Card--sizeS {
@@ -10171,6 +10438,8 @@ header.global-nav-header div.nav-search-text {
 
 header.global-nav-header div.nav-search-popover {
   display: flex;
+  min-width: var(--spectrum-global-dimension-size-800);
+  z-index: 100;
   position: absolute;
   top: var(--spectrum-global-dimension-size-400);
   width: 688px;
@@ -10192,10 +10461,26 @@ header.global-nav-header div.nav-search-popover {
 } */
 
 header.global-nav-header ul.nav-search-results {
+  height: calc(
+    100% - var(--spectrum-global-dimension-size-800) -
+      var(--spectrum-global-dimension-size-800) -
+      var(--spectrum-global-dimension-size-200)
+  );
+  overflow: auto;
+}
+
+@media screen and (max-width: 768px) {
+  header.global-nav-header ul.nav-search-results {
+    height: auto;
+    overflow: inherit;
+  }
+}
+
+header.global-nav-header li.nav-search-results-item {
   margin: var(--spectrum-global-dimension-size-300);
 }
 
-header.global-nav-header ul.nav-search-results mark,
+header.global-nav-header li.nav-search-results-item mark,
 em {
   background-color: transparent;
   color: inherit;
