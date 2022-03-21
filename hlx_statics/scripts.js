@@ -129,6 +129,15 @@ window.adobeIMSMethods = {
   },
 };
 
+// cookie preference
+window.fedsConfig = {
+  privacy: {
+    // TODO config from adobe.com
+    otDomainId: '7a5eb705-95ed-4cc4-a11d-0cc5760e93db',
+    footerLinkSelector: '#openPrivacy'
+  }
+};
+
 // See https://github.com/adobe/react-spectrum/blob/dac6d273a9843694a652d7513ff88f6a9c773887/packages/%40react-spectrum/utils/src/useIsMobileDevice.ts#L15
 const MOBILE_SCREEN_WIDTH = 700;
 const LARGE_SCREEN_WIDTH = 1280;
@@ -209,6 +218,7 @@ const $FOOTER_LINKS =
       "links": [
       { "name": "Terms of use", "url": "https://adobe.com/legal/terms.html" },
       { "name": "Privacy policy", "url": "https://adobe.com/privacy.html" },
+      { "name": "Cookie preferences", "url": "#", "id": "openPrivacy" },
       { "name": "Cookies", "url": "https://adobe.com/privacy/cookies.html" },
       { "name": "AdChoices", "url": "https://adobe.com/privacy/opt-out.html#interest-based-ads" }
     ]
@@ -429,10 +439,10 @@ let $CURRENT_API_FILTERS = [];
     });
   }
 
-  function footerListItem(name, url) {
+  function footerListItem(name, url, id='') {
     return `
       <li>
-        <a href="${url}" class="spectrum-Link spectrum-Link--secondary spectrum-Link--quiet">${name}</a>
+        <a href="${url}" ${id ? 'id=' + id : ''} class="spectrum-Link spectrum-Link--secondary spectrum-Link--quiet">${name}</a>
       </li>
     `;
   }
@@ -543,7 +553,7 @@ let $CURRENT_API_FILTERS = [];
 
       let $legalLinksHTML = '';
       $FOOTER_LINKS[5].links.forEach(($link) => {
-        $legalLinksHTML += footerListItem($link.name, $link.url)
+        $legalLinksHTML += footerListItem($link.name, $link.url, $link.id)
       });
 
       let $legalLinksTemplate = `
@@ -1873,6 +1883,10 @@ let $CURRENT_API_FILTERS = [];
     const $adobeAnalytics = document.createElement('script');
     $adobeAnalytics.src = 'https://www.adobe.com/marketingtech/main.min.js';
     document.body.appendChild($adobeAnalytics);
+
+    const $cookiePreference = document.createElement('script');
+    $cookiePreference.src = 'https://wwwimages2.adobe.com/etc/beagle/public/globalnav/adobe-privacy/latest/privacy.min.js';
+    document.body.appendChild($cookiePreference);
 
     // We're done, let the page render
     document.documentElement.classList.remove('helix-loading');
