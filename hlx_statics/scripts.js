@@ -97,7 +97,7 @@ if($IS_HLX_PATH) {
     'adobe': {
       'launch': {
         'property': 'global',
-        'environment': 'prod'
+        'environment': 'production'
       },
       'analytics': {
         'additionalAccounts': 'pgeo1xxpnwadobeio-prod'
