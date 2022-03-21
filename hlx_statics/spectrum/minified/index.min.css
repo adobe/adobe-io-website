@@ -7449,3 +7449,7 @@ div.resource-cards-left > a.resource-card-large-container-inner {
   display: flex;
   flex-direction: column;
 }
+
+#onetrust-consent-sdk, #ot-cookie-settings {
+  font-family: "adobe-clean",sans-serif;
+}
