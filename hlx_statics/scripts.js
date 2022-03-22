@@ -1260,7 +1260,7 @@ const renderSearchBox = (renderOptions, isFirstRender) => {
     const $searchResultsList = $searchResults.querySelector("#search-results-list");
 
     if ($searchInput) {
-      $searchInput.addEventListener("keyup", (evt) => {
+      $searchInput.addEventListener("input", (evt) => {
         const $searchQuery = evt.target.value;
         $searchResultsList.innerHTML = "";
         
@@ -1365,6 +1365,8 @@ function decorateHeaderRight($header) {
       $searchForm.classList.toggle("isClosed");
     });
 
+    let searchTimerID;
+
     search.forEach((searchInstance, idx) => {
       !idx
         ? searchInstance.addWidgets([
@@ -1373,6 +1375,10 @@ function decorateHeaderRight($header) {
             }),
             spectrumSearchBox({
               container: $header.querySelector("#nav-search"),
+              queryHook(query, refine) {
+                clearTimeout(searchTimerID)
+                searchTimerID = setTimeout(() => refine(query), 500)
+              },
             }),
             spectrumHits({
               container: $header.querySelector("#search-results-list"),
