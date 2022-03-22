@@ -4,9 +4,53 @@ let $ALGOLIA_APP_ID = "E642SEDTHL";
 let $ALGOLIA_API_KEY = "36561fc0f6d8f1ecf996bc7bf41af00f";
 
 const searchClient = algoliasearch($ALGOLIA_APP_ID, $ALGOLIA_API_KEY);
-const search = instantsearch({
-  indexName: "stock",
+const searchIndices = [
+  "creative-cloud",
+  "photoshop",
+  "xd",
+  "adobeio",
+  "app-builder",
+  "stock",
+  "lightroom",
+  "lightroom-classic",
+  "indesign",
+  "illustrator",
+  "premiere-pro",
+  "after-effects",
+  "bridge",
+  "animate",
+  "audition",
+  "dreamweaver",
+  "adobe-fonts",
+  "camera-raw",
+  "customer-journey-analytics",
+  "xmp",
+  "cloud-manager",
+  "experience-platform-apis",
+  "document-services",
+  "pwa-devdocs",
+];
+const search = searchIndices.map((searchIndex, idx) => {
+  return !idx
+    ? ""
+    : instantsearch({
+        indexName: searchIndex,
+        searchClient,
+      });
+});
+
+search[0] = instantsearch({
+  indexName: searchIndices[0],
   searchClient,
+  searchFunction: function (helper) {
+    const query = search[0].helper.state.query;
+    search.forEach((searchInstance, idx) => {
+      if (!idx) return;
+      searchInstance.helper.setQuery(query);
+      searchInstance.helper.search();
+    });
+    helper.search();
+  },
 });
 
 if (
@@ -974,7 +1018,9 @@ function globalNavSearchPopDown() {
       <div id="nav-search" class="nav-search-popdown isClosed">
         <div class="nav-search-popdown-container">
           <form id="search-box" class="spectrum-Search nav-search-form"></form> 
-          <div id="search-results" class="nav-search-popover spectrum-Popover spectrum-Popover--bottom"></div>
+          <div id="search-results" class="nav-search-popover spectrum-Popover spectrum-Popover--bottom">
+            <ul id="search-results-list" class="nav-search-results spectrum-Menu" role="listbox"></ul>
+          </div>
         </div>
       </div>
     `;
@@ -1211,12 +1257,14 @@ const renderSearchBox = (renderOptions, isFirstRender) => {
       widgetParams.container.querySelector("#nav-search-input");
     const $searchResults =
       widgetParams.container.querySelector("#search-results");
+    const $searchResultsList = $searchResults.querySelector("#search-results-list");
 
     if ($searchInput) {
-      $searchInput.addEventListener("input", (evt) => {
+      $searchInput.addEventListener("keyup", (evt) => {
         const $searchQuery = evt.target.value;
-
-        refine($searchQuery);
+        $searchResultsList.innerHTML = "";
+        
+        !$searchQuery.length ? "" : refine($searchQuery);
 
         if ($searchResults) {
           const isOpen = $searchResults.classList.contains("is-open");
@@ -1236,6 +1284,7 @@ const renderSearchBox = (renderOptions, isFirstRender) => {
 
     $button.addEventListener("click", () => {
       clear();
+      $searchResults.classList.remove("is-open");
     });
   }
 
@@ -1247,23 +1296,21 @@ const spectrumSearchBox =
 
 const renderHits = (renderOptions, isFirstRender) => {
   const { hits, widgetParams } = renderOptions;
-
-  widgetParams.container.innerHTML = `
-      <ul id="search-results-list" class="nav-search-results spectrum-Menu" role="listbox">
-        ${hits
-          .map(
-            (item) =>
-              `<li class="nav-search-results-item spectrum-Menu-item">
-                <strong class="spectrum-Body spectrum-Body--sizeM">
-                  ${item.title}
-                <strong>
-                <p style="font-style: italic; margin-bottom: var(--spectrum-global-dimension-size-100);">${item.absoluteUrl}</p>
-                <p style="margin: var(--spectrum-global-dimension-size-100) 0;" class="spectrum-Body spectrum-Body--sizeS">${item.description}</p>
-              </li>`
-          )
-          .join("")}
-      </ul>
-    `;
+  const newHits = hits
+    .map(
+      (item) =>
+        `<li class="nav-search-results-item spectrum-Menu-item">
+        <strong class="spectrum-Body spectrum-Body--sizeM">
+          ${item.title}
+        <strong>
+        <p style="font-style: italic; margin-bottom: var(--spectrum-global-dimension-size-100);">${item.absoluteUrl}</p>
+        <p style="margin: var(--spectrum-global-dimension-size-100) 0;" class="spectrum-Body spectrum-Body--sizeS">${item.description}</p>
+      </li>`
+    )
+    .join("");
+  const listedHits = widgetParams.container.innerHTML;
+  const updatedHitsList = listedHits.concat("", newHits);
+  widgetParams.container.innerHTML = updatedHitsList;
 };
 
 const spectrumHits = instantsearch.connectors.connectHits(renderHits);
@@ -1318,16 +1365,29 @@ function decorateHeaderRight($header) {
       $searchForm.classList.toggle("isClosed");
     });
 
-    search.addWidgets([
-      spectrumSearchBox({
-        container: $header.querySelector("#nav-search"),
-      }),
-      spectrumHits({
-        container: $header.querySelector("#search-results"),
-      }),
-    ]);
-
-    search.start();
+    search.forEach((searchInstance, idx) => {
+      !idx
+        ? searchInstance.addWidgets([
+            instantsearch.widgets.configure({
+              hitsPerPage: 3,
+            }),
+            spectrumSearchBox({
+              container: $header.querySelector("#nav-search"),
+            }),
+            spectrumHits({
+              container: $header.querySelector("#search-results-list"),
+            }),
+          ])
+        : searchInstance.addWidgets([
+            instantsearch.widgets.configure({
+              hitsPerPage: 3,
+            }),
+            spectrumHits({
+              container: $header.querySelector("#search-results-list"),
+            }),
+          ]);
+      searchInstance.start();
+    });
 
     let $form = $header.querySelector("form.nav-search-form");
     if ($form) {
