@@ -614,6 +614,9 @@ let $CURRENT_API_FILTERS = [];
 
       // delete image and re-insert as bg
       let $heroImageSrc = $heroSection.querySelector('img') ? $heroSection.querySelector('img').src : null;
+      // alt text
+      let $heroImageAlt = $heroSection.querySelector('img') ? $heroSection.querySelector('img').alt : '';
+      $heroSection.prepend(createTag('span', {role: 'img', "aria-label": $heroImageAlt }));
 
       $heroSection.querySelectorAll('picture source').forEach(($picture) => {
         //remove weird max-width attribute
@@ -623,9 +626,7 @@ let $CURRENT_API_FILTERS = [];
 
       $heroSection.style.backgroundImage = `url(${$heroImageSrc})`;
 
-      // alt text
-      let $heroImageAlt = $heroImageSrc.alt ? $heroImageSrc.alt : '';
-      $heroSection.prepend(createTag('span', {role: 'img', "aria-label": $heroImageAlt }));
+
     });
   }
 
@@ -949,7 +950,7 @@ let $CURRENT_API_FILTERS = [];
           <div id="nav-profile-dropdown-popover" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet">
             <div class="nav-profile-popover-innerContainer">
               <div class="nav-profile-popover-avatar">
-                <img alt="Avatar" id="nav-profile-popover-avatar-img" src=${profile.avatarUrl} />
+                <img alt="Avatar" id="nav-profile-popover-avatar-img" src=${profile.avatarUrl} alt="Profile icon" />
               </div>
 
               <div class="nav-profile-popover-name">
@@ -989,7 +990,7 @@ let $CURRENT_API_FILTERS = [];
       }
       $profileButton.innerHTML = `
         <div class="nav-profile-popover-avatar-button">
-          <img alt="Avatar" src=${$avatarUrl} />
+          <img alt="Avatar" src=${$avatarUrl} alt="Profile avatar" />
         </div>
       `
     } catch (e) {
@@ -1539,14 +1540,14 @@ let $CURRENT_API_FILTERS = [];
     //   });
     // });
   }
-  function getResourceCard(size,linkHref, imgSrc, heading, text) {
+  function getResourceCard(size,linkHref, imgSrc, heading, text, altText='') {
     return `
           <a class="spectrum-Card"
              href=${linkHref}
           >
             <div class="spectrum-Card-preview resource-card-preview">
               <div class="resource-card-image-container spectrum-Asset">
-                <img class="spectrum-Asset-image" src=${imgSrc} />
+                <img class="spectrum-Asset-image" src=${imgSrc} alt="${altText}"/>
               </div>
             </div>
             <div class="spectrum-Card-body resource-card-body">
@@ -1580,8 +1581,9 @@ let $CURRENT_API_FILTERS = [];
         let $heading = $resource.querySelector('a')?.innerText;
         let $imgSrc = $resource.querySelector('img')?.src;
         let $text = $resource.querySelector('p')?.innerText;
-  
-        $resource.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text);
+        let $altText = $resource.querySelector('img')?.alt;
+
+        $resource.innerHTML = getResourceCard('large', $linkHref, $imgSrc, $heading, $text, $altText);
       });
     });
     /*
@@ -1691,6 +1693,8 @@ let $CURRENT_API_FILTERS = [];
 
       // delete image and re-insert as bg
       let $summaryImageSrc = $summary.querySelector('img') ? $summary.querySelector('img').src : null;
+      let $summaryImageAlt = $summary.querySelector('img') ? $summary.querySelector('img').alt : '';
+      $summary.prepend(createTag('span', {role: 'img', "aria-label": $summaryImageAlt }));
 
       $summary.querySelectorAll('picture').forEach(($picture) => {
         //remove weird max-width attribute
