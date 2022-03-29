@@ -622,6 +622,10 @@ let $CURRENT_API_FILTERS = [];
       });
 
       $heroSection.style.backgroundImage = `url(${$heroImageSrc})`;
+
+      // alt text
+      let $heroImageAlt = $heroImageSrc.alt ? $heroImageSrc.alt : '';
+      $heroSection.prepend(createTag('span', {role: 'img', "aria-label": $heroImageAlt }));
     });
   }
 
