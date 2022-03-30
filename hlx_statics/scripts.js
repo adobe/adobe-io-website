@@ -1248,6 +1248,7 @@ let $CURRENT_API_FILTERS = [];
           
           setActiveTab();
           window.adobeIMSMethods.getProfile();
+          focusRing($header);
         });
       }
     });
@@ -1778,6 +1779,16 @@ let $CURRENT_API_FILTERS = [];
     });
 
     domObj.querySelectorAll('button.spectrum-Picker').forEach(($button) => {
+      $button.addEventListener('focus', () => {
+        $button.classList.add('focus-ring');
+      });
+
+      $button.addEventListener('blur', () => {
+        $button.classList.remove('focus-ring');
+      });
+    });
+
+    domObj.querySelectorAll('div.nav-sign-in button').forEach(($button) => {
       $button.addEventListener('focus', () => {
         $button.classList.add('focus-ring');
       });
