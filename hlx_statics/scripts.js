@@ -757,7 +757,7 @@ let $CURRENT_API_FILTERS = [];
             if(b === "Learn More"){
               $link = makeApiLinkRelative(card[b]);
               buttonTemplate +=
-                `<a href="${$link}" class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet spectrum-Button--sizeM" >
+                `<a href="${$link}" class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet spectrum-Button--sizeM" id="${card.Title}-lm" aria-labelledby="${card.Title}-lm ${card.Title}">
                   <span class="spectrum-Button-label">${b}</span>
                 </a>`
 
@@ -765,7 +765,7 @@ let $CURRENT_API_FILTERS = [];
               $link = makeApiLinkRelative(card[b]);
               buttonTemplate +=
               `
-              <a href="${$link}" class="spectrum-Button spectrum-Button--primary spectrum-Button--sizeM">
+              <a href="${$link}" class="spectrum-Button spectrum-Button--primary spectrum-Button--sizeM" id="${card.Title}-vd" aria-labelledby="${card.Title}-vd ${card.Title}">
                 <span class="spectrum-Button-label">${b}</span>
               </a>
               `
@@ -788,7 +788,7 @@ let $CURRENT_API_FILTERS = [];
           class="api-card-title-container spectrum-Card-header spectrum-Heading spectrum-Heading--sizeXXS"
         >
           <div class="api-card-title spectrum-Card-title">
-            <strong><h4>${card.Title}</h4></strong>
+            <strong><h4 id=${card.Title}>${card.Title}</h4></strong>
           </div>
         </div>
         <div
