@@ -1255,7 +1255,6 @@ function isTopLevelNav(urlPathname) {
 const renderSearchBox = (renderOptions, isFirstRender) => {
   const { query, refine, clear, widgetParams } = renderOptions;
 
-
   if (isFirstRender) {
     const $searchBox = widgetParams.container.querySelector("#search-box");
 
@@ -1375,6 +1374,53 @@ const renderHits = (renderOptions, isFirstRender) => {
 
 const spectrumHits = instantsearch.connectors.connectHits(renderHits);
 
+const renderRefinementList = (renderOptions, isFirstRender) => {
+  const { items, refine, widgetParams } = renderOptions;
+  const $refinementContainer = widgetParams.container;
+
+   const $newRefinements = items
+    .map(
+      (item) => `
+      <label className="spectrum-Checkbox spectrum-Checkbox--emphasized spectrum-Checkbox--sizeM">
+        <input
+          type="checkbox"
+          value="${item.value}"
+          className="spectrum-Checkbox-input"
+        />
+        <span className="spectrum-Checkbox-box">
+          <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Checkbox-checkmark" focusable="false" aria-hidden="true">
+            <use xlink:href="#spectrum-css-icon-Checkmark100" />
+          </svg>
+        </span>
+        <span className="spectrum-Checkbox-label">
+          <span>${item.label}</span>
+          <em>&nbsp;(${item.count})</em>
+        </span>
+      </label>
+      `
+    )
+    .join("");
+
+  const $listedRefinements = $refinementContainer?.innerHTML;
+  const $updatedRefinementsList = $listedRefinements?.concat("", $newRefinements);
+
+  $refinementContainer.innerHTML = $updatedRefinementsList;
+
+  [
+    ...$refinementContainer.querySelectorAll("input"),
+  ].forEach((element) => {
+    element.addEventListener("change", (evt) => {
+      evt.preventDefault();
+      if (evt.currentTarget.checked) {
+        refine(evt.currentTarget.value);
+      }
+    });
+  });
+};
+
+const spectrumRefinementList =
+  instantsearch.connectors.connectRefinementList(renderRefinementList);
+
 function decorateHeaderRight($header) {
   let $currentHeader = $header;
   let $searchButton;
@@ -1443,6 +1489,10 @@ function decorateHeaderRight($header) {
             spectrumHits({
               container: $header.querySelector("#nav-search"),
             }),
+            spectrumRefinementList({
+              container: $header.querySelector("#search-filter-options"),
+              attribute: "keywords",
+            }),
           ])
         : searchInstance.addWidgets([
             instantsearch.widgets.configure({
@@ -1450,6 +1500,10 @@ function decorateHeaderRight($header) {
             }),
             spectrumHits({
               container: $header.querySelector("#nav-search"),
+            }),
+            spectrumRefinementList({
+              container: $header.querySelector("#search-filter-options"),
+              attribute: "keywords",
             }),
           ]);
       searchInstance.start();
