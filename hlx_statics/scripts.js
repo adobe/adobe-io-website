@@ -59,7 +59,6 @@ const setQueryStringParameter = (name, value) => {
   params.set(name, value);
   window.history.replaceState({}, "", `${window.location.pathname}?${params}`);
 };
-
 const getQueryStringParameter = (name) => {
   const params = new URLSearchParams(window.location.search);
   return params.get(name);
@@ -1034,7 +1033,7 @@ function globalNavSearchPopDown() {
             <div id="search-suggestions-list" class="nav-search-suggestions spectrum-Menu" role="listbox"></div>
           </div>
         </div>
-        <div id="nav-search-container" class="nav-search-container">
+        <div id="nav-search-container" class="nav-search-container isClosed">
           <div id="search-filter-sidenav" class="search-filter-sidenav">
             <h4 className="spectrum-Heading spectrum-Heading--sizeXS" style="margin-bottom: var(--spectrum-global-dimension-size-100);">
                 Filter by
@@ -1048,6 +1047,7 @@ function globalNavSearchPopDown() {
             <div id="search-results" class="search-results"></div>
           </div>
         </div>
+        <div id="search-drop-shadow" class="search-drop-shadow" />
       </div>
     `;
 }
@@ -1290,25 +1290,32 @@ const renderSearchBox = (renderOptions, isFirstRender) => {
       );
       const $searchSuggestionResultsList =
         $searchSuggestionResults.querySelector("#search-suggestions-list");
+      const $searchRefinementsList = widgetParams.container.querySelector(
+        "#search-filter-options"
+      );
+
       let $searchQuery;
 
       if ($searchInput) {
         $searchInput.addEventListener("input", (evt) => {
           $searchQuery = evt.target.value;
           $searchSuggestionResultsList.innerHTML = "";
+          $searchRefinementsList.innerHTML = "";
 
           !$searchQuery.length ? "" : refine($searchQuery);
 
-          if ($searchSuggestionResults) {
-            const isOpen =
-              $searchSuggestionResults.classList.contains("is-open");
+          if (!getQueryStringParameter("query")) {
+            if ($searchSuggestionResults) {
+              const isOpen =
+                $searchSuggestionResults.classList.contains("is-open");
 
-            if (!$searchQuery.length) {
-              isOpen
-                ? $searchSuggestionResults.classList.remove("is-open")
-                : "";
-            } else {
-              isOpen ? "" : $searchSuggestionResults.classList.add("is-open");
+              if (!$searchQuery.length) {
+                isOpen
+                  ? $searchSuggestionResults.classList.remove("is-open")
+                  : "";
+              } else {
+                isOpen ? "" : $searchSuggestionResults.classList.add("is-open");
+              }
             }
           }
         });
@@ -1327,9 +1334,17 @@ const renderSearchBox = (renderOptions, isFirstRender) => {
         evt.preventDefault();
         if ($searchQuery) {
           setQueryStringParameter("query", $searchQuery);
-          setQueryStringParameter("keywords", ["a", "b"]);
+          setQueryStringParameter("keywords", []);
           setQueryStringParameter("index", "all");
+
+          const queryStringChange = new Event("popstate");
+          window.dispatchEvent(queryStringChange);
         }
+      });
+
+      window.addEventListener("popstate", (evt) => {
+        evt.preventDefault();
+        refine(getQueryStringParameter("query"));
       });
     }
   }
@@ -1342,50 +1357,83 @@ const spectrumSearchBox =
 
 const renderHits = (renderOptions, isFirstRender) => {
   const { hits, widgetParams } = renderOptions;
-  let $hitsContainer;
-  let $newHits;
 
   if (getQueryStringParameter("query")) {
-    $hitsContainer = widgetParams.container.querySelector("#search-results");
-  } else {
-    $hitsContainer = widgetParams.container.querySelector(
-      "#search-suggestions-list"
-    );
-  }
-
-  $newHits = hits
-    .map(
-      (item) =>
-        `<div class="nav-search-suggestions-item spectrum-Menu-item">
+    widgetParams.container
+      .querySelector("#search-drop-shadow")
+      .classList.add("isClosed");
+    widgetParams.container.bottom = 0;
+    const $searchResults =
+      widgetParams.container.querySelector("#search-results");
+    const $newHits = hits
+      .map(
+        (item) =>
+          `<div class="nav-search-suggestions-item spectrum-Menu-item">
             <strong class="spectrum-Body spectrum-Body--sizeM">
               <a href="${item.absoluteUrl}">${item.title}</a>
             <strong>
             <p style="font-style: italic; margin-bottom: var(--spectrum-global-dimension-size-100);">${item.absoluteUrl}</p>
             <p style="margin: var(--spectrum-global-dimension-size-100) 0;" class="spectrum-Body spectrum-Body--sizeS">${item.description}</p>
           </div>`
-    )
-    .join("");
+      )
+      .join("");
 
-  const $listedHits = $hitsContainer?.innerHTML;
-  const $updatedHitsList = $listedHits.concat("", $newHits);
+    const $listedHits = $searchResults.innerHTML;
+    const $updatedHitsList = $listedHits.concat("", $newHits);
 
-  $hitsContainer.innerHTML = $updatedHitsList;
+    $searchResults.innerHTML = $updatedHitsList;
+  } else {
+    const $searchSuggestions = widgetParams.container.querySelector(
+      "#search-suggestions-list"
+    );
+    const $newHits = hits
+      .slice(0, 3)
+      .map(
+        (item) =>
+          `<div class="nav-search-suggestions-item spectrum-Menu-item">
+            <strong class="spectrum-Body spectrum-Body--sizeM">
+              <a href="${item.absoluteUrl}">${item.title}</a>
+            <strong>
+            <p style="font-style: italic; margin-bottom: var(--spectrum-global-dimension-size-100);">${item.absoluteUrl}</p>
+            <p style="margin: var(--spectrum-global-dimension-size-100) 0;" class="spectrum-Body spectrum-Body--sizeS">${item.description}</p>
+          </div>`
+      )
+      .join("");
+
+    const $listedHits = $searchSuggestions.innerHTML;
+    const $updatedHitsList = $listedHits.concat("", $newHits);
+
+    $searchSuggestions.innerHTML = $updatedHitsList;
+  }
 };
 
 const spectrumHits = instantsearch.connectors.connectHits(renderHits);
 
 const renderRefinementList = (renderOptions, isFirstRender) => {
-  const { items, refine, widgetParams } = renderOptions;
-  const $refinementContainer = widgetParams.container;
+  if (getQueryStringParameter("query")) {
+    const { items, refine, widgetParams } = renderOptions;
+    const $refinementContainer = widgetParams.container.querySelector(
+      "#nav-search-container"
+    );
+    const $filterOptions = $refinementContainer.querySelector(
+      ".search-filter-options"
+    );
+    const $searchResults =
+      widgetParams.container.querySelector("#search-results");
 
-   const $newRefinements = items
-    .map(
-      (item) => `
+    $refinementContainer.classList.remove("isClosed");
+
+    console.log(items);
+
+    const $newRefinements = items
+      .map(
+        (item) => `
       <label className="spectrum-Checkbox spectrum-Checkbox--emphasized spectrum-Checkbox--sizeM">
         <input
           type="checkbox"
           value="${item.value}"
           className="spectrum-Checkbox-input"
+          checked="${item.isRefined}"
         />
         <span className="spectrum-Checkbox-box">
           <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Checkbox-checkmark" focusable="false" aria-hidden="true">
@@ -1398,24 +1446,40 @@ const renderRefinementList = (renderOptions, isFirstRender) => {
         </span>
       </label>
       `
-    )
-    .join("");
+      )
+      .join("");
 
-  const $listedRefinements = $refinementContainer?.innerHTML;
-  const $updatedRefinementsList = $listedRefinements?.concat("", $newRefinements);
+    const $updatedRefinementsList = $newRefinements;
 
-  $refinementContainer.innerHTML = $updatedRefinementsList;
+    $filterOptions.innerHTML = $updatedRefinementsList;
 
-  [
-    ...$refinementContainer.querySelectorAll("input"),
-  ].forEach((element) => {
-    element.addEventListener("change", (evt) => {
-      evt.preventDefault();
-      if (evt.currentTarget.checked) {
-        refine(evt.currentTarget.value);
-      }
+    [...$filterOptions.querySelectorAll("input")].forEach((element) => {
+      element.addEventListener("change", (evt) => {
+        evt.preventDefault();
+        if (evt.currentTarget.checked) {
+          if (!getQueryStringParameter("keywords").split(",").length) {
+            setQueryStringParameter("keywords", [evt.currentTarget.value]);
+          } else {
+            setQueryStringParameter("keywords", [
+              ...getQueryStringParameter("keywords").split(","),
+              evt.currentTarget.value,
+            ]);
+          }
+        } else if (
+          getQueryStringParameter("keywords").includes(evt.currentTarget.value)
+        ) {
+          setQueryStringParameter(
+            "keywords",
+            getQueryStringParameter("keywords")
+              .split(",")
+              .filter((keyword) => keyword === evt.currentTarget.value)
+          );
+        }
+        $searchResults.innerHTML = "";
+        refine(getQueryStringParameter("keywords").split(","));
+      });
     });
-  });
+  }
 };
 
 const spectrumRefinementList =
@@ -1469,6 +1533,11 @@ function decorateHeaderRight($header) {
       let $searchForm = $header.querySelector("#nav-search");
 
       $searchForm.classList.toggle("isClosed");
+      if (document.body.style.overflow === "hidden") {
+        document.body.style.overflow = "visible";
+      } else {
+        document.body.style.overflow = "hidden";
+      }
     });
 
     let searchTimerID;
@@ -1477,7 +1546,7 @@ function decorateHeaderRight($header) {
       !idx
         ? searchInstance.addWidgets([
             instantsearch.widgets.configure({
-              hitsPerPage: 3,
+              hitsPerPage: 5,
             }),
             spectrumSearchBox({
               container: $header.querySelector("#nav-search"),
@@ -1490,19 +1559,19 @@ function decorateHeaderRight($header) {
               container: $header.querySelector("#nav-search"),
             }),
             spectrumRefinementList({
-              container: $header.querySelector("#search-filter-options"),
+              container: $header.querySelector("#nav-search"),
               attribute: "keywords",
             }),
           ])
         : searchInstance.addWidgets([
             instantsearch.widgets.configure({
-              hitsPerPage: 3,
+              hitsPerPage: 5,
             }),
             spectrumHits({
               container: $header.querySelector("#nav-search"),
             }),
             spectrumRefinementList({
-              container: $header.querySelector("#search-filter-options"),
+              container: $header.querySelector("#nav-search"),
               attribute: "keywords",
             }),
           ]);
