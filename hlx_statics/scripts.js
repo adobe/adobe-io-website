@@ -1030,7 +1030,7 @@ function globalNavSearchPopDown() {
         <div class="nav-search-popdown-container">
           <form id="search-box" class="spectrum-Search nav-search-form"></form> 
           <div id="search-suggestions" class="nav-search-popover spectrum-Popover spectrum-Popover--bottom">
-            <div id="search-suggestions-list" class="nav-search-suggestions spectrum-Menu" role="listbox"></div>
+            <ul style="display: block;" id="search-suggestions-list" class="nav-search-suggestions spectrum-Menu" role="menu"></ul>
           </div>
         </div>
         <div id="nav-search-container" class="nav-search-container isClosed">
@@ -1044,7 +1044,7 @@ function globalNavSearchPopDown() {
           </div>
           <div id="search-results-container" style="height:100%;">
             <div class="search-results-tabs"></div>
-            <div id="search-results" class="search-results"></div>
+            <div style="width: auto;" id="search-results" class="search-results"></div>
           </div>
         </div>
         <div id="search-drop-shadow" class="search-drop-shadow" />
@@ -1293,6 +1293,8 @@ const renderSearchBox = (renderOptions, isFirstRender) => {
       const $searchRefinementsList = widgetParams.container.querySelector(
         "#search-filter-options"
       );
+      const $searchResults =
+        widgetParams.container.querySelector("#search-results");
 
       let $searchQuery;
 
@@ -1300,7 +1302,6 @@ const renderSearchBox = (renderOptions, isFirstRender) => {
         $searchInput.addEventListener("input", (evt) => {
           $searchQuery = evt.target.value;
           $searchSuggestionResultsList.innerHTML = "";
-          $searchRefinementsList.innerHTML = "";
 
           !$searchQuery.length ? "" : refine($searchQuery);
 
@@ -1336,6 +1337,8 @@ const renderSearchBox = (renderOptions, isFirstRender) => {
           setQueryStringParameter("query", $searchQuery);
           setQueryStringParameter("keywords", []);
           setQueryStringParameter("index", "all");
+          $searchResults.innerHTML = "";
+          $searchRefinementsList.innerHTML = "";
 
           const queryStringChange = new Event("popstate");
           window.dispatchEvent(queryStringChange);
@@ -1368,12 +1371,20 @@ const renderHits = (renderOptions, isFirstRender) => {
     const $newHits = hits
       .map(
         (item) =>
-          `<div class="nav-search-suggestions-item spectrum-Menu-item">
-            <strong class="spectrum-Body spectrum-Body--sizeM">
-              <a href="${item.absoluteUrl}">${item.title}</a>
-            <strong>
-            <p style="font-style: italic; margin-bottom: var(--spectrum-global-dimension-size-100);">${item.absoluteUrl}</p>
-            <p style="margin: var(--spectrum-global-dimension-size-100) 0;" class="spectrum-Body spectrum-Body--sizeS">${item.description}</p>
+          `<div class="search-results-item">
+              <div style="margin-bottom: var(--spectrum-global-dimension-size-100);" class="spectrum-Body spectrum-Body--sizeM">
+                <a href="${item.absoluteUrl}" class="spectrum-Link spectrum-Link--quiet">
+                  <span>${item.title}</span>
+                </a>
+              </div>
+              <div style="font-style: italic;">
+                <a href="${item.absoluteUrl}" class="spectrum-Link spectrum-Link--quiet spectrum-Link--secondary">
+                 ${item.absoluteUrl}
+                </a>
+              </div>
+              <div style="margin: var(--spectrum-global-dimension-size-100) 0;" class="spectrum-Body spectrum-Body--sizeS">
+                ${item.description}
+              </div>
           </div>`
       )
       .join("");
@@ -1390,13 +1401,21 @@ const renderHits = (renderOptions, isFirstRender) => {
       .slice(0, 3)
       .map(
         (item) =>
-          `<div class="nav-search-suggestions-item spectrum-Menu-item">
-            <strong class="spectrum-Body spectrum-Body--sizeM">
-              <a href="${item.absoluteUrl}">${item.title}</a>
-            <strong>
-            <p style="font-style: italic; margin-bottom: var(--spectrum-global-dimension-size-100);">${item.absoluteUrl}</p>
-            <p style="margin: var(--spectrum-global-dimension-size-100) 0;" class="spectrum-Body spectrum-Body--sizeS">${item.description}</p>
-          </div>`
+          `<a style="text-align: left;" class=" spectrum-Menu-item" href="${item.absoluteUrl}" role="menuitem">
+              <span class="spectrum-Menu-itemLabel">
+                <div class="nav-search-suggestions-item">
+                  <strong>
+                    ${item.title}
+                  </strong>
+                  <div style="font-style: italic;margin: var(--spectrum-global-dimension-size-50) 0;">
+                    ${item.absoluteUrl}
+                  </div>
+                  <div>
+                    ${item.description}
+                  </div>
+                </div>
+              </span>
+          </a>`
       )
       .join("");
 
@@ -1408,6 +1427,8 @@ const renderHits = (renderOptions, isFirstRender) => {
 };
 
 const spectrumHits = instantsearch.connectors.connectHits(renderHits);
+
+let filterKeywords = {};
 
 const renderRefinementList = (renderOptions, isFirstRender) => {
   if (getQueryStringParameter("query")) {
@@ -1423,30 +1444,35 @@ const renderRefinementList = (renderOptions, isFirstRender) => {
 
     $refinementContainer.classList.remove("isClosed");
 
-    console.log(items);
-
-    const $newRefinements = items
-      .map(
-        (item) => `
-      <label className="spectrum-Checkbox spectrum-Checkbox--emphasized spectrum-Checkbox--sizeM">
-        <input
-          type="checkbox"
-          value="${item.value}"
-          className="spectrum-Checkbox-input"
-          checked="${item.isRefined}"
-        />
-        <span className="spectrum-Checkbox-box">
-          <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Checkbox-checkmark" focusable="false" aria-hidden="true">
-            <use xlink:href="#spectrum-css-icon-Checkmark100" />
-          </svg>
-        </span>
-        <span className="spectrum-Checkbox-label">
-          <span>${item.label}</span>
-          <em>&nbsp;(${item.count})</em>
-        </span>
-      </label>
-      `
-      )
+    items.map((item) => {
+      filterKeywords.hasOwnProperty[item.value]
+        ? (filterKeywords[item.value] =
+            filterKeywords[item.value].count + item.count)
+        : (filterKeywords[item.value] = item);
+    });
+    const $newRefinements = Object.keys(filterKeywords)
+      .map((key) => {
+        const item = filterKeywords[key];
+        return `
+          <label className="spectrum-Checkbox spectrum-Checkbox--emphasized spectrum-Checkbox--sizeM">
+            <input
+              type="checkbox"
+              value="${item.value}"
+              className="spectrum-Checkbox-input"
+              ${item.isRefined ? "checked" : ""}
+            />
+            <span className="spectrum-Checkbox-box">
+              <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Checkbox-checkmark" focusable="false" aria-hidden="true">
+                <use xlink:href="#spectrum-css-icon-Checkmark100" />
+              </svg>
+            </span>
+            <span className="spectrum-Checkbox-label">
+              <span>${item.label}</span>
+              <em>&nbsp;(${item.count})</em>
+            </span>
+          </label>
+          `;
+      })
       .join("");
 
     const $updatedRefinementsList = $newRefinements;
@@ -1476,7 +1502,8 @@ const renderRefinementList = (renderOptions, isFirstRender) => {
           );
         }
         $searchResults.innerHTML = "";
-        refine(getQueryStringParameter("keywords").split(","));
+        //revisit: is this prone to script injection of sorts?
+        refine(element.value);
       });
     });
   }
