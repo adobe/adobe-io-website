@@ -12,6 +12,11 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+img {
+  width: auto;
+  height: auto;
+}
+
 header.main-header {
   grid-area: header;
   position: fixed;
