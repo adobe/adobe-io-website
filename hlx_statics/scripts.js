@@ -928,6 +928,18 @@ let $CURRENT_API_FILTERS = [];
 
   function globalNavSearchButton() {
     return `
+        <div class="nav-console-search-button">
+          <button id="nav-dropdown-search" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--emphasized spectrum-ActionButton--quiet">
+            <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Edit">
+              <use xlink:href="#spectrum-icon-24-Search"></use>
+            </svg>
+          </button>
+        </div>
+      `;
+  }
+
+  function globalNavSearchButton() {
+    return `
       <div class="nav-console-search-button">
         <button id="nav-dropdown-search" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--emphasized spectrum-ActionButton--quiet">
           <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Edit">
@@ -1140,7 +1152,12 @@ let $CURRENT_API_FILTERS = [];
         });
 
         $linkContainerHTML = globalNavLinks($linkHTML);
-        $header.innerHTML = globalNavTemplate($linkContainerHTML);
+
+        let $searchButtonHTML = globalNavSearchButton();
+        $header.innerHTML = globalNavTemplate(
+          $linkContainerHTML,
+          $searchButtonHTML
+        );
 
         let $currentHeader = $header;
         $header.querySelectorAll('button.navigation-dropdown').forEach(($button) => {
