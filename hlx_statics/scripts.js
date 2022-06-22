@@ -943,7 +943,7 @@ let $CURRENT_API_FILTERS = [];
   function globalNavSearchDropDown() {
     return `
       <div class="nav-console-search-frame">
-        <iframe id="nav-search-iframe" src="https://developer-stage.adobe.com/search-frame/">
+        <iframe id="nav-search-iframe" src="http://localhost:8000">
 
         </iframe>
       </div>
@@ -1283,10 +1283,12 @@ let $CURRENT_API_FILTERS = [];
             $button.addEventListener('click', (evt) => {
               if(!evt.currentTarget.classList.contains('is-open')){
                 $button.classList.add('is-open');
-                $searchDropdownPopover.style.visibility = 'visible'
+                $searchDropdownPopover.style.visibility = 'visible';
+                document.body.style.overflow = 'hidden';
               } else {
                 $button.classList.remove('is-open');
-                $searchDropdownPopover.style.visibility = 'hidden'
+                $searchDropdownPopover.style.visibility = 'hidden';
+                document.body.style.overflow = 'auto';
               }
             });
           })

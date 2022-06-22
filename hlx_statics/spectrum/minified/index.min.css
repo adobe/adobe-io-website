@@ -7262,6 +7262,28 @@ header.global-nav-header a.nav-profile-popover-sign-out {
   margin-bottom: var(--spectrum-global-dimension-size-300);
 }
 
+header iframe {
+  border-width: 0;
+  border-style: none;
+
+}
+
+header div.nav-console-search-frame {
+  position: fixed;
+  top: var(--spectrum-global-dimension-size-800);
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: transparent;
+  z-index: 10;
+  visibility: hidden;
+}
+
+header div.nav-console-search-frame iframe {
+  width: 100%;
+  height: 100%;
+}
+
 footer {
   position: relative;
   padding-bottom: var(--spectrum-global-dimension-size-400);

@@ -413,13 +413,15 @@ header div.nav-console-search-frame {
   top: var(--spectrum-global-dimension-size-800);
   left: 0px;
   right: 0px;
-  background-color: var(--spectrum-global-color-static-white);
+  bottom: 0px;
+  background-color: transparent;
   z-index: 10;
   visibility: hidden;
 }
 
 header div.nav-console-search-frame iframe {
   width: 100%;
+  height: 100%;
 }
 
 footer {
