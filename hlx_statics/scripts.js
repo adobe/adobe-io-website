@@ -943,7 +943,7 @@ let $CURRENT_API_FILTERS = [];
   function globalNavSearchDropDown() {
     return `
       <div class="nav-console-search-frame">
-        <iframe id="nav-search-iframe" src="http://localhost:8000">
+        <iframe id="nav-search-iframe" src="https://developer-stage.adobe.com/search-frame/">
 
         </iframe>
       </div>
