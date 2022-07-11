@@ -21,6 +21,23 @@ const getQueryStringParameter = (name) => {
   const params = new URLSearchParams(window.location.search);
   return params.get(name);
 };
+const getQueryString = () => {
+  const params = new URLSearchParams(window.location.search);
+  return params.toString();
+}
+
+window.addEventListener('message', function (e) {
+
+  // comment out for debugging
+  if (e.origin !== 'https://developer-stage.adobe.com/search-frame/' || e.origin !== 'https://developer.adobe.com/search-frame/') return;
+
+  const message = JSON.parse(e.data);
+
+  setQueryStringParameter('query', message.query);
+  setQueryStringParameter('keywords', message.keywords);
+  setQueryStringParameter('index', message.index);
+
+});
 
 if ($IS_HLX_PATH) {
   window.adobeid = {
@@ -942,7 +959,7 @@ function globalNavViewDocsButton(url) {
 function globalNavSearchButton() {
   return `
       <div class="nav-console-search-button">
-        <button id="nav-dropdown-search" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--emphasized spectrum-ActionButton--quiet">
+        <button id="nav-dropdown-search" style="visibility: hidden;" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--emphasized spectrum-ActionButton--quiet">
           <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Edit">
             <use xlink:href="#spectrum-icon-24-Search"></use>
           </svg>
@@ -1144,7 +1161,6 @@ function decorateHeader() {
     // also add whitelist of paths instead of this 
     let $linkHTML = '';
     if (isTopLevelNav(window.location.pathname)) {
-      console.log("1");
       $HEADER_LINKS.forEach(($link, index) => {
         if ($link.links.length === 1) {
           $linkHTML += globalNavLinkItem($link.name, fixRelativeLinks($link.links[0].url), false);
@@ -1210,7 +1226,6 @@ function decorateHeader() {
         adobeIMSMethods.signIn();
       });
     } else {
-      console.log("2");
       $linkHTML += globalNavLinkItem('Products', '/apis', true);
       globalNavLinks($linkHTML);
       fetchNav().then($discoveryLinks => {
@@ -1290,6 +1305,8 @@ function decorateHeader() {
         const $searchDropdownPopover = $header.querySelector('div.nav-console-search-frame');
         const searchFrameOnLoad = () => {
           $header.querySelectorAll('#nav-dropdown-search').forEach(($button) => {
+            $button.style.visibility = "visible";
+
             $button.addEventListener('click', (evt) => {
               if (!evt.currentTarget.classList.contains('is-open')) {
                 $button.classList.add('is-open');
@@ -1303,11 +1320,14 @@ function decorateHeader() {
             });
           })
         }
+        const queryParams = getQueryStringParameter('query');
+        const queryString = getQueryString();
         const searchFrame = document.createElement('iframe');
         searchFrame.id = "nav-search-iframe";
         searchFrame.onLoad = searchFrameOnLoad();
-        searchFrame.src = `https://developer-stage.adobe.com/search-frame/`;
-        searchFrame.onClick = searchFrameOncClick();
+        searchFrame.src = `https://developer-stage.adobe.com/search-frame/${queryParams ? `?${queryString}` : ''}`;
+        // For local debugging only
+        // searchFrame.src = `http://localhost:8000/${queryParams ? `?${queryString}` : ''}`;
         $searchDropdownPopover.appendChild(searchFrame);
       });
     }
