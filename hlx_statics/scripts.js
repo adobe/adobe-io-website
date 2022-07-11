@@ -28,8 +28,9 @@ const getQueryString = () => {
 
 window.addEventListener('message', function (e) {
 
-  // comment out for debugging
-  if (e.origin !== 'https://developer-stage.adobe.com/search-frame/' || e.origin !== 'https://developer.adobe.com/search-frame/') return;
+  const expectedOrigin = window.location.hostname === 'localhost' ? 'http://localhost:8000' : window.location.hostname === 'developer.adobe.com' ? 'https://developer.adobe.com' : 'https://developer-stage.adobe.com';
+
+  if (e.origin !== expectedOrigin) return;
 
   const message = JSON.parse(e.data);
 
@@ -1325,9 +1326,7 @@ function decorateHeader() {
         const searchFrame = document.createElement('iframe');
         searchFrame.id = "nav-search-iframe";
         searchFrame.onLoad = searchFrameOnLoad();
-        searchFrame.src = `https://developer-stage.adobe.com/search-frame/${queryParams ? `?${queryString}` : ''}`;
-        // For local debugging only
-        // searchFrame.src = `http://localhost:8000/${queryParams ? `?${queryString}` : ''}`;
+        searchFrame.src = `${window.location.hostname === 'localhost' ? 'http://localhost:8000' : window.location.hostname === 'developer.adobe.com' ? 'https://developer.adobe.com/search-frame' : 'https://developer-stage.adobe.com/search-frame'}${queryParams ? `?${queryString}` : ''}`;
         $searchDropdownPopover.appendChild(searchFrame);
       });
     }
