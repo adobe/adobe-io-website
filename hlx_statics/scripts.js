@@ -1,5 +1,6 @@
 let $IS_HLX_PATH = false;
 let $IS_STAGE = false;
+let $IS_DEV = false;
 
 if (window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf('hlx.live') >= 0 || window.location.host.indexOf('localhost') >= 0) {
   $IS_HLX_PATH = true;
@@ -9,26 +10,43 @@ if (window.location.host.indexOf('stage.adobe.io') >= 0 || window.location.host.
   $IS_STAGE = true;
 }
 
+if (window.location.host.indexOf('localhost') >= 0) {
+  $IS_DEV = true;
+}
+
 window.adobeid = {};
 
-// Used to update the url in the browser
 const setQueryStringParameter = (name, value) => {
   const params = new URLSearchParams(window.location.search);
   params.set(name, value);
   window.history.replaceState({}, "", `${window.location.pathname}?${params}`);
 };
-const getQueryStringParameter = (name) => {
-  const params = new URLSearchParams(window.location.search);
-  return params.get(name);
-};
 const getQueryString = () => {
   const params = new URLSearchParams(window.location.search);
   return params.toString();
 }
+const setExpectedOrigin = () => {
+  if ($IS_DEV) {
+    return 'http://localhost:8000';
+  } else if ($IS_STAGE || $IS_HLX_PATH) {
+    return 'https://developer-stage.adobe.com';
+  } else {
+    return 'https://developer.adobe.com';
+  }
+}
+const setSearchFrameSource = () => {
+  const src = $IS_DEV ? setExpectedOrigin() : `${setExpectedOrigin()}/search-frame`;
+  const queryString = getQueryString();
+  if (queryString) {
+    return `${src}?${queryString}`;
+  } else {
+    return src;
+  }
+}
+
 
 window.addEventListener('message', function (e) {
-
-  const expectedOrigin = window.location.hostname === 'localhost' ? 'http://localhost:8000' : window.location.hostname === 'developer.adobe.com' ? 'https://developer.adobe.com' : 'https://developer-stage.adobe.com';
+  const expectedOrigin = setExpectedOrigin();
 
   if (e.origin !== expectedOrigin) return;
 
@@ -1321,12 +1339,10 @@ function decorateHeader() {
             });
           })
         }
-        const queryParams = getQueryStringParameter('query');
-        const queryString = getQueryString();
         const searchFrame = document.createElement('iframe');
         searchFrame.id = "nav-search-iframe";
         searchFrame.onLoad = searchFrameOnLoad();
-        searchFrame.src = `${window.location.hostname === 'localhost' ? 'http://localhost:8000' : window.location.hostname === 'developer.adobe.com' ? 'https://developer.adobe.com/search-frame' : 'https://developer-stage.adobe.com/search-frame'}${queryParams ? `?${queryString}` : ''}`;
+        searchFrame.src = setSearchFrameSource();
         $searchDropdownPopover.appendChild(searchFrame);
       });
     }
