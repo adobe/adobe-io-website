@@ -978,7 +978,7 @@ function globalNavViewDocsButton(url) {
 function globalNavSearchButton() {
   return `
       <div class="nav-console-search-button">
-        <button id="nav-dropdown-search" style="visibility: hidden;" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--emphasized spectrum-ActionButton--quiet">
+        <button class="nav-dropdown-search" style="visibility: hidden;" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--emphasized spectrum-ActionButton--quiet">
           <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Edit">
             <use xlink:href="#spectrum-icon-24-Search"></use>
           </svg>
@@ -1171,6 +1171,33 @@ function isTopLevelNav(urlPathname) {
   }
 }
 
+function decorateSearchIframeContainer($header) {
+  $header.querySelectorAll('div.nav-console-search-frame').forEach(($searchIframeContainer) => {
+    const searchFrameOnLoad = () => {
+      $header.querySelectorAll('button.nav-dropdown-search').forEach(($button) => {
+        $button.style.visibility = "visible";
+
+        $button.addEventListener('click', (evt) => {
+          if (!evt.currentTarget.classList.contains('is-open')) {
+            $button.classList.add('is-open');
+            $searchIframeContainer.style.visibility = 'visible';
+            document.body.style.overflow = 'hidden';
+          } else {
+            $button.classList.remove('is-open');
+            $searchIframeContainer.style.visibility = 'hidden';
+            document.body.style.overflow = 'auto';
+          }
+        });
+      })
+    }
+    const searchFrame = document.createElement('iframe');
+    searchFrame.id = "nav-search-iframe";
+    searchFrame.onLoad = searchFrameOnLoad();
+    searchFrame.src = setSearchFrameSource();
+    $searchIframeContainer.appendChild(searchFrame);
+  });
+}
+
 function decorateHeader() {
   document.querySelectorAll('header').forEach(($header) => {
     $header.classList.add('main-header');
@@ -1244,6 +1271,8 @@ function decorateHeader() {
       $signIn.addEventListener('click', (evt) => {
         adobeIMSMethods.signIn();
       });
+
+      decorateSearchIframeContainer($header)
     } else {
       $linkHTML += globalNavLinkItem('Products', '/apis', true);
       globalNavLinks($linkHTML);
@@ -1321,29 +1350,7 @@ function decorateHeader() {
         window.adobeIMSMethods.getProfile();
         focusRing($header);
 
-        const $searchDropdownPopover = $header.querySelector('div.nav-console-search-frame');
-        const searchFrameOnLoad = () => {
-          $header.querySelectorAll('#nav-dropdown-search').forEach(($button) => {
-            $button.style.visibility = "visible";
-
-            $button.addEventListener('click', (evt) => {
-              if (!evt.currentTarget.classList.contains('is-open')) {
-                $button.classList.add('is-open');
-                $searchDropdownPopover.style.visibility = 'visible';
-                document.body.style.overflow = 'hidden';
-              } else {
-                $button.classList.remove('is-open');
-                $searchDropdownPopover.style.visibility = 'hidden';
-                document.body.style.overflow = 'auto';
-              }
-            });
-          })
-        }
-        const searchFrame = document.createElement('iframe');
-        searchFrame.id = "nav-search-iframe";
-        searchFrame.onLoad = searchFrameOnLoad();
-        searchFrame.src = setSearchFrameSource();
-        $searchDropdownPopover.appendChild(searchFrame);
+        decorateSearchIframeContainer($header);
       });
     }
   });
