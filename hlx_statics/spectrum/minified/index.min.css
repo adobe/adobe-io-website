@@ -6873,6 +6873,11 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+img {
+  width: auto;
+  height: auto;
+}
+
 header.main-header {
   grid-area: header;
   position: fixed;
@@ -7193,6 +7198,18 @@ header.global-nav-header div.nav-console-right-container {
 
 header.global-nav-header div.nav-console-search-button {
   margin-right: 24px;
+
+}
+
+header.global-nav-header button.nav-dropdown-search {
+  border: none;
+  background-color: #fff;
+  color: var(--spectrum-alias-text-color);
+}
+
+header.global-nav-header button.nav-dropdown-search:hover {
+  cursor: pointer;
+  color: var(--spectrum-alias-text-color-hover);
 }
 
 header.global-nav-header div.nav-console-button {
