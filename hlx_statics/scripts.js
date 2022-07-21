@@ -51,11 +51,13 @@ window.addEventListener('message', function (e) {
   if (e.origin !== expectedOrigin) return;
 
   try{
-    const message = JSON.parse(e.data);
+    if(typeof e !== 'object') {
+      const message = JSON.parse(e.data);
 
-    setQueryStringParameter('query', message.query);
-    setQueryStringParameter('keywords', message.keywords);
-    setQueryStringParameter('index', message.index);
+      setQueryStringParameter('query', message.query);
+      setQueryStringParameter('keywords', message.keywords);
+      setQueryStringParameter('index', message.index);
+    }
   } catch (e) {
     console.error(e);
   }
