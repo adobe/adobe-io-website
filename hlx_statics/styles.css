@@ -337,6 +337,18 @@ header.global-nav-header div.nav-console-right-container {
 
 header.global-nav-header div.nav-console-search-button {
   margin-right: 24px;
+
+}
+
+header.global-nav-header button.nav-dropdown-search {
+  border: none;
+  background-color: #fff;
+  color: var(--spectrum-actionbutton-m-quiet-text-color,var(--spectrum-alias-text-color));
+}
+
+header.global-nav-header button.nav-dropdown-search:hover {
+  cursor: pointer;
+  color: var(--spectrum-actionbutton-m-quiet-text-color-hover,var(--spectrum-alias-text-color-hover));
 }
 
 header.global-nav-header div.nav-console-button {
