@@ -50,12 +50,15 @@ window.addEventListener('message', function (e) {
 
   if (e.origin !== expectedOrigin) return;
 
-  const message = JSON.parse(e.data);
+  try{
+    const message = JSON.parse(e.data);
 
-  setQueryStringParameter('query', message.query);
-  setQueryStringParameter('keywords', message.keywords);
-  setQueryStringParameter('index', message.index);
-
+    setQueryStringParameter('query', message.query);
+    setQueryStringParameter('keywords', message.keywords);
+    setQueryStringParameter('index', message.index);
+  } catch (e) {
+    console.error(error);
+  }
 });
 
 if ($IS_HLX_PATH) {
