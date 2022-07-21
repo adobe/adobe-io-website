@@ -57,7 +57,7 @@ window.addEventListener('message', function (e) {
     setQueryStringParameter('keywords', message.keywords);
     setQueryStringParameter('index', message.index);
   } catch (e) {
-    console.error(error);
+    console.error(e);
   }
 });
 
