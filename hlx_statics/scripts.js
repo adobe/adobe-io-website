@@ -1140,7 +1140,7 @@ function decorateProfile(profile) {
   let $signIn = document.querySelector('div.nav-sign-in');
   let $parentContainer = $signIn.parentElement;
   $signIn.remove();
-  $parentContainer.insertAdjacentHTML("afterend", globalNavProfileTemplate(profile));
+  $parentContainer.insertAdjacentHTML("beforeend", globalNavProfileTemplate(profile));
 
   let $profileDropdownPopover = $parentContainer.querySelector('div#nav-profile-dropdown-popover');
   let $button = $parentContainer.querySelector('button#nav-profile-dropdown-button');
