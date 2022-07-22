@@ -365,6 +365,7 @@ header.global-nav-header div#nav-profile-dropdown-popover {
   max-height: var(--spectrum-global-dimension-size-4600);
   right: 0;
   top: calc(64px - var(--spectrum-overlay-animation-distance) + 1px);
+  z-index: 100;
 }
 
 header.global-nav-header div.nav-profile-popover-innerContainer {
