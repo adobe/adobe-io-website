@@ -23,7 +23,7 @@ function decorateLinks(block) {
     a.className = '';
     a.classList.add('spectrum-Button');
     a.target = '_blank';
-    a.rel = 'noopener noreferrer';    
+    a.rel = 'noopener noreferrer';
     if (a.parentElement.tagName === 'STRONG') {
       // Primary
       a.classList.add('spectrum-Button--fill', 'spectrum-Button--accent', 'spectrum-Button--sizeM');
@@ -46,9 +46,9 @@ function decorateLinks(block) {
  * decorates the hero
  * @param {Element} block The hero block element
  */
-export default function decorate(block) {  
+export default function decorate(block) {
   // Block decoration
-  block.classList.add('spectrum--lightest');  
+  block.classList.add('spectrum--lightest');
   // H1 decoration
   block.querySelectorAll('h1').forEach((h1) => {
     h1.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
@@ -66,4 +66,3 @@ export default function decorate(block) {
     }
   });
 }
-
