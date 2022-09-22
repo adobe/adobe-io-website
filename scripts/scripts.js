@@ -90,10 +90,24 @@ export function decorateMain(main) {
 }
 
 /**
+ * Decorates the html element.
+ * @param {*} html The html element
+ */
+function decorateHTML(html) {
+  html.className = 'spectrum spectrum--light spectrum--medium';
+  html.dir = 'ltr';
+  html.lang = 'en';
+}
+
+/**
  * loads everything needed to get to LCP.
  */
 async function loadEager(doc) {
   decorateTemplateAndTheme();
+  const html = doc.querySelector('html');
+  if (html) {
+    decorateHTML(html);
+  }
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
