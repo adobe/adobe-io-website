@@ -1,6 +1,10 @@
 import { createOptimizedPicture } from '../../scripts/lib-helix.js';
 
-export default function decorate(block) {
+/**
+ * loads and decorates the cards
+ * @param {Element} block The cards block element
+ */
+export default async function decorate(block) {
   /* change to ul, li */
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {

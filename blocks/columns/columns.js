@@ -1,4 +1,8 @@
-export default function decorate(block) {
+/**
+ * loads and decorates the columns
+ * @param {Element} block The columns block element
+ */
+export default async function decorate(block) {
   block.classList.add('spectrum--light');
   block.querySelectorAll('.columns > div > div:first-child').forEach((column) => {
     column.classList.add('first-column');
@@ -21,10 +25,8 @@ export default function decorate(block) {
 
   block.querySelectorAll('a').forEach((a) => {
     a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
-    //if (isLinkExternal(a.href)) {
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
-    //}
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
   });
 
   block.querySelectorAll('div > div.second-column').forEach((secondColumn) => {

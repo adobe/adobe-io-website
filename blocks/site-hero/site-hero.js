@@ -1,6 +1,6 @@
 /**
- * decorates the banenr
- * @param {Element} block The banner block element
+ * decorates the info
+ * @param {Element} block The info block element
  */
 export default async function decorate(block) {
   const h1 = block.querySelector('h1');

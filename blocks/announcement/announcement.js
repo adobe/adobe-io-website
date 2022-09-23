@@ -2,7 +2,7 @@
  * decorates the announcement
  * @param {Element} block The announcement block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
   // Decorate h3
   block.querySelectorAll('h3').forEach((h3) => {
     h3.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'announce-heading');

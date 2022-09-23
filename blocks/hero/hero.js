@@ -46,7 +46,7 @@ function decorateLinks(block) {
  * decorates the hero
  * @param {Element} block The hero block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
   // Block decoration
   block.classList.add('spectrum--lightest');
   // H1 decoration

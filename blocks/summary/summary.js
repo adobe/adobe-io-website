@@ -2,7 +2,7 @@
  * decorates the summary
  * @param {Element} block The summary block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
   block.classList.add('spectrum--dark');
   block.querySelectorAll('h2').forEach((h2) => {
     h2.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL');
@@ -21,7 +21,7 @@ export default function decorate(block) {
     });
   });
   // delete image and re-insert as bg
-  const summaryImageSrc = block.querySelector('img') ? block.querySelector('img').src.replace('format=png', 'format=webply') : null;
+/*  const summaryImageSrc = block.querySelector('img') ? block.querySelector('img').src.replace('format=png', 'format=webply') : null;
   const summaryImageAlt = block.querySelector('img') ? block.querySelector('img').alt : '';
   const span = document.createElement('span');
   span.role = 'img';
@@ -30,5 +30,5 @@ export default function decorate(block) {
   block.querySelectorAll('picture').forEach((picture) => {
     picture.parentElement.parentElement.remove();
   });
-  block.parentElement.parentElement.style.backgroundImage = `url(${summaryImageSrc})`;
+  block.parentElement.parentElement.style.backgroundImage = `url(${summaryImageSrc})`;*/
 }
