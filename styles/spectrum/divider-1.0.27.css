@@ -1,55 +1,8 @@
-.spectrum-Divider--sizeS {
-    --spectrum-divider-height: var(--spectrum-divider-s-height, var(--spectrum-global-dimension-size-10));
-    --spectrum-divider-vertical-height: var(--spectrum-divider-s-vertical-height, var(--spectrum-global-dimension-size-10));
-    --spectrum-divider-vertical-width: var(--spectrum-divider-s-vertical-width, var(--spectrum-global-dimension-size-10));
-  }
-  
-  .spectrum-Divider--sizeM {
-    --spectrum-divider-height: var(--spectrum-divider-m-height, var(--spectrum-global-dimension-size-25));
-    --spectrum-divider-vertical-height: var(--spectrum-divider-m-vertical-height, var(--spectrum-global-dimension-size-25));
-    --spectrum-divider-vertical-width: var(--spectrum-divider-m-vertical-width, var(--spectrum-global-dimension-size-25));
-  }
-  
-  .spectrum-Divider--sizeL {
-    --spectrum-divider-height: var(--spectrum-divider-l-height, var(--spectrum-global-dimension-size-50));
-    --spectrum-divider-vertical-height: var(--spectrum-divider-l-vertical-height, var(--spectrum-global-dimension-size-50));
-    --spectrum-divider-vertical-width: var(--spectrum-divider-l-vertical-width, var(--spectrum-global-dimension-size-50));
-  }
-  
-  .spectrum-Divider {
-    --spectrum-divider-vertical-height: 100%;
-  }
-  
-  .spectrum-Divider {
-    width: 100%;
-    height: var(--spectrum-divider-height);
-    overflow: visible;
-  
-    border: none;
-    border-width: var(--spectrum-divider-height);
-    border-radius: var(--spectrum-divider-height);
-  }
-  
-  .spectrum-Divider--vertical {
-    height: var(--spectrum-divider-vertical-height);
-    width: var(--spectrum-divider-vertical-width);
-  }
-  
-  .spectrum-Divider {
-    --spectrum-divider-l-background-color: var(--spectrum-global-color-gray-800);
-    --spectrum-divider-m-background-color: var(--spectrum-global-color-gray-300);
-    --spectrum-divider-s-background-color: var(--spectrum-global-color-gray-300);
-  }
-  
-  .spectrum-Divider--sizeL {
-    background-color: var(--spectrum-divider-l-background-color, var(--spectrum-global-color-gray-800));
-  }
-  
-  .spectrum-Divider--sizeM {
-    background-color: var(--spectrum-divider-m-background-color, var(--spectrum-global-color-gray-300));
-  }
-  
-  .spectrum-Divider--sizeS {
-    background-color: var(--spectrum-divider-s-background-color, var(--spectrum-global-color-gray-300));
-  }
-  
+/**
+ * Minified by jsDelivr using clean-css v5.3.0.
+ * Original file: /npm/@spectrum-css/divider@1.0.27/dist/index-vars.css
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+.spectrum-Divider--sizeS{--spectrum-divider-height:var(--spectrum-divider-s-height, var(--spectrum-global-dimension-size-10));--spectrum-divider-vertical-height:var(--spectrum-divider-s-vertical-height, var(--spectrum-global-dimension-size-10));--spectrum-divider-vertical-width:var(--spectrum-divider-s-vertical-width, var(--spectrum-global-dimension-size-10))}.spectrum-Divider--sizeM{--spectrum-divider-height:var(--spectrum-divider-m-height, var(--spectrum-global-dimension-size-25));--spectrum-divider-vertical-height:var(--spectrum-divider-m-vertical-height, var(--spectrum-global-dimension-size-25));--spectrum-divider-vertical-width:var(--spectrum-divider-m-vertical-width, var(--spectrum-global-dimension-size-25))}.spectrum-Divider--sizeL{--spectrum-divider-height:var(--spectrum-divider-l-height, var(--spectrum-global-dimension-size-50));--spectrum-divider-vertical-height:var(--spectrum-divider-l-vertical-height, var(--spectrum-global-dimension-size-50));--spectrum-divider-vertical-width:var(--spectrum-divider-l-vertical-width, var(--spectrum-global-dimension-size-50))}.spectrum-Divider{--spectrum-divider-vertical-height:100%}.spectrum-Divider{width:100%;height:var(--spectrum-divider-height);overflow:visible;border:none;border-width:var(--spectrum-divider-height);border-radius:var(--spectrum-divider-height)}.spectrum-Divider--vertical{height:var(--spectrum-divider-vertical-height);width:var(--spectrum-divider-vertical-width)}.spectrum-Divider{--spectrum-divider-l-background-color:var(--spectrum-global-color-gray-800);--spectrum-divider-m-background-color:var(--spectrum-global-color-gray-300);--spectrum-divider-s-background-color:var(--spectrum-global-color-gray-300)}.spectrum-Divider--sizeL{background-color:var(--spectrum-divider-l-background-color,var(--spectrum-global-color-gray-800))}.spectrum-Divider--sizeM{background-color:var(--spectrum-divider-m-background-color,var(--spectrum-global-color-gray-300))}.spectrum-Divider--sizeS{background-color:var(--spectrum-divider-s-background-color,var(--spectrum-global-color-gray-300))}
+/*# sourceMappingURL=/sm/b0c15a3e93527672b53e78de1b1fd682bbf7a19948e28bb51c562c3bcf2b8323.map */
