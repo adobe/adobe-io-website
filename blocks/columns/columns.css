@@ -10,7 +10,7 @@ main div.columns {
 } 
 
 main .columns span.icon {
-    visibility: hidden;
+    display: none;
 }
 
 @media screen and (max-width: 1280px) {
