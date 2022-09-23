@@ -21,7 +21,7 @@ export default function decorate(block) {
     });
   });
   // delete image and re-insert as bg
-  const summaryImageSrc = block.querySelector('img') ? block.querySelector('img').src : null;
+  const summaryImageSrc = block.querySelector('img') ? block.querySelector('img').src.replace('format=png', 'format=webply') : null;
   const summaryImageAlt = block.querySelector('img') ? block.querySelector('img').alt : '';
   const span = document.createElement('span');
   span.role = 'img';
