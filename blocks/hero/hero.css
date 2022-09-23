@@ -61,6 +61,7 @@ main div.hero {
     width: var(--spectrum-global-dimension-size-600);
     margin-top: 0 !important;
     margin-bottom: var(--spectrum-global-dimension-size-300) !important;
+    visibility: hidden;
   }
   
   main .hero .icon {
