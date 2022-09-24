@@ -15,8 +15,6 @@ import {
 } from './lib-helix.js';
 
 import {
-  decorateHelix2Embeds,
-  decorateEmbeds,
   toggleScale,
 } from './lib-adobeio.js';
 
@@ -119,8 +117,6 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadBlocks(main);
-  await decorateHelix2Embeds();
-  await decorateEmbeds();
   const { hash } = window.location;
   const element = hash ? main.querySelector(hash) : false;
   if (hash && element) element.scrollIntoView();
