@@ -1,9 +1,16 @@
+import {
+  checkExternalLink,
+  createTag,
+  removeEmptyPTags,
+} from '../../scripts/lib-adobeio.js';
+
 /**
  * loads and decorates the columns
  * @param {Element} block The columns block element
  */
 export default async function decorate(block) {
   block.classList.add('spectrum--light');
+  removeEmptyPTags(block);
   block.querySelectorAll('.columns > div > div:first-child').forEach((column) => {
     column.classList.add('first-column');
   });
@@ -19,19 +26,17 @@ export default async function decorate(block) {
     if (!p.classList.contains('icon-container') && hasLinks.length === 0) {
       p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
     } else if (hasLinks.length > 0) {
-      p.classList.add('icon-container')
+      p.classList.add('icon-container');
     }
   });
 
   block.querySelectorAll('a').forEach((a) => {
     a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
+    checkExternalLink(a);
   });
 
   block.querySelectorAll('div > div.second-column').forEach((secondColumn) => {
-    const productLinkContainer = document.createElement('div');
-    productLinkContainer.className = 'product-link-container';
+    const productLinkContainer = createTag('div', { class: 'product-link-container' });
     secondColumn.querySelectorAll('p.icon-container').forEach((innerSecond) => {
       productLinkContainer.append(innerSecond);
     });
