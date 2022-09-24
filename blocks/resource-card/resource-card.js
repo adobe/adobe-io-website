@@ -2,6 +2,10 @@ import {
   removeEmptyPTags,
 } from '../../scripts/lib-adobeio.js';
 
+import {
+  createOptimizedPicture,
+} from '../../scripts/lib-helix.js';
+
 /**
  * Returns the HTML for a resource card
  * @param {*} linkHref The link to the resource
@@ -11,14 +15,14 @@ import {
  * @param {*} altText The alternative text of the card
  * @returns The resource card HTML
  */
-function getResourceCard(linkHref, imgSrc, heading, text, altText = '') {
+function getResourceCard(linkHref, heading, text) {
   return `
     <a class="spectrum-Card"
       href=${linkHref}
     >
       <div class="spectrum-Card-preview resource-card-preview">
         <div class="resource-card-image-container spectrum-Asset">
-          <img class="spectrum-Asset-image" src=${imgSrc} alt="${altText}"/>
+
         </div>
       </div>
       <div class="spectrum-Card-body resource-card-body">
@@ -54,6 +58,9 @@ export default async function decorate(block) {
     const imgSrc = resource.querySelector('img')?.src;
     const text = resource.querySelector('p')?.innerText;
     const altText = resource.querySelector('img')?.alt;
-    resource.innerHTML = getResourceCard(linkHref, imgSrc, heading, text, altText);
+    resource.innerHTML = getResourceCard(linkHref, heading, text);
+    const picture = createOptimizedPicture(imgSrc, altText);
+    const pictureContainer = resource.querySelector('.resource-card-image-container');
+    pictureContainer.append(picture);
   });
 }
