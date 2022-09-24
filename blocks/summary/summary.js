@@ -1,8 +1,17 @@
+import {
+  decorateButtons,
+  removeEmptyPTags,
+  getBlockSectionContainer,
+  createTag,
+} from '../../scripts/lib-adobeio.js';
+
 /**
  * decorates the summary
  * @param {Element} block The summary block element
  */
 export default async function decorate(block) {
+  decorateButtons(block);
+  removeEmptyPTags(block);
   block.classList.add('spectrum--dark');
   block.querySelectorAll('h2').forEach((h2) => {
     h2.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL');
@@ -21,14 +30,13 @@ export default async function decorate(block) {
     });
   });
   // delete image and re-insert as bg
-/*  const summaryImageSrc = block.querySelector('img') ? block.querySelector('img').src.replace('format=png', 'format=webply') : null;
+  const summaryImageSrc = block.querySelector('img') ? block.querySelector('img').src.replace('format=png', 'format=webply') : null;
   const summaryImageAlt = block.querySelector('img') ? block.querySelector('img').alt : '';
-  const span = document.createElement('span');
-  span.role = 'img';
-  span.setAttribute('aria-label', summaryImageAlt);
-  block.parentElement.parentElement.prepend(span);
+  const span = createTag('span', { role: 'img', 'aria-label': summaryImageAlt });
+  const blockSectionContainer = getBlockSectionContainer(block);
+  blockSectionContainer.prepend(span);
   block.querySelectorAll('picture').forEach((picture) => {
     picture.parentElement.parentElement.remove();
   });
-  block.parentElement.parentElement.style.backgroundImage = `url(${summaryImageSrc})`;*/
+  blockSectionContainer.style.backgroundImage = `url(${summaryImageSrc})`;
 }
