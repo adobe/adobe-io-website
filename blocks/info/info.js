@@ -1,3 +1,7 @@
+import {
+  createTag,
+} from '../../scripts/lib-adobeio.js';
+
 /**
  * decorates the info
  * @param {Element} block The info block element
@@ -6,8 +10,7 @@ export default async function decorate(block) {
   block.classList.add('spectrum--light');
   block.querySelectorAll('h2').forEach((h2) => {
     h2.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
-    const hr = document.createElement('hr');
-    hr.classList.add('spectrum-Divider', 'spectrum-Divider--sizeL');
+    const hr = createTag('hr', { class: 'spectrum-Divider spectrum-Divider--sizeL' });
     h2.after(hr);
   });
   block.querySelectorAll('p').forEach((p) => {
