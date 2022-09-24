@@ -14,6 +14,12 @@ import {
   addFavIcon,
 } from './lib-helix.js';
 
+import {
+  decorateHelix2Embeds,
+  decorateEmbeds,
+  toggleScale,
+} from './lib-adobeio.js';
+
 /*
  * ------------------------------------------------------------
  * Edit above at your own risk
@@ -37,16 +43,7 @@ window.addEventListener('error', (event) => {
   sampleRUM('error', { source: event.filename, target: event.lineno });
 });
 
-function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
-    main.prepend(section);
-  }
-}
+window.addEventListener('resize', toggleScale);
 
 function loadHeader(header) {
   const headerBlock = buildBlock('header', '');
@@ -66,14 +63,14 @@ function loadFooter(footer) {
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks(main) {
+/* function buildAutoBlocks(main) {
   try {
-    buildHeroBlock(main);
+
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
-}
+} /*
 
 /**
  * Decorates the main element.
@@ -84,7 +81,7 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
-  buildAutoBlocks(main);
+  // buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
 }
@@ -108,6 +105,7 @@ async function loadEager(doc) {
   if (html) {
     decorateHTML(html);
   }
+  toggleScale();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
@@ -121,7 +119,8 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadBlocks(main);
-
+  await decorateHelix2Embeds();
+  await decorateEmbeds();
   const { hash } = window.location;
   const element = hash ? main.querySelector(hash) : false;
   if (hash && element) element.scrollIntoView();

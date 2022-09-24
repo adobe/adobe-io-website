@@ -19,6 +19,11 @@
 @import url('./spectrum/typography-4.0.20.css');
 @import url('./spectrum/divider-1.0.27.css');
 @import url('./spectrum/link-3.1.23.css');
+@import url('./spectrum/checkbox-3.1.3.css');
+@import url('./spectrum/picker-1.2.12.css');
+@import url('./spectrum/popover-5.0.18.css');
+@import url('./spectrum/menu-4.0.4.css');
+@import url('./spectrum/card-5.0.0.css');
 
  html, body {
   margin: 0;
