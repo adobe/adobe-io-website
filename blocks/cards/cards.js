@@ -1,22 +1,30 @@
-import { createOptimizedPicture } from '../../scripts/lib-helix.js';
+import { decorateButtons } from '../../scripts/lib-adobeio.js';
 
 /**
  * loads and decorates the cards
  * @param {Element} block The cards block element
  */
 export default async function decorate(block) {
-  /* change to ul, li */
-  const ul = document.createElement('ul');
-  [...block.children].forEach((row) => {
-    const li = document.createElement('li');
-    li.innerHTML = row.innerHTML;
-    [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
-      else div.className = 'cards-card-body';
+  decorateButtons(block);
+  block.querySelectorAll('.cards > div').forEach((card, index, array) => {
+    card.classList.add('spectrum--light');
+    card.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((header) => {
+      header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
     });
-    ul.append(li);
+
+    card.querySelectorAll('p').forEach((p) => {
+      p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
+    });
+
+    card.querySelectorAll('p > a').forEach((a) => {
+      a.classList.remove('spectrum-Button--secondary');
+      a.classList.add('spectrum-Button--accent', 'spectrum-Button--fill', 'card-button');
+    });
+
+    if (array.length === 3) {
+      card.classList.add('three-card');
+    } else if (array.length === 4) {
+      card.classList.add('four-card');
+    }
   });
-  ul.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
-  block.textContent = '';
-  block.append(ul);
 }
