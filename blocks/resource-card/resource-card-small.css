@@ -1,0 +1,73 @@
+main a.resource-card-small-container-inner {
+    height: calc(var(--spectrum-global-dimension-size-2000) - var(--spectrum-global-dimension-size-50));
+    margin: var(--spectrum-global-dimension-size-300);
+}
+
+@media screen and (max-width: 1280px) {
+  main a.resource-card-small-container-inner {
+    height: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-100));
+    margin: var(--spectrum-global-dimension-size-300);
+    width: calc(100vw - var(--spectrum-global-dimension-size-300)*2);
+  }
+}
+
+main div.resource-card-small-preview {
+  width: calc(var(--spectrum-global-dimension-size-2000) + var(--spectrum-global-dimension-size-125));
+  padding: 0 !important;
+}
+
+@media screen and (max-width: 1280px) {
+  main div.resource-card-small-preview {
+    height: var(--spectrum-global-dimension-size-3000);
+    width: calc(100vw - var(--spectrum-global-dimension-size-300)*2);
+    padding: 0 !important;
+  }
+}
+
+main div.resource-card-small-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0 !important;
+}
+
+main div.resource-card-small-image-container img {
+  object-fit: contain;
+}
+
+@media screen and (min-width: 1280px) {
+  main div.resource-card-small-image-container img {
+    max-width: 110%;
+    max-height: 110%;
+  }
+}
+
+main div.resource-card-small-body {
+  flex: 1;
+  padding: var(--spectrum-global-dimension-size-300) !important;
+  justify-content: flex-start !important;
+  overflow: hidden;
+}
+
+main div.resource-card-small-header {
+  width: 100%;
+}
+
+main div.resource-card-small-title {
+  white-space: normal;
+  text-align: left;
+}
+
+main div.resource-card-small h3 {
+  margin-top: 0 !important;
+  margin-bottom: var(--spectrum-global-dimension-size-200) !important;
+}
+
+main div.resource-card-small p {
+  text-align: left;
+  color: var(--spectrum-global-color-gray-700);
+  margin-top: 0;
+}

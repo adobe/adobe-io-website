@@ -1,0 +1,106 @@
+main div.resource-card-container {
+  max-width: 1280px;
+  margin: auto;
+}
+  
+main div.resource-card {
+  width: var(--spectrum-global-dimension-static-grid-fluid-width);
+  background: var(--spectrum-global-color-gray-100);
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+} 
+
+main div.resource-card > div {
+  width: calc(33.33vw - 48px);
+  padding: var(--spectrum-global-dimension-size-1000) 0;
+} 
+
+@media screen and (max-width: 768px) {
+  main div.resource-card {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  main div.resource-card > div {
+    min-width: var(--spectrum-global-dimension-size-4600);
+  } 
+
+  main div.resource-card > div:first-child {
+    padding-left: 0 !important;
+  } 
+  main div.resource-card > div:nth-child(2){
+    padding-left: 0;
+    padding-right: 0;
+  } 
+
+  main div.resource-card-image-container img {
+    object-fit: cover;
+    width: 100% !important;
+  }
+}
+
+main div.resource-card > div:first-child {
+  padding-left: 12px;
+} 
+main div.resource-card > div:nth-child(2){
+  padding-left: 24px;
+  padding-right: 24px;
+} 
+
+main div.resource-card > div:last-child{
+  padding-right: 12px;
+} 
+
+main div.resource-card-preview {
+  height: 200px;
+  width: 100%;
+  padding: 0 !important;
+}
+
+main div.resource-card-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-bottom: 0 !important;
+  margin-top: 0;
+}
+
+main div.resource-card-image-container img {
+  object-fit: cover;
+  width: calc(33.33vw - 48px);
+}
+
+main div.resource-card-body {
+  flex: 1;
+  padding-top: 16px 16px 24px 16px !important;
+  justify-content: flex-start !important;
+  overflow: hidden;
+}
+
+main div.resource-card-header {
+  height: auto;
+  width: 100%;
+}
+
+main div.resource-card-title {
+  white-space: normal;
+  text-align: left;
+}
+
+main div.resource-card-content {
+  margin-bottom: 24px !important;
+}
+
+main div.resource-card h3 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+main div.resource-card p {
+  text-align: left;
+  color: var(--spectrum-global-color-gray-700);
+  margin-top: 0;
+}
