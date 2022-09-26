@@ -1,6 +1,6 @@
 import {
   removeEmptyPTags,
-  getBlockSectionContainer,
+  rearrangeHeroPicture,
 } from '../../scripts/lib-adobeio.js';
 
 /**
@@ -9,8 +9,7 @@ import {
  */
 export default async function decorate(block) {
   removeEmptyPTags(block);
-  const section = getBlockSectionContainer(block);
-  section.classList.add('spectrum--dark');
+  block.classList.add('spectrum--dark');
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
   });
@@ -21,18 +20,6 @@ export default async function decorate(block) {
       p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
     }
   });
-  // delete image and re-insert as bg
-  const heroImageSrc = block.querySelector('img') ? block.querySelector('img').src.replace('format=png', 'format=webply') : null;
-  // alt text
-  const heroImageAlt = block.querySelector('img') ? block.querySelector('img').alt : '';
-  const span = document.createElement('span');
-  span.role = 'img';
-  span.setAttribute('aria-label', heroImageAlt);
-  section.prepend(span);
-  block.querySelectorAll('picture source').forEach((picture) => {
-    // remove weird max-width attribute
-    picture.media = '';
-    picture.parentElement.parentElement.remove();
-  });
-  section.style.backgroundImage = `url(${heroImageSrc})`;
+  const overlayStyle = 'position: absolute; display: flex; left: 50%; top: 50%;  transform: translate(-50%, -50%); z-index: 1000;';
+  rearrangeHeroPicture(block, overlayStyle);
 }

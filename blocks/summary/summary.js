@@ -1,8 +1,7 @@
 import {
   decorateButtons,
   removeEmptyPTags,
-  getBlockSectionContainer,
-  createTag,
+  rearrangeHeroPicture,
 } from '../../scripts/lib-adobeio.js';
 
 /**
@@ -29,14 +28,6 @@ export default async function decorate(block) {
       button.classList.add('spectrum-Button', 'spectrum-Button--secondary', 'spectrum-Button--sizeM', 'spectrum-Button--overBackground');
     });
   });
-  // delete image and re-insert as bg
-  const summaryImageSrc = block.querySelector('img') ? block.querySelector('img').src.replace('format=png', 'format=webply') : null;
-  const summaryImageAlt = block.querySelector('img') ? block.querySelector('img').alt : '';
-  const span = createTag('span', { role: 'img', 'aria-label': summaryImageAlt });
-  const blockSectionContainer = getBlockSectionContainer(block);
-  blockSectionContainer.prepend(span);
-  block.querySelectorAll('picture').forEach((picture) => {
-    picture.parentElement.parentElement.remove();
-  });
-  blockSectionContainer.style.backgroundImage = `url(${summaryImageSrc})`;
+  const overlayStyle = 'position: absolute; display: flex; top: 0%; left: 0%; z-index: 1000;';
+  rearrangeHeroPicture(block, overlayStyle);
 }

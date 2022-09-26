@@ -212,3 +212,19 @@ export function toggleScale() {
   doc.classList.toggle('spectrum--medium', !isLargeScale);
   doc.classList.toggle('spectrum--large', isLargeScale);
 }
+
+/**
+ * Rearranges the hero picture of a block to be properly optimized and overlaid by text
+ * @param {*} block The block containing the picture to rearrange
+ */
+export function rearrangeHeroPicture(block, overlayStyle) {
+  const picture = block.querySelector('picture');
+  const emptyDiv = picture.parentElement.parentElement;
+  block.prepend(picture);
+  picture.setAttribute('style', 'position: "relative"; max-width: "100%"; display: "flex"; align-items: "center"; justify-content: "center";');
+  const div = block.querySelector('div');
+  div.setAttribute('style', overlayStyle);
+  const img = picture.querySelector('img');
+  img.setAttribute('style', 'width: 100% !important');
+  emptyDiv.remove();
+}
