@@ -172,7 +172,7 @@ export function decorateButtons(block) {
  * @param {*} container The container to inspect
  */
 export function buildEmbeds(container) {
-  const embeds = [...container.querySelectorAll('a[href^="https://www.youtube.com"], a[href^="https://gist.github.com"]')];
+  const embeds = [...container.querySelectorAll('div > p > a[href^="https://www.youtube.com"], div > p > a[href^="https://gist.github.com"]')];
   embeds.forEach((embed) => {
     const block = buildBlock('embed', embed.outerHTML);
     embed.replaceWith(block);
