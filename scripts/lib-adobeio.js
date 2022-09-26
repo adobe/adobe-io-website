@@ -1,3 +1,7 @@
+import {
+  buildBlock,
+} from './lib-helix.js';
+
 /**
  * Breakpoints
  */
@@ -164,42 +168,18 @@ export function decorateButtons(block) {
 }
 
 /**
- * Decorates embedded Youtube Links as videos played in an iframe
+ * Builds all embed blocks inside a container
+ * @param {*} container The container to inspect
  */
-export async function decorateHelix2Embeds() {
-  document.querySelectorAll('main > div > div > p > a[href^="https://youtu.be"], main > div> div > p > a[href^="https://www.youtube.com"]').forEach((yta) => {
-    let ytId = '';
-    if (yta.href.startsWith('https://youtu.be/')) ytId = new URL(yta.href).pathname;
-    if (yta.href.startsWith('https://www.youtube.com/')) ytId = new URLSearchParams(new URL(yta.href).search).get('v');
-    const embed = createTag('div', {
-      class: 'embed embed-oembed embed-youtu',
-      'data-url': `https://youtu.be/${ytId}`,
-    });
-    embed.innerHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-      <iframe src="https://www.youtube.com/embed/${ytId}?rel=0&amp;kind=embed-youtu&amp;provider=youtu" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen="" scrolling="no" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" title="content from youtu" loading="lazy">
-        </iframe></div>`;
-    yta.closest('div').replaceChild(embed, yta.closest('p'));
-    embed.parentElement.className = '';
-    embed.parentElement.classList.add('section', 'embed-container', 'spectrum--lightest');
-  });
-}
-
-/**
- * Decorates embeds with Spectrum styling
- */
-export async function decorateEmbeds() {
-  document.querySelectorAll('.embed-container').forEach((embed) => {
-    embed.classList.add('spectrum--lightest');
-    embed.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((header) => {
-      header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
-    });
-    embed.querySelectorAll('p').forEach((p) => {
-      const hasLinks = p.querySelectorAll('a, button');
-      // don't attach to icon container or if p tag contains links
-      if (!p.classList.contains('icon-container') && hasLinks.length === 0) {
-        p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
-      }
-    });
+export function buildEmbeds(container) {
+  const embeds = [...container.querySelectorAll('a[href^="https://www.youtube.com"], a[href^="https://gist.github.com"]')];
+  embeds.forEach((embed) => {
+    const block = buildBlock('embed', embed.outerHTML);
+    embed.replaceWith(block);
+    block.classList.add('block');
+    const parentContainer = block.parentElement.parentElement;
+    parentContainer.prepend(block);
+    removeEmptyPTags(parentContainer);
   });
 }
 

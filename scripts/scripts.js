@@ -15,6 +15,7 @@ import {
 } from './lib-helix.js';
 
 import {
+  buildEmbeds,
   toggleScale,
 } from './lib-adobeio.js';
 
@@ -26,7 +27,7 @@ import {
 
 window.hlx = window.hlx || {};
 
-const LCP_BLOCKS = ['announcement', 'api-browser', 'banner', 'cards', 'columns', 'hero', 'info', 'info-columns', 'site-hero', 'summary']; // add your LCP blocks to the list
+const LCP_BLOCKS = ['api-browser', 'banner', 'cards', 'columns', 'hero', 'info-columns', 'site-hero', 'resource-cards', 'summary']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 sampleRUM('top');
@@ -61,14 +62,14 @@ function loadFooter(footer) {
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-/* function buildAutoBlocks(main) {
+function buildAutoBlocks(main) {
   try {
-
+    buildEmbeds(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
-} /*
+}
 
 /**
  * Decorates the main element.
@@ -79,7 +80,7 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
-  // buildAutoBlocks(main);
+  buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
 }
