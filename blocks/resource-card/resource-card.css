@@ -1,3 +1,36 @@
+.resource-cards-container {
+  display: flex;
+}
+
+@media screen and (max-width: 1280px) {
+  .resource-cards-container  {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}
+
+.resource-cards-left {
+  display: flex;
+}
+
+div.resource-cards-left > a.resource-card-large-container-inner {
+  margin-right: 0 !important;
+}
+
+@media screen and (min-width: 1280px) {
+  div.resource-cards-left > a.resource-card-large-container-inner {
+    width: 100%;
+  }
+  .resource-cards-left, .resource-cards-right {
+    width: 50%
+  }
+}
+
+.resource-cards-right {
+  display: flex;
+  flex-direction: column;
+}
+
 main div.resource-card-container {
   max-width: 1280px;
   margin: auto;
