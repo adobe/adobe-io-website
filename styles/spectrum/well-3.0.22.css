@@ -1,0 +1,8 @@
+/**
+ * Minified by jsDelivr using clean-css v5.3.0.
+ * Original file: /npm/@spectrum-css/well@3.0.22/dist/index-vars.css
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+.spectrum-Well{--spectrum-well-padding:var(--spectrum-global-dimension-size-200);--spectrum-well-border-width:var(--spectrum-alias-border-size-thin, var(--spectrum-global-dimension-static-size-10));--spectrum-well-margin-top:var(--spectrum-global-dimension-size-50);--spectrum-well-min-width:var(--spectrum-global-dimension-size-3000)}[dir=ltr] .spectrum-Well{text-align:left}[dir=rtl] .spectrum-Well{text-align:right}.spectrum-Well{display:block;min-width:var(--spectrum-well-min-width);padding:var(--spectrum-well-padding,var(--spectrum-global-dimension-size-200));margin-top:var(--spectrum-well-margin-top);border-width:var(--spectrum-well-border-width,var(--spectrum-alias-border-size-thin));border-style:solid;border-radius:var(--spectrum-alias-border-radius-regular,var(--spectrum-global-dimension-size-50))}.spectrum-Well{background-color:var(--spectrum-well-background-color);border-color:var(--spectrum-well-border-color)}
+/*# sourceMappingURL=/sm/8f16d892cdbd5f74c26b9b866c3a1d2fd1dcf870e6e1da6f0ec237b12b89bed9.map */

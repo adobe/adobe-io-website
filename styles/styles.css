@@ -24,6 +24,7 @@
 @import url('./spectrum/popover-5.0.18.css');
 @import url('./spectrum/menu-4.0.4.css');
 @import url('./spectrum/card-5.0.0.css');
+@import url('./spectrum/well-3.0.22.css');
 
  html, body {
   margin: 0;
@@ -461,148 +462,6 @@ header div.nav-console-search-frame iframe {
   height: 100%;
 }
 
-footer {
-  position: relative;
-  padding-bottom: var(--spectrum-global-dimension-size-400);
-  padding-top: var(--spectrum-global-dimension-size-600);
-  background-color: var(--spectrum-global-color-gray-75);
-  width: 100%;
-}
-
-@media screen and (max-width:1280px) {
-  footer {
-    max-width: none;
-  }
-}
-
-footer > div {
-  box-sizing: border-box;
-  max-width: calc(12 * var(--spectrum-global-dimension-static-grid-fixed-max-width) / var(--spectrum-global-dimension-static-grid-columns));
-  margin: 0 auto;
-}
-
-footer > div ul{
-  list-style: none;
-  padding: 0;
-}
-
-footer h3.spectrum-Heading--XS {
-  position: absolute;
-  white-space: nowrap;
-}
-
-footer > div ul.spectrum-Body--sizeS {
-  padding-top: var(--spectrum-global-dimension-size-500);
-}
-
-footer > div ul.spectrum-Body--sizeS > li {
-  margin-top: var(--spectrum-global-dimension-size-200);
-}
-
-footer > div ul.spectrum-Body--sizeS > li:first-of-type {
-  margin-top: 0;
-}
-
-footer .footer-links-container-inner {
-  display: grid;
-  grid-template-areas: 'apis blogs support developer';
-  grid-template-columns: 30% 22% 19%;
-  gap: var(--spectrum-global-dimension-size-400);
-}
-
-@media screen and (max-width: 1280px) {
-  footer .footer-links-container-inner {
-    display: flex;
-    flex-direction: column;
-    padding: var(--spectrum-global-dimension-size-200);
-    margin: 0 auto;
-  }
-}
-
-footer .footer-divider {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-}
-
-footer .footer-apis {
-  position: relative;
-  grid-area: apis;
-}
-
-footer .footer-apis-container {
-  display: flex;
-}
-
-@media screen and (max-width: 1280px) {
-  footer .footer-apis-container {
-    flex-direction: column;
-  }
-
-  footer .footer-apis-container > div{
-    margin: 0;
-  }
-}
-
-footer .footer-services-container {
-  margin-left: var(--spectrum-global-dimension-size-400);
-}
-
-footer .footer-services-container ul {
-  padding-top: var(--spectrum-global-dimension-size-750) !important;
-}
-
-footer .footer-community {
-  position: relative;
-  grid-area: blogs;
-}
-
-footer .footer-support {
-  position: relative;
-  grid-area: support;
-}
-
-footer .footer-legal {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: var(--spectrum-global-dimension-size-100);
-}
-
-footer .footer-legal ul {
-  display: inline-flex;
-  color: var(--spectrum-global-color-gray-700);
-}
-
-footer .footer-legal ul > li {
-  margin-right: var(--spectrum-global-dimension-size-400);
-}
-
-@media screen and (max-width: 1280px) {
-  footer .footer-legal {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: var(--spectrum-global-dimension-size-200);
-    margin: 0 auto;
-  }
-}
-
-footer .footer-date {
-  color: var(--spectrum-global-color-gray-700);
-}
-
-@media screen and (max-width: 1280px) {
-  footer .footer-date {
-    display: block;
-    margin-top: var(--spectrum-global-dimension-size-200);
-  }
-}
-
-footer .footer-horizontal {
-  margin-top: var(--spectrum-global-dimension-size-700);
-}
-
 .title-header {
   text-align: center;
   padding-bottom: 16px;
@@ -614,39 +473,6 @@ footer .footer-horizontal {
   max-width: 900px;
   margin: 0 auto;
   padding-bottom: 60px;
-}
-
-.resource-cards-container {
-  display: flex;
-}
-
-@media screen and (max-width: 1280px) {
-  .resource-cards-container  {
-    flex-wrap: wrap;
-    flex-direction: column;
-  }
-}
-
-.resource-cards-left {
-  display: flex;
-}
-
-div.resource-cards-left > a.resource-card-large-container-inner {
-  margin-right: 0 !important;
-}
-
-@media screen and (min-width: 1280px) {
-  div.resource-cards-left > a.resource-card-large-container-inner {
-    width: 100%;
-  }
-  .resource-cards-left, .resource-cards-right {
-    width: 50%
-  }
-}
-
-.resource-cards-right {
-  display: flex;
-  flex-direction: column;
 }
 
 #onetrust-consent-sdk, #ot-cookie-settings {
