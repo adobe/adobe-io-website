@@ -170,11 +170,10 @@ function displayFilteredCards(catalog, cards, buttons, limit) {
  * loads and decorates the api browser
  * @param {Element} block The api browser block element
  */
-export default async function decorate(block) {
+async function decorateApiBrowser(block, config) {
   const sectionContainer = getBlockSectionContainer(block);
   decorateTitle(sectionContainer, 'api-browser');
   block.classList.add('spectrum--light');
-  const config = readBlockConfig(block);
   window.aio = {};
   const resp = await fetch('/hlx-api-catalog.json');
   window.aio.apiCatalog = (await resp.json()).data;
@@ -315,4 +314,16 @@ export default async function decorate(block) {
     });
     focusRing(block);
   }
+}
+
+export default function decorate(block) {
+  const config = readBlockConfig(block);
+  block.textContent = '';
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      decorateApiBrowser(block, config);
+    }
+  });
+  observer.observe(block);
 }
