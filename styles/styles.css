@@ -12,6 +12,10 @@
 
  @import url('./spectrum/spectrum.min.css');
 
+ :root {
+  --nav-height: 81px;
+ }
+
  html, body {
   margin: 0;
   -webkit-font-smoothing: antialiased;

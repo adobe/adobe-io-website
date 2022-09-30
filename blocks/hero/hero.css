@@ -94,4 +94,21 @@ main div.hero {
     margin-top: var(--spectrum-global-dimension-size-300);
     gap: var(--spectrum-global-dimension-size-200);
   }
+
+  @media screen and (max-width: 1280px) {
+    main div.hero {
+      overflow: auto;
+      height: 100vh;
+    }
+    main div.hero .spectrum-Heading--sizeXXL {
+      font-size: var(--spectrum-alias-heading-xl-text-size);
+    }
+  }
   
+  
+  @media screen and (max-width: 1280px) {
+    main div.hero > div:first-child {
+      width: 100%;
+      margin: 0;
+    }
+  }
