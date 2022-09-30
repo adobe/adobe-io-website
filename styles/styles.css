@@ -10,17 +10,24 @@
  * governing permissions and limitations under the License.
  */
 
- @import url('./spectrum/spectrum.min.css');
+@import url('./spectrum/spectrum.min.css');
 
- :root {
-  --nav-height: 81px;
- }
-
- html, body {
+html, body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.spectrum {
+  --spectrum-global-font-family-serif: adobe-clean-serif, adobe-clean-serif-fallback;
+}
+
+/* fallback font for adobe-clean-serif (900) */
+@font-face {
+  font-family: "adobe-clean-serif-fallback";
+  size-adjust: 109.64%;
+  src: local("Times New Roman");
+};
 
 img {
   width: auto;
@@ -50,6 +57,6 @@ main .section[data-section-status='initialized'] {
   display: none;
 }
 
-header {
-  height: var(--nav-height);
+body > header {
+  height: 81px;
 }
