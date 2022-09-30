@@ -39,3 +39,13 @@ img {
 #onetrust-consent-sdk, #ot-cookie-settings {
   font-family: "adobe-clean",sans-serif;
 }
+
+/* progressive section appearance */
+main .section[data-section-status='loading'],
+main .section[data-section-status='initialized'] {
+  display: none;
+}
+
+header {
+  height: var(--nav-height);
+}
