@@ -161,7 +161,7 @@ export function decorateButtons(block) {
       && twoup.childNodes.length === 1
       && twoup.tagName === 'P'
     ) {
-      a.className = 'spectrum-Button spectrum-Button--fill spectrum-Button--accent  spectrum-Button--sizeM';
+      a.className = 'spectrum-Button spectrum-Button--fill spectrum-Button--cta  spectrum-Button--sizeM';
       twoup.replaceChild(a, up);
     }
   });

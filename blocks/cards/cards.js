@@ -18,7 +18,7 @@ export default async function decorate(block) {
 
     card.querySelectorAll('p > a').forEach((a) => {
       a.classList.remove('spectrum-Button--secondary');
-      a.classList.add('spectrum-Button--accent', 'spectrum-Button--fill', 'card-button');
+      a.classList.add('spectrum-Button--cta', 'spectrum-Button--fill', 'card-button');
     });
 
     if (array.length === 3) {
