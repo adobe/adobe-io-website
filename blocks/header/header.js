@@ -1,66 +1,50 @@
-import { readBlockConfig, decorateIcons } from '../../scripts/lib-helix.js';
-
-/**
- * collapses all open nav sections
- * @param {Element} sections The container element
- */
-
-function collapseAllNavSections(sections) {
-  sections.querySelectorAll('.nav-sections > ul > li').forEach((section) => {
-    section.setAttribute('aria-expanded', 'false');
-  });
-}
-
-/**
- * decorates the header, mainly the nav
- * @param {Element} block The header block element
- */
+import { createTag } from '../../scripts/lib-adobeio.js';
+import { readBlockConfig } from '../../scripts/lib-helix.js';
 
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   block.textContent = '';
-
-  // fetch nav content
   const navPath = cfg.nav || '/nav';
   const resp = await fetch(`${navPath}.plain.html`);
   if (resp.ok) {
     const html = await resp.text();
+    block.innerHTML = html;
 
-    // decorate nav DOM
-    const nav = document.createElement('nav');
-    nav.innerHTML = html;
-    decorateIcons(nav);
+    const header = block.parentElement;
+    header.classList.add('main-header', 'global-nav-header');
 
-    const classes = ['brand', 'sections', 'tools'];
-    classes.forEach((e, j) => {
-      const section = nav.children[j];
-      if (section) section.classList.add(`nav-${e}`);
+    const iconContainer = createTag('p', { class: 'icon-adobe-container' });
+    const title = block.querySelector('p:nth-child(1)');
+    const siteLink = title.querySelector('strong > a');
+    const iconLink = createTag('a', { class: 'na-console-adobeio-link', href: siteLink.href });
+    iconLink.innerHTML = '<img class="icon icon-adobe" src="/icons/adobe.svg" alt="adobe icon">';
+    iconContainer.appendChild(iconLink);
+    siteLink.className = 'nav-console-adobeio-link-text';
+    siteLink.innerHTML = `<strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">${siteLink.innerText}</strong>`;
+    iconContainer.appendChild(siteLink);
+    header.append(iconContainer);
+
+    const ul = block.querySelector('ul');
+    ul.setAttribute('id', 'navigation-links');
+    ul.style.listStyleType = 'none';
+    const productsLi = ul.querySelector('li:nth-child(1)');
+    productsLi.className = 'navigation-products';
+    ul.querySelectorAll('a').forEach((a) => {
+      if (a.parentElement.tagName === 'STRONG') {
+        a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
+        const span = createTag('span', { class: 'spectrum-Button-label' });
+        span.innerText = a.innerText;
+        a.innerText = '';
+        a.appendChild(span);
+        const li = a.parentElement.parentElement;
+        const div = createTag('div', { class: 'nav-view-docs-button' });
+        div.appendChild(a);
+        ul.removeChild(li);
+        ul.appendChild(div);
+      }
     });
 
-    const navSections = [...nav.children][1];
-    if (navSections) {
-      navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
-        if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-        navSection.addEventListener('click', () => {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          collapseAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        });
-      });
-    }
-
-    // hamburger for mobile
-    const hamburger = document.createElement('div');
-    hamburger.classList.add('nav-hamburger');
-    hamburger.innerHTML = '<div class="nav-hamburger-icon"></div>';
-    hamburger.addEventListener('click', () => {
-      const expanded = nav.getAttribute('aria-expanded') === 'true';
-      document.body.style.overflowY = expanded ? '' : 'hidden';
-      nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-    });
-    nav.prepend(hamburger);
-    nav.setAttribute('aria-expanded', 'false');
-    decorateIcons(nav);
-    block.append(nav);
+    header.append(ul);
+    block.remove();
   }
 }
