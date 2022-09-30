@@ -91,7 +91,7 @@ function makeApiLinkRelative(link) {
  * @param {*} limit The number of cards in the catalog
  */
 function displayFilteredCards(catalog, cards, buttons, limit) {
-  cards.innerHTML = '';
+  let cardsInnerHTML = ''
   let counter = 0;
   catalog.forEach((card) => {
     let show = true;
@@ -160,10 +160,11 @@ function displayFilteredCards(catalog, cards, buttons, limit) {
             </div>
           </div>
         </div>`;
-      cards.innerHTML += cardTemplate;
+      cardsInnerHTML += cardTemplate;
       counter += 1;
     }
   });
+  cards.innerHTML = cardsInnerHTML;
 }
 
 /**
@@ -299,7 +300,7 @@ export default async function decorate(block) {
     apiCardsInner.append(cards);
     block.append(apiCardsInner);
 
-    // displayFilteredCards(catalog, cards, buttons, config.limit);
+    displayFilteredCards(catalog, cards, buttons, config.limit);
 
     document.querySelectorAll('.filters-list input').forEach((filterItem) => {
       filterItem.addEventListener('change', (evt) => {
