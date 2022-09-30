@@ -17,7 +17,7 @@ function buildFooter(html) {
     const divider = createTag('div', { class: 'spectrum-Divider spectrum-Divider--sizeM spectrum-Divider--vertical' });
     divider.setAttribute('style', 'height: 100%; align-self: stretch;');
     footerDivider.append(divider);
-    footerColumnWrapper.append(footerDivider);      
+    footerColumnWrapper.append(footerDivider);
     footerInnerContainer.append(footerColumnWrapper);
   });
   footerInnerContainer.querySelector('div:last-child > .footer-divider').remove();
