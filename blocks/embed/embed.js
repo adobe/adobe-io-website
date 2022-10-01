@@ -12,8 +12,11 @@ const embedYoutube = (url) => {
     [, vid] = url.pathname.split('/');
   }
   const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-    <iframe src="https://www.youtube.com${vid ? `/embed/${vid}?rel=0&amp;v=${vid}` : embed}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allow="encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" scrolling="no" title="Content from Youtube" loading="lazy"></iframe>
-    </div>`;
+    <img loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+      src="https://i.ytimg.com/vi_webp/${vid}/maxresdefault.webp">
+        <iframe data-src="https://www.youtube.com${vid ? `/embed/${vid}?rel=0&amp;v=${vid}` : embed}" allow="encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" scrolling="no" title="Content from Youtube" loading="lazy"></iframe>
+    </img>
+  </div>`;
   return embedHTML;
 };
 
@@ -21,13 +24,23 @@ const loadEmbed = (block, a) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
   }
+  block.parentElement.parentElement.classList.add('spectrum--lightest');
+  block.className = 'block embed embed-youtube';
   const link = a.href;
   const url = new URL(link);
   a.insertAdjacentHTML('afterend', embedYoutube(url));
-  block.classList = 'block embed embed-youtube';
   a.remove();
   block.classList.add('embed-is-loaded');
-  block.parentElement.parentElement.classList.add('spectrum--lightest');
+
+  const videoListener = () => {
+    const iframe = block.querySelector('iframe');
+    if (!iframe.src) {
+      iframe.src = iframe.getAttribute('data-src');
+      iframe.onload = () => { iframe.style.opacity = 1; };
+    }
+    block.removeEventListener('mouseover', videoListener);
+  };
+  block.addEventListener('mouseover', videoListener);
 };
 
 /**
@@ -35,7 +48,8 @@ const loadEmbed = (block, a) => {
  * @param {*} block The embed block
  */
 export default async function decorate(block) {
-  const a = block.querySelector('a');//.href;
+  const a = block.querySelector('a');
+  /*
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
@@ -43,4 +57,6 @@ export default async function decorate(block) {
     }
   });
   observer.observe(block);
+  */
+  loadEmbed(block, a);
 }
