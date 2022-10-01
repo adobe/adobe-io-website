@@ -103,6 +103,10 @@ main div.hero {
     main div.hero .spectrum-Heading--sizeXXL {
       font-size: var(--spectrum-alias-heading-xl-text-size);
     }
+
+    main .hero picture {
+      display: none;
+    }
   }
   
   
