@@ -4,6 +4,10 @@ import {
   removeEmptyPTags,
 } from '../../scripts/lib-adobeio.js';
 
+import {
+  createOptimizedPicture,
+} from '../../scripts/lib-helix.js';
+
 /**
  * loads and decorates the columns
  * @param {Element} block The columns block element
@@ -13,6 +17,13 @@ export default async function decorate(block) {
   removeEmptyPTags(block);
   block.querySelectorAll('.columns > div > div:first-child').forEach((column) => {
     column.classList.add('first-column');
+    const p = createTag('p', {class: 'spectrum-Body spectrum-Body--sizeM'});
+    const imgSrc = column.querySelector('img')?.src;
+    const altText = column.querySelector('img')?.alt;
+    const picture = createOptimizedPicture(imgSrc, altText);
+    const oldPicture = column.querySelector('picture');
+    p.appendChild(picture);
+    column.replaceChild(p, oldPicture);
   });
   block.querySelectorAll('.columns > div > div:nth-child(2)').forEach((column) => {
     column.classList.add('second-column');

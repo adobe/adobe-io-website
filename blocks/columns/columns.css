@@ -9,10 +9,6 @@ main div.columns {
     margin: auto;
 } 
 
-main .columns span.icon {
-    display: none;
-}
-
 @media screen and (max-width: 1280px) {
     main div.columns {
         width: 100%;
