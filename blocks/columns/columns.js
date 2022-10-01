@@ -9,6 +9,20 @@ import {
 } from '../../scripts/lib-helix.js';
 
 /**
+ * Generates optimized images for all columns in the block
+ * @param {*} block The columns block
+ */
+function processImages(block) {
+  block.querySelectorAll('img').forEach((img) => {
+    const picture = createOptimizedPicture(img.src, img.alt);
+    const parent = img.parentElement.parentElement;
+    const p = createTag('p', {class: 'spectrum-Body spectrum-Body--sizeM'});
+    p.appendChild(picture);
+    parent.replaceChild(p, img.parentElement);
+  });
+}
+
+/**
  * loads and decorates the columns
  * @param {Element} block The columns block element
  */
@@ -17,13 +31,6 @@ export default async function decorate(block) {
   removeEmptyPTags(block);
   block.querySelectorAll('.columns > div > div:first-child').forEach((column) => {
     column.classList.add('first-column');
-    const p = createTag('p', {class: 'spectrum-Body spectrum-Body--sizeM'});
-    const imgSrc = column.querySelector('img')?.src;
-    const altText = column.querySelector('img')?.alt;
-    const picture = createOptimizedPicture(imgSrc, altText);
-    const oldPicture = column.querySelector('picture');
-    p.appendChild(picture);
-    column.replaceChild(p, oldPicture);
   });
   block.querySelectorAll('.columns > div > div:nth-child(2)').forEach((column) => {
     column.classList.add('second-column');
@@ -53,4 +60,11 @@ export default async function decorate(block) {
     });
     secondColumn.append(productLinkContainer);
   });
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      processImages(block);
+    }
+  });
+  observer.observe(block);
 }

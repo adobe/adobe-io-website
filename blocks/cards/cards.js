@@ -1,4 +1,19 @@
 import { decorateButtons } from '../../scripts/lib-adobeio.js';
+import { createOptimizedPicture } from '../../scripts/lib-helix.js';
+
+/**
+ * Generates optimized images for all cards in the block
+ * @param {*} block The cards block
+ */
+function processImages(block) {
+  block.querySelectorAll('img').forEach((img) => {
+    const parent = img.parentElement.parentElement;
+    const imgSrc = img?.src;
+    const altText = img?.alt;
+    const picture = createOptimizedPicture(imgSrc, altText);
+    parent.replaceChild(picture, img.parentElement);
+  });
+}
 
 /**
  * loads and decorates the cards
@@ -27,4 +42,11 @@ export default async function decorate(block) {
       card.classList.add('four-card');
     }
   });
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      processImages(block);
+    }
+  });
+  observer.observe(block);
 }
