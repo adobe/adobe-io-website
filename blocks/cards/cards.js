@@ -6,7 +6,7 @@ import { createOptimizedPicture } from '../../scripts/lib-helix.js';
  * @param {*} block The cards block
  */
 function processImages(block) {
-  block.querySelectorAll('img').forEach((img) => {
+  block.querySelectorAll('picture > img').forEach((img) => {
     const parent = img.parentElement.parentElement;
     const imgSrc = img?.src;
     const altText = img?.alt;

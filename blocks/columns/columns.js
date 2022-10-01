@@ -13,7 +13,7 @@ import {
  * @param {*} block The columns block
  */
 function processImages(block) {
-  block.querySelectorAll('img').forEach((img) => {
+  block.querySelectorAll('picture > img').forEach((img) => {
     const picture = createOptimizedPicture(img.src, img.alt);
     const parent = img.parentElement.parentElement;
     const p = createTag('p', {class: 'spectrum-Body spectrum-Body--sizeM'});
