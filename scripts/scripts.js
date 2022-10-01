@@ -27,7 +27,7 @@ import {
 
 window.hlx = window.hlx || {};
 
-const LCP_BLOCKS = ['api-browser', 'banner', 'cards', 'columns', 'hero', 'info-columns', 'site-hero', 'resource-cards', 'summary']; // add your LCP blocks to the list
+const LCP_BLOCKS = ['api-browser', 'site-hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 sampleRUM('top');
