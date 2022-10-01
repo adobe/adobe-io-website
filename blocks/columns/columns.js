@@ -16,7 +16,7 @@ function processImages(block) {
   block.querySelectorAll('picture > img').forEach((img) => {
     const picture = createOptimizedPicture(img.src, img.alt);
     const parent = img.parentElement.parentElement;
-    const p = createTag('p', {class: 'spectrum-Body spectrum-Body--sizeM'});
+    const p = createTag('p', { class: 'spectrum-Body spectrum-Body--sizeM' });
     p.appendChild(picture);
     parent.replaceChild(p, img.parentElement);
   });
