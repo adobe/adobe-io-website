@@ -4,6 +4,13 @@
  * https://www.hlx.live/developer/block-collection/embed
  */
 
+/**
+ * Gets the video id from the authored URL and inserts the Youtube embed
+ * The iframe is not loaded until the users moves the pointer over the thumbnail image
+ * Or eventually with a delay of 3 seconds (see delayed.js)
+ * @param {*} url The authored URL
+ * @returns The HTML to embed
+ */
 const embedYoutube = (url) => {
   const usp = new URLSearchParams(url.search);
   let vid = encodeURIComponent(usp.get('v'));
@@ -20,6 +27,13 @@ const embedYoutube = (url) => {
   return embedHTML;
 };
 
+/**
+ * Decorates the block with the embedded HTML
+ * Sets the event listener for pointer over thumbnail image
+ * @param {*} block The block to decorate
+ * @param {*} a The authored link
+ * @returns Exits early if the embed is already loaded
+ */
 const loadEmbed = (block, a) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
@@ -49,14 +63,5 @@ const loadEmbed = (block, a) => {
  */
 export default async function decorate(block) {
   const a = block.querySelector('a');
-  /*
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
-      observer.disconnect();
-      loadEmbed(block, a);
-    }
-  });
-  observer.observe(block);
-  */
   loadEmbed(block, a);
 }
