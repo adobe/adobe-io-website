@@ -91,7 +91,7 @@ function makeApiLinkRelative(link) {
  * @param {*} limit The number of cards in the catalog
  */
 function displayFilteredCards(catalog, cards, buttons, limit) {
-  let cardsInnerHTML = ''
+  let cardsInnerHTML = '';
   let counter = 0;
   catalog.forEach((card) => {
     let show = true;
