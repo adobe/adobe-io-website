@@ -27,7 +27,7 @@ import {
 
 window.hlx = window.hlx || {};
 
-const LCP_BLOCKS = ['api-browser', 'site-hero']; // add your LCP blocks to the list
+const LCP_BLOCKS = ['api-browser', 'hero', 'site-hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 sampleRUM('top');
@@ -62,6 +62,7 @@ function loadFooter(footer) {
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
+
 function buildAutoBlocks(main) {
   try {
     buildEmbeds(main);
