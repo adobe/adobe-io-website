@@ -44,6 +44,7 @@ document.querySelectorAll('.embed').forEach((embed) => {
   }
 });
 
+/*
 const adobeAnalytics = document.createElement('script');
 adobeAnalytics.src = 'https://www.adobe.com/marketingtech/main.min.js';
 document.body.appendChild(adobeAnalytics);
@@ -51,6 +52,7 @@ document.body.appendChild(adobeAnalytics);
 const cookiePreference = document.createElement('script');
 cookiePreference.src = 'https://wwwimages2.adobe.com/etc/beagle/public/globalnav/adobe-privacy/latest/privacy.min.js';
 document.body.appendChild(cookiePreference);
+*/
 
 focusRing();
 
