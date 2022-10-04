@@ -208,3 +208,166 @@ export function rearrangeHeroPicture(block, overlayStyle) {
   img.setAttribute('style', 'width: 100% !important');
   emptyDiv.remove();
 }
+
+/**
+ * Generates the HTML code for the active tab
+ * @param {*} width The width of the tab
+ * @param {*} isMainPage Defines whether the current page is main page or not
+ * @returns The HTML code for the active tab
+ */
+function activeTabTemplate(width, isMainPage = false) {
+  const calcWidth = parseInt(width, 10) - 24;
+  return `<div class="nav-link-active" style="width: ${calcWidth}px; transform:translate(12px,0); bottom: ${!isMainPage ? '0.5px' : '-1px'}"></div>`;
+}
+
+/**
+ * Sets the current tab as active
+ * @param {*} isMainPage Defines whether the current page is main page or not
+ */
+export function setActiveTab(isMainPage) {
+  const nav = document.querySelector('#navigation-links');
+  let currentPath = window.location.pathname;
+
+  nav.querySelectorAll('li > a').forEach((tabItem) => {
+    const hrefPath = new URL(tabItem.href);
+
+    if (hrefPath && hrefPath.pathname) {
+      // remove trailing slashes before we compare
+      const hrefPathname = hrefPath.pathname.replace(/\/$/, '');
+      currentPath = currentPath.replace(/\/$/, '');
+      if (currentPath === hrefPathname) {
+        const parentWidth = tabItem.parentElement.offsetWidth;
+        tabItem.parentElement.innerHTML += activeTabTemplate(parentWidth, isMainPage);
+      }
+    }
+  });
+}
+
+/**
+ * Checks whether the current URL is one of the top level navigation items
+ * @param {*} urlPathname The current URL path name
+ * @returns True if the current URL is one of the top level navigation items, false otherwise
+ */
+export function isTopLevelNav(urlPathname) {
+  return urlPathname.indexOf('/apis') === 0
+    || urlPathname.indexOf('/open') === 0
+    || urlPathname.indexOf('/developer-support') === 0;
+}
+
+/**
+ * Checks whether the current URL is a dev environment based on host value
+ * @param {*} host The host
+ * @returns True if the current URL is a dev environment, false otherwise
+ */
+export function isDevEnvironment(host) {
+  return host.indexOf('localhost') >= 0;
+}
+
+/**
+ * Checks whether the current URL is a stage environment based on host value
+ * @param {*} host The host
+ * @returns True if the current URL is a stage environment, false otherwise
+ */
+export function isStageEnvironment(host) {
+  return host.indexOf('stage.adobe.io') >= 0
+    || host.indexOf('developer-stage') >= 0;
+}
+
+/**
+ * Checks whether the current URL is a Franklin website based on host value
+ * @param {*} host The host
+ * @returns True if the current URl is a Franklin website, false otherwise
+ */
+export function isHlxPath(host) {
+  return host.indexOf('hlx.page') >= 0
+    || host.indexOf('hlx.live') >= 0
+    || host.indexOf('localhost') >= 0;
+}
+
+/**
+ * Returns expected origin based on the host
+ * @param {*} host The host
+ * @param {*} suffix A suffix to append
+ * @returns The expected origin
+ */
+export const setExpectedOrigin = (host, suffix = '') => {
+  if (isDevEnvironment(host)) {
+    return 'http://localhost:3000';
+  }
+  if (isStageEnvironment(host) || isHlxPath(host)) {
+    return `https://developer-stage.adobe.com${suffix}`;
+  }
+  return `https://developer.adobe.com${suffix}`;
+};
+
+/**
+ * Returns the HTML code for the global navigation user profile
+ * @param {*} profile The user profile
+ * @returns The global navigation user profile for the current user
+ */
+function globalNavProfileTemplate(profile) {
+  return `
+    <div class="nav-profile spectrum--lightest">
+      <button id="nav-profile-dropdown-button" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet  navigation-dropdown">
+        <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Profile">
+          <use xlink:href="#spectrum-icon-24-RealTimeCustomerProfile"></use>
+        </svg>
+      </button>
+        <div id="nav-profile-dropdown-popover" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet">
+          <div class="nav-profile-popover-innerContainer">
+            <div class="nav-profile-popover-avatar">
+              <img alt="Avatar" id="nav-profile-popover-avatar-img" src=${profile.avatarUrl} alt="Profile icon" />
+            </div>
+            <div class="nav-profile-popover-name">
+              <h1 id="nav-profile-popover-name" class="spectrum-Heading spectrum-Heading--sizeM">
+                ${profile.name}
+              </h1>
+            </div>
+            <div class="nav-profile-popover-divider">
+              <hr />
+            </div>
+            <a href="https://account.adobe.com/" class="spectrum-Button spectrum-Button--primary spectrum-Button--quiet spectrum-Button--sizeM nav-profile-popover-edit">
+              Edit Profile
+            </a>
+            <a href="#" id="signOut" class="spectrum-Button spectrum-Button--secondary spectrum-Button--sizeM nav-profile-popover-sign-out">
+              Sign out
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Decorates the profile section based on the current user profile
+ * @param {*} profile The current user profile
+ */
+export function decorateProfile(profile) {
+  // replace sign-in link with profile
+  const signIn = document.querySelector('div.nav-sign-in');
+  const parentContainer = signIn.parentElement;
+  signIn.remove();
+  parentContainer.insertAdjacentHTML('beforeend', globalNavProfileTemplate(profile));
+
+  const profileDropdownPopover = parentContainer.querySelector('div#nav-profile-dropdown-popover');
+  const button = parentContainer.querySelector('button#nav-profile-dropdown-button');
+
+  button.addEventListener('click', (evt) => {
+    if (!evt.currentTarget.classList.contains('is-open')) {
+      button.classList.add('is-open');
+      profileDropdownPopover.classList.add('is-open');
+      profileDropdownPopover.ariaHidden = false;
+    } else {
+      button.classList.remove('is-open');
+      profileDropdownPopover.classList.remove('is-open');
+      profileDropdownPopover.ariaHidden = false;
+    }
+  });
+
+  const signOut = parentContainer.querySelector('#signOut');
+  signOut.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    window.adobeIMSMethods.signOut();
+  });
+}
