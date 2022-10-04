@@ -371,3 +371,14 @@ export function decorateProfile(profile) {
     window.adobeIMSMethods.signOut();
   });
 }
+
+/**
+ * Adds an extra script tag to the document
+ * @param {*} element The element to which the script will be added
+ * @param {*} scriptUrl The URL to the script to add
+ */
+export function addExtraScript(element, scriptUrl) {
+  const script = createTag('script');
+  script.src = scriptUrl;
+  element.appendChild(script);
+}

@@ -7,6 +7,7 @@ import {
   isHlxPath,
   isStageEnvironment,
   decorateProfile,
+  addExtraScript,
 } from './lib-adobeio.js';
 
 async function fetchProfileAvatar(userId) {
@@ -28,15 +29,17 @@ async function fetchProfileAvatar(userId) {
           <img alt="Avatar" src=${avatarUrl} alt="Profile avatar" />
         </div>
       `;
-    } 
+    }
   } catch (e) {
-      // eslint-disable-next-line no-console
-      console.warn(e);
+    // eslint-disable-next-line no-console
+    console.warn(e);
   }
 }
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
+addExtraScript(document.body, 'https://www.adobe.com/marketingtech/main.min.js');
+addExtraScript(document.body, 'https://wwwimages2.adobe.com/etc/beagle/public/globalnav/adobe-privacy/latest/privacy.min.js');
 
 document.querySelectorAll('.embed').forEach((embed) => {
   const iframe = embed.querySelector('iframe');
@@ -45,16 +48,6 @@ document.querySelectorAll('.embed').forEach((embed) => {
     iframe.onload = () => { iframe.style.opacity = 1; };
   }
 });
-
-/*
-const adobeAnalytics = document.createElement('script');
-adobeAnalytics.src = 'https://www.adobe.com/marketingtech/main.min.js';
-document.body.appendChild(adobeAnalytics);
-
-const cookiePreference = document.createElement('script');
-cookiePreference.src = 'https://wwwimages2.adobe.com/etc/beagle/public/globalnav/adobe-privacy/latest/privacy.min.js';
-document.body.appendChild(cookiePreference);
-*/
 
 focusRing();
 
