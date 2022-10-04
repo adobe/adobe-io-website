@@ -38,6 +38,7 @@ async function fetchProfileAvatar(userId) {
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
+addExtraScript(document.body, 'https://auth.services.adobe.com/imslib/imslib.min.js');
 addExtraScript(document.body, 'https://www.adobe.com/marketingtech/main.min.js');
 addExtraScript(document.body, 'https://wwwimages2.adobe.com/etc/beagle/public/globalnav/adobe-privacy/latest/privacy.min.js');
 

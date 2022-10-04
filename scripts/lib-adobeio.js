@@ -378,7 +378,7 @@ export function decorateProfile(profile) {
  * @param {*} scriptUrl The URL to the script to add
  */
 export function addExtraScript(element, scriptUrl) {
-  const script = createTag('script');
+  const script = createTag('script', { type: 'module', crossorigin: 'use-credentials' });
   script.src = scriptUrl;
   element.appendChild(script);
 }
