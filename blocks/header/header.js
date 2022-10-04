@@ -65,6 +65,40 @@ function decorateSearchIframeContainer(header) {
   });
 }
 
+function handleButtons(header) {
+  header.querySelectorAll('button.navigation-dropdown').forEach((button) => {
+    if (button.id.indexOf('nav-dropdown-button') >= 0) {
+      const index = button.id.split('_')[1];
+      const dropdownPopover = header.querySelector(`div#nav-dropdown-popover_${index}`);
+
+      button.addEventListener('click', (evt) => {
+        if (!evt.currentTarget.classList.contains('is-open')) {
+          button.classList.add('is-open');
+          dropdownPopover.classList.add('is-open');
+          dropdownPopover.ariaHidden = false;
+        } else {
+          button.classList.remove('is-open');
+          dropdownPopover.classList.remove('is-open');
+          dropdownPopover.ariaHidden = false;
+        }
+      });
+    } else if (button.id.indexOf('nav-profile-dropdown-button') >= 0) {
+      const profileDropdownPopover = header.querySelector('div#nav-profile-dropdown-popover');
+      button.addEventListener('click', (evt) => {
+        if (!evt.currentTarget.classList.contains('is-open')) {
+          button.classList.add('is-open');
+          profileDropdownPopover.classList.add('is-open');
+          profileDropdownPopover.ariaHidden = false;
+        } else {
+          button.classList.remove('is-open');
+          profileDropdownPopover.classList.remove('is-open');
+          profileDropdownPopover.ariaHidden = false;
+        }
+      });
+    }
+  });
+}
+
 /**
  * Decorates the header
  * @param {*} block The header
@@ -77,7 +111,6 @@ export default async function decorate(block) {
   if (resp.ok) {
     const html = await resp.text();
     block.innerHTML = html;
-
     const header = block.parentElement;
     header.classList.add('main-header', 'global-nav-header');
 
@@ -122,38 +155,8 @@ export default async function decorate(block) {
     decorateSearchIframeContainer(header);
     block.remove();
 
-    const currentHeader = header;
-    header.querySelectorAll('button.navigation-dropdown').forEach((button) => {
-      if (button.id.indexOf('nav-dropdown-button') >= 0) {
-        const index = button.id.split('_')[1];
-        const dropdownPopover = currentHeader.querySelector(`div#nav-dropdown-popover_${index}`);
+    handleButtons(header);
 
-        button.addEventListener('click', (evt) => {
-          if (!evt.currentTarget.classList.contains('is-open')) {
-            button.classList.add('is-open');
-            dropdownPopover.classList.add('is-open');
-            dropdownPopover.ariaHidden = false;
-          } else {
-            button.classList.remove('is-open');
-            dropdownPopover.classList.remove('is-open');
-            dropdownPopover.ariaHidden = false;
-          }
-        });
-      } else if (button.id.indexOf('nav-profile-dropdown-button') >= 0) {
-        const profileDropdownPopover = currentHeader.querySelector('div#nav-profile-dropdown-popover');
-        button.addEventListener('click', (evt) => {
-          if (!evt.currentTarget.classList.contains('is-open')) {
-            button.classList.add('is-open');
-            profileDropdownPopover.classList.add('is-open');
-            profileDropdownPopover.ariaHidden = false;
-          } else {
-            button.classList.remove('is-open');
-            profileDropdownPopover.classList.remove('is-open');
-            profileDropdownPopover.ariaHidden = false;
-          }
-        });
-      }
-    });
     const signIn = header.querySelector('#signIn');
     signIn?.addEventListener('click', () => {
       window.adobeIMSMethods?.signIn();
