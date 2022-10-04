@@ -11,7 +11,7 @@ function globalNavSearchButton() {
   const div = createTag('div', { class: 'nav-console-search-button' });
   div.innerHTML = `<button class="nav-dropdown-search" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--emphasized spectrum-ActionButton--quiet">
       <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Edit">
-        <use href="./icons/search.svg#spectrum-icon-24-Search"></use>
+        <use href="/icons/search.svg#spectrum-icon-24-Search"></use>
       </svg>
     </button>`;
   return div;
