@@ -1,6 +1,7 @@
 import {
   decorateButtons,
   removeEmptyPTags,
+  MOBILE_SCREEN_WIDTH,
 } from '../../scripts/lib-adobeio.js';
 
 /**
@@ -29,10 +30,19 @@ export default async function decorate(block) {
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
   });
-  block.querySelectorAll('picture source').forEach((picture) => {
-    // Removes weird max-width attribute
-    picture.media = '';
-  });
+  if (document.documentElement.clientWidth < MOBILE_SCREEN_WIDTH) {
+    block.querySelectorAll('picture source').forEach((picture) => {
+      picture.srcset = '';
+    });
+    block.querySelectorAll('picture img').forEach((image) => {
+      image.src = '';
+    });
+  } else {
+    block.querySelectorAll('picture source').forEach((picture) => {
+      // Removes weird max-width attribute
+      picture.media = '';    
+    });
+  }
   // Removes content for span.icon
   block.querySelectorAll('span.icon').forEach((span) => {
     span.textContent = '';
