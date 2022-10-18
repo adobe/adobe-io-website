@@ -1,6 +1,7 @@
 let $IS_HLX_PATH = false;
 let $IS_STAGE = false;
 let $IS_DEV = false;
+let $SEARCH_PATH_NAME_CHECK = '';
 
 if (window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf('hlx.live') >= 0 || window.location.host.indexOf('localhost') >= 0) {
   $IS_HLX_PATH = true;
@@ -34,6 +35,15 @@ const setExpectedOrigin = () => {
     return 'https://developer.adobe.com';
   }
 }
+const setTargetOrigin = () => {
+  const parentURL = document.referrer;
+
+  if (parentURL.indexOf('localhost') >= 0 || parentURL.indexOf('developer-stage.adobe') >= 0 || parentURL.indexOf('hlx.page') >= 0 || parentURL.indexOf('hlx.live') >= 0 || parentURL.indexOf('developer.adobe') >= 0) {
+    return parentURL;
+  } else {
+    return false;
+  }
+};
 const setSearchFrameSource = () => {
   const src = $IS_DEV ? setExpectedOrigin() : `${setExpectedOrigin()}/search-frame`;
   const queryString = getQueryString();
@@ -42,21 +52,20 @@ const setSearchFrameSource = () => {
   } else {
     return src;
   }
-}
-
+};
 
 window.addEventListener('message', function (e) {
   const expectedOrigin = setExpectedOrigin();
-
   if (e.origin !== expectedOrigin) return;
 
-  try{
-    if(typeof e !== 'object') {
-      const message = JSON.parse(e.data);
-
+  try {
+    const message = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
+    if (message.query) {
       setQueryStringParameter('query', message.query);
       setQueryStringParameter('keywords', message.keywords);
       setQueryStringParameter('index', message.index);
+    } else if (message.received) {
+      $SEARCH_PATH_NAME_CHECK = message.received;
     }
   } catch (e) {
     console.error(e);
@@ -75,7 +84,7 @@ if ($IS_HLX_PATH) {
     redirect_uri: window.location.href,
     isSignedIn: false,
     onError: function (error) {
-      console.log(error);
+      console.error(error);
     },
     onReady: function (ims) {
       if (window.adobeIMSMethods.isSignedIn()) {
@@ -106,7 +115,7 @@ if ($IS_HLX_PATH) {
     redirect_uri: window.location.href,
     isSignedIn: false,
     onError: function (error) {
-      console.log(error);
+      console.error(error);
     },
     onReady: function (ims) {
       if (window.adobeIMSMethods.isSignedIn()) {
@@ -137,7 +146,7 @@ if ($IS_HLX_PATH) {
     redirect_uri: window.location.href,
     isSignedIn: false,
     onError: function (error) {
-      console.log(error);
+      console.error(error);
     },
     onReady: function (ims) {
       if (window.adobeIMSMethods.isSignedIn()) {
@@ -1178,28 +1187,73 @@ function isTopLevelNav(urlPathname) {
 
 function decorateSearchIframeContainer($header) {
   $header.querySelectorAll('div.nav-console-search-frame').forEach(($searchIframeContainer) => {
-    const searchFrameOnLoad = () => {
-      $header.querySelectorAll('button.nav-dropdown-search').forEach(($button) => {
-        $button.style.visibility = "visible";
-
-        $button.addEventListener('click', (evt) => {
-          if (!evt.currentTarget.classList.contains('is-open')) {
-            $button.classList.add('is-open');
-            $searchIframeContainer.style.visibility = 'visible';
-            document.body.style.overflow = 'hidden';
-          } else {
-            $button.classList.remove('is-open');
-            $searchIframeContainer.style.visibility = 'hidden';
-            document.body.style.overflow = 'auto';
-          }
-        });
-      })
-    }
     const searchFrame = document.createElement('iframe');
-    searchFrame.id = "nav-search-iframe";
-    searchFrame.onLoad = searchFrameOnLoad();
+    searchFrame.classList = "nav-search-iframe";
     searchFrame.src = setSearchFrameSource();
     $searchIframeContainer.appendChild(searchFrame);
+    const renderedFrame = $searchIframeContainer.firstChild;
+    let loaded = false;
+
+    const searchFrameOnLoad = (counter = 0) => {
+      renderedFrame.contentWindow.postMessage(JSON.stringify({ localPathName: window.location.pathname }), '*');
+      if ($SEARCH_PATH_NAME_CHECK !== window.location.pathname) {
+        // attempt to establish connection for 3 seconds then time out
+        if (counter > 30) {
+          console.warn(`Loading Search iFrame timed out`);
+          return;
+        } else {
+          window.setTimeout(() => {searchFrameOnLoad(++counter)}, 100);
+          return;  
+        }
+      }
+
+      // Past this point we successfully passed the local pathname and received a confirmation from the iframe
+      if (!loaded) {
+        const queryString = getQueryString();
+        if (queryString) {
+          $searchIframeContainer.style.visibility = 'visible';
+        }
+
+        $header.querySelectorAll('button.nav-dropdown-search').forEach(($button) => {
+          $button.style.visibility = "visible";
+
+          $button.addEventListener('click', (evt) => {
+            if (!evt.currentTarget.classList.contains('is-open')) {
+              $button.classList.add('is-open');
+              $searchIframeContainer.style.visibility = 'visible';
+              document.body.style.overflow = 'hidden';
+            } else {
+              $button.classList.remove('is-open');
+              $searchIframeContainer.style.visibility = 'hidden';
+              document.body.style.overflow = 'auto';
+            }
+          });
+        })
+      }
+
+      loaded = true;
+    }
+
+    // Referenced https://stackoverflow.com/a/10444444/15028986
+    const checkIframeLoaded = () => {
+
+      // Get a handle to the iframe element
+      const iframeDoc = renderedFrame.contentDocument || renderedFrame.contentWindow.document;
+
+      // Check if loading is complete
+      if (iframeDoc.readyState === 'complete') {
+        renderedFrame.onload = () => {
+          searchFrameOnLoad();
+        };
+        // The loading is complete, call the function we want executed once the iframe is loaded
+        return;
+      }
+
+      // If we are here, it is not loaded. Set things up so we check   the status again in 100 milliseconds
+      window.setTimeout(checkIframeLoaded, 100);
+    }
+
+    checkIframeLoaded();
   });
 }
 
