@@ -47,13 +47,11 @@ const setSearchFrameSource = () => {
 
 window.addEventListener('message', function (e) {
   const expectedOrigin = setExpectedOrigin();
-
   if (e.origin !== expectedOrigin) return;
 
   try{
-    if(typeof e !== 'object') {
+    if(typeof e == 'object') {
       const message = JSON.parse(e.data);
-
       setQueryStringParameter('query', message.query);
       setQueryStringParameter('keywords', message.keywords);
       setQueryStringParameter('index', message.index);
