@@ -34,6 +34,15 @@ const setExpectedOrigin = () => {
     return 'https://developer.adobe.com';
   }
 }
+const setTargetOrigin = () => {
+  const parentURL = document.referrer;
+
+  if (parentURL.indexOf('localhost') >= 0 || parentURL.indexOf('developer-stage.adobe') >= 0 || parentURL.indexOf('hlx.page') >= 0 || parentURL.indexOf('hlx.live') >= 0 || parentURL.indexOf('developer.adobe') >= 0) {
+    return parentURL;
+  } else {
+    return false;
+  }
+};
 const setSearchFrameSource = () => {
   const src = $IS_DEV ? setExpectedOrigin() : `${setExpectedOrigin()}/search-frame`;
   const queryString = getQueryString();
@@ -42,15 +51,27 @@ const setSearchFrameSource = () => {
   } else {
     return src;
   }
-}
-
+};
+/**
+ * WIP search Iframe communication pipeline
+ */
+// const dispatchFrameMessage = (message) => {
+//   const targetOrigin = setTargetOrigin();
+//   if (targetOrigin) {
+//     parent.postMessage(JSON.stringify(message), targetOrigin);
+//   }
+// };
+// const updateSearchFrameQueryParams = () => {
+//   const message = JSON.stringify({ 'query': '', 'keywords': '', 'index': '' });
+//   dispatchFrameMessage(message);
+// };
 
 window.addEventListener('message', function (e) {
   const expectedOrigin = setExpectedOrigin();
   if (e.origin !== expectedOrigin) return;
 
-  try{
-    if(typeof e == 'object') {
+  try {
+    if (typeof e == 'object') {
       const message = JSON.parse(e.data);
       setQueryStringParameter('query', message.query);
       setQueryStringParameter('keywords', message.keywords);
@@ -1177,6 +1198,11 @@ function isTopLevelNav(urlPathname) {
 function decorateSearchIframeContainer($header) {
   $header.querySelectorAll('div.nav-console-search-frame').forEach(($searchIframeContainer) => {
     const searchFrameOnLoad = () => {
+      const queryString = getQueryString();
+      if (queryString) {
+        $searchIframeContainer.style.visibility = 'visible';
+      }
+
       $header.querySelectorAll('button.nav-dropdown-search').forEach(($button) => {
         $button.style.visibility = "visible";
 
