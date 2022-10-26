@@ -1,6 +1,7 @@
 let $IS_HLX_PATH = false;
 let $IS_STAGE = false;
 let $IS_DEV = false;
+let $SEARCH_PRODUCT_RECEIVED = '';
 
 if (window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf('hlx.live') >= 0 || window.location.host.indexOf('localhost') >= 0) {
   $IS_HLX_PATH = true;
@@ -55,15 +56,11 @@ const setSearchFrameSource = () => {
 /**
  * WIP search Iframe communication pipeline
  */
-// const dispatchFrameMessage = (message) => {
-//   const targetOrigin = setTargetOrigin();
+// const dispatchFrameMessage = (message, frame) => {
+//   const targetOrigin = "*"; //setTargetOrigin();
 //   if (targetOrigin) {
-//     parent.postMessage(JSON.stringify(message), targetOrigin);
+//     frame.contentWindow.postMessage(JSON.stringify(message), targetOrigin);
 //   }
-// };
-// const updateSearchFrameQueryParams = () => {
-//   const message = JSON.stringify({ 'query': '', 'keywords': '', 'index': '' });
-//   dispatchFrameMessage(message);
 // };
 
 window.addEventListener('message', function (e) {
@@ -71,11 +68,13 @@ window.addEventListener('message', function (e) {
   if (e.origin !== expectedOrigin) return;
 
   try {
-    if (typeof e == 'object') {
-      const message = JSON.parse(e.data);
+    const message = JSON.parse(e.data);
+    if (message.query) {
       setQueryStringParameter('query', message.query);
       setQueryStringParameter('keywords', message.keywords);
       setQueryStringParameter('index', message.index);
+    } else if (message.received) {
+      $SEARCH_PRODUCT_RECEIVED = message.received;
     }
   } catch (e) {
     console.error(e);
@@ -1197,7 +1196,20 @@ function isTopLevelNav(urlPathname) {
 
 function decorateSearchIframeContainer($header) {
   $header.querySelectorAll('div.nav-console-search-frame').forEach(($searchIframeContainer) => {
+    const searchFrame = document.createElement('iframe');
+    searchFrame.classList = "nav-search-iframe";
+    searchFrame.src = setSearchFrameSource();
+    $searchIframeContainer.appendChild(searchFrame);
+    const renderedFrame = $searchIframeContainer.firstChild;
+
     const searchFrameOnLoad = () => {
+      renderedFrame.contentWindow.postMessage(JSON.stringify({ localProduct: 'Adobe Developer App Builder' }), '*');
+
+      if ($SEARCH_PRODUCT_RECEIVED !== 'Adobe Developer App Builder') {
+        window.setTimeout(searchFrameOnLoad, 100);
+        return;
+      }
+
       const queryString = getQueryString();
       if (queryString) {
         $searchIframeContainer.style.visibility = 'visible';
@@ -1219,11 +1231,27 @@ function decorateSearchIframeContainer($header) {
         });
       })
     }
-    const searchFrame = document.createElement('iframe');
-    searchFrame.id = "nav-search-iframe";
-    searchFrame.onLoad = searchFrameOnLoad();
-    searchFrame.src = setSearchFrameSource();
-    $searchIframeContainer.appendChild(searchFrame);
+
+    // Referenced https://stackoverflow.com/a/10444444/15028986
+    const checkIframeLoaded = () => {
+
+      // Get a handle to the iframe element
+      const iframeDoc = renderedFrame.contentDocument || renderedFrame.contentWindow.document;
+
+      // Check if loading is complete
+      if (iframeDoc.readyState === 'complete') {
+        renderedFrame.onload = () => {
+          searchFrameOnLoad();
+        };
+        // The loading is complete, call the function we want executed once the iframe is loaded
+        return;
+      }
+
+      // If we are here, it is not loaded. Set things up so we check   the status again in 100 milliseconds
+      window.setTimeout(checkIframeLoaded, 100);
+    }
+
+    checkIframeLoaded();
   });
 }
 
