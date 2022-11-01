@@ -72,7 +72,7 @@ window.addEventListener('message', function (e) {
   if (e.origin !== expectedOrigin) return;
 
   try {
-    const message = JSON.parse(e.data);
+    const message = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
     if (message.query) {
       setQueryStringParameter('query', message.query);
       setQueryStringParameter('keywords', message.keywords);
@@ -1206,14 +1206,15 @@ function decorateSearchIframeContainer($header) {
     $searchIframeContainer.appendChild(searchFrame);
     const renderedFrame = $searchIframeContainer.firstChild;
 
-    const searchFrameOnLoad = () => {
+    const searchFramePostPathName = () => {
       renderedFrame.contentWindow.postMessage(JSON.stringify({ localPathName: window.location.pathname }), '*');
-
       if ($SEARCH_PATH_NAME_CHECK !== window.location.pathname) {
         window.setTimeout(searchFrameOnLoad, 100);
         return;
       }
+    }
 
+    const searchFrameOnLoad = () => {
       const queryString = getQueryString();
       if (queryString) {
         $searchIframeContainer.style.visibility = 'visible';
@@ -1245,6 +1246,7 @@ function decorateSearchIframeContainer($header) {
       // Check if loading is complete
       if (iframeDoc.readyState === 'complete') {
         renderedFrame.onload = () => {
+          searchFramePostPathName();
           searchFrameOnLoad();
         };
         // The loading is complete, call the function we want executed once the iframe is loaded
