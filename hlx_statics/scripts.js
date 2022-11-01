@@ -1,7 +1,7 @@
 let $IS_HLX_PATH = false;
 let $IS_STAGE = false;
 let $IS_DEV = false;
-let $SEARCH_PRODUCT_RECEIVED = '';
+let $SEARCH_PATH_NAME_CHECK = '';
 
 if (window.location.host.indexOf('hlx.page') >= 0 || window.location.host.indexOf('hlx.live') >= 0 || window.location.host.indexOf('localhost') >= 0) {
   $IS_HLX_PATH = true;
@@ -62,6 +62,10 @@ const setSearchFrameSource = () => {
 //     frame.contentWindow.postMessage(JSON.stringify(message), targetOrigin);
 //   }
 // };
+// const updateSearchFrameQueryParams = () => {
+//   const message = JSON.stringify({ 'query': '', 'keywords': '', 'index': '' });
+//   dispatchFrameMessage(message);
+// };
 
 window.addEventListener('message', function (e) {
   const expectedOrigin = setExpectedOrigin();
@@ -74,7 +78,7 @@ window.addEventListener('message', function (e) {
       setQueryStringParameter('keywords', message.keywords);
       setQueryStringParameter('index', message.index);
     } else if (message.received) {
-      $SEARCH_PRODUCT_RECEIVED = message.received;
+      $SEARCH_PATH_NAME_CHECK = message.received;
     }
   } catch (e) {
     console.error(e);
@@ -93,7 +97,7 @@ if ($IS_HLX_PATH) {
     redirect_uri: window.location.href,
     isSignedIn: false,
     onError: function (error) {
-      console.log(error);
+      console.error(error);
     },
     onReady: function (ims) {
       if (window.adobeIMSMethods.isSignedIn()) {
@@ -124,7 +128,7 @@ if ($IS_HLX_PATH) {
     redirect_uri: window.location.href,
     isSignedIn: false,
     onError: function (error) {
-      console.log(error);
+      console.error(error);
     },
     onReady: function (ims) {
       if (window.adobeIMSMethods.isSignedIn()) {
@@ -155,7 +159,7 @@ if ($IS_HLX_PATH) {
     redirect_uri: window.location.href,
     isSignedIn: false,
     onError: function (error) {
-      console.log(error);
+      console.error(error);
     },
     onReady: function (ims) {
       if (window.adobeIMSMethods.isSignedIn()) {
@@ -1203,9 +1207,9 @@ function decorateSearchIframeContainer($header) {
     const renderedFrame = $searchIframeContainer.firstChild;
 
     const searchFrameOnLoad = () => {
-      renderedFrame.contentWindow.postMessage(JSON.stringify({ localProduct: 'Adobe Developer App Builder' }), '*');
+      renderedFrame.contentWindow.postMessage(JSON.stringify({ localPathName: window.location.pathname }), '*');
 
-      if ($SEARCH_PRODUCT_RECEIVED !== 'Adobe Developer App Builder') {
+      if ($SEARCH_PATH_NAME_CHECK !== window.location.pathname) {
         window.setTimeout(searchFrameOnLoad, 100);
         return;
       }
