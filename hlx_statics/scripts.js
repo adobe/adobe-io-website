@@ -1194,6 +1194,7 @@ function decorateSearchIframeContainer($header) {
     searchFrame.src = setSearchFrameSource();
     $searchIframeContainer.appendChild(searchFrame);
     const renderedFrame = $searchIframeContainer.firstChild;
+    let loaded = false;
 
     const searchFrameOnLoad = () => {
       console.log("load");
@@ -1203,32 +1204,36 @@ function decorateSearchIframeContainer($header) {
         window.setTimeout(searchFrameOnLoad, 100);
         return;
       }
-      console.log("load past message");
+
+      console.log(loaded);
 
       // Past this point we successfully passed the local pathname and received a confirmation from the iframe
+      if (!loaded) {
+        const queryString = getQueryString();
+        if (queryString) {
+          $searchIframeContainer.style.visibility = 'visible';
+        }
 
-      const queryString = getQueryString();
-      if (queryString) {
-        $searchIframeContainer.style.visibility = 'visible';
+        $header.querySelectorAll('button.nav-dropdown-search').forEach(($button) => {
+          console.log("button event");
+          $button.style.visibility = "visible";
+
+          $button.addEventListener('click', (evt) => {
+            if (!evt.currentTarget.classList.contains('is-open')) {
+              $button.classList.add('is-open');
+              $searchIframeContainer.style.visibility = 'visible';
+              console.log($searchIframeContainer);
+              document.body.style.overflow = 'hidden';
+            } else {
+              $button.classList.remove('is-open');
+              $searchIframeContainer.style.visibility = 'hidden';
+              document.body.style.overflow = 'auto';
+            }
+          });
+        })
       }
 
-      $header.querySelectorAll('button.nav-dropdown-search').forEach(($button) => {
-        console.log("button event");
-        $button.style.visibility = "visible";
-
-        $button.addEventListener('click', (evt) => {
-          if (!evt.currentTarget.classList.contains('is-open')) {
-            $button.classList.add('is-open');
-            $searchIframeContainer.style.visibility = 'visible';
-            console.log($searchIframeContainer);
-            document.body.style.overflow = 'hidden';
-          } else {
-            $button.classList.remove('is-open');
-            $searchIframeContainer.style.visibility = 'hidden';
-            document.body.style.overflow = 'auto';
-          }
-        });
-      })
+      loaded = true;
     }
 
     // Referenced https://stackoverflow.com/a/10444444/15028986
