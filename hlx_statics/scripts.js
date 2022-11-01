@@ -1209,6 +1209,7 @@ function decorateSearchIframeContainer($header) {
     const searchFramePostPathName = () => {
       renderedFrame.contentWindow.postMessage(JSON.stringify({ localPathName: window.location.pathname }), '*');
       if ($SEARCH_PATH_NAME_CHECK !== window.location.pathname) {
+        console.log("sending message again");
         window.setTimeout(searchFrameOnLoad, 100);
         return;
       }
@@ -1221,6 +1222,7 @@ function decorateSearchIframeContainer($header) {
       }
 
       $header.querySelectorAll('button.nav-dropdown-search').forEach(($button) => {
+        console.log($button);
         $button.style.visibility = "visible";
 
         $button.addEventListener('click', (evt) => {
@@ -1246,8 +1248,12 @@ function decorateSearchIframeContainer($header) {
       // Check if loading is complete
       if (iframeDoc.readyState === 'complete') {
         renderedFrame.onload = () => {
+          console.log("Pre pathname post");
           searchFramePostPathName();
+          console.log("Post pathname post");
           searchFrameOnLoad();
+          console.log("Post onload btn should work");
+
         };
         // The loading is complete, call the function we want executed once the iframe is loaded
         return;
