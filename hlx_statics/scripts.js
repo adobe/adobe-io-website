@@ -53,19 +53,6 @@ const setSearchFrameSource = () => {
     return src;
   }
 };
-/**
- * WIP search Iframe communication pipeline
- */
-// const dispatchFrameMessage = (message, frame) => {
-//   const targetOrigin = "*"; //setTargetOrigin();
-//   if (targetOrigin) {
-//     frame.contentWindow.postMessage(JSON.stringify(message), targetOrigin);
-//   }
-// };
-// const updateSearchFrameQueryParams = () => {
-//   const message = JSON.stringify({ 'query': '', 'keywords': '', 'index': '' });
-//   dispatchFrameMessage(message);
-// };
 
 window.addEventListener('message', function (e) {
   const expectedOrigin = setExpectedOrigin();
@@ -1206,16 +1193,16 @@ function decorateSearchIframeContainer($header) {
     $searchIframeContainer.appendChild(searchFrame);
     const renderedFrame = $searchIframeContainer.firstChild;
 
-    const searchFramePostPathName = () => {
+    const searchFrameOnLoad = () => {
       renderedFrame.contentWindow.postMessage(JSON.stringify({ localPathName: window.location.pathname }), '*');
       if ($SEARCH_PATH_NAME_CHECK !== window.location.pathname) {
         console.log("sending message again");
         window.setTimeout(searchFrameOnLoad, 100);
         return;
       }
-    }
 
-    const searchFrameOnLoad = () => {
+      // Past this point we successfully passed the local pathname and received a confirmation from the iframe
+
       const queryString = getQueryString();
       if (queryString) {
         $searchIframeContainer.style.visibility = 'visible';
@@ -1229,6 +1216,7 @@ function decorateSearchIframeContainer($header) {
           if (!evt.currentTarget.classList.contains('is-open')) {
             $button.classList.add('is-open');
             $searchIframeContainer.style.visibility = 'visible';
+            console.log($searchIframeContainer);
             document.body.style.overflow = 'hidden';
           } else {
             $button.classList.remove('is-open');
@@ -1248,12 +1236,7 @@ function decorateSearchIframeContainer($header) {
       // Check if loading is complete
       if (iframeDoc.readyState === 'complete') {
         renderedFrame.onload = () => {
-          console.log("Pre pathname post");
-          searchFramePostPathName();
-          console.log("Post pathname post");
           searchFrameOnLoad();
-          console.log("Post onload btn should work");
-
         };
         // The loading is complete, call the function we want executed once the iframe is loaded
         return;
