@@ -1186,7 +1186,9 @@ function isTopLevelNav(urlPathname) {
 }
 
 function decorateSearchIframeContainer($header) {
+  console.log("decorate");
   $header.querySelectorAll('div.nav-console-search-frame').forEach(($searchIframeContainer) => {
+    console.log("frame");
     const searchFrame = document.createElement('iframe');
     searchFrame.classList = "nav-search-iframe";
     searchFrame.src = setSearchFrameSource();
@@ -1194,12 +1196,14 @@ function decorateSearchIframeContainer($header) {
     const renderedFrame = $searchIframeContainer.firstChild;
 
     const searchFrameOnLoad = () => {
+      console.log("load");
       renderedFrame.contentWindow.postMessage(JSON.stringify({ localPathName: window.location.pathname }), '*');
       if ($SEARCH_PATH_NAME_CHECK !== window.location.pathname) {
         console.log("sending message again");
         window.setTimeout(searchFrameOnLoad, 100);
         return;
       }
+      console.log("load past message");
 
       // Past this point we successfully passed the local pathname and received a confirmation from the iframe
 
@@ -1209,7 +1213,7 @@ function decorateSearchIframeContainer($header) {
       }
 
       $header.querySelectorAll('button.nav-dropdown-search').forEach(($button) => {
-        console.log($button);
+        console.log("button event");
         $button.style.visibility = "visible";
 
         $button.addEventListener('click', (evt) => {
