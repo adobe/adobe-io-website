@@ -1194,11 +1194,17 @@ function decorateSearchIframeContainer($header) {
     const renderedFrame = $searchIframeContainer.firstChild;
     let loaded = false;
 
-    const searchFrameOnLoad = () => {
+    const searchFrameOnLoad = (counter = 0) => {
       renderedFrame.contentWindow.postMessage(JSON.stringify({ localPathName: window.location.pathname }), '*');
       if ($SEARCH_PATH_NAME_CHECK !== window.location.pathname) {
-        window.setTimeout(searchFrameOnLoad, 100);
-        return;
+        // attempt to establish connection for 3 seconds then time out
+        if (counter > 30) {
+          console.warn(`Loading Search iFrame timed out`);
+          return;
+        } else {
+          window.setTimeout(() => {searchFrameOnLoad(++counter)}, 100);
+          return;  
+        }
       }
 
       // Past this point we successfully passed the local pathname and received a confirmation from the iframe
