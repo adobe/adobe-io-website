@@ -11,20 +11,14 @@
  */
 
 const AlgoliaHTMLExtractor = require('algolia-html-extractor');
+const LoadContentByUrl = require('./load-content-by-url');
 const algoliasearch = require('algoliasearch');
-const axios = require('axios');
-
 
 /**
  * Indexation mode constants
  */
 const INDEXATION_MODE_CONSOLE = 'console', // push data to console
   INDEXATION_MODE_INDEX = 'index'; // push data to index
-
-/**
-* Franklin index check constant
-*/
-const FRANKLIN_INDEX_CHECK = 'franklin';
 
 /**
  * Indexer tool
@@ -37,6 +31,7 @@ const FRANKLIN_INDEX_CHECK = 'franklin';
 class Indexer {
   constructor() {
     this.htmlExtractor = new AlgoliaHTMLExtractor();
+    this.loadContentByUrl = new LoadContentByUrl();
   }
 
   /**
@@ -53,44 +48,21 @@ class Indexer {
 
   /**
    * @private
-   * @param {String} url
-   * @returns {Array<Object>}
-   */
-  async loadContentByUrl(url) {
-    let content;
-    try {
-      content = await axios.get(url);
-    } catch (error) {
-      throw new Error(`Cannot load content from url: ${error.message}`);
-    }
-    return content;
-  };
-
-  /**
-   * @private
    * @param {String} pagesListJsonFile
-   * @returns {Array<Object>}
+   * @returns {Promise<any>}
    */
   async getPagesList(pagesListJsonFile) {
     console.log(`\nStart reading a list of pages from ${pagesListJsonFile}.`);
-    const pagesListJson = await this.loadContentByUrl(pagesListJsonFile);
-    const formatedPagesList = [];
 
-    pagesListJson.data.forEach(({ productName, productIndices }) => {
-      productIndices.forEach(({ indexName, indexPathPrefix }) => {
-        if (indexName.startsWith(FRANKLIN_INDEX_CHECK)) {
-          formatedPagesList.push({
-            Index: indexName,
-            Url: indexPathPrefix,
-            AbsoluteUrl: `https://developer.adobe.com${indexPathPrefix}`,
-            ProductName: productName,
-            Keywords: "",
-          });
-        }
-      });
-    });;
-    console.log(`Reading completed. Total page(s) for indexation: ${formatedPagesList.length}.`);
-    return formatedPagesList;
+    const pagesListJson = await this.loadContentByUrl.execute(pagesListJsonFile);
+    let pagesList;
+    try {
+      pagesList = JSON.parse(pagesListJson);
+    } catch (e) {
+      throw new Error(`Cannot parse Pages List JSON: ${e.message}`);
+    }
+    console.log(`Reading completed. Total page(s) for indexation: ${pagesList.data.length}.`);
+    return pagesList;
   }
 
   /**
@@ -103,33 +75,33 @@ class Indexer {
     console.log(`\nStart creating a list of index records:`);
 
     let records = [];
-    for (const page of pagesList) {
-      if (!page.Url || !page.AbsoluteUrl || !page.ProductName || !page.Index) {
+    for (const page of pagesList.data) {
+      if (!page.Url || !page.AbsoluteUrl || !page.Name || !page.Index ) {
         throw new Error('Wrong page declaration: ' + JSON.stringify(page));
       }
-      const pageContent = await this.loadContentByUrl(page.AbsoluteUrl);
-      const extractedData = this.splitPageContent(pageContent.data, options);
+      const pageContent = await this.loadContentByUrl.execute(page.AbsoluteUrl);
+
+      const extractedData = this.splitPageContent(pageContent, options);
 
       const titleOptions = JSON.parse(JSON.stringify(options));
       titleOptions.tagsToIndex = 'title';
       titleOptions.minWordsCount = 1;
       titleOptions.minCharsLength = 5;
-      const title = this.splitPageContent(pageContent.data, titleOptions);
+      const title = this.splitPageContent(pageContent, titleOptions );
       const theTitle = title.length > 0 ? title[0].content : '';
 
       const recordsBunch = extractedData.map((htmlTag) => ({
         title: theTitle,
         content: htmlTag.content,
-        headings: htmlTag.headings[0],
+        headings: htmlTag.headings,
+        customRanking: htmlTag.customRanking,
         objectID: htmlTag.objectID,
-        url: page.AbsoluteUrl,
-        path: page.Url,
-        product: page.ProductName,
+        absoluteUrl: page.AbsoluteUrl,
+        url: page.Url,
         index: page.Index
-      })
-      );
+      }));
 
-      console.log(` - ${recordsBunch.length} record(s) for "${page.ProductName} | ${page.Url} | with index: ${page.Index}";`);
+      console.log(` - ${recordsBunch.length} record(s) for "${page.Name} | ${page.Url} | with index: ${page.Index}";`);
       records = [...records, ...recordsBunch];
     }
     console.log(`Creating a list of index records completed. Total record(s): ${records.length}.`);
@@ -153,18 +125,18 @@ class Indexer {
       );
   }
 
-  /**
-  * @private
-  * @param {Array} records
-  * @returns {Array}
-  */
-  getUniqueIndexes(records) {
-    const indexes = records.map((item) => {
-      return item.index
-    });
-    const uniqueIndexes = [...new Set(indexes)];
-    return uniqueIndexes;
-  }
+    /**
+   * @private
+   * @param {Array} records
+   * @returns {Array}
+   */
+     getUniqueIndexes(records) {
+      const indexes = records.map((item) => {
+        return item.index
+      });
+      const uniqueIndexes = [...new Set(indexes)];
+      return uniqueIndexes;
+    }
 
   /**
    * @private
@@ -179,18 +151,18 @@ class Indexer {
 
     switch (mode) {
       case INDEXATION_MODE_CONSOLE:
-        console.log(`Indexation mode is "${mode}". Index records will be published to console:\n`, /* records */);
+        console.log(`Indexation mode is "${mode}". Index records will be published to console:\n`, records);
         break;
       case INDEXATION_MODE_INDEX:
         console.log(`Indexation mode is "${mode}". Index records will be published to Algolia index.`);
 
         const client = algoliasearch(options.algoliaAppId, options.algoliaWriteAppKey);
         const indexes = this.getUniqueIndexes(records);
-
-        for (const index of indexes) {
+        for(const index of indexes ){
           // group records together by index and upload
           const recordsOfIndex = records.filter(record => record.index === index);
           const clientIndex = client.initIndex(index);
+
           await clientIndex
             .saveObjects(recordsOfIndex)
             .then(({ objectIDs }) => {
@@ -199,7 +171,6 @@ class Indexer {
             .catch((err) => {
               throw new Error(`Error during pushing data to Algolia: ${err.message}`);
             });
-
         }
 
         break;
