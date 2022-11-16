@@ -64,7 +64,7 @@ const searchFrameOnLoad = (renderedFrame, counter = 0, loaded) => {
   if (!loaded) {
     const queryString = getQueryString();
     if (queryString) {
-      $searchIframeContainer.style.visibility = 'visible';
+      searchIframeContainer.style.visibility = 'visible';
     }
   }
 
@@ -93,6 +93,8 @@ const checkIframeLoaded = (renderedFrame) => {
 function decorateSearchIframeContainer(header) {
   const searchIframeContainer = header.querySelector('div.nav-console-search-frame');
   const button = header.querySelector('button.nav-dropdown-search');
+  const queryString = getQueryString();
+
   button.addEventListener('click', (evt) => {
     if (!evt.currentTarget.classList.contains('is-open')) {
       const searchFrame = createTag('iframe');
@@ -111,6 +113,11 @@ function decorateSearchIframeContainer(header) {
       searchIframeContainer.firstChild.remove();
     }
   });
+
+  // to load search if query string is present
+  if (queryString) {
+    button.click();
+  }
 }
 
 function handleButtons(header) {
