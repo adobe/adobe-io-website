@@ -4,6 +4,7 @@ import {
   focusRing,
   isDevEnvironment,
   setExpectedOrigin,
+  setQueryStringParameter,
 } from '../../scripts/lib-adobeio.js';
 import { readBlockConfig } from '../../scripts/lib-helix.js';
 
@@ -45,6 +46,49 @@ const setSearchFrameSource = () => {
     : src;
 };
 
+const searchFrameOnLoad = (renderedFrame, counter = 0) => {
+  renderedFrame.contentWindow.postMessage(JSON.stringify({ localPathName: window.location.pathname }), '*');
+  if (window.search_path_name_check !== window.location.pathname) {
+    // attempt to establish connection for 3 seconds then time out
+    if (counter > 30) {
+      console.warn(`Loading Search iFrame timed out`);
+      return;
+    } else {
+      window.setTimeout(() => { searchFrameOnLoad(renderedFrame, ++counter) }, 100);
+      return;
+    }
+  }
+
+  // Past this point we successfully passed the local pathname and received a confirmation from the iframe
+  if (!loaded) {
+    const queryString = getQueryString();
+    if (queryString) {
+      $searchIframeContainer.style.visibility = 'visible';
+    }
+  }
+
+  loaded = true;
+}
+
+// Referenced https://stackoverflow.com/a/10444444/15028986
+const checkIframeLoaded = (renderedFrame) => {
+
+  // Get a handle to the iframe element
+  const iframeDoc = renderedFrame.contentDocument || renderedFrame.contentWindow.document;
+
+  // Check if loading is complete
+  if (iframeDoc.readyState === 'complete') {
+    renderedFrame.onload = () => {
+      searchFrameOnLoad(renderedFrame);
+    };
+    // The loading is complete, call the function we want executed once the iframe is loaded
+    return;
+  }
+
+  // If we are here, it is not loaded. Set things up so we check   the status again in 100 milliseconds
+  window.setTimeout(checkIframeLoaded, 100);
+}
+
 function decorateSearchIframeContainer(header) {
   const searchIframeContainer = header.querySelector('div.nav-console-search-frame');
   const button = header.querySelector('button.nav-dropdown-search');
@@ -55,6 +99,8 @@ function decorateSearchIframeContainer(header) {
       searchFrame.src = setSearchFrameSource();
       searchIframeContainer.appendChild(searchFrame);
       button.classList.add('is-open');
+      /* Loading Iframe */
+      checkIframeLoaded(searchIframeContainer.firstChild);
       searchIframeContainer.style.visibility = 'visible';
       document.body.style.overflow = 'hidden';
     } else {
@@ -142,6 +188,26 @@ export default async function decorate(block) {
         div.appendChild(a);
         ul.removeChild(li);
         ul.appendChild(div);
+      }
+    });
+
+    window.search_path_name_check = "";
+
+    window.addEventListener('message', function (e) {
+      const expectedOrigin = setExpectedOrigin(window.location.host);
+      if (e.origin !== expectedOrigin) return;
+
+      try {
+        const message = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
+        if (message.query) {
+          setQueryStringParameter('query', message.query);
+          setQueryStringParameter('keywords', message.keywords);
+          setQueryStringParameter('index', message.index);
+        } else if (message.received) {
+          window.search_path_name_check = message.received;
+        }
+      } catch (e) {
+        console.error(e);
       }
     });
 

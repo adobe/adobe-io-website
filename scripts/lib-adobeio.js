@@ -292,12 +292,24 @@ export function isHlxPath(host) {
  */
 export const setExpectedOrigin = (host, suffix = '') => {
   if (isDevEnvironment(host)) {
-    return 'http://localhost:3000';
+    return 'http://localhost:8000';
   }
   if (isStageEnvironment(host) || isHlxPath(host)) {
     return `https://developer-stage.adobe.com${suffix}`;
   }
   return `https://developer.adobe.com${suffix}`;
+};
+/**
+ * Sets given query parameter to provided value and updates URL
+ * @param {*} name The query parameter name
+ * @param {*} value The value of the query parameter
+ * @returns URLSearchParams object state
+ */
+export const setQueryStringParameter = (name, value) => {
+  const params = new URLSearchParams(window.location.search);
+  params.set(name, value);
+  window.history.replaceState({}, "", `${window.location.pathname}?${params}`);
+  return params;
 };
 
 /**
