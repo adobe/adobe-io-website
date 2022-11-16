@@ -5,6 +5,7 @@ import {
   isDevEnvironment,
   setExpectedOrigin,
   setQueryStringParameter,
+  getQueryString,
 } from '../../scripts/lib-adobeio.js';
 import { readBlockConfig } from '../../scripts/lib-helix.js';
 

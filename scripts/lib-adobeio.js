@@ -313,6 +313,16 @@ export const setQueryStringParameter = (name, value) => {
 };
 
 /**
+ * 
+ * @returns 
+ */
+export const getQueryString = () => {
+  const params = new URLSearchParams(window.location.search);
+  console.log(params.toString());
+  return params.toString();
+}
+
+/**
  * Returns the HTML code for the global navigation user profile
  * @param {*} profile The user profile
  * @returns The global navigation user profile for the current user
