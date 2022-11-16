@@ -46,7 +46,7 @@ const setSearchFrameSource = () => {
     : src;
 };
 
-const searchFrameOnLoad = (renderedFrame, counter = 0) => {
+const searchFrameOnLoad = (renderedFrame, counter = 0, loaded) => {
   renderedFrame.contentWindow.postMessage(JSON.stringify({ localPathName: window.location.pathname }), '*');
   if (window.search_path_name_check !== window.location.pathname) {
     // attempt to establish connection for 3 seconds then time out
@@ -54,7 +54,7 @@ const searchFrameOnLoad = (renderedFrame, counter = 0) => {
       console.warn(`Loading Search iFrame timed out`);
       return;
     } else {
-      window.setTimeout(() => { searchFrameOnLoad(renderedFrame, ++counter) }, 100);
+      window.setTimeout(() => { searchFrameOnLoad(renderedFrame, ++counter, loaded) }, 100);
       return;
     }
   }
@@ -107,6 +107,7 @@ function decorateSearchIframeContainer(header) {
       button.classList.remove('is-open');
       searchIframeContainer.style.visibility = 'hidden';
       document.body.style.overflow = 'auto';
+      searchIframeContainer.firstChild.remove();
     }
   });
 }
