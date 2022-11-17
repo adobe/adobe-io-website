@@ -13,7 +13,7 @@ function globalNavSearchButton() {
   const div = createTag('div', { class: 'nav-console-search-button' });
   div.innerHTML = `<button class="nav-dropdown-search" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--emphasized spectrum-ActionButton--quiet">
       <svg class="spectrum-Icon spectrum-Icon--sizeM" focusable="false" aria-hidden="true" aria-label="Edit">
-        <use href="/icons/search.svg#spectrum-icon-24-Search"></use>
+        <use href="/hlx_statics/icons/search.svg#spectrum-icon-24-Search"></use>
       </svg>
     </button>`;
   return div;
@@ -173,7 +173,7 @@ export default async function decorate(block) {
     const title = block.querySelector('p:nth-child(1)');
     const siteLink = title.querySelector('strong > a');
     const iconLink = createTag('a', { class: 'na-console-adobeio-link', href: siteLink.href });
-    iconLink.innerHTML = '<img class="icon icon-adobe" src="/icons/adobe.svg" alt="adobe icon">';
+    iconLink.innerHTML = '<img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">';
     iconContainer.appendChild(iconLink);
     siteLink.className = 'nav-console-adobeio-link-text';
     siteLink.innerHTML = `<strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">${siteLink.innerText}</strong>`;

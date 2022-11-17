@@ -15,7 +15,7 @@ async function fetchProfileAvatar(userId) {
     const req = await fetch(`https://cc-api-behance.adobe.io/v2/users/${userId}?api_key=SUSI2`);
     if (req) {
       const res = await req.json();
-      const avatarUrl = res?.user?.images?.['138'] ?? '/icons/avatar.svg';
+      const avatarUrl = res?.user?.images?.['138'] ?? '/hlx_statics/icons/avatar.svg';
       if (document.querySelector('#nav-profile-popover-avatar-img')) {
         document.querySelector('#nav-profile-popover-avatar-img').src = avatarUrl;
       }
@@ -165,7 +165,7 @@ window.adobeIMSMethods = {
   getProfile() {
     window.adobeIMS.getProfile().then((profile) => {
       window.adobeid.profile = profile;
-      window.adobeid.profile.avatarUrl = '/icons/avatar.svg';
+      window.adobeid.profile.avatarUrl = '/hlx_statics/icons/avatar.svg';
       decorateProfile(window.adobeid.profile);
       fetchProfileAvatar(window.adobeid.profile.userId);
     })
