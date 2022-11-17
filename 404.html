@@ -9,9 +9,9 @@
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:title" content="Page not found">
-  <script src="/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
+  <script src="/hlx_statics/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
   <script type="module">
-    import { sampleRUM } from '/scripts/lib-helix.js';
+    import { sampleRUM } from '/hlx_statics/scripts/lib-helix.js';
 
     window.addEventListener('load', () => {
       if (document.referrer) {
@@ -29,7 +29,7 @@
       sampleRUM('404', { source: document.referrer, target: window.location.href });
     });
   </script>
-  <link rel="stylesheet" href="/styles/styles.css">
+  <link rel="stylesheet" href="/hlx_statics/styles/styles.css">
   <style>
     main.error {
       min-height: calc(100vh - var(--nav-height));
@@ -45,7 +45,7 @@
       font-family: var(--fixed-font-family);
     }
   </style>
-  <link rel="stylesheet" href="/styles/lazy-styles.css">
+  <link rel="stylesheet" href="/hlx_statics/styles/lazy-styles.css">
 </head>
 
 <body>
