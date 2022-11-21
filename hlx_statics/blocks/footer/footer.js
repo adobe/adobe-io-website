@@ -39,7 +39,7 @@ function buildFooter(html) {
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   block.textContent = '';
-  const footerPath = cfg.footer || setExpectedOrigin('/franklin_assets/footer');
+  const footerPath = cfg.footer || setExpectedOrigin(window.location.origin, '/franklin_assets/footer');
   const resp = await fetch(`${footerPath}.plain.html`);
   const html = await resp.text();
   block.classList.add('footer-links-container');
