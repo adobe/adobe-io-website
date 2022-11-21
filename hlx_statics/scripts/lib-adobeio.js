@@ -294,8 +294,11 @@ export const setExpectedOrigin = (host, suffix = '') => {
   if (isDevEnvironment(host)) {
     return 'http://localhost:8000';
   }
-  if (isStageEnvironment(host) || isHlxPath(host)) {
+  if (isStageEnvironment(host)) {
     return `https://developer-stage.adobe.com${suffix}`;
+  }
+  if( isHlxPath(host)) {
+    return `${window.location.origin}${suffix}`;
   }
   return `https://developer.adobe.com${suffix}`;
 };
