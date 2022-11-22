@@ -312,7 +312,9 @@ export const setExpectedOrigin = (host, suffix = '') => {
  */
  export const getFranklinFirstSubFolder = (host, suffix = '') => {
   let subfolderPath = location.pathname.split('/')[1];
-  if(subfolderPath === '') {
+
+  // make sure top level paths point to the same nav
+  if(subfolderPath === '' || subfolderPath === 'apis' || subfolderPath === 'open' || subfolderPath === 'developer-support') {
     subfolderPath = 'franklin_assets'
   }
 
