@@ -3,6 +3,7 @@ import {
   setActiveTab,
   focusRing,
   isDevEnvironment,
+  getFranklinFirstSubFolder,
   setExpectedOrigin,
   setQueryStringParameter,
   getQueryString,
@@ -161,7 +162,7 @@ function handleButtons(header) {
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   block.textContent = '';
-  const navPath = cfg.nav || '/nav';
+  const navPath = cfg.nav || getFranklinFirstSubFolder(window.location.origin, 'nav');
   const resp = await fetch(`${navPath}.plain.html`);
   if (resp.ok) {
     const html = await resp.text();
