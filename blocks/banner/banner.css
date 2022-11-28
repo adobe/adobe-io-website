@@ -1,0 +1,15 @@
+main div.banner-container {
+    background-color: var(--spectrum-global-color-blue-700);
+  }
+  
+  main div.banner {
+    width: 90%;
+    text-align: left;
+    height: 210px;
+    margin: 0 auto;
+  }
+  
+  main div.banner h1 {
+    line-height: 210px;
+    color: var(--spectrum-global-color-gray-50);
+  }
