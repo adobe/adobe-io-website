@@ -116,6 +116,7 @@ class Indexer {
       titleOptions.minCharsLength = 5;
       const title = this.splitPageContent(pageContent.data, titleOptions);
       const theTitle = title.length > 0 ? title[0].content : '';
+      const checkIndexEnv = options.algoliaIndexEnvPrefix ? `${options.algoliaIndexEnvPrefix}-${page.Index}` : page.Index;
 
       const recordsBunch = extractedData.map((htmlTag) => ({
         title: theTitle,
@@ -125,11 +126,11 @@ class Indexer {
         url: page.AbsoluteUrl,
         path: page.Url,
         product: page.ProductName,
-        index: page.Index
+        index: checkIndexEnv
       })
       );
 
-      console.log(` - ${recordsBunch.length} record(s) for "${page.ProductName} | ${page.Url} | with index: ${page.Index}";`);
+      console.log(` - ${recordsBunch.length} record(s) for "${page.ProductName} | ${page.Url} | with index: ${checkIndexEnv}";`);
       records = [...records, ...recordsBunch];
     }
     console.log(`Creating a list of index records completed. Total record(s): ${records.length}.`);

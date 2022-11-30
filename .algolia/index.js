@@ -24,7 +24,7 @@ const indexationOptions = {
 const algoliaOptions = {
   algoliaAppId: process.env.ALGOLIA_APP_ID,
   algoliaWriteAppKey: process.env.ALGOLIA_WRITE_API_KEY,
-  // algoliaIndexName: argv.ALGOLIA_INDEX_NAME ? argv.ALGOLIA_INDEX_NAME : process.env.ALGOLIA_INDEX_NAME
+  algoliaIndexEnvPrefix: argv.ALGOLIA_INDEX_ENV_PREFIX ? argv.ALGOLIA_INDEX_ENV_PREFIX : process.env.ALGOLIA_INDEX_ENV_PREFIX
 };
 
 const indexer = new (require('./lib/indexer'))();
