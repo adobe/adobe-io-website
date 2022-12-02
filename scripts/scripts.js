@@ -22,7 +22,7 @@ import {
   toggleScale,
 } from './lib-adobeio.js';
 
-export {sampleRUM, toCamelCase, toClassName};
+export {sampleRUM, toCamelCase, toClassName, getMetadata, loadCSS};
 
 /*
  * ------------------------------------------------------------
@@ -145,6 +145,11 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+
+  if (window.location.hostname.endsWith('hlx.page') || window.location.hostname === ('localhost')) {
+    // eslint-disable-next-line import/no-cycle
+    import('../tools/preview/experimentation-preview.js');
+  }
 }
 
 /**
