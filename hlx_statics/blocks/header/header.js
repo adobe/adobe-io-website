@@ -41,21 +41,19 @@ function globalSignIn() {
 
 function globalNavLinkItemDropdown(id, name, links) {
   return `
-      <li>
-        <button id="nav-dropdown-button_${id}" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet navigation-dropdown" aria-haspopup="listbox">
-          <span class="spectrum-Picker-label">
-            ${name}
-          </span>
-          <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
-            <use xlink:href="#spectrum-css-icon-Chevron100" />
-          </svg>
-        </button>
-        <div id="nav-dropdown-popover_${id}" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover nav-dropdown-popover">
-          <ul class="spectrum-Menu" role="menu">
-            ${links}
-          </ul>
-        </div>
-      </li>
+      <button id="nav-dropdown-button_${id}" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet navigation-dropdown" aria-haspopup="listbox">
+        <span class="spectrum-Picker-label">
+          ${name}
+        </span>
+        <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
+          <use xlink:href="#spectrum-css-icon-Chevron100" />
+        </svg>
+      </button>
+      <div id="nav-dropdown-popover_${id}" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover nav-dropdown-popover">
+        <ul class="spectrum-Menu" role="menu">
+          ${links}
+        </ul>
+      </div>
     `;
 }
 
