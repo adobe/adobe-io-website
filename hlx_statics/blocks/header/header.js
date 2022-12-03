@@ -3,6 +3,7 @@ import {
   setActiveTab,
   focusRing,
   isDevEnvironment,
+  isTopLevelNav,
   getFranklinFirstSubFolder,
   setExpectedOrigin,
   setQueryStringParameter,
@@ -36,6 +37,34 @@ function globalSignIn() {
     <span id="signIn" class="spectrum-ActionButton-label">Sign in</span>
   </button>`;
   return div;
+}
+
+function globalNavLinkItemDropdown(id, name, links) {
+  return `
+      <li>
+        <button id="nav-dropdown-button_${id}" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet navigation-dropdown" aria-haspopup="listbox">
+          <span class="spectrum-Picker-label">
+            ${name}
+          </span>
+          <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
+            <use xlink:href="#spectrum-css-icon-Chevron100" />
+          </svg>
+        </button>
+        <div id="nav-dropdown-popover_${id}" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover nav-dropdown-popover">
+          <ul class="spectrum-Menu" role="menu">
+            ${links}
+          </ul>
+        </div>
+      </li>
+    `;
+}
+
+function globalNavLinkItemDropdownItem(url, name) {
+  return `
+      <li class="spectrum-Menu-item">
+        <span class="spectrum-Menu-itemLabel"><a href="${url}" class="nav-dropdown-links">${name}</a></span>
+      </li>
+    `;
 }
 
 const globalNavSearchDropDown = () => createTag('div', { class: 'nav-console-search-frame' });
@@ -155,6 +184,7 @@ function handleButtons(header) {
   });
 }
 
+
 /**
  * Decorates the header
  * @param {*} block The header
@@ -184,8 +214,27 @@ export default async function decorate(block) {
     const ul = block.querySelector('ul');
     ul.setAttribute('id', 'navigation-links');
     ul.style.listStyleType = 'none';
-    const productsLi = ul.querySelector('li:nth-child(1)');
-    productsLi.className = 'navigation-products';
+
+    if(isTopLevelNav(window.location.pathname)) {
+      let homeLink = ul.querySelector('li:nth-child(1)');
+      homeLink.className = 'navigation-home';
+    } else {
+      let productsLi = ul.querySelector('li:nth-child(1)');
+      productsLi.className = 'navigation-products';
+    }
+
+    ul.querySelectorAll('li > ul').forEach((dropDownList, index) => {
+      let dropdownLinkDropdownHTML = '';
+      let dropdownLinksHTML = '';
+
+      dropDownList.querySelectorAll('ul > li > a').forEach((dropdownLinks) => {
+        dropdownLinksHTML += globalNavLinkItemDropdownItem(dropdownLinks.href, dropdownLinks.innerText);
+      });
+
+      dropdownLinkDropdownHTML = globalNavLinkItemDropdown(index, dropDownList.parentElement.firstChild.textContent.trim(), dropdownLinksHTML);
+      dropDownList.parentElement.innerHTML = dropdownLinkDropdownHTML;
+    });
+
     ul.querySelectorAll('a').forEach((a) => {
       if (a.parentElement.tagName === 'STRONG') {
         a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
