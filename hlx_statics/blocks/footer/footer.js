@@ -62,3 +62,4 @@ export default async function decorate(block) {
     p.className = 'spectrum-Body spectrum-Body--sizeXS footer-date';
   });
 }
+
