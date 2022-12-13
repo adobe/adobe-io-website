@@ -12,7 +12,7 @@ export default async function decorate(block) {
   block.querySelectorAll('.info-columns > div > div').forEach((column) => {
     column.classList.add('info-column');
   });
-  block.querySelectorAll('.info-column').forEach((column) => {
+  block.querySelectorAll('.info-columns').forEach((column) => {
     column.classList.add('spectrum--light');
     removeEmptyPTags(column);
     column.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {

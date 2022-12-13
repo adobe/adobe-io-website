@@ -201,11 +201,11 @@ export function rearrangeHeroPicture(block, overlayStyle) {
   const picture = block.querySelector('picture');
   const emptyDiv = picture.parentElement.parentElement;
   block.prepend(picture);
-  picture.setAttribute('style', 'position: "relative"; max-width: "100%"; display: "flex"; align-items: "center"; justify-content: "center";');
+  picture.setAttribute('style', 'position: relative; max-width: 100%; display: flex; align-items: center; justify-content: center;');
   const div = block.querySelector('div');
   div.setAttribute('style', overlayStyle);
   const img = picture.querySelector('img');
-  img.setAttribute('style', 'width: 100% !important');
+  img.setAttribute('style', 'width: 100% !important; max-height: 350px');
   emptyDiv.remove();
 }
 
