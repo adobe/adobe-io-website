@@ -12,11 +12,14 @@ export default async function decorate(block) {
   block.querySelectorAll('.info-columns > div > div').forEach((column) => {
     column.classList.add('info-column');
   });
-  block.querySelectorAll('.info-columns').forEach((column) => {
+  block.querySelectorAll('.info-column').forEach((column) => {
     column.classList.add('spectrum--light');
     removeEmptyPTags(column);
     column.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
       h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
+    });
+    column.querySelectorAll('ul').forEach((ul) => {
+      ul.classList.add('spectrum-Body','spectrum-Body--sizeM');
     });
     column.querySelectorAll('p').forEach((p) => {
       const hasLinks = p.querySelectorAll('a, button');
