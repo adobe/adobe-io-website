@@ -12,12 +12,17 @@ import {
   loadBlocks,
   loadCSS,
   addFavIcon,
+  getMetadata,
+  toCamelCase,
+  toClassName
 } from './lib-helix.js';
 
 import {
   buildEmbeds,
   toggleScale,
 } from './lib-adobeio.js';
+
+export {sampleRUM, toCamelCase, toClassName, getMetadata, loadCSS};
 
 /*
  * ------------------------------------------------------------
@@ -100,6 +105,14 @@ function decorateHTML(html) {
  * loads everything needed to get to LCP.
  */
 async function loadEager(doc) {
+  const experiment = getMetadata('experiment');
+  const instantExperiment = getMetadata('instant-experiment');
+  if (instantExperiment || experiment) {
+    // eslint-disable-next-line import/no-cycle
+    const { runExperiment } = await import('./experimentation.js');
+    await runExperiment(experiment, instantExperiment);
+  }
+
   decorateTemplateAndTheme();
   const html = doc.querySelector('html');
   if (html) {
@@ -132,6 +145,11 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+
+  if (window.location.hostname.endsWith('hlx.page') || window.location.hostname === ('localhost')) {
+    // eslint-disable-next-line import/no-cycle
+    import('../tools/preview/experimentation-preview.js');
+  }
 }
 
 /**
