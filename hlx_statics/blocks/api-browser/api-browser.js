@@ -110,7 +110,7 @@ function displayFilteredCards(catalog, cards, buttons, limit) {
               width="48px"
               height="48px"
               class="api-card-icon"
-              src="/icons/${card.Icon}.svg"
+              src="/hlx_statics/icons/${card.Icon}.svg"
               alt="${card.Title} Icon"
             />
           </div>

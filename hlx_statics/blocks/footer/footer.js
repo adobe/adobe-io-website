@@ -1,5 +1,8 @@
 import { readBlockConfig } from '../../scripts/lib-helix.js';
-import { createTag } from '../../scripts/lib-adobeio.js';
+import { 
+  createTag,
+  setExpectedOrigin
+ } from '../../scripts/lib-adobeio.js';
 
 function buildFooter(html) {
   const footer = createTag('div', { class: 'footer-links-container' });
@@ -36,7 +39,7 @@ function buildFooter(html) {
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   block.textContent = '';
-  const footerPath = cfg.footer || '/footer';
+  const footerPath = cfg.footer || setExpectedOrigin(window.location.origin, '/franklin_assets/footer');
   const resp = await fetch(`${footerPath}.plain.html`);
   const html = await resp.text();
   block.classList.add('footer-links-container');
@@ -59,3 +62,4 @@ export default async function decorate(block) {
     p.className = 'spectrum-Body spectrum-Body--sizeXS footer-date';
   });
 }
+

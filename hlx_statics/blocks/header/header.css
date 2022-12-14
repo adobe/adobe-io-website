@@ -252,6 +252,16 @@ header.global-nav-header > ul#navigation-links > li.navigation-products a {
   height: 100%;
 }
 
+header.global-nav-header > ul#navigation-links > li.navigation-home {
+  padding: 0;
+}
+
+header.global-nav-header > ul#navigation-links > li.home a {
+  align-items: center;
+  text-decoration: none;
+  height: 100%;
+}
+
 header.global-nav-header > ul#navigation-links > li > a {
   line-height: 64px;
   display: block;

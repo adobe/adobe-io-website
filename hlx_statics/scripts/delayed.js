@@ -15,7 +15,7 @@ async function fetchProfileAvatar(userId) {
     const req = await fetch(`https://cc-api-behance.adobe.io/v2/users/${userId}?api_key=SUSI2`);
     if (req) {
       const res = await req.json();
-      const avatarUrl = res?.user?.images?.['138'] ?? '/icons/avatar.svg';
+      const avatarUrl = res?.user?.images?.['138'] ?? '/hlx_statics/icons/avatar.svg';
       if (document.querySelector('#nav-profile-popover-avatar-img')) {
         document.querySelector('#nav-profile-popover-avatar-img').src = avatarUrl;
       }
@@ -38,7 +38,13 @@ async function fetchProfileAvatar(userId) {
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
-addExtraScript(document.body, 'https://auth.services.adobe.com/imslib/imslib.min.js');
+
+if(isHlxPath(window.location.host) || isStageEnvironment(window.location.host)) {
+  addExtraScript(document.body, 'https://auth-stg1.services.adobe.com/imslib/imslib.js');
+} else {
+  addExtraScript(document.body, 'https://auth.services.adobe.com/imslib/imslib.min.js');
+}
+
 addExtraScript(document.body, 'https://www.adobe.com/marketingtech/main.min.js');
 addExtraScript(document.body, 'https://wwwimages2.adobe.com/etc/beagle/public/globalnav/adobe-privacy/latest/privacy.min.js');
 
@@ -165,7 +171,7 @@ window.adobeIMSMethods = {
   getProfile() {
     window.adobeIMS.getProfile().then((profile) => {
       window.adobeid.profile = profile;
-      window.adobeid.profile.avatarUrl = '/icons/avatar.svg';
+      window.adobeid.profile.avatarUrl = '/hlx_statics/icons/avatar.svg';
       decorateProfile(window.adobeid.profile);
       fetchProfileAvatar(window.adobeid.profile.userId);
     })

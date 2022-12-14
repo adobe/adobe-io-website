@@ -18,6 +18,9 @@ export default async function decorate(block) {
     column.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
       h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
     });
+    column.querySelectorAll('ul').forEach((ul) => {
+      ul.classList.add('spectrum-Body','spectrum-Body--sizeM');
+    });
     column.querySelectorAll('p').forEach((p) => {
       const hasLinks = p.querySelectorAll('a, button');
       // don't attach to icon container or if p tag contains links

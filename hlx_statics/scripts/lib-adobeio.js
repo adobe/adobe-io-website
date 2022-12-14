@@ -201,11 +201,11 @@ export function rearrangeHeroPicture(block, overlayStyle) {
   const picture = block.querySelector('picture');
   const emptyDiv = picture.parentElement.parentElement;
   block.prepend(picture);
-  picture.setAttribute('style', 'position: "relative"; max-width: "100%"; display: "flex"; align-items: "center"; justify-content: "center";');
+  picture.setAttribute('style', 'position: relative; max-width: 100%; display: flex; align-items: center; justify-content: center;');
   const div = block.querySelector('div');
   div.setAttribute('style', overlayStyle);
   const img = picture.querySelector('img');
-  img.setAttribute('style', 'width: 100% !important');
+  img.setAttribute('style', 'width: 100% !important; max-height: 350px');
   emptyDiv.remove();
 }
 
@@ -292,13 +292,66 @@ export function isHlxPath(host) {
  */
 export const setExpectedOrigin = (host, suffix = '') => {
   if (isDevEnvironment(host)) {
-    return 'http://localhost:3000';
+    return `http://localhost:3000${suffix}`;
   }
-  if (isStageEnvironment(host) || isHlxPath(host)) {
+  if (isStageEnvironment(host)) {
     return `https://developer-stage.adobe.com${suffix}`;
+  }
+  if( isHlxPath(host)) {
+    return `${window.location.origin}${suffix}`;
   }
   return `https://developer.adobe.com${suffix}`;
 };
+
+/**
+ * Returns the first level sub folder
+ * @param {*} host The host
+ * @param {*} path The pathname
+ * @param {*} suffix A suffix to append
+ * @returns The first level subfolder in the franklin dir - defaults to franklin_assets in root
+ */
+ export const getFranklinFirstSubFolder = (host, suffix = '') => {
+  let subfolderPath = location.pathname.split('/')[1];
+
+  // make sure top level paths point to the same nav
+  if(subfolderPath === '' || subfolderPath === 'apis' || subfolderPath === 'open' || subfolderPath === 'developer-support') {
+    subfolderPath = 'franklin_assets'
+  }
+
+  if (isDevEnvironment(host)) {
+    return `http://localhost:3000/${subfolderPath}/${suffix}`;
+  }
+  if (isStageEnvironment(host)) {
+    return `https://developer-stage.adobe.com/${subfolderPath}/${suffix}`;
+  }
+  if( isHlxPath(host)) {
+    return `${window.location.origin}/${subfolderPath}/${suffix}`;
+  }
+  return `https://developer.adobe.com/${subfolderPath}/${suffix}`;
+};
+
+/**
+ * Sets given query parameter to provided value and updates URL
+ * @param {*} name The query parameter name
+ * @param {*} value The value of the query parameter
+ * @returns URLSearchParams object state
+ */
+export const setQueryStringParameter = (name, value) => {
+  const params = new URLSearchParams(window.location.search);
+  params.set(name, value);
+  window.history.replaceState({}, "", `${window.location.pathname}?${params}`);
+  return params;
+};
+
+/**
+ * 
+ * @returns 
+ */
+export const getQueryString = () => {
+  const params = new URLSearchParams(window.location.search);
+  console.log(params.toString());
+  return params.toString();
+}
 
 /**
  * Returns the HTML code for the global navigation user profile
@@ -378,7 +431,7 @@ export function decorateProfile(profile) {
  * @param {*} scriptUrl The URL to the script to add
  */
 export function addExtraScript(element, scriptUrl) {
-  const script = createTag('script', { type: 'module', crossorigin: 'use-credentials' });
+  const script = createTag('script', { type: 'text/javascript' });
   script.src = scriptUrl;
   element.appendChild(script);
 }
