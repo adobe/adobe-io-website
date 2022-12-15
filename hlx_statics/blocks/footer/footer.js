@@ -1,8 +1,8 @@
 import { readBlockConfig } from '../../scripts/lib-helix.js';
-import { 
+import {
   createTag,
-  setExpectedOrigin
- } from '../../scripts/lib-adobeio.js';
+  setExpectedOrigin,
+} from '../../scripts/lib-adobeio.js';
 
 function buildFooter(html) {
   const footer = createTag('div', { class: 'footer-links-container' });
@@ -62,4 +62,3 @@ export default async function decorate(block) {
     p.className = 'spectrum-Body spectrum-Body--sizeXS footer-date';
   });
 }
-

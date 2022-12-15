@@ -14,7 +14,7 @@ import {
   addFavIcon,
   getMetadata,
   toCamelCase,
-  toClassName
+  toClassName,
 } from './lib-helix.js';
 
 import {
@@ -22,7 +22,13 @@ import {
   toggleScale,
 } from './lib-adobeio.js';
 
-export {sampleRUM, toCamelCase, toClassName, getMetadata, loadCSS};
+export {
+  sampleRUM,
+  toCamelCase,
+  toClassName,
+  getMetadata,
+  loadCSS,
+};
 
 /*
  * ------------------------------------------------------------

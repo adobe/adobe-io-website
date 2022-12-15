@@ -15,7 +15,7 @@ import {
   loadCSS,
   toClassName,
   getMetadata,
-} from '../../scripts/scripts.js';
+} from '../../hlx_statics/scripts/scripts.js';
 
 const percentformat = new Intl.NumberFormat('en-US', { style: 'percent', maximumSignificantDigits: 2 });
 const countformat = new Intl.NumberFormat('en-US', { maximumSignificantDigits: 2 });
