@@ -80,15 +80,15 @@ const searchFrameOnLoad = (renderedFrame, counter = 0, loaded) => {
   if (window.search_path_name_check !== window.location.pathname) {
     // attempt to establish connection for 3 seconds then time out
     if (counter > 30) {
-      console.warn(`Loading Search iFrame timed out`);
-      return;
-    } else {
-      window.setTimeout(() => { searchFrameOnLoad(renderedFrame, ++counter, loaded) }, 100);
+      // eslint-disable-next-line no-console
+      console.warn('Loading Search iFrame timed out');
       return;
     }
+    window.setTimeout(() => { searchFrameOnLoad(renderedFrame, counter + 1, loaded); }, 100);
   }
 
-  // Past this point we successfully passed the local pathname and received a confirmation from the iframe
+  // Past this point we successfully passed the local pathname
+  // and received a confirmation from the iframe
   if (!loaded) {
     const queryString = getQueryString();
     if (queryString) {
@@ -97,11 +97,10 @@ const searchFrameOnLoad = (renderedFrame, counter = 0, loaded) => {
   }
 
   loaded = true;
-}
+};
 
 // Referenced https://stackoverflow.com/a/10444444/15028986
 const checkIframeLoaded = (renderedFrame) => {
-
   // Get a handle to the iframe element
   const iframeDoc = renderedFrame.contentDocument || renderedFrame.contentWindow.document;
 
@@ -113,10 +112,10 @@ const checkIframeLoaded = (renderedFrame) => {
     // The loading is complete, call the function we want executed once the iframe is loaded
     return;
   }
-
-  // If we are here, it is not loaded. Set things up so we check   the status again in 100 milliseconds
+  // If we are here, it is not loaded.
+  // Set things up so we check the status again in 100 milliseconds
   window.setTimeout(checkIframeLoaded, 100);
-}
+};
 
 function decorateSearchIframeContainer(header) {
   const searchIframeContainer = header.querySelector('div.nav-console-search-frame');
@@ -182,7 +181,6 @@ function handleButtons(header) {
   });
 }
 
-
 /**
  * Decorates the header
  * @param {*} block The header
@@ -213,11 +211,11 @@ export default async function decorate(block) {
     ul.setAttribute('id', 'navigation-links');
     ul.style.listStyleType = 'none';
 
-    if(isTopLevelNav(window.location.pathname)) {
-      let homeLink = ul.querySelector('li:nth-child(1)');
+    if (isTopLevelNav(window.location.pathname)) {
+      const homeLink = ul.querySelector('li:nth-child(1)');
       homeLink.className = 'navigation-home';
     } else {
-      let productsLi = ul.querySelector('li:nth-child(1)');
+      const productsLi = ul.querySelector('li:nth-child(1)');
       productsLi.className = 'navigation-products';
     }
 
@@ -226,10 +224,15 @@ export default async function decorate(block) {
       let dropdownLinksHTML = '';
 
       dropDownList.querySelectorAll('ul > li > a').forEach((dropdownLinks) => {
-        dropdownLinksHTML += globalNavLinkItemDropdownItem(dropdownLinks.href, dropdownLinks.innerText);
+        dropdownLinksHTML
+          += globalNavLinkItemDropdownItem(dropdownLinks.href, dropdownLinks.innerText);
       });
 
-      dropdownLinkDropdownHTML = globalNavLinkItemDropdown(index, dropDownList.parentElement.firstChild.textContent.trim(), dropdownLinksHTML);
+      dropdownLinkDropdownHTML = globalNavLinkItemDropdown(
+        index,
+        dropDownList.parentElement.firstChild.textContent.trim(),
+        dropdownLinksHTML,
+      );
       dropDownList.parentElement.innerHTML = dropdownLinkDropdownHTML;
     });
 
@@ -248,14 +251,13 @@ export default async function decorate(block) {
       }
     });
 
-    window.search_path_name_check = "";
+    window.search_path_name_check = '';
 
-    window.addEventListener('message', function (e) {
+    window.addEventListener('message', (evt) => {
       const expectedOrigin = setExpectedOrigin(window.location.host);
-      if (e.origin !== expectedOrigin) return;
-
+      if (evt.origin !== expectedOrigin) return;
       try {
-        const message = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
+        const message = typeof evt.data === 'string' ? JSON.parse(evt.data) : evt.data;
         if (message.query) {
           setQueryStringParameter('query', message.query);
           setQueryStringParameter('keywords', message.keywords);
@@ -264,6 +266,7 @@ export default async function decorate(block) {
           window.search_path_name_check = message.received;
         }
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.error(e);
       }
     });

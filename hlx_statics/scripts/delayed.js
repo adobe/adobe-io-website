@@ -39,7 +39,7 @@ async function fetchProfileAvatar(userId) {
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
 
-if(isHlxPath(window.location.host) || isStageEnvironment(window.location.host)) {
+if (isHlxPath(window.location.host) || isStageEnvironment(window.location.host)) {
   addExtraScript(document.body, 'https://auth-stg1.services.adobe.com/imslib/imslib.js');
 } else {
   addExtraScript(document.body, 'https://auth.services.adobe.com/imslib/imslib.min.js');

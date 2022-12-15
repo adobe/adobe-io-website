@@ -297,7 +297,7 @@ export const setExpectedOrigin = (host, suffix = '') => {
   if (isStageEnvironment(host)) {
     return `https://developer-stage.adobe.com${suffix}`;
   }
-  if( isHlxPath(host)) {
+  if (isHlxPath(host)) {
     return `${window.location.origin}${suffix}`;
   }
   return `https://developer.adobe.com${suffix}`;
@@ -310,21 +310,20 @@ export const setExpectedOrigin = (host, suffix = '') => {
  * @param {*} suffix A suffix to append
  * @returns The first level subfolder in the franklin dir - defaults to franklin_assets in root
  */
- export const getFranklinFirstSubFolder = (host, suffix = '') => {
-  let subfolderPath = location.pathname.split('/')[1];
+export const getFranklinFirstSubFolder = (host, suffix = '') => {
+  let subfolderPath = window.location.pathname.split('/')[1];
 
   // make sure top level paths point to the same nav
-  if(subfolderPath === '' || subfolderPath === 'apis' || subfolderPath === 'open' || subfolderPath === 'developer-support') {
-    subfolderPath = 'franklin_assets'
+  if (subfolderPath === '' || subfolderPath === 'apis' || subfolderPath === 'open' || subfolderPath === 'developer-support') {
+    subfolderPath = 'franklin_assets';
   }
-
   if (isDevEnvironment(host)) {
     return `http://localhost:3000/${subfolderPath}/${suffix}`;
   }
   if (isStageEnvironment(host)) {
     return `https://developer-stage.adobe.com/${subfolderPath}/${suffix}`;
   }
-  if( isHlxPath(host)) {
+  if (isHlxPath(host)) {
     return `${window.location.origin}/${subfolderPath}/${suffix}`;
   }
   return `https://developer.adobe.com/${subfolderPath}/${suffix}`;
@@ -339,19 +338,17 @@ export const setExpectedOrigin = (host, suffix = '') => {
 export const setQueryStringParameter = (name, value) => {
   const params = new URLSearchParams(window.location.search);
   params.set(name, value);
-  window.history.replaceState({}, "", `${window.location.pathname}?${params}`);
+  window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
   return params;
 };
 
 /**
- * 
- * @returns 
+ * @returns The query string from the URL
  */
 export const getQueryString = () => {
   const params = new URLSearchParams(window.location.search);
-  console.log(params.toString());
   return params.toString();
-}
+};
 
 /**
  * Returns the HTML code for the global navigation user profile

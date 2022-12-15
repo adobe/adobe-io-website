@@ -19,7 +19,7 @@ export default async function decorate(block) {
       h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
     });
     column.querySelectorAll('ul').forEach((ul) => {
-      ul.classList.add('spectrum-Body','spectrum-Body--sizeM');
+      ul.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
     });
     column.querySelectorAll('p').forEach((p) => {
       const hasLinks = p.querySelectorAll('a, button');
