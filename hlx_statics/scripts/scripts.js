@@ -148,7 +148,7 @@ async function loadLazy(doc) {
 
   if (window.location.hostname.endsWith('hlx.page') || window.location.hostname === ('localhost')) {
     // eslint-disable-next-line import/no-cycle
-    import('../tools/preview/experimentation-preview.js');
+    import('../../tools/preview/experimentation-preview.js');
   }
 }
 
