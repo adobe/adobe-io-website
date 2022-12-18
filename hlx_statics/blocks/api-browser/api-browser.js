@@ -197,7 +197,7 @@ export default async function decorate(block) {
     <button id="filter-dropdown-picker" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet" aria-haspopup="listbox">
         <span id="filter-label" class="spectrum-Picker-label">Last updated</span>
         <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
-          <use xlink:href="./styles/spectrum/spectrum-css-icon-Chevron100.svg#ChevronSize100" />
+          <use xlink:href="./hlx_statics/styles/spectrum/spectrum-css-icon-Chevron100.svg#ChevronSize100" />
         </svg>
     </button>
     <div id="filter-dropdown-popover" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover">
@@ -205,13 +205,13 @@ export default async function decorate(block) {
         <li id="filter-list-last-updated" class="spectrum-Menu-item is-selected" role="option" aria-selected="true" tabindex="0">
             <span class="spectrum-Menu-itemLabel">Last updated</span>
             <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Menu-checkmark spectrum-Menu-itemIcon" focusable="false" aria-hidden="true">
-              <use xlink:href="./styles/spectrum/spectrum-css-icon-Checkmark100.svg#CheckmarkSize100" />
+              <use xlink:href="./hlx_statics/styles/spectrum/spectrum-css-icon-Checkmark100.svg#CheckmarkSize100" />
             </svg>
         </li>
         <li id="filter-list-name" class="spectrum-Menu-item" role="option" tabindex="0">
             <span class="spectrum-Menu-itemLabel">Name</span>
             <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Menu-checkmark spectrum-Menu-itemIcon" focusable="false" aria-hidden="true">
-              <use xlink:href="./styles/spectrum/spectrum-css-icon-Checkmark100.svg#CheckmarkSize100" />
+              <use xlink:href="./hlx_statics/styles/spectrum/spectrum-css-icon-Checkmark100.svg#CheckmarkSize100" />
             </svg>
         </li>
         </ul>
@@ -278,10 +278,10 @@ export default async function decorate(block) {
           <input type="checkbox" class="spectrum-Checkbox-input" id="${id}" name="${id}" value="${c}">
           <span class="spectrum-Checkbox-box">
             <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Checkbox-checkmark" focusable="false" aria-hidden="true">
-              <use xlink:href="./styles/spectrum/spectrum-css-icon-Checkmark100.svg#CheckmarkSize100" />
+              <use xlink:href="./hlx_statics/styles/spectrum/spectrum-css-icon-Checkmark100.svg#CheckmarkSize100" />
             </svg>
             <svg class="spectrum-Icon spectrum-UIIcon-Dash100 spectrum-Checkbox-partialCheckmark" focusable="false" aria-hidden="true">
-              <use xlink:href="./styles/spectrum/spectrum-css-icon-Dash100.svg#DashSize100" />
+              <use xlink:href="./hlx_statics/styles/spectrum/spectrum-css-icon-Dash100.svg#DashSize100" />
             </svg>
           </span>
           <span class="spectrum-Checkbox-label filter-label">${c}</span>
