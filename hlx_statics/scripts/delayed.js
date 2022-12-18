@@ -2,8 +2,6 @@
 import { sampleRUM } from './lib-helix.js';
 import {
   focusRing,
-  setActiveTab,
-  isTopLevelNav,
   isHlxPath,
   isStageEnvironment,
   decorateProfile,
@@ -57,10 +55,6 @@ document.querySelectorAll('.embed').forEach((embed) => {
 });
 
 focusRing();
-
-if (isTopLevelNav(window.location.pathname)) {
-  setActiveTab(true);
-}
 
 if (isHlxPath(window.location.host)) {
   window.adobeid = {
