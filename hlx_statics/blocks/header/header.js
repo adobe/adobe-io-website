@@ -92,7 +92,8 @@ const searchFrameOnLoad = (renderedFrame, counter = 0, loaded) => {
   if (!loaded) {
     const queryString = getQueryString();
     if (queryString) {
-      searchIframeContainer.style.visibility = 'visible';
+      let searchIframeContainer = document.querySelector('div.nav-console-search-frame');
+      searchIframeContainer?.style?.visibility = 'visible';
     }
   }
 
