@@ -103,7 +103,13 @@ main div.second-column div.product-link-container p.icon-container {
     align-items: center;
 }
 
-main div.second-column div.product-link-container img.icon { 
+main div.second-column div.product-link-container img { 
+    height: var(--spectrum-global-dimension-size-400);
+    width: var(--spectrum-global-dimension-size-400);
+    object-fit: contain;
+}
+
+main div.second-column div.product-link-container svg {
     height: var(--spectrum-global-dimension-size-400);
     width: var(--spectrum-global-dimension-size-400);
     object-fit: contain;
