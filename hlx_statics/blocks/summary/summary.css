@@ -25,7 +25,6 @@ main div.summary > div {
   top: 0;
   left: 0;
   display: flex;
-  flex-direction: column;
   align-items: left;
   justify-content: center;
   text-align: left;
