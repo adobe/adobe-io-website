@@ -52,3 +52,7 @@ main div.summary p {
 main div.summary p a:hover {
   color: var(--spectrum-global-color-gray-300);
 }
+
+main div.summary img {
+  object-fit: cover;
+}

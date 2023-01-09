@@ -42,4 +42,7 @@ main div.site-hero-container {
     margin-top: var(--spectrum-global-dimension-size-300);
     gap: var(--spectrum-global-dimension-size-200, var(--spectrum-alias-size-200));
   }
-  
+
+  main .site-hero img {
+    object-fit: cover;
+  }
