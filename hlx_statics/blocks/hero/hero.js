@@ -22,7 +22,6 @@ function rearrangeLinks(block) {
  * @param {Element} block The hero block element
  */
 export default async function decorate(block) {
-  removeEmptyPTags(block);
   // Block decoration
   block.classList.add('spectrum--lightest');
   // H1 decoration
