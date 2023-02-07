@@ -28,6 +28,6 @@ export default async function decorate(block) {
       button.classList.add('spectrum-Button', 'spectrum-Button--secondary', 'spectrum-Button--sizeM', 'spectrum-Button--overBackground');
     });
   });
-  const overlayStyle = 'position: absolute; display: flex; top: 0%; left: 0%; z-index: 1000;';
+  const overlayStyle = 'position: absolute; display: flex; left: 0%; z-index: 1000;';
   rearrangeHeroPicture(block, overlayStyle);
 }
