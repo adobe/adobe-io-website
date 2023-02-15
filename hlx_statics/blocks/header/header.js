@@ -191,7 +191,7 @@ function handleButtons(header) {
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   block.textContent = '';
-  const navPath = cfg.nav || window.location.pathname + 'nav';
+  const navPath = cfg.nav || window.location.pathname + '/nav';
   const resp = await fetch(`${navPath}.plain.html`);
   if (resp.ok) {
     const html = await resp.text();
