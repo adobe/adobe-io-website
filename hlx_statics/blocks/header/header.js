@@ -69,7 +69,7 @@ const globalNavSearchDropDown = () => createTag('div', { class: 'nav-console-sea
 
 const setSearchFrameSource = () => {
   const src = isDevEnvironment(window.location.host) ? setSearchFrameOrigin(window.location.host) : `${setSearchFrameOrigin(window.location.host, '/search-frame')}`;
-  const queryString = new URLSearchParams(window.location.search);
+  const queryString = getQueryString();
   return queryString && queryString.toString().length > 0
     ? `${src}?${queryString.toString()}`
     : src;
@@ -93,7 +93,7 @@ const searchFrameOnLoad = (renderedFrame, counter = 0, loaded) => {
     const queryString = getQueryString();
     if (queryString.has('query')) {
       let searchIframeContainer = document.querySelector('div.nav-console-search-frame');
-      if(searchIframeContainer.length > 0){
+      if (searchIframeContainer.length > 0) {
         searchIframeContainer.style.visibility = 'visible';
       }
     }
@@ -145,7 +145,7 @@ function decorateSearchIframeContainer(header) {
   });
 
   // to load search if query string is present
-  if (queryString) {
+  if (queryString.has('query')) {
     button.click();
   }
 }

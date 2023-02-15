@@ -363,7 +363,7 @@ export const setQueryStringParameter = (name, value) => {
  */
 export const getQueryString = () => {
   const params = new URLSearchParams(window.location.search);
-  return params.toString();
+  return params;
 };
 
 /**
