@@ -1,6 +1,5 @@
 import {
   decorateButtons,
-  removeEmptyPTags,
 } from '../../scripts/lib-adobeio.js';
 
 /**
