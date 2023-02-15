@@ -5,7 +5,7 @@ import {
   isDevEnvironment,
   isTopLevelNav,
   getFranklinFirstSubFolder,
-  setExpectedOrigin,
+  setSearchFrameOrigin,
   setQueryStringParameter,
   getQueryString,
 } from '../../scripts/lib-adobeio.js';
@@ -68,7 +68,7 @@ function globalNavLinkItemDropdownItem(url, name) {
 const globalNavSearchDropDown = () => createTag('div', { class: 'nav-console-search-frame' });
 
 const setSearchFrameSource = () => {
-  const src = isDevEnvironment(window.location.host) ? setExpectedOrigin(window.location.host) : `${setExpectedOrigin(window.location.host, '/search-frame')}`;
+  const src = isDevEnvironment(window.location.host) ? setSearchFrameOrigin(window.location.host) : `${setSearchFrameOrigin(window.location.host, '/search-frame')}`;
   const queryString = new URLSearchParams(window.location.search);
   return queryString && queryString.toString().length > 0
     ? `${src}?${queryString.toString()}`
@@ -93,7 +93,7 @@ const searchFrameOnLoad = (renderedFrame, counter = 0, loaded) => {
     const queryString = getQueryString();
     if (queryString) {
       let searchIframeContainer = document.querySelector('div.nav-console-search-frame');
-      if(searchIframeContaine.length > 0){
+      if(searchIframeContainer.length > 0){
         searchIframeContainer.style.visibility = 'visible';
       }
     }
@@ -257,7 +257,7 @@ export default async function decorate(block) {
     window.search_path_name_check = '';
 
     window.addEventListener('message', (evt) => {
-      const expectedOrigin = setExpectedOrigin(window.location.host);
+      const expectedOrigin = setSearchFrameOrigin(window.location.host);
       if (evt.origin !== expectedOrigin) return;
       try {
         const message = typeof evt.data === 'string' ? JSON.parse(evt.data) : evt.data;
