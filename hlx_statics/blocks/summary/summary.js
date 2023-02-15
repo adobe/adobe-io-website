@@ -9,6 +9,7 @@ import {
  * @param {Element} block The summary block element
  */
 export default async function decorate(block) {
+  block.setAttribute('daa-lh', 'summary');
   decorateButtons(block);
   removeEmptyPTags(block);
   block.classList.add('spectrum--dark');

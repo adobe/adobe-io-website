@@ -50,6 +50,7 @@ function getResourceCard(linkHref, heading, text) {
  * @param {Element} block The resource-card block element
  */
 export default async function decorate(block) {
+  block.setAttribute('daa-lh', 'resource card');
   block.querySelectorAll('.resource-card > div').forEach((resource) => {
     removeEmptyPTags(resource);
     // const resourceCard = createTag('div', { class: 'resource-cards-card' });

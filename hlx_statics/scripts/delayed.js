@@ -6,6 +6,7 @@ import {
   isStageEnvironment,
   decorateProfile,
   addExtraScript,
+  setAnalyticsAttributes
 } from './lib-adobeio.js';
 
 async function fetchProfileAvatar(userId) {
@@ -55,6 +56,7 @@ document.querySelectorAll('.embed').forEach((embed) => {
 });
 
 focusRing();
+setAnalyticsAttributes();
 
 if (isHlxPath(window.location.host)) {
   window.adobeid = {

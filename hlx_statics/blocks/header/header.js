@@ -189,6 +189,7 @@ function handleButtons(header) {
  * @param {*} block The header
  */
 export default async function decorate(block) {
+  block.setAttribute('daa-lh', 'header');
   const cfg = readBlockConfig(block);
   block.textContent = '';
   // strip out trailing slash if any

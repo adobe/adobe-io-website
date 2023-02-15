@@ -49,6 +49,17 @@ export function createTag(name, attrs) {
   }
   return el;
 }
+/**
+ * Sets-up Adobe Analytics attributes for click tracking
+ * @param {*} domObj The DOM object to inspect, the whole document by default
+ */
+export function setAnalyticsAttributes(domObj = document) {
+  domObj.querySelectorAll('a').forEach((a) => {
+    if(a.innerText.length > 0) {
+      a.setAttribute('daa-ll', a.innerText);
+    }
+  });
+}
 
 /**
  * Sets-up event listeners to handle focus and blur for the elements of a DOM object

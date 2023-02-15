@@ -62,6 +62,7 @@ const loadEmbed = (block, a) => {
  * @param {*} block The embed block
  */
 export default async function decorate(block) {
+  block.setAttribute('daa-lh', 'embed');
   const a = block.querySelector('a');
   loadEmbed(block, a);
 }

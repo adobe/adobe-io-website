@@ -21,6 +21,7 @@ function rearrangeLinks(block) {
  * @param {Element} block The hero block element
  */
 export default async function decorate(block) {
+  block.setAttribute('daa-lh', 'hero');
   // Block decoration
   block.classList.add('spectrum--lightest');
   // H1 decoration
