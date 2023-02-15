@@ -4,7 +4,7 @@ import {
   focusRing,
   isDevEnvironment,
   isTopLevelNav,
-  getFranklinFirstSubFolder,
+  getClosestFranklinSubfolder,
   setExpectedOrigin,
   setQueryStringParameter,
   getQueryString,
@@ -192,7 +192,7 @@ export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   block.textContent = '';
   // strip out trailing slash if any
-  const navPath = cfg.nav || window.location.pathname.replace(/\/$/, "") + '/nav';
+  const navPath = cfg.nav || getClosestFranklinSubfolder(window.location.origin, 'nav');
   const resp = await fetch(`${navPath}.plain.html`);
   if (resp.ok) {
     const html = await resp.text();
