@@ -92,8 +92,8 @@ const searchFrameOnLoad = (renderedFrame, counter = 0, loaded) => {
   if (!loaded) {
     const queryString = getQueryString();
     if (queryString) {
-      let searchIframeContainer = document.querySelector('div.nav-console-search-frame');
-      if(searchIframeContaine.length > 0){
+      const searchIframeContainer = document.querySelector('div.nav-console-search-frame');
+      if (searchIframeContainer.length > 0) {
         searchIframeContainer.style.visibility = 'visible';
       }
     }

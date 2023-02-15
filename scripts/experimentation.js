@@ -3,7 +3,7 @@ import {
   sampleRUM,
   toCamelCase,
   toClassName,
-} from './scripts.js';
+} from '../hlx_statics/scripts/scripts.js';
 
 /**
  * Parses the experimentation configuration sheet and creates an internal model.
@@ -84,7 +84,7 @@ function parseExperimentConfig(json) {
  * @param {object} cfg
  * @returns {object} containing the experiment manifest
  */
- export async function getExperimentConfig(experimentId, instantExperiment) {
+export async function getExperimentConfig(experimentId, instantExperiment) {
   if (instantExperiment) {
     const config = {
       label: `Instant Experiment: ${experimentId}`,
@@ -157,14 +157,11 @@ function isValidAudience(audience) {
 
 /**
  * Checks whether the current page is suitable to run an experiment.
- * It is a production or live domain, url does not contain a fragment preceded with a hash, and it is not a bot.
+ * It is a production or live domain, url does not contain a fragment preceded with a hash,
+ * and it is not a bot.
  * @returns {boolean} true if the current is suitable to run an experiment
  */
- function isSuitablePage() {
-  // if (!window.location.host.includes('bamboohr.com') && !window.location.host.includes('.hlx.live')) {
-  //   return false;
-  //   // reason = 'not prod host';
-  // }
+function isSuitablePage() {
   if (window.location.hash) {
     return false;
     // reason = 'suppressed by #';
@@ -176,7 +173,6 @@ function isValidAudience(audience) {
   }
   return true;
 }
-
 
 function getDecisionPolicy(config) {
   const decisionPolicy = {
@@ -234,10 +230,7 @@ async function replaceInner(path, element, isBlock = false) {
   return null;
 }
 
-
-
 export async function runExperiment(experiment, instantExperiment) {
-
   const usp = new URLSearchParams(window.location.search);
   const [forcedExperiment, forcedVariant] = usp.has('experiment') ? usp.get('experiment').split('/') : [];
 
