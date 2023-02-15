@@ -91,7 +91,7 @@ const searchFrameOnLoad = (renderedFrame, counter = 0, loaded) => {
   // and received a confirmation from the iframe
   if (!loaded) {
     const queryString = getQueryString();
-    if (queryString) {
+    if (queryString.has('query')) {
       let searchIframeContainer = document.querySelector('div.nav-console-search-frame');
       if(searchIframeContainer.length > 0){
         searchIframeContainer.style.visibility = 'visible';
