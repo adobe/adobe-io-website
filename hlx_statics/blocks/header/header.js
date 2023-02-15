@@ -92,14 +92,14 @@ const searchFrameOnLoad = (renderedFrame, counter = 0, loaded) => {
   if (!loaded) {
     const queryString = getQueryString();
     if (queryString.has('query')) {
-      let searchIframeContainer = document.querySelector('div.nav-console-search-frame');
+      const searchIframeContainer = document.querySelector('div.nav-console-search-frame');
       if (searchIframeContainer.length > 0) {
         searchIframeContainer.style.visibility = 'visible';
       }
     }
   }
 
-  loaded = true;
+  loaded = true; // eslint-disable-line no-param-reassign
 };
 
 // Referenced https://stackoverflow.com/a/10444444/15028986

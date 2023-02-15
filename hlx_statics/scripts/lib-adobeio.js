@@ -309,7 +309,7 @@ export const setExpectedOrigin = (host, suffix = '') => {
  * @param {*} suffix A suffix to append
  * @returns The expected origin
  */
- export const setSearchFrameOrigin = (host, suffix = '') => {
+export const setSearchFrameOrigin = (host, suffix = '') => {
   if (isDevEnvironment(host)) {
     return `http://localhost:3000${suffix}`;
   }
