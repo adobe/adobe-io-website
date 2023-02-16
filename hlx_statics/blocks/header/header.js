@@ -21,6 +21,16 @@ function globalNavSearchButton() {
   return div;
 }
 
+function globalDistributeButton() {
+  const div = createTag('div', { class: 'nav-console-distribute-button' });
+  div.innerHTML = `<a href="https://developer.adobe.com/developer-distribution/creative-cloud/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+    <span class="spectrum-Button-label">
+      Distribute
+    </span>
+  </a>`;
+  return div;
+}
+
 function globalConsoleButton() {
   const div = createTag('div', { class: 'nav-console-button' });
   div.innerHTML = `<a href="https://developer.adobe.com/console/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
@@ -279,6 +289,9 @@ export default async function decorate(block) {
     header.append(ul);
     const rightContainer = createTag('div', { class: 'nav-console-right-container' });
     rightContainer.appendChild(globalNavSearchButton());
+    if (window.location.pathname.includes("/developer-distribution/")) {
+      rightContainer.appendChild(globalDistributeButton());
+    }
     rightContainer.appendChild(globalConsoleButton());
     rightContainer.appendChild(globalSignIn());
     header.append(rightContainer);

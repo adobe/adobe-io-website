@@ -346,6 +346,9 @@ header.global-nav-header div.nav-console-button {
   margin-right: 16px;
 }
 
+header.global-nav-header div.nav-console-distribute-button {
+  margin-right: 16px;
+}
 
 header.global-nav-header div.nav-sign-in {
   margin-right: 24px;
