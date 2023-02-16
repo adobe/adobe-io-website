@@ -23,7 +23,7 @@ function globalNavSearchButton() {
 
 function globalDistributeButton() {
   const div = createTag('div', { class: 'nav-console-distribute-button' });
-  div.innerHTML = `<a href="https://developer.adobe.com/distribute/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+  div.innerHTML = `<a href="/distribute" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
     <span class="spectrum-Button-label">
       Distribute
     </span>
