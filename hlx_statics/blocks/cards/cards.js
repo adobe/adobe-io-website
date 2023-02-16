@@ -21,6 +21,7 @@ function processImages(block) {
  */
 export default async function decorate(block) {
   decorateButtons(block);
+  block.setAttribute('daa-lh', 'card');
   block.querySelectorAll('.cards > div').forEach((card, index, array) => {
     card.classList.add('spectrum--light');
     card.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((header) => {

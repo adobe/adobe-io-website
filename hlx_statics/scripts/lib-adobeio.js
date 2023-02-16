@@ -49,6 +49,17 @@ export function createTag(name, attrs) {
   }
   return el;
 }
+/**
+ * Sets-up Adobe Analytics attributes for click tracking
+ * @param {*} domObj The DOM object to inspect, the whole document by default
+ */
+export function setAnalyticsAttributes(domObj = document) {
+  domObj.querySelectorAll('a').forEach((a) => {
+    if(a.innerText.length > 0) {
+      a.setAttribute('daa-ll', a.innerText);
+    }
+  });
+}
 
 /**
  * Sets-up event listeners to handle focus and blur for the elements of a DOM object
@@ -320,19 +331,23 @@ export const setSearchFrameOrigin = (host, suffix = '') => {
 };
 
 /**
- * Returns the first level sub folder
+ * Returns the franklin closest sub folder 
  * @param {*} host The host
- * @param {*} path The pathname
  * @param {*} suffix A suffix to append
- * @returns The first level subfolder in the franklin dir - defaults to franklin_assets in root
+ * @returns The first subfolder in the franklin dir - for special urls like apis will return the franklin_assets folder
  */
-export const getFranklinFirstSubFolder = (host, suffix = '') => {
+export const getClosestFranklinSubfolder = (host, suffix = '') => {
   let subfolderPath = window.location.pathname.split('/')[1];
 
-  // make sure top level paths point to the same nav
+  // make sure top level paths point to the same nav if on these paths
   if (subfolderPath === '' || subfolderPath === 'apis' || subfolderPath === 'open' || subfolderPath === 'developer-support') {
     subfolderPath = 'franklin_assets';
+  } else {
+    // get closest level dir and strip any leading and trailing slash
+    subfolderPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+    if (subfolderPath.charAt(0) === '/') subfolderPath = subfolderPath.substring(1);
   }
+
   if (isDevEnvironment(host)) {
     return `http://localhost:3000/${subfolderPath}/${suffix}`;
   }

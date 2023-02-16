@@ -9,6 +9,7 @@ import {
  * @param {Element} block The info-columns block element
  */
 export default async function decorate(block) {
+  block.setAttribute('daa-lh', 'info column');
   block.querySelectorAll('.info-columns > div > div').forEach((column) => {
     column.classList.add('info-column');
   });

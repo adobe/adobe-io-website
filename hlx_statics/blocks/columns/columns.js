@@ -27,6 +27,7 @@ function processImages(block) {
  * @param {Element} block The columns block element
  */
 export default async function decorate(block) {
+  block.setAttribute('daa-lh', 'column');
   block.classList.add('spectrum--light');
   removeEmptyPTags(block);
   block.querySelectorAll('.columns > div > div:first-child').forEach((column) => {

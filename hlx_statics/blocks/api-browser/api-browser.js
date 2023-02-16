@@ -140,7 +140,7 @@ function displayFilteredCards(catalog, cards, buttons, limit) {
       const cardTemplate = `
         <div class="api-card spectrum--lightest">
           <div class="spectrum-Card api-card-inner" role="figure" tabindex="0">
-            <div class="spectrum-Card-body api-card-body">
+            <div class="spectrum-Card-body api-card-body" daa-lh="browser card">
               ${iconTemplate}
               <div class="api-card-body-inner">
                 <div class="api-card-title-container spectrum-Card-header spectrum-Heading spectrum-Heading--sizeXXS">

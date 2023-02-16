@@ -7,6 +7,7 @@ import {
  * @param {Element} block The info block element
  */
 export default async function decorate(block) {
+  block.setAttribute('daa-lh', 'info');
   block.classList.add('spectrum--light');
   block.querySelectorAll('h2').forEach((h2) => {
     h2.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');

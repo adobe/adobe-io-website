@@ -4,8 +4,8 @@ import {
   focusRing,
   isDevEnvironment,
   isTopLevelNav,
-  getFranklinFirstSubFolder,
   setSearchFrameOrigin,
+  getClosestFranklinSubfolder,
   setQueryStringParameter,
   getQueryString,
 } from '../../scripts/lib-adobeio.js';
@@ -18,6 +18,16 @@ function globalNavSearchButton() {
         <use href="/hlx_statics/icons/search.svg#spectrum-icon-24-Search"></use>
       </svg>
     </button>`;
+  return div;
+}
+
+function globalDistributeButton() {
+  const div = createTag('div', { class: 'nav-console-distribute-button' });
+  div.innerHTML = `<a href="https://developer.adobe.com/distribute/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+    <span class="spectrum-Button-label">
+      Distribute
+    </span>
+  </a>`;
   return div;
 }
 
@@ -190,9 +200,11 @@ function handleButtons(header) {
  * @param {*} block The header
  */
 export default async function decorate(block) {
+  block.setAttribute('daa-lh', 'header');
   const cfg = readBlockConfig(block);
   block.textContent = '';
-  const navPath = cfg.nav || getFranklinFirstSubFolder(window.location.origin, 'nav');
+  // strip out trailing slash if any
+  const navPath = cfg.nav || getClosestFranklinSubfolder(window.location.origin, 'nav');
   const resp = await fetch(`${navPath}.plain.html`);
   if (resp.ok) {
     const html = await resp.text();
@@ -278,6 +290,9 @@ export default async function decorate(block) {
     header.append(ul);
     const rightContainer = createTag('div', { class: 'nav-console-right-container' });
     rightContainer.appendChild(globalNavSearchButton());
+    if (window.location.pathname.includes("/developer-distribution/")) {
+      rightContainer.appendChild(globalDistributeButton());
+    }
     rightContainer.appendChild(globalConsoleButton());
     rightContainer.appendChild(globalSignIn());
     header.append(rightContainer);

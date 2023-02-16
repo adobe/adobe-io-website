@@ -37,6 +37,7 @@ function buildFooter(html) {
  */
 
 export default async function decorate(block) {
+  block.setAttribute('daa-lh', 'footer');
   const cfg = readBlockConfig(block);
   block.textContent = '';
   const footerPath = cfg.footer || setExpectedOrigin(window.location.origin, '/franklin_assets/footer');
