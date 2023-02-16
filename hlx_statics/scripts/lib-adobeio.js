@@ -315,6 +315,22 @@ export const setExpectedOrigin = (host, suffix = '') => {
 };
 
 /**
+ * Returns expected origin based on the host
+ * @param {*} host The host
+ * @param {*} suffix A suffix to append
+ * @returns The expected origin
+ */
+export const setSearchFrameOrigin = (host, suffix = '') => {
+  if (isDevEnvironment(host)) {
+    return `http://localhost:3000${suffix}`;
+  }
+  if (isStageEnvironment(host) || isHlxPath(host)) {
+    return `https://developer-stage.adobe.com${suffix}`;
+  }
+  return `https://developer.adobe.com${suffix}`;
+};
+
+/**
  * Returns the franklin closest sub folder 
  * @param {*} host The host
  * @param {*} suffix A suffix to append
@@ -362,7 +378,7 @@ export const setQueryStringParameter = (name, value) => {
  */
 export const getQueryString = () => {
   const params = new URLSearchParams(window.location.search);
-  return params.toString();
+  return params;
 };
 
 /**

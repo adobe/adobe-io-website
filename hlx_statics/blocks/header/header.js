@@ -4,8 +4,8 @@ import {
   focusRing,
   isDevEnvironment,
   isTopLevelNav,
+  setSearchFrameOrigin,
   getClosestFranklinSubfolder,
-  setExpectedOrigin,
   setQueryStringParameter,
   getQueryString,
 } from '../../scripts/lib-adobeio.js';
@@ -78,8 +78,8 @@ function globalNavLinkItemDropdownItem(url, name) {
 const globalNavSearchDropDown = () => createTag('div', { class: 'nav-console-search-frame' });
 
 const setSearchFrameSource = () => {
-  const src = isDevEnvironment(window.location.host) ? setExpectedOrigin(window.location.host) : `${setExpectedOrigin(window.location.host, '/search-frame')}`;
-  const queryString = new URLSearchParams(window.location.search);
+  const src = isDevEnvironment(window.location.host) ? setSearchFrameOrigin(window.location.host) : `${setSearchFrameOrigin(window.location.host, '/search-frame')}`;
+  const queryString = getQueryString();
   return queryString && queryString.toString().length > 0
     ? `${src}?${queryString.toString()}`
     : src;
@@ -101,7 +101,8 @@ const searchFrameOnLoad = (renderedFrame, counter = 0, loaded) => {
   // and received a confirmation from the iframe
   if (!loaded) {
     const queryString = getQueryString();
-    if (queryString) {
+    
+    if (queryString.has('query')) {
       const searchIframeContainer = document.querySelector('div.nav-console-search-frame');
       if (searchIframeContainer.length > 0) {
         searchIframeContainer.style.visibility = 'visible';
@@ -109,7 +110,7 @@ const searchFrameOnLoad = (renderedFrame, counter = 0, loaded) => {
     }
   }
 
-  loaded = true;
+  loaded = true; // eslint-disable-line no-param-reassign
 };
 
 // Referenced https://stackoverflow.com/a/10444444/15028986
@@ -155,7 +156,7 @@ function decorateSearchIframeContainer(header) {
   });
 
   // to load search if query string is present
-  if (queryString) {
+  if (queryString.has('query')) {
     button.click();
   }
 }
@@ -269,7 +270,7 @@ export default async function decorate(block) {
     window.search_path_name_check = '';
 
     window.addEventListener('message', (evt) => {
-      const expectedOrigin = setExpectedOrigin(window.location.host);
+      const expectedOrigin = setSearchFrameOrigin(window.location.host);
       if (evt.origin !== expectedOrigin) return;
       try {
         const message = typeof evt.data === 'string' ? JSON.parse(evt.data) : evt.data;
