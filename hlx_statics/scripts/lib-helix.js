@@ -259,8 +259,8 @@ export function readBlockConfig(block) {
  * Decorates all sections in a container element.
  * @param {Element} $main The container element
  */
-export function decorateSections($main) {
-  $main.querySelectorAll(':scope > div').forEach((section) => {
+export function decorateSections(main) {
+  main.querySelectorAll(':scope > div').forEach((section) => {
     const wrappers = [];
     let defaultContent = false;
     [...section.children].forEach((e) => {
@@ -280,14 +280,15 @@ export function decorateSections($main) {
     const sectionMeta = section.querySelector('div.section-metadata');
     if (sectionMeta) {
       const meta = readBlockConfig(sectionMeta);
-      const keys = Object.keys(meta);
-      keys.forEach((key) => {
+      Object.keys(meta).forEach((key) => {
         if (key === 'style') {
           const styles = meta.style.split(',').map((style) => toClassName(style.trim()));
           styles.forEach((style) => section.classList.add(style));
-        } else section.dataset[toCamelCase(key)] = meta[key];
+        } else {
+          section.dataset[toCamelCase(key)] = meta[key];
+        }
       });
-      sectionMeta.remove();
+      sectionMeta.parentNode.remove();
     }
   });
 }
