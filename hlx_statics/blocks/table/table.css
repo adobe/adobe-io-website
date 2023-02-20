@@ -23,8 +23,15 @@
 }
 
 .table table thead tr {
-  border-top: 2px solid;
-  border-bottom: 2px solid;
+  //border-top: 2px solid;
+  border-bottom: 1px solid;
+  font-size: var(--body-font-size-s);
+}
+
+.table table thead tr h3 {
+  font-size: var(--body-font-size-m);
+  font-weight: normal;
+  text-transform: uppercase;
 }
 
 .table table tbody tr {
@@ -33,6 +40,10 @@
 
 .table table th {
   font-weight: 700;
+}
+
+.table table tbody tr td:nth-child(1) {
+  font-weight: bold;
 }
 
 .table table th, .table table td {
