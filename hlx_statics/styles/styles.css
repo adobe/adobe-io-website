@@ -27,7 +27,7 @@ html, body {
   font-family: "adobe-clean-serif-fallback";
   size-adjust: 109.64%;
   src: local("Times New Roman");
-};
+}
 
 img {
   width: auto;
@@ -59,4 +59,9 @@ main .section[data-section-status='initialized'] {
 
 body > header {
   height: 81px;
+}
+
+.section.dark {
+  background-color: var(--spectrum-global-color-gray-900);
+  color: var(--spectrum-global-color-gray-50);
 }
