@@ -61,7 +61,12 @@ body > header {
   height: 81px;
 }
 
-.section.dark, .section.dark * {
+.section.dark,
+.section.dark h1,
+.section.dark h2,
+.section.dark h3,
+.section.dark p,
+.section.dark div {
   background-color: var(--spectrum-global-color-gray-900);
   color: var(--spectrum-global-color-gray-50);
 }
