@@ -23,7 +23,6 @@
 }
 
 .table table thead tr {
-  //border-top: 2px solid;
   border-bottom: 1px solid;
   font-size: var(--body-font-size-s);
 }
