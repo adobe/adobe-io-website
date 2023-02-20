@@ -284,8 +284,15 @@ export function decorateSections($main) {
       keys.forEach((key) => {
         if (key === 'style') {
           const styles = meta.style.split(',').map((style) => toClassName(style.trim()));
-          styles.forEach((style) => section.classList.add(style));
-        } else section.dataset[toCamelCase(key)] = meta[key];
+          styles.forEach((style) => {
+            section.classList.add(style);
+            if (style === 'dark') {
+              section.classList.add('spectrum--dark');
+            }
+          });
+        } else {
+          section.dataset[toCamelCase(key)] = meta[key];
+        }
       });
       sectionMeta.remove();
     }
