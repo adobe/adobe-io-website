@@ -4,6 +4,8 @@
  * https://www.hlx.live/developer/block-collection/embed
  */
 
+import { decorateLightOrDark } from '../../scripts/lib-helix';
+
 /**
  * Gets the video id from the authored URL and inserts the Youtube embed
  * The iframe is not loaded until the users moves the pointer over the thumbnail image
@@ -38,7 +40,7 @@ const loadEmbed = (block, a) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
   }
-  block.parentElement.parentElement.classList.add('spectrum--lightest');
+  decorateLightOrDark(block, true);
   block.className = 'block embed embed-youtube';
   const link = a.href;
   const url = new URL(link);
