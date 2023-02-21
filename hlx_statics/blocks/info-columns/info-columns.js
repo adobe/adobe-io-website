@@ -3,6 +3,7 @@ import {
   checkExternalLink,
   removeEmptyPTags,
 } from '../../scripts/lib-adobeio.js';
+import { decorateLightOrDark } from '../../scripts/lib-helix';
 
 /**
  * decorates the info-columns
@@ -14,7 +15,9 @@ export default async function decorate(block) {
     column.classList.add('info-column');
   });
   block.querySelectorAll('.info-column').forEach((column) => {
-    column.classList.add('spectrum--light');
+
+    decorateLightOrDark(block);
+
     removeEmptyPTags(column);
     column.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
       h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
