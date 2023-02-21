@@ -1,6 +1,7 @@
 import {
   createTag,
 } from '../../scripts/lib-adobeio.js';
+import { decorateLightOrDark } from '../../scripts/lib-helix';
 
 /**
  * decorates the info
@@ -8,7 +9,9 @@ import {
  */
 export default async function decorate(block) {
   block.setAttribute('daa-lh', 'info');
-  block.classList.add('spectrum--light');
+
+  decorateLightOrDark(block);
+
   block.querySelectorAll('h2').forEach((h2) => {
     h2.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
     const hr = createTag('hr', { class: 'spectrum-Divider spectrum-Divider--sizeL' });

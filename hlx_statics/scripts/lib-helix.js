@@ -139,6 +139,30 @@ export function toCamelCase(name) {
   return toClassName(name).replace(/-([a-z])/g, (g) => g[1].toUpperCase());
 }
 
+export function sectionIsDark(block) {
+  if (!block) {
+    return false;
+  }
+
+  const section = block.parentElement?.parentElement;
+
+  return section && section.classList.contains('dark');
+}
+
+export function decorateLightOrDark(block, max = false) {
+  if (!block) {
+    return;
+  }
+
+  let cssClass = max ? 'spectrum--lightest' : 'spectrum--light';
+
+  if (sectionIsDark(block)) {
+    cssClass = max ? 'spectrum--darkest' : 'spectrum--dark';
+  }
+
+  block.classList.add(cssClass);
+}
+
 /**
  * Replace icons with inline SVG and prefix with codeBasePath.
  * @param {Element} element
@@ -283,7 +307,12 @@ export function decorateSections(main) {
       Object.keys(meta).forEach((key) => {
         if (key === 'style') {
           const styles = meta.style.split(',').map((style) => toClassName(style.trim()));
-          styles.forEach((style) => section.classList.add(style));
+          styles.forEach((style) => {
+            section.classList.add(style);
+            if (style === 'dark') {
+              section.classList.add('spectrum--dark');
+            }
+          });
         } else {
           section.dataset[toCamelCase(key)] = meta[key];
         }

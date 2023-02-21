@@ -1,4 +1,9 @@
-import { readBlockConfig, toClassName } from '../../scripts/lib-helix.js';
+import {
+  decorateLightOrDark,
+  readBlockConfig,
+  toClassName,
+  sectionIsDark,
+} from '../../scripts/lib-helix.js';
 import {
   getBlockSectionContainer,
   createTag,
@@ -90,7 +95,7 @@ function makeApiLinkRelative(link) {
  * @param {*} buttons The buttons to add to each card
  * @param {*} limit The number of cards in the catalog
  */
-function displayFilteredCards(catalog, cards, buttons, limit) {
+function displayFilteredCards(catalog, cards, buttons, limit, lightOrDarkCssClass) {
   let cardsInnerHTML = '';
   let counter = 0;
   catalog.forEach((card) => {
@@ -137,8 +142,9 @@ function displayFilteredCards(catalog, cards, buttons, limit) {
           }
         }
       });
+
       const cardTemplate = `
-        <div class="api-card spectrum--lightest">
+        <div class="api-card ${lightOrDarkCssClass}">
           <div class="spectrum-Card api-card-inner" role="figure" tabindex="0">
             <div class="spectrum-Card-body api-card-body" daa-lh="browser card">
               ${iconTemplate}
@@ -174,7 +180,9 @@ function displayFilteredCards(catalog, cards, buttons, limit) {
 export default async function decorate(block) {
   const sectionContainer = getBlockSectionContainer(block);
   decorateTitle(sectionContainer, 'api-browser');
-  block.classList.add('spectrum--light');
+
+  decorateLightOrDark(block);
+
   const config = readBlockConfig(block);
   window.aio = {};
   const resp = await fetch('/hlx-api-catalog.json');
@@ -238,6 +246,7 @@ export default async function decorate(block) {
     const filterLabel = document.querySelector('#filter-label');
     const filterListLastUpdated = document.querySelector('#filter-list-last-updated');
     const filterListName = document.querySelector('#filter-list-name');
+    const lightOrDarkCssClass = sectionIsDark(block) ? 'spectrum--darkest' : 'spectrum--lightest';
 
     filterListLastUpdated.addEventListener('click', () => {
       if (!filterListLastUpdated.classList.contains('is-selected')) {
@@ -249,7 +258,13 @@ export default async function decorate(block) {
         dropdownPicker.classList.remove('is-open');
         dropdownPopover.classList.remove('is-open');
         dropdownPopover.ariaHidden = true;
-        displayFilteredCards(catalog.sort(sortDate), cards, buttons, config.limit);
+        displayFilteredCards(
+          catalog.sort(sortDate),
+          cards,
+          buttons,
+          config.limit,
+          lightOrDarkCssClass,
+        );
       }
     });
 
@@ -263,7 +278,13 @@ export default async function decorate(block) {
         dropdownPicker.classList.remove('is-open');
         dropdownPopover.classList.remove('is-open');
         dropdownPopover.ariaHidden = true;
-        displayFilteredCards(catalog.sort(sortTitle), cards, buttons, config.limit);
+        displayFilteredCards(
+          catalog.sort(sortTitle),
+          cards,
+          buttons,
+          config.limit,
+          lightOrDarkCssClass,
+        );
       }
     });
 
@@ -300,7 +321,7 @@ export default async function decorate(block) {
     apiCardsInner.append(cards);
     block.append(apiCardsInner);
 
-    displayFilteredCards(catalog, cards, buttons, config.limit);
+    displayFilteredCards(catalog, cards, buttons, config.limit, lightOrDarkCssClass);
 
     document.querySelectorAll('.filters-list input').forEach((filterItem) => {
       filterItem.addEventListener('change', (evt) => {
@@ -311,7 +332,7 @@ export default async function decorate(block) {
         } else {
           CURRENT_API_FILTERS.splice(CURRENT_API_FILTERS.indexOf(evt.currentTarget.value), 1);
         }
-        displayFilteredCards(catalog, cards, buttons, config.limit);
+        displayFilteredCards(catalog, cards, buttons, config.limit, lightOrDarkCssClass);
       });
     });
     focusRing(block);

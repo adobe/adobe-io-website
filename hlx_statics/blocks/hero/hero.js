@@ -1,6 +1,7 @@
 import {
   decorateButtons,
 } from '../../scripts/lib-adobeio.js';
+import { decorateLightOrDark } from '../../scripts/lib-helix';
 
 /**
  * Rearranges the links into a hero-button-container div
@@ -23,7 +24,7 @@ function rearrangeLinks(block) {
 export default async function decorate(block) {
   block.setAttribute('daa-lh', 'hero');
   // Block decoration
-  block.classList.add('spectrum--lightest');
+  decorateLightOrDark(block, true);
   // H1 decoration
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');

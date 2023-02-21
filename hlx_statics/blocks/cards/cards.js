@@ -1,5 +1,5 @@
 import { decorateButtons } from '../../scripts/lib-adobeio.js';
-import { createOptimizedPicture } from '../../scripts/lib-helix.js';
+import { createOptimizedPicture, decorateLightOrDark } from '../../scripts/lib-helix.js';
 
 /**
  * Generates optimized images for all cards in the block
@@ -23,7 +23,9 @@ export default async function decorate(block) {
   decorateButtons(block);
   block.setAttribute('daa-lh', 'card');
   block.querySelectorAll('.cards > div').forEach((card, index, array) => {
-    card.classList.add('spectrum--light');
+
+    decorateLightOrDark(block);
+
     card.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((header) => {
       header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
     });
