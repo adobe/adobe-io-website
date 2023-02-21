@@ -5,7 +5,7 @@
  */
 
 function buildCell(rowIndex) {
-  const cell = rowIndex ? document.createElement('td') : document.createElement('th');
+  const cell = document.createElement('td');
   if (!rowIndex) cell.setAttribute('scope', 'col');
   return cell;
 }
