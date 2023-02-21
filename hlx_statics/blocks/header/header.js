@@ -200,7 +200,6 @@ function handleButtons(header) {
  * @param {*} block The header
  */
 export default async function decorate(block) {
-  block.setAttribute('daa-lh', 'header');
   const cfg = readBlockConfig(block);
   block.textContent = '';
   // strip out trailing slash if any
@@ -211,6 +210,7 @@ export default async function decorate(block) {
     block.innerHTML = html;
     const header = block.parentElement;
     header.classList.add('main-header', 'global-nav-header');
+    header.setAttribute('daa-lh', 'header');
 
     const iconContainer = createTag('p', { class: 'icon-adobe-container' });
     const title = block.querySelector('p:nth-child(1)');
