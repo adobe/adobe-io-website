@@ -343,9 +343,14 @@ export const getClosestFranklinSubfolder = (host, suffix = '') => {
   if (subfolderPath === '' || subfolderPath === 'apis' || subfolderPath === 'open' || subfolderPath === 'developer-support') {
     subfolderPath = 'franklin_assets';
   } else {
-    // get closest level dir and strip any leading and trailing slash
-    subfolderPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-    if (subfolderPath.charAt(0) === '/') subfolderPath = subfolderPath.substring(1);
+    // get those peksy non-trailing urls 
+    if(window.location.pathname.split('/').length === 2){
+      subfolderPath = window.location.pathname;
+    } else {
+      // get closest level dir and strip any leading and trailing slash
+      subfolderPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+      if (subfolderPath.charAt(0) === '/') subfolderPath = subfolderPath.substring(1);
+    }
   }
 
   if (isDevEnvironment(host)) {
