@@ -46,6 +46,6 @@ export default async function decorate(block) {
       });}
 
   });
-  block.innerHTML = '';
+  block.textContent = '';
   block.append(table);
 }
