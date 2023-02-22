@@ -1,21 +1,18 @@
-
-.table table {
-  border-collapse: collapse;
+table {
+  dir: ltr;
 }
 
-.table table thead tr {
-  border-bottom: 1px solid var(--spectrum-global-color-gray-600);;
-}
+main div.table-container {
+  width: 100%;
+  background: var(--spectrum-global-color-gray-100);
+} 
 
-.table table thead tr {
-  text-transform: uppercase;
-}
+main div.table {
+  width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
+  box-sizing: border-box;
+  margin: auto;
+} 
 
-.table table tbody tr {
-  border-bottom: 1px solid var(--spectrum-global-color-gray-600);
-  border-right: 1px solid var(--spectrum-global-color-gray-600);
-}
-
-.table table th, .table table td {
-  padding: 8px 16px;
-}
+main div.table-wrapper {
+  padding: 80px 0;
+} 
