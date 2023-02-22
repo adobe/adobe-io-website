@@ -54,6 +54,10 @@ export default async function decorate(block) {
     checkExternalLink(a);
   });
 
+  block.querySelectorAll('.button').forEach((button) => {
+    button.classList.add('spectrum-Button', 'spectrum-Button--sizeM', 'spectrum-Button--secondary', 'spectrum-Button--outline');
+  });
+
   block.querySelectorAll('div > div.second-column').forEach((secondColumn) => {
     const productLinkContainer = createTag('div', { class: 'product-link-container' });
     secondColumn.querySelectorAll('p.icon-container').forEach((innerSecond) => {

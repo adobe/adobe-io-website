@@ -9,7 +9,10 @@ export default async function decorate(block) {
   removeEmptyPTags(block);
   block.setAttribute('daa-lh', 'announcement');
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
-    h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'announce-heading');
+    h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'announce-heading');
+  });
+  block.querySelectorAll('p').forEach((p) => {
+    p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
   });
   block.querySelectorAll('p a').forEach((link) => {
     link.parentElement.classList.add('announce-link');
