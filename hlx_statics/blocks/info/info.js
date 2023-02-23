@@ -1,7 +1,7 @@
 import {
   createTag,
 } from '../../scripts/lib-adobeio.js';
-import { decorateLightOrDark } from '../../scripts/lib-helix';
+import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
 /**
  * decorates the info
