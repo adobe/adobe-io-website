@@ -118,3 +118,19 @@ main div.second-column div.product-link-container svg {
 main div.second-column div.product-link-container a {
     margin-left: var(--spectrum-global-dimension-size-100);
 }
+
+/* metadata: style: center */
+
+main .columns-container.center div.columns {
+    width: auto;
+}
+
+main .columns-container.center div.columns > div > div {
+    text-align: center;
+    padding: 0 var(--spectrum-global-dimension-size-400);
+}
+
+main .columns-container.center div.columns .button-container {
+    display: inline-flex;
+    margin-right: var(--spectrum-global-dimension-size-200);
+}

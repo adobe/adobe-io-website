@@ -28,17 +28,19 @@ function processImages(block) {
  * @param {Element} block The columns block element
  */
 export default async function decorate(block) {
+  const container = block.parentElement.parentElement;
+  
   block.setAttribute('daa-lh', 'column');
 
   decorateLightOrDark(block);
 
+  if (!container.classList.contains('columns-container')) {
+    // eslint-disable-next-line no-console
+    console.error('Columns Block expects .columns-container to be parent.');
+  }
+
   removeEmptyPTags(block);
-  block.querySelectorAll('.columns > div > div:first-child').forEach((column) => {
-    column.classList.add('first-column');
-  });
-  block.querySelectorAll('.columns > div > div:nth-child(2)').forEach((column) => {
-    column.classList.add('second-column');
-  });
+
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
   });
@@ -59,6 +61,18 @@ export default async function decorate(block) {
 
   block.querySelectorAll('.button').forEach((button) => {
     button.classList.add('spectrum-Button', 'spectrum-Button--sizeM', 'spectrum-Button--secondary', 'spectrum-Button--outline');
+  });
+
+  /* Stop here when metadata is `style: center` */
+  if (container.classList.contains('center')) {
+    return;
+  }
+
+  block.querySelectorAll('.columns > div > div:first-child').forEach((column) => {
+    column.classList.add('first-column');
+  });
+  block.querySelectorAll('.columns > div > div:nth-child(2)').forEach((column) => {
+    column.classList.add('second-column');
   });
 
   block.querySelectorAll('div > div.second-column').forEach((secondColumn) => {
