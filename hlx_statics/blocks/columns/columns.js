@@ -6,6 +6,7 @@ import {
 
 import {
   createOptimizedPicture,
+  decorateLightOrDark,
 } from '../../scripts/lib-helix.js';
 
 /**
@@ -28,7 +29,9 @@ function processImages(block) {
  */
 export default async function decorate(block) {
   block.setAttribute('daa-lh', 'column');
-  block.classList.add('spectrum--light');
+
+  decorateLightOrDark(block);
+
   removeEmptyPTags(block);
   block.querySelectorAll('.columns > div > div:first-child').forEach((column) => {
     column.classList.add('first-column');

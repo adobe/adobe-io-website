@@ -14,6 +14,10 @@ export default async function decorate(block) {
   block.querySelectorAll('p').forEach((p) => {
     p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
   });
+  block.querySelectorAll('p').forEach((paragraph) => {
+    paragraph.classList.add('spectrum-Body');
+    paragraph.classList.add('spectrum-Body--sizeL');
+  });
   block.querySelectorAll('p a').forEach((link) => {
     link.parentElement.classList.add('announce-link');
   });

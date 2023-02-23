@@ -139,6 +139,30 @@ export function toCamelCase(name) {
   return toClassName(name).replace(/-([a-z])/g, (g) => g[1].toUpperCase());
 }
 
+export function sectionIsDark(block) {
+  if (!block) {
+    return false;
+  }
+
+  const section = block.parentElement?.parentElement;
+
+  return section && section.classList.contains('dark');
+}
+
+export function decorateLightOrDark(block, max = false) {
+  if (!block) {
+    return;
+  }
+
+  let cssClass = max ? 'spectrum--lightest' : 'spectrum--light';
+
+  if (sectionIsDark(block)) {
+    cssClass = max ? 'spectrum--darkest' : 'spectrum--dark';
+  }
+
+  block.classList.add(cssClass);
+}
+
 /**
  * Replace icons with inline SVG and prefix with codeBasePath.
  * @param {Element} element
@@ -259,8 +283,8 @@ export function readBlockConfig(block) {
  * Decorates all sections in a container element.
  * @param {Element} $main The container element
  */
-export function decorateSections($main) {
-  $main.querySelectorAll(':scope > div').forEach((section) => {
+export function decorateSections(main) {
+  main.querySelectorAll(':scope > div').forEach((section) => {
     const wrappers = [];
     let defaultContent = false;
     [...section.children].forEach((e) => {
@@ -280,14 +304,20 @@ export function decorateSections($main) {
     const sectionMeta = section.querySelector('div.section-metadata');
     if (sectionMeta) {
       const meta = readBlockConfig(sectionMeta);
-      const keys = Object.keys(meta);
-      keys.forEach((key) => {
+      Object.keys(meta).forEach((key) => {
         if (key === 'style') {
           const styles = meta.style.split(',').map((style) => toClassName(style.trim()));
-          styles.forEach((style) => section.classList.add(style));
-        } else section.dataset[toCamelCase(key)] = meta[key];
+          styles.forEach((style) => {
+            section.classList.add(style);
+            if (style === 'dark') {
+              section.classList.add('spectrum--dark');
+            }
+          });
+        } else {
+          section.dataset[toCamelCase(key)] = meta[key];
+        }
       });
-      sectionMeta.remove();
+      sectionMeta.parentNode.remove();
     }
   });
 }
