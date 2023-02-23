@@ -4,7 +4,7 @@
  * https://www.hlx.live/developer/block-collection/embed
  */
 
-import { decorateLightOrDark } from '../../scripts/lib-helix';
+import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
 /**
  * Gets the video id from the authored URL and inserts the Youtube embed
