@@ -61,7 +61,7 @@ export default async function decorate(block) {
 
   block.querySelectorAll('.button').forEach((button) => {
     button.classList.add('spectrum-Button', 'spectrum-Button--sizeM', 'spectrum-Button--secondary', 'spectrum-Button--outline');
-    button.classList.remove('spectrum-Link');
+    button.classList.remove('spectrum-Link', 'spectrum-Link--quiet');
   });
 
   /* Stop here when metadata is `style: center` */
