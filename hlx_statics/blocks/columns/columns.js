@@ -55,13 +55,14 @@ export default async function decorate(block) {
   });
 
   block.querySelectorAll('a').forEach((a) => {
-    a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
+    if (!a.classList.contains('button')) {
+      a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
+    }
     checkExternalLink(a);
   });
 
   block.querySelectorAll('.button').forEach((button) => {
     button.classList.add('spectrum-Button', 'spectrum-Button--sizeM', 'spectrum-Button--secondary', 'spectrum-Button--outline');
-    button.classList.remove('spectrum-Link', 'spectrum-Link--quiet');
   });
 
   /* Stop here when metadata is `style: center` */
