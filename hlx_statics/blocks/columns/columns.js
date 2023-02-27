@@ -29,7 +29,7 @@ function processImages(block) {
  */
 export default async function decorate(block) {
   const container = block.parentElement.parentElement;
-  
+
   block.setAttribute('daa-lh', 'column');
 
   decorateLightOrDark(block);
@@ -61,6 +61,7 @@ export default async function decorate(block) {
 
   block.querySelectorAll('.button').forEach((button) => {
     button.classList.add('spectrum-Button', 'spectrum-Button--sizeM', 'spectrum-Button--secondary', 'spectrum-Button--outline');
+    button.classList.remove('spectrum-Link');
   });
 
   /* Stop here when metadata is `style: center` */
