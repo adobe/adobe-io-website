@@ -2,6 +2,7 @@ import {
   checkExternalLink,
   createTag,
   removeEmptyPTags,
+  getBlockSectionContainer,
 } from '../../scripts/lib-adobeio.js';
 
 import {
@@ -28,7 +29,7 @@ function processImages(block) {
  * @param {Element} block The columns block element
  */
 export default async function decorate(block) {
-  const container = block.parentElement.parentElement;
+  const container = getBlockSectionContainer(block);
 
   block.setAttribute('daa-lh', 'column');
 
@@ -52,6 +53,16 @@ export default async function decorate(block) {
     } else if (hasLinks.length > 0) {
       p.classList.add('icon-container');
     }
+  });
+
+  block.querySelectorAll('.columns > div > div').forEach((column) => {
+    const buttonGroupContainer = createTag('div', { class: 'button-group-container' });
+    column.querySelectorAll('.button-container').forEach((p, key) => {
+      if (key === 0) {
+        p.parentElement.appendChild(buttonGroupContainer);
+      }
+      buttonGroupContainer.appendChild(p);
+    });
   });
 
   block.querySelectorAll('a').forEach((a) => {

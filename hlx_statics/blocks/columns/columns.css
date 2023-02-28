@@ -125,14 +125,21 @@ main .columns-container.center div.columns {
     width: auto;
 }
 
+main .columns-container.center div.columns > div {
+    align-items: start;
+}
+
 main .columns-container.center div.columns > div > div {
+    display: flex;
+    flex-direction: column;
     text-align: center;
     padding: 0 var(--spectrum-global-dimension-size-400);
 }
 
 main .columns-container.center div.columns .button-container {
     display: inline-flex;
-    margin-right: var(--spectrum-global-dimension-size-200);
+    margin: var(--spectrum-global-dimension-size-200) var(--spectrum-global-dimension-size-100);
+    margin-bottom: 0;
 }
 
 @media screen and (max-width: 1280px) {
@@ -141,7 +148,7 @@ main .columns-container.center div.columns .button-container {
         padding: var(--spectrum-global-dimension-size-1000) var(--spectrum-global-dimension-size-400);
     }
 
-    main .columns-container.center div.columns .button-container {
-        margin: var(--spectrum-global-dimension-size-150) 0 0 0;
+    main .columns-container.center div.columns > div {
+        align-items: center;
     }
 }
