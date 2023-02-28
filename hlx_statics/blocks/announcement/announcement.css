@@ -1,5 +1,4 @@
 main div.announcement-container {
-    display: block;
     width: 100%;
     background: var(--spectrum-global-color-gray-100);
     box-sizing: border-box;
