@@ -4,8 +4,10 @@ import {
   focusRing,
   isHlxPath,
   isStageEnvironment,
+  isExternalLink,
   decorateProfile,
   addExtraScript,
+  addExtraScriptWithLoad,
   setAnalyticsAttributes
 } from './lib-adobeio.js';
 
@@ -46,6 +48,81 @@ if (isHlxPath(window.location.host) || isStageEnvironment(window.location.host))
 
 addExtraScript(document.body, 'https://www.adobe.com/marketingtech/main.min.js');
 addExtraScript(document.body, 'https://wwwimages2.adobe.com/etc/beagle/public/globalnav/adobe-privacy/latest/privacy.min.js');
+
+function penpalOnLoad() {
+  const createConnection = () => {
+    const penpalIframe = document.querySelector('#penpalIframe');
+
+    const connection = window.Penpal.connectToChild({
+      // The iframe to which a connection should be made
+      iframe: penpalIframe,
+      // Manually set origin as auto-detection may fail, as the src of the iframe is set later
+      //childOrigin: isExternalLink(src) ? new URL(src).origin : window.origin,
+      // Methods the parent is exposing to the child
+      methods: {
+        scrollTop(position = 0) {
+          if (document?.scrollingElement) {
+            document.scrollingElement.scrollTop = position;
+          }
+        },
+        getURL() {
+          return window?.location?.href;
+        },
+        setURL(url) {
+          if (window?.location) {
+            window.location = url;
+          }
+        },
+        setHeight(height) {
+          iframe.current.style.height = height;
+        },
+        getIMSAccessToken() {
+          if (ims?.isSignedInUser()) {
+            return ims.getAccessToken();
+          }
+
+          return null;
+        },
+        getIMSProfile() {
+          if (ims?.isSignedInUser()) {
+            return ims.getProfile();
+          }
+
+          return null;
+        },
+        signIn() {
+          if (ims && !ims.isSignedInUser()) {
+            ims.signIn();
+          }
+        },
+        signOut() {
+          if (ims && ims.isSignedInUser()) {
+            ims.signOut();
+          }
+        },
+        getIMSClientId() {
+          if (ims) {
+            return ims.adobeIdData.client_id;
+          } else {
+            return null;
+          }
+        }
+      }
+    });
+    return connection;
+  };
+
+  if (window.Penpal) {
+    const connection = createConnection();
+  }
+}
+
+// only add penpal when we have an iframe penpal present
+const penpalIframe = document.querySelector('#penpalIframe');
+if (penpalIframe){
+  addExtraScriptWithLoad(document.body, 'https://unpkg.com/penpal@^6/dist/penpal.min.js', penpalOnLoad);
+}
+
 
 document.querySelectorAll('.embed').forEach((embed) => {
   const iframe = embed.querySelector('iframe');
