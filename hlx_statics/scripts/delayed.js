@@ -4,7 +4,6 @@ import {
   focusRing,
   isHlxPath,
   isStageEnvironment,
-  isExternalLink,
   decorateProfile,
   addExtraScript,
   addExtraScriptWithLoad,
@@ -77,32 +76,32 @@ function penpalOnLoad() {
           iframe.current.style.height = height;
         },
         getIMSAccessToken() {
-          if (ims?.isSignedInUser()) {
-            return ims.getAccessToken();
+          if (window.adobeIMS?.isSignedInUser()) {
+            return window.adobeIMS.getAccessToken();
           }
 
           return null;
         },
         getIMSProfile() {
-          if (ims?.isSignedInUser()) {
-            return ims.getProfile();
+          if (window.adobeIMS?.isSignedInUser()) {
+            return window.adobeIMS.getProfile();
           }
 
           return null;
         },
         signIn() {
-          if (ims && !ims.isSignedInUser()) {
-            ims.signIn();
+          if (window.adobeIMS && !window.adobeIMS.isSignedInUser()) {
+            window.adobeIMS.signIn();
           }
         },
         signOut() {
-          if (ims && ims.isSignedInUser()) {
-            ims.signOut();
+          if (window.adobeIMS && window.adobeIMS.isSignedInUser()) {
+            window.adobeIMS.signOut();
           }
         },
         getIMSClientId() {
-          if (ims) {
-            return ims.adobeIdData.client_id;
+          if (window.adobeIMS) {
+            return window.adobeIMS.adobeIdData.client_id;
           } else {
             return null;
           }
