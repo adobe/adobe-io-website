@@ -62,7 +62,13 @@ export default async function decorate(block) {
   });
 
   block.querySelectorAll('.button').forEach((button) => {
-    button.classList.add('spectrum-Button', 'spectrum-Button--sizeM', 'spectrum-Button--secondary', 'spectrum-Button--outline');
+    button.classList.add('spectrum-Button', 'spectrum-Button--sizeM');
+    if (button.parentElement.tagName.toLowerCase() !== 'strong') {
+      button.classList.add('spectrum-Button--secondary', 'spectrum-Button--outline');
+    } else {
+      button.parentElement.replaceWith(button);
+      button.classList.add('spectrum-Button--fill', 'spectrum-Button--accent');
+    }
   });
 
   /* Stop here when metadata is `style: center` */
