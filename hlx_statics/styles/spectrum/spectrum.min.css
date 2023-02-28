@@ -213,6 +213,7 @@
     --spectrum-alias-icon-color-focus: var(--spectrum-global-color-gray-900);
     --spectrum-alias-icon-color-disabled: var(--spectrum-global-color-gray-400);
     --spectrum-alias-icon-color-selected: var(--spectrum-global-color-blue-500);
+    --spectrum-alias-label-text-color: var(--spectrum-global-color-gray-700);
   }
   
   .spectrum--medium {
@@ -510,7 +511,8 @@
     --spectrum-global-color-gray-400: rgb(90, 90, 90);
     --spectrum-global-color-gray-500: rgb(110, 110, 110);
     --spectrum-global-color-gray-600: rgb(144, 144, 144);
-    --spectrum-global-color-gray-700: rgb(185, 185, 185);
+    --spectrum-global-color-gray-700-rgb: 209, 209, 209;
+    --spectrum-global-color-gray-700: rgb(var(--spectrum-global-color-gray-700-rgb));
     --spectrum-global-color-gray-800: rgb(227, 227, 227);
     --spectrum-global-color-gray-900: rgb(255, 255, 255);
     --spectrum-alias-dropshadow-color: rgba(0,0,0,0.5);
