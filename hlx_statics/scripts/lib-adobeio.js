@@ -469,3 +469,16 @@ export function addExtraScript(element, scriptUrl) {
   script.src = scriptUrl;
   element.appendChild(script);
 }
+
+/**
+ * Adds an extra script tag to the document and adds an onload 
+ * @param {*} element The element to which the script will be added
+ * @param {*} scriptUrl The URL to the script to add
+ * @param {*} onload The on load handler of the script
+ */
+export function addExtraScriptWithLoad(element, scriptUrl, onload) {
+  const script = createTag('script', { type: 'text/javascript' });
+  script.src = scriptUrl;
+  script.onload = onload;
+  element.appendChild(script);
+}
