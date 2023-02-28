@@ -345,6 +345,7 @@ export const getClosestFranklinSubfolder = (host, suffix = '') => {
   } else {
     // get closest level dir and strip any leading and trailing slash
     subfolderPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+    if (subfolderPath.charAt(0) === '/') subfolderPath = subfolderPath.substring(1);
   }
 
   if (isDevEnvironment(host)) {
