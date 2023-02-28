@@ -67,7 +67,7 @@ export default async function decorate(block) {
       button.classList.add('spectrum-Button--secondary', 'spectrum-Button--outline');
     } else {
       button.parentElement.replaceWith(button);
-      button.classList.add('spectrum-Button--fill', 'spectrum-Button--accent');
+      button.classList.add('spectrum-Button--cta');
     }
   });
 
