@@ -2,6 +2,7 @@ import {
   checkExternalLink,
   createTag,
   removeEmptyPTags,
+  getBlockSectionContainer,
 } from '../../scripts/lib-adobeio.js';
 
 import {
@@ -28,17 +29,19 @@ function processImages(block) {
  * @param {Element} block The columns block element
  */
 export default async function decorate(block) {
+  const container = getBlockSectionContainer(block);
+
   block.setAttribute('daa-lh', 'column');
 
   decorateLightOrDark(block);
 
+  if (!container.classList.contains('columns-container')) {
+    // eslint-disable-next-line no-console
+    console.error('Columns Block expects .columns-container to be parent.');
+  }
+
   removeEmptyPTags(block);
-  block.querySelectorAll('.columns > div > div:first-child').forEach((column) => {
-    column.classList.add('first-column');
-  });
-  block.querySelectorAll('.columns > div > div:nth-child(2)').forEach((column) => {
-    column.classList.add('second-column');
-  });
+
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
   });
@@ -52,9 +55,43 @@ export default async function decorate(block) {
     }
   });
 
+  block.querySelectorAll('.columns > div > div').forEach((column) => {
+    const buttonGroupContainer = createTag('div', { class: 'button-group-container' });
+    column.querySelectorAll('.button-container').forEach((p, key) => {
+      if (key === 0) {
+        p.parentElement.appendChild(buttonGroupContainer);
+      }
+      buttonGroupContainer.appendChild(p);
+    });
+  });
+
   block.querySelectorAll('a').forEach((a) => {
-    a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
+    if (!a.classList.contains('button')) {
+      a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
+    }
     checkExternalLink(a);
+  });
+
+  block.querySelectorAll('.button').forEach((button) => {
+    button.classList.add('spectrum-Button', 'spectrum-Button--sizeM');
+    if (button.parentElement.tagName.toLowerCase() !== 'strong') {
+      button.classList.add('spectrum-Button--secondary', 'spectrum-Button--outline');
+    } else {
+      button.parentElement.replaceWith(button);
+      button.classList.add('spectrum-Button--cta');
+    }
+  });
+
+  /* Stop here when metadata is `style: center` */
+  if (container.classList.contains('center')) {
+    return;
+  }
+
+  block.querySelectorAll('.columns > div > div:first-child').forEach((column) => {
+    column.classList.add('first-column');
+  });
+  block.querySelectorAll('.columns > div > div:nth-child(2)').forEach((column) => {
+    column.classList.add('second-column');
   });
 
   block.querySelectorAll('div > div.second-column').forEach((secondColumn) => {
