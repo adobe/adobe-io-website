@@ -331,7 +331,7 @@ export const setSearchFrameOrigin = (host, suffix = '') => {
 };
 
 /**
- * Returns the franklin closest sub folder 
+ * Returns the franklin closest sub folder
  * @param {*} host The host
  * @param {*} suffix A suffix to append
  * @returns The first subfolder in the franklin dir - for special urls like apis will return the franklin_assets folder
