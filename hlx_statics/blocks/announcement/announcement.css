@@ -32,6 +32,7 @@ main div.announcement-container {
     margin-left: 20%;
     margin-right: 20%;
   }
+<<<<<<< HEAD
   
   @media screen and (max-width: 768px) {
     main div.announcement p {
@@ -39,6 +40,8 @@ main div.announcement-container {
       margin-right: 0%;
     }
   }
+=======
+>>>>>>> 54b688c (feat: columns / no image)
 
   main div.announcement p.announce-link {
     margin-top: var(--spectrum-global-dimension-size-200)
