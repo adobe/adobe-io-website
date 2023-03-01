@@ -1,13 +1,13 @@
 main div.columns-container {
     width: 100%;
     background: var(--spectrum-global-color-gray-100);
-} 
+}
 
 main div.columns {
     width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
     box-sizing: border-box;
     margin: auto;
-} 
+}
 
 @media screen and (max-width: 1280px) {
     main div.columns {
@@ -98,12 +98,12 @@ main div.second-column div.product-link-container {
     flex-direction: row;
 }
 
-main div.second-column div.product-link-container p.icon-container { 
+main div.second-column div.product-link-container p.icon-container {
     display: flex;
     align-items: center;
 }
 
-main div.second-column div.product-link-container img { 
+main div.second-column div.product-link-container img {
     height: var(--spectrum-global-dimension-size-400);
     width: var(--spectrum-global-dimension-size-400);
     object-fit: contain;
@@ -115,6 +115,40 @@ main div.second-column div.product-link-container svg {
     object-fit: contain;
 }
 
-main div.second-column div.product-link-container a { 
+main div.second-column div.product-link-container a {
     margin-left: var(--spectrum-global-dimension-size-100);
+}
+
+/* metadata: style: center */
+
+main .columns-container.center div.columns {
+    width: auto;
+}
+
+main .columns-container.center div.columns > div {
+    align-items: start;
+}
+
+main .columns-container.center div.columns > div > div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 var(--spectrum-global-dimension-size-400);
+}
+
+main .columns-container.center div.columns .button-container {
+    display: inline-flex;
+    margin: var(--spectrum-global-dimension-size-200) var(--spectrum-global-dimension-size-100);
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 1280px) {
+    main .columns-container.center div.columns > div > div {
+        text-align: center;
+        padding: var(--spectrum-global-dimension-size-1000) var(--spectrum-global-dimension-size-400);
+    }
+
+    main .columns-container.center div.columns > div {
+        align-items: center;
+    }
 }
