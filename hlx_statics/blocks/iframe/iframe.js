@@ -64,7 +64,7 @@ function penpalOnLoad() {
         });
 
         connection.promise.then((child) => {
-            if (iframe.current.clientHeight === 0) {
+            if (penpalIframe.clientHeight === 0) {
               child.onHide();
             } else {
               child.onShow();
