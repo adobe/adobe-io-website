@@ -3,7 +3,7 @@ main div.announcement-container {
     background: var(--spectrum-global-color-gray-100);
     box-sizing: border-box;
     text-align: center;
-    height: calc(var(--spectrum-global-dimension-size-2000) + var(--spectrum-global-dimension-size-125));
+    min-height: calc(var(--spectrum-global-dimension-size-2000) + var(--spectrum-global-dimension-size-125));
     padding: var(--spectrum-global-dimension-size-400);
   }
 
