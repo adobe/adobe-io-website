@@ -1,5 +1,29 @@
 import { decorateButtons, removeEmptyPTags } from '../../scripts/lib-adobeio.js';
 
+function calculateImagesize(block) { 
+  console.log(block);
+  var test= block.querySelector('.video-enabled.announcement-container');
+  console.log(test);
+
+  var myImg = block.querySelector('.video-enabled.announcement-container picture img');
+  console.log(myImg);
+  if(myImg !== null){
+        console.log(myImg.height);
+ 
+
+  const divAnnouncement = block.querySelector('.video-enabled.announcement-container picture img');
+  console.log(divAnnouncement);
+  const firstDivAfterVideo = divAnnouncement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.nextElementSibling;
+  console.log(firstDivAfterVideo);
+  var secondColumn=firstDivAfterVideo.querySelector('.second-column')[0];
+  console.log(secondColumn);
+  var overlappingOfImage = myImg.height - 200;
+  secondColumn.style.setAttribute("margin-top",overlappingOfImage);
+}
+
+
+}
+
 /**
  * decorates the announcement
  * @param {Element} block The announcement block element
@@ -21,4 +45,7 @@ export default async function decorate(block) {
   block.querySelectorAll('p a').forEach((link) => {
     link.parentElement.classList.add('announce-link');
   });
+  block
+  calculateImagesize(block);
 }
+
