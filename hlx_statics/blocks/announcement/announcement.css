@@ -1,6 +1,3 @@
-
-
-
 main div.announcement-container {
     width: 100%;
     background: var(--spectrum-global-color-gray-100);
@@ -10,14 +7,14 @@ main div.announcement-container {
     padding: var(--spectrum-global-dimension-size-400);
   }
 
-
-
-
   @media screen and (max-width: 1280px) {
     main div.announcement-container {
       height: auto;
     }
     main div.video-enabled + div {
+      margin-top: 0;
+    }
+    main div.section{
       margin-top: 0;
     }
   }
