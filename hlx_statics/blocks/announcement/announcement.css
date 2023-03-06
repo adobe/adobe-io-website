@@ -57,6 +57,10 @@ main div.announcement-container > div {
   width: 100%;
 }
 
+main div.announcement-container > div {
+  width: 100%;
+}
+
 main div.announcement .announce-heading {
   margin-top: 0 !important;
   margin-bottom: var(--spectrum-global-dimension-size-100) !important;
@@ -78,4 +82,3 @@ main div.announcement p.announce-link {
 main div.announcement p:last-child {
   margin-bottom: 0;
 }
-
