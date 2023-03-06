@@ -13,6 +13,11 @@ main div.announcement-container {
     }
   }
 
+  main .section.video-enabled + .columns-container > .columns-wrapper > div.columns.block > div > div:first-of-type + div {
+    display:flex;
+    margin-top: var(--spectrum-global-dimension-size-1250);
+  }
+
   main div.announcement-container > div {
     width: 100%;
   }
