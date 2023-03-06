@@ -60,7 +60,12 @@ function globalNavLinkItemDropdown(id, name, links) {
           <path d="M3 9.95a.875.875 0 01-.615-1.498L5.88 5 2.385 1.547A.875.875 0 013.615.302L7.74 4.377a.876.876 0 010 1.246L3.615 9.698A.872.872 0 013 9.95z" class="spectrum-UIIcon--medium"></path>
          </svg>
       </button>
-      <div id="nav-dropdown-popover_${id}" class="nav-dropdown-popover">
+      <div id="nav-dropdown-popover_${id}" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover nav-dropdown-popover">
+        <ul class="spectrum-Menu" role="menu">
+          ${links}
+        </ul>
+      </div>
+      <div id="nav-dropdown-mobile-popover_${id}" class="nav-dropdown-mobile-popover">
         <ul class="nav-sub-menu spectrum-Menu" role="menu">
           ${links}
         </ul>
@@ -167,16 +172,21 @@ function handleButtons(header) {
     if (button.id.indexOf('nav-dropdown-button') >= 0) {
       const index = button.id.split('_')[1];
       const dropdownPopover = header.querySelector(`div#nav-dropdown-popover_${index}`);
+      const dropdownMobilePopover = header.querySelector(`div#nav-dropdown-mobile-popover_${index}`);
 
       button.addEventListener('click', (evt) => {
         if (!evt.currentTarget.classList.contains('is-open')) {
           button.classList.add('is-open');
           dropdownPopover.classList.add('is-open');
+          dropdownMobilePopover.classList.add('is-open');
           dropdownPopover.ariaHidden = false;
+          dropdownMobilePopover.ariaHidden = false;
         } else {
           button.classList.remove('is-open');
           dropdownPopover.classList.remove('is-open');
+          dropdownMobilePopover.classList.remove('is-open');
           dropdownPopover.ariaHidden = false;
+          dropdownMobilePopover.ariaHidden = false;
         }
       });
     } else if (button.id.indexOf('nav-profile-dropdown-button') >= 0) {
