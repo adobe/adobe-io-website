@@ -1,27 +1,28 @@
 import { decorateButtons, removeEmptyPTags } from '../../scripts/lib-adobeio.js';
 
-function calculateImagesize(block) { 
-  console.log(block);
-  var test= block.querySelector('.video-enabled.announcement-container');
-  console.log(test);
+function calculateOverlapping(block) {
+  var myImg = block.querySelector('picture img');
+  if (myImg !== null) {
+    let marginToAdd = myImg.height - 200;
+    const firstDivAfterVideo = block.parentElement.parentElement.nextElementSibling;
 
-  var myImg = block.querySelector('.video-enabled.announcement-container picture img');
-  console.log(myImg);
-  if(myImg !== null){
-        console.log(myImg.height);
- 
+    const ro = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        var actualWidth = window.innerWidth;
+        if (actualWidth < 1280)
+          marginToAdd = 0;
+        else
+          marginToAdd = myImg.height - 200;
+        entry.target.style.margin = marginToAdd + "px 0 0";
+      }
+    });
+    ro.observe(firstDivAfterVideo);
 
-  const divAnnouncement = block.querySelector('.video-enabled.announcement-container picture img');
-  console.log(divAnnouncement);
-  const firstDivAfterVideo = divAnnouncement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.nextElementSibling;
-  console.log(firstDivAfterVideo);
-  var secondColumn=firstDivAfterVideo.querySelector('.second-column')[0];
-  console.log(secondColumn);
-  var overlappingOfImage = myImg.height - 200;
-  secondColumn.style.setAttribute("margin-top",overlappingOfImage);
-}
-
-
+    var actualWidth = window.innerWidth;
+    if (actualWidth < 1280)
+      marginToAdd = 0;
+    firstDivAfterVideo.style.margin = marginToAdd + "px 0 0"
+  }
 }
 
 /**
@@ -46,6 +47,6 @@ export default async function decorate(block) {
     link.parentElement.classList.add('announce-link');
   });
   block
-  calculateImagesize(block);
+  calculateOverlapping(block);
 }
 
