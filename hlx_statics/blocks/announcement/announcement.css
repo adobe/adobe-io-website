@@ -1,57 +1,81 @@
 main div.announcement-container {
-    width: 100%;
-    background: var(--spectrum-global-color-gray-100);
-    box-sizing: border-box;
-    text-align: center;
-    min-height: calc(var(--spectrum-global-dimension-size-2000) + var(--spectrum-global-dimension-size-125));
-    padding: var(--spectrum-global-dimension-size-400);
-  }
+  width: 100%;
+  background: var(--spectrum-global-color-gray-100);
+  box-sizing: border-box;
+  text-align: center;
+  min-height: calc(var(--spectrum-global-dimension-size-2000) + var(--spectrum-global-dimension-size-125));
+  padding: var(--spectrum-global-dimension-size-400);
+}
 
-  @media screen and (max-width: 1280px) {
-    main div.announcement-container {
-      height: auto;
-    }
+@media screen and (max-width: 1280px) {
+  main div.announcement-container {
+    height: auto;
   }
+}
 
-  main .section.video-enabled + .columns-container > .columns-wrapper > div.columns.block > div > div:first-of-type + div {
-    display:flex;
-    margin-top: var(--spectrum-global-dimension-size-1250);
-  }
+main .section.video-enabled + .columns-container > .columns-wrapper > div.columns.block > div > div:first-of-type + div {
+  display:flex;
+  margin-top: var(--spectrum-global-dimension-size-1250);
+}
 
-  main div.announcement-container > div {
-    width: 100%;
-  }
+main div.announcement-container > div {
+  width: 100%;
+}
 
-  main div.announcement .announce-heading {
-    margin-top: 0 !important;
-    margin-bottom: var(--spectrum-global-dimension-size-100) !important;
-  }
+main div.announcement .announce-heading {
+  margin-top: 0 !important;
+  margin-bottom: var(--spectrum-global-dimension-size-100) !important;
+}
 
  main div.announcement.block {
     margin: auto;
     max-width: calc( calc(12 * var(--spectrum-global-dimension-static-grid-fixed-max-width) / var(--spectrum-global-dimension-static-grid-columns) - var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-150)) );
  }
 
+main div.announcement p {
+  margin-top: 0;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+@media screen and (max-width: 768px) {
   main div.announcement p {
-    margin-top: 0;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 0%;
+    margin-right: 0%;
   }
-<<<<<<< HEAD
-  
-  @media screen and (max-width: 768px) {
-    main div.announcement p {
-      margin-left: 0%;
-      margin-right: 0%;
-    }
-  }
-=======
->>>>>>> 54b688c (feat: columns / no image)
+}
 
-  main div.announcement p.announce-link {
-    margin-top: var(--spectrum-global-dimension-size-200)
-  }
+main div.announcement p.announce-link {
+  margin-top: var(--spectrum-global-dimension-size-200)
+}
 
-  main div.announcement p:last-child {
-    margin-bottom: 0;
-  }
+main div.announcement p:last-child {
+  margin-bottom: 0;
+}
+
+main div.announcement-container > div {
+  width: 100%;
+}
+
+main div.announcement .announce-heading {
+  margin-top: 0 !important;
+  margin-bottom: var(--spectrum-global-dimension-size-100) !important;
+}
+
+main div.announcement.block {
+  margin: auto;
+  max-width: calc( calc(12 * var(--spectrum-global-dimension-static-grid-fixed-max-width) / var(--spectrum-global-dimension-static-grid-columns) - var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-150)) );
+}
+
+main div.announcement p {
+  margin-top: 0;
+}
+
+main div.announcement p.announce-link {
+  margin-top: var(--spectrum-global-dimension-size-200)
+}
+
+main div.announcement p:last-child {
+  margin-bottom: 0;
+}
+
