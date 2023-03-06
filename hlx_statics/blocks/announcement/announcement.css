@@ -11,19 +11,8 @@ main div.announcement-container {
     main div.announcement-container {
       height: auto;
     }
-    main div.video-enabled + div {
-      margin-top: 0;
-    }
-    main div.section{
-      margin-top: 0;
-    }
   }
-
-  main .section.video-enabled + .columns-container > .columns-wrapper > div.columns.block > div:first-of-type {
-    display: flex;
-    align-items: flex-start;
-  }
-
+ 
   main div.announcement-container > div {
     width: 100%;
   }
