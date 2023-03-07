@@ -311,6 +311,7 @@ header.global-nav-header > ul#navigation-links > li > button.is-open .spectrum-P
   header.global-nav-header div.nav-dropdown-popover {
     margin-top: -6px;
     margin-left: -1px;
+    z-index:1001;
   }
 }
 
@@ -593,9 +594,11 @@ main{
   }
 
   header .menu .nav-dropdown-mobile-popover.is-open {
+    position: sticky;
     display: block;
     width: 100%;
     max-height: 100%;
+    z-index:1001;
   }
 
   header .menu .nav-dropdown-mobile-popover.is-open > ul {
