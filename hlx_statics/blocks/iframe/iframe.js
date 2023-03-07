@@ -27,7 +27,7 @@ function penpalOnLoad() {
             }
             },
             setHeight(height) {
-            iframe.current.style.height = height;
+            penpalIframe.style.height = height;
             },
             getIMSAccessToken() {
             if (window.adobeIMS?.isSignedInUser()) {
