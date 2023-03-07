@@ -5,6 +5,7 @@ table {
 main div.table-container {
   width: 100%;
   background: var(--spectrum-global-color-gray-100);
+  overflow-x: auto;
 } 
 
 main div.table {
