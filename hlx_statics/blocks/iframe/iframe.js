@@ -1,6 +1,6 @@
 import {
     createTag,
-    addExtraScriptWithLoad
+    addExtraScriptWithReturn
   } from '../../scripts/lib-adobeio.js';
 
 function penpalOnLoad() {
@@ -27,7 +27,7 @@ function penpalOnLoad() {
             }
             },
             setHeight(height) {
-            penpalIframe.style.height = height;
+                penpalIframe.style.height = height;
             },
             getIMSAccessToken() {
             if (window.adobeIMS?.isSignedInUser()) {
@@ -84,11 +84,14 @@ function penpalOnLoad() {
  * @param {Element} block The hero block element
  */
 export default async function decorate(block) {
+    const penpalScript = addExtraScriptWithReturn(document.body, 'https://unpkg.com/penpal@^6/dist/penpal.min.js');
     const iframeSrc = block.querySelector('a');
     const iframeContainer = block.parentElement;
     const iframe = createTag('iframe', { class: 'iframe-container', 'src': iframeSrc.href, 'id': 'penpalIframe' });
-    iframeContainer.append(iframe);
+    penpalScript.onload = () => {
+        iframeContainer.append(iframe);
+        penpalOnLoad();
+    }
     block.remove();
-    addExtraScriptWithLoad(document.body, 'https://unpkg.com/penpal@^6/dist/penpal.min.js', penpalOnLoad);
 }
 
