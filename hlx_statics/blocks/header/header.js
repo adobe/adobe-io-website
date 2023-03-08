@@ -291,7 +291,9 @@ export default async function decorate(block) {
 
     const buttonDiv = createTag('div', { class: 'button-container' });
     ul.appendChild(buttonDiv);
-    buttonDiv.appendChild(globalMobileDistributeButton());
+    if (window.location.pathname.includes("/developer-distribution/")) {
+      buttonDiv.appendChild(globalMobileDistributeButton());
+    }
     buttonDiv.appendChild(globalMobileConsoleButton());
     ul.querySelectorAll('a').forEach((a) => {
       if (a.parentElement.tagName === 'STRONG') {
