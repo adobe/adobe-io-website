@@ -321,6 +321,9 @@ header.global-nav-header > ul#navigation-links > li > button.is-open .spectrum-P
     display: none;
   }
 
+  header .nav-view-mobile-docs-button {
+    display: none;
+  }
 }
 
 header.global-nav-header > ul > li:first-of-type {
@@ -660,6 +663,10 @@ main{
     margin: 10px;
   }
   header .nav-mobile-console-button {
+    flex: 1;
+    margin: 10px;
+  }
+  header .nav-view-mobile-docs-button {
     flex: 1;
     margin: 10px;
   }
