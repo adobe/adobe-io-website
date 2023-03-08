@@ -299,8 +299,8 @@ export default async function decorate(block) {
       if (a.parentElement.tagName === 'STRONG') {
         a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
         const span = createTag('span', { class: 'spectrum-Button-label' });
-        span.innerText = a.innerText;
-        a.innerText = '';
+        span.innerHTML = a.innerHTML;
+        a.innerHTML = '';
         a.appendChild(span);
         const li = a.parentElement.parentElement;
         const div = createTag('div', { class: 'nav-view-docs-button' });
