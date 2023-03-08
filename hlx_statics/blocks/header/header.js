@@ -307,9 +307,9 @@ export default async function decorate(block) {
         div.appendChild(a);
         ul.removeChild(li);
         ul.appendChild(div);
-        const mobileDiv = createTag('div', { class: 'nav-view-mobile-docs-button' });
-        mobileDiv.appendChild(a);
-        buttonDiv.appendChild(div);
+        // const mobileDiv = createTag('div', { class: 'nav-view-mobile-docs-button' });
+        // mobileDiv.appendChild(a);
+        // buttonDiv.appendChild(div);
       }
     });
 
