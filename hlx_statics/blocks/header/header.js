@@ -305,8 +305,8 @@ export default async function decorate(block) {
         const li = a.parentElement.parentElement;
         const div = createTag('div', { class: 'nav-view-docs-button' });
         div.appendChild(a);
-        buttonDiv.removeChild(li);
-        buttonDiv.appendChild(div);
+        ul.removeChild(li);
+        ul.appendChild(div);
       }
     });
 

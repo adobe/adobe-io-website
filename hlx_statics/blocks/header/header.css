@@ -658,10 +658,6 @@ main{
     flex: 1;
     margin: 10px;
   }
-  header .nav-view-docs-button {
-    flex: 1;
-    margin: 10px;
-  }
 
   .site-hero-container {
     padding-top: var(--spectrum-global-dimension-size-800);
