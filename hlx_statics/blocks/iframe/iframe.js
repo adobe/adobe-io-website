@@ -59,6 +59,9 @@ function penpalOnLoad() {
             } else {
                 return null;
             }
+            },
+            onSignIn(signinCallback) {
+                window.addEventListener('imsSignIn', signinCallback);
             }
         }
         });

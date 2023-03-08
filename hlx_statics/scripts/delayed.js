@@ -59,6 +59,7 @@ document.querySelectorAll('.embed').forEach((embed) => {
 focusRing();
 setAnalyticsAttributes();
 
+const imsSignIn = new Event('imsSignIn');
 
 // should refactor this if we get more ims clients coming
 if (isHlxPath(window.location.host)) {
@@ -78,6 +79,7 @@ if (isHlxPath(window.location.host)) {
     },
     onReady: () => {
       if (window.adobeIMSMethods.isSignedIn()) {
+        window.dispatchEvent('imsSignIn');
         window.adobeIMSMethods.getProfile();
       }
     },
@@ -112,6 +114,7 @@ if (isHlxPath(window.location.host)) {
       },
       onReady: () => {
         if (window.adobeIMSMethods.isSignedIn()) {
+          window.dispatchEvent('imsSignIn');
           window.adobeIMSMethods.getProfile();
         }
       },
@@ -133,6 +136,7 @@ if (isHlxPath(window.location.host)) {
       },
       onReady: () => {
         if (window.adobeIMSMethods.isSignedIn()) {
+          window.dispatchEvent('imsSignIn');
           window.adobeIMSMethods.getProfile();
         }
       },
@@ -168,6 +172,7 @@ if (isHlxPath(window.location.host)) {
       },
       onReady: () => {
         if (window.adobeIMSMethods.isSignedIn()) {
+          window.dispatchEvent('imsSignIn');
           window.adobeIMSMethods.getProfile();
         }
       },
@@ -189,6 +194,7 @@ if (isHlxPath(window.location.host)) {
       },
       onReady: () => {
         if (window.adobeIMSMethods.isSignedIn()) {
+          window.dispatchEvent('imsSignIn');
           window.adobeIMSMethods.getProfile();
         }
       },
