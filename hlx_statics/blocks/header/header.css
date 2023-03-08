@@ -483,10 +483,6 @@ main{
     display:none;
   }
 
-  header .nav-view-docs-button{
-    display:none;
-  }
-
   header.global-nav-header{
     position: fixed !important;
     z-index:1001;
