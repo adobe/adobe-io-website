@@ -41,6 +41,26 @@ function globalConsoleButton() {
   return div;
 }
 
+function globalMobileDistributeButton() {
+  const div = createTag('div', { class: 'nav-mobile-distribute-button' });
+  div.innerHTML = `<a href="/distribute" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+    <span class="spectrum-Button-label">
+      Distribute
+    </span>
+  </a>`;
+  return div;
+}
+
+function globalMobileConsoleButton() {
+  const div = createTag('div', { class: 'nav-mobile-console-button' });
+  div.innerHTML = `<a href="https://developer.adobe.com/console/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+    <span class="spectrum-Button-label">
+      Console
+    </span>
+  </a>`;
+  return div;
+}
+
 function globalSignIn() {
   const div = createTag('div', { class: 'nav-sign-in' });
   div.innerHTML = `<button class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet">
@@ -269,6 +289,10 @@ export default async function decorate(block) {
       dropDownList.parentElement.innerHTML = dropdownLinkDropdownHTML;
     });
 
+    const buttonDiv = createTag('div', { class: 'button-container' });
+    ul.appendChild(buttonDiv);
+    buttonDiv.appendChild(globalMobileDistributeButton());
+    buttonDiv.appendChild(globalMobileConsoleButton());
     ul.querySelectorAll('a').forEach((a) => {
       if (a.parentElement.tagName === 'STRONG') {
         a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
@@ -279,8 +303,8 @@ export default async function decorate(block) {
         const li = a.parentElement.parentElement;
         const div = createTag('div', { class: 'nav-view-docs-button' });
         div.appendChild(a);
-        ul.removeChild(li);
-        ul.appendChild(div);
+        buttonDiv.removeChild(li);
+        buttonDiv.appendChild(div);
       }
     });
 
