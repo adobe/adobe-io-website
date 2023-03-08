@@ -79,7 +79,7 @@ if (isHlxPath(window.location.host)) {
     },
     onReady: () => {
       if (window.adobeIMSMethods.isSignedIn()) {
-        window.dispatchEvent('imsSignIn');
+        window.dispatchEvent(imsSignIn);
         window.adobeIMSMethods.getProfile();
       }
     },
@@ -114,7 +114,7 @@ if (isHlxPath(window.location.host)) {
       },
       onReady: () => {
         if (window.adobeIMSMethods.isSignedIn()) {
-          window.dispatchEvent('imsSignIn');
+          window.dispatchEvent(imsSignIn);
           window.adobeIMSMethods.getProfile();
         }
       },
@@ -136,7 +136,7 @@ if (isHlxPath(window.location.host)) {
       },
       onReady: () => {
         if (window.adobeIMSMethods.isSignedIn()) {
-          window.dispatchEvent('imsSignIn');
+          window.dispatchEvent(imsSignIn);
           window.adobeIMSMethods.getProfile();
         }
       },
@@ -172,7 +172,7 @@ if (isHlxPath(window.location.host)) {
       },
       onReady: () => {
         if (window.adobeIMSMethods.isSignedIn()) {
-          window.dispatchEvent('imsSignIn');
+          window.dispatchEvent(imsSignIn);
           window.adobeIMSMethods.getProfile();
         }
       },
@@ -194,7 +194,7 @@ if (isHlxPath(window.location.host)) {
       },
       onReady: () => {
         if (window.adobeIMSMethods.isSignedIn()) {
-          window.dispatchEvent('imsSignIn');
+          window.dispatchEvent(imsSignIn);
           window.adobeIMSMethods.getProfile();
         }
       },
