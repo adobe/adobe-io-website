@@ -312,6 +312,14 @@ header.global-nav-header > ul#navigation-links > li > button.is-open .spectrum-P
     margin-top: -6px;
     margin-left: -1px;
   }
+
+  header .nav-mobile-distribute-button {
+    display:none;
+  }
+
+  header .nav-mobile-console-button {
+    display: none;
+  }
 }
 
 header.global-nav-header > ul > li:first-of-type {
@@ -463,6 +471,14 @@ main{
     overflow-y: hidden;
   }
 
+  header .nav-console-distribute-button{
+    display: none;
+  }
+
+  header .nav-console-button{
+    display:none;
+  }
+
   header .nav-dropdown-popover{
     display:none;
   }
@@ -476,10 +492,6 @@ main{
     position: fixed;
     right: 0px;
     top: 20px;
-  }
-
-  header .nav-console-adobeio-link-text{
-    display:none;
   }
 
   header .menu-icon {
@@ -634,4 +646,36 @@ main{
     padding-bottom: 5px;
   }
 
+  header .button-container {
+    display: flex;
+  }
+
+  header .nav-mobile-distribute-button {
+    flex: 1;
+    margin: 10px;
+  }
+  header .nav-mobile-console-button {
+    flex: 1;
+    margin: 10px;
+  }
+  header .nav-view-docs-button {
+    flex: 1;
+    margin: 10px;
+  }
+
+  .site-hero-container {
+    padding-top: var(--spectrum-global-dimension-size-800);
+  }
+
+  .site-hero picture {
+    height: 100%;
+  }
+
+  .site-hero img{
+    height:100%;
+  }
+
+  .footer {
+    overflow-x: hidden;
+  }
 }
