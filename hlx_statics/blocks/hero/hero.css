@@ -6,6 +6,10 @@ main div.hero {
     justify-content: center;
   }
   
+  main div.hero-container {
+    padding: 0;
+  }
+  
   @media screen and (max-width: 1280px) {
     main div.hero {
       height: auto;

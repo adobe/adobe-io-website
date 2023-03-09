@@ -2,6 +2,7 @@ main div.summary-container {
   background: var(--spectrum-global-color-gray-50);
   background-position: center;
   background-size: cover;
+  padding: 0;
 }
 
 main div.summary {
