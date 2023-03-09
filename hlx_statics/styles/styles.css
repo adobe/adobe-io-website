@@ -51,6 +51,10 @@ img {
   font-family: "adobe-clean",sans-serif;
 }
 
+main .section {
+  padding: var(--spectrum-global-dimension-size-400) 0;
+}
+
 /* progressive section appearance */
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
