@@ -6,6 +6,12 @@ footer {
   width: 100%;
 }
 
+@media screen and (max-width: 768px) {
+  footer {
+    padding-top: 0;
+  }
+}
+
 @media screen and (max-width:1280px) {
   footer {
     max-width: none;
