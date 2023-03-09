@@ -41,6 +41,26 @@ function globalConsoleButton() {
   return div;
 }
 
+function globalMobileDistributeButton() {
+  const div = createTag('div', { class: 'nav-mobile-distribute-button' });
+  div.innerHTML = `<a href="/distribute" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+    <span class="spectrum-Button-label">
+      Distribute
+    </span>
+  </a>`;
+  return div;
+}
+
+function globalMobileConsoleButton() {
+  const div = createTag('div', { class: 'nav-mobile-console-button' });
+  div.innerHTML = `<a href="https://developer.adobe.com/console/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+    <span class="spectrum-Button-label">
+      Console
+    </span>
+  </a>`;
+  return div;
+}
+
 function globalSignIn() {
   const div = createTag('div', { class: 'nav-sign-in' });
   div.innerHTML = `<button class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet">
@@ -52,15 +72,21 @@ function globalSignIn() {
 function globalNavLinkItemDropdown(id, name, links) {
   return `
       <button id="nav-dropdown-button_${id}" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet navigation-dropdown" aria-haspopup="listbox">
-        <span class="spectrum-Picker-label">
+        <span class="spectrum-Picker-label nav-label">
           ${name}
         </span>
-        <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
-          <use xlink:href="#spectrum-css-icon-Chevron100" />
-        </svg>
+        <svg aria-hidden="true" role="img" focusable="false" class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon dropdown-icon">
+          <path d="M4.5 13.25a1.094 1.094 0 01-.773-1.868L8.109 7 3.727 2.618A1.094 1.094 0 015.273 1.07l5.157 5.156a1.094 1.094 0 010 1.546L5.273 12.93a1.091 1.091 0 01-.773.321z" class="spectrum-UIIcon--large"></path>
+          <path d="M3 9.95a.875.875 0 01-.615-1.498L5.88 5 2.385 1.547A.875.875 0 013.615.302L7.74 4.377a.876.876 0 010 1.246L3.615 9.698A.872.872 0 013 9.95z" class="spectrum-UIIcon--medium"></path>
+         </svg>
       </button>
       <div id="nav-dropdown-popover_${id}" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover nav-dropdown-popover">
         <ul class="spectrum-Menu" role="menu">
+          ${links}
+        </ul>
+      </div>
+      <div id="nav-dropdown-mobile-popover_${id}" class="nav-dropdown-mobile-popover">
+        <ul class="nav-sub-menu spectrum-Menu" role="menu">
           ${links}
         </ul>
       </div>
@@ -101,7 +127,7 @@ const searchFrameOnLoad = (renderedFrame, counter = 0, loaded) => {
   // and received a confirmation from the iframe
   if (!loaded) {
     const queryString = getQueryString();
-    
+
     if (queryString.has('query')) {
       const searchIframeContainer = document.querySelector('div.nav-console-search-frame');
       if (searchIframeContainer.length > 0) {
@@ -166,16 +192,21 @@ function handleButtons(header) {
     if (button.id.indexOf('nav-dropdown-button') >= 0) {
       const index = button.id.split('_')[1];
       const dropdownPopover = header.querySelector(`div#nav-dropdown-popover_${index}`);
+      const dropdownMobilePopover = header.querySelector(`div#nav-dropdown-mobile-popover_${index}`);
 
       button.addEventListener('click', (evt) => {
         if (!evt.currentTarget.classList.contains('is-open')) {
           button.classList.add('is-open');
           dropdownPopover.classList.add('is-open');
+          dropdownMobilePopover.classList.add('is-open');
           dropdownPopover.ariaHidden = false;
+          dropdownMobilePopover.ariaHidden = false;
         } else {
           button.classList.remove('is-open');
           dropdownPopover.classList.remove('is-open');
+          dropdownMobilePopover.classList.remove('is-open');
           dropdownPopover.ariaHidden = false;
+          dropdownMobilePopover.ariaHidden = false;
         }
       });
     } else if (button.id.indexOf('nav-profile-dropdown-button') >= 0) {
@@ -212,6 +243,11 @@ export default async function decorate(block) {
     header.classList.add('main-header', 'global-nav-header');
     header.setAttribute('daa-lh', 'header');
 
+    const mobileButton = createTag('input', {class: 'menu-btn', type: 'checkbox', id:'menu-btn'});
+    header.appendChild(mobileButton);
+    const mobileMenu = createTag('label', {class: 'menu-icon', for: "menu-btn"} );
+    mobileMenu.innerHTML = '<span class="navicon"></span>';
+    header.appendChild(mobileMenu);
     const iconContainer = createTag('p', { class: 'icon-adobe-container' });
     const title = block.querySelector('p:nth-child(1)');
     const siteLink = title.querySelector('strong > a');
@@ -225,6 +261,7 @@ export default async function decorate(block) {
 
     const ul = block.querySelector('ul');
     ul.setAttribute('id', 'navigation-links');
+    ul.setAttribute('class', 'menu');
     ul.style.listStyleType = 'none';
 
     if (isTopLevelNav(window.location.pathname)) {
@@ -252,12 +289,18 @@ export default async function decorate(block) {
       dropDownList.parentElement.innerHTML = dropdownLinkDropdownHTML;
     });
 
+    const buttonDiv = createTag('div', { class: 'button-container' });
+    ul.appendChild(buttonDiv);
+    if (window.location.pathname.includes("/developer-distribution/")) {
+      buttonDiv.appendChild(globalMobileDistributeButton());
+    }
+    buttonDiv.appendChild(globalMobileConsoleButton());
     ul.querySelectorAll('a').forEach((a) => {
       if (a.parentElement.tagName === 'STRONG') {
         a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
         const span = createTag('span', { class: 'spectrum-Button-label' });
-        span.innerText = a.innerText;
-        a.innerText = '';
+        span.innerHTML = a.innerHTML;
+        a.innerHTML = '';
         a.appendChild(span);
         const li = a.parentElement.parentElement;
         const div = createTag('div', { class: 'nav-view-docs-button' });

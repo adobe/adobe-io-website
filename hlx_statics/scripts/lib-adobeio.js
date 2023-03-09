@@ -331,7 +331,7 @@ export const setSearchFrameOrigin = (host, suffix = '') => {
 };
 
 /**
- * Returns the franklin closest sub folder 
+ * Returns the franklin closest sub folder
  * @param {*} host The host
  * @param {*} suffix A suffix to append
  * @returns The first subfolder in the franklin dir - for special urls like apis will return the franklin_assets folder
@@ -468,4 +468,30 @@ export function addExtraScript(element, scriptUrl) {
   const script = createTag('script', { type: 'text/javascript' });
   script.src = scriptUrl;
   element.appendChild(script);
+}
+
+/**
+ * Adds an extra script tag to the document and adds an onload 
+ * @param {*} element The element to which the script will be added
+ * @param {*} scriptUrl The URL to the script to add
+ * @param {*} onload The on load handler of the script
+ */
+export function addExtraScriptWithLoad(element, scriptUrl, onload) {
+  const script = createTag('script', { type: 'text/javascript' });
+  script.src = scriptUrl;
+  script.onload = onload;
+  element.appendChild(script);
+}
+
+/**
+ * Adds an extra script tag to the document and returns script
+ * Does this need an extra function? Prob not but just to be safe
+ * @param {*} element The element to which the script will be added
+ * @param {*} scriptUrl The URL to the script to add
+ */
+export function addExtraScriptWithReturn(element, scriptUrl) {
+  const script = createTag('script', { type: 'text/javascript' });
+  script.src = scriptUrl;
+  element.appendChild(script);
+  return script;
 }
