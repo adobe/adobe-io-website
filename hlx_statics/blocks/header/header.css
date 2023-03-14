@@ -25,7 +25,6 @@ header div.header-link-container {
     width: calc(100vw - var(--spectrum-global-dimension-size-1600));
     white-space: nowrap;
     overflow-x: auto;
-    overflow-x: overlay;
     overflow-y: hidden;
   }
   header div.link-container::-webkit-scrollbar {
@@ -171,7 +170,6 @@ header.global-nav-header {
   position: sticky;
   top: 0;
   display: flex;
-  padding-left: 24px;
   border-bottom: 1px solid #eaeaea;
   text-decoration: none;
   background-color: #fff;
@@ -233,7 +231,6 @@ header.global-nav-header > ul#navigation-links > li > button.is-open .spectrum-P
 
   header.global-nav-header > ul#navigation-links {
     overflow-x: auto;
-    overflow-x: overlay;
     overflow-y: hidden;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -484,7 +481,6 @@ main{
   }
 
   header.global-nav-header{
-    position: fixed !important;
     z-index:1001;
   }
 
