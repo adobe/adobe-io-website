@@ -23,7 +23,7 @@ function globalNavSearchButton() {
 
 function globalDistributeButton() {
   const div = createTag('div', { class: 'nav-console-distribute-button' });
-  div.innerHTML = `<a href="/distribute" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+  div.innerHTML = `<a href="/distribute" class="spectrum-Button spectrum-Button--cta spectrum-Button-fill  spectrum-Button--sizeM">
     <span class="spectrum-Button-label">
       Distribute
     </span>
@@ -43,7 +43,7 @@ function globalConsoleButton() {
 
 function globalMobileDistributeButton() {
   const div = createTag('div', { class: 'nav-mobile-distribute-button' });
-  div.innerHTML = `<a href="/distribute" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+  div.innerHTML = `<a href="/distribute" class="spectrum-Button spectrum-Button--cta spectrum-Button-fill  spectrum-Button--sizeM">
     <span class="spectrum-Button-label">
       Distribute
     </span>
@@ -289,10 +289,14 @@ export default async function decorate(block) {
       dropDownList.parentElement.innerHTML = dropdownLinkDropdownHTML;
     });
 
-    const buttonDiv = createTag('div', { class: 'button-container' });
-    ul.appendChild(buttonDiv);
+    let buttonDiv;
     if (window.location.pathname.includes("/developer-distribution/")) {
+      buttonDiv = createTag('div');
+      ul.appendChild(buttonDiv);
       buttonDiv.appendChild(globalMobileDistributeButton());
+    } else {
+      buttonDiv = createTag('div', { class: 'button-container' });
+      ul.appendChild(buttonDiv);
     }
     buttonDiv.appendChild(globalMobileConsoleButton());
     ul.querySelectorAll('a').forEach((a) => {
