@@ -43,7 +43,7 @@ function globalConsoleButton() {
 
 function globalMobileDistributeButton() {
   const div = createTag('div', { class: 'nav-mobile-distribute-button' });
-  div.innerHTML = `<a href="/distribute" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+  div.innerHTML = `<a href="/distribute" class="spectrum-Button spectrum-Button--cta spectrum-Button-fill  spectrum-Button--sizeM">
     <span class="spectrum-Button-label">
       Distribute
     </span>
