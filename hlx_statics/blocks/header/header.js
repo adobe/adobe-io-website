@@ -289,10 +289,14 @@ export default async function decorate(block) {
       dropDownList.parentElement.innerHTML = dropdownLinkDropdownHTML;
     });
 
-    const buttonDiv = createTag('div', { class: 'button-container' });
-    ul.appendChild(buttonDiv);
+    let buttonDiv;
     if (window.location.pathname.includes("/developer-distribution/")) {
+      buttonDiv = createTag('div');
+      ul.appendChild(buttonDiv);
       buttonDiv.appendChild(globalMobileDistributeButton());
+    } else {
+      buttonDiv = createTag('div', { class: 'button-container' });
+      ul.appendChild(buttonDiv);
     }
     buttonDiv.appendChild(globalMobileConsoleButton());
     ul.querySelectorAll('a').forEach((a) => {
