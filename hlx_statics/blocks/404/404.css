@@ -1,0 +1,7 @@
+main div.404-container {
+  width: 100%;
+  background: var(--spectrum-global-color-gray-100);
+  box-sizing: border-box;
+  text-align: center;
+  padding: var(--spectrum-global-dimension-size-400);
+}
