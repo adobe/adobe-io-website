@@ -359,7 +359,7 @@ export default async function decorate(block) {
   } else if(resp.status == 404){
     const resp404 = await fetch(`https://developer.adobe.com/franklin_assets/nav.plain.html`);
       if (resp404.ok) {
-        const html = await resp.text();
+        const html = await resp404.text();
         block.innerHTML = html;
         const header = block.parentElement;
         header.classList.add('main-header', 'global-nav-header');
