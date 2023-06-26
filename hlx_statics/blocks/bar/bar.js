@@ -1,28 +1,17 @@
 import { decorateButtons, removeEmptyPTags } from '../../scripts/lib-adobeio.js';
 
-function calculateOverlapping(block) {
-  var myImg = block.querySelector('picture img');
-  if (myImg !== null) {
-    let marginToAdd = myImg.height - 200;
-    const firstDivAfterVideo = block.parentElement.parentElement.nextElementSibling;
-
-    const ro = new ResizeObserver(entries => {
-      for (let entry of entries) {
-        var actualWidth = window.innerWidth;
-        if (actualWidth < 1280)
-          marginToAdd = 0;
-        else
-          marginToAdd = myImg.height - 200;
-        entry.target.style.margin = marginToAdd + "px 0 0";
-      }
-    });
-    ro.observe(firstDivAfterVideo);
-
-    var actualWidth = window.innerWidth;
-    if (actualWidth < 1280)
-      marginToAdd = 0;
-    firstDivAfterVideo.style.margin = marginToAdd + "px 0 0"
-  }
+/**
+ * Rearranges the links into a bar-button-container div
+ * @param {*} block The bar block element
+ */
+function rearrangeLinks(block) {
+  const leftDiv = block.firstElementChild.firstElementChild;
+  const barButtonContainer = document.createElement('div');
+  barButtonContainer.classList.add('bar-button-container');
+  leftDiv.querySelectorAll('p.button-container').forEach((p) => {
+    barButtonContainer.append(p);
+  });
+  leftDiv.append(barButtonContainer);
 }
 
 /**
@@ -30,8 +19,27 @@ function calculateOverlapping(block) {
  * @param {Element} block The bar block element
  */
 export default async function decorate(block) {
+  block.setAttribute('daa-lh', 'bar');
+
+  block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+    h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'bar-heading');
+  });
+
+  // Link decoration
+  rearrangeLinks(block);
   decorateButtons(block);
+
   removeEmptyPTags(block);
-  calculateOverlapping(block);
+
+  block.querySelectorAll('p').forEach((p) => {
+    p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
+  });
+
+  block.querySelectorAll('p a').forEach((link) => {
+    link.parentElement.classList.add('bar-link');
+  });
+  
+
+
 }
 

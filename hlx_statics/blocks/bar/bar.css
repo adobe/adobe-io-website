@@ -1,0 +1,26 @@
+main div.bar-container {
+    width: 100%;
+    background: var(--spectrum-global-color-gray-100);
+    box-sizing: border-box;
+    text-align: center;
+    padding: var(--spectrum-global-dimension-size-400);
+  }
+
+  main div.bar .bar-heading {
+    margin-top: 0 !important;
+    margin-bottom: var(--spectrum-global-dimension-size-100) !important;
+  }
+
+
+  main div.bar p.bar-link {
+    margin-top: var(--spectrum-global-dimension-size-200)
+  }
+
+  main .bar .bar-button-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spectrum-global-dimension-size-300);
+    gap: var(--spectrum-global-dimension-size-200);
+  }
