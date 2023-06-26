@@ -31,13 +31,11 @@ function calculateOverlapping(block) {
  */
 export default async function decorate(block) {
   decorateButtons(block);
-//   removeEmptyPTags(block);
-
-//   block.setAttribute('daa-lh', 'foo');
+  removeEmptyPTags(block);
   
-//   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
-//     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'foo-heading');
-//   });
+  block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+    h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'foo-heading');
+  });
 //   block.querySelectorAll('p').forEach((p) => {
 //     p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
 //   });
@@ -50,6 +48,6 @@ export default async function decorate(block) {
 //   });
 //   block
 
-//   calculateOverlapping(block);
+  calculateOverlapping(block);
 }
 
