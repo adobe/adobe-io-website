@@ -36,17 +36,17 @@ export default async function decorate(block) {
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'foo-heading');
   });
-//   block.querySelectorAll('p').forEach((p) => {
-//     p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
-//   });
-//   block.querySelectorAll('p').forEach((paragraph) => {
-//     paragraph.classList.add('spectrum-Body');
-//     paragraph.classList.add('spectrum-Body--sizeL');
-//   });
-//   block.querySelectorAll('p a').forEach((link) => {
-//     link.parentElement.classList.add('foo-link');
-//   });
-//   block
+  block.querySelectorAll('p').forEach((p) => {
+    p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
+  });
+  block.querySelectorAll('p').forEach((paragraph) => {
+    paragraph.classList.add('spectrum-Body');
+    paragraph.classList.add('spectrum-Body--sizeL');
+  });
+  block.querySelectorAll('p a').forEach((link) => {
+    link.parentElement.classList.add('foo-link');
+  });
+  block
 
   calculateOverlapping(block);
 }
