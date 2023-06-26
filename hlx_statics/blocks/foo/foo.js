@@ -31,7 +31,7 @@ function calculateOverlapping(block) {
  */
 export default async function decorate(block) {
   decorateButtons(block);
-  removeEmptyPTags(block);
+//   removeEmptyPTags(block);
 
 //   block.setAttribute('daa-lh', 'foo');
   
@@ -50,6 +50,6 @@ export default async function decorate(block) {
 //   });
 //   block
 
-  calculateOverlapping(block);
+//   calculateOverlapping(block);
 }
 
