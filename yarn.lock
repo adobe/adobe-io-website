@@ -356,6 +356,13 @@
   resolved "https://registry.yarnpkg.com/@spectrum-css/modal/-/modal-3.0.23.tgz#1e269e4f652f4981bd67661bdf6041ff990645e9"
   integrity sha512-NvqwuCZc9Kpv5KFuWyKx8vLTjC6EJ/MHSbhyA6jRg37jtzNsnoQdlGzPgFsYVI82V1xCPDTccmC1hV7v4i1lzw==
 
+"@spectrum-css/page@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@spectrum-css/page/-/page-3.0.0.tgz#159e79fd376e2def1a7a25a8b8a8fcfa94bd79d1"
+  integrity sha512-4rNpGq99cfNSq/IOQNCiXio5gF/EEfjcSmihHBJlh7/VOB9zE84kMNW1Gux4cGEmdP14U1Zo1ZwnPIVs5ZuPgg==
+  dependencies:
+    "@spectrum-css/vars" "^3.0.0"
+
 "@spectrum-css/picker@1.2.12":
   version "1.2.12"
   resolved "https://registry.yarnpkg.com/@spectrum-css/picker/-/picker-1.2.12.tgz#1d60daabb0b6e09a26b4f2380b80cb1baa3b8bc0"
@@ -415,6 +422,11 @@
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/@spectrum-css/vars/-/vars-8.0.0.tgz#b88a3b1165b63de50ab01f20ccafb42115d67443"
   integrity sha512-cClQgNyH1VdNu6zdiZ5M7kbQDZS4/wPAclk5IPO5+nMhSzqTesUL/zfiaPB95MTCKFyVJrFpOeJ37HmUifWJ3A==
+
+"@spectrum-css/vars@^3.0.0":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@spectrum-css/vars/-/vars-3.0.2.tgz#ea9062c3c98dfc6ba59e5df14a03025ad8969999"
+  integrity sha512-vzS9KqYXot4J3AEER/u618MXWAS+IoMvYMNrOoscKiLLKYQWenaueakUWulFonToPd/9vIpqtdbwxznqrK5qDw==
 
 "@spectrum-css/vars@^8.0.0":
   version "8.0.5"
