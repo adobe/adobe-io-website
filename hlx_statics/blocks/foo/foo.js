@@ -7,6 +7,7 @@ import { decorateButtons, removeEmptyPTags } from '../../scripts/lib-adobeio.js'
 export default async function decorate(block) {
   decorateButtons(block);
   removeEmptyPTags(block);
+  block.setAttribute('daa-lh', 'foo');
   
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'foo-heading');
@@ -16,8 +17,7 @@ export default async function decorate(block) {
   });
   block.querySelectorAll('p a').forEach((link) => {
     link.parentElement.classList.add('foo-link');
-  });
-  block
+  });  
 
 }
 

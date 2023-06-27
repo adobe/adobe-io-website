@@ -1,0 +1,19 @@
+main div.baz-container {
+    width: 100%;
+    background: var(--spectrum-global-color-gray-100);
+    box-sizing: border-box;
+    text-align: center;
+    padding: var(--spectrum-global-dimension-size-400);
+  }
+
+  main div.foo .baz-heading {
+    margin-top: 0 !important;
+    margin-bottom: var(--spectrum-global-dimension-size-100) !important;
+  }
+
+  main div.baz .img-size {
+    width: 100%;
+    height: auto;
+  }
+
+ 
