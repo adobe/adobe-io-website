@@ -12,7 +12,7 @@ export default async function decorate(block) {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'baz-heading');
   });
   block.querySelectorAll('p').forEach((p) => {
-    p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
+    p.classList.add('spectrum-Body', 'spectrum-Body--sizeL', 'baz-paragraph');
   });
   block.querySelectorAll('img').forEach((img) => {
     img.classList.add('img-size');
