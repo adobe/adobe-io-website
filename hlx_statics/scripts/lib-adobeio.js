@@ -322,7 +322,7 @@ export const setExpectedOrigin = (host, suffix = '') => {
  */
 export const setSearchFrameOrigin = (host, suffix = '') => {
   if (isDevEnvironment(host)) {
-    return `http://localhost:3000${suffix}`;
+    return `http://localhost:8000`;
   }
   if (isStageEnvironment(host) || isHlxPath(host)) {
     return `https://developer-stage.adobe.com${suffix}`;
