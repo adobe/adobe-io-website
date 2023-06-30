@@ -145,7 +145,7 @@ function displayFilteredCards(catalog, cards, buttons, limit, lightOrDarkCssClas
 
       const cardTemplate = `
         <div class="api-card ${lightOrDarkCssClass}">
-          <div class="spectrum-Card api-card-inner" role="figure" tabindex="0">
+          <div class="spectrum-Card spectrum-Card--sizeM api-card-inner" role="figure" tabindex="0">
             <div class="spectrum-Card-body api-card-body" daa-lh="browser card">
               ${iconTemplate}
               <div class="api-card-body-inner">

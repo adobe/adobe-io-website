@@ -17,7 +17,7 @@ import {
  */
 function getResourceCard(linkHref, heading, text) {
   return `
-    <a class="spectrum-Card"
+    <a class="spectrum-Card spectrum-Card--sizeM"
       href=${linkHref}
     >
       <div class="spectrum-Card-preview resource-card-preview">
