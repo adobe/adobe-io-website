@@ -75,10 +75,13 @@ export default async function decorate(block) {
   block.querySelectorAll('.button').forEach((button) => {
     button.classList.add('spectrum-Button', 'spectrum-Button--sizeM');
     if (button.parentElement.tagName.toLowerCase() !== 'strong') {
-      button.classList.add('spectrum-Button--secondary', 'spectrum-Button--outline');
+      button.innerHTML = `<span class="spectrum-Button-label">${button.innerHTML}</span>`; 
+      button.classList.add('spectrum-Button--secondary', 'spectrum-Button--outline', 'spectrum-Button--sizeM');
+
     } else {
       button.parentElement.replaceWith(button);
-      button.classList.add('spectrum-Button--cta');
+      button.innerHTML = `<span class="spectrum-Button-label">${button.innerHTML}</span>`;
+      button.classList.add('spectrum-Button--accent', 'spectrum-Button--fill', 'spectrum-Button', 'spectrum-Button--sizeM');
     }
   });
 
