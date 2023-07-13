@@ -31,5 +31,11 @@ main div.carousel .right-container {
     min-height: 100%;
     max-width: 50%;
     padding: 0 var(--spectrum-global-dimension-size-100);
-
 }
+
+main .carousel .carousel-button-container {
+    display: flex;
+    flex-direction: row !important;
+    margin-top: var(--spectrum-global-dimension-size-300);
+    gap: var(--spectrum-global-dimension-size-200);
+  }

@@ -5,7 +5,6 @@ import { createTag, decorateButtons, removeEmptyPTags} from '../../scripts/lib-a
  * @param {Element} block The carousel block element
  */
 export default async function decorate(block) {
-  decorateButtons(block);
   removeEmptyPTags(block);
 
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
@@ -19,6 +18,9 @@ export default async function decorate(block) {
     let flex_div = createTag('div', { id: 'left-flex-div-'+h.id});
     h.parentElement.append(flex_div);
     flex_div.append(h);
+
+    let button_div = createTag('div', { id: 'button-div-'+h.id});
+    h.parentElement.append(button_div);
 
   });
 
@@ -38,11 +40,24 @@ export default async function decorate(block) {
     if(p.id === "IMAGE"){
         p.classList.add('spectrum-Body', 'spectrum-Body--sizeS');
     }else{
-        let flex_div = document.getElementById('left-flex-div-' + p.parentElement.id); 
-        flex_div.setAttribute('class', 'left-container');
-        p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
-        flex_div.append(p);
-    }
+        let button_div = document.getElementById('button-div-' + p.parentElement.id); 
+        if(p.classList.contains('button-container')){
+            //add buttons to div
+            button_div.classList.add('carousel-button-container');
+            button_div.append(p);
+        }else{
+            let flex_div = document.getElementById('left-flex-div-' + p.parentElement.id); 
+            flex_div.setAttribute('class', 'left-container');
+            p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
+            flex_div.insertBefore(p, button_div);
+        }
+        
+
+        
+    };
   });
+
+  decorateButtons(block);
+
 }
 
