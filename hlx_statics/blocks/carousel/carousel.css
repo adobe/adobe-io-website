@@ -1,0 +1,9 @@
+main div.carousel .img-size {
+    width: 50%;
+    height: auto;
+}
+
+main div.carousel .carousel-format {
+    display: flex;
+    flex-direction: row;
+}
