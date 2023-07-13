@@ -6,11 +6,12 @@ import { createTag, decorateButtons, removeEmptyPTags} from '../../scripts/lib-a
  */
 export default async function decorate(block) {
   removeEmptyPTags(block);
+  decorateButtons(block);
 
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     //create flex display
     h.parentElement.classList.add('carousel-container');
-    h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL');
+    h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'carousel-heading');
 
     h.parentElement.setAttribute('id', h.id);
 
@@ -51,13 +52,7 @@ export default async function decorate(block) {
             p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
             flex_div.insertBefore(p, button_div);
         }
-        
-
-        
     };
   });
-
-  decorateButtons(block);
-
 }
 

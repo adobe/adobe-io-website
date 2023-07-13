@@ -8,13 +8,18 @@ main div.carousel {
     background-color: aqua;
 }
 
+main div.carousel .carousel-heading {
+    margin-top: 0 !important;
+    margin-bottom: var(--spectrum-global-dimension-size-100) !important;
+  }
+
 main div.carousel > div {
     padding: var(--spectrum-global-dimension-size-1000) 0; 
 }
 
 main div.carousel .carousel-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: center;
     align-content: space-between;
 }
@@ -36,6 +41,6 @@ main div.carousel .right-container {
 main .carousel .carousel-button-container {
     display: flex;
     flex-direction: row !important;
-    margin-top: var(--spectrum-global-dimension-size-300);
+    margin-top: var(--spectrum-global-dimension-size-100);
     gap: var(--spectrum-global-dimension-size-200);
-  }
+}
