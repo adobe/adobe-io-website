@@ -20,8 +20,8 @@ export default async function decorate(block) {
   const arrow_button_forward = createTag('button', {class: 'slide-arrow'});
   arrow_button_forward.setAttribute('id', 'slide-arrow-forward');
   arrow_button_forward.innerHTML = '&#8250;'
-  carousel_section.append(arrow_button_previous);
-  carousel_section.append(arrow_button_forward);
+  carousel_block.append(arrow_button_previous);
+  carousel_block.append(arrow_button_forward);
 
   //add ul tag to contain carousel slides
   const carousel_ul = createTag('ul', {class: 'slides-container'});
