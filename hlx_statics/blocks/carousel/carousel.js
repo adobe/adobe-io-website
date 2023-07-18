@@ -1,5 +1,4 @@
 import { createTag, decorateButtons, removeEmptyPTags} from '../../scripts/lib-adobeio.js';
-
 /**
  * decorates the carousel
  * @param {Element} block The carousel block element
@@ -10,8 +9,16 @@ export default async function decorate(block) {
 
   //create section tag for animation
   const carousel_block = document.getElementsByClassName('carousel block')[0];
+  const carousel_block_child = createTag('div', {class: 'block-container'});
+  carousel_block.append(carousel_block_child);
+
+  //create div with circle progess
+  const carousel_block_circle = createTag('div', {id: 'carousel-circles'});
+  carousel_block_circle.setAttribute('class', 'carousel-circle-div');
+  carousel_block.append(carousel_block_circle);
+
   const carousel_section = createTag('section', {class: 'slider-wrapper'});
-  carousel_block.append(carousel_section);
+  carousel_block_child.append(carousel_section);
 
   //add slide arrow buttons
   const arrow_button_previous = createTag('button', {class: 'slide-arrow'});
@@ -20,23 +27,31 @@ export default async function decorate(block) {
   const arrow_button_forward = createTag('button', {class: 'slide-arrow'});
   arrow_button_forward.setAttribute('id', 'slide-arrow-forward');
   arrow_button_forward.innerHTML = '&#8250;'
-  carousel_section.append(arrow_button_previous);
-  carousel_section.append(arrow_button_forward);
 
   //add ul tag to contain carousel slides
   const carousel_ul = createTag('ul', {class: 'slides-container'});
   carousel_ul.setAttribute('id', 'slides-container');
   carousel_section.append(carousel_ul);
 
+  //add a count to keep track of which slide is showing
+  let count = 1;
+
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     //create flex display
     h.parentElement.classList.add('carousel-container');
     //add section tag for animation
-    h.parentElement.parentElement.replaceWith(carousel_section);
+    h.parentElement.parentElement.replaceWith(carousel_block_child);
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'carousel-heading');
 
     //name div for convenience and add divs to section tag
     h.parentElement.setAttribute('id', h.id);
+
+    //add circle for every slide
+    let div_slide_circle = document.getElementById('carousel-circles');
+    let circle_button = createTag('button', {class: 'carousel-circle'});
+    circle_button.setAttribute('id', count);
+    div_slide_circle.append(circle_button);
+    count += 1;
 
     //create li tag to hold carousel slide (div)
     let carousel_li = createTag('li', {class: 'slide'});
@@ -53,6 +68,9 @@ export default async function decorate(block) {
     h.parentElement.append(button_div);
 
   });
+
+  carousel_block_child.insertBefore(arrow_button_previous, carousel_section);
+  carousel_block_child.append(arrow_button_forward);
 
   block.querySelectorAll('img').forEach((img) => {
     img.classList.add('img-size');
@@ -89,17 +107,53 @@ export default async function decorate(block) {
   const slide = document.querySelector(".slide");
   const prevButton = document.getElementById("slide-arrow-previous");
   const nextButton = document.getElementById("slide-arrow-forward");
-
+  
   nextButton.addEventListener("click", () => {
+    //change circle color 
+    let slide_selected = document.getElementsByClassName('carousel-circle-selected')[0]
+    let slide_selected_id = slide_selected.id;
+    let new_slide = document.getElementById(parseInt(slide_selected_id)+1);
+    slide_selected.classList.remove('carousel-circle-selected')
+    new_slide.classList.add('carousel-circle-selected');
+    //slide over to new slide
     const slideWidth = slide.clientWidth;
-      slidesContainer.scrollLeft += slideWidth;
+    slidesContainer.scrollLeft += slideWidth;
   });
 
   prevButton.addEventListener("click", () => {
+    //change circle color 
+    let slide_selected = document.getElementsByClassName('carousel-circle-selected')[0]
+    let slide_selected_id = slide_selected.id;
+    let new_slide = document.getElementById(parseInt(slide_selected_id)-1);
+    slide_selected.classList.remove('carousel-circle-selected')
+    new_slide.classList.add('carousel-circle-selected');
+    //slide over to new slide
     const slideWidth = slide.clientWidth;
     slidesContainer.scrollLeft -= slideWidth;
   });
+
+  //change color of circle button when clicked
+  const buttons = block.querySelectorAll('.carousel-circle');
+  buttons[0].classList.add('carousel-circle-selected'); //when reloading first slide should be selected
   
+  buttons.forEach((button, i) => {
+    button.addEventListener("click", () => {
+        let old_slide_num = document.getElementsByClassName('carousel-circle-selected')[0].id;
+        let new_slide_num = button.id;
+        let difference = new_slide_num - old_slide_num;
+        if(difference > 0){ //going forward
+            const slideWidth = slide.clientWidth;
+            slidesContainer.scrollLeft += (difference * slideWidth);
+        }else{ //going back
+            const slideWidth = slide.clientWidth;
+            slidesContainer.scrollLeft -= (-difference * slideWidth);
+        };
+        buttons.forEach((button) =>
+            button.classList.remove('carousel-circle-selected')
+        );
+        button.classList.add('carousel-circle-selected');
+    });
+  });
 
 }
 

@@ -9,6 +9,13 @@ main div.carousel {
     /* background-color: aqua; */
 }
 
+main div.carousel .block-container {
+    display: flex;
+    flex-direction: row ;
+    justify-content: center;
+    align-content: space-between;
+}
+
 main div.carousel .carousel-heading {
     margin-top: 1 !important;
     margin-bottom: var(--spectrum-global-dimension-size-100) !important;
@@ -35,7 +42,7 @@ main div.carousel .right-container {
     padding: 0 var(--spectrum-global-dimension-size-100);
 }
 
-main .carousel .carousel-button-container {
+main div.carousel .carousel-button-container {
     display: flex;
     flex-direction: row !important;
     margin-top: var(--spectrum-global-dimension-size-100);
@@ -43,13 +50,14 @@ main .carousel .carousel-button-container {
 }
 
 
-main .carousel .slider-wrapper {
-    margin: 1rem;
+main div.carousel .slider-wrapper {
     position: relative;
     overflow: hidden;
+    transition-property: transform;
+    box-sizing: content-box;
 }
 
-main .carousel .slides-container {
+main div.carousel .slides-container {
     /* height: calc(100vh - 2rem); */
     width: 100%;
     display: flex;
@@ -58,31 +66,25 @@ main .carousel .slides-container {
     padding: 0;
     margin-bottom: 1;
     margin-top: 1;
-    overflow: scroll;
+    overflow: hidden;
     scroll-behavior: smooth;
 }
 
-main .carousel .slide {
+main div.carousel .slide {
     width: 100%;
     height: 100%;
     flex: 1 0 100%;
 }
 
-main .carousel .slide-arrow {
-    position: absolute;
-    display: flex;
-    top: 0;
-    bottom: 0;
+main div.carousel .slide-arrow {
     margin: auto;
-    background-color: transparent;
-    height: 4rem;
+    background-color: transparent; 
     border: none;
-    width: 2rem;
     font-size: 5rem;
     color: blue;
     cursor: pointer;
     opacity: 0.5;
-    transition: opacity 100ms;  
+    /* transition: opacity 100ms;    */
 }
 
 main .carousel .slide-arrow:hover,
@@ -90,20 +92,33 @@ main .carousel .slide-arrow:focus {
     opacity: 1;
 }
 
-#slide-arrow-previous {
-    left: 0%;
-}
-
-#slide-arrow-forward {
-    right: 0%;
-}
-
-main .carousel .slides-container {
+main div.carousel .slides-container {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
 /* WebKit */
-main .carousel .slides-container::-webkit-scrollbar { 
+main div.carousel .slides-container::-webkit-scrollbar { 
     width: 0;
     height: 0;
 }
+
+main div.carousel .carousel-circle-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+main div.carousel .carousel-circle {
+    background-color: #c6c6c6;
+    border: none;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+main div.carousel .carousel-circle-selected {
+    background-color: #007aff !important;
+  }
