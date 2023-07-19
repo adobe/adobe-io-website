@@ -1,6 +1,18 @@
-main div.carousel .img-size {
-    object-fit: cover;
-    width: 100% !important;
+picture {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+picture img {
+    object-fit: cover; 
+    height: auto;
+    width: 100%;
+}
+
+main div.carousel .image-container {
+    height: 300px;
+    max-width: 602px;
 }
 
 main div.carousel {
@@ -49,7 +61,6 @@ main div.carousel .carousel-button-container {
     gap: var(--spectrum-global-dimension-size-200);
 }
 
-
 main div.carousel .slider-wrapper {
     position: relative;
     overflow: hidden;
@@ -82,21 +93,21 @@ main div.carousel .slide-arrow {
     background-color: transparent; 
     border: none;
     font-size: 5rem;
-    color: blue;
+    color: #b3cef7;
     cursor: pointer;
-    opacity: 0.5;
     /* transition: opacity 100ms;    */
 }
 
 main .carousel .slide-arrow:hover,
 main .carousel .slide-arrow:focus {
-    opacity: 1;
+    color: #007aff;
 }
 
 main div.carousel .slides-container {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
+
 /* WebKit */
 main div.carousel .slides-container::-webkit-scrollbar { 
     width: 0;
@@ -113,13 +124,13 @@ main div.carousel .carousel-circle-div {
 main div.carousel .carousel-circle {
     background-color: #c6c6c6;
     border: none;
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
+    border-radius: 100%;
+    width: auto;
+    height: 12px;
     margin: 4px 2px;
     cursor: pointer;
 }
 
 main div.carousel .carousel-circle-selected {
     background-color: #007aff !important;
-  }
+}

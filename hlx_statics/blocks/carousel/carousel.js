@@ -7,7 +7,7 @@ export default async function decorate(block) {
   removeEmptyPTags(block);
   decorateButtons(block);
 
-  //create section tag for animation
+  //create a div in block for ease of use
   const carousel_block = document.getElementsByClassName('carousel block')[0];
   const carousel_block_child = createTag('div', {class: 'block-container'});
   carousel_block.append(carousel_block_child);
@@ -17,6 +17,7 @@ export default async function decorate(block) {
   carousel_block_circle.setAttribute('class', 'carousel-circle-div');
   carousel_block.append(carousel_block_circle);
 
+  //create section tag for animation
   const carousel_section = createTag('section', {class: 'slider-wrapper'});
   carousel_block_child.append(carousel_section);
 
@@ -39,7 +40,8 @@ export default async function decorate(block) {
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     //create flex display
     h.parentElement.classList.add('carousel-container');
-    //add section tag for animation
+
+    //add section tag and replace the div with it
     h.parentElement.parentElement.replaceWith(carousel_block_child);
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'carousel-heading');
 
@@ -60,7 +62,7 @@ export default async function decorate(block) {
     carousel_li.append(h.parentElement);
 
     //add everything but image to the left div
-    let flex_div = createTag('div', { id: 'left-flex-div-'+h.id});
+    let flex_div = createTag('div', { id: 'right-flex-div-'+h.id});
     h.parentElement.append(flex_div);
     flex_div.append(h);
 
@@ -69,24 +71,25 @@ export default async function decorate(block) {
 
   });
 
+  //add arrows and slide in proper order
   carousel_block_child.insertBefore(arrow_button_previous, carousel_section);
   carousel_block_child.append(arrow_button_forward);
 
+  //add id to image and add image to left div
   block.querySelectorAll('img').forEach((img) => {
-    img.classList.add('img-size');
     img.parentElement.parentElement.setAttribute('id', 'IMAGE');
 
-    //add image to right div
-    let flex_div = createTag('div', { id: 'right-flex-div-'+img.parentElement.parentElement.parentElement.id});
+    //add image to left div
+    let flex_div = createTag('div', { id: 'left-flex-div-'+img.parentElement.parentElement.parentElement.id});
     img.parentElement.parentElement.parentElement.append(flex_div);
     flex_div.append(img.parentElement.parentElement);
-    flex_div.classList.add('right-container');
+    flex_div.classList.add('left-container');
   });
 
   block.querySelectorAll('p').forEach(function (p){
-    //add everything but image to the left div
+    //add everything but image to the right div
     if(p.id === "IMAGE"){
-        p.classList.add('spectrum-Body', 'spectrum-Body--sizeS');
+        p.classList.add('spectrum-Body', 'spectrum-Body--sizeS', 'image-container');
     }else{
         let button_div = document.getElementById('button-div-' + p.parentElement.id); 
         if(p.classList.contains('button-container')){
@@ -94,8 +97,8 @@ export default async function decorate(block) {
             button_div.classList.add('carousel-button-container');
             button_div.append(p);
         }else{
-            let flex_div = document.getElementById('left-flex-div-' + p.parentElement.id); 
-            flex_div.setAttribute('class', 'left-container');
+            let flex_div = document.getElementById('right-flex-div-' + p.parentElement.id); 
+            flex_div.setAttribute('class', 'right-container');
             p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
             flex_div.insertBefore(p, button_div);
         }
@@ -109,16 +112,16 @@ export default async function decorate(block) {
   const nextButton = document.getElementById("slide-arrow-forward");
   
   nextButton.addEventListener("click", () => {
-    //change circle color 
+    //get new slide number
     let slide_selected = document.getElementsByClassName('carousel-circle-selected')[0]
     let slide_selected_num = parseInt(slide_selected.id);
     let new_slide_num = slide_selected_num+1;
     let new_slide;
-    console.log(new_slide_num);
     if(new_slide_num === count){ //at last slide - can't go forward more
         
     }else{
         new_slide = document.getElementById(new_slide_num);
+        //change color of circle
         slide_selected.classList.remove('carousel-circle-selected')
         new_slide.classList.add('carousel-circle-selected');
         //slide over to new slide
@@ -128,21 +131,17 @@ export default async function decorate(block) {
   });
 
   prevButton.addEventListener("click", () => {
-    //change circle color 
+    //get new slide number
     let slide_selected = document.getElementsByClassName('carousel-circle-selected')[0]
     let slide_selected_num = parseInt(slide_selected.id);
     let new_slide_num = slide_selected_num-1;
     let new_slide;
-    console.log("previous");
-    console.log(slide_selected_num);
-
-    console.log(new_slide_num);
-
     if(new_slide_num === 0){ //at first slide - can't go back more
 
     }else{
-        slide_selected.classList.remove('carousel-circle-selected');
         new_slide = document.getElementById(new_slide_num);
+        //change color of circle
+        slide_selected.classList.remove('carousel-circle-selected');
         new_slide.classList.add('carousel-circle-selected');
         //slide over to new slide
         const slideWidth = slide.clientWidth;
@@ -166,12 +165,11 @@ export default async function decorate(block) {
             const slideWidth = slide.clientWidth;
             slidesContainer.scrollLeft -= (-difference * slideWidth);
         };
+        //change circle color
         buttons.forEach((button) =>
             button.classList.remove('carousel-circle-selected')
         );
         button.classList.add('carousel-circle-selected');
     });
   });
-
 }
-
