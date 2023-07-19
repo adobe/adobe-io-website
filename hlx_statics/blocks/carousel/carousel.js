@@ -111,25 +111,43 @@ export default async function decorate(block) {
   nextButton.addEventListener("click", () => {
     //change circle color 
     let slide_selected = document.getElementsByClassName('carousel-circle-selected')[0]
-    let slide_selected_id = slide_selected.id;
-    let new_slide = document.getElementById(parseInt(slide_selected_id)+1);
-    slide_selected.classList.remove('carousel-circle-selected')
-    new_slide.classList.add('carousel-circle-selected');
-    //slide over to new slide
-    const slideWidth = slide.clientWidth;
-    slidesContainer.scrollLeft += slideWidth;
+    let slide_selected_num = parseInt(slide_selected.id);
+    let new_slide_num = slide_selected_num+1;
+    let new_slide;
+    console.log(new_slide_num);
+    if(new_slide_num === count){ //at last slide - can't go forward more
+        
+    }else{
+        new_slide = document.getElementById(new_slide_num);
+        slide_selected.classList.remove('carousel-circle-selected')
+        new_slide.classList.add('carousel-circle-selected');
+        //slide over to new slide
+        const slideWidth = slide.clientWidth;
+        slidesContainer.scrollLeft += slideWidth;
+    };  
   });
 
   prevButton.addEventListener("click", () => {
     //change circle color 
     let slide_selected = document.getElementsByClassName('carousel-circle-selected')[0]
-    let slide_selected_id = slide_selected.id;
-    let new_slide = document.getElementById(parseInt(slide_selected_id)-1);
-    slide_selected.classList.remove('carousel-circle-selected')
-    new_slide.classList.add('carousel-circle-selected');
-    //slide over to new slide
-    const slideWidth = slide.clientWidth;
-    slidesContainer.scrollLeft -= slideWidth;
+    let slide_selected_num = parseInt(slide_selected.id);
+    let new_slide_num = slide_selected_num-1;
+    let new_slide;
+    console.log("previous");
+    console.log(slide_selected_num);
+
+    console.log(new_slide_num);
+
+    if(new_slide_num === 0){ //at first slide - can't go back more
+
+    }else{
+        slide_selected.classList.remove('carousel-circle-selected');
+        new_slide = document.getElementById(new_slide_num);
+        new_slide.classList.add('carousel-circle-selected');
+        //slide over to new slide
+        const slideWidth = slide.clientWidth;
+        slidesContainer.scrollLeft -= slideWidth;
+    };
   });
 
   //change color of circle button when clicked

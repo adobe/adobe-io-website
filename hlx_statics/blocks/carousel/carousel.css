@@ -4,9 +4,8 @@ main div.carousel .img-size {
 }
 
 main div.carousel {
-    width: var(--spectrum-global-dimension-static-grid-fixed-max-width);    
+    width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
     margin: auto;
-    /* background-color: aqua; */
 }
 
 main div.carousel .block-container {
@@ -14,6 +13,7 @@ main div.carousel .block-container {
     flex-direction: row ;
     justify-content: center;
     align-content: space-between;
+    position: relative;
 }
 
 main div.carousel .carousel-heading {
@@ -55,6 +55,7 @@ main div.carousel .slider-wrapper {
     overflow: hidden;
     transition-property: transform;
     box-sizing: content-box;
+    align-items: center;
 }
 
 main div.carousel .slides-container {
