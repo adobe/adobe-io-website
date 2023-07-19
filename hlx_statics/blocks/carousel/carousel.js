@@ -172,4 +172,41 @@ export default async function decorate(block) {
         button.classList.add('carousel-circle-selected');
     });
   });
+
+  //automatic scrolling
+  function advanceSlide() {
+    //get new slide number
+    let slide_selected = document.getElementsByClassName('carousel-circle-selected')[0]
+    let slide_selected_num = parseInt(slide_selected.id);
+    let new_slide_num = slide_selected_num+1;
+    let new_slide;
+    if(new_slide_num === count){ //at last slide - can't go forward more
+        new_slide = document.getElementById(1);
+        //change color of circle
+        slide_selected.classList.remove('carousel-circle-selected')
+        new_slide.classList.add('carousel-circle-selected');
+        //slide over to new slide - needs to start over
+        const difference = count - 1 - 1;
+        const slideWidth = slide.clientWidth;
+        slidesContainer.scrollLeft -= (difference*slideWidth);
+    }else{
+        new_slide = document.getElementById(new_slide_num);
+        //change color of circle
+        slide_selected.classList.remove('carousel-circle-selected')
+        new_slide.classList.add('carousel-circle-selected');
+        //slide over to new slide
+        const slideWidth = slide.clientWidth;
+        slidesContainer.scrollLeft += slideWidth;
+    };  
+  };
+  
+  function slideTimer() {
+    advanceSlide();
+    setTimeout(slideTimer, 3000)
+  }
+  
+  setTimeout(slideTimer, 3000)
 }
+
+  
+
