@@ -110,8 +110,11 @@ export default async function decorate(block) {
   const slide = document.querySelector(".slide");
   const prevButton = document.getElementById("slide-arrow-previous");
   const nextButton = document.getElementById("slide-arrow-forward");
+
+  let isPaused = false;
   
   nextButton.addEventListener("click", () => {
+    isPaused = true;
     //get new slide number
     let slide_selected = document.getElementsByClassName('carousel-circle-selected')[0]
     let slide_selected_num = parseInt(slide_selected.id);
@@ -131,6 +134,7 @@ export default async function decorate(block) {
   });
 
   prevButton.addEventListener("click", () => {
+    isPaused = true;
     //get new slide number
     let slide_selected = document.getElementsByClassName('carousel-circle-selected')[0]
     let slide_selected_num = parseInt(slide_selected.id);
@@ -155,6 +159,7 @@ export default async function decorate(block) {
   
   buttons.forEach((button, i) => {
     button.addEventListener("click", () => {
+        isPaused = true;
         let old_slide_num = document.getElementsByClassName('carousel-circle-selected')[0].id;
         let new_slide_num = button.id;
         let difference = new_slide_num - old_slide_num;
@@ -201,11 +206,24 @@ export default async function decorate(block) {
   };
   
   function slideTimer() {
-    advanceSlide();
-    setTimeout(slideTimer, 3000)
-  }
-  
-  setTimeout(slideTimer, 3000)
+    if(!isPaused){
+        console.log("not paused");
+        advanceSlide();
+        setTimeout(slideTimer, 3000);
+    }else{
+        console.log("paused");
+        clearTimeout(timer);
+        //after set amount of time automatic scrolling can commence
+        setTimeout(() => {
+            isPaused = false;
+        }, 4000);
+        setTimeout(slideTimer, 3000);
+    };   
+  };
+
+  const timer = setTimeout(slideTimer(), 3000);
+  timer;
+
 }
 
   
