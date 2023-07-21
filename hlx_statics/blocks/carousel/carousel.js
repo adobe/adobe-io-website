@@ -57,7 +57,7 @@ export default async function decorate(block) {
 
     //create li tag to hold carousel slide (div)
     let carousel_li = createTag('li', {class: 'slide'});
-    carousel_li.setAttribute('id', h.id);
+    // carousel_li.setAttribute('id', "li-"+h.id);
     carousel_ul.append(carousel_li);
     carousel_li.append(h.parentElement);
 
@@ -195,13 +195,14 @@ export default async function decorate(block) {
         const slideWidth = slide.clientWidth;
         slidesContainer.scrollLeft -= (difference*slideWidth);
     }else{
-        new_slide = document.getElementById(new_slide_num);
-        //change color of circle
-        slide_selected.classList.remove('carousel-circle-selected')
-        new_slide.classList.add('carousel-circle-selected');
         //slide over to new slide
         const slideWidth = slide.clientWidth;
         slidesContainer.scrollLeft += slideWidth;
+        new_slide = document.getElementById(new_slide_num);
+        //change color of circle
+        new_slide.classList.add('carousel-circle-selected');
+        slide_selected.classList.remove('carousel-circle-selected')
+        
     };  
   };
   
@@ -214,14 +215,12 @@ export default async function decorate(block) {
         console.log("paused");
         clearTimeout(timer);
         //after set amount of time automatic scrolling can commence
-        setTimeout(() => {
-            isPaused = false;
-        }, 4000);
+        setTimeout(() => {isPaused = false;}, 4000);
         setTimeout(slideTimer, 3000);
     };   
   };
 
-  const timer = setTimeout(slideTimer(), 3000);
+  const timer = setTimeout(slideTimer, 4000);
   timer;
 
 }
