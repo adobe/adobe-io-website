@@ -7,15 +7,13 @@ export default async function decorate(block) {
   removeEmptyPTags(block);
   decorateButtons(block);
 
-  //create a div in block for ease of use
-  const carousel_block = document.getElementsByClassName('carousel block')[0];
   const carousel_block_child = createTag('div', {class: 'block-container'});
-  carousel_block.append(carousel_block_child);
+  block.append(carousel_block_child);
 
   //create div with circle progess
-  const carousel_block_circle = createTag('div', {id: 'carousel-circles'});
-  carousel_block_circle.setAttribute('class', 'carousel-circle-div');
-  carousel_block.append(carousel_block_circle);
+  const carousel_block_circle = createTag('div', {class: 'carousel-circle-div'});
+//   carousel_block_circle.classList.add('carousel-circle-div');
+  block.append(carousel_block_circle);
 
   //create section tag for animation
   const carousel_section = createTag('section', {class: 'slider-wrapper'});
@@ -23,15 +21,14 @@ export default async function decorate(block) {
 
   //add slide arrow buttons
   const arrow_button_previous = createTag('button', {class: 'slide-arrow'});
-  arrow_button_previous.setAttribute('id', 'slide-arrow-previous');
+  arrow_button_previous.classList.add('slide-arrow-previous');
   arrow_button_previous.innerHTML = '&#8249;'
   const arrow_button_forward = createTag('button', {class: 'slide-arrow'});
-  arrow_button_forward.setAttribute('id', 'slide-arrow-forward');
+  arrow_button_forward.classList.add('slide-arrow-forward');
   arrow_button_forward.innerHTML = '&#8250;'
 
   //add ul tag to contain carousel slides
   const carousel_ul = createTag('ul', {class: 'slides-container'});
-  carousel_ul.setAttribute('id', 'slides-container');
   carousel_section.append(carousel_ul);
 
   //add a count to keep track of which slide is showing
@@ -49,7 +46,7 @@ export default async function decorate(block) {
     h.parentElement.setAttribute('id', h.id);
 
     //add circle for every slide
-    let div_slide_circle = document.getElementById('carousel-circles');
+    let div_slide_circle = block.querySelector(".carousel-circle-div");
     let circle_button = createTag('button', {class: 'carousel-circle'});
     circle_button.setAttribute('id', count);
     div_slide_circle.append(circle_button);
@@ -57,7 +54,6 @@ export default async function decorate(block) {
 
     //create li tag to hold carousel slide (div)
     let carousel_li = createTag('li', {class: 'slide'});
-    // carousel_li.setAttribute('id', "li-"+h.id);
     carousel_ul.append(carousel_li);
     carousel_li.append(h.parentElement);
 
@@ -77,7 +73,7 @@ export default async function decorate(block) {
 
   //add id to image and add image to left div
   block.querySelectorAll('img').forEach((img) => {
-    img.parentElement.parentElement.setAttribute('id', 'IMAGE');
+    img.parentElement.parentElement.classList.add('IMAGE');
 
     //add image to left div
     let flex_div = createTag('div', { id: 'left-flex-div-'+img.parentElement.parentElement.parentElement.id});
@@ -88,16 +84,16 @@ export default async function decorate(block) {
 
   block.querySelectorAll('p').forEach(function (p){
     //add everything but image to the right div
-    if(p.id === "IMAGE"){
+    if(p.classList.contains("IMAGE") ){
         p.classList.add('spectrum-Body', 'spectrum-Body--sizeS', 'image-container');
     }else{
-        let button_div = document.getElementById('button-div-' + p.parentElement.id); 
+        let button_div = block.querySelector("[id=button-div-" + CSS.escape(p.parentElement.id)+ "]");
         if(p.classList.contains('button-container')){
             //add buttons to div
             button_div.classList.add('carousel-button-container');
             button_div.append(p);
         }else{
-            let flex_div = document.getElementById('right-flex-div-' + p.parentElement.id); 
+            let flex_div = block.querySelector("[id=right-flex-div-" + CSS.escape(p.parentElement.id)+ "]");
             flex_div.setAttribute('class', 'right-container');
             p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
             flex_div.insertBefore(p, button_div);
@@ -106,24 +102,24 @@ export default async function decorate(block) {
   });
 
   //slide functionality with arrow buttons
-  const slidesContainer = document.getElementById("slides-container");
+  const slidesContainer = block.querySelector(".slides-container");
   const slide = document.querySelector(".slide");
-  const prevButton = document.getElementById("slide-arrow-previous");
-  const nextButton = document.getElementById("slide-arrow-forward");
+  const prevButton = block.querySelector(".slide-arrow-previous");
+  const nextButton = block.querySelector(".slide-arrow-forward");
 
   let isPaused = false;
   
   nextButton.addEventListener("click", () => {
     isPaused = true;
     //get new slide number
-    let slide_selected = document.getElementsByClassName('carousel-circle-selected')[0]
+    let slide_selected = block.querySelector(".carousel-circle-selected");
     let slide_selected_num = parseInt(slide_selected.id);
     let new_slide_num = slide_selected_num+1;
     let new_slide;
     if(new_slide_num === count){ //at last slide - can't go forward more
         
     }else{
-        new_slide = document.getElementById(new_slide_num);
+        new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
         //change color of circle
         slide_selected.classList.remove('carousel-circle-selected')
         new_slide.classList.add('carousel-circle-selected');
@@ -136,14 +132,14 @@ export default async function decorate(block) {
   prevButton.addEventListener("click", () => {
     isPaused = true;
     //get new slide number
-    let slide_selected = document.getElementsByClassName('carousel-circle-selected')[0]
+    let slide_selected = block.querySelector(".carousel-circle-selected"); //should only be one in the block
     let slide_selected_num = parseInt(slide_selected.id);
     let new_slide_num = slide_selected_num-1;
     let new_slide;
     if(new_slide_num === 0){ //at first slide - can't go back more
 
     }else{
-        new_slide = document.getElementById(new_slide_num);
+        new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
         //change color of circle
         slide_selected.classList.remove('carousel-circle-selected');
         new_slide.classList.add('carousel-circle-selected');
@@ -160,7 +156,7 @@ export default async function decorate(block) {
   buttons.forEach((button, i) => {
     button.addEventListener("click", () => {
         isPaused = true;
-        let old_slide_num = document.getElementsByClassName('carousel-circle-selected')[0].id;
+        let old_slide_num = block.querySelector(".carousel-circle-selected").id; //should only be one in the block
         let new_slide_num = button.id;
         let difference = new_slide_num - old_slide_num;
         if(difference > 0){ //going forward
@@ -181,12 +177,12 @@ export default async function decorate(block) {
   //automatic scrolling
   function advanceSlide() {
     //get new slide number
-    let slide_selected = document.getElementsByClassName('carousel-circle-selected')[0]
+    let slide_selected = block.querySelector('.carousel-circle-selected'); //should only be one in the block
     let slide_selected_num = parseInt(slide_selected.id);
     let new_slide_num = slide_selected_num+1;
     let new_slide;
     if(new_slide_num === count){ //at last slide - can't go forward more
-        new_slide = document.getElementById(1);
+        new_slide = block.querySelector("[id=" + CSS.escape(1)+ "]");
         //change color of circle
         slide_selected.classList.remove('carousel-circle-selected')
         new_slide.classList.add('carousel-circle-selected');
@@ -198,7 +194,7 @@ export default async function decorate(block) {
         //slide over to new slide
         const slideWidth = slide.clientWidth;
         slidesContainer.scrollLeft += slideWidth;
-        new_slide = document.getElementById(new_slide_num);
+        new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
         //change color of circle
         new_slide.classList.add('carousel-circle-selected');
         slide_selected.classList.remove('carousel-circle-selected')
@@ -208,11 +204,11 @@ export default async function decorate(block) {
   
   function slideTimer() {
     if(!isPaused){
-        console.log("not paused");
+        // console.log("not paused");
         advanceSlide();
         setTimeout(slideTimer, 3000);
     }else{
-        console.log("paused");
+        // console.log("paused");
         clearTimeout(timer);
         //after set amount of time automatic scrolling can commence
         setTimeout(() => {isPaused = false;}, 4000);
