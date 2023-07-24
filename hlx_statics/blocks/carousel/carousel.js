@@ -118,14 +118,14 @@ export default async function decorate(block) {
     let new_slide;
     if(new_slide_num === count){ //at last slide - can't go forward more
         
-    }else{
+    } else {
+        //slide over to new slide
+        const slideDx = slidesContainer.scrollLeft + (slide.clientWidth * slide_selected_num);
+        slidesContainer.scrollLeft = slideDx;
         new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
         //change color of circle
         slide_selected.classList.remove('carousel-circle-selected')
         new_slide.classList.add('carousel-circle-selected');
-        //slide over to new slide
-        const slideWidth = slide.clientWidth;
-        slidesContainer.scrollLeft += slideWidth;
     };  
   });
 
@@ -139,13 +139,15 @@ export default async function decorate(block) {
     if(new_slide_num === 0){ //at first slide - can't go back more
 
     }else{
-        new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
-        //change color of circle
-        slide_selected.classList.remove('carousel-circle-selected');
-        new_slide.classList.add('carousel-circle-selected');
-        //slide over to new slide
-        const slideWidth = slide.clientWidth;
-        slidesContainer.scrollLeft -= slideWidth;
+      //slide over to new slide
+      const slideDx = slidesContainer.scrollLeft - (slide.clientWidth * slide_selected_num);
+      slidesContainer.scrollLeft = slideDx;
+
+      new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
+      //change color of circle
+      slide_selected.classList.remove('carousel-circle-selected');
+      new_slide.classList.add('carousel-circle-selected');
+
     };
   });
 
