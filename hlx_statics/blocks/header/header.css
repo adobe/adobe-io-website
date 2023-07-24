@@ -459,10 +459,6 @@ header .menu-btn {
   display: none;
 }
 
-main{
-  overflow: auto;
-}
-
 @media screen and (max-width: 768px) {
   main {
     overflow-y: hidden;
