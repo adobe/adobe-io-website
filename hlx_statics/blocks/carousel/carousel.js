@@ -95,7 +95,7 @@ export default async function decorate(block) {
         }else{
             let flex_div = block.querySelector("[id=right-flex-div-" + CSS.escape(p.parentElement.id)+ "]");
             flex_div.setAttribute('class', 'right-container');
-            p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
+            p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
             flex_div.insertBefore(p, button_div);
         }
     };
@@ -103,7 +103,7 @@ export default async function decorate(block) {
 
   //slide functionality with arrow buttons
   const slidesContainer = block.querySelector(".slides-container");
-  const slide = document.querySelector(".slide");
+  const slide = block.querySelector(".slide");
   const prevButton = block.querySelector(".slide-arrow-previous");
   const nextButton = block.querySelector(".slide-arrow-forward");
 
@@ -206,18 +206,18 @@ export default async function decorate(block) {
     if(!isPaused){
         // console.log("not paused");
         advanceSlide();
-        setTimeout(slideTimer, 3000);
+        setTimeout(slideTimer, 9000);
     }else{
         // console.log("paused");
         clearTimeout(timer);
         //after set amount of time automatic scrolling can commence
-        setTimeout(() => {isPaused = false;}, 4000);
-        setTimeout(slideTimer, 3000);
+        setTimeout(() => {isPaused = false;}, 18000);
+        setTimeout(slideTimer, 9000);
     };   
   };
 
-  const timer = setTimeout(slideTimer, 4000);
-  timer;
+//   const timer = setTimeout(slideTimer, 9000);
+//   timer;
 
 }
 

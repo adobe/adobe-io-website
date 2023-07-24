@@ -5,7 +5,7 @@ picture {
 }
 
 picture img {
-    object-fit: cover; 
+    object-fit: cover;
     height: auto;
     width: 100%;
 }
@@ -48,6 +48,9 @@ main div.carousel .left-container {
 }
 
 main div.carousel .right-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     flex: 0 1 50%;
     min-height: 100%;
     max-width: 50%;
@@ -70,7 +73,6 @@ main div.carousel .slider-wrapper {
 }
 
 main div.carousel .slides-container {
-    /* height: calc(100vh - 2rem); */
     width: 100%;
     display: flex;
     list-style: none;
