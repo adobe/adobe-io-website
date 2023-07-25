@@ -54,7 +54,7 @@ main div.carousel .right-container {
     flex: 0 1 50%;
     min-height: 100%;
     max-width: 50%;
-    padding: 0 var(--spectrum-global-dimension-size-100);
+    padding: 0 var(--spectrum-global-dimension-size-400);
 }
 
 main div.carousel .carousel-button-container {
@@ -97,7 +97,6 @@ main div.carousel .slide-arrow {
     font-size: 5rem;
     color: #b3cef7;
     cursor: pointer;
-    /* transition: opacity 100ms;    */
 }
 
 main .carousel .slide-arrow:hover,
