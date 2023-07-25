@@ -120,7 +120,7 @@ export default async function decorate(block) {
         
     } else {
         //slide over to new slide
-        const slideDx = slidesContainer.scrollLeft + (slide.clientWidth * slide_selected_num);
+        const slideDx = slidesContainer.clientLeft + (slide.clientWidth * slide_selected_num);
         slidesContainer.scrollLeft = slideDx;
         new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
         //change color of circle
@@ -140,7 +140,11 @@ export default async function decorate(block) {
 
     }else{
       //slide over to new slide
-      const slideDx = slidesContainer.scrollLeft - (slide.clientWidth * slide_selected_num);
+      console.log("width: " + slide.clientWidth);
+      console.log("slidesContainer: " + slidesContainer.scrollLeft);
+      const slideDx = (new_slide_num-1) * slide.clientWidth;
+      // console.log("first: " +  (slide.clientWidth * (count - 2)));
+      console.log("slideDx: " + slideDx);
       slidesContainer.scrollLeft = slideDx;
 
       new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
@@ -158,16 +162,22 @@ export default async function decorate(block) {
   buttons.forEach((button, i) => {
     button.addEventListener("click", () => {
         isPaused = true;
-        let old_slide_num = block.querySelector(".carousel-circle-selected").id; //should only be one in the block
+        // let old_slide_num = block.querySelector(".carousel-circle-selected").id; //should only be one in the block
+        
         let new_slide_num = button.id;
-        let difference = new_slide_num - old_slide_num;
-        if(difference > 0){ //going forward
-            const slideWidth = slide.clientWidth;
-            slidesContainer.scrollLeft += (difference * slideWidth);
-        }else{ //going back
-            const slideWidth = slide.clientWidth;
-            slidesContainer.scrollLeft -= (-difference * slideWidth);
-        };
+        const slideDx = slidesContainer.clientLeft + (slide.clientWidth * (new_slide_num-1));
+        slidesContainer.scrollLeft = slideDx;
+
+        // let difference = new_slide_num - old_slide_num;
+        // if(difference > 0){ //going forward    
+        
+            // const slideWidth = slide.clientWidth;
+            // slidesContainer.scrollLeft += (difference * slideWidth);
+        // }else{ //going back
+        //     const slideWidth = slide.clientWidth;
+        //     slidesContainer.scrollLeft -= (-difference * slideWidth);
+        // };
+
         //change circle color
         buttons.forEach((button) =>
             button.classList.remove('carousel-circle-selected')
@@ -208,18 +218,18 @@ export default async function decorate(block) {
     if(!isPaused){
         // console.log("not paused");
         advanceSlide();
-        setTimeout(slideTimer, 9000);
+        setTimeout(slideTimer, 3000);
     }else{
         // console.log("paused");
         clearTimeout(timer);
         //after set amount of time automatic scrolling can commence
-        setTimeout(() => {isPaused = false;}, 18000);
-        setTimeout(slideTimer, 9000);
+        setTimeout(() => {isPaused = false;}, 4000);
+        setTimeout(slideTimer, 3000);
     };   
   };
 
-//   const timer = setTimeout(slideTimer, 9000);
-//   timer;
+  const timer = setTimeout(slideTimer, 3000);
+  timer;
 
 }
 
