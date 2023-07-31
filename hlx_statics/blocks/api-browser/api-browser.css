@@ -37,7 +37,7 @@ main .api-cards {
     flex: 1;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 320px) {
     main .api-cards {
         margin-top: var(--spectrum-global-dimension-size-400);
         display: flex;
@@ -54,7 +54,7 @@ main .api-card {
     background: var(--spectrum-global-color-gray-100);
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 320px) {
     main .api-card {
         display: flex;
         width: 100%;
@@ -62,11 +62,20 @@ main .api-card {
     }
 }
 
+@media screen and (max-width: 768px) {
+    main .api-card {
+        flex-wrap: wrap;
+    }
+    main .api-card>* {
+        flex: 0 0 50%;
+    }
+}
+
 main .api-cards-inner {
     display: flex;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 320px) {
     main .api-cards-inner {
         flex-direction: column;
         align-items: center;
@@ -84,7 +93,7 @@ main .api-card-inner:hover {
     border-color: var(--spectrum-card-border-color, var(--spectrum-global-color-gray-200));
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 320px) {
     main .api-card-inner {
         width: 0;
         margin: 0;
@@ -159,7 +168,7 @@ main .api-card-button-container a {
 }
 
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 320px) {
     main .api-card-button-container {
         justify-content: center;
     }
@@ -170,6 +179,15 @@ main .api-browser .filters {
     align-items: flex-end;
     flex-direction: column;
     display: flex;
+}
+
+@media screen and (max-width: 768px) {
+    main .api-browser .api-cards-inner {
+        display: block;
+    }
+    main .api-browser .filters{
+        padding: var(--spectrum-global-dimension-size-400);
+    }
 }
 
 main .api-browser .filters-inner {
