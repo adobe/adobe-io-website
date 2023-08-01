@@ -1,14 +1,37 @@
 main div.mini-resource-card .card-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    grid-auto-rows: minmax(100px, auto);
+    gap: 5%!important;
+    margin: auto!important;
+    max-width: 100%!important;
+    padding: 10px!important;
+    width: 60%!important;
 }
 
 main div.mini-resource-card .mini-card {
+    padding: 0;
     grid-column-start: auto;
     grid-column-end: auto;
     grid-row-start: auto;
     grid-row-end: auto;
+    border: none !important;
+    margin: 0!important;
+    width: 300px !important;
+    height: 100px !important;
+    box-shadow: 0 9px 15px 5px #e6e6e6;
 }
+
+main div.mini-resource-card .mini-resource-card-image-container {
+    margin: 0!important;
+    height: 100px !important;
+    width: 100px!important;
+}
+
+main div.mini-resource-card .mini-resource-card-body {
+    border: none!important;
+    height: 100px !important;
+    width: 200px !important;
+    padding: 0 0 0 4%!important
+}
+
 

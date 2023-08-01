@@ -1,56 +1,37 @@
-import {
-    createTag,
-    removeEmptyPTags,
-  } from '../../scripts/lib-adobeio.js';
+import {createTag, removeEmptyPTags} from '../../scripts/lib-adobeio.js';
   
 /**
  * Returns the HTML for a mini resource card
  * @param {*} linkHref The link to the resource
- * @param {*} imgSrc The URL of the resource image
  * @param {*} heading The heading text of the card
  * @param {*} text The text of the card
- * @param {*} altText The alternative text of the card
  * @returns The resource card HTML
  */
 function getMiniResourceCard(linkHref, heading, text) {
     if(text === undefined){ //no body just heading
         return `
-            <a class="spectrum-Card spectrum-Card--horizontal"
-            href=${linkHref}>
-            <div class="spectrum-Card-preview mini-resource-card-preview">
+            <a class="spectrum-Card spectrum-Card--horizontal" href=${linkHref}>
                 <div class="mini-resource-card-image-container spectrum-Asset">
         
                 </div>
-            </div>
-            <div class="spectrum-Card-body">
-                <div class="spectrum-Card-header">
-                    <div class="spectrum-Card-title spectrum-Heading spectrum-Heading--sizeXS mini-resource-card-heading">
-                        ${heading}
-                    </div>
-                </div>
-            </div>
-        </div> `;
+            <div class="spectrum-Card-body mini-resource-card-body">
+                <h3 class="spectrum-Heading spectrum-Heading--sizeM ">
+                    ${heading}
+                </h3>
+            </div>`;
     }else{
         return `
-                <a class="spectrum-Card spectrum-Card--horizontal"
-                href=${linkHref}>
-                <div class="spectrum-Card-preview mini-resource-card-preview">
-                    <div class="mini-resource-card-image-container spectrum-Asset">
-            
-                    </div>
+            <a class="spectrum-Card spectrum-Card--horizontal" href=${linkHref}>
+                <div class="mini-resource-card-image-container spectrum-Asset">
+        
                 </div>
-                <div class="spectrum-Card-body">
-                    <div class="spectrum-Card-header">
-                        <div class="spectrum-Card-title spectrum-Heading spectrum-Heading--sizeXS mini-resource-card-heading">
-                            ${heading}
-                        </div>
-                    </div>
-                    <div class="spectrum-Card-content">
-                        <div class="spectrum-Card-description mini-resource-card-body">
-                            ${text}
-                        </div>
-                    </div>
-                </div>
+            <div class="spectrum-Card-body mini-resource-card-body">
+                <h3 class="spectrum-Heading spectrum-Heading--sizeM">
+                    ${heading}
+                </h3>
+                <p class="spectrum-Body spectrum-Body--sizeS ">
+                    ${text}
+                </p>
             </div> `;
     }
 }
@@ -77,5 +58,4 @@ export default async function decorate(block) {
 
     });
     block.appendChild(grid_div);
-
 }
