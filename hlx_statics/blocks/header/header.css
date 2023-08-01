@@ -656,10 +656,6 @@ header .menu-btn {
     margin: 10px;
   }
 
-  .site-hero-container {
-    padding-top: var(--spectrum-global-dimension-size-800);
-  }
-
   .site-hero picture {
     height: 100%;
   }
