@@ -13,6 +13,9 @@ main div.site-hero-container {
     main div.site-hero {
       height: 350px;
     }
+    main div.site-hero-container {
+      padding-top: var(--spectrum-global-dimension-size-800);
+    }
   }
   main div.site-hero > div:first-child {
     display: flex;
