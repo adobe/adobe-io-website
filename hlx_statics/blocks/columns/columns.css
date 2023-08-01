@@ -89,13 +89,24 @@ main div.columns div.product-link-container p {
     margin-top: var(--spectrum-global-dimension-size-300);
 }
 
-main div.columns div.product-link-container p + p {
-    margin-left: var(--spectrum-global-dimension-size-300);
+@media screen and (min-width:768px) {
+    main div.columns div.product-link-container p + p {
+        margin-left: var(--spectrum-global-dimension-size-300);
+    }
 }
 
 main div.second-column div.product-link-container {
     display: flex;
     flex-direction: row;
+}
+
+@media screen and (max-width:768px) {
+    main div.second-column div.product-link-container {
+        flex-wrap: wrap;
+    }
+    main div.columns div.product-link-container p {
+        width: 150px;
+    }
 }
 
 main div.second-column div.product-link-container p.icon-container {
