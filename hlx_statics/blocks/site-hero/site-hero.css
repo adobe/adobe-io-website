@@ -13,8 +13,8 @@ main div.site-hero-container {
     main div.site-hero {
       height: 350px;
     }
-    main div.site-hero-container {
-      padding-top: var(--spectrum-global-dimension-size-800);
+    main .site-hero p{
+      width: 90%;
     }
   }
   main div.site-hero > div:first-child {
