@@ -13,7 +13,7 @@ main div.site-hero-container {
       height: 350px;
     }
     main .site-hero div{
-      width: 100%;
+      width: 95%;
     }
   }
   main div.site-hero > div:first-child {
