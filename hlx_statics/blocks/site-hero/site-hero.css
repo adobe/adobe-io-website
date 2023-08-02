@@ -12,8 +12,8 @@ main div.site-hero-container {
     main div.site-hero {
       height: 350px;
     }
-    main .site-hero p{
-      width: 90%;
+    main .site-hero div{
+      width: 100%;
     }
   }
   main div.site-hero > div:first-child {
