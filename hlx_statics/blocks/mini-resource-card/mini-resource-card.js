@@ -10,22 +10,22 @@ import {createTag, removeEmptyPTags} from '../../scripts/lib-adobeio.js';
 function getMiniResourceCard(linkHref, heading, text) {
     if(text === undefined){ //no body just heading
         return `
-            <a class="spectrum-Card spectrum-Card--horizontal" href=${linkHref}>
-                <div class="mini-resource-card-image-container spectrum-Asset">
+            <a class="mini-card" href=${linkHref}>
+                <div class="mini-resource-card-image-container ">
         
                 </div>
-            <div class="spectrum-Card-body mini-resource-card-body">
+            <div class="mini-resource-card-body">
                 <h3 class="spectrum-Heading spectrum-Heading--sizeM ">
                     ${heading}
                 </h3>
             </div>`;
     }else{
         return `
-            <a class="spectrum-Card spectrum-Card--horizontal" href=${linkHref}>
-                <div class="mini-resource-card-image-container spectrum-Asset">
+            <a class="mini-card" href=${linkHref}>
+                <div class="mini-resource-card-image-container ">
         
                 </div>
-            <div class="spectrum-Card-body mini-resource-card-body">
+            <div class="mini-resource-card-body">
                 <h3 class="spectrum-Heading spectrum-Heading--sizeM">
                     ${heading}
                 </h3>
@@ -44,7 +44,6 @@ export default async function decorate(block) {
     const grid_div = createTag('div', {class: 'card-container'});
     block.querySelectorAll('.mini-resource-card > div').forEach((resource) => {
         removeEmptyPTags(resource);
-        resource.setAttribute('class', 'mini-card');
         grid_div.appendChild(resource);
 
         //create spectrum cards
@@ -52,6 +51,9 @@ export default async function decorate(block) {
         const heading = resource.querySelector('a')?.innerText;
         const text = resource.querySelector('p')?.innerText;
         const picture = resource.querySelector('picture');
+        const img = resource.querySelector('img');
+        img.setAttribute('class', 'image-mini');
+
         resource.innerHTML = getMiniResourceCard(linkHref, heading, text);
         const pictureContainer = resource.querySelector('.mini-resource-card-image-container');
         pictureContainer.append(picture);
