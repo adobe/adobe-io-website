@@ -13,7 +13,18 @@ main div.site-hero-container {
     main div.site-hero {
       height: 350px;
     }
+    main .site-hero div{
+      width: 95%;
+    }
+    main .xl div.site-hero{
+      height: 100vh;
+    }
+    main div.site-hero .xl-img {
+      height: 100vh;
+      object-fit: cover;
+    }
   }
+
   main div.site-hero > div:first-child {
     display: flex;
     flex-direction: column;
@@ -47,18 +58,17 @@ main div.site-hero-container {
     gap: var(--spectrum-global-dimension-size-200, var(--spectrum-alias-size-200));
   }
 
-  main .site-hero img {
-    width: 100%;
-    max-height: 350px;
-    object-fit: cover;
+  @media screen and (min-width:769px) {
+    main .site-hero img {
+      width: 100%;
+      max-height: 350px;
+      object-fit: cover;
+    }
+    main div.site-hero .xl-img {
+      width: 100%;
+      max-height: 624px !important;
+      object-fit: cover;
+    }
   }
 
-  main .xl div.site-hero{
-    height: 624px !important;
-  }
 
-  main div.site-hero .xl-img {
-    width: 100%;
-    max-height: 624px !important;
-    object-fit: cover;
-  }
