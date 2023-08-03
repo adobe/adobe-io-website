@@ -1,6 +1,5 @@
 import {
   removeEmptyPTags,
-  rearrangeHeroPicture,
   decorateButtons,
   createTag
 } from '../../scripts/lib-adobeio.js';
@@ -19,6 +18,7 @@ export default async function decorate(block) {
   block.classList.add('spectrum--dark');
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
+    h.parentElement.classList.add('site-hero-content');
     h.parentElement.append(button_div);
   });
   
@@ -33,15 +33,9 @@ export default async function decorate(block) {
     }
   });
 
-  const overlayStyle = 'position: absolute; display: flex; left: 50%; top: 50%;  transform: translate(-50%, -50%); text-align: center';
-  rearrangeHeroPicture(block, overlayStyle);
-
   if(document.querySelectorAll('.xl img').length === 1){
-    const hero_picture = document.querySelectorAll('.xl picture')[0];
-    hero_picture.style.setProperty('align-items', '');
     const hero_img = document.querySelectorAll('.xl img')[0];
     hero_img.removeAttribute('style');
     hero_img.setAttribute('class', 'xl-img');
   }
-  
 }
