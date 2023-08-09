@@ -17,9 +17,7 @@ main .picker .sort-group{
 }
 
 main .picker .sort-by-label{
-    height: 32px;
     margin: 8px;
-    text-align: center;
 }
 
 main .picker .filter-by-popover {
