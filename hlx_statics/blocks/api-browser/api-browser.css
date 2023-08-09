@@ -12,7 +12,17 @@ main .picker {
     margin-right: var(--spectrum-global-dimension-size-400);
 }
 
-main .filter-by-popover {
+main .picker .sort-group{
+    display: flex;
+}
+
+main .picker .sort-by-label{
+    height: 32px;
+    margin: 8px;
+    text-align: center;
+}
+
+main .picker .filter-by-popover {
     display: flex;
     min-width: var(--spectrum-global-dimension-size-800);
     width: auto;
@@ -20,6 +30,7 @@ main .filter-by-popover {
     max-height: calc(100vh - var(--spectrum-global-dimension-size-2400));
     overflow: auto;
     margin-top: 32px;
+    margin-left: 40px;
 }
 
 main .api-browser {
