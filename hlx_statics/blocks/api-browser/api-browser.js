@@ -203,7 +203,7 @@ export default async function decorate(block) {
     block.append(pickerContainer);
     const pickerHtml = `
       <div role="group" aria-labelledby="sortby-label" class="sort-group">
-      <p id="sortby-label" class="sort-by-label">Sort By</p>
+      <p id="sortby-label" class="sort-by-label">Sort by</p>
       <button  id="filter-dropdown-picker" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet" aria-haspopup="listbox">
           <span id="filter-label" class="spectrum-Picker-label">Last updated</span>
           <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
