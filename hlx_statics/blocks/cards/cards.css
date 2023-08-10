@@ -6,11 +6,20 @@ main div.cards {
     flex-direction: row;
 } 
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 320px) {
     main div.cards {
         flex-direction: column;
     }
-  }
+}
+
+@media screen and (max-width: 768px) {
+    main div.cards {
+        flex-wrap: wrap;
+    }
+    main div.cards>* {
+        flex: 0 0 50%;
+    }
+}
 
 main div.cards > div {
     text-align: center;
@@ -26,7 +35,7 @@ main div.cards > div.four-cards {
     width: 25vw;
 } 
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 320px) {
     main div.cards > div {
         display: block;
         width: 100%;

@@ -1,0 +1,94 @@
+main div.mini-resource-card .card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10px;
+    row-gap: 10px;
+    margin-top: auto;
+    margin: auto!important;
+    width: 1280px !important;
+}
+
+main div.mini-resource-card .mini-card {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none!important;
+
+    padding: 0;
+    justify-self: center;
+    align-self: center;
+    grid-column-start: auto;
+    grid-column-end: auto;
+    grid-row-start: auto;
+    grid-row-end: auto;
+    border: none !important;
+    margin: 0!important;
+    width: 420px !important;
+    height: 100px !important;
+    box-shadow: 0 9px 15px 5px #e6e6e6;
+}
+
+main div.mini-resource-card .mini-resource-card-image-container {
+    margin: 0!important;
+    height: 100px !important;
+    width: 100px!important;
+}
+
+main div.mini-resource-card .image-mini {
+    height: 100px !important;
+    width: auto !important;
+    object-fit: cover;
+}
+
+main div.mini-resource-card .mini-resource-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border: none!important;
+    height: 100px !important;
+    width: 320px !important;
+    padding: 0 0 0 4%!important
+}
+
+@media screen and (max-width: 1280px) {
+    main div.mini-resource-card .card-container {
+        grid-template-columns: repeat(2, 1fr);
+        width: 90% !important;
+        column-gap: 10px;
+        row-gap: 10px;
+        margin: auto!important;
+    }
+
+    main div.mini-resource-card .mini-card {
+        width: auto !important;
+        height: 100px !important;
+    }
+
+    main div.mini-resource-card .mini-resource-card-body {
+        height: 100px !important;
+        width: auto !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main div.mini-resource-card .card-container {  
+        grid-template-columns: repeat(1, 1fr);     
+        margin: auto !important;
+        margin-top: auto;
+
+        width: 80% !important;
+    }
+
+    main div.mini-resource-card .mini-card {
+        width: auto !important;
+        height: 100px !important;
+    }
+
+    main div.mini-resource-card .mini-resource-card-body {
+        height: 100px !important;
+        width: auto !important;
+    }
+}
+
+
+

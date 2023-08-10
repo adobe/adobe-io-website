@@ -219,7 +219,7 @@ header.global-nav-header > ul#navigation-links > li > button.is-open .spectrum-P
   transform: rotate(-90deg);
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   header .nav-dropdown-mobile-popover {
     display:none;
   }
@@ -654,10 +654,6 @@ header .menu-btn {
   header .nav-mobile-console-button {
     flex: 1;
     margin: 10px;
-  }
-
-  .site-hero-container {
-    padding-top: var(--spectrum-global-dimension-size-800);
   }
 
   .site-hero picture {
