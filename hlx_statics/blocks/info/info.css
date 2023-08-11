@@ -8,9 +8,20 @@ main div.info {
   
   main div.info h2 {
     margin-top: var(--spectrum-global-dimension-size-800);
+    scroll-margin-top: 100px;
   }
-  
-  main div.info code {
+
+  main div.info .info-header .anchor-link{
+    padding-left: 10px;
+    display:none;
+  }
+
+  main div.info .info-header:hover .anchor-link{
+    display: inline-block;
+  }
+
+
+main div.info code {
     display: inline-block;
     min-width: auto;
     background-color: var(--spectrum-global-color-gray-100);
