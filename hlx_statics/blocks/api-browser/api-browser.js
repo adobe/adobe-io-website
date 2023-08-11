@@ -204,7 +204,7 @@ export default async function decorate(block) {
     const pickerHtml = `
       <div role="group" aria-labelledby="sortby-label" class="sort-group">
       <p id="sortby-label" class="sort-by-label">Sort by</p>
-      <button  id="filter-dropdown-picker" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet" aria-haspopup="listbox">
+      <button  id="filter-dropdown-picker" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet" aria-haspopup="listbox" aria-expanded="false">
           <span id="filter-label" class="spectrum-Picker-label">Last updated</span>
           <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
             <use xlink:href="./hlx_statics/styles/spectrum/spectrum-css-icon-Chevron100.svg#ChevronSize100" />
@@ -237,10 +237,12 @@ export default async function decorate(block) {
     dropdownPicker.addEventListener('click', (evt) => {
       if (!evt.currentTarget.classList.contains('is-open')) {
         dropdownPicker.classList.add('is-open');
+        dropdownPicker.ariaExpanded = true;
         dropdownPopover.classList.add('is-open');
         dropdownPopover.ariaHidden = false;
       } else {
         dropdownPicker.classList.remove('is-open');
+        dropdownPicker.ariaExpanded = false;
         dropdownPopover.classList.remove('is-open');
         dropdownPopover.ariaHidden = true;
       }
@@ -261,6 +263,7 @@ export default async function decorate(block) {
         dropdownPicker.classList.remove('is-open');
         dropdownPopover.classList.remove('is-open');
         dropdownPopover.ariaHidden = true;
+        dropdownPicker.ariaExpanded = false;
         displayFilteredCards(
           catalog.sort(sortDate),
           cards,
@@ -281,6 +284,7 @@ export default async function decorate(block) {
         dropdownPicker.classList.remove('is-open');
         dropdownPopover.classList.remove('is-open');
         dropdownPopover.ariaHidden = true;
+        dropdownPicker.ariaExpanded = false;
         displayFilteredCards(
           catalog.sort(sortTitle),
           cards,
