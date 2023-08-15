@@ -5,6 +5,7 @@ import {
   loadBlock,
   decorateButtons,
   decorateIcons,
+  decorateAnchorLink,
   decorateSections,
   decorateBlocks,
   decorateTemplateAndTheme,
