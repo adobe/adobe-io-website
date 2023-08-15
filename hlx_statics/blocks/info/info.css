@@ -13,11 +13,12 @@ main div.info {
 
   main div.info .info-header .anchor-link{
     padding-left: 10px;
-    display:none;
+    visibility: hidden;
   }
 
   main div.info .info-header:hover .anchor-link{
     display: inline-block;
+    visibility: visible;
   }
 
 

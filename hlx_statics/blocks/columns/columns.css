@@ -65,13 +65,14 @@ main div.second-column {
     padding: 0 var(--spectrum-global-dimension-size-400);
 }
 
-main div.second-column .column-header .anchor-link{
+main .column-header .anchor-link{
     padding-left: 10px;
-    display:none;
+    visibility: hidden;
 }
 
-main div.second-column .column-header:hover .anchor-link{
-    display: inline-block;
+main .column-header:hover .anchor-link{
+    padding-left: 10px;
+    visibility: visible;
 }
 
 @media screen and (max-width: 1280px) {
