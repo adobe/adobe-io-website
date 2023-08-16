@@ -65,6 +65,16 @@ main div.second-column {
     padding: 0 var(--spectrum-global-dimension-size-400);
 }
 
+main .column-header .anchor-link{
+    padding-left: 10px;
+    visibility: hidden;
+}
+
+main .column-header:hover .anchor-link{
+    padding-left: 10px;
+    visibility: visible;
+}
+
 @media screen and (max-width: 1280px) {
     main div.columns div.second-column {
         width: 100%;
@@ -75,6 +85,7 @@ main div.second-column {
 main div.columns h3.column-header {
     margin-top: 0!important;
     margin-bottom: var(--spectrum-global-dimension-size-200)!important;
+    scroll-margin-top:100px;
 }
 
 main div.columns h3.column-header + p {
