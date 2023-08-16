@@ -1,5 +1,6 @@
 import {
   createTag,
+  decorateAnchorLink,
 } from '../../scripts/lib-adobeio.js';
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
@@ -13,7 +14,8 @@ export default async function decorate(block) {
   decorateLightOrDark(block);
 
   block.querySelectorAll('h2').forEach((h2) => {
-    h2.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
+    h2.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'info-header');
+    decorateAnchorLink(h2);
     const hr = createTag('hr', { class: 'spectrum-Divider spectrum-Divider--sizeL' });
     h2.after(hr);
   });
