@@ -3,12 +3,12 @@ import {
   createTag,
   removeEmptyPTags,
   getBlockSectionContainer,
+  decorateAnchorLink,
 } from '../../scripts/lib-adobeio.js';
 
 import {
   createOptimizedPicture,
   decorateLightOrDark,
-  decorateAnchorLink,
 } from '../../scripts/lib-helix.js';
 
 /**

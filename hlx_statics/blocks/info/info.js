@@ -1,7 +1,8 @@
 import {
   createTag,
+  decorateAnchorLink,
 } from '../../scripts/lib-adobeio.js';
-import { decorateLightOrDark, decorateAnchorLink } from '../../scripts/lib-helix.js';
+import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
 /**
  * decorates the info

@@ -5,7 +5,6 @@ import {
   loadBlock,
   decorateButtons,
   decorateIcons,
-  decorateAnchorLink,
   decorateSections,
   decorateBlocks,
   decorateTemplateAndTheme,
@@ -21,6 +20,7 @@ import {
 import {
   buildEmbeds,
   toggleScale,
+  decorateAnchorLink,
 } from './lib-adobeio.js';
 
 export {
