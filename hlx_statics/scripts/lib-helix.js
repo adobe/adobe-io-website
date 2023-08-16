@@ -9,9 +9,6 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-import {
-  createTag,
-} from '../scripts/lib-adobeio.js';
 
 /**
  * log RUM if part of the sample.
