@@ -1,0 +1,61 @@
+main div.accordion .accordion-div {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin: auto;
+}
+
+main div.accordion .accordion-item {
+    border-color: var(--spectrum-global-color-gray-300);
+    border-bottom: var(--spectrum-alias-border-size-thin) solid;
+    display: list-item;
+    list-style: none;
+    width: 100%;
+}
+
+main div.accordion .spectrum-Accordion-ChevronIcon {
+    padding: 6px!important;
+}
+
+main div.accordion h3 {
+    margin: 0;
+}
+
+main div.accordion .accordion-itemHeader {
+    box-sizing: border-box;
+    margin: 0;
+    text-align: left;
+    align-items: center;
+    width: 100%!important;
+    background-color: inherit;
+    border: 0;
+    cursor: pointer;
+    padding-left: 0!important;
+    display: flex;
+    justify-content: flex-start;
+    font-family: inherit;
+    font-size: 16px !important;
+    padding: var( --spectrum-global-dimension-size-150 );
+    font-weight: var(--spectrum-global-font-weight-bold)!important;
+}
+
+main div.accordion .accordion-itemHeader:hover {
+    background-color:  var(--spectrum-global-color-gray-200);
+    color: var(--spectrum-global-color-gray-900);
+}
+
+main div.accordion .accordion-itemContent {
+    font-size: 16px;
+    margin-top: var(--spectrum-global-dimension-size-150);
+    padding-left: 20px!important;
+    padding-bottom: var(--spectrum-global-dimension-size-200);
+    display: none;
+    
+}
+
+main div.accordion .active {
+    background-color: transparent;
+}
+     
