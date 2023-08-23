@@ -3,12 +3,27 @@ main div.accordion .accordion-div {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50%;
-    margin: auto;
+    width: 50% !important;
+    margin: auto !important;
+}
+
+main .accordion-whole {
+    padding: var(--spectrum-global-dimension-size-600) 0;
+    background-color: white !important;
+}
+
+main div.accordion .accordion-title {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    color: black;
+    width: 50% !important;
+    margin: auto !important
 }
 
 main div.accordion .accordion-item {
-    border-color: var(--spectrum-global-color-gray-300);
+    border-color: #d9d9d9 !important;
     border-bottom: var(--spectrum-alias-border-size-thin) solid;
     display: list-item;
     list-style: none;
@@ -37,12 +52,15 @@ main div.accordion .accordion-itemHeader {
     justify-content: flex-start;
     font-family: inherit;
     font-size: 16px !important;
-    padding: var( --spectrum-global-dimension-size-150 );
+    padding-left: 0 !important;
+    padding-right: var(--spectrum-global-dimension-size-275);
+    padding-bottom: var(--spectrum-global-dimension-size-200);
+    padding-top: var(--spectrum-global-dimension-size-200);
     font-weight: var(--spectrum-global-font-weight-bold)!important;
 }
 
 main div.accordion .accordion-itemHeader:hover {
-    background-color:  var(--spectrum-global-color-gray-200);
+    background-color:  #e9eaeb;
     color: var(--spectrum-global-color-gray-900);
 }
 
@@ -52,7 +70,6 @@ main div.accordion .accordion-itemContent {
     padding-left: 20px!important;
     padding-bottom: var(--spectrum-global-dimension-size-200);
     display: none;
-    
 }
 
 main div.accordion .active {
