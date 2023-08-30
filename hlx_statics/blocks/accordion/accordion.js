@@ -72,4 +72,9 @@ export default async function decorate(block) {
         };
     });
   });
+
+  if(block.parentElement.parentElement.classList.contains('white')){
+    block.parentElement.parentElement.style.backgroundColor = 'white';
+  };
+
 }

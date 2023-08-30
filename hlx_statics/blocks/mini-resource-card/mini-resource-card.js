@@ -60,4 +60,8 @@ export default async function decorate(block) {
 
     });
     block.appendChild(grid_div);
+
+    if(block.parentElement.parentElement.classList.contains('white')){
+        block.parentElement.parentElement.style.backgroundColor = 'white';
+    };
 }

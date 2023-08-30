@@ -173,6 +173,10 @@ export default async function decorate(block) {
         slide_selected.classList.remove('carousel-circle-selected')
     };  
   };
+
+  if(block.parentElement.parentElement.classList.contains('white')){
+    block.parentElement.parentElement.style.backgroundColor = 'white';
+  };
   
   function slideTimer() {
     if(!isPaused){
