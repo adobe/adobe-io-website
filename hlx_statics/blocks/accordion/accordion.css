@@ -9,7 +9,6 @@ main div.accordion .accordion-div {
 
 main .accordion-whole {
     padding: var(--spectrum-global-dimension-size-600) 0;
-    background-color: white !important;
 }
 
 main div.accordion .accordion-title {
