@@ -35,10 +35,6 @@ export default async function decorate(block) {
   block.setAttribute('daa-lh', 'column');
 
   decorateLightOrDark(block);
-
-  if(block.parentElement.parentElement.classList.contains('background-color-white')){
-    block.parentElement.parentElement.style.backgroundColor = 'white';
-  };
   
   if (!container.classList.contains('columns-container')) {
     // eslint-disable-next-line no-console
