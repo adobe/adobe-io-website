@@ -104,6 +104,15 @@ main div.columns div.product-link-container p {
     margin-top: var(--spectrum-global-dimension-size-300);
 }
 
+main div.columns div.listing{
+    text-align: right;
+    width: auto;
+}
+
+main div.columns div.listing ul {
+    text-align: left;
+}
+
 @media screen and (min-width:768px) {
     main div.columns div.product-link-container p + p {
         margin-left: var(--spectrum-global-dimension-size-300);

@@ -65,6 +65,9 @@ export default async function decorate(block) {
       }
       buttonGroupContainer.appendChild(p);
     });
+    column.querySelectorAll('ul').forEach((ul) => {
+      ul.parentElement.classList.add('listing');
+    });
   });
 
   block.querySelectorAll('a').forEach((a) => {
