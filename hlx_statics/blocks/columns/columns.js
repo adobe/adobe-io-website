@@ -35,7 +35,7 @@ export default async function decorate(block) {
   block.setAttribute('daa-lh', 'column');
 
   decorateLightOrDark(block);
-
+  
   if (!container.classList.contains('columns-container')) {
     // eslint-disable-next-line no-console
     console.error('Columns Block expects .columns-container to be parent.');

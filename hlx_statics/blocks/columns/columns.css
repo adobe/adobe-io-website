@@ -28,6 +28,10 @@ main div.columns > div:nth-child(even) {
     flex-direction: row-reverse;
 }
 
+main div.columns-container.background-color-white {
+    background-color: white;
+}
+
 @media screen and (max-width: 1280px) {
     main div.columns > div {
         flex-direction: column;
