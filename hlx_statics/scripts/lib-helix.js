@@ -313,8 +313,10 @@ export function decorateSections(main) {
               section.classList.add('spectrum--dark');
             }
           });
+        } else if (key === 'linkstyle') {
+          section.classList.add(meta.linkstyle);
         } else {
-          section.dataset[toCamelCase(key)] = meta[key];
+            section.dataset[toCamelCase(key)] = meta[key];
         }
       });
       sectionMeta.parentNode.remove();
