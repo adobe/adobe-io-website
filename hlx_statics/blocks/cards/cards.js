@@ -21,8 +21,8 @@ function processImages(block) {
  */
 export default async function decorate(block) {
   // by default, we will use all links as button.  When the section metadata added a linkstyle to be link, it'll change that section's button to be link.
-  const isLink = block.parentElement.parentElement.classList.contains('link');
-  if(!isLink) {
+  const isLink = block.parentElement.parentElement.getAttribute('data-link-class');
+  if(isLink !== "link") {
     decorateButtons(block);
   }
   block.setAttribute('daa-lh', 'card');
@@ -38,7 +38,7 @@ export default async function decorate(block) {
       p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
     });
 
-    if(isLink) {
+    if(isLink === "link") {
       card.querySelectorAll('p > a').forEach((a) => {
         a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
       });
