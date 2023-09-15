@@ -60,8 +60,9 @@ export default async function decorate(block) {
   block.querySelectorAll('.columns > div > div').forEach((column) => {
     const buttonGroupContainer = createTag('div', { class: 'button-group-container' });
     column.querySelectorAll('.button-container').forEach((p, key) => {
+      const prevElement = p.previousElementSibling;
       if (key === 0) {
-        p.parentElement.appendChild(buttonGroupContainer);
+        prevElement.insertAdjacentElement("afterend",buttonGroupContainer);
       }
       buttonGroupContainer.appendChild(p);
     });
