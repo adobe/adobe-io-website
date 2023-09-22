@@ -1,5 +1,6 @@
 {
   "project": "adobe-io",
+  "host": "https://developer.adobe.com/",
   "plugins": [
     {
       "id": "library",
