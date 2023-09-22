@@ -1,12 +1,12 @@
 {
   "project": "adobe-io",
-  "host": "https://developer.adobe.com/",
+  "host": "https://www.hlx.live/docs/sidekick#customizing-the-sidekick",
   "plugins": [
     {
       "id": "library",
       "title": "Library",
       "environments": ["edit"],
-      "url": "/tools/sidekick/library.html",
+      "url": "https://main--adobe-io-website--adobe.hlx.live/tools/sidekick/library.json",
       "includePaths": ["**.docx**"]
     }
   ]
