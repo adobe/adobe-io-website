@@ -1,6 +1,6 @@
 {
   "project": "adobe-io",
-  "host": "https://www.hlx.live/docs/sidekick#customizing-the-sidekick",
+  "host": "developer.adobe.com",
   "plugins": [
     {
       "id": "library",
