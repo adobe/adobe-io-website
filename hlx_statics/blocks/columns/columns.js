@@ -3,6 +3,7 @@ import {
   createTag,
   removeEmptyPTags,
   getBlockSectionContainer,
+  decorateAnchorLink,
 } from '../../scripts/lib-adobeio.js';
 
 import {
@@ -34,7 +35,7 @@ export default async function decorate(block) {
   block.setAttribute('daa-lh', 'column');
 
   decorateLightOrDark(block);
-
+  
   if (!container.classList.contains('columns-container')) {
     // eslint-disable-next-line no-console
     console.error('Columns Block expects .columns-container to be parent.');
@@ -44,6 +45,7 @@ export default async function decorate(block) {
 
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
+    decorateAnchorLink(h);
   });
   block.querySelectorAll('p').forEach((p) => {
     const hasLinks = p.querySelectorAll('a, button');
@@ -58,10 +60,14 @@ export default async function decorate(block) {
   block.querySelectorAll('.columns > div > div').forEach((column) => {
     const buttonGroupContainer = createTag('div', { class: 'button-group-container' });
     column.querySelectorAll('.button-container').forEach((p, key) => {
+      const prevElement = p.previousElementSibling;
       if (key === 0) {
-        p.parentElement.appendChild(buttonGroupContainer);
+        prevElement.insertAdjacentElement("afterend",buttonGroupContainer);
       }
       buttonGroupContainer.appendChild(p);
+    });
+    column.querySelectorAll('ul').forEach((ul) => {
+      ul.parentElement.classList.add('listing');
     });
   });
 
@@ -69,7 +75,9 @@ export default async function decorate(block) {
     if (!a.classList.contains('button')) {
       a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
     }
-    checkExternalLink(a);
+    if (!a.classList.contains('anchor-link')) {
+      checkExternalLink(a);
+    }
   });
 
   block.querySelectorAll('.button').forEach((button) => {

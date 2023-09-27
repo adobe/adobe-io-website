@@ -20,7 +20,11 @@ function processImages(block) {
  * @param {Element} block The cards block element
  */
 export default async function decorate(block) {
-  decorateButtons(block);
+  // by default, we will use all links as button.  When the section metadata added a linkstyle to be link, it'll change that section's button to be link.
+  const isLink = block.parentElement.parentElement.getAttribute('data-link-class');
+  if(isLink !== "link") {
+    decorateButtons(block);
+  }
   block.setAttribute('daa-lh', 'card');
   block.querySelectorAll('.cards > div').forEach((card, index, array) => {
 
@@ -34,10 +38,17 @@ export default async function decorate(block) {
       p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
     });
 
-    card.querySelectorAll('p > a').forEach((a) => {
-      a.classList.remove('spectrum-Button--secondary');
-      a.classList.add('spectrum-Button--cta', 'spectrum-Button--fill', 'card-button');
-    });
+    if(isLink === "link") {
+      card.querySelectorAll('p > a').forEach((a) => {
+        a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
+      });
+    } else {
+      card.querySelectorAll('p > a').forEach((a) => {
+        a.classList.remove('spectrum-Button--secondary');
+        a.classList.add('spectrum-Button--cta', 'spectrum-Button--fill', 'card-button');
+      });
+    }
+
 
     if (array.length === 3) {
       card.classList.add('three-card');

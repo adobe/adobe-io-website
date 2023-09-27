@@ -116,7 +116,7 @@ function displayFilteredCards(catalog, cards, buttons, limit, lightOrDarkCssClas
               height="48px"
               class="api-card-icon"
               src="/hlx_statics/icons/${card.Icon}.svg"
-              alt="${card.Title} Icon"
+              alt=""
             />
           </div>
         `;
@@ -145,7 +145,7 @@ function displayFilteredCards(catalog, cards, buttons, limit, lightOrDarkCssClas
 
       const cardTemplate = `
         <div class="api-card ${lightOrDarkCssClass}">
-          <div class="spectrum-Card api-card-inner" role="figure" tabindex="0">
+          <div class="spectrum-Card api-card-inner" tabindex="0">
             <div class="spectrum-Card-body api-card-body" daa-lh="browser card">
               ${iconTemplate}
               <div class="api-card-body-inner">
@@ -202,28 +202,31 @@ export default async function decorate(block) {
     const pickerContainer = createTag('div', { class: 'picker' });
     block.append(pickerContainer);
     const pickerHtml = `
-    <button id="filter-dropdown-picker" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet" aria-haspopup="listbox">
-        <span id="filter-label" class="spectrum-Picker-label">Last updated</span>
-        <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
-          <use xlink:href="./hlx_statics/styles/spectrum/spectrum-css-icon-Chevron100.svg#ChevronSize100" />
-        </svg>
-    </button>
-    <div id="filter-dropdown-popover" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover">
-        <ul id="filter-list"class="spectrum-Menu" role="listbox">
-        <li id="filter-list-last-updated" class="spectrum-Menu-item is-selected" role="option" aria-selected="true" tabindex="0">
-            <span class="spectrum-Menu-itemLabel">Last updated</span>
-            <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Menu-checkmark spectrum-Menu-itemIcon" focusable="false" aria-hidden="true">
-              <use xlink:href="./hlx_statics/styles/spectrum/spectrum-css-icon-Checkmark100.svg#CheckmarkSize100" />
-            </svg>
-        </li>
-        <li id="filter-list-name" class="spectrum-Menu-item" role="option" tabindex="0">
-            <span class="spectrum-Menu-itemLabel">Name</span>
-            <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Menu-checkmark spectrum-Menu-itemIcon" focusable="false" aria-hidden="true">
-              <use xlink:href="./hlx_statics/styles/spectrum/spectrum-css-icon-Checkmark100.svg#CheckmarkSize100" />
-            </svg>
-        </li>
-        </ul>
-    </div>
+      <div role="group" aria-labelledby="sortby-label" class="sort-group">
+      <p id="sortby-label" class="sort-by-label">Sort by</p>
+      <button  id="filter-dropdown-picker" class="spectrum-Picker spectrum-Picker--sizeM spectrum-Picker--quiet" aria-haspopup="listbox" aria-expanded="false">
+          <span id="filter-label" class="spectrum-Picker-label">Last updated</span>
+          <svg class="spectrum-Icon spectrum-UIIcon-ChevronDown100 spectrum-Picker-menuIcon" focusable="false" aria-hidden="true">
+            <use xlink:href="./hlx_statics/styles/spectrum/spectrum-css-icon-Chevron100.svg#ChevronSize100" />
+          </svg>
+      </button>
+      <div id="filter-dropdown-popover" class="spectrum-Popover spectrum-Popover--bottom spectrum-Picker-popover spectrum-Picker-popover--quiet filter-by-popover">
+          <ul id="filter-list"class="spectrum-Menu" role="menu">
+          <li id="filter-list-last-updated" class="spectrum-Menu-item is-selected" role="option" aria-selected="true" tabindex="0">
+              <span class="spectrum-Menu-itemLabel">Last updated</span>
+              <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Menu-checkmark spectrum-Menu-itemIcon" focusable="false" aria-hidden="true">
+                <use xlink:href="./hlx_statics/styles/spectrum/spectrum-css-icon-Checkmark100.svg#CheckmarkSize100" />
+              </svg>
+          </li>
+          <li id="filter-list-name" class="spectrum-Menu-item" role="option" tabindex="0">
+              <span class="spectrum-Menu-itemLabel">Name</span>
+              <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Menu-checkmark spectrum-Menu-itemIcon" focusable="false" aria-hidden="true">
+                <use xlink:href="./hlx_statics/styles/spectrum/spectrum-css-icon-Checkmark100.svg#CheckmarkSize100" />
+              </svg>
+          </li>
+          </ul>
+     </div>
+     </div>
     `;
 
     pickerContainer.innerHTML = pickerHtml;
@@ -234,10 +237,12 @@ export default async function decorate(block) {
     dropdownPicker.addEventListener('click', (evt) => {
       if (!evt.currentTarget.classList.contains('is-open')) {
         dropdownPicker.classList.add('is-open');
+        dropdownPicker.ariaExpanded = true;
         dropdownPopover.classList.add('is-open');
         dropdownPopover.ariaHidden = false;
       } else {
         dropdownPicker.classList.remove('is-open');
+        dropdownPicker.ariaExpanded = false;
         dropdownPopover.classList.remove('is-open');
         dropdownPopover.ariaHidden = true;
       }
@@ -248,7 +253,7 @@ export default async function decorate(block) {
     const filterListName = document.querySelector('#filter-list-name');
     const lightOrDarkCssClass = sectionIsDark(block) ? 'spectrum--darkest' : 'spectrum--lightest';
 
-    filterListLastUpdated.addEventListener('click', () => {
+    const lastUpdateHandler = function() {
       if (!filterListLastUpdated.classList.contains('is-selected')) {
         filterListLastUpdated.classList.add('is-selected');
         filterListLastUpdated.ariaSelected = true;
@@ -258,6 +263,7 @@ export default async function decorate(block) {
         dropdownPicker.classList.remove('is-open');
         dropdownPopover.classList.remove('is-open');
         dropdownPopover.ariaHidden = true;
+        dropdownPicker.ariaExpanded = false;
         displayFilteredCards(
           catalog.sort(sortDate),
           cards,
@@ -266,9 +272,9 @@ export default async function decorate(block) {
           lightOrDarkCssClass,
         );
       }
-    });
+    }
 
-    filterListName.addEventListener('click', () => {
+    const nameHandler = function() {
       if (!filterListName.classList.contains('is-selected')) {
         filterListLastUpdated.classList.remove('is-selected');
         filterListLastUpdated.ariaSelected = false;
@@ -278,6 +284,7 @@ export default async function decorate(block) {
         dropdownPicker.classList.remove('is-open');
         dropdownPopover.classList.remove('is-open');
         dropdownPopover.ariaHidden = true;
+        dropdownPicker.ariaExpanded = false;
         displayFilteredCards(
           catalog.sort(sortTitle),
           cards,
@@ -286,7 +293,13 @@ export default async function decorate(block) {
           lightOrDarkCssClass,
         );
       }
-    });
+    }
+
+    filterListLastUpdated.addEventListener('keydown', lastUpdateHandler);
+    filterListLastUpdated.addEventListener('click', lastUpdateHandler);
+
+    filterListName.addEventListener('keydown', nameHandler);
+    filterListName.addEventListener('click', nameHandler);
 
     apiCardsInner.append(filters);
 
@@ -310,8 +323,8 @@ export default async function decorate(block) {
     });
 
     const filtersTemplate = `
-      <div class="filters-inner">
-        <strong><h4 class="spectrum-Heading--sizeXS">Filter by</h4></strong>
+      <div role="group" aria-labelledby="group-label" class="filters-inner">
+        <strong><h4 id="group-label" class="spectrum-Heading--sizeXS">Filter by</h4></strong>
         <div class="filters-list">
           ${filterHtml}
         </div>

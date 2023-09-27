@@ -8,12 +8,16 @@ main div.summary-container {
 main div.summary {
   position: relative;
   width: 100%;
-  height: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-225));
 }
 
-@media screen and (max-width: 1280px) {
-  main div.summary {
-    height: 100vh;
+@media screen and (max-width: 768px) {
+  main div picture {
+    height: 350px;
+    width: 100%;
+  }
+  main div.summary img {
+    height: 100%;
+    width: 100%;
   }
 }
 

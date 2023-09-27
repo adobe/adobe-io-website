@@ -20,6 +20,7 @@ import {
 import {
   buildEmbeds,
   toggleScale,
+  decorateAnchorLink,
 } from './lib-adobeio.js';
 
 export {

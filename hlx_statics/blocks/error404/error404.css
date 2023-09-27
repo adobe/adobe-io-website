@@ -1,0 +1,16 @@
+main div.error404-container {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 calc(var(--spectrum-global-dimension-size-3600) + var(--spectrum-global-dimension-size-125));
+  flex-direction: column;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+

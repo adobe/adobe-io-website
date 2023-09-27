@@ -314,7 +314,7 @@ export function decorateSections(main) {
             }
           });
         } else {
-          section.dataset[toCamelCase(key)] = meta[key];
+            section.dataset[toCamelCase(key)] = meta[key];
         }
       });
       sectionMeta.parentNode.remove();
