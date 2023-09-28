@@ -132,7 +132,7 @@ main div.columns div.product-link-container p {
     margin-top: var(--spectrum-global-dimension-size-300);
 }
 
-main div.columns div.listing{
+main div.columns div.listing.second-column[data-align="right"]{
     text-align: right;
     width: auto;
 }
