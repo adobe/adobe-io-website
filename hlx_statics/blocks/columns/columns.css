@@ -28,6 +28,38 @@ main div.columns > div:nth-child(even) {
     flex-direction: row-reverse;
 }
 
+main div.columns-container.background-color-white {
+    background-color: white;
+}
+
+main div.columns-container.section[data-class="photoshoppricing"] .columns > div > div{
+    flex-basis:auto;
+    flex-grow: 1;
+    flex-shink: 1;
+    text-align: left;
+    padding: 0 var(--spectrum-global-dimension-size-800);
+}
+
+main div.columns-container.section[data-class="photoshoppricing"] .columns .button-container{
+    margin-left:0px;
+}
+
+main div.columns-container.section[data-list-class="checkmark"] ul {
+    list-style: none;
+    font-size: var(--spectrum-global-dimension-font-size-200);
+    padding: 0px;
+}
+
+main div.columns-container.section[data-list-class="checkmark"] ul > li {
+    margin-bottom: 12px;
+}
+
+main div.columns-container.section[data-list-class="checkmark"] ul > li:before{
+    color: #096;
+    content: "\2714\0020";
+}
+
+main div.columns-container
 @media screen and (max-width: 1280px) {
     main div.columns > div {
         flex-direction: column;
@@ -98,6 +130,15 @@ main div.columns p + p {
 
 main div.columns div.product-link-container p {
     margin-top: var(--spectrum-global-dimension-size-300);
+}
+
+main div.columns div.listing.second-column[data-align="right"]{
+    text-align: right;
+    width: auto;
+}
+
+main div.columns div.listing ul {
+    text-align: left;
 }
 
 @media screen and (min-width:768px) {

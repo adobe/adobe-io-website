@@ -35,7 +35,7 @@ export default async function decorate(block) {
   block.setAttribute('daa-lh', 'column');
 
   decorateLightOrDark(block);
-
+  
   if (!container.classList.contains('columns-container')) {
     // eslint-disable-next-line no-console
     console.error('Columns Block expects .columns-container to be parent.');
@@ -60,10 +60,15 @@ export default async function decorate(block) {
   block.querySelectorAll('.columns > div > div').forEach((column) => {
     const buttonGroupContainer = createTag('div', { class: 'button-group-container' });
     column.querySelectorAll('.button-container').forEach((p, key) => {
+      const prevElement = p.previousElementSibling;
       if (key === 0) {
-        p.parentElement.appendChild(buttonGroupContainer);
+        prevElement.insertAdjacentElement("afterend",buttonGroupContainer);
       }
       buttonGroupContainer.appendChild(p);
+    });
+    column.querySelectorAll('ul').forEach((ul) => {
+      ul.parentElement.classList.add('listing');;
+      ul.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
     });
   });
 
