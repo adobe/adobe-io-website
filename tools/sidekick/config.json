@@ -5,7 +5,7 @@
       "id": "library",
       "title": "Library",
       "environments": ["edit"],
-      "url": "/tools/sidekick/library.html",
+      "url": "https://main--adobe-io-website--adobe.hlx.live/tools/sidekick/library.html",
       "includePaths": ["**.docx**"]
     }
   ]
