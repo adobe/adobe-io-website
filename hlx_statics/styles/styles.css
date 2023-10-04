@@ -64,3 +64,5 @@ main .section[data-section-status='initialized'] {
 body > header {
   height: 81px;
 }
+
+main.sidekick-library #onetrust-consent-sdk { display: none }

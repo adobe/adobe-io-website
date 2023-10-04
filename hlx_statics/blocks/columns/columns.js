@@ -67,7 +67,8 @@ export default async function decorate(block) {
       buttonGroupContainer.appendChild(p);
     });
     column.querySelectorAll('ul').forEach((ul) => {
-      ul.parentElement.classList.add('listing');
+      ul.parentElement.classList.add('listing');;
+      ul.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
     });
   });
 
