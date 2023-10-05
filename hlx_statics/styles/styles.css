@@ -65,4 +65,4 @@ body > header {
   height: 81px;
 }
 
-main.sidekick-library #onetrust-consent-sdk { display: none }
+body.sidekick-library #onetrust-consent-sdk { display: none }
