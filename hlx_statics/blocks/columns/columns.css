@@ -47,7 +47,8 @@ main div.columns-container.section[data-class="photoshoppricing"] .columns .butt
 main div.columns-container.section[data-list-class="checkmark"] ul {
     list-style: none;
     font-size: var(--spectrum-global-dimension-font-size-200);
-    padding: 0px;
+    padding-top: var(--spectrum-global-dimension-size-300);
+    padding-left: 0px;
 }
 
 main div.columns-container.section[data-list-class="checkmark"] ul > li {
