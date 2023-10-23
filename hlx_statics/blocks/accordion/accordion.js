@@ -1,5 +1,5 @@
-import {removeEmptyPTags, createTag} from '../../scripts/lib-adobeio.js';
-  
+import {removeEmptyPTags, createTag, decorateWidth, decorateBackgroundColor} from '../../scripts/lib-adobeio.js';
+
 /**
  * Returns the HTML for an accordion item
  * @param {*} heading The heading text of the accordion
@@ -72,9 +72,6 @@ export default async function decorate(block) {
         };
     });
   });
-
-  if(block.parentElement.parentElement.classList.contains('background-color-white')){
-    block.parentElement.parentElement.style.backgroundColor = 'white';
-  };
-
+  decorateBackgroundColor(block);
+  decorateWidth(block);
 }

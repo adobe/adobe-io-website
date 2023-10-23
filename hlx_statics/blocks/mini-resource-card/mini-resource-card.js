@@ -1,4 +1,4 @@
-import {createTag, removeEmptyPTags} from '../../scripts/lib-adobeio.js';
+import {createTag, removeEmptyPTags, decorateBackgroundColor} from '../../scripts/lib-adobeio.js';
   
 /**
  * Returns the HTML for a mini resource card
@@ -60,8 +60,5 @@ export default async function decorate(block) {
 
     });
     block.appendChild(grid_div);
-
-    if(block.parentElement.parentElement.classList.contains('background-color-white')){
-        block.parentElement.parentElement.style.backgroundColor = 'white';
-    };
+    decorateBackgroundColor(block);
 }

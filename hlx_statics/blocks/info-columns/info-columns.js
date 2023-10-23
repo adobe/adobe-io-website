@@ -2,6 +2,8 @@ import {
   createTag,
   checkExternalLink,
   removeEmptyPTags,
+  decorateBackgroundColor,
+  decorateWidth,
 } from '../../scripts/lib-adobeio.js';
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
@@ -46,4 +48,6 @@ export default async function decorate(block) {
       infoColumn.append(productLinkContainer);
     });
   });
+  decorateBackgroundColor(block);
+  decorateWidth(block);
 }

@@ -1,4 +1,4 @@
-import { decorateButtons } from '../../scripts/lib-adobeio.js';
+import { decorateButtons, decorateWidth, decorateBackgroundColor } from '../../scripts/lib-adobeio.js';
 import { createOptimizedPicture, decorateLightOrDark } from '../../scripts/lib-helix.js';
 
 /**
@@ -63,4 +63,6 @@ export default async function decorate(block) {
     }
   });
   observer.observe(block);
+  decorateBackgroundColor(block);
+  decorateWidth(block);
 }

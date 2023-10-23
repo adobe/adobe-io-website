@@ -4,7 +4,7 @@ main div.cards {
     display: flex;
     justify-content: center;
     flex-direction: row;
-} 
+}
 
 @media screen and (max-width: 320px) {
     main div.cards {
@@ -37,6 +37,12 @@ main div.cards > div.four-cards {
 
 main div.cards-container.background-color-white {
     background-color: white;
+}
+
+main div.cards-container .cards-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 main div.cards-container.background-color-white div.cards {

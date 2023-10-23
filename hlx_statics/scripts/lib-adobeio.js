@@ -510,3 +510,21 @@ export function decorateAnchorLink(header) {
   header.appendChild(anchorLink);
   // });
 }
+
+/**
+ * Decorates the width of a block
+ * @param {Element} The element to add the width style to.
+ */
+export function decorateWidth(block) {
+  const wid = block.parentElement.parentElement.getAttribute('data-width');
+  if (wid) block.style.width = wid;
+}
+
+/**
+ * Decorates the background color of a block
+ * @param {Element} The element to add the background color style to.
+ */
+export function decorateBackgroundColor(block) {
+  const color = block.parentElement.parentElement.getAttribute('data-backgroundcolor');
+  if (color) block.parentElement.parentElement.style.backgroundColor = color;
+}

@@ -1,5 +1,7 @@
 import {
   removeEmptyPTags,
+  decorateWidth,
+  decorateBackgroundColor,
 } from '../../scripts/lib-adobeio.js';
 
 import {
