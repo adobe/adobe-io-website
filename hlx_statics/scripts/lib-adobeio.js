@@ -526,5 +526,9 @@ export function decorateWidth(block) {
  */
 export function decorateBackgroundColor(block) {
   const color = block.parentElement.parentElement.getAttribute('data-backgroundcolor');
-  if (color) block.parentElement.parentElement.style.backgroundColor = color;
+  if (color == "white") {
+    block.parentElement.parentElement.style.backgroundColor = color;
+  } else if (color == "navy") {
+    block.parentElement.parentElement.style.backgroundColor = "rgb(15, 55, 95)";
+  }
 }
