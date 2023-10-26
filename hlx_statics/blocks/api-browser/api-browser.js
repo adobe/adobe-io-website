@@ -8,8 +8,8 @@ import {
   getBlockSectionContainer,
   createTag,
   focusRing,
-  decorateWidth,
-  decorateBackgroundColor,
+  applyWidthOverride,
+  applyBkgColorOverride,
 } from '../../scripts/lib-adobeio.js';
 
 // The list of current API filters
@@ -352,6 +352,6 @@ export default async function decorate(block) {
     });
     focusRing(block);
   }
-  decorateBackgroundColor(block);
-  decorateWidth(block);
+  applyBkgColorOverride(block);
+  applyWidthOverride(block);
 }

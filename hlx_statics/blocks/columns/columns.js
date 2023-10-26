@@ -4,8 +4,8 @@ import {
   removeEmptyPTags,
   getBlockSectionContainer,
   decorateAnchorLink,
-  decorateBackgroundColor,
-  decorateWidth,
+  applyBkgColorOverride,
+  applyWidthOverride,
 } from '../../scripts/lib-adobeio.js';
 
 import {
@@ -119,6 +119,6 @@ export default async function decorate(block) {
     }
   });
   observer.observe(block);
-  decorateBackgroundColor(block);
-  decorateWidth(block);
+  applyBkgColorOverride(block);
+  applyWidthOverride(block);
 }

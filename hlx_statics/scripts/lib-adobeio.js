@@ -512,20 +512,20 @@ export function decorateAnchorLink(header) {
 }
 
 /**
- * Decorates the width of a block
+ * Set the width of a block from Section Metadata.
  * @param {Element} The element to add the width style to.
  */
-export function decorateWidth(block) {
-  const wid = block.parentElement.parentElement.getAttribute('data-width');
+export function applyWidthOverride(block) {
+  const wid = block?.parentElement?.parentElement?.getAttribute('data-width');
   if (wid) block.style.width = wid;
 }
 
 /**
- * Decorates the background color of a block
+ * set the background color of a block from Section Metadata
  * @param {Element} The element to add the background color style to.
  */
-export function decorateBackgroundColor(block) {
-  const color = block.parentElement.parentElement.getAttribute('data-backgroundcolor');
+export function applyBkgColorOverride(block) {
+  const color = block?.parentElement?.parentElement?.getAttribute('data-backgroundcolor');
   if (color == "white") {
     block.parentElement.parentElement.style.backgroundColor = color;
   } else if (color == "navy") {

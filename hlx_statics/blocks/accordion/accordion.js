@@ -1,4 +1,4 @@
-import {removeEmptyPTags, createTag, decorateWidth, decorateBackgroundColor} from '../../scripts/lib-adobeio.js';
+import {removeEmptyPTags, createTag, applyWidthOverride, applyBkgColorOverride} from '../../scripts/lib-adobeio.js';
 
 /**
  * Returns the HTML for an accordion item
@@ -72,6 +72,6 @@ export default async function decorate(block) {
         };
     });
   });
-  decorateBackgroundColor(block);
-  decorateWidth(block);
+  applyBkgColorOverride(block);
+  applyWidthOverride(block);
 }

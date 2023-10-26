@@ -1,4 +1,4 @@
-import { createTag, decorateButtons, removeEmptyPTags, decorateWidth, decorateBackgroundColor} from '../../scripts/lib-adobeio.js';
+import { createTag, decorateButtons, removeEmptyPTags, applyWidthOverride, applyBkgColorOverride} from '../../scripts/lib-adobeio.js';
 /**
  * decorates the carousel
  * @param {Element} block The carousel block element
@@ -192,6 +192,6 @@ export default async function decorate(block) {
 
   const timer = setTimeout(slideTimer, 9000);
   timer;
-  decorateBackgroundColor(block);
-  decorateWidth(block);
+  applyBkgColorOverride(block);
+  applyWidthOverride(block);
 }

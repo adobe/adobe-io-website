@@ -1,8 +1,8 @@
 import {
   createTag,
   decorateAnchorLink,
-  decorateBackgroundColor,
-  decorateWidth,
+  applyBkgColorOverride,
+  applyWidthOverride,
 } from '../../scripts/lib-adobeio.js';
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
@@ -30,6 +30,6 @@ export default async function decorate(block) {
   block.querySelectorAll('a').forEach((a) => {
     a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
   });
-  decorateBackgroundColor(block);
-  decorateWidth(block);
+  applyBkgColorOverride(block);
+  applyWidthOverride(block);
 }

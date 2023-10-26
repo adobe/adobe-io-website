@@ -1,6 +1,6 @@
 import {
-  decorateWidth,
-  decorateBackgroundColor,
+  applyWidthOverride,
+  applyBkgColorOverride,
 } from '../../scripts/lib-adobeio.js';
 /*
  * Table Block
@@ -52,6 +52,6 @@ export default async function decorate(block) {
   });
   block.textContent = '';
   block.append(table);
-  decorateBackgroundColor(block);
-  decorateWidth(block);
+  applyBkgColorOverride(block);
+  applyWidthOverride(block);
 }
