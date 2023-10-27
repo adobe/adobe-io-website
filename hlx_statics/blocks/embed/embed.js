@@ -59,7 +59,7 @@ const loadEmbed = (block, a) => {
   };
   block.addEventListener('mouseover', videoListener);
   applyBkgColorOverride(block);
-  const wid = block.parentElement.parentElement.getAttribute('data-width');
+  const wid = block?.parentElement?.parentElement?.getAttribute('data-width');
   if (wid) block.firstChild.firstChild.style.width = wid;
 };
 
