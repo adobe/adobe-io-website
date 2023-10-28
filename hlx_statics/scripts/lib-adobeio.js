@@ -510,3 +510,25 @@ export function decorateAnchorLink(header) {
   header.appendChild(anchorLink);
   // });
 }
+
+/**
+ * Set the width of a block from Section Metadata.
+ * @param {Element} The element to add the width style to.
+ */
+export function applyWidthOverride(block) {
+  const wid = block?.parentElement?.parentElement?.getAttribute('data-width');
+  if (wid) block.style.width = wid;
+}
+
+/**
+ * set the background color of a block from Section Metadata
+ * @param {Element} The element to add the background color style to.
+ */
+export function applyBkgColorOverride(block) {
+  const color = block?.parentElement?.parentElement?.getAttribute('data-backgroundcolor');
+  if (color == "white") {
+    block.parentElement.parentElement.style.backgroundColor = color;
+  } else if (color == "navy") {
+    block.parentElement.parentElement.style.backgroundColor = "rgb(15, 55, 95)";
+  }
+}
