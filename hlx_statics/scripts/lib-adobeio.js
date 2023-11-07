@@ -337,7 +337,6 @@ export const setSearchFrameOrigin = (host, suffix = '') => {
  * @returns The first subfolder in the franklin dir - for special urls like apis will return the franklin_assets folder
  */
 export const getClosestFranklinSubfolder = (host, suffix = '') => {
-  //const subfolders = window.location.pathname.split('/');
   let subfolderPath = window.location.pathname.split('/')[1];
 
   // make sure top level paths point to the same nav if on these paths
