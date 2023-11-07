@@ -61,9 +61,7 @@ const loadEmbed = (block, a) => {
   applyBkgColorOverride(block);
   const wid = block?.parentElement?.parentElement?.getAttribute('data-width');
   if (wid) {
-    block.style.display = "flex";
-    block.style.alignItems = "ceneter";
-    block.style.justifyContent = "center";
+    block.classList.add('embed-custom-width');
     block.firstChild.firstChild.style.width = wid;
   }
 };
