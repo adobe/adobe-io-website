@@ -290,7 +290,7 @@ export default async function decorate(block) {
     });
 
     let buttonDiv;
-    if (window.location.pathname.includes("/developer-distribution/")) {
+    if (window.location.pathname.includes("/developer-distribution")) {
       buttonDiv = createTag('div');
       ul.appendChild(buttonDiv);
       buttonDiv.appendChild(globalMobileDistributeButton());
@@ -337,7 +337,7 @@ export default async function decorate(block) {
     header.append(ul);
     const rightContainer = createTag('div', { class: 'nav-console-right-container' });
     rightContainer.appendChild(globalNavSearchButton());
-    if (window.location.pathname.includes("/developer-distribution/")) {
+    if (window.location.pathname.includes("/developer-distribution")) {
       rightContainer.appendChild(globalDistributeButton());
     }
     rightContainer.appendChild(globalConsoleButton());
@@ -412,7 +412,7 @@ export default async function decorate(block) {
         });
     
         let buttonDiv;
-        if (window.location.pathname.includes("/developer-distribution/")) {
+        if (window.location.pathname.includes("/developer-distribution")) {
           buttonDiv = createTag('div');
           ul.appendChild(buttonDiv);
           buttonDiv.appendChild(globalMobileDistributeButton());
@@ -459,7 +459,7 @@ export default async function decorate(block) {
         header.append(ul);
         const rightContainer = createTag('div', { class: 'nav-console-right-container' });
         rightContainer.appendChild(globalNavSearchButton());
-        if (window.location.pathname.includes("/developer-distribution/")) {
+        if (window.location.pathname.includes("/developer-distribution")) {
           rightContainer.appendChild(globalDistributeButton());
         }
         rightContainer.appendChild(globalConsoleButton());
