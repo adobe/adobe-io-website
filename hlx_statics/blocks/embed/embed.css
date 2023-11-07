@@ -36,7 +36,7 @@ main div.embed-container {
     transition: opacity 2.4s ease 0s;
   }
 
-  main div.embed-container .embed{
+  main div.embed-container .embed-custom-width{
     display: flex;
     align-items: center;
     justify-content: center;
