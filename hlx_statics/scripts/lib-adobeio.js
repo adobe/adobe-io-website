@@ -527,4 +527,8 @@ export function applyBkgColorOverride(block) {
   } else if (color == "navy") {
     block.parentElement.parentElement.style.backgroundColor = "rgb(15, 55, 95)";
   }
+  // Support the old style
+  if(block.parentElement.parentElement.classList.contains('background-color-white')){
+    block.parentElement.parentElement.style.backgroundColor = 'white';
+  };
 }
