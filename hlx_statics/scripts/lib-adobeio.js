@@ -513,7 +513,11 @@ export function decorateAnchorLink(header) {
  */
 export function applyWidthOverride(block) {
   const wid = block?.parentElement?.parentElement?.getAttribute('data-width');
-  if (wid) block.style.width = wid;
+  if (wid) {
+    const widToInt = parseInt(wid.slice(0,wid.length-2));
+    if (widToInt >= 320 && widToInt <= 1920)
+    block.style.width = wid;
+  }
 }
 
 /**
