@@ -343,14 +343,10 @@ export const getClosestFranklinSubfolder = (host, suffix = '') => {
   if (subfolderPath === '' || subfolderPath === 'apis' || subfolderPath === 'open' || subfolderPath === 'developer-support') {
     subfolderPath = 'franklin_assets';
   } else {
-    // get those peksy non-trailing / urls 
-    if(window.location.pathname.split('/').length === 2){
-      subfolderPath = window.location.pathname;
-    } else {
-      // get closest level dir and strip trailing slash
-      subfolderPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-    }
-    // strip any leading slash 
+    subfolderPath = window.location.pathname;
+    // strip any ending slash
+    if (subfolderPath.charAt(subfolderPath.length-1) === '/') subfolderPath = subfolderPath.substring(0, subfolderPath.length-1);
+    // strip any leading slash
     if (subfolderPath.charAt(0) === '/') subfolderPath = subfolderPath.substring(1);
   }
 
@@ -509,4 +505,34 @@ export function decorateAnchorLink(header) {
     '                </svg>';
   header.appendChild(anchorLink);
   // });
+}
+
+/**
+ * Set the width of a block from Section Metadata.
+ * @param {Element} The element to add the width style to.
+ */
+export function applyWidthOverride(block) {
+  const wid = block?.parentElement?.parentElement?.getAttribute('data-width');
+  if (wid) {
+    const widToInt = parseInt(wid.slice(0,wid.length-2));
+    if (widToInt >= 320 && widToInt <= 1920)
+    block.style.width = wid;
+  }
+}
+
+/**
+ * set the background color of a block from Section Metadata
+ * @param {Element} The element to add the background color style to.
+ */
+export function applyBkgColorOverride(block) {
+  const color = block?.parentElement?.parentElement?.getAttribute('data-backgroundcolor');
+  if (color == "white") {
+    block.parentElement.parentElement.style.backgroundColor = color;
+  } else if (color == "navy") {
+    block.parentElement.parentElement.style.backgroundColor = "rgb(15, 55, 95)";
+  }
+  // Support the old style
+  if(block.parentElement.parentElement.classList.contains('background-color-white')){
+    block.parentElement.parentElement.style.backgroundColor = 'white';
+  };
 }

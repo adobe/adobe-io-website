@@ -1,3 +1,7 @@
+import {
+  applyWidthOverride,
+  applyBkgColorOverride,
+} from '../../scripts/lib-adobeio.js';
 /*
  * Table Block
  * Recreate a table
@@ -48,4 +52,6 @@ export default async function decorate(block) {
   });
   block.textContent = '';
   block.append(table);
+  applyBkgColorOverride(block);
+  applyWidthOverride(block);
 }

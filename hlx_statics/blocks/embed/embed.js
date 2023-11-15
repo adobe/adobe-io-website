@@ -5,6 +5,7 @@
  */
 
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
+import { applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
 
 /**
  * Gets the video id from the authored URL and inserts the Youtube embed
@@ -57,6 +58,12 @@ const loadEmbed = (block, a) => {
     block.removeEventListener('mouseover', videoListener);
   };
   block.addEventListener('mouseover', videoListener);
+  applyBkgColorOverride(block);
+  const wid = block?.parentElement?.parentElement?.getAttribute('data-width');
+  if (wid) {
+    block.classList.add('embed-custom-width');
+    block.firstChild.firstChild.style.width = wid;
+  }
 };
 
 /**
