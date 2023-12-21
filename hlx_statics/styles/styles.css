@@ -55,6 +55,10 @@ main .section {
   padding: var(--spectrum-global-dimension-size-400) 0;
 }
 
+main .section .section-title{
+  margin: 0;
+  text-align: center;
+}
 /* progressive section appearance */
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
