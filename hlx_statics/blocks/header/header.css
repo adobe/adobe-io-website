@@ -370,6 +370,10 @@ header.global-nav-header div.nav-sign-in {
   margin-right: 24px;
 }
 
+header.global-nav-header div.nav-profile {
+  margin-right: 24px;
+}
+
 header.global-nav-header div#nav-profile-dropdown-popover {
   width: var(--spectrum-global-dimension-size-3400);
   max-height: var(--spectrum-global-dimension-size-4600);
