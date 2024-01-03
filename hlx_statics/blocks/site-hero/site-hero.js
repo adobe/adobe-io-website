@@ -21,11 +21,11 @@ export default async function decorate(block) {
     h.parentElement.classList.add('site-hero-content');
     h.parentElement.append(button_div);
   });
-  
+
   block.querySelectorAll('p').forEach((p) => {
     const hasLinks = p.querySelectorAll('a, button');
     // don't attach to icon container or if p tag contains links
-    if (!p.classList.contains('icon-container') && hasLinks.length === 0) {
+    if (!p.classList.contains('icon-container')) {
       p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
     }
     if (p.classList.contains('button-container')){
