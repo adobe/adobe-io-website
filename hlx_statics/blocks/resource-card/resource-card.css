@@ -116,6 +116,7 @@ main div.resource-card-title {
 
 main div.resource-card-content {
   margin-bottom: 24px !important;
+  padding-bottom: 12px;
 }
 
 main div.resource-card h3 {
