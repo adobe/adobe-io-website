@@ -45,11 +45,10 @@ main div.resource-card {
 } 
 
 main div.resource-card > div {
-  width: calc(33.33vw - 48px);
-  padding: var(--spectrum-global-dimension-size-1000) 0;
+  width: 400px;
 } 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1280px) {
   main div.resource-card {
     flex-direction: column;
     flex-wrap: wrap;
@@ -74,17 +73,9 @@ main div.resource-card > div {
   }
 }
 
-main div.resource-card > div:first-child {
-  padding-left: 12px;
-} 
-main div.resource-card > div:nth-child(2){
-  padding-left: 24px;
-  padding-right: 24px;
-} 
-
-main div.resource-card > div:last-child{
-  padding-right: 12px;
-} 
+main div.resource-card > div{
+  padding: 24px;
+}
 
 main div.resource-card-preview {
   height: 200px;
@@ -103,7 +94,7 @@ main div.resource-card-image-container {
 
 main div.resource-card-image-container img {
   object-fit: cover;
-  width: calc(33.33vw - 48px);
+  width: 400px;
 }
 
 main div.resource-card-body {
@@ -125,6 +116,7 @@ main div.resource-card-title {
 
 main div.resource-card-content {
   margin-bottom: 24px !important;
+  padding-bottom: 12px;
 }
 
 main div.resource-card h3 {
