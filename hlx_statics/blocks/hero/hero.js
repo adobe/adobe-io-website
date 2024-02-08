@@ -27,7 +27,7 @@ export default async function decorate(block) {
   decorateLightOrDark(block, true);
   // H1 decoration
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
-    h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
+    h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL');
   });
 
   block.querySelectorAll('picture source').forEach((picture) => {
