@@ -11,7 +11,7 @@ import {
 import {
   createOptimizedPicture,
   decorateLightOrDark,
-} from '../../scripts/lib-helix.js';
+} from '../../scripts/aem.js';
 
 /**
  * Generates optimized images for all columns in the block

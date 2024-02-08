@@ -4,7 +4,7 @@
  * https://www.hlx.live/developer/block-collection/embed
  */
 
-import { decorateLightOrDark } from '../../scripts/lib-helix.js';
+import { decorateLightOrDark } from '../../scripts/aem.js';
 import { applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
 
 /**

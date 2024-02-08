@@ -1,7 +1,7 @@
 import {
   decorateButtons,
 } from '../../scripts/lib-adobeio.js';
-import { decorateLightOrDark } from '../../scripts/lib-helix.js';
+import { decorateLightOrDark } from '../../scripts/aem.js';
 
 /**
  * Rearranges the links into a hero-button-container div

@@ -1,5 +1,5 @@
 import { decorateButtons, applyWidthOverride, applyBkgColorOverride, applySectionTitle } from '../../scripts/lib-adobeio.js';
-import { createOptimizedPicture, decorateLightOrDark } from '../../scripts/lib-helix.js';
+import { createOptimizedPicture, decorateLightOrDark } from '../../scripts/aem.js';
 
 /**
  * Generates optimized images for all cards in the block
