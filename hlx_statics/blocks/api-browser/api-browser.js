@@ -1,10 +1,10 @@
 import {
-  decorateLightOrDark,
   readBlockConfig,
   toClassName,
-  sectionIsDark,
-} from '../../scripts/lib-helix.js';
+} from '../../scripts/aem.js';
 import {
+  sectionIsDark,
+  decorateLightOrDark,
   getBlockSectionContainer,
   createTag,
   focusRing,

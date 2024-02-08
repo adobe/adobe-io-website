@@ -1,6 +1,6 @@
 import {
   buildBlock,
-} from './lib-helix.js';
+} from './aem.js';
 
 /**
  * Breakpoints
@@ -549,4 +549,28 @@ export function applySectionTitle(block) {
     titleElement.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'section-title');
     block?.parentElement?.parentElement?.prepend(titleElement);
   }
+}
+
+export function sectionIsDark(block) {
+  if (!block) {
+    return false;
+  }
+
+  const section = block.parentElement?.parentElement;
+
+  return section && section.classList.contains('dark');
+}
+
+export function decorateLightOrDark(block, max = false) {
+  if (!block) {
+    return;
+  }
+
+  let cssClass = max ? 'spectrum--lightest' : 'spectrum--light';
+
+  if (sectionIsDark(block)) {
+    cssClass = max ? 'spectrum--darkest' : 'spectrum--dark';
+  }
+
+  block.classList.add(cssClass);
 }

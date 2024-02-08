@@ -11,11 +11,10 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
-  addFavIcon,
   getMetadata,
   toCamelCase,
   toClassName,
-} from './lib-helix.js';
+} from './aem.js';
 
 import {
   buildEmbeds,
@@ -148,7 +147,6 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  addFavIcon(`${window.hlx.codeBasePath}/hlx_statics/icons/adobe.svg`);
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));

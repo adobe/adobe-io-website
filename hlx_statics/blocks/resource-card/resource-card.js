@@ -5,7 +5,7 @@ import {
 
 import {
   createOptimizedPicture,
-} from '../../scripts/lib-helix.js';
+} from '../../scripts/aem.js';
 
 /**
  * Returns the HTML for a resource card

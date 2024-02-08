@@ -4,7 +4,7 @@ import {
   applyBkgColorOverride,
   applyWidthOverride,
 } from '../../scripts/lib-adobeio.js';
-import { decorateLightOrDark } from '../../scripts/lib-helix.js';
+import { decorateLightOrDark } from '../../scripts/aem.js';
 
 /**
  * decorates the info

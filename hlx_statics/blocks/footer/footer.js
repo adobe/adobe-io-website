@@ -1,4 +1,4 @@
-import { readBlockConfig } from '../../scripts/lib-helix.js';
+import { readBlockConfig } from '../../scripts/aem.js';
 import {
   createTag,
   setExpectedOrigin,

@@ -9,7 +9,7 @@ import {
   setQueryStringParameter,
   getQueryString,
 } from '../../scripts/lib-adobeio.js';
-import { readBlockConfig } from '../../scripts/lib-helix.js';
+import { readBlockConfig } from '../../scripts/aem.js';
 
 function globalNavSearchButton() {
   const div = createTag('div', { class: 'nav-console-search-button' });
