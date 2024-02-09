@@ -17,7 +17,13 @@ export default async function decorate(block) {
  
   block.classList.add('spectrum--dark');
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
-    h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL');
+    const fontFamily = block?.parentElement?.parentElement?.getAttribute('data-font-family');
+    if (fontFamily) {
+      h.style.fontFamily = fontFamily;
+      h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL');
+    } else {
+      h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
+    }
     h.parentElement.classList.add('site-hero-content');
     h.parentElement.append(button_div);
   });
