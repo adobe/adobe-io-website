@@ -90,6 +90,10 @@ main div.video-carousel .video-slide {
     flex: 1 0 100%;
 }
 
+main div.video-carousel .embed {
+    margin-top: 0px;
+}
+
 main div.video-carousel .video-slide-arrow {
     margin: auto;
     background-color: transparent; 
