@@ -11,6 +11,7 @@ import {
  * @param {Element} block The carousel block element
  */
 export default async function decorate(block) {
+  block.setAttribute('daa-lh', 'vidoe-carousel');
   removeEmptyPTags(block);
   decorateButtons(block);
 
@@ -38,7 +39,7 @@ export default async function decorate(block) {
   //load the video link.
   const a = block.querySelectorAll('a');
   for (let i=0; i < a.length; i++) {
-    loadEmbed(block, a[i]);
+    loadVideoURL(block, a[i]);
   }
 
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
@@ -153,11 +154,12 @@ export default async function decorate(block) {
     });
   });
 
-  function loadEmbed(block,a) {
+  // load the video url and append to the video element.
+  function loadVideoURL(block,a) {
     block.className = 'video-carousel';
     const link = a.href;
     const url = new URL(link);
-    a.insertAdjacentHTML('afterend', loadVideo(url));
+    a.insertAdjacentHTML('afterend', loadUrl(url));
     const videoElement = createTag('div', {class: 'video-element'});
     videoElement.innerHTML = a.parentElement.innerHTML;
     a.parentElement.parentElement.append(videoElement);
@@ -165,12 +167,32 @@ export default async function decorate(block) {
     videoElement.querySelector('a').remove();
   };
 
-  function loadVideo (url) {
-    const html = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-      <video loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" autoplay="true" preload="metadata" playsinline muted>
-        <source src="${url}" />
-      </video>
-    </div>`;
+  function loadUrl (url) {
+    let html;
+    const embed = url.pathname;
+    // Check if the URL is a youtube link.
+    const usp = new URLSearchParams(url.search);
+    let vid = encodeURIComponent(usp.get('v'));
+    const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/)|youtu\.be\/)/;
+    if (url.origin.includes('youtu.be')) {
+      vid = url.pathname.split('/')[1];
+    }
+    if (youtubeRegex.test(url)) {
+      // Render the youtube link through iframe within right container of one of the video carousel slide.
+      html = `<div style="left: 0; width: 560px; height: 320px; position: relative; ">
+      <img loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+        src="https://i.ytimg.com/vi_webp/${vid}/maxresdefault.webp">
+          <iframe data-src="https://www.youtube.com${vid ? `/embed/${vid}?rel=0&amp;v=${vid}` : embed}" allow="encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" scrolling="no" title="Content from Youtube" loading="lazy"></iframe>
+      </img>
+     </div>`;
+    } else {
+      // Render the url link through video tag within right container of one of the video carousel slide.
+      html = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+        <video loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" autoplay="true" preload="metadata" playsinline muted>
+          <source src="${url}" />
+        </video>
+      </div>`;
+    }
     return html;
   };
 
