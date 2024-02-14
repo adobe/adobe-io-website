@@ -4,6 +4,7 @@ import { createTag, decorateButtons, removeEmptyPTags, applyWidthOverride, apply
  * @param {Element} block The carousel block element
  */
 export default async function decorate(block) {
+  block.setAttribute('daa-lh', carousel);
   removeEmptyPTags(block);
   decorateButtons(block);
 
