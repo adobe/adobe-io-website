@@ -41,6 +41,7 @@ function getMiniResourceCard(linkHref, heading, text) {
  * @param {Element} block The mini-resource-card block element
  */
 export default async function decorate(block) {
+    block.setAttribute('daa-lh', 'mini resource card');
     const grid_div = createTag('div', {class: 'card-container'});
     block.querySelectorAll('.mini-resource-card > div').forEach((resource) => {
         removeEmptyPTags(resource);
