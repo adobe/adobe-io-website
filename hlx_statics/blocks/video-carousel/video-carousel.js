@@ -177,18 +177,26 @@ export default async function decorate(block) {
     if (url.origin.includes('youtu.be')) {
       vid = url.pathname.split('/')[1];
     }
+    // allow autoplay to be specified in the section metadata.
+    const autoPlay = block?.parentElement?.parentElement?.getAttribute('data-autoplay');
+
     if (youtubeRegex.test(url)) {
+      let dataSource = "https://www.youtube.com";
+      dataSource += vid ? "/embed/" + vid + "?rel=0&v=" + vid : embed;
+      // if autoplay is true, append autoplay to the datasource.
+      dataSource = autoPlay === "true" ? dataSource + "&autoplay=1&mute=1" : dataSource;
       // Render the youtube link through iframe within right container of one of the video carousel slide.
       html = `<div style="left: 0; width: 560px; height: 320px; position: relative; ">
       <img loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
         src="https://i.ytimg.com/vi_webp/${vid}/maxresdefault.webp">
-          <iframe data-src="https://www.youtube.com${vid ? `/embed/${vid}?rel=0&amp;v=${vid}` : embed}" allow="encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" scrolling="no" title="Content from Youtube" loading="lazy"></iframe>
+          <iframe data-src="${dataSource}" allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" scrolling="no" title="Content from Youtube" loading="lazy"></iframe>
       </img>
      </div>`;
     } else {
       // Render the url link through video tag within right container of one of the video carousel slide.
+      // if autoplay is true, add autoplay attribute to the video tag.
       html = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-        <video loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" autoplay="true" preload="metadata" playsinline muted>
+        <video loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" ${autoPlay === 'true' ? `autoplay="true"` : ""} preload="metadata" playsinline muted>
           <source src="${url}" />
         </video>
       </div>`;
