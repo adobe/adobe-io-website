@@ -196,7 +196,7 @@ export default async function decorate(block) {
       // Render the url link through video tag within right container of one of the video carousel slide.
       // if autoplay is true, add autoplay attribute to the video tag.
       html = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-        <video loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" ${autoPlay === 'true' ? `autoplay="true"` : ""} preload="metadata" playsinline muted>
+        <video controls loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" ${autoPlay === 'true' ? `autoplay="true"` : ""} preload="metadata" playsinline muted>
           <source src="${url}" />
         </video>
       </div>`;
