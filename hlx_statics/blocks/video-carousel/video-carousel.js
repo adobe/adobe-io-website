@@ -3,7 +3,8 @@ import {
   decorateButtons,
   removeEmptyPTags,
   applyWidthOverride,
-  applyBkgColorOverride
+  applyBkgColorOverride,
+  applyAnalyticHeaderOverride
 } from '../../scripts/lib-adobeio.js';
 
 /**
@@ -242,4 +243,5 @@ export default async function decorate(block) {
   timer;
   applyBkgColorOverride(block);
   applyWidthOverride(block);
+  applyAnalyticHeaderOverride(block);
 }

@@ -5,7 +5,7 @@
  */
 
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
-import { applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
+import { applyBkgColorOverride, applyAnalyticHeaderOverride } from '../../scripts/lib-adobeio.js';
 
 /**
  * Gets the video id from the authored URL and inserts the Youtube embed
@@ -72,6 +72,7 @@ const loadEmbed = (block, a) => {
  */
 export default async function decorate(block) {
   block.setAttribute('daa-lh', 'embed');
+  applyAnalyticHeaderOverride(block);
   const a = block.querySelector('a');
   loadEmbed(block, a);
 }

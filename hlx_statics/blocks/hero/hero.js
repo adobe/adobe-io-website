@@ -1,5 +1,6 @@
 import {
   decorateButtons,
+  applyAnalyticHeaderOverride,
 } from '../../scripts/lib-adobeio.js';
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
@@ -55,4 +56,5 @@ export default async function decorate(block) {
       p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
     }
   });
+  applyAnalyticHeaderOverride(block);
 }
