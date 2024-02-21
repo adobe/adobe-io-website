@@ -550,3 +550,14 @@ export function applySectionTitle(block) {
     block?.parentElement?.parentElement?.prepend(titleElement);
   }
 }
+
+/**
+ * Set the analytic header of a block from Section Metadata.
+ * @param {Element} The element to set the analytic heading attribute.
+ */
+export function applyAnalyticHeaderOverride(block) {
+  const heading = block?.parentElement?.parentElement?.getAttribute('data-analytic-heading');
+  if (heading) {
+    block.setAttribute('daa-lh', heading);
+  }
+}

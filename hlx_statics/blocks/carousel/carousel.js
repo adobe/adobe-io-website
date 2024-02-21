@@ -1,10 +1,10 @@
-import { createTag, decorateButtons, removeEmptyPTags, applyWidthOverride, applyBkgColorOverride} from '../../scripts/lib-adobeio.js';
+import { createTag, decorateButtons, removeEmptyPTags, applyWidthOverride, applyBkgColorOverride, applyAnalyticHeaderOverride} from '../../scripts/lib-adobeio.js';
 /**
  * decorates the carousel
  * @param {Element} block The carousel block element
  */
 export default async function decorate(block) {
-  block.setAttribute('daa-lh', carousel);
+  block.setAttribute('daa-lh', 'carousel');
   removeEmptyPTags(block);
   decorateButtons(block);
 
@@ -195,4 +195,5 @@ export default async function decorate(block) {
   timer;
   applyBkgColorOverride(block);
   applyWidthOverride(block);
+  applyAnalyticHeaderOverride(block);
 }

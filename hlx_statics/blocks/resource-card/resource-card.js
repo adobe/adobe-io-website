@@ -1,6 +1,7 @@
 import {
   removeEmptyPTags,
-  applySectionTitle
+  applySectionTitle,
+  applyAnalyticHeaderOverride,
 } from '../../scripts/lib-adobeio.js';
 
 import {
@@ -66,4 +67,5 @@ export default async function decorate(block) {
     pictureContainer.append(picture);
   });
   applySectionTitle(block);
+  applyAnalyticHeaderOverride(block);
 }

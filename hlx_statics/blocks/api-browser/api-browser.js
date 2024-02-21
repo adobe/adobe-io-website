@@ -10,6 +10,7 @@ import {
   focusRing,
   applyWidthOverride,
   applyBkgColorOverride,
+  applyAnalyticHeaderOverride,
 } from '../../scripts/lib-adobeio.js';
 
 // The list of current API filters
@@ -354,4 +355,5 @@ export default async function decorate(block) {
   }
   applyBkgColorOverride(block);
   applyWidthOverride(block);
+  applyAnalyticHeaderOverride(block);
 }
