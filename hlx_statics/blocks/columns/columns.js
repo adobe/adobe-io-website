@@ -6,6 +6,7 @@ import {
   decorateAnchorLink,
   applyBkgColorOverride,
   applyWidthOverride,
+  applyAnalyticHeaderOverride,
 } from '../../scripts/lib-adobeio.js';
 
 import {
@@ -35,7 +36,7 @@ export default async function decorate(block) {
   const container = getBlockSectionContainer(block);
 
   block.setAttribute('daa-lh', 'column');
-
+  applyAnalyticHeaderOverride(block);
   decorateLightOrDark(block);
   
   if (!container.classList.contains('columns-container')) {

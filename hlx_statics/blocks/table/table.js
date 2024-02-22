@@ -1,6 +1,7 @@
 import {
   applyWidthOverride,
   applyBkgColorOverride,
+  applyAnalyticHeaderOverride,
 } from '../../scripts/lib-adobeio.js';
 /*
  * Table Block
@@ -21,6 +22,7 @@ function buildCellHead(rowIndex) {
 }
 
 export default async function decorate(block) {
+  block.setAttribute('daa-lh', 'table');
   block.setAttribute('dir','ltr');
   const table = document.createElement('table');
   table.classList.add('spectrum-Table','spectrum-Table--sizeM','spectrum-Table--spacious');
@@ -54,4 +56,5 @@ export default async function decorate(block) {
   block.append(table);
   applyBkgColorOverride(block);
   applyWidthOverride(block);
+  applyAnalyticHeaderOverride(block);
 }
