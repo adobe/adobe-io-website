@@ -44,7 +44,7 @@ export default async function decorate(block) {
       });
     } else {
       card.querySelectorAll('p > a').forEach((a) => {
-        a.classList.remove('spectrum-Button--secondary');
+        a.classList.remove('spectrum-Button--secondary', 'spectrum-Button--outline');
         a.classList.add('spectrum-Button--accent', 'spectrum-Button--fill', 'spectrum-Button', 'card-button');
       });
     }
