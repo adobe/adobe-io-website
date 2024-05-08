@@ -40,7 +40,7 @@ export default async function decorate(block) {
 
     if(isLink === "link") {
       card.querySelectorAll('p > a').forEach((a) => {
-        a.classList.add('spectrum-Link', 'spectrum-Button--outline', 'spectrum-Button--secondary');
+        a.classList.add('spectrum-Link', 'spectrum-Button--secondary');
       });
     } else {
       card.querySelectorAll('p > a').forEach((a) => {
