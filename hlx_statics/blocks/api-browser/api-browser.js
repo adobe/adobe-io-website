@@ -131,14 +131,14 @@ function displayFilteredCards(catalog, cards, buttons, limit, lightOrDarkCssClas
           if (b === 'Learn More') {
             link = makeApiLinkRelative(card[b]);
             buttonTemplate
-              += `<a href="${link}" class="spectrum-Button spectrum-Button--fill spectrum-Button--secondary spectrum-Button--quiet spectrum-Button--sizeM" id="${(card.Title).replace(/\s/g, '')}-lm" aria-labelledby="${(card.Title).replace(/\s/g, '')}-lm ${(card.Title).replace(/\s/g, '')}">
+              += `<a href="${link}" class="spectrum-Button spectrum-Button--fill spectrum-Button--secondary spectrum-Button--outline spectrum-Button--sizeM" id="${(card.Title).replace(/\s/g, '')}-lm" aria-labelledby="${(card.Title).replace(/\s/g, '')}-lm ${(card.Title).replace(/\s/g, '')}">
                 <span class="spectrum-Button-label">${b}</span>
               </a>`;
           } else {
             link = makeApiLinkRelative(card[b]);
             buttonTemplate
               += `
-                <a href="${link}" class="spectrum-Button spectrum-Button--fill spectrum-Button--primary spectrum-Button--sizeM" id="${(card.Title).replace(/\s/g, '')}-vd" aria-labelledby="${(card.Title).replace(/\s/g, '')}-vd ${(card.Title).replace(/\s/g, '')}">
+                <a href="${link}" class="spectrum-Button spectrum-Button--outline spectrum-Button--primary spectrum-Button--sizeM" id="${(card.Title).replace(/\s/g, '')}-vd" aria-labelledby="${(card.Title).replace(/\s/g, '')}-vd ${(card.Title).replace(/\s/g, '')}">
                   <span class="spectrum-Button-label">${b}</span>
                 </a>
               `;
