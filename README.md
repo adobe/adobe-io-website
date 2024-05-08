@@ -8,7 +8,7 @@ This is the Adobe I/O Helix repo. It contains all the scripts, styles and other 
 
 ## Building styles
 The site always uses the minified version of the styles so you must build the styles before seeing them get updated. 
-1. `$ npm install`
+1. `$ npm install --legacy-peer-deps`
 2. Make changes to any css file. If you add a new .css files make sure to include them in `styles-includes.css`.
 3. `$ npm run buildCss`
 4. Minified css built to `/hlx_statics/spectrum/minified`
