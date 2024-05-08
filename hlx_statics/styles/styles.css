@@ -20,7 +20,7 @@ html, body {
 
 .spectrum {
   --spectrum-global-font-family-serif: adobe-clean-serif, adobe-clean-serif-fallback;
-  --spectrum-alias-border-size-thin: 1px;
+  --spectrum-card-border-size: 1px;
   --spectrum-card-border-radius: 4px;
   --spectrum-card-min-width: 240px;
 }
