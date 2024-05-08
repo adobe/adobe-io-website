@@ -40,12 +40,12 @@ export default async function decorate(block) {
 
     if(isLink === "link") {
       card.querySelectorAll('p > a').forEach((a) => {
-        a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
+        a.classList.add('spectrum-Link', 'spectrum-Button--outline', 'spectrum-Button--secondary');
       });
     } else {
       card.querySelectorAll('p > a').forEach((a) => {
         a.classList.remove('spectrum-Button--secondary');
-        a.classList.add('spectrum-Button--cta', 'spectrum-Button--fill', 'card-button');
+        a.classList.add('spectrum-Button--accent', 'spectrum-Button--fill', 'spectrum-Button', 'card-button');
       });
     }
 
