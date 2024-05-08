@@ -3,7 +3,7 @@
     "version": "1.1.0",
     "scripts": {
         "lint": "eslint .",
-        "buildCss": "mkdir -p hlx_statics/spectrum/minified/ && postcss -o hlx_statics/spectrum/minified/index.min.css styles-includes.css"
+        "buildCss": "mkdir -p hlx_statics/styles/spectrum/ && postcss -o hlx_statics/styles/spectrum/spectrum.min.css styles-includes.css"
     },
     "devDependencies": {
         "@adobe/eslint-config-helix": "1.1.3",
