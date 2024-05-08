@@ -161,7 +161,7 @@ export function decorateButtons(block) {
     const twoup = a.parentElement.parentElement;
     a.tabindex = 0;
     if (up.childNodes.length === 1 && up.tagName === 'P') {
-      a.className = 'spectrum-Button spectrum-Button--fill spectrum-Button--secondary  spectrum-Button--sizeM';
+      a.className = 'spectrum-Button spectrum-Button--outline spectrum-Button--secondary spectrum-Button--sizeM';
     }
 
     checkExternalLink(a);
@@ -172,7 +172,7 @@ export function decorateButtons(block) {
       && twoup.childNodes.length === 1
       && twoup.tagName === 'P'
     ) {
-      a.className = 'spectrum-Button spectrum-Button--fill spectrum-Button--cta  spectrum-Button--sizeM';
+      a.className = 'spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM';
       twoup.replaceChild(a, up);
     }
   });
