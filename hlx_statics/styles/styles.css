@@ -29,6 +29,10 @@ html, body {
   --spectrum-card-body-padding-top: 20px;
 }
 
+.spectrum--light {
+  --spectrum-global-color-gray-700: rgb(110, 110, 110);
+}
+
 /* fallback font for adobe-clean-serif (900) */
 @font-face {
   font-family: "adobe-clean-serif-fallback";
