@@ -23,6 +23,10 @@ html, body {
   --spectrum-card-border-size: 1px;
   --spectrum-card-border-radius: 4px;
   --spectrum-card-min-width: 240px;
+  --spectrum-card-body-padding-left: 24px;
+  --spectrum-card-body-padding-right: 24px;
+  --spectrum-card-body-padding-bottom: 20px;
+  --spectrum-card-body-padding-top: 20px;
 }
 
 /* fallback font for adobe-clean-serif (900) */
