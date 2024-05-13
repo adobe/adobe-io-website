@@ -9,7 +9,7 @@ import {
  */
 export default async function decorate(block) {
     const container = getBlockSectionContainer(block);
-    block.querySelectorAll('.inline-alert > div > div').forEach((inlineAlert) => {
+    block.querySelectorAll('.inlinealert > div > div').forEach((inlineAlert) => {
         inlineAlert.classList.add('spectrum-InLineAlert');
         // replace header with spectrum div
         inlineAlert.querySelectorAll('h1').forEach((header) =>{
