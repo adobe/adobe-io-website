@@ -33,7 +33,7 @@ function globalDistributeButton() {
 
 function globalConsoleButton() {
   const div = createTag('div', { class: 'nav-console-button' });
-  div.innerHTML = `<a href="https://developer.adobe.com/console/" class="spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM">
+  div.innerHTML = `<a href="https://developer.adobe.com/console/" class="spectrum-Button spectrum-Button--outline spectrum-Button--secondary  spectrum-Button--sizeM">
     <span class="spectrum-Button-label">
       Console
     </span>
