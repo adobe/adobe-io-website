@@ -1,6 +1,7 @@
 import {
   checkExternalLink,
   createTag,
+  decorateButtons,
   removeEmptyPTags,
   getBlockSectionContainer,
   decorateAnchorLink,
@@ -38,6 +39,7 @@ export default async function decorate(block) {
   block.setAttribute('daa-lh', 'column');
   applyAnalyticHeaderOverride(block);
   decorateLightOrDark(block);
+  decorateButtons(block);
 
   if (!container.classList.contains('columns-container')) {
     // eslint-disable-next-line no-console
@@ -76,7 +78,7 @@ export default async function decorate(block) {
   });
 
   block.querySelectorAll('a').forEach((a) => {
-    if (!a.classList.contains('button')) {
+    if (!a.classList.contains('button') && !a.classList.contains('spectrum-Button')) {
       a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
     }
     if (!a.classList.contains('anchor-link')) {
