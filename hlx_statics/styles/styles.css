@@ -27,6 +27,9 @@ html, body {
   --spectrum-card-body-padding-right: 24px;
   --spectrum-card-body-padding-bottom: 20px;
   --spectrum-card-body-padding-top: 20px;
+  --spectrum-card-subtitle-padding-right: 8px;
+  --spectrum-card-body-content-min-height: 14px;
+  --spectrum-card-body-content-margin-top: 6px;
 }
 
 .spectrum--medium {
