@@ -30,6 +30,7 @@ html, body {
   --spectrum-card-subtitle-padding-right: 8px;
   --spectrum-card-body-content-min-height: 14px;
   --spectrum-card-body-content-margin-top: 6px;
+  --spectrum-global-dimension-size-225: 22px;
 }
 
 .spectrum--medium {
