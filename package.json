@@ -1,6 +1,6 @@
 {
-    "name": "adobe-io-website",
-    "version": "1.1.0",
+    "name": "franklin-dev-site-theme",
+    "version": "0.0.1",
     "scripts": {
         "lint": "eslint .",
         "buildCss": "mkdir -p hlx_statics/styles/spectrum/ && postcss -o hlx_statics/styles/spectrum/spectrum.min.css styles-includes.css"
