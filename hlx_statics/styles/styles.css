@@ -27,6 +27,22 @@ html, body {
   --spectrum-card-body-padding-right: 24px;
   --spectrum-card-body-padding-bottom: 20px;
   --spectrum-card-body-padding-top: 20px;
+  --spectrum-card-subtitle-padding-right: 8px;
+  --spectrum-card-body-content-min-height: 14px;
+  --spectrum-card-body-content-margin-top: 6px;
+  --spectrum-global-dimension-size-225: 22px;
+}
+
+.spectrum--medium {
+  --spectrum-card-footer-border-top-size: 1px;
+  --spectrum-card-footer-padding-top: 14px;
+}
+
+.spectrum--light {
+  --spectrum-global-color-gray-75: rgb(250, 250, 250);
+  --spectrum-global-color-gray-700: rgb(110, 110, 110);
+  --spectrum-global-color-gray-800: rgb(75, 75, 75); 
+  --spectrum-global-color-gray-900:rgb(44, 44, 44);
 }
 
 /* fallback font for adobe-clean-serif (900) */

@@ -27,7 +27,7 @@ export default async function decorate(block) {
     }
     hasLinks.forEach((button) => {
       button.className = '';
-      button.classList.add('spectrum-Button', 'spectrum-Button--secondary', 'spectrum-Button--sizeM', 'spectrum-Button--overBackground');
+      button.classList.add('spectrum-Button', 'spectrum-Button--secondary', 'spectrum-Button--sizeM', 'spectrum-Button--overBackground', 'spectrum-Button--outline', 'spectrum-Button--staticWhite');
     });
   });
   const overlayStyle = 'position: absolute; display: flex; left: 0%; z-index: 1000;';

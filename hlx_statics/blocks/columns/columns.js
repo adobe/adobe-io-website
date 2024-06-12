@@ -1,6 +1,7 @@
 import {
   checkExternalLink,
   createTag,
+  decorateButtons,
   removeEmptyPTags,
   getBlockSectionContainer,
   decorateAnchorLink,
@@ -38,7 +39,8 @@ export default async function decorate(block) {
   block.setAttribute('daa-lh', 'column');
   applyAnalyticHeaderOverride(block);
   decorateLightOrDark(block);
-  
+  decorateButtons(block);
+
   if (!container.classList.contains('columns-container')) {
     // eslint-disable-next-line no-console
     console.error('Columns Block expects .columns-container to be parent.');
@@ -65,18 +67,18 @@ export default async function decorate(block) {
     column.querySelectorAll('.button-container').forEach((p, key) => {
       const prevElement = p.previousElementSibling;
       if (key === 0) {
-        prevElement.insertAdjacentElement("afterend",buttonGroupContainer);
+        prevElement.insertAdjacentElement('afterend', buttonGroupContainer);
       }
       buttonGroupContainer.appendChild(p);
     });
     column.querySelectorAll('ul').forEach((ul) => {
-      ul.parentElement.classList.add('listing');;
+      ul.parentElement.classList.add('listing');
       ul.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
     });
   });
 
   block.querySelectorAll('a').forEach((a) => {
-    if (!a.classList.contains('button')) {
+    if (!a.classList.contains('button') && !a.classList.contains('spectrum-Button')) {
       a.classList.add('spectrum-Link', 'spectrum-Link--quiet');
     }
     if (!a.classList.contains('anchor-link')) {
