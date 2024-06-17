@@ -60,7 +60,7 @@ main div.columns-container.section[data-list-class="checkmark"] ul > li:before{
     content: "\2714\0020";
 }
 
-main div.columns-container
+/* main div.columns-container  This line gives me css error, I think we could just take it out*/
 @media screen and (max-width: 1280px) {
     main div.columns > div {
         flex-direction: column;

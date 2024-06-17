@@ -116,13 +116,19 @@ export default async function decorate(block) {
   });
 
   block.querySelectorAll('div > div.second-column').forEach((secondColumn) => {
-    const productLinkContainer = createTag('div', { class: 'product-link-container' });
-    const prevElement = secondColumn.querySelector('p.icon-container').previousElementSibling;
-    secondColumn.querySelectorAll('p.icon-container').forEach((innerSecond) => {
-      productLinkContainer.append(innerSecond);
-    });
-    // Maintains order within column card
-    prevElement.after(productLinkContainer);
+    const prevElement = secondColumn.querySelector('p.icon-container')?.previousElementSibling;
+    // Only wrap in prdouct link container div if element container icon container
+    if (prevElement)
+    {
+      const productLinkContainer = createTag('div', { class: 'product-link-container' });
+      console.log(secondColumn);
+      secondColumn.querySelectorAll('p.icon-container').forEach((innerSecond) => {
+        productLinkContainer.append(innerSecond);
+      });
+      // Maintains order within column card
+      console.log(productLinkContainer, prevElement);
+      prevElement.after(productLinkContainer);
+    }
   });
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
