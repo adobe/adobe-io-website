@@ -51,12 +51,21 @@ export default async function decorate(block) {
     decorateAnchorLink(h);
   });
   block.querySelectorAll('p').forEach((p) => {
-    const hasLinks = p.querySelectorAll('a, button');
-    // don't attach to icon container or if p tag contains links
-    if (!p.classList.contains('icon-container') && hasLinks.length === 0) {
+    const hasIcons = p.querySelectorAll('span.icon');
+    // don't attach to icon container or if p tag contains icons
+    if (!p.classList.contains('icon-container') && hasIcons.length === 0) {
       p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
-    } else if (hasLinks.length > 0) {
+    } else if (hasIcons.length > 0) {
       p.classList.add('icon-container');
+      const hasLinks = p.querySelectorAll('a, button'); 
+      // Wraps non-hyperlinked text after icon in a paragraph tag
+      p.childNodes.forEach( (child) => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const textParagraph = createTag('p', {class:'icon-text'});
+          textParagraph.innerText = child.textContent;
+          p.replaceChild(textParagraph, child);
+        }
+      });
     }
   });
 
@@ -108,10 +117,12 @@ export default async function decorate(block) {
 
   block.querySelectorAll('div > div.second-column').forEach((secondColumn) => {
     const productLinkContainer = createTag('div', { class: 'product-link-container' });
+    const prevElement = secondColumn.querySelector('p.icon-container').previousElementSibling;
     secondColumn.querySelectorAll('p.icon-container').forEach((innerSecond) => {
       productLinkContainer.append(innerSecond);
     });
-    secondColumn.append(productLinkContainer);
+    // Maintains order within column card
+    prevElement.after(productLinkContainer);
   });
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {

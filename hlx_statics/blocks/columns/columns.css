@@ -127,6 +127,7 @@ main div.columns h3.column-header + p {
 
 main div.columns p + p {
     margin-top: var(--spectrum-global-dimension-size-300);
+    margin-bottom: var(--spectrum-global-dimension-size-300); 
 }
 
 main div.columns div.product-link-container p {
@@ -151,6 +152,7 @@ main div.columns div.listing ul {
 main div.second-column div.product-link-container {
     display: flex;
     flex-direction: row;
+    gap: 5px;
 }
 
 @media screen and (max-width:768px) {
@@ -165,6 +167,7 @@ main div.second-column div.product-link-container {
 main div.second-column div.product-link-container p.icon-container {
     display: flex;
     align-items: center;
+    gap: 5px;
 }
 
 main div.second-column div.product-link-container img {
@@ -178,8 +181,15 @@ main div.second-column div.product-link-container svg {
     width: var(--spectrum-global-dimension-size-400);
     object-fit: contain;
 }
-
-main div.second-column div.product-link-container a {
+main div.columns div.product-link-container p.icon-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+    margin-bottom: 0;
+    height: 100%;
+}
+main div.second-column div.product-link-container a, p.icon-text {
     margin-left: var(--spectrum-global-dimension-size-100);
 }
 
