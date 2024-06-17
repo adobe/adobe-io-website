@@ -57,7 +57,6 @@ export default async function decorate(block) {
       p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
     } else if (hasIcons.length > 0) {
       p.classList.add('icon-container');
-      const hasLinks = p.querySelectorAll('a, button'); 
       // Wraps non-hyperlinked text after icon in a paragraph tag
       p.childNodes.forEach( (child) => {
         if (child.nodeType === Node.TEXT_NODE) {
@@ -121,12 +120,10 @@ export default async function decorate(block) {
     if (prevElement)
     {
       const productLinkContainer = createTag('div', { class: 'product-link-container' });
-      console.log(secondColumn);
       secondColumn.querySelectorAll('p.icon-container').forEach((innerSecond) => {
         productLinkContainer.append(innerSecond);
       });
       // Maintains order within column card
-      console.log(productLinkContainer, prevElement);
       prevElement.after(productLinkContainer);
     }
   });
