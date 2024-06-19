@@ -1,0 +1,10 @@
+main div.title-container {
+    width: 100%;
+    /* background-color: white; */
+    text-align: center;
+}
+
+main div.title-container>.title-wrapper {
+    margin: auto;
+    max-width: calc(calc(12* var(--spectrum-global-dimension-static-grid-fixed-max-width) / var(--spectrum-global-dimension-static-grid-columns) - var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-150)));
+}
