@@ -1,0 +1,34 @@
+main div.list-container>div.list-wrapper>div>div {
+  display: flex !important;
+}
+
+main div.list-container li {
+  margin: 10px 0;
+}
+
+main div.list-container>div.list-wrapper>div {
+  margin: auto;
+}
+
+@media screen and (min-width : 768px) and (max-width : 1024px) {
+  main div.list-container>div.list-wrapper>div {
+    width: fit-content !important;
+  }
+}
+
+@media screen and (min-width : 320px) and (max-width : 768px) {
+  main div.list-container>div.list-wrapper>div>div {
+    display: block !important;
+  }
+
+  main div.list-container>div.list-wrapper>div {
+    width: fit-content !important;
+  }
+
+}
+
+@media screen and (min-width : 320px) and (max-width : 1024px){
+  main div.list-container{
+    padding: var(--spectrum-global-dimension-size-400) var(--spectrum-global-dimension-size-200) !important;
+  }
+}
