@@ -7,8 +7,7 @@ export default async function decorate(block) {
   block.setAttribute('daa-lh', 'carousel');
   removeEmptyPTags(block);
   decorateButtons(block);
-  reformatHyperlinkImages(block);
-  
+
   const carousel_block_child = createTag('div', {class: 'block-container'});
   block.append(carousel_block_child);
 
@@ -48,7 +47,7 @@ export default async function decorate(block) {
     carousel_ul.append(carousel_li);
     carousel_li.append(h.parentElement);
 
-    //add everything but image to the right div
+    //add everything but image to the left div
     let flex_div = createTag('div', { id: 'right-flex-div-'+h.id});
     h.parentElement.append(flex_div);
     flex_div.append(h);
@@ -63,26 +62,12 @@ export default async function decorate(block) {
 
   //add id to image and add image to left div
   block.querySelectorAll('img').forEach((img) => {
-    // checks if dealing with a hyperlinked image
-    if (img.parentElement.parentElement.tagName === 'A')
-    {
-      // if so, adds an extra ".parentElement" becuase image is wrapped in ancor tag
-      img.parentElement.parentElement.parentElement.classList.add('IMAGE');
-      //add image to left div
-      let flex_div = createTag('div', { id: 'left-flex-div-'+img.parentElement.parentElement.parentElement.parentElement.id});
-      img.parentElement.parentElement.parentElement.parentElement.append(flex_div);
-      flex_div.append(img.parentElement.parentElement.parentElement);
-      flex_div.classList.add('left-container');
-    }
-    else
-    {
-      img.parentElement.parentElement.classList.add('IMAGE');
-      //add image to left div
-      let flex_div = createTag('div', { id: 'left-flex-div-'+img.parentElement.parentElement.parentElement.id});
-      img.parentElement.parentElement.parentElement.append(flex_div);
-      flex_div.append(img.parentElement.parentElement);
-      flex_div.classList.add('left-container');
-    }
+    img.parentElement.parentElement.classList.add('IMAGE');
+    //add image to left div
+    let flex_div = createTag('div', { id: 'left-flex-div-'+img.parentElement.parentElement.parentElement.id});
+    img.parentElement.parentElement.parentElement.append(flex_div);
+    flex_div.append(img.parentElement.parentElement);
+    flex_div.classList.add('left-container');
   });
 
   block.querySelectorAll('p').forEach(function (p){
@@ -163,27 +148,7 @@ export default async function decorate(block) {
         button.classList.add('carousel-circle-selected');
     });
   });
-  
-  /** 
-   * For images that have hyperlinks attached to them in Google Docs, they are wrapped in an anchor tag, which messes up
-   * formatting the carousel slide. This function reformats the images/links so they are in a similar format to other slides
-  */
-  function reformatHyperlinkImages(block) {
-    // Selects all hyper linked images
-    block.querySelectorAll('div.embed.block > div > div > a').forEach( (a) => {
-      const picture = a.firstElementChild.firstElementChild;
-      a.append(picture);
-      a.removeChild(a.firstElementChild);
-      const paragraphWrapper = createTag('p', {});
-      // Because of link, image is surrounded by numerous divs. Navigates back up to OG parent
-      const newDivParent = a.parentElement.parentElement.parentElement.parentElement;
-      a.parentElement.removeChild(a);
-      paragraphWrapper.append(a);
-      // pulls out the old image container and replaces it with pargraph-wrapped image 
-      // Format is same as other slides
-      newDivParent.replaceChild(paragraphWrapper, newDivParent.firstElementChild);
-    });
-  }
+
   //automatic scrolling
   function advanceSlide() {
     let slide_selected = block.querySelector('.carousel-circle-selected'); 
