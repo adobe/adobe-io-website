@@ -19,6 +19,5 @@ export default async function decorate(block) {
   });
   applyBkgColorOverride(block);
   applyWidthOverride(block);
-  calculateOverlapping(block);
   applyAnalyticHeaderOverride(block);
 }
