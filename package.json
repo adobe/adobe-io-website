@@ -1,5 +1,5 @@
 {
-    "name": "franklin-dev-site-theme",
+    "name": "dev-site-eds-theme",
     "version": "0.0.1",
     "scripts": {
         "lint": "eslint .",
