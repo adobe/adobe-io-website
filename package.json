@@ -1,5 +1,5 @@
 {
-    "name": "eds-dev-site-theme",
+    "name": "@adobe/eds-dev-site-theme",
     "version": "0.0.1",
     "scripts": {
         "lint": "eslint .",
