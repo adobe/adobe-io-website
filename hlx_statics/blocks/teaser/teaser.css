@@ -1,0 +1,31 @@
+main div.teaser-container .teaser-button-container {
+  display: flex !important;
+  gap: 20px !important;
+}
+
+main div.teaser-container>div.teaser-wrapper>div.block>div>div {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 1000px;
+}
+
+main div.teaser-container {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+main div.teaser-container>div.teaser-wrapper>div.block>div {
+  display: flex;
+  justify-content: end;
+  margin-left: 5%;
+}
+
+@media screen and (min-width : 320px) and (max-width : 1024px) {
+
+  main div.teaser-container>div.teaser-wrapper>div.block>div {
+    margin: 0 5%;
+  }
+
+}
