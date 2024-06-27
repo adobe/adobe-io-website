@@ -1,0 +1,49 @@
+main div.list-container>div.list-wrapper>div>div {
+  display: flex !important;
+}
+
+main div.list-container li {
+  margin: 10px 0;
+}
+
+main div.list-container li {
+  position: relative
+}
+
+main div.list-container>div.list-wrapper>div {
+  margin: auto;
+}
+
+.checkmark-list {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.checkmark-list li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 8px;
+}
+
+@media screen and (min-width : 768px) and (max-width : 1440px) {
+  main div.list-container>div.list-wrapper>div {
+    width: fit-content !important;
+  }
+}
+
+@media screen and (min-width : 320px) and (max-width : 767px) {
+  main div.list-container>div.list-wrapper>div>div {
+    display: block !important;
+  }
+
+  main div.list-container>div.list-wrapper>div {
+    width: fit-content !important;
+  }
+
+}
+
+@media screen and (min-width : 320px) and (max-width : 1024px) {
+  main div.list-container {
+    padding: var(--spectrum-global-dimension-size-400) var(--spectrum-global-dimension-size-200) !important;
+  }
+}
