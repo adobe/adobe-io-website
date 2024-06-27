@@ -18,6 +18,7 @@ import {
 } from './lib-helix.js';
 
 import {
+  buildCodes,
   buildEmbeds,
   toggleScale,
   decorateAnchorLink,
@@ -80,6 +81,7 @@ function loadFooter(footer) {
 function buildAutoBlocks(main) {
   try {
     buildEmbeds(main);
+    buildCodes(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

@@ -208,6 +208,21 @@ export function buildEmbeds(container) {
 }
 
 /**
+ * Builds all code blocks inside a container
+ * @param {*} container The container to inspect
+ */
+export function buildCodes(container) {
+  const codes = [...container.querySelectorAll('div > pre > code')];
+  codes.forEach((code) => {
+    const block = buildBlock('code', code.outerHTML);
+    code.replaceWith(block);
+    block.classList.add('block');
+    const parentContainer = block.parentElement.parentElement;
+    parentContainer.prepend(block);
+  });
+}
+
+/**
  * Toggles the scale according to the client width
  */
 export function toggleScale() {
