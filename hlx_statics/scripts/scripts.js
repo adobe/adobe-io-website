@@ -21,6 +21,7 @@ import {
   buildEmbeds,
   toggleScale,
   decorateAnchorLink,
+  decorateInlineCodes,
 } from './lib-adobeio.js';
 
 export {
@@ -93,6 +94,7 @@ function buildAutoBlocks(main) {
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
+  decorateInlineCodes(main);
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);

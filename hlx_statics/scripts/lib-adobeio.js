@@ -179,6 +179,19 @@ export function decorateButtons(block) {
 }
 
 /**
+ * Decorates all inline codes in a container element.
+ * @param {Element} element container element
+ */
+export function decorateInlineCodes(element) {
+  element.querySelectorAll('code').forEach((code) => {
+    const up = code.parentElement;
+    if (up.tagName !== 'PRE') {
+      code.classList.add('inline-code');
+    }
+  });
+}
+
+/**
  * Builds all embed blocks inside a container
  * @param {*} container The container to inspect
  */
