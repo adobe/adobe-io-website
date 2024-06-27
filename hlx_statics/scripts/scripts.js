@@ -148,7 +148,7 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  addFavIcon(`/hlx_statics/icons/adobe.svg`);
+  addFavIcon('/hlx_statics/icons/adobe.svg');
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
