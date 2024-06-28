@@ -55,7 +55,7 @@ export function createTag(name, attrs) {
  */
 export function setAnalyticsAttributes(domObj = document) {
   domObj.querySelectorAll('a').forEach((a) => {
-    if(a.innerText.length > 0) {
+    if (a.innerText.length > 0) {
       a.setAttribute('daa-ll', a.innerText);
     }
   });
@@ -174,6 +174,19 @@ export function decorateButtons(block) {
     ) {
       a.className = 'spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM';
       twoup.replaceChild(a, up);
+    }
+  });
+}
+
+/**
+ * Decorates all inline codes in a container element.
+ * @param {Element} element container element
+ */
+export function decorateInlineCodes(element) {
+  element.querySelectorAll('code').forEach((code) => {
+    const up = code.parentElement;
+    if (up.tagName !== 'PRE') {
+      code.classList.add('inline-code');
     }
   });
 }
@@ -322,7 +335,7 @@ export const setExpectedOrigin = (host, suffix = '') => {
  */
 export const setSearchFrameOrigin = (host, suffix = '') => {
   if (isDevEnvironment(host)) {
-    return `http://localhost:8000`;
+    return 'http://localhost:8000';
   }
   if (isStageEnvironment(host) || isHlxPath(host)) {
     return `https://developer-stage.adobe.com${suffix}`;
@@ -345,7 +358,7 @@ export const getClosestFranklinSubfolder = (host, suffix = '') => {
   } else {
     subfolderPath = window.location.pathname;
     // strip any ending slash
-    if (subfolderPath.charAt(subfolderPath.length-1) === '/') subfolderPath = subfolderPath.substring(0, subfolderPath.length-1);
+    if (subfolderPath.charAt(subfolderPath.length - 1) === '/') subfolderPath = subfolderPath.substring(0, subfolderPath.length - 1);
     // strip any leading slash
     if (subfolderPath.charAt(0) === '/') subfolderPath = subfolderPath.substring(1);
   }
@@ -467,7 +480,7 @@ export function addExtraScript(element, scriptUrl) {
 }
 
 /**
- * Adds an extra script tag to the document and adds an onload 
+ * Adds an extra script tag to the document and adds an onload
  * @param {*} element The element to which the script will be added
  * @param {*} scriptUrl The URL to the script to add
  * @param {*} onload The on load handler of the script
@@ -494,15 +507,15 @@ export function addExtraScriptWithReturn(element, scriptUrl) {
 
 /**
  * Decorates a header.
- * @param {Element} header The header element to add an anchor link. 
+ * @param {Element} header The header element to add an anchor link.
  */
 export function decorateAnchorLink(header) {
 //  block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
   header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
-  const anchorLink = createTag('a', { class: 'anchor-link', href: '#' + header.id });
-  anchorLink.innerHTML = '<svg aria-hidden="true" height="18" viewBox="0 0 16 16" width="18">\n' +
-    '                  <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>\n' +
-    '                </svg>';
+  const anchorLink = createTag('a', { class: 'anchor-link', href: `#${header.id}` });
+  anchorLink.innerHTML = '<svg aria-hidden="true" height="18" viewBox="0 0 16 16" width="18">\n'
+    + '                  <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>\n'
+    + '                </svg>';
   header.appendChild(anchorLink);
   // });
 }
@@ -514,9 +527,8 @@ export function decorateAnchorLink(header) {
 export function applyWidthOverride(block) {
   const wid = block?.parentElement?.parentElement?.getAttribute('data-width');
   if (wid) {
-    const widToInt = parseInt(wid.slice(0,wid.length-2));
-    if (widToInt >= 320 && widToInt <= 1920)
-    block.style.width = wid;
+    const widToInt = parseInt(wid.slice(0, wid.length - 2));
+    if (widToInt >= 320 && widToInt <= 1920) block.style.width = wid;
   }
 }
 
@@ -526,15 +538,15 @@ export function applyWidthOverride(block) {
  */
 export function applyBkgColorOverride(block) {
   const color = block?.parentElement?.parentElement?.getAttribute('data-backgroundcolor');
-  if (color == "white") {
+  if (color == 'white') {
     block.parentElement.parentElement.style.backgroundColor = color;
-  } else if (color == "navy") {
-    block.parentElement.parentElement.style.backgroundColor = "rgb(15, 55, 95)";
+  } else if (color == 'navy') {
+    block.parentElement.parentElement.style.backgroundColor = 'rgb(15, 55, 95)';
   }
   // Support the old style
-  if(block.parentElement.parentElement.classList.contains('background-color-white')){
+  if (block.parentElement.parentElement.classList.contains('background-color-white')) {
     block.parentElement.parentElement.style.backgroundColor = 'white';
-  };
+  }
 }
 
 /**
