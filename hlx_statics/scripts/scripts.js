@@ -18,9 +18,11 @@ import {
 } from './lib-helix.js';
 
 import {
+  buildCodes,
   buildEmbeds,
   toggleScale,
   decorateAnchorLink,
+  decorateInlineCodes,
 } from './lib-adobeio.js';
 
 export {
@@ -79,6 +81,7 @@ function loadFooter(footer) {
 function buildAutoBlocks(main) {
   try {
     buildEmbeds(main);
+    buildCodes(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -93,6 +96,7 @@ function buildAutoBlocks(main) {
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
+  decorateInlineCodes(main);
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
@@ -148,7 +152,7 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  addFavIcon(`/hlx_statics/icons/adobe.svg`);
+  addFavIcon('/hlx_statics/icons/adobe.svg');
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
