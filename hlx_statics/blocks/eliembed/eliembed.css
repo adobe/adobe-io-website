@@ -22,7 +22,10 @@ main div.embed-container {
   
   main div.embed {
     margin-top: var(--spectrum-global-dimension-size-400);
-    max-width: calc(6 * var(--spectrum-global-dimension-static-grid-fixed-max-width) / var(--spectrum-global-dimension-static-grid-columns));
+    /* max-width: calc(6 * var(--spectrum-global-dimension-static-grid-fixed-max-width) / var(--spectrum-global-dimension-static-grid-columns)); */
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   main div.embed iframe {
@@ -33,7 +36,7 @@ main div.embed-container {
     height: 100%;
     border: 0;
     /* opacity: 0;
-    transition: opacity 2.4s ease 0s; */
+    transition: opacity 1.4s ease 0s; */
   }
 
   main div.embed-container .embed-custom-width{
