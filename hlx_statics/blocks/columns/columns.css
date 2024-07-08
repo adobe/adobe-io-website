@@ -151,7 +151,7 @@ main div.second-column div.product-link-container {
         flex-wrap: wrap;
     }
     main div.columns div.product-link-container p {
-        width: 150px;
+        max-width: 150px;
     }
 }
 
@@ -159,6 +159,10 @@ main div.second-column div.product-link-container p.icon-container {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+main div.second-column div.button-group-container {
+    text-align: center;
 }
 
 main div.second-column div.product-link-container img {
