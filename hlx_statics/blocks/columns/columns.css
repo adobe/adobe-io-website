@@ -129,6 +129,7 @@ main div.columns h3.column-header + p {
 main div.columns  div.second-column div.button-group-container {
     gap: 2rem;
     display: flex;
+    text-align: center;
 }
 
 main div.columns div.listing.second-column[data-align="right"]{
@@ -159,10 +160,6 @@ main div.second-column div.product-link-container p.icon-container {
     display: flex;
     align-items: center;
     gap: 1rem;
-}
-
-main div.second-column div.button-group-container {
-    text-align: center;
 }
 
 main div.second-column div.product-link-container img {
