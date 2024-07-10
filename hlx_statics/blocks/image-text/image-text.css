@@ -1,0 +1,55 @@
+main div.image-text-container>.image-text-wrapper {
+  width: 80%;
+  margin: auto;
+}
+
+main div.image-text-container>.image-text-wrapper>.image-text {
+  display: flex;
+  gap: 100px;
+  justify-content: center;
+}
+
+main div.image-text-container>.image-text-wrapper>.image-text>div>div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+main div.image-text-container img {
+  width: 600px;
+  height: 400px;
+}
+
+main div.image-text-container .image-text-button-container {
+  display: flex;
+  gap: 20px;
+}
+
+main div.image-text-container>.image-text-wrapper>.image-text>div>div {
+  display: flex;
+  justify-content: center;
+}
+
+main div.image-text-container p {
+  text-align: center;
+}
+
+@media screen and (min-width : 320px) and (max-width : 767px) {
+
+  main div.image-text-container img {
+    width: 350px;
+    height: auto;
+  }
+
+}
+
+@media screen and (min-width : 320px) and (max-width : 1023px) {
+
+  main div.image-text-container>.image-text-wrapper>.image-text {
+    flex-direction: column !important;
+    gap: 50px;
+  }
+
+}
