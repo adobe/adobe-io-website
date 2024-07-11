@@ -93,8 +93,7 @@ const embedGoogle = (url, autoplay, loop) => {
   
   return `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
       <video ${autoplay ? "autoplay":""} ${loop ? "loop":""} muted> <source src="${url}">
-      Sorry, We're having an internal Error. Please try Again Soon >< <br>
-                                                                   --
+      Sorry, We're having an internal Error. Please try Again Soon!
                                         </video>
   </div>`
 }
