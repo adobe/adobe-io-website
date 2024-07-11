@@ -43,7 +43,6 @@ main div.resource-card {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 1rem
 } 
 
 main div.resource-card > div {
@@ -66,7 +65,7 @@ main div.resource-card > div {
     object-fit: cover;
     width: 100% !important;
   }
-}
+
 
 main div.resource-card > div{
   padding: 24px;
