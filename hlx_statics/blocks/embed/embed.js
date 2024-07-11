@@ -17,7 +17,7 @@ const loadScript = (url, callback, type) => {
 };
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
-const getDefaultEmbed = (url) => {const embedHTML = `<div style="left: 0; width: 55vw; height: 45vh; max-height: fit-content; position: relative; padding-bottom: 56.25%;">
+const getDefaultEmbed = (url, autoplay, loop) => {const embedHTML = `<div style="left: 0; width: 55vw; height: 45vh; max-height: fit-content; position: relative; padding-bottom: 56.25%;">
     <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
       scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
     </iframe>
@@ -25,7 +25,7 @@ const getDefaultEmbed = (url) => {const embedHTML = `<div style="left: 0; width:
   return embedHTML;
 };
 
-const embedIG = (url) => {const embedHTML = `<div style="left: 0; width: 55vw; height: 45vh; max-height: fit-content; position: relative; padding-bottom: 56.25%;">
+const embedIG = (url, autoplay, loop) => {const embedHTML = `<div style="left: 0; width: 55vw; height: 45vh; max-height: fit-content; position: relative; padding-bottom: 56.25%;">
   <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
     scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
   </iframe>
@@ -47,7 +47,9 @@ const embedYTShort = (url) => {
   </div>`
   
 };
+
 const embedYTPlaylist = (usp) => {
+  console.log(usp.get('list'));
   const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
     <img loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
       src="https://i.ytimg.com/vi_webp/${usp.get('list')}/maxresdefault.webp">
@@ -55,9 +57,8 @@ const embedYTPlaylist = (usp) => {
     </img>
   </div>`;
   return embedHTML;
-  
-}
-const embedTikTok = (url) => {
+};
+const embedTikTok = (url, autoplay, loop) => {
   const [, vidID] = url.pathname.split('video/')
   return  `<div style="left: 0; width: 325px; height: 736px;  position: relative;">
     <iframe src="https://www.tiktok.com/embed/${vidID}"style="border: 0; top: 0; left: 0; width: 100%; height: 736px
@@ -65,16 +66,16 @@ const embedTikTok = (url) => {
       scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
     </iframe>
   </div>`
-}
-const embedYoutube = (url) => {
+};
+const embedYoutube = (url, autoplay, loop) => {
   const usp = new URLSearchParams(url.search);
   let vid = encodeURIComponent(usp.get('v'));
   const embed = url.pathname;
   if (embed.includes('shorts')) {
-    return embedYTShort(url);
+    return embedYTShort(url, autoplay, loop);
   }
   if (embed.includes('playlist')) {
-    return embedYTPlaylist(usp);
+    return embedYTPlaylist(usp, autoplay, loop);
   }
   if (url.origin.includes('youtu.be')) {
     [, vid] = url.pathname.split('/');
@@ -88,15 +89,16 @@ const embedYoutube = (url) => {
   return embedHTML;
 };
 
-const embedGoogle = (url) => {
+const embedGoogle = (url, autoplay, loop) => {
+  
   return `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-      <video autoplay loop muted> <source src="${url}">
+      <video ${autoplay ? "autoplay":""} ${loop ? "loop":""} muted> <source src="${url}">
       Sorry, We're having an internal Error. Please try Again Soon >< <br>
                                                                    --
                                         </video>
   </div>`
 }
-const embedVimeo = (url) => {
+const embedVimeo = (url, autoplay, loop) => {
   const [, video] = url.pathname.split('/');
   const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
       <iframe src="https://player.vimeo.com/video/${video}" 
@@ -106,7 +108,7 @@ const embedVimeo = (url) => {
     </div>`;
   return embedHTML;
 };
-const embedTwitter = (url) => {
+const embedTwitter = (url, autoplay, loop) => {
   const embedHTML = `<blockquote class="twitter-tweet"><a href="${url.href}"></a></blockquote>`;
   loadScript('https://platform.twitter.com/widgets.js');
   return embedHTML;
@@ -149,8 +151,10 @@ const loadEmbed = (block, link) => {
   ];
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
   const url = new URL(link);
+  const autoplay = block?.parentElement?.parentElement?.getAttribute('data-autoplay');
+  const loop = block?.parentElement?.parentElement?.getAttribute('data-loop');
   if (config) {
-    block.innerHTML = config.embed(url);
+    block.innerHTML = config.embed(url, autoplay, loop);
     block.classList = `block embed embed-${config.match[0]}`;
   } else {
     block.innerHTML = getDefaultEmbed(url);
