@@ -88,6 +88,14 @@ const embedYoutube = (url) => {
   return embedHTML;
 };
 
+const embedGoogle = (url) => {
+  return `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+      <video autoplay loop muted> <source src="${url}">
+      Sorry, We're having an internal Error. Please try Again Soon >< <br>
+                                                                   --
+                                        </video>
+  </div>`
+}
 const embedVimeo = (url) => {
   const [, video] = url.pathname.split('/');
   const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
@@ -133,6 +141,11 @@ const loadEmbed = (block, link) => {
       match: ['tiktok'],
       embed: embedTikTok,
     },
+    {
+      match: ['mp4'],
+      embed: embedGoogle,
+    },
+    
   ];
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
   const url = new URL(link);
