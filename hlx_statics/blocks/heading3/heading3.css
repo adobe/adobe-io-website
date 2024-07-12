@@ -1,0 +1,11 @@
+main .heading3 h3 {
+    color: var(--spectrum-global-color-gray-800);
+    margin-top: var(--spectrum-global-dimension-size-350);
+    margin-bottom: calc(-1 * var(--spectrum-global-dimension-size-50));
+    
+    & + ul,
+    & + ol {
+      margin-top: var(--spectrum-global-dimension-size-250);
+    }
+}
+

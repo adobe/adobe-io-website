@@ -1,0 +1,3 @@
+main .heading2 h2 {
+  margin-top: var(--spectrum-global-dimension-size-500);
+}

@@ -1,0 +1,8 @@
+main .heading1 h1 {
+  & + p {
+    font-size: var(--spectrum-global-dimension-size-250);
+    color: var(--spectrum-global-color-gray-600);
+    margin-bottom: var(--spectrum-global-dimension-size-500);
+    line-height: 2rem;
+  }
+}

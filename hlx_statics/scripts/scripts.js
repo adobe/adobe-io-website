@@ -19,6 +19,7 @@ import {
 
 import {
   buildEmbeds,
+  buildHeadings,
   toggleScale,
   decorateAnchorLink,
   decorateInlineCodes,
@@ -80,6 +81,7 @@ function loadFooter(footer) {
 function buildAutoBlocks(main) {
   try {
     buildEmbeds(main);
+    buildHeadings(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
