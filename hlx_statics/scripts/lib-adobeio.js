@@ -208,6 +208,29 @@ export function buildEmbeds(container) {
 }
 
 /**
+ * Builds all heading blocks inside a container
+ * @param {*} container The container to inspect
+ */
+export function buildHeadings(container) {
+  const map = [
+    { elementName: 'h1', blockName: 'heading1' },
+    { elementName: 'h2', blockName: 'heading2' },
+    { elementName: 'h3', blockName: 'heading3' },
+    { elementName: 'h4', blockName: 'heading4' },
+    { elementName: 'h5', blockName: 'heading5' },
+    { elementName: 'h6', blockName: 'heading6' },
+  ];
+  map.forEach(({ elementName, blockName }) => {
+    const elements = [...container.querySelectorAll(elementName)];
+    elements.forEach((element) => {
+      const block = buildBlock(blockName, element.outerHTML);
+      element.replaceWith(block);
+      block.classList.add('block');
+    });
+  });
+}
+
+/**
  * Toggles the scale according to the client width
  */
 export function toggleScale() {

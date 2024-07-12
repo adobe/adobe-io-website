@@ -105,3 +105,36 @@ main .inline-code {
   border: 0.8px solid var(--spectrum-global-color-gray-300);
   border-radius: 3px;
 }
+
+/* animate anchor */
+main .heading2 h2, 
+main .heading3 h3,
+main .heading4 h4,
+main .heading5 h5,
+main .heading6 h6,
+main .heading6 h6 {
+  & span a {
+    opacity: 0;
+    transition: opacity var(--spectrum-global-animation-duration-100) ease-in-out;
+
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  &:hover span a {
+    opacity: 1;
+  }
+}
+
+main .heading4 h4,
+main .heading5 h5,
+main .heading6 h6 {
+  margin-top: var(--spectrum-global-dimension-size-400);
+
+  & + ul,
+  & + ol {
+    margin-top: var(--spectrum-global-dimension-size-200);
+  }
+}
+
