@@ -17,7 +17,8 @@ const loadScript = (url, callback, type) => {
 };
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
-const getDefaultEmbed = (url) => {const embedHTML = `<div style="left: 0; width: 55vw; height: 45vh; max-height: fit-content; position: relative; padding-bottom: 56.25%;">
+const getDefaultEmbed = (url) => {
+  const embedHTML = `<div style="left: 0; width: 55vw; height: 45vh; max-height: fit-content; position: relative; padding-bottom: 56.25%;">
     <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
       scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
     </iframe>
@@ -25,8 +26,14 @@ const getDefaultEmbed = (url) => {const embedHTML = `<div style="left: 0; width:
   return embedHTML;
 };
 
-const embedIG = (url) => {const embedHTML = `<div style="left: 0; width: 55vw; height: 45vh; max-height: fit-content; position: relative; padding-bottom: 56.25%;">
-  <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
+const embedIG = (url) => {
+  let link = url.href;
+  if (!(url.href.includes('embed')))
+  {
+    link = url.href.split('?')[0] + 'embed';
+  }
+  const embedHTML = `<div style="left: 0; width: 55vw; height: 45vh; max-height: fit-content; position: relative; padding-bottom: 56.25%;">
+  <iframe src="${link}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
     scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
   </iframe>
 </div>`
