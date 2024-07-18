@@ -1,0 +1,13 @@
+main div.calendar .iframe-container {
+  width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
+  height: calc(100vh - var(--spectrum-global-dimension-size-800));
+  border: none;  
+}
+
+main div.calendar .calendar-block {
+  display: flex;
+  flex-direction: row ;
+  justify-content: center;
+  position: relative;
+}
+
