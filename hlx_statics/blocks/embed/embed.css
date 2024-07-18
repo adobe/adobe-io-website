@@ -28,6 +28,10 @@ main div.embed {
   justify-content: center;
 }
 
+video:-webkit-full-page-media {
+  margin: 0px;
+}
+
 main div.embed iframe {
   position: absolute;
   top: 0;
