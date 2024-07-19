@@ -1,0 +1,33 @@
+h1 {
+    font-size: 18px !important;
+    padding-bottom: 9px;  
+}
+
+p {
+    font-size: 16px !important;
+    display: flex;
+    gap: 4px;
+}
+
+p>a {
+    text-decoration: none !important;
+    font-weight:500;
+    line-height: 38px;
+} 
+
+p>div {
+    margin-top: 0.7% !important;
+}
+
+a { 
+    color: #0054b6;
+}
+
+a:hover {
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
+.resource-wrapper {
+    margin: 3%;
+} 
