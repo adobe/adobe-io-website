@@ -4,7 +4,6 @@
 @import "node_modules/@spectrum-css/vars/dist/spectrum-light.css";
 @import "node_modules/@spectrum-css/vars/dist/spectrum-dark.css";
 
-@import "node_modules/@spectrum-css/accordion/dist/index-vars.css";
 @import "node_modules/@spectrum-css/actionbutton/dist/index-vars.css";
 @import "node_modules/@spectrum-css/actiongroup/dist/index-vars.css";
 @import "node_modules/@spectrum-css/assetlist/dist/index-vars.css";

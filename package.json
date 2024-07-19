@@ -22,7 +22,6 @@
         "webpack-cli": "^5.1.4"
     },
     "dependencies": {
-        "@spectrum-css/accordion": "3.0.24",
         "@spectrum-css/actionbutton": "2.1.7",
         "@spectrum-css/actiongroup": "^2.0.0",
         "@spectrum-css/assetlist": "3.0.24",
