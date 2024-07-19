@@ -31,9 +31,16 @@ div.resource-cards-left > a.resource-card-large-container-inner {
   flex-direction: column;
 }
 
+@media screen and (max-width: 500px) {
+
+}
+
 main div.resource-card-container {
   max-width: 1280px;
   margin: auto;
+  flex-direction: column;
+  gap: 1.5rem;
+  display: flex;
 }
   
 main div.resource-card {
@@ -43,6 +50,7 @@ main div.resource-card {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+  gap: 2rem;
 } 
 
 main div.resource-card > div {
@@ -50,7 +58,7 @@ main div.resource-card > div {
 } 
 
   main div.resource-card > div {
-    min-width: var(--spectrum-global-dimension-size-4600);
+    /* min-width: var(--spectrum-global-dimension-size-4600); */
   } 
 
   main div.resource-card > div:first-child {
@@ -68,7 +76,7 @@ main div.resource-card > div {
 
 
 main div.resource-card > div{
-  padding: 24px;
+  /* padding: 24px; */
 }
 
 main div.resource-card-preview {
