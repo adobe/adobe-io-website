@@ -23,7 +23,7 @@ const getDefaultEmbed = (url, autoplay, loop, controls) => {
     style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
       scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
     </iframe>
-  </div>`
+  </div>`;
   return embedHTML;
 };
 
@@ -33,7 +33,7 @@ const embedIG = (url, autoplay, loop, controls) => {
   <iframe src="${link}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
     scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
   </iframe>
-</div>`
+</div>`;
 loadScript("https://www.instagram.com/embed.js");
 return embedHTML;
 };
@@ -46,12 +46,13 @@ const embedYTShort = (url, autoplay, loop, controls) => {
     src="https://www.youtube.com/embed/${videoCode}/?playlist=${videoCode}&autoplay=${autoplay}&muted=${autoplay}&loop=${loop}&controls=${controls}"
     title="YouTube video player"
     frameborder="0"
+    loading="lazy"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen></iframe>
-</div>`
+</div>`;
   
 };
-const embedGoogle = (url, autoplay, loop, controls) => {
+const embedMP4 = (url, autoplay, loop, controls) => {
   const video = `
 <div style=" width: 100%;">
       <video src="${url}" ${autoplay ? "autoplay muted":""} ${loop ? "loop" : ""} ${controls ? "controls":""} style="width: 100%; height: 100%;"> 
@@ -78,7 +79,7 @@ const embedTikTok = (url, autoplay, loop) => {
     <iframe src="https://www.tiktok.com/embed/${vidID}"style="border: 0; top: 0; left: 0; width: 100%; height: 736px; position: absolute;" allowfullscreen=""
       scrolling="no" allow="autoplay encrypted-media" title="Content from ${url.hostname}" loading="lazy">
     </iframe>
-  </div>`
+  </div>`;
 }
 
 const embedYoutube = (url, autoplay, loop, controls) => {
@@ -118,7 +119,7 @@ const embedVimeo = (url, autoplay, loop, controls) => {
 };
 const embedTwitter = (url, autoplay, loop, controls) => {
   const source = url.protocol+"//twitter.com"+url.pathname+ (url.search ? url.search : "");
-  const embedHTML = `<blockquote class="twitter-tweet"><a href="${source}"></a></blockquote>`
+  const embedHTML = `<blockquote class="twitter-tweet"><a href="${source}"></a></blockquote>`;
   loadScript('https://platform.twitter.com/widgets.js');
   return embedHTML;
 };
@@ -152,13 +153,28 @@ const loadEmbed = (block, link) => {
     },
     {
       match: ['mp4'],
-      embed: embedGoogle,
+      embed: embedMP4,
     },
   ];
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
-  const autoplay = (block?.parentElement?.parentElement?.getAttribute('data-autoplay')?.toLowerCase?.() === 'true') ? 1: 0;
-  const loop = (block?.parentElement?.parentElement?.getAttribute('data-loop')?.toLowerCase?.() === 'true') ? 1: 0;
-  const controls = (block?.parentElement?.parentElement?.getAttribute('data-controls')?.toLowerCase?.() === 'true') ? 1: 0;
+  // Initially set so that autoplay and looping does not occur, but user can view the controls
+  let autoplay = 0;
+  let loop = 0;
+  let controls = 1;
+  const attrs = block?.parentElement?.parentElement?.attributes
+  // changes the values of these attributes based on section metadata
+  if (attrs?.getNamedItem('data-autoplay'))
+  {
+    autoplay = (attrs.getNamedItem('data-autoplay').value.toLowerCase()  === 'true') ? 1: 0;
+  }
+  if (attrs?.getNamedItem('data-loop'))
+  {
+    loop = (attrs.getNamedItem('data-loop').value.toLowerCase()  === 'true') ? 1: 0;
+  }
+  if (attrs?.getNamedItem('data-controls'))
+  {
+    controls = (attrs.getNamedItem('data-controls').value.toLowerCase()  === 'true') ? 1: 0;
+  }
   const url = new URL(link);
   if (config) {
     block.innerHTML = config.embed(url, autoplay, loop, controls);
