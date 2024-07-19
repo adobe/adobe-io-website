@@ -8,7 +8,7 @@ main div.accordion .accordion-div {
 }
 
 main .accordion-whole {
-    padding: var(--spectrum-global-dimension-size-600) 0;
+    padding: 48px 0;
 }
 
 main .accordion-whole .accordion-wrapper {
@@ -29,7 +29,7 @@ main div.accordion .accordion-title {
 
 main div.accordion .accordion-item {
     border-color: #d9d9d9 !important;
-    border-bottom: var(--spectrum-alias-border-size-thin) solid;
+    border-bottom: 1px solid;
     display: list-item;
     list-style: none;
     width: 100%;
@@ -58,22 +58,22 @@ main div.accordion .accordion-itemHeader {
     font-family: inherit;
     font-size: 16px !important;
     padding-left: 0 !important;
-    padding-right: var(--spectrum-global-dimension-size-275);
-    padding-bottom: var(--spectrum-global-dimension-size-200);
-    padding-top: var(--spectrum-global-dimension-size-200);
-    font-weight: var(--spectrum-global-font-weight-bold)!important;
+    padding-right: 22px;
+    padding-bottom: 16px;
+    padding-top: 16px;
+    font-weight: 700 !important;
 }
 
 main div.accordion .accordion-itemHeader:hover {
     background-color:  #e9eaeb;
-    color: var(--spectrum-global-color-gray-900);
+    color: #2C2C2C;
 }
 
 main div.accordion .accordion-itemContent {
     font-size: 16px;
-    margin-top: var(--spectrum-global-dimension-size-150);
+    margin-top: 12px;
     padding-left: 20px!important;
-    padding-bottom: var(--spectrum-global-dimension-size-200);
+    padding-bottom: 16px;
     display: none;
 }
 
