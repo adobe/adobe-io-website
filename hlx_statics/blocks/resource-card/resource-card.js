@@ -55,7 +55,6 @@ export default async function decorate(block) {
   block.setAttribute('daa-lh', 'resource card');
   block.querySelectorAll('.resource-card > div').forEach((resource) => {
     removeEmptyPTags(resource);
-    // const resourceCard = createTag('div', { class: 'resource-cards-card' });
     const linkHref = resource.querySelector('a')?.href;
     const heading = resource.querySelector('a')?.innerText;
     const imgSrc = resource.querySelector('img')?.src;
