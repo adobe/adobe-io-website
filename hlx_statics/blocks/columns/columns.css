@@ -113,6 +113,7 @@ main .column-header:hover .anchor-link{
     main div.columns div.second-column {
         width: 100%;
         margin: var(--spectrum-global-dimension-size-400) 0;
+        text-align: center;
     }
   }
 
@@ -144,6 +145,12 @@ main div.columns div.listing ul {
 main div.second-column div.product-link-container {
     display: flex;
     flex-direction: row;
+    
+}
+@media screen and (max-width:1280px) {
+    main div.second-column div.product-link-container {
+        justify-content: center;
+    }
     gap: 1rem;
 }
 
