@@ -66,6 +66,39 @@ function AlertMedium() {
     </svg>`
 }
 
+function getVariant(classList) {
+    // variants: neutral, info, help, success, warning, error
+    let classVariant = {
+        class: '',
+        icon: ''
+    };
+
+    if(classList.contains('neutral')){
+        classVariant.icon = NeutralMedium();
+    }
+    if(classList.contains('info')){
+        classVariant.class = 'spectrum-InLineAlert--info';
+        classVariant.icon = InfoMedium();
+    }
+    if(classList.contains('help')){
+        classVariant.class = 'spectrum-InLineAlert--help';
+        classVariant.icon = HelpMedium();
+    }
+    if(classList.contains('success')){
+        classVariant.class = 'spectrum-InLineAlert--success';
+        classVariant.icon = SuccessMedium();
+    }
+    if(classList.contains('warning')){
+        classVariant.class = 'spectrum-InLineAlert--warning';
+        classVariant.icon = AlertMedium();
+    }
+    if(classList.contains('error')){
+        classVariant.class = 'spectrum-InLineAlert--error';
+        classVariant.icon = AlertMedium();
+    }
+    return classVariant;
+}
+
 function getClassVariant(classList) {
     // variants: neutral, info, help, success, warning, error
     let classVariant = '';
@@ -121,10 +154,14 @@ export default async function decorate(block) {
     const container = getBlockSectionContainer(block);
 
     block.querySelectorAll('.inlinealert > div').forEach((inlineAlert) => {
-        inlineAlert.classList.add('spectrum-InLineAlert');
-        let classVariant = getClassVariant(block.classList);
-        if(classVariant) inlineAlert.classList.add(classVariant);
-        inlineAlert.insertAdjacentHTML("afterbegin", getIconVariant(block.classList));
+        inlineAlert.classList.add('spectrum-InLineAlert'); 
+        // figure out variant based on parent element or on the block itself
+        // TODO: may need to refactor this logic
+        let classVariant = getVariant(block.parentElement.parentElement.classList) ;
+        if(classVariant) {
+            inlineAlert.classList.add(classVariant.class);
+            inlineAlert.insertAdjacentHTML("afterbegin", classVariant.icon);
+        }
 
         // need to wrap content into p
         inlineAlert.querySelectorAll('div').forEach((divContent) =>{
@@ -133,25 +170,5 @@ export default async function decorate(block) {
             inlineAlert.appendChild(inlineP);
             divContent.replaceWith(inlineP);
         });
-        // need to find example with header
-        // inlineAlert.querySelectorAll('h1').forEach((header) =>{
-        //     const divHeader = createTag('div', { class: 'spectrum-InLineAlert-header' });
-        //     const parent = header.parentElement;
-        //     divHeader.innerHTML = header.innerHTML;
-        //     parent.appendChild(divHeader);
-
-        //     header.replaceWith(divHeader);
-        // });
     })
-
 }
-  
-// <div class="spectrum-InLineAlert spectrum-InLineAlert--info">
-//   <div class="spectrum-InLineAlert-header">
-//     Information in-line alert header
-//     <svg class="spectrum-Icon spectrum-Icon--sizeM spectrum-InLineAlert-icon" focusable="false" aria-hidden="true">
-//       <use xlink:href="#spectrum-icon-18-Info" />
-//     </svg>
-//   </div>
-//   <div class="spectrum-InLineAlert-content">This is an alert.</div>
-// </div>
