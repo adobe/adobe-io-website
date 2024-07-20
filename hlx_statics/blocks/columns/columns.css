@@ -143,16 +143,10 @@ main div.columns div.listing ul {
     text-align: left;
 }
 
-@media screen and (min-width:768px) {
-    main div.columns div.product-link-container p + p {
-        margin-left: var(--spectrum-global-dimension-size-300);
-    }
-}
-
 main div.second-column div.product-link-container {
     display: flex;
     flex-direction: row;
-    
+    gap: 1rem;
 }
 @media screen and (max-width:1280px) {
     main div.second-column div.product-link-container {
@@ -172,6 +166,8 @@ main div.second-column div.product-link-container {
 main div.second-column div.product-link-container p.icon-container {
     display: flex;
     align-items: center;
+    text-align: center;
+    justify-content: center;
 }
 
 main div.second-column div.product-link-container img {
