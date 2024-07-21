@@ -60,7 +60,7 @@ main div.columns-container.section[data-list-class="checkmark"] ul > li:before{
     content: "\2714\0020";
 }
 
-main div.columns-container
+/* main div.columns-container  This line gives me css error, I think we could just take it out*/
 @media screen and (max-width: 1280px) {
     main div.columns > div {
         flex-direction: column;
@@ -92,6 +92,7 @@ main div.second-column {
     width: 50%;
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     justify-content: center;
     text-align: left;
     box-sizing: border-box;
@@ -126,12 +127,10 @@ main div.columns h3.column-header + p {
     margin-top: 0!important;
 }
 
-main div.columns p + p {
-    margin-top: var(--spectrum-global-dimension-size-300);
-}
-
-main div.columns div.product-link-container p {
-    margin-top: var(--spectrum-global-dimension-size-300);
+main div.columns  div.second-column div.button-group-container {
+    gap: 2rem;
+    display: flex;
+    text-align: center;
 }
 
 main div.columns div.listing.second-column[data-align="right"]{
@@ -152,6 +151,7 @@ main div.second-column div.product-link-container {
     main div.second-column div.product-link-container {
         justify-content: center;
     }
+    gap: 1rem;
 }
 
 @media screen and (max-width:768px) {
@@ -159,7 +159,7 @@ main div.second-column div.product-link-container {
         flex-wrap: wrap;
     }
     main div.columns div.product-link-container p {
-        width: 150px;
+        max-width: 150px;
     }
 }
 
@@ -181,9 +181,13 @@ main div.second-column div.product-link-container svg {
     width: var(--spectrum-global-dimension-size-400);
     object-fit: contain;
 }
-
-main div.second-column div.product-link-container a {
-    margin-left: var(--spectrum-global-dimension-size-100);
+main div.columns div.product-link-container p.icon-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+    margin-bottom: 0;
+    height: 100%;
 }
 
 /* metadata: style: center */
