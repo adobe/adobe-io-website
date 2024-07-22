@@ -97,7 +97,7 @@ const embedYoutube = (url, autoplay, loop, controls) => {
     [, vid] = url.pathname.split('/');
   }
   const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-    <img loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+    <img alt= loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
       src="https://i.ytimg.com/vi_webp/${vid}/maxresdefault.webp">
         <iframe data-src="https://www.youtube.com${vid ? `/embed/${vid}?playlist=${vid}&amp;` : embed}autoplay=${autoplay}&muted=${autoplay}&loop=${loop}&controls=${controls}" 
         allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" scrolling="no" title="Content from Youtube" loading="lazy">
@@ -175,6 +175,14 @@ const loadEmbed = (block, link) => {
   if (attrs?.getNamedItem('data-controls'))
   {
     controls = (attrs.getNamedItem('data-controls').value.toLowerCase()  === 'true') ? 1: 0;
+  }
+  if (attrs?.getNamedItem('data-image-title'))
+  {
+    controls = (attrs.getNamedItem('data-image-title').value.toLowerCase()  === 'true') ? 1: 0;
+  }
+  if (attrs?.getNamedItem('data-video-title'))
+  {
+    controls = (attrs.getNamedItem('data-video-title').value.toLowerCase()  === 'true') ? 1: 0;
   }
   const url = new URL(link);
   if (config) {
