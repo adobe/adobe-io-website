@@ -201,6 +201,8 @@ const loadEmbed = (block, link) => {
 };
 
 export default function decorate(block) {
+  block.setAttribute('daa-lh', 'embed');
+  applyAnalyticHeaderOverride(block);
   const link = block.querySelector('a').href;
-    loadEmbed(block, link);
+  loadEmbed(block, link);
 }
