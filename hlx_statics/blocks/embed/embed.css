@@ -2,17 +2,13 @@ main div.embed-container {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: var(--spectrum-global-color-gray-100);
+    background: rgb(248, 248, 248);
   }
   
   main div.embed-container > div{
-    max-width: calc(6 * var(--spectrum-global-dimension-static-grid-fixed-max-width) / var(--spectrum-global-dimension-static-grid-columns));
-    padding: var(--spectrum-global-dimension-size-1000) var(--spectrum-global-dimension-size-400);
+    max-width: 640px;
+    padding: 80px 32px;
     margin: auto;
-  }
-  
-  main div.embed-container h3 {
-    margin-bottom: var(--spectrum-global-dimension-size-200)!important;
   }
   
   main div.embed-container p {
@@ -21,8 +17,8 @@ main div.embed-container {
   }
   
   main div.embed {
-    margin-top: var(--spectrum-global-dimension-size-400);
-    max-width: calc(6 * var(--spectrum-global-dimension-static-grid-fixed-max-width) / var(--spectrum-global-dimension-static-grid-columns));
+    margin-top: 32px;
+    max-width: 640px;
   }
 
   main div.embed iframe {
