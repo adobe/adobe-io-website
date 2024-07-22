@@ -31,6 +31,13 @@ html, body {
   --spectrum-card-body-content-min-height: 14px;
   --spectrum-card-body-content-margin-top: 6px;
   --spectrum-global-dimension-size-225: 22px;
+  font-family: adobe-clean, "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Trebuchet MS", "Lucida Grande", sans-serif;
+  font-size: 14px;
+}
+
+.spectrum,
+.spectrum-Body {
+  color: rgb(75, 75, 75);
 }
 
 .spectrum--medium {
@@ -138,3 +145,425 @@ main .heading6 h6 {
   }
 }
 
+.spectrum-Heading--sizeXXL {
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 1.3;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Heading--sizeXL {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.3;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Heading--sizeL {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.3;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Heading--sizeM {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Heading--sizeS {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Heading--sizeXS {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Heading--sizeXXS {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Heading {
+  font-family: adobe-clean, "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Trebuchet MS", "Lucida Grande", sans-serif;
+  font-weight: 700;
+}
+
+.spectrum-Heading em,
+.spectrum-Heading .spectrum-Heading-emphasized {
+  font-style: italic;
+}
+
+.spectrum-Heading strong,
+.spectrum-Heading .spectrum-Heading-strong {
+  font-weight: 700;
+}
+
+.spectrum-Heading--serif {
+  font-family: adobe-clean-serif, adobe-clean-serif-fallback;
+}
+
+.spectrum-Heading--heavy {
+  font-weight: 900;
+}
+
+.spectrum-Heading--heavy em,
+.spectrum-Heading--heavy .spectrum-Heading-emphasized {
+  font-style: italic;
+}
+
+.spectrum-Heading--heavy strong,
+.spectrum-Heading--heavy .spectrum-Heading-strong {
+  font-weight: 900;
+}
+
+.spectrum-Heading--light {
+  font-weight: 300;
+}
+
+.spectrum-Heading--light em,
+.spectrum-Heading--light .spectrum-Heading-emphasized {
+  font-style: italic;
+}
+
+.spectrum-Heading--light strong,
+.spectrum-Heading--light .spectrum-Heading-strong {
+  font-weight: 300;
+}
+
+.spectrum-Body--sizeXXXL {
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Body--sizeXXL {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Body--sizeXL {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Body--sizeL {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Body--sizeM {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Body--sizeS {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Body--sizeXS {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Body {
+  font-family: adobe-clean, "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Trebuchet MS", "Lucida Grande", sans-serif;
+}
+
+.spectrum-Body strong,
+.spectrum-Body .spectrum-Body-strong {
+  font-weight: 700;
+}
+
+.spectrum-Body em,
+.spectrum-Body .spectrum-Body-emphasized {
+  font-style: italic;
+}
+
+.spectrum-Body--serif {
+  font-family: adobe-clean-serif, adobe-clean-serif-fallback;
+}
+
+.spectrum-Typography .spectrum-Heading--sizeXXXL {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Typography .spectrum-Heading--sizeXXL {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Typography .spectrum-Heading--sizeXL {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Typography .spectrum-Heading--sizeL {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Typography .spectrum-Heading--sizeM {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Typography .spectrum-Heading--sizeS {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Typography .spectrum-Heading--sizeXS {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Typography .spectrum-Heading--sizeXXS {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Typography .spectrum-Body--sizeXXXL {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Typography .spectrum-Body--sizeXXL {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Typography .spectrum-Body--sizeXL {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Typography .spectrum-Body--sizeL {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Typography .spectrum-Body--sizeM {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Typography .spectrum-Body--sizeS {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spectrum-Typography .spectrum-Body--sizeXS {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+.spectrum-Heading--sizeXXXL {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading--sizeXXL {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading--sizeXL {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading--sizeL {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading--sizeM {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading--sizeS {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading--sizeXS {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading--sizeXXS {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading-sizeXXXL--light {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading-sizeXXL--light {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading-sizeXL--light {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading-sizeL--light {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading-sizeXXXL--heavy {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading-sizeXXL--heavy {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading-sizeXL--heavy {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading-sizeL--heavy {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading-sizeXXXL--heading {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading-sizeXXL--heading {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading-sizeXL--heading {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Heading-sizeL--heading {
+  color: rgb(44, 44, 44);
+}
+
+.spectrum-Body--sizeXXXL {
+  color: rgb(75, 75, 75);
+}
+
+.spectrum-Body--sizeXXL {
+  color: rgb(75, 75, 75);
+}
+
+.spectrum-Body--sizeXL {
+  color: rgb(75, 75, 75);
+}
+
+.spectrum-Body--sizeL {
+  color: rgb(75, 75, 75);
+}
+
+.spectrum-Body--sizeM {
+  color: rgb(75, 75, 75);
+}
+
+.spectrum-Body--sizeS {
+  color: rgb(75, 75, 75);
+}
+
+.spectrum-Body--sizeXS {
+  color: rgb(75, 75, 75);
+}
+
+.spectrum-Detail--sizeXL {
+  color: rgb(75, 75, 75);
+}
+
+.spectrum-Detail--sizeL {
+  color: rgb(75, 75, 75);
+}
+
+.spectrum-Detail--sizeM {
+  color: rgb(75, 75, 75);
+}
+
+.spectrum-Detail--sizeS {
+  color: rgb(75, 75, 75);
+}
+
+.spectrum-Code--sizeXL {
+  color: rgb(75, 75, 75);
+}
