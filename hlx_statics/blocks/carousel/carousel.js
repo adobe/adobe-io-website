@@ -4,6 +4,14 @@ import { createTag, decorateButtons, removeEmptyPTags, applyWidthOverride, apply
  * @param {Element} block The carousel block element
  */
 export default async function decorate(block) {
+  block.querySelectorAll('main div.carousel > div > div').forEach(div => {
+    const h1 = div.children[1].firstElementChild.firstElementChild.firstElementChild; 
+    const p = div.firstElementChild;
+    const text = div.lastElementChild;
+    p.insertAdjacentElement('afterend', h1);
+    h1.insertAdjacentElement('afterend', text);
+    div.removeChild(div.lastElementChild);
+  });
   block.setAttribute('daa-lh', 'carousel');
   removeEmptyPTags(block);
   decorateButtons(block);
