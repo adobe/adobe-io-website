@@ -3,6 +3,8 @@
  * Show videos and social posts directly on your page
  * https://www.hlx.live/developer/block-collection/embed
  */
+import { decorateLightOrDark } from '../../scripts/lib-helix.js';
+import { applyBkgColorOverride, applyAnalyticHeaderOverride } from '../../scripts/lib-adobeio.js';
 
 const loadScript = (url, callback, type) => {
   const head = document.querySelector('head');
@@ -15,7 +17,6 @@ const loadScript = (url, callback, type) => {
   head.append(script);
   return script;
 };
-import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
 const getDefaultEmbed = (url, autoplay, loop, controls) => {
   const embedHTML = `<div style="left: 0; width: 55vw; height: 45vh; max-height: fit-content; position: relative; padding-bottom: 56.25%;">
@@ -193,6 +194,7 @@ const loadEmbed = (block, link) => {
     block.removeEventListener('mouseover', videoListener);
   };
   block.addEventListener('mouseover', videoListener);
+  applyBkgColorOverride(block);
   const wid = block?.parentElement?.parentElement?.getAttribute('data-width');
   if (wid) {
     block.classList.add('embed-custom-width');
