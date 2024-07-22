@@ -1,13 +1,13 @@
 main div.info {
     width: 90%;
     margin: 0 auto;
-    background: var(--spectrum-global-color-gray-100);
+    background: rgb(248, 248, 248);
     justify-content: center;
     margin-bottom: 64px;
   }
   
   main div.info h2 {
-    margin-top: var(--spectrum-global-dimension-size-800);
+    margin-top: 64px;
     scroll-margin-top: 100px;
   }
 
@@ -25,8 +25,8 @@ main div.info {
 main div.info code {
     display: inline-block;
     min-width: auto;
-    background-color: var(--spectrum-global-color-gray-100);
-    padding: 0 var(--spectrum-global-dimension-size-50);
+    background-color: rgb(248, 248, 248);
+    padding: 0 4px;
     margin: 0;
   }
   
