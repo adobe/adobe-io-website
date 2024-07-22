@@ -1,5 +1,5 @@
 main div.summary-container {
-  background: var(--spectrum-global-color-gray-50);
+  background: #ffffff;
   background-position: center;
   background-size: cover;
   padding: 0;
@@ -23,11 +23,11 @@ main div.summary {
 
 main div.summary > div {
   box-sizing: border-box;
-  padding-left: var(--spectrum-global-dimension-size-800);
+  padding: 64px;
   width: calc(7 * 100% / 12);
   height: 100%;
   position: absolute;
-  top: 20%;
+  top: 0;
   left: 0;
   display: flex;
   align-items: left;
@@ -37,25 +37,24 @@ main div.summary > div {
 
 @media screen and (max-width: 1280px) {
   main div.summary > div {
-    top: 5%;
     width: auto;
-    padding: var(--spectrum-global-dimension-size-400);
+    padding: 32px;
   }
 }
 
 main div.summary h2 {
   margin-top: 0 !important;
-  margin-bottom: var(--spectrum-global-dimension-size-200) !important;
+  margin-bottom: 16px !important;
 }
 
 main div.summary p {
-  margin-bottom: var(--spectrum-global-dimension-size-300) !important;
-  color: var(--spectrum-global-color-gray-900);
+  margin-bottom: 24px !important;
+  color: #ffffff;
   margin-top: 0;
 }
 
 main div.summary p a:hover {
-  color: var(--spectrum-global-color-gray-300);
+  color: #545454;
 }
 
 main div.summary img {
