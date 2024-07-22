@@ -21,7 +21,7 @@ main div.columns {
 main div.columns > div {
     display: flex;
     align-items: center;
-    padding: var(--spectrum-global-dimension-size-1000) 0;
+    margin-bottom: var(--spectrum-global-dimension-size-1000);
 }
 
 main div.columns > div:nth-child(even) {
@@ -35,7 +35,7 @@ main div.columns-container.background-color-white {
 main div.columns-container.section[data-class="photoshoppricing"] .columns > div > div{
     flex-basis:auto;
     flex-grow: 1;
-    flex-shink: 1;
+    flex-shrink: 1;
     text-align: left;
     padding: 0 var(--spectrum-global-dimension-size-800);
 }
@@ -60,10 +60,11 @@ main div.columns-container.section[data-list-class="checkmark"] ul > li:before{
     content: "\2714\0020";
 }
 
-main div.columns-container
+
 @media screen and (max-width: 1280px) {
     main div.columns > div {
         flex-direction: column;
+        margin-bottom: var(--spectrum-global-dimension-size-1000);
     }
 }
 
@@ -72,9 +73,7 @@ main div.columns div.first-column {
     align-items: center;
     justify-content: center;
     width: 50%;
-    height: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-225));
     box-sizing: border-box;
-    padding: 0 var(--spectrum-global-dimension-size-100);
     margin-top: 0;
 }
 
@@ -82,6 +81,11 @@ main div.columns div.first-column img {
     max-height: 350px;
 }
 
+@media screen and (max-width: 620px) {
+    main div.columns div.first-column img {
+        width: 100vw;
+    }
+}
 @media screen and (max-width: 1280px) {
     main div.columns div.first-column {
         width: 100%;
@@ -159,7 +163,7 @@ main div.second-column div.product-link-container {
         flex-wrap: wrap;
     }
     main div.columns div.product-link-container p {
-        width: 150px;
+        max-width: 150px;
     }
 }
 
@@ -168,8 +172,11 @@ main div.second-column div.product-link-container p.icon-container {
     align-items: center;
     text-align: center;
     justify-content: center;
+    gap: 0.5rem;
 }
-
+main div.second-column div.product-link-container p.icon-container a {
+    width: fit-content;
+}
 main div.second-column div.product-link-container img {
     height: var(--spectrum-global-dimension-size-400);
     width: var(--spectrum-global-dimension-size-400);
@@ -180,10 +187,6 @@ main div.second-column div.product-link-container svg {
     height: var(--spectrum-global-dimension-size-400);
     width: var(--spectrum-global-dimension-size-400);
     object-fit: contain;
-}
-
-main div.second-column div.product-link-container a {
-    margin-left: var(--spectrum-global-dimension-size-100);
 }
 
 /* metadata: style: center */
