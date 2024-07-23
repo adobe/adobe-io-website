@@ -12,10 +12,18 @@ import {
  * @param {Element} block The carousel block element
  */
 export default async function decorate(block) {
-  block.setAttribute('daa-lh', 'vidoe-carousel');
+  block.querySelectorAll('main .video-carousel-container .video-carousel-wrapper .video-carousel > div').forEach(div => {
+    const p = div.firstElementChild.firstElementChild;
+    p.classList.remove('button-container');
+    const text = div.firstElementChild.lastElementChild;
+    const h1 = div.firstElementChild.children[1].firstElementChild.firstElementChild.firstElementChild; 
+    p.insertAdjacentElement('afterend', h1);
+    h1.insertAdjacentElement('afterend', text);
+    div.firstElementChild.removeChild(div.firstElementChild.lastElementChild);
+  });
+  block.setAttribute('daa-lh', 'video-carousel');
   removeEmptyPTags(block);
   decorateButtons(block);
-
   const video_carousel_block_child = createTag('div', {class: 'video-block-container'});
   block.append(video_carousel_block_child);
 

@@ -1,10 +1,10 @@
 main div.info-columns-container {
     width: 100%;
-    background: var(--spectrum-global-color-gray-100);
+    background: rgb(248, 248, 248);
   }
   
   main div.info-columns {
-    width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
+    width: 1280px;
     box-sizing: border-box;
     margin: auto;
   }
@@ -40,19 +40,19 @@ main div.info-columns-container {
     justify-content: center;
     text-align: left;
     box-sizing: border-box;
-    padding: 0 var(--spectrum-global-dimension-size-400);
+    padding: 0 32px;
   }
   
   @media screen and (max-width: 1280px) {
     main div.info-columns div.info-column {
       width: 100%;
-      margin: var(--spectrum-global-dimension-size-400) 0;
+      margin: 32px 0;
     }
   }
   
   main div.info-columns h3.column-header {
     margin-top: 0 !important;
-    margin-bottom: var(--spectrum-global-dimension-size-200) !important;
+    margin-bottom: 16px !important;
   }
   
   main div.info-columns h3.column-header + p {
@@ -60,15 +60,15 @@ main div.info-columns-container {
   }
   
   main div.info-columns p + p {
-    margin-top: var(--spectrum-global-dimension-size-300);
+    margin-top: 24px;
   }
   
   main div.info-columns div.product-link-container p {
-    margin-top: var(--spectrum-global-dimension-size-300);
+    margin-top: 24px;
   }
   
   main div.info-columns div.product-link-container p + p {
-    margin-left: var(--spectrum-global-dimension-size-300);
+    margin-left: 24px;
   }
   
   main div.info-column div.product-link-container {
@@ -82,12 +82,12 @@ main div.info-columns-container {
   }
   
   main div.info-column div.product-link-container img.icon {
-    height: var(--spectrum-global-dimension-size-400);
-    width: var(--spectrum-global-dimension-size-400);
+    height: 32px;
+    width: 32px;
     object-fit: contain;
   }
   
   main div.info-column div.product-link-container a {
-    margin-left: var(--spectrum-global-dimension-size-100);
+    margin-left: 8px;
   }
   
