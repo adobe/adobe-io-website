@@ -1,25 +1,25 @@
 main a.resource-card-small-container-inner {
-    height: calc(var(--spectrum-global-dimension-size-2000) - var(--spectrum-global-dimension-size-50));
-    margin: var(--spectrum-global-dimension-size-300);
+    height: calc(160px - 4px);
+    margin: 24px;
 }
 
 @media screen and (max-width: 1280px) {
   main a.resource-card-small-container-inner {
-    height: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-100));
-    margin: var(--spectrum-global-dimension-size-300);
-    width: calc(100vw - var(--spectrum-global-dimension-size-300)*2);
+    height: calc(368px - 8px);
+    margin: 24px;
+    width: calc(100vw - (24px)*2);
   }
 }
 
 main div.resource-card-small-preview {
-  width: calc(var(--spectrum-global-dimension-size-2000) + var(--spectrum-global-dimension-size-125));
+  width: calc(160px + 10px);
   padding: 0 !important;
 }
 
 @media screen and (max-width: 1280px) {
   main div.resource-card-small-preview {
-    height: var(--spectrum-global-dimension-size-3000);
-    width: calc(100vw - var(--spectrum-global-dimension-size-300)*2);
+    height: 240px;
+    width: calc(100vw - (24px)*2);
     padding: 0 !important;
   }
 }
@@ -47,7 +47,7 @@ main div.resource-card-small-image-container img {
 
 main div.resource-card-small-body {
   flex: 1;
-  padding: var(--spectrum-global-dimension-size-300) !important;
+  padding: 24px !important;
   justify-content: flex-start !important;
   overflow: hidden;
 }
@@ -63,11 +63,11 @@ main div.resource-card-small-title {
 
 main div.resource-card-small h3 {
   margin-top: 0 !important;
-  margin-bottom: var(--spectrum-global-dimension-size-200) !important;
+  margin-bottom: 16px !important;
 }
 
 main div.resource-card-small p {
   text-align: left;
-  color: var(--spectrum-global-color-gray-700);
+  color: rgb(110, 110, 110);
   margin-top: 0;
 }
