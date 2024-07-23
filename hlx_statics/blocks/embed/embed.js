@@ -215,7 +215,7 @@ export default function decorate(block) {
   const link = block.querySelector('a').href;
   block.textContent = '';
   if (placeholder) {
-    if (!(placeholder.alt)) placeholder.alt = "Youtube thumbnail";
+    if (!(placeholder.alt)) placeholder.alt = "Content thumbnail";
     addImage(placeholder, block, link);
   } 
   else {
