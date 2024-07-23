@@ -221,7 +221,7 @@ export function buildHeadings(container) {
     { elementName: 'h6', blockName: 'heading6' },
   ];
   map.forEach(({ elementName, blockName }) => {
-    const elements = [...container.querySelectorAll(elementName)];
+    const elements = [...container.querySelectorAll(`main > div > ${elementName}`)];
     elements.forEach((element) => {
       const block = buildBlock(blockName, element.outerHTML);
       element.replaceWith(block);
