@@ -48,7 +48,7 @@ const embedYTShort = (url, loop, controls, vidTitle) => {
     title=${vidTitle ? vidTitle : `Content from ${url.hostname}`}
     frameborder="0"
     loading="lazy"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen></iframe>
 </div>`;
 };
@@ -78,7 +78,7 @@ const embedTikTok = (url, loop, controls, vidTitle) => {
   const [, vidID] = url.pathname.split('video/')
   return  `<div style="left: 0; width: 325px; height: 736px;  position: relative;">
     <iframe src="https://www.tiktok.com/embed/${vidID}"style="border: 0; top: 0; left: 0; width: 100%; height: 736px; position: absolute;" allowfullscreen=""
-      scrolling="no" allow="encrypted-media" title=${vidTitle ? vidTitle : `Content from ${url.hostname}`} loading="lazy">
+      scrolling="no" allow="accelerometer encrypted-media" title=${vidTitle ? vidTitle : `Content from ${url.hostname}`} loading="lazy">
     </iframe>
   </div>`;
 }
@@ -88,10 +88,10 @@ const embedYoutube = (url, loop, controls, vidTitle) => {
   let vid = encodeURIComponent(usp.get('v'));
   const embed = url.pathname;
   if (embed.includes('shorts')) {
-    return embedYTShort(url, autoplay, loop, controls);
+    return embedYTShort(url, loop, controls);
   }
   if (embed.includes('playlist')) {
-    return embedYTPlaylist(usp, autoplay, loop, controls);
+    return embedYTPlaylist(usp, loop, controls);
   }
   if (url.origin.includes('youtu.be')) {
     [, vid] = url.pathname.split('/');
@@ -159,7 +159,7 @@ const loadEmbed = (block, link) => {
     },
   ];
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
-  // Initially set so that autoplay and looping does not occur, but user can view the controls
+  // Initially set so that looping does not occur, but user can view the controls
   let loop = 0;
   let controls = 1;
   const attrs = block?.parentElement?.parentElement?.attributes;
