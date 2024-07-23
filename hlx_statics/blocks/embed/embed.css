@@ -56,7 +56,8 @@ main div.embed-container {
 .embed .embed-placeholder picture img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
+  max-width: 640px;
 }
 
 .embed .embed-placeholder-play button {

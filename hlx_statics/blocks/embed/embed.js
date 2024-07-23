@@ -97,7 +97,8 @@ const embedYoutube = (url, loop, controls, vidTitle) => {
     [, vid] = url.pathname.split('/');
   }
   const embedHTML = `<div style="left: 0; width: 100%; height: 100%; position: relative; padding-bottom: 56.25%;">
-        <iframe data-src="https://www.youtube.com${vid ? `/embed/${vid}?playlist=${vid}&amp;` : embed}loop=${loop}&controls=${controls}" 
+        <iframe src="https://www.youtube.com${vid ? `/embed/${vid}?playlist=${vid}&amp;` : embed}loop=${loop}&controls=${controls}" 
+        data-src="https://www.youtube.com${vid ? `/embed/${vid}?playlist=${vid}&amp;` : embed}loop=${loop}&controls=${controls}" 
         allow="encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" 
         scrolling="no" title=${vidTitle ? vidTitle : `Content from ${url.hostname}`} loading="lazy">
         <p> Sorry, we're having an internal error. Try again later. <//p>
