@@ -1,6 +1,17 @@
-.table {
+main div.table-wrapper {
+  padding: 80px 32px;
+} 
+
+main div.table-container {
   width: 100%;
+  background: var(--spectrum-global-color-gray-100);
   overflow-x: auto;
+}
+
+main div.table {
+  width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
+  box-sizing: border-box;
+  margin: auto;
 }
 
 .table table {
