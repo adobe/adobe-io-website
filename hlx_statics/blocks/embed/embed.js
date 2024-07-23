@@ -18,34 +18,34 @@ const loadScript = (url, callback, type) => {
   return script;
 };
 
-const getDefaultEmbed = (url, autoplay, loop, controls) => {
+const getDefaultEmbed = (url, autoplay, loop, controls, imgTitle, vidTitle) => {
   const embedHTML = `<div style="left: 0; width: 55vw; height: 45vh; max-height: fit-content; position: relative; padding-bottom: 56.25%;">
     <iframe src="${url.href}?${autoplay ? `autoplay=1&mute=1&`:``}${loop ? `loop=1&` : ``}${controls ? `controls=1`: ``}" 
     style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
-      scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
+      scrolling="no" allow="encrypted-media" title=${vidTitle ? vidTitle : `Content from ${url.hostname}`} loading="lazy">
     </iframe>
   </div>`;
   return embedHTML;
 };
 
-const embedIG = (url, autoplay, loop, controls) => {
+const embedIG = (url, autoplay, loop, controls, imgTitle, vidTitle) => {
   const link = url.href.split('?')[0] + 'embed/captioned';
   const embedHTML = `<div style="left: 0; width: 75vw; height: 45vh; max-height: fit-content; position: relative; padding-bottom: 56.25%;">
   <iframe src="${link}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
-    scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
+    scrolling="no" allow="encrypted-media" title=${vidTitle ? vidTitle : `Content from ${url.hostname}`} loading="lazy">
   </iframe>
 </div>`;
 loadScript("https://www.instagram.com/embed.js");
 return embedHTML;
 };
 
-const embedYTShort = (url, autoplay, loop, controls) => {
+const embedYTShort = (url, autoplay, loop, controls, imgTitle, vidTitle) => {
   const [, videoCode] = url.pathname.split('/shorts/');
  return  `
  <div style="width: 75vw; height: 40vh; position: relative; padding-bottom: 56.25%;">
   <iframe 
     src="https://www.youtube.com/embed/${videoCode}/?playlist=${videoCode}&autoplay=${autoplay}&muted=${autoplay}&loop=${loop}&controls=${controls}"
-    title="YouTube video player"
+    title=${vidTitle ? vidTitle : `Content from ${url.hostname}`}
     frameborder="0"
     loading="lazy"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -53,37 +53,37 @@ const embedYTShort = (url, autoplay, loop, controls) => {
 </div>`;
   
 };
-const embedMP4 = (url, autoplay, loop, controls) => {
+const embedMP4 = (url, autoplay, loop, controls, imgTitle, vidTitle) => {
   const video = `
 <div style=" width: 100%;">
       <video src="${url}" ${autoplay ? "autoplay muted":""} ${loop ? "loop" : ""} ${controls ? "controls":""} style="width: 100%; height: 100%;"> 
-      Sorry, We're having an internal Error. Please try Again Soon!
+      <p>Sorry, We're having an internal Error. Please try Again Soon!</p>
       </video>
 </div>
   `;
   return  video;
 };
-const embedYTPlaylist = (usp, autoplay, loop, controls) => {
+const embedYTPlaylist = (usp, autoplay, loop, controls, imgTitle, vidTitle) => {
   const source = `"https://www.youtube.com${`/embed/videoseries/?list=${usp.get('list')}`}&autoplay=${autoplay}&muted=${autoplay}&loop=${loop}&controls=${controls}";`
-  const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+  const embedHTML = `<div style="left: 0; width: 100%; height: 100%; position: relative; padding-bottom: 56.25%;">
   <iframe 
   style="opacity: 1" src=${source} data-src=${source} allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen=""
-   scrolling="no" title="Content from Youtube" loading="lazy">
+  title=${vidTitle ? vidTitle : `Content from ${url.hostname}`} scrolling="no">
    </iframe>
   </div>`;
   return embedHTML;
   
 }
-const embedTikTok = (url, autoplay, loop) => {
+const embedTikTok = (url, autoplay, loop, controls, imgTitle, vidTitle) => {
   const [, vidID] = url.pathname.split('video/')
   return  `<div style="left: 0; width: 325px; height: 736px;  position: relative;">
     <iframe src="https://www.tiktok.com/embed/${vidID}"style="border: 0; top: 0; left: 0; width: 100%; height: 736px; position: absolute;" allowfullscreen=""
-      scrolling="no" allow="autoplay encrypted-media" title="Content from ${url.hostname}" loading="lazy">
+      scrolling="no" allow="autoplay encrypted-media" title=${vidTitle ? vidTitle : `Content from ${url.hostname}`} loading="lazy">
     </iframe>
   </div>`;
 }
 
-const embedYoutube = (url, autoplay, loop, controls) => {
+const embedYoutube = (url, autoplay, loop, controls, imgTitle, vidTitle) => {
   const usp = new URLSearchParams(url.search);
   let vid = encodeURIComponent(usp.get('v'));
   const embed = url.pathname;
@@ -96,29 +96,31 @@ const embedYoutube = (url, autoplay, loop, controls) => {
   if (url.origin.includes('youtu.be')) {
     [, vid] = url.pathname.split('/');
   }
-  const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-    <img alt= loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+  const embedHTML = `<div style="left: 0; width: 100%; height: 100%; position: relative; padding-bottom: 56.25%;">
+    <img alt=${imgTitle ? imgTitle : "Image from Youtube"} loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
       src="https://i.ytimg.com/vi_webp/${vid}/maxresdefault.webp">
         <iframe data-src="https://www.youtube.com${vid ? `/embed/${vid}?playlist=${vid}&amp;` : embed}autoplay=${autoplay}&muted=${autoplay}&loop=${loop}&controls=${controls}" 
-        allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" scrolling="no" title="Content from Youtube" loading="lazy">
+        allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" 
+        scrolling="no" title=${vidTitle ? vidTitle : `Content from ${url.hostname}`} loading="lazy">
+        <p> Sorry, we're having an internal error. Try again later. <//p>
         </iframe>
     </img>
   </div>`;
   return embedHTML;
 };
 
-const embedVimeo = (url, autoplay, loop, controls) => {
+const embedVimeo = (url, autoplay, loop, controls, imgTitle, vidTitle) => {
   const [, video] = url.pathname.split('/');
-  const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+  const embedHTML = `<div style="left: 0; width: 100%; height: 100%; position: relative; padding-bottom: 56.25%;">
       <iframe src="https://player.vimeo.com/video/${video}?autoplay=${autoplay}&muted=${autoplay}&loop=${loop}&controls=${controls}" 
       style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" 
       frameborder="0" allow="fullscreen; autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture"  
       allowfullscreen=""
-      title="Content from Vimeo" loading="lazy"></iframe>
+      title=${vidTitle ? vidTitle : `Content from ${url.hostname}`} loading="lazy"></iframe>
     </div>`;
   return embedHTML;
 };
-const embedTwitter = (url, autoplay, loop, controls) => {
+const embedTwitter = (url, autoplay, loop, controls, imgTitle, vidTitle) => {
   const source = url.protocol+"//twitter.com"+url.pathname+ (url.search ? url.search : "");
   const embedHTML = `<blockquote class="twitter-tweet"><a href="${source}"></a></blockquote>`;
   loadScript('https://platform.twitter.com/widgets.js');
@@ -162,7 +164,9 @@ const loadEmbed = (block, link) => {
   let autoplay = 0;
   let loop = 0;
   let controls = 1;
-  const attrs = block?.parentElement?.parentElement?.attributes
+  const attrs = block?.parentElement?.parentElement?.attributes;
+  const imgTitle = attrs?.getNamedItem('data-imagetitle')?.value;
+  const vidTitle = attrs?.getNamedItem('data-videotitle')?.value;
   // changes the values of these attributes based on section metadata
   if (attrs?.getNamedItem('data-autoplay'))
   {
@@ -176,17 +180,9 @@ const loadEmbed = (block, link) => {
   {
     controls = (attrs.getNamedItem('data-controls').value.toLowerCase()  === 'true') ? 1: 0;
   }
-  if (attrs?.getNamedItem('data-image-title'))
-  {
-    controls = (attrs.getNamedItem('data-image-title').value.toLowerCase()  === 'true') ? 1: 0;
-  }
-  if (attrs?.getNamedItem('data-video-title'))
-  {
-    controls = (attrs.getNamedItem('data-video-title').value.toLowerCase()  === 'true') ? 1: 0;
-  }
   const url = new URL(link);
   if (config) {
-    block.innerHTML = config.embed(url, autoplay, loop, controls);
+    block.innerHTML = config.embed(url, autoplay, loop, controls, imgTitle, vidTitle);
     block.classList = `block embed embed-${config.match[0]}`;
   } else {
     block.innerHTML = getDefaultEmbed(url);
