@@ -76,12 +76,9 @@ main div.resource-card {
 } 
 
 main div.resource-card > div {
-  width: 400px;
+  /* width: 400px; */
+  width: 368px;
 } 
-
-@media screen and (max-width: 1280px) {
-  
-}
 
 main div.resource-card > div{
   padding: 24px;
@@ -100,11 +97,14 @@ main div.resource-card-image-container {
   height: 100%;
   margin-bottom: 0 !important;
   margin-top: 0;
+  /* width: 400px; */
+  width: 368px;
 }
 
 main div.resource-card-image-container img {
   object-fit: cover;
-  width: 400px;
+  /* width: 400px; */
+  width: 368px;
 }
 
 main div.resource-card-body {
