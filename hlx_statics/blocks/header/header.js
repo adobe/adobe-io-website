@@ -357,7 +357,7 @@ export default async function decorate(block) {
     setActiveTab();
     focusRing(header);
   } else if (resp.status == 404) {
-    const resp404 = await fetch('https://developer.adobe.com/franklin_assets/nav.plain.html');
+    const resp404 = await fetch('https://main--adobe-io-website--adobe.hlx.page/franklin_assets/nav.plain.html');
     if (resp404.ok) {
       const html = await resp404.text();
       block.innerHTML = html;
