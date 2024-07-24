@@ -176,8 +176,6 @@ main div.table {
   transition: color .13s ease-in-out
 }
 
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table-body.is-drop-target:before,
@@ -185,8 +183,6 @@ main div.table {
   left: 0
 }
 
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table-body.is-drop-target:before,
@@ -194,8 +190,6 @@ main div.table {
   right: 0
 }
 
-.spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-.spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
 .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
 .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
 .spectrum-Table-body.is-drop-target:before,
@@ -345,200 +339,6 @@ main div.table {
   vertical-align: super
 }
 
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell {
-  text-align: left
-}
-
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell {
-  padding-left: var(--spectrum-table-compact-header-padding-left);
-  padding-right: var(--spectrum-table-compact-header-padding-right)
-}
-
-.spectrum-Table--compact .spectrum-Table-headCell {
-  border-radius: var(--spectrum-table-compact-header-border-radius);
-  box-sizing: border-box;
-  cursor: default;
-  font-size: var(--spectrum-table-compact-header-text-size);
-  font-weight: var(--spectrum-table-compact-header-text-font-weight);
-  letter-spacing: var(--spectrum-table-compact-header-text-letter-spacing);
-  line-height: var(--spectrum-table-compact-header-text-line-height);
-  min-height: var(--spectrum-table-compact-header-min-height);
-  outline: 0;
-  padding-bottom: var(--spectrum-table-compact-header-padding-bottom);
-  padding-top: var(--spectrum-table-compact-header-padding-top);
-  text-transform: uppercase;
-  transition: color .13s ease-in-out
-}
-
-[dir=ltr] .spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before {
-  left: 0
-}
-
-[dir=ltr] .spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before {
-  right: 0
-}
-
-.spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-.spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
-.spectrum-Table--compact .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
-.spectrum-Table--compact .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
-.spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-.spectrum-Table--compact .spectrum-Table-row.is-drop-target:before {
-  bottom: 0;
-  content: "";
-  position: absolute;
-  top: 0;
-  z-index: 1
-}
-
-.spectrum-Table--compact .spectrum-Table-body {
-  overflow: auto;
-  position: relative;
-  vertical-align: var(--spectrum-table-compact-cell-vertical-alignment)
-}
-
-.spectrum-Table--compact .spectrum-Table-body,
-.spectrum-Table--compact .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body {
-  border-radius: var(--spectrum-table-compact-border-radius);
-  border-width: var(--spectrum-table-compact-border-size)
-}
-
-[dir=ltr] .spectrum-Table--compact .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:first-child {
-  border-top-left-radius: var(--spectrum-table-compact-border-radius)
-}
-
-[dir=ltr] .spectrum-Table--compact .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
-  border-top-right-radius: var(--spectrum-table-compact-border-radius)
-}
-
-[dir=ltr] .spectrum-Table--compact .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
-  border-bottom-left-radius: var(--spectrum-table-compact-border-radius)
-}
-
-[dir=ltr] .spectrum-Table--compact .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
-  border-bottom-right-radius: var(--spectrum-table-compact-border-radius)
-}
-
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-cell {
-  padding-left: var(--spectrum-table-compact-cell-padding-left);
-  padding-right: var(--spectrum-table-compact-cell-padding-right)
-}
-
-.spectrum-Table--compact .spectrum-Table-cell {
-  box-sizing: border-box;
-  font-size: var(--spectrum-table-compact-cell-text-size);
-  font-weight: var(--spectrum-table-compact-cell-text-font-weight);
-  line-height: var(--spectrum-table-compact-cell-text-line-height);
-  min-height: calc(var(--spectrum-table-compact-cell-min-height) - var(--spectrum-table-compact-cell-padding-top) - var(--spectrum-table-compact-cell-padding-bottom));
-  padding-bottom: var(--spectrum-table-compact-cell-padding-bottom);
-  padding-top: var(--spectrum-table-compact-cell-padding-top)
-}
-
-.spectrum-Table--compact .spectrum-Table-cell,
-.spectrum-Table--compact .spectrum-Table-headCell {
-  position: relative
-}
-
-.spectrum-Table--compact .spectrum-Table-cell.focus-ring,
-.spectrum-Table--compact .spectrum-Table-cell.is-focused,
-.spectrum-Table--compact .spectrum-Table-headCell.focus-ring,
-.spectrum-Table--compact .spectrum-Table-headCell.is-focused {
-  outline: none
-}
-
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-cell.focus-ring:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-cell.is-focused:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell.focus-ring:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell.is-focused:before {
-  right: 0
-}
-
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-cell.focus-ring:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-cell.is-focused:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell.focus-ring:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell.is-focused:before {
-  left: 0
-}
-
-.spectrum-Table--compact .spectrum-Table-cell.focus-ring:before,
-.spectrum-Table--compact .spectrum-Table-cell.is-focused:before,
-.spectrum-Table--compact .spectrum-Table-headCell.focus-ring:before,
-.spectrum-Table--compact .spectrum-Table-headCell.is-focused:before {
-  border-radius: calc(var(--spectrum-table-compact-cell-border-radius-key-focus) - 1px);
-  bottom: 0;
-  content: "";
-  position: absolute;
-  top: 0;
-  z-index: 1
-}
-
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell.focus-ring:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell.is-focused:before {
-  right: var(--spectrum-table-compact-border-size)
-}
-
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell.focus-ring:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell.is-focused:before {
-  left: var(--spectrum-table-compact-border-size)
-}
-
-.spectrum-Table--compact .spectrum-Table-headCell.focus-ring:before,
-.spectrum-Table--compact .spectrum-Table-headCell.is-focused:before {
-  bottom: var(--spectrum-table-compact-border-size);
-  top: var(--spectrum-table-compact-border-size)
-}
-
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-cell--divider {
-  border-right-width: var(--spectrum-table-compact-divider-border-size)
-}
-
-.spectrum-Table--compact .spectrum-Table-row {
-  cursor: pointer;
-  position: relative;
-  transition: background-color .13s ease-in-out
-}
-
-.spectrum-Table--compact .spectrum-Table-row:focus {
-  outline: 0
-}
-
-.spectrum-Table--compact .spectrum-Table>.spectrum-Table-body>.spectrum-Table-row:last-of-type {
-  border-bottom-style: none
-}
-
-.spectrum-Table--compact .spectrum-Table--quiet .spectrum-Table-body {
-  border-radius: var(--spectrum-table-compact-quiet-border-radius)
-}
-
-.spectrum-Table--compact .spectrum-Table--quiet .spectrum-Table-body.is-drop-target:before,
-.spectrum-Table--compact .spectrum-Table--quiet .spectrum-Table-row.is-drop-target:before {
-  border-radius: var(--spectrum-global-dimension-size-50)
-}
-
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-checkboxCell {
-  padding-right: var(--spectrum-table-compact-cell-checkbox-padding-right)
-}
-
-.spectrum-Table--compact .spectrum-Table-checkboxCell {
-  padding-bottom: 0;
-  padding-top: 0;
-  vertical-align: var(--spectrum-table-compact-cell-checkbox-vertical-alignment)
-}
-
-.spectrum-Table--compact .spectrum-Table-checkbox {
-  vertical-align: super
-}
-
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell {
   text-align: left
 }
@@ -564,8 +364,6 @@ main div.table {
   transition: color .13s ease-in-out
 }
 
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
@@ -573,8 +371,6 @@ main div.table {
   left: 0
 }
 
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
@@ -582,8 +378,6 @@ main div.table {
   right: 0
 }
 
-.spectrum-Table--spacious .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-.spectrum-Table--spacious .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
 .spectrum-Table--spacious .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
 .spectrum-Table--spacious .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
 .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
