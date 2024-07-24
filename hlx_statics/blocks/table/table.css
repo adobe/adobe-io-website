@@ -176,10 +176,6 @@ main div.table {
   transition: color .13s ease-in-out
 }
 
-[dir=ltr] .spectrum-Table-cell--alignRight {
-  text-align: right
-}
-
 [dir=ltr] .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
 [dir=ltr] .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
@@ -374,10 +370,6 @@ main div.table {
   transition: color .13s ease-in-out
 }
 
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-cell--alignRight {
-  text-align: right
-}
-
 [dir=ltr] .spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
 [dir=ltr] .spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table--compact .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
@@ -570,10 +562,6 @@ main div.table {
   padding-top: var(--spectrum-table-spacious-header-padding-top);
   text-transform: uppercase;
   transition: color .13s ease-in-out
-}
-
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table-cell--alignRight {
-  text-align: right
 }
 
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
