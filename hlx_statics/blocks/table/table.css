@@ -239,10 +239,6 @@ main div.table {
   margin-left: var(--spectrum-table-regular-header-sort-icon-gap)
 }
 
-[dir=rtl] .spectrum-Table-sortedIcon {
-  margin-right: var(--spectrum-table-regular-header-sort-icon-gap)
-}
-
 .spectrum-Table-sortedIcon {
   display: none;
   transition: transform .13s ease-in-out;
@@ -253,18 +249,9 @@ main div.table {
   text-align: left
 }
 
-[dir=rtl] .spectrum-Table-headCell {
-  text-align: right
-}
-
 [dir=ltr] .spectrum-Table-headCell {
   padding-left: var(--spectrum-table-regular-header-padding-left);
   padding-right: var(--spectrum-table-regular-header-padding-right)
-}
-
-[dir=rtl] .spectrum-Table-headCell {
-  padding-left: var(--spectrum-table-regular-header-padding-right);
-  padding-right: var(--spectrum-table-regular-header-padding-left)
 }
 
 .spectrum-Table-headCell {
@@ -305,10 +292,6 @@ main div.table {
   text-align: right
 }
 
-[dir=rtl] .spectrum-Table-cell--alignRight {
-  text-align: left
-}
-
 [dir=ltr] .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
 [dir=ltr] .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
@@ -323,23 +306,8 @@ main div.table {
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table-body.is-drop-target:before,
-[dir=ltr] .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table-row.is-drop-target:before {
+[dir=ltr] .spectrum-Table-row.is-drop-target:before {
   right: 0
-}
-
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table-row.is-drop-target:before {
-  left: 0
 }
 
 .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
@@ -371,36 +339,21 @@ main div.table {
   border-top-left-radius: var(--spectrum-table-regular-border-radius)
 }
 
-[dir=ltr] .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child,
-[dir=rtl] .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:first-child {
+[dir=ltr] .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
   border-top-right-radius: var(--spectrum-table-regular-border-radius)
-}
-
-[dir=rtl] .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
-  border-top-left-radius: var(--spectrum-table-regular-border-radius)
 }
 
 [dir=ltr] .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
   border-bottom-left-radius: var(--spectrum-table-regular-border-radius)
 }
 
-[dir=ltr] .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child,
-[dir=rtl] .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
+[dir=ltr] .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
   border-bottom-right-radius: var(--spectrum-table-regular-border-radius)
-}
-
-[dir=rtl] .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
-  border-bottom-left-radius: var(--spectrum-table-regular-border-radius)
 }
 
 [dir=ltr] .spectrum-Table-cell {
   padding-left: var(--spectrum-table-regular-cell-padding-left);
   padding-right: var(--spectrum-table-regular-cell-padding-right)
-}
-
-[dir=rtl] .spectrum-Table-cell {
-  padding-left: var(--spectrum-table-regular-cell-padding-right);
-  padding-right: var(--spectrum-table-regular-cell-padding-left)
 }
 
 .spectrum-Table-cell {
@@ -435,19 +388,8 @@ main div.table {
 [dir=ltr] .spectrum-Table-cell.focus-ring:before,
 [dir=ltr] .spectrum-Table-cell.is-focused:before,
 [dir=ltr] .spectrum-Table-headCell.focus-ring:before,
-[dir=ltr] .spectrum-Table-headCell.is-focused:before,
-[dir=rtl] .spectrum-Table-cell.focus-ring:before,
-[dir=rtl] .spectrum-Table-cell.is-focused:before,
-[dir=rtl] .spectrum-Table-headCell.focus-ring:before,
-[dir=rtl] .spectrum-Table-headCell.is-focused:before {
+[dir=ltr] .spectrum-Table-headCell.is-focused:before {
   left: 0
-}
-
-[dir=rtl] .spectrum-Table-cell.focus-ring:before,
-[dir=rtl] .spectrum-Table-cell.is-focused:before,
-[dir=rtl] .spectrum-Table-headCell.focus-ring:before,
-[dir=rtl] .spectrum-Table-headCell.is-focused:before {
-  right: 0
 }
 
 .spectrum-Table-cell.focus-ring:before,
@@ -468,15 +410,8 @@ main div.table {
 }
 
 [dir=ltr] .spectrum-Table-headCell.focus-ring:before,
-[dir=ltr] .spectrum-Table-headCell.is-focused:before,
-[dir=rtl] .spectrum-Table-headCell.focus-ring:before,
-[dir=rtl] .spectrum-Table-headCell.is-focused:before {
+[dir=ltr] .spectrum-Table-headCell.is-focused:before {
   left: var(--spectrum-table-regular-border-size)
-}
-
-[dir=rtl] .spectrum-Table-headCell.focus-ring:before,
-[dir=rtl] .spectrum-Table-headCell.is-focused:before {
-  right: var(--spectrum-table-regular-border-size)
 }
 
 .spectrum-Table-headCell.focus-ring:before,
@@ -487,10 +422,6 @@ main div.table {
 
 [dir=ltr] .spectrum-Table-cell--divider {
   border-right-width: var(--spectrum-table-regular-divider-border-size)
-}
-
-[dir=rtl] .spectrum-Table-cell--divider {
-  border-left-width: var(--spectrum-table-regular-divider-border-size)
 }
 
 .spectrum-Table-row {
@@ -520,10 +451,6 @@ main div.table {
   padding-right: var(--spectrum-table-regular-cell-checkbox-padding-right)
 }
 
-[dir=rtl] .spectrum-Table-checkboxCell {
-  padding-left: var(--spectrum-table-regular-cell-checkbox-padding-right)
-}
-
 .spectrum-Table-checkboxCell {
   padding-bottom: 0;
   padding-top: 0;
@@ -538,10 +465,6 @@ main div.table {
   margin-left: var(--spectrum-table-compact-header-sort-icon-gap)
 }
 
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-sortedIcon {
-  margin-right: var(--spectrum-table-compact-header-sort-icon-gap)
-}
-
 .spectrum-Table--compact .spectrum-Table-sortedIcon {
   display: none;
   transition: transform .13s ease-in-out;
@@ -552,18 +475,9 @@ main div.table {
   text-align: left
 }
 
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-headCell {
-  text-align: right
-}
-
 [dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell {
   padding-left: var(--spectrum-table-compact-header-padding-left);
   padding-right: var(--spectrum-table-compact-header-padding-right)
-}
-
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-headCell {
-  padding-left: var(--spectrum-table-compact-header-padding-right);
-  padding-right: var(--spectrum-table-compact-header-padding-left)
 }
 
 .spectrum-Table--compact .spectrum-Table-headCell {
@@ -604,10 +518,6 @@ main div.table {
   text-align: right
 }
 
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-cell--alignRight {
-  text-align: left
-}
-
 [dir=ltr] .spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
 [dir=ltr] .spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table--compact .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
@@ -622,23 +532,8 @@ main div.table {
 [dir=ltr] .spectrum-Table--compact .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
 [dir=ltr] .spectrum-Table--compact .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before {
+[dir=ltr] .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before {
   right: 0
-}
-
-[dir=rtl] .spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before {
-  left: 0
 }
 
 .spectrum-Table--compact .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
@@ -670,36 +565,21 @@ main div.table {
   border-top-left-radius: var(--spectrum-table-compact-border-radius)
 }
 
-[dir=ltr] .spectrum-Table--compact .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:first-child {
+[dir=ltr] .spectrum-Table--compact .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
   border-top-right-radius: var(--spectrum-table-compact-border-radius)
-}
-
-[dir=rtl] .spectrum-Table--compact .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
-  border-top-left-radius: var(--spectrum-table-compact-border-radius)
 }
 
 [dir=ltr] .spectrum-Table--compact .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
   border-bottom-left-radius: var(--spectrum-table-compact-border-radius)
 }
 
-[dir=ltr] .spectrum-Table--compact .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
+[dir=ltr] .spectrum-Table--compact .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
   border-bottom-right-radius: var(--spectrum-table-compact-border-radius)
-}
-
-[dir=rtl] .spectrum-Table--compact .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
-  border-bottom-left-radius: var(--spectrum-table-compact-border-radius)
 }
 
 [dir=ltr] .spectrum-Table--compact .spectrum-Table-cell {
   padding-left: var(--spectrum-table-compact-cell-padding-left);
   padding-right: var(--spectrum-table-compact-cell-padding-right)
-}
-
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-cell {
-  padding-left: var(--spectrum-table-compact-cell-padding-right);
-  padding-right: var(--spectrum-table-compact-cell-padding-left)
 }
 
 .spectrum-Table--compact .spectrum-Table-cell {
@@ -734,19 +614,8 @@ main div.table {
 [dir=ltr] .spectrum-Table--compact .spectrum-Table-cell.focus-ring:before,
 [dir=ltr] .spectrum-Table--compact .spectrum-Table-cell.is-focused:before,
 [dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell.focus-ring:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell.is-focused:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-cell.focus-ring:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-cell.is-focused:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-headCell.focus-ring:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-headCell.is-focused:before {
+[dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell.is-focused:before {
   left: 0
-}
-
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-cell.focus-ring:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-cell.is-focused:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-headCell.focus-ring:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-headCell.is-focused:before {
-  right: 0
 }
 
 .spectrum-Table--compact .spectrum-Table-cell.focus-ring:before,
@@ -767,15 +636,8 @@ main div.table {
 }
 
 [dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell.focus-ring:before,
-[dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell.is-focused:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-headCell.focus-ring:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-headCell.is-focused:before {
+[dir=ltr] .spectrum-Table--compact .spectrum-Table-headCell.is-focused:before {
   left: var(--spectrum-table-compact-border-size)
-}
-
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-headCell.focus-ring:before,
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-headCell.is-focused:before {
-  right: var(--spectrum-table-compact-border-size)
 }
 
 .spectrum-Table--compact .spectrum-Table-headCell.focus-ring:before,
@@ -786,10 +648,6 @@ main div.table {
 
 [dir=ltr] .spectrum-Table--compact .spectrum-Table-cell--divider {
   border-right-width: var(--spectrum-table-compact-divider-border-size)
-}
-
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-cell--divider {
-  border-left-width: var(--spectrum-table-compact-divider-border-size)
 }
 
 .spectrum-Table--compact .spectrum-Table-row {
@@ -819,10 +677,6 @@ main div.table {
   padding-right: var(--spectrum-table-compact-cell-checkbox-padding-right)
 }
 
-[dir=rtl] .spectrum-Table--compact .spectrum-Table-checkboxCell {
-  padding-left: var(--spectrum-table-compact-cell-checkbox-padding-right)
-}
-
 .spectrum-Table--compact .spectrum-Table-checkboxCell {
   padding-bottom: 0;
   padding-top: 0;
@@ -837,10 +691,6 @@ main div.table {
   margin-left: var(--spectrum-table-spacious-header-sort-icon-gap)
 }
 
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-sortedIcon {
-  margin-right: var(--spectrum-table-spacious-header-sort-icon-gap)
-}
-
 .spectrum-Table--spacious .spectrum-Table-sortedIcon {
   display: none;
   transition: transform .13s ease-in-out;
@@ -851,18 +701,9 @@ main div.table {
   text-align: left
 }
 
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-headCell {
-  text-align: right
-}
-
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell {
   padding-left: var(--spectrum-table-spacious-header-padding-left);
   padding-right: var(--spectrum-table-spacious-header-padding-right)
-}
-
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-headCell {
-  padding-left: var(--spectrum-table-spacious-header-padding-right);
-  padding-right: var(--spectrum-table-spacious-header-padding-left)
 }
 
 .spectrum-Table--spacious .spectrum-Table-headCell {
@@ -903,10 +744,6 @@ main div.table {
   text-align: right
 }
 
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-cell--alignRight {
-  text-align: left
-}
-
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
@@ -921,23 +758,8 @@ main div.table {
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before {
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before {
   right: 0
-}
-
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table--compact .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-body.is-drop-target:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-row.is-drop-target:before {
-  left: 0
 }
 
 .spectrum-Table--spacious .spectrum-Table--compact .spectrum-Table-body.is-drop-target:before,
@@ -969,36 +791,21 @@ main div.table {
   border-top-left-radius: var(--spectrum-table-spacious-border-radius)
 }
 
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:first-child {
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
   border-top-right-radius: var(--spectrum-table-spacious-border-radius)
-}
-
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
-  border-top-left-radius: var(--spectrum-table-spacious-border-radius)
 }
 
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
   border-bottom-left-radius: var(--spectrum-table-spacious-border-radius)
 }
 
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
   border-bottom-right-radius: var(--spectrum-table-spacious-border-radius)
-}
-
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
-  border-bottom-left-radius: var(--spectrum-table-spacious-border-radius)
 }
 
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-cell {
   padding-left: var(--spectrum-table-spacious-cell-padding-left);
   padding-right: var(--spectrum-table-spacious-cell-padding-right)
-}
-
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-cell {
-  padding-left: var(--spectrum-table-spacious-cell-padding-right);
-  padding-right: var(--spectrum-table-spacious-cell-padding-left)
 }
 
 .spectrum-Table--spacious .spectrum-Table-cell {
@@ -1033,19 +840,8 @@ main div.table {
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-cell.focus-ring:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-cell.is-focused:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell.focus-ring:before,
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell.is-focused:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-cell.focus-ring:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-cell.is-focused:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-headCell.focus-ring:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-headCell.is-focused:before {
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell.is-focused:before {
   left: 0
-}
-
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-cell.focus-ring:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-cell.is-focused:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-headCell.focus-ring:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-headCell.is-focused:before {
-  right: 0
 }
 
 .spectrum-Table--spacious .spectrum-Table-cell.focus-ring:before,
@@ -1066,15 +862,8 @@ main div.table {
 }
 
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell.focus-ring:before,
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell.is-focused:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-headCell.focus-ring:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-headCell.is-focused:before {
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell.is-focused:before {
   left: var(--spectrum-table-spacious-border-size)
-}
-
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-headCell.focus-ring:before,
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-headCell.is-focused:before {
-  right: var(--spectrum-table-spacious-border-size)
 }
 
 .spectrum-Table--spacious .spectrum-Table-headCell.focus-ring:before,
@@ -1085,10 +874,6 @@ main div.table {
 
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-cell--divider {
   border-right-width: var(--spectrum-table-spacious-divider-border-size)
-}
-
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-cell--divider {
-  border-left-width: var(--spectrum-table-spacious-divider-border-size)
 }
 
 .spectrum-Table--spacious .spectrum-Table-row {
@@ -1116,10 +901,6 @@ main div.table {
 
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-checkboxCell {
   padding-right: var(--spectrum-table-spacious-cell-checkbox-padding-right)
-}
-
-[dir=rtl] .spectrum-Table--spacious .spectrum-Table-checkboxCell {
-  padding-left: var(--spectrum-table-spacious-cell-checkbox-padding-right)
 }
 
 .spectrum-Table--spacious .spectrum-Table-checkboxCell {
@@ -1205,13 +986,8 @@ tbody.spectrum-Table-body .spectrum-Table-cell {
   border-left: 1px solid var(--spectrum-alias-border-color-mid)
 }
 
-[dir=ltr] tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:last-child,
-[dir=rtl] tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:first-child {
+[dir=ltr] tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:last-child {
   border-right: 1px solid var(--spectrum-alias-border-color-mid)
-}
-
-[dir=rtl] tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:last-child {
-  border-left: 1px solid var(--spectrum-alias-border-color-mid)
 }
 
 .spectrum-Table-row,
@@ -1257,16 +1033,8 @@ tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell {
   border-right-style: solid
 }
 
-[dir=rtl] .spectrum-Table-cell--divider {
-  border-left-style: solid
-}
-
 [dir=ltr] .spectrum-Table-cell--divider {
   border-right-color: var(--spectrum-alias-border-color-mid)
-}
-
-[dir=rtl] .spectrum-Table-cell--divider {
-  border-left-color: var(--spectrum-alias-border-color-mid)
 }
 
 .spectrum-Table--quiet .spectrum-Table-body {
@@ -1313,13 +1081,6 @@ tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell {
 }
 
 [dir=ltr] .spectrum-Table--quiet tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:first-child,
-[dir=ltr] .spectrum-Table--quiet tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:last-child,
-[dir=rtl] .spectrum-Table--quiet tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:first-child,
-[dir=rtl] .spectrum-Table--quiet tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:last-child {
+[dir=ltr] .spectrum-Table--quiet tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:last-child {
   border-right: none
-}
-
-[dir=rtl] .spectrum-Table--quiet tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:first-child,
-[dir=rtl] .spectrum-Table--quiet tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:last-child {
-  border-left: none
 }
