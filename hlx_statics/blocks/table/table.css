@@ -176,10 +176,6 @@ main div.table {
   transition: color .13s ease-in-out
 }
 
-.spectrum-Table-cell--alignCenter {
-  text-align: center
-}
-
 [dir=ltr] .spectrum-Table-cell--alignRight {
   text-align: right
 }
@@ -378,10 +374,6 @@ main div.table {
   transition: color .13s ease-in-out
 }
 
-.spectrum-Table--compact .spectrum-Table-cell--alignCenter {
-  text-align: center
-}
-
 [dir=ltr] .spectrum-Table--compact .spectrum-Table-cell--alignRight {
   text-align: right
 }
@@ -578,10 +570,6 @@ main div.table {
   padding-top: var(--spectrum-table-spacious-header-padding-top);
   text-transform: uppercase;
   transition: color .13s ease-in-out
-}
-
-.spectrum-Table--spacious .spectrum-Table-cell--alignCenter {
-  text-align: center
 }
 
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-cell--alignRight {
