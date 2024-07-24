@@ -176,10 +176,6 @@ main div.table {
   transition: color .13s ease-in-out
 }
 
-.spectrum-Table-headCell.is-sortable {
-  cursor: pointer
-}
-
 .spectrum-Table-cell--alignCenter {
   text-align: center
 }
@@ -380,10 +376,6 @@ main div.table {
   padding-top: var(--spectrum-table-compact-header-padding-top);
   text-transform: uppercase;
   transition: color .13s ease-in-out
-}
-
-.spectrum-Table--compact .spectrum-Table-headCell.is-sortable {
-  cursor: pointer
 }
 
 .spectrum-Table--compact .spectrum-Table-cell--alignCenter {
@@ -588,10 +580,6 @@ main div.table {
   transition: color .13s ease-in-out
 }
 
-.spectrum-Table--spacious .spectrum-Table-headCell.is-sortable {
-  cursor: pointer
-}
-
 .spectrum-Table--spacious .spectrum-Table-cell--alignCenter {
   text-align: center
 }
@@ -772,19 +760,6 @@ main div.table {
 .spectrum-Table-headCell {
   background-color: var(--spectrum-alias-background-color-transparent);
   color: var(--spectrum-alias-label-text-color)
-}
-
-.spectrum-Table-headCell.is-sortable:hover {
-  color: var(--spectrum-alias-text-color-hover)
-}
-
-.spectrum-Table-headCell.is-sortable.focus-ring,
-.spectrum-Table-headCell.is-sortable.is-focused {
-  color: var(--spectrum-alias-text-color-hover)
-}
-
-.spectrum-Table-headCell.is-sortable:active {
-  color: var(--spectrum-alias-text-color-down)
 }
 
 .spectrum-Table-cell.focus-ring:before,
