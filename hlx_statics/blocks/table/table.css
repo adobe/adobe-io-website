@@ -223,30 +223,22 @@ main div.table {
   position: relative
 }
 
-.spectrum-Table-cell.focus-ring,
 .spectrum-Table-cell.is-focused,
-.spectrum-Table-headCell.focus-ring,
 .spectrum-Table-headCell.is-focused {
   outline: none
 }
 
-[dir=ltr] .spectrum-Table-cell.focus-ring:before,
 [dir=ltr] .spectrum-Table-cell.is-focused:before,
-[dir=ltr] .spectrum-Table-headCell.focus-ring:before,
 [dir=ltr] .spectrum-Table-headCell.is-focused:before {
   right: 0
 }
 
-[dir=ltr] .spectrum-Table-cell.focus-ring:before,
 [dir=ltr] .spectrum-Table-cell.is-focused:before,
-[dir=ltr] .spectrum-Table-headCell.focus-ring:before,
 [dir=ltr] .spectrum-Table-headCell.is-focused:before {
   left: 0
 }
 
-.spectrum-Table-cell.focus-ring:before,
 .spectrum-Table-cell.is-focused:before,
-.spectrum-Table-headCell.focus-ring:before,
 .spectrum-Table-headCell.is-focused:before {
   border-radius: calc(var(--spectrum-table-regular-cell-border-radius-key-focus) - 1px);
   bottom: 0;
@@ -256,17 +248,14 @@ main div.table {
   z-index: 1
 }
 
-[dir=ltr] .spectrum-Table-headCell.focus-ring:before,
 [dir=ltr] .spectrum-Table-headCell.is-focused:before {
   right: var(--spectrum-table-regular-border-size)
 }
 
-[dir=ltr] .spectrum-Table-headCell.focus-ring:before,
 [dir=ltr] .spectrum-Table-headCell.is-focused:before {
   left: var(--spectrum-table-regular-border-size)
 }
 
-.spectrum-Table-headCell.focus-ring:before,
 .spectrum-Table-headCell.is-focused:before {
   bottom: var(--spectrum-table-regular-border-size);
   top: var(--spectrum-table-regular-border-size)
@@ -376,30 +365,22 @@ main div.table {
   position: relative
 }
 
-.spectrum-Table--spacious .spectrum-Table-cell.focus-ring,
 .spectrum-Table--spacious .spectrum-Table-cell.is-focused,
-.spectrum-Table--spacious .spectrum-Table-headCell.focus-ring,
 .spectrum-Table--spacious .spectrum-Table-headCell.is-focused {
   outline: none
 }
 
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table-cell.focus-ring:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-cell.is-focused:before,
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell.focus-ring:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell.is-focused:before {
   right: 0
 }
 
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table-cell.focus-ring:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-cell.is-focused:before,
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell.focus-ring:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell.is-focused:before {
   left: 0
 }
 
-.spectrum-Table--spacious .spectrum-Table-cell.focus-ring:before,
 .spectrum-Table--spacious .spectrum-Table-cell.is-focused:before,
-.spectrum-Table--spacious .spectrum-Table-headCell.focus-ring:before,
 .spectrum-Table--spacious .spectrum-Table-headCell.is-focused:before {
   border-radius: calc(var(--spectrum-table-spacious-cell-border-radius-key-focus) - 1px);
   bottom: 0;
@@ -409,17 +390,14 @@ main div.table {
   z-index: 1
 }
 
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell.focus-ring:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell.is-focused:before {
   right: var(--spectrum-table-spacious-border-size)
 }
 
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell.focus-ring:before,
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell.is-focused:before {
   left: var(--spectrum-table-spacious-border-size)
 }
 
-.spectrum-Table--spacious .spectrum-Table-headCell.focus-ring:before,
 .spectrum-Table--spacious .spectrum-Table-headCell.is-focused:before {
   bottom: var(--spectrum-table-spacious-border-size);
   top: var(--spectrum-table-spacious-border-size)
@@ -462,9 +440,7 @@ main div.table {
   color: var(--spectrum-alias-label-text-color)
 }
 
-.spectrum-Table-cell.focus-ring:before,
 .spectrum-Table-cell.is-focused:before,
-.spectrum-Table-headCell.focus-ring:before,
 .spectrum-Table-headCell.is-focused:before {
   box-shadow: inset 0 0 0 2px var(--spectrum-alias-border-color-key-focus)
 }
@@ -504,7 +480,6 @@ tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell {
   background-color: var(--spectrum-alias-background-color-transparent)
 }
 
-.spectrum-Table-row.focus-ring,
 .spectrum-Table-row.is-focused,
 .spectrum-Table-row:hover {
   background-color: var(--spectrum-alias-highlight-hover)
@@ -518,7 +493,6 @@ tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell {
   background-color: var(--spectrum-alias-highlight-selected)
 }
 
-.spectrum-Table-row.is-selected.focus-ring,
 .spectrum-Table-row.is-selected.is-focused,
 .spectrum-Table-row.is-selected:hover {
   background-color: var(--spectrum-alias-highlight-selected-hover)
