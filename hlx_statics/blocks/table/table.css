@@ -182,25 +182,24 @@ main div.table {
   vertical-align: var(--spectrum-table-regular-cell-vertical-alignment)
 }
 
-.spectrum-Table-body,
-.spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body {
+.spectrum-Table-body {
   border-radius: var(--spectrum-table-regular-border-radius);
   border-width: var(--spectrum-table-regular-border-size)
 }
 
-[dir=ltr] .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:first-child {
+[dir=ltr] .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:first-child {
   border-top-left-radius: var(--spectrum-table-regular-border-radius)
 }
 
-[dir=ltr] .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
+[dir=ltr] .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
   border-top-right-radius: var(--spectrum-table-regular-border-radius)
 }
 
-[dir=ltr] .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
+[dir=ltr] .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
   border-bottom-left-radius: var(--spectrum-table-regular-border-radius)
 }
 
-[dir=ltr] .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
+[dir=ltr] .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
   border-bottom-right-radius: var(--spectrum-table-regular-border-radius)
 }
 
@@ -291,10 +290,6 @@ main div.table {
   border-bottom-style: none
 }
 
-.spectrum-Table--quiet .spectrum-Table-body {
-  border-radius: var(--spectrum-table-regular-quiet-border-radius)
-}
-
 [dir=ltr] .spectrum-Table-checkboxCell {
   padding-right: var(--spectrum-table-regular-cell-checkbox-padding-right)
 }
@@ -340,25 +335,24 @@ main div.table {
   vertical-align: var(--spectrum-table-spacious-cell-vertical-alignment)
 }
 
-.spectrum-Table--spacious .spectrum-Table-body,
-.spectrum-Table--spacious .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body {
+.spectrum-Table--spacious .spectrum-Table-body {
   border-radius: var(--spectrum-table-spacious-border-radius);
   border-width: var(--spectrum-table-spacious-border-size)
 }
 
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:first-child {
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:first-child {
   border-top-left-radius: var(--spectrum-table-spacious-border-radius)
 }
 
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
   border-top-right-radius: var(--spectrum-table-spacious-border-radius)
 }
 
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
   border-bottom-left-radius: var(--spectrum-table-spacious-border-radius)
 }
 
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table:not(.spectrum-Table--quiet) tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
   border-bottom-right-radius: var(--spectrum-table-spacious-border-radius)
 }
 
@@ -447,10 +441,6 @@ main div.table {
 
 .spectrum-Table--spacious .spectrum-Table>.spectrum-Table-body>.spectrum-Table-row:last-of-type {
   border-bottom-style: none
-}
-
-.spectrum-Table--spacious .spectrum-Table--quiet .spectrum-Table-body {
-  border-radius: var(--spectrum-table-spacious-quiet-border-radius)
 }
 
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-checkboxCell {
@@ -545,43 +535,4 @@ tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell {
 
 [dir=ltr] .spectrum-Table-cell--divider {
   border-right-color: var(--spectrum-alias-border-color-mid)
-}
-
-.spectrum-Table--quiet .spectrum-Table-body {
-  background-color: var(--spectrum-alias-background-color-transparent);
-  border-width: 1px 0
-}
-
-.spectrum-Table--quiet .spectrum-Table-row {
-  background-color: var(--spectrum-alias-background-color-transparent)
-}
-
-.spectrum-Table--quiet .spectrum-Table-row.focus-ring,
-.spectrum-Table--quiet .spectrum-Table-row.is-focused,
-.spectrum-Table--quiet .spectrum-Table-row:hover {
-  background-color: var(--spectrum-alias-highlight-hover)
-}
-
-.spectrum-Table--quiet .spectrum-Table-row:active {
-  background-color: var(--spectrum-alias-highlight-down)
-}
-
-.spectrum-Table--quiet .spectrum-Table-row.is-selected {
-  background-color: var(--spectrum-alias-highlight-selected)
-}
-
-.spectrum-Table--quiet .spectrum-Table-row.is-selected.focus-ring,
-.spectrum-Table--quiet .spectrum-Table-row.is-selected.is-focused,
-.spectrum-Table--quiet .spectrum-Table-row.is-selected:hover {
-  background-color: var(--spectrum-alias-highlight-selected-hover)
-}
-
-[dir=ltr] .spectrum-Table--quiet tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:first-child,
-[dir=ltr] .spectrum-Table--quiet tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:last-child {
-  border-left: none
-}
-
-[dir=ltr] .spectrum-Table--quiet tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:first-child,
-[dir=ltr] .spectrum-Table--quiet tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:last-child {
-  border-right: none
 }
