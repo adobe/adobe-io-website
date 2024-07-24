@@ -12,15 +12,6 @@ import {
  * @param {Element} block The carousel block element
  */
 export default async function decorate(block) {
-  block.querySelectorAll('main .video-carousel-container .video-carousel-wrapper .video-carousel > div').forEach(div => {
-    const p = div.firstElementChild.firstElementChild;
-    p.classList.remove('button-container');
-    const text = div.firstElementChild.lastElementChild;
-    const h1 = div.firstElementChild.children[1].firstElementChild.firstElementChild.firstElementChild; 
-    p.insertAdjacentElement('afterend', h1);
-    h1.insertAdjacentElement('afterend', text);
-    div.firstElementChild.removeChild(div.firstElementChild.lastElementChild);
-  });
   block.setAttribute('daa-lh', 'video-carousel');
   removeEmptyPTags(block);
   decorateButtons(block);
@@ -35,10 +26,13 @@ export default async function decorate(block) {
 
   const video_arrow_button_previous = createTag('button', {class: 'video-slide-arrow'});
   video_arrow_button_previous.classList.add('video-slide-arrow-previous');
-  video_arrow_button_previous.innerHTML = '&#8249;'
+  video_arrow_button_previous.innerHTML = '&#8249;';
+  video_arrow_button_previous.ariaLabel = 'backward arrow';
   const video_arrow_button_forward = createTag('button', {class: 'video-slide-arrow'});
   video_arrow_button_forward.classList.add('video-slide-arrow-forward');
-  video_arrow_button_forward.innerHTML = '&#8250;'
+  video_arrow_button_forward.innerHTML = '&#8250;';
+  video_arrow_button_forward.ariaLabel = 'forward arrow';
+
 
   const video_carousel_ul = createTag('ul', {class: 'video-slides-container'});
   video_carousel_section.append(video_carousel_ul);
@@ -61,6 +55,7 @@ export default async function decorate(block) {
     let div_slide_circle = block.querySelector(".video-carousel-circle-div");
     let circle_button = createTag('button', {class: 'video-carousel-circle'});
     circle_button.setAttribute('id', count);
+    circle_button.ariaLabel = `Slide ${count}`;
     div_slide_circle.append(circle_button);
     count += 1;
 
@@ -113,36 +108,26 @@ export default async function decorate(block) {
 
   videoNextButton.addEventListener("click", () => {
     isPaused = true;
-    let slide_selected = block.querySelector(".video-carousel-circle-selected");
-    let slide_selected_num = parseInt(slide_selected.id);
-    let new_slide_num = slide_selected_num+1;
-    let new_slide;
-    if(new_slide_num !== count){ //at last slide - can't go forward more
-      //slide over to new slide
-      const slideDx = videoSlidesContainer.clientLeft + (videoSlide.clientWidth * slide_selected_num);
-      videoSlidesContainer.scrollLeft = slideDx;
-      //change color of circle
-      new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
-      slide_selected.classList.remove('video-carousel-circle-selected')
-      new_slide.classList.add('video-carousel-circle-selected');
-    };
+    const slide_selected = block.querySelector(".video-carousel-circle-selected");
+    const slide_selected_num = parseInt(slide_selected.id);
+    const new_slide_num = slide_selected_num === count-1 ? 1 : slide_selected_num+1;
+    const slideDx = videoSlidesContainer.clientLeft + (videoSlide.clientWidth * (new_slide_num-1));
+    videoSlidesContainer.scrollLeft = slideDx;
+    const new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
+    slide_selected.classList.remove('video-carousel-circle-selected')
+    new_slide.classList.add('video-carousel-circle-selected');
   });
 
   videoPrevButton.addEventListener("click", () => {
     isPaused = true;
-    let slide_selected = block.querySelector(".video-carousel-circle-selected"); //should only be one in the block
-    let slide_selected_num = parseInt(slide_selected.id);
-    let new_slide_num = slide_selected_num-1;
-    let new_slide;
-    if(new_slide_num !== 0){ //at first slide - can't go back more
-        //slide over to new slide
-        const slideDx = (new_slide_num-1) * videoSlide.clientWidth;
-        videoSlidesContainer.scrollLeft = slideDx;
-        //change color of circle
-        new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
-        slide_selected.classList.remove('video-carousel-circle-selected');
-        new_slide.classList.add('video-carousel-circle-selected');
-    }
+    const slide_selected = block.querySelector(".video-carousel-circle-selected"); //should only be one in the block
+    const slide_selected_num = parseInt(slide_selected.id);
+    const new_slide_num = slide_selected_num === 1 ? count-1 : slide_selected_num-1;
+    const slideDx = videoSlidesContainer.clientLeft + (videoSlide.clientWidth * (new_slide_num-1));
+    videoSlidesContainer.scrollLeft = slideDx;
+    const new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
+    slide_selected.classList.remove('video-carousel-circle-selected')
+    new_slide.classList.add('video-carousel-circle-selected');
   });
 
   //change color of circle button when clicked
@@ -243,19 +228,20 @@ export default async function decorate(block) {
     block.parentElement.parentElement.style.backgroundColor = 'white';
   };
 
+  const time = 9000;
   function slideTimer() {
     if(!isPaused){
         advanceSlide();
-        setTimeout(slideTimer, 9000);
+        setTimeout(slideTimer, time);
     }else{
         clearTimeout(timer);
         //after set amount of time automatic scrolling can commence
-        setTimeout(() => {isPaused = false;}, 18000);
-        setTimeout(slideTimer, 9000);
+        setTimeout(() => {isPaused = false;}, 2 * time);
+        setTimeout(slideTimer, time);
     };
   };
 
-  const timer = setTimeout(slideTimer, 9000);
+  const timer = setTimeout(slideTimer, time);
   timer;
   applyBkgColorOverride(block);
   applyWidthOverride(block);

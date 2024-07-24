@@ -1,10 +1,10 @@
-picture {
+div.video-carousel picture {
     width: 100%;
     height: 100%;
     display: flex;
 }
 
-picture img {
+div.video-carousel picture img {
     object-fit: cover;
     height: auto;
     width: 100%;
@@ -16,7 +16,7 @@ main div.video-carousel .image-container {
 }
 
 main div.video-carousel {
-    max-width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
+    max-width: 1200px;
     margin: auto;
 }
 
@@ -30,7 +30,7 @@ main div.video-carousel .video-block-container {
 
 main div.video-carousel .video-carousel-heading {
     margin-top: 1 !important;
-    margin-bottom: var(--spectrum-global-dimension-size-100) !important;
+    margin-bottom: 8px !important;
   }
 
 main div.video-carousel .video-container {
@@ -44,7 +44,7 @@ main div.video-carousel .left-container {
     flex: 0 1 50%;
     min-height: 100%;
     max-width: 50%;
-    padding: 0 var(--spectrum-global-dimension-size-100);
+    padding: 0 8px;
 }
 
 main div.video-carousel .right-container {
@@ -54,14 +54,26 @@ main div.video-carousel .right-container {
     flex: 0 1 50%;
     min-height: 100%;
     max-width: 50%;
-    padding: 0 var(--spectrum-global-dimension-size-400);
+    padding: 0 32px;
 }
+@media screen and (max-width: 700px) {
+    main div.video-carousel div.video-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
+    main div.video-carousel div.left-container,  main div.video-carousel div.right-container{
+        width: 100% !important;
+        max-width: 100%;
+        text-align: center;
+    }
+}
 main div.video-carousel .video-carousel-button-container {
     display: flex;
     flex-direction: row !important;
-    margin-top: var(--spectrum-global-dimension-size-100);
-    gap: var(--spectrum-global-dimension-size-200);
+    margin-top: 8px;
+    gap: 16px;
 }
 
 main div.video-carousel .video-slider-wrapper {
@@ -124,6 +136,7 @@ main div.video-carousel .video-carousel-circle-div {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap: 8px;
 }
 
 main div.video-carousel .video-carousel-circle {

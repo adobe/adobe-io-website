@@ -4,14 +4,6 @@ import { createTag, decorateButtons, removeEmptyPTags, applyWidthOverride, apply
  * @param {Element} block The carousel block element
  */
 export default async function decorate(block) {
-  block.querySelectorAll('main div.carousel > div > div').forEach(div => {
-    const h1 = div.children[1].firstElementChild.firstElementChild.firstElementChild; 
-    const p = div.firstElementChild;
-    const text = div.lastElementChild;
-    p.insertAdjacentElement('afterend', h1);
-    h1.insertAdjacentElement('afterend', text);
-    div.removeChild(div.lastElementChild);
-  });
   block.setAttribute('daa-lh', 'carousel');
   removeEmptyPTags(block);
   decorateButtons(block);
@@ -28,10 +20,11 @@ export default async function decorate(block) {
   const arrow_button_previous = createTag('button', {class: 'slide-arrow'});
   arrow_button_previous.classList.add('slide-arrow-previous');
   arrow_button_previous.innerHTML = '&#8249;'
+  arrow_button_previous.ariaLabel = 'backward arrow';
   const arrow_button_forward = createTag('button', {class: 'slide-arrow'});
   arrow_button_forward.classList.add('slide-arrow-forward');
   arrow_button_forward.innerHTML = '&#8250;'
-
+  arrow_button_forward.ariaLabel = 'forward arrow';
   const carousel_ul = createTag('ul', {class: 'slides-container'});
   carousel_section.append(carousel_ul);
   
@@ -45,22 +38,23 @@ export default async function decorate(block) {
     h.parentElement.setAttribute('id', h.id);
 
     //add circle for every slide
-    let div_slide_circle = block.querySelector(".carousel-circle-div");
-    let circle_button = createTag('button', {class: 'carousel-circle'});
+    const div_slide_circle = block.querySelector(".carousel-circle-div");
+    const circle_button = createTag('button', {class: 'carousel-circle'});
     circle_button.setAttribute('id', count);
+    circle_button.ariaLabel = `Slide ${count}`;
     div_slide_circle.append(circle_button);
     count += 1;
 
-    let carousel_li = createTag('li', {class: 'slide'});
+    const carousel_li = createTag('li', {class: 'slide'});
     carousel_ul.append(carousel_li);
     carousel_li.append(h.parentElement);
 
     //add everything but image to the left div
-    let flex_div = createTag('div', { id: 'right-flex-div-'+h.id});
+    const flex_div = createTag('div', { id: 'right-flex-div-'+h.id});
     h.parentElement.append(flex_div);
     flex_div.append(h);
 
-    let button_div = createTag('div', { id: 'button-div-'+h.id});
+    const button_div = createTag('div', { id: 'button-div-'+h.id});
     h.parentElement.append(button_div);
 
   });
@@ -107,36 +101,28 @@ export default async function decorate(block) {
   
   nextButton.addEventListener("click", () => {
     isPaused = true;
-    let slide_selected = block.querySelector(".carousel-circle-selected");
-    let slide_selected_num = parseInt(slide_selected.id);
-    let new_slide_num = slide_selected_num+1;
-    let new_slide;
-    if(new_slide_num !== count){ //at last slide - can't go forward more
-      //slide over to new slide
-      const slideDx = slidesContainer.clientLeft + (slide.clientWidth * slide_selected_num);
-      slidesContainer.scrollLeft = slideDx;
-      //change color of circle
-      new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
-      slide_selected.classList.remove('carousel-circle-selected')
-      new_slide.classList.add('carousel-circle-selected'); 
-    };  
+    const slide_selected = block.querySelector(".carousel-circle-selected");
+    const slide_selected_num = parseInt(slide_selected.id);
+    const new_slide_num = slide_selected_num === count-1 ? 1 : slide_selected_num+1;
+    const slideDx = slidesContainer.clientLeft + (slide.clientWidth * (new_slide_num-1));
+    slidesContainer.scrollLeft = slideDx;
+    const new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
+    slide_selected.classList.remove('carousel-circle-selected')
+    new_slide.classList.add('carousel-circle-selected'); 
   });
 
   prevButton.addEventListener("click", () => {
     isPaused = true;
-    let slide_selected = block.querySelector(".carousel-circle-selected"); //should only be one in the block
-    let slide_selected_num = parseInt(slide_selected.id);
-    let new_slide_num = slide_selected_num-1;
-    let new_slide;
-    if(new_slide_num !== 0){ //at first slide - can't go back more
-        //slide over to new slide
-        const slideDx = (new_slide_num-1) * slide.clientWidth;
-        slidesContainer.scrollLeft = slideDx;
-        //change color of circle
-        new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
-        slide_selected.classList.remove('carousel-circle-selected');
-        new_slide.classList.add('carousel-circle-selected');
-    };
+    const slide_selected = block.querySelector(".carousel-circle-selected"); //should only be one in the block
+    const slide_selected_num = parseInt(slide_selected.id);
+    const new_slide_num = slide_selected_num === 1 ? count-1 : slide_selected_num-1;
+    //slide over to new slide
+    const slideDx = (new_slide_num-1) * slide.clientWidth;
+    slidesContainer.scrollLeft = slideDx;
+    //change color of circle
+    const new_slide = block.querySelector("[id=" + CSS.escape(new_slide_num)+ "]");
+    slide_selected.classList.remove('carousel-circle-selected');
+    new_slide.classList.add('carousel-circle-selected');
   });
 
   //change color of circle button when clicked
@@ -187,19 +173,20 @@ export default async function decorate(block) {
     block.parentElement.parentElement.style.backgroundColor = 'white';
   };
   
+  const timeout = 9000;
   function slideTimer() {
     if(!isPaused){
         advanceSlide();
-        setTimeout(slideTimer, 9000);
+        setTimeout(slideTimer, timeout);
     }else{
         clearTimeout(timer);
         //after set amount of time automatic scrolling can commence
-        setTimeout(() => {isPaused = false;}, 18000);
-        setTimeout(slideTimer, 9000);
+        setTimeout(() => {isPaused = false;}, 2 * timeout);
+        setTimeout(slideTimer, timeout);
     };   
   };
 
-  const timer = setTimeout(slideTimer, 9000);
+  const timer = setTimeout(slideTimer, timeout);
   timer;
   applyBkgColorOverride(block);
   applyWidthOverride(block);
