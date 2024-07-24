@@ -223,10 +223,6 @@ main div.table {
   position: relative
 }
 
-[dir=ltr] .spectrum-Table-cell--divider {
-  border-right-width: var(--spectrum-table-regular-divider-border-size)
-}
-
 .spectrum-Table-row {
   cursor: pointer;
   position: relative;
@@ -327,10 +323,6 @@ main div.table {
   position: relative
 }
 
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table-cell--divider {
-  border-right-width: var(--spectrum-table-spacious-divider-border-size)
-}
-
 .spectrum-Table--spacious .spectrum-Table-row {
   cursor: pointer;
   position: relative;
@@ -418,12 +410,4 @@ tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell {
 .spectrum-Table-cell {
   background-color: var(--spectrum-alias-background-color-transparent);
   color: var(--spectrum-alias-text-color)
-}
-
-[dir=ltr] .spectrum-Table-cell--divider {
-  border-right-style: solid
-}
-
-[dir=ltr] .spectrum-Table-cell--divider {
-  border-right-color: var(--spectrum-alias-border-color-mid)
 }
