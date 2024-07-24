@@ -237,16 +237,6 @@ main div.table {
   border-bottom-style: none
 }
 
-[dir=ltr] .spectrum-Table-checkboxCell {
-  padding-right: var(--spectrum-table-regular-cell-checkbox-padding-right)
-}
-
-.spectrum-Table-checkboxCell {
-  padding-bottom: 0;
-  padding-top: 0;
-  vertical-align: var(--spectrum-table-regular-cell-checkbox-vertical-alignment)
-}
-
 .spectrum-Table-checkbox {
   vertical-align: super
 }
@@ -335,16 +325,6 @@ main div.table {
 
 .spectrum-Table--spacious .spectrum-Table>.spectrum-Table-body>.spectrum-Table-row:last-of-type {
   border-bottom-style: none
-}
-
-[dir=ltr] .spectrum-Table--spacious .spectrum-Table-checkboxCell {
-  padding-right: var(--spectrum-table-spacious-cell-checkbox-padding-right)
-}
-
-.spectrum-Table--spacious .spectrum-Table-checkboxCell {
-  padding-bottom: 0;
-  padding-top: 0;
-  vertical-align: var(--spectrum-table-spacious-cell-checkbox-vertical-alignment)
 }
 
 .spectrum-Table--spacious .spectrum-Table-checkbox {
