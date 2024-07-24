@@ -237,10 +237,6 @@ main div.table {
   border-bottom-style: none
 }
 
-.spectrum-Table-checkbox {
-  vertical-align: super
-}
-
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell {
   text-align: left
 }
@@ -325,10 +321,6 @@ main div.table {
 
 .spectrum-Table--spacious .spectrum-Table>.spectrum-Table-body>.spectrum-Table-row:last-of-type {
   border-bottom-style: none
-}
-
-.spectrum-Table--spacious .spectrum-Table-checkbox {
-  vertical-align: super
 }
 
 .spectrum-Table-headCell {
