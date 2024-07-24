@@ -33,11 +33,6 @@ main div.table {
   }
 }
 
-.table table thead tr {
-  border-top: 2px solid;
-  border-bottom: 2px solid;
-}
-
 .table table tbody tr {
   border-bottom: 1px solid;
 }
