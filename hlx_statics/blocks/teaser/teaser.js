@@ -28,6 +28,7 @@ function setBackgroundImage(block) {
     teaserContainer.style.backgroundImage = `url('${src}')`;
     teaserContainer.style.backgroundSize = 'cover';
     teaserContainer.style.backgroundPosition = 'center';
+    teaserContainer.style.padding = '4% 0%';
 
     // Hide the image wrapper
     imageWrapper.parentElement.style.display = 'none';
@@ -40,6 +41,8 @@ function setBackgroundImage(block) {
  */
 export default async function decorate(block) {
   const fontcolor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
+  const alignitems = block?.parentElement?.parentElement?.getAttribute('data-alignitems');
+
   decorateButtons(block);
   removeEmptyPTags(block);
   block.setAttribute('daa-lh', 'teaser');
@@ -50,6 +53,34 @@ export default async function decorate(block) {
   block.querySelectorAll('p').forEach((p) => {
     p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
     p.style.color = fontcolor;
+    if(alignitems){
+      p.style.color = '#e2caf1';
+    }
+  });
+  block.querySelectorAll('a').forEach((a) => {
+    if (a.title === "Learn more" || "Explore more") {
+      a.className = "spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM"
+
+      block.querySelectorAll('.teaser > div').forEach((div) => {
+        div.style.justifyContent = 'center';
+        div.style.marginLeft = '0px';
+      })
+      block.querySelectorAll('.teaser > div > div').forEach((div) => {
+        div.style.width = 'auto';
+        if (alignitems) {
+          div.style.alignItems = alignitems;
+          div.style.gap = '20px';
+        }
+      })
+    }
+    if (a.title === "Try an add-on") {
+      a.className = "spectrum-Button spectrum-Button--sizeM spectrum-Button--outline spectrum-Button--secondary"
+      block.querySelectorAll('a > .spectrum-Button-label').forEach((div) => {
+        if (div.textContent === 'Try an add-on') {
+          div.style.color = 'white'
+        }
+      })
+    }
   });
   applyBkgColorOverride(block);
   applyWidthOverride(block);
