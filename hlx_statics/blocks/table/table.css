@@ -67,72 +67,27 @@ main div.table {
   border-spacing: 0
 }
 
-.spectrum-Table--sizeM {
-  --spectrum-table-regular-header-border-radius: 0px;
-  --spectrum-table-regular-header-text-size: 11px;
-  --spectrum-table-regular-header-text-font-weight: 700;
-  --spectrum-table-regular-header-text-letter-spacing: 0.06em;
-  --spectrum-table-regular-header-text-line-height: 1.3;
-  --spectrum-table-regular-header-min-height: 32px;
-  --spectrum-table-regular-header-padding-top: 10px;
-  --spectrum-table-regular-header-padding-bottom: 10px;
-  --spectrum-table-regular-header-padding-left: 16px;
-  --spectrum-table-regular-header-padding-right: 16px;
-  --spectrum-table-regular-cell-text-size: 14px;
-  --spectrum-table-regular-cell-text-font-weight: 400;
-  --spectrum-table-regular-cell-text-line-height: 1.3;
-  --spectrum-table-regular-cell-min-height: 40px;
-  --spectrum-table-regular-cell-padding-top: 11px;
-  --spectrum-table-regular-cell-padding-bottom: 11px;
-  --spectrum-table-regular-cell-padding-left: 16px;
-  --spectrum-table-regular-cell-padding-right: 16px;
-  --spectrum-table-regular-cell-vertical-alignment: top;
-  --spectrum-table-regular-border-radius: 4px;
-  --spectrum-table-regular-border-size: 1px;
-  --spectrum-table-spacious-header-border-radius: 0px;
-  --spectrum-table-spacious-header-text-size: 11px;
-  --spectrum-table-spacious-header-text-font-weight: 700;
-  --spectrum-table-spacious-header-text-letter-spacing: 0.06em;
-  --spectrum-table-spacious-header-text-line-height: 1.3;
-  --spectrum-table-spacious-header-min-height: 32px;
-  --spectrum-table-spacious-header-padding-top: 10px;
-  --spectrum-table-spacious-header-padding-bottom: 10px;
-  --spectrum-table-spacious-header-padding-left: 16px;
-  --spectrum-table-spacious-header-padding-right: 16px;
-  --spectrum-table-spacious-cell-text-size: 14px;
-  --spectrum-table-spacious-cell-text-font-weight: 400;
-  --spectrum-table-spacious-cell-text-line-height: 1.3;
-  --spectrum-table-spacious-cell-min-height: 48px;
-  --spectrum-table-spacious-cell-padding-top: 15px;
-  --spectrum-table-spacious-cell-padding-bottom: 15px;
-  --spectrum-table-spacious-cell-padding-left: 16px;
-  --spectrum-table-spacious-cell-padding-right: 16px;
-  --spectrum-table-spacious-cell-vertical-alignment: top;
-  --spectrum-table-spacious-border-radius: 4px;
-  --spectrum-table-spacious-border-size: 1px;
-}
-
 [dir=ltr] .spectrum-Table-headCell {
   text-align: left
 }
 
 [dir=ltr] .spectrum-Table-headCell {
-  padding-left: var(--spectrum-table-regular-header-padding-left);
-  padding-right: var(--spectrum-table-regular-header-padding-right)
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .spectrum-Table-headCell {
-  border-radius: var(--spectrum-table-regular-header-border-radius);
+  border-radius: 0px;
   box-sizing: border-box;
   cursor: default;
-  font-size: var(--spectrum-table-regular-header-text-size);
-  font-weight: var(--spectrum-table-regular-header-text-font-weight);
-  letter-spacing: var(--spectrum-table-regular-header-text-letter-spacing);
-  line-height: var(--spectrum-table-regular-header-text-line-height);
-  min-height: var(--spectrum-table-regular-header-min-height);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  min-height: 32px;
   outline: 0;
-  padding-bottom: var(--spectrum-table-regular-header-padding-bottom);
-  padding-top: var(--spectrum-table-regular-header-padding-top);
+  padding-bottom: 10px;
+  padding-top: 10px;
   text-transform: uppercase;
   transition: color .13s ease-in-out
 }
@@ -140,28 +95,28 @@ main div.table {
 .spectrum-Table-body {
   overflow: auto;
   position: relative;
-  vertical-align: var(--spectrum-table-regular-cell-vertical-alignment)
+  vertical-align: top;
 }
 
 .spectrum-Table-body {
-  border-radius: var(--spectrum-table-regular-border-radius);
-  border-width: var(--spectrum-table-regular-border-size)
+  border-radius: 4px;
+  border-width: 1px;
 }
 
 [dir=ltr] .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:first-child {
-  border-top-left-radius: var(--spectrum-table-regular-border-radius)
+  border-top-left-radius: 4px;
 }
 
 [dir=ltr] .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
-  border-top-right-radius: var(--spectrum-table-regular-border-radius)
+  border-top-right-radius: 4px;
 }
 
 [dir=ltr] .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
-  border-bottom-left-radius: var(--spectrum-table-regular-border-radius)
+  border-bottom-left-radius: 4px;
 }
 
 [dir=ltr] .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
-  border-bottom-right-radius: var(--spectrum-table-regular-border-radius)
+  border-bottom-right-radius: 4px;
 }
 
 [dir=ltr] .spectrum-Table-cell {
@@ -171,12 +126,12 @@ main div.table {
 
 .spectrum-Table-cell {
   box-sizing: border-box;
-  font-size: var(--spectrum-table-regular-cell-text-size);
-  font-weight: var(--spectrum-table-regular-cell-text-font-weight);
-  line-height: var(--spectrum-table-regular-cell-text-line-height);
-  min-height: calc(var(--spectrum-table-regular-cell-min-height) - var(--spectrum-table-regular-cell-padding-top) - 7px);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+  min-height: calc(40px - 11px - 7px);
   padding-bottom: 7px;
-  padding-top: var(--spectrum-table-regular-cell-padding-top)
+  padding-top: 11px;
 }
 
 .spectrum-Table-cell,
@@ -203,22 +158,22 @@ main div.table {
 }
 
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell {
-  padding-left: var(--spectrum-table-spacious-header-padding-left);
-  padding-right: var(--spectrum-table-spacious-header-padding-right)
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .spectrum-Table--spacious .spectrum-Table-headCell {
-  border-radius: var(--spectrum-table-spacious-header-border-radius);
+  border-radius: 0px;
   box-sizing: border-box;
   cursor: default;
-  font-size: var(--spectrum-table-spacious-header-text-size);
-  font-weight: var(--spectrum-table-spacious-header-text-font-weight);
-  letter-spacing: var(--spectrum-table-spacious-header-text-letter-spacing);
-  line-height: var(--spectrum-table-spacious-header-text-line-height);
-  min-height: var(--spectrum-table-spacious-header-min-height);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  min-height: 32px;
   outline: 0;
-  padding-bottom: var(--spectrum-table-spacious-header-padding-bottom);
-  padding-top: var(--spectrum-table-spacious-header-padding-top);
+  padding-bottom: 10px;
+  padding-top: 10px;
   text-transform: uppercase;
   transition: color .13s ease-in-out
 }
@@ -226,43 +181,43 @@ main div.table {
 .spectrum-Table--spacious .spectrum-Table-body {
   overflow: auto;
   position: relative;
-  vertical-align: var(--spectrum-table-spacious-cell-vertical-alignment)
+  vertical-align: top;
 }
 
 .spectrum-Table--spacious .spectrum-Table-body {
-  border-radius: var(--spectrum-table-spacious-border-radius);
-  border-width: var(--spectrum-table-spacious-border-size)
+  border-radius: 4px;
+  border-width: 1px;
 }
 
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:first-child {
-  border-top-left-radius: var(--spectrum-table-spacious-border-radius)
+  border-top-left-radius: 4px;
 }
 
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
-  border-top-right-radius: var(--spectrum-table-spacious-border-radius)
+  border-top-right-radius: 4px;
 }
 
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
-  border-bottom-left-radius: var(--spectrum-table-spacious-border-radius)
+  border-bottom-left-radius: 4px;
 }
 
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
-  border-bottom-right-radius: var(--spectrum-table-spacious-border-radius)
+  border-bottom-right-radius: 4px;
 }
 
 [dir=ltr] .spectrum-Table--spacious .spectrum-Table-cell {
-  padding-left: var(--spectrum-table-spacious-cell-padding-left);
-  padding-right: var(--spectrum-table-spacious-cell-padding-right)
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .spectrum-Table--spacious .spectrum-Table-cell {
   box-sizing: border-box;
-  font-size: var(--spectrum-table-spacious-cell-text-size);
-  font-weight: var(--spectrum-table-spacious-cell-text-font-weight);
-  line-height: var(--spectrum-table-spacious-cell-text-line-height);
-  min-height: calc(var(--spectrum-table-spacious-cell-min-height) - var(--spectrum-table-spacious-cell-padding-top) - var(--spectrum-table-spacious-cell-padding-bottom));
-  padding-bottom: var(--spectrum-table-spacious-cell-padding-bottom);
-  padding-top: var(--spectrum-table-spacious-cell-padding-top)
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+  min-height: calc(48px - 15px - 15px);
+  padding-bottom: 15px;
+  padding-top: 15px;
 }
 
 .spectrum-Table--spacious .spectrum-Table-cell,
