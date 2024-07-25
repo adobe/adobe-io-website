@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
- @import url('./spectrum/spectrum.pain.min.css');
+ @import url('./spectrum/spectrum.min.css');
 
 html, body {
   margin: 0;
