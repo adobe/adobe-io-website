@@ -78,12 +78,13 @@ main div.columns div.first-column {
 }
 
 main div.columns div.first-column img {
-    max-height: 350px;
+    height: 350px;
 }
 
 @media screen and (max-width: 620px) {
     main div.columns div.first-column img {
         width: 100vw;
+        height: auto;
     }
 }
 @media screen and (max-width: 1280px) {
@@ -152,10 +153,9 @@ main div.second-column div.product-link-container {
     gap: 1rem;
 }
 @media screen and (max-width:1280px) {
-    main div.second-column div.product-link-container {
+    main div.second-column div.product-link-container, main div.columns div.second-column div.button-group-container {
         justify-content: center;
     }
-    gap: 1rem;
 }
 
 @media screen and (max-width:768px) {
