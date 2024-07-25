@@ -142,8 +142,8 @@ main div.carousel .carousel-circle {
     background-color: #c6c6c6;
     border: none;
     border-radius: 100%;
-    width: 12px;
-    height: 12px;
+    width: 24px;
+    height: 24px;
     margin: 4px 2px;
     cursor: pointer;
 }
