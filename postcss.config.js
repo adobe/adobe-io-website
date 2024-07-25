@@ -4,5 +4,6 @@ module.exports = {
     require("postcss-varfallback"),
     require("postcss-dropunusedvars"),
     require("cssnano"),
+    require('postcss-variable-compress')
   ],
 };
