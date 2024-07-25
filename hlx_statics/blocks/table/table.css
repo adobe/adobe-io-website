@@ -371,14 +371,6 @@ tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell {
   background-color: var(--spectrum-alias-highlight-down)
 }
 
-.spectrum-Table-row.is-selected {
-  background-color: var(--spectrum-alias-highlight-selected)
-}
-
-.spectrum-Table-row.is-selected:hover {
-  background-color: var(--spectrum-alias-highlight-selected-hover)
-}
-
 .spectrum-Table-cell {
   background-color: var(--spectrum-alias-background-color-transparent);
   color: var(--spectrum-alias-text-color)
