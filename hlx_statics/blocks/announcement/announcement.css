@@ -37,7 +37,7 @@ main div.announcement .announce-heading {
 
  main div.announcement.block {
     margin: auto;
-    max-width: calc( calc(12 * 1280px / 12 - 368px - 12px) );
+    max-width: 900px;
  }
 
 main div.announcement p {
@@ -76,7 +76,7 @@ main div.announcement .announce-heading {
 
 main div.announcement.block {
   margin: auto;
-  max-width: calc( calc(12 * 1280px / 12 - 368 - 12px) );
+  max-width: 900px;
 }
 
 main div.announcement p {
