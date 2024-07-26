@@ -1,5 +1,5 @@
 main div.banner-container {
-    background-color: var(--spectrum-global-color-blue-700);
+    background-color: rgb(9, 90, 186);
   }
   
   main div.banner {
@@ -11,5 +11,5 @@ main div.banner-container {
   
   main div.banner h1 {
     line-height: 210px;
-    color: var(--spectrum-global-color-gray-50);
+    color: rgb(255, 255, 255);
   }
