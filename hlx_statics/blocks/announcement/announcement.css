@@ -26,19 +26,15 @@ main div.announcement-container > div {
   width: 100%;
 }
 
-main div.announcement-container > div {
-  width: 100%;
-}
-
 main div.announcement .announce-heading {
   margin-top: 0 !important;
   margin-bottom: 8px !important;
 }
 
- main div.announcement.block {
-    margin: auto;
-    max-width: 900px;
- }
+main div.announcement.block {
+  margin: auto;
+  max-width: 900px;
+}
 
 main div.announcement p {
   margin-top: 0;
@@ -63,30 +59,4 @@ main div.announcement p:last-child {
 
 main div.announcement-container > div {
   width: 100%;
-}
-
-main div.announcement-container > div {
-  width: 100%;
-}
-
-main div.announcement .announce-heading {
-  margin-top: 0 !important;
-  margin-bottom: 8px !important;
-}
-
-main div.announcement.block {
-  margin: auto;
-  max-width: 900px;
-}
-
-main div.announcement p {
-  margin-top: 0;
-}
-
-main div.announcement p.announce-link {
-  margin-top: 16px;
-}
-
-main div.announcement p:last-child {
-  margin-bottom: 0;
 }
