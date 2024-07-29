@@ -40,6 +40,9 @@ export default async function decorate(block) {
   //add a count to keep track of which slide is showing
   let count = 1;
   //load the video link.
+  block.querySelectorAll('picture').forEach(() => {
+    
+  });
   const a = block.querySelectorAll('a');
   for (let i=0; i < a.length; i++) {
     loadVideoURL(block, a[i]);
