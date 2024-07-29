@@ -1,13 +1,13 @@
 main div.announcement-container {
   width: 100%;
-  background: var(--spectrum-global-color-gray-100);
+  background: rgb(248, 248, 248);
   box-sizing: border-box;
   text-align: center;
-  padding: var(--spectrum-global-dimension-size-400);
+  padding: 32px;
 }
 
 main div.section.video-enabled.announcement-container{
-  height: calc(var(--spectrum-global-dimension-size-2000) + var(--spectrum-global-dimension-size-125));  
+  height: calc(160px + 10px);  
 }
 
 @media screen and (max-width: 1280px) {
@@ -19,11 +19,7 @@ main div.section.video-enabled.announcement-container{
 
 main .section.video-enabled + .columns-container > .columns-wrapper > div.columns.block > div > div:first-of-type + div {
   display:flex;
-  margin-top: var(--spectrum-global-dimension-size-1250);
-}
-
-main div.announcement-container > div {
-  width: 100%;
+  margin-top: 100px;
 }
 
 main div.announcement-container > div {
@@ -32,13 +28,13 @@ main div.announcement-container > div {
 
 main div.announcement .announce-heading {
   margin-top: 0 !important;
-  margin-bottom: var(--spectrum-global-dimension-size-100) !important;
+  margin-bottom: 8px !important;
 }
 
- main div.announcement.block {
-    margin: auto;
-    max-width: calc( calc(12 * var(--spectrum-global-dimension-static-grid-fixed-max-width) / var(--spectrum-global-dimension-static-grid-columns) - var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-150)) );
- }
+main div.announcement.block {
+  margin: auto;
+  max-width: 900px;
+}
 
 main div.announcement p {
   margin-top: 0;
@@ -54,7 +50,7 @@ main div.announcement p {
 }
 
 main div.announcement p.announce-link {
-  margin-top: var(--spectrum-global-dimension-size-200)
+  margin-top: 16px;
 }
 
 main div.announcement p:last-child {
@@ -63,30 +59,4 @@ main div.announcement p:last-child {
 
 main div.announcement-container > div {
   width: 100%;
-}
-
-main div.announcement-container > div {
-  width: 100%;
-}
-
-main div.announcement .announce-heading {
-  margin-top: 0 !important;
-  margin-bottom: var(--spectrum-global-dimension-size-100) !important;
-}
-
-main div.announcement.block {
-  margin: auto;
-  max-width: calc( calc(12 * var(--spectrum-global-dimension-static-grid-fixed-max-width) / var(--spectrum-global-dimension-static-grid-columns) - var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-150)) );
-}
-
-main div.announcement p {
-  margin-top: 0;
-}
-
-main div.announcement p.announce-link {
-  margin-top: var(--spectrum-global-dimension-size-200)
-}
-
-main div.announcement p:last-child {
-  margin-bottom: 0;
 }

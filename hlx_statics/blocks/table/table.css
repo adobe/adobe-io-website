@@ -1,19 +1,293 @@
-table {
-  dir: ltr;
-}
-
-main div.table-container {
-  width: 100%;
-  background: var(--spectrum-global-color-gray-100);
-  overflow-x: auto;
-} 
-
-main div.table {
-  width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
-  box-sizing: border-box;
-  margin: auto;
-} 
-
 main div.table-wrapper {
   padding: 80px 32px;
 } 
+
+main div.table-container {
+  width: 100%;
+  background: rgb(248, 248, 248);
+  overflow-x: auto;
+}
+
+main div.table {
+  width: 1280px;
+  box-sizing: border-box;
+  margin: auto;
+}
+
+.table table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: var(--body-font-size-xs);
+}
+
+@media (width >= 600px) {
+  .table table {
+    font-size: var(--body-font-size-s);
+  }
+}
+
+@media (width >= 900px) {
+  .table table {
+    font-size: var(--body-font-size-m);
+  }
+}
+
+.table table tbody tr {
+  border-bottom: 1px solid;
+}
+
+.table table th {
+  font-weight: 700;
+}
+
+.table table th,
+.table table td {
+  padding: 8px 16px;
+  text-align: left;
+}
+
+/* no header variant */
+.table.no-header table tbody tr {
+  border-top: 1px solid;
+}
+
+/* striped variant */
+.table.striped tbody tr:nth-child(odd) {
+  background-color: var(--overlay-background-color);
+}
+
+/* bordered variant */
+.table.bordered table th,
+.table.bordered table td {
+  border: 1px solid;
+}
+
+.spectrum-Table {
+  border-spacing: 0
+}
+
+[dir=ltr] .spectrum-Table-headCell {
+  text-align: left
+}
+
+[dir=ltr] .spectrum-Table-headCell {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.spectrum-Table-headCell {
+  border-radius: 0px;
+  box-sizing: border-box;
+  cursor: default;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  min-height: 32px;
+  outline: 0;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  text-transform: uppercase;
+  transition: color .13s ease-in-out
+}
+
+.spectrum-Table-body {
+  overflow: auto;
+  position: relative;
+  vertical-align: top;
+}
+
+.spectrum-Table-body {
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+[dir=ltr] .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:first-child {
+  border-top-left-radius: 4px;
+}
+
+[dir=ltr] .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
+  border-top-right-radius: 4px;
+}
+
+[dir=ltr] .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
+  border-bottom-left-radius: 4px;
+}
+
+[dir=ltr] .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
+  border-bottom-right-radius: 4px;
+}
+
+[dir=ltr] .spectrum-Table-cell {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.spectrum-Table-cell {
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+  min-height: 22px;
+  padding-bottom: 7px;
+  padding-top: 11px;
+}
+
+.spectrum-Table-cell,
+.spectrum-Table-headCell {
+  position: relative
+}
+
+.spectrum-Table-row {
+  cursor: pointer;
+  position: relative;
+  transition: background-color .13s ease-in-out
+}
+
+.spectrum-Table-row:focus {
+  outline: 0
+}
+
+.spectrum-Table>.spectrum-Table-body>.spectrum-Table-row:last-of-type {
+  border-bottom-style: none
+}
+
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell {
+  text-align: left
+}
+
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table-headCell {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.spectrum-Table--spacious .spectrum-Table-headCell {
+  border-radius: 0px;
+  box-sizing: border-box;
+  cursor: default;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  min-height: 32px;
+  outline: 0;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  text-transform: uppercase;
+  transition: color .13s ease-in-out
+}
+
+.spectrum-Table--spacious .spectrum-Table-body {
+  overflow: auto;
+  position: relative;
+  vertical-align: top;
+}
+
+.spectrum-Table--spacious .spectrum-Table-body {
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:first-child {
+  border-top-left-radius: 4px;
+}
+
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:first-child .spectrum-Table-cell:last-child {
+  border-top-right-radius: 4px;
+}
+
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:first-child {
+  border-bottom-left-radius: 4px;
+}
+
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell:last-child {
+  border-bottom-right-radius: 4px;
+}
+
+[dir=ltr] .spectrum-Table--spacious .spectrum-Table-cell {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.spectrum-Table--spacious .spectrum-Table-cell {
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+  min-height: 18px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.spectrum-Table--spacious .spectrum-Table-cell,
+.spectrum-Table--spacious .spectrum-Table-headCell {
+  position: relative
+}
+
+.spectrum-Table--spacious .spectrum-Table-row {
+  cursor: pointer;
+  position: relative;
+  transition: background-color .13s ease-in-out
+}
+
+.spectrum-Table--spacious .spectrum-Table-row:focus {
+  outline: 0
+}
+
+.spectrum-Table--spacious .spectrum-Table>.spectrum-Table-body>.spectrum-Table-row:last-of-type {
+  border-bottom-style: none
+}
+
+.spectrum-Table-headCell {
+  background-color: transparent;
+  color: rgb(110, 110, 110);
+}
+
+.spectrum-Table-body {
+  background-color: rgb( 255, 255, 255);
+  border-color: rgb(213, 213, 213);
+  border-style: solid
+}
+
+tbody.spectrum-Table-body {
+  border: none
+}
+
+tbody.spectrum-Table-body .spectrum-Table-row {
+  border-top: none
+}
+
+tbody.spectrum-Table-body .spectrum-Table-cell {
+  border-top: 1px solid rgb(213, 213, 213);
+}
+
+[dir=ltr] tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:first-child {
+  border-left: 1px solid rgb(213, 213, 213);
+}
+
+[dir=ltr] tbody.spectrum-Table-body .spectrum-Table-row .spectrum-Table-cell:last-child {
+  border-right: 1px solid rgb(213, 213, 213);
+}
+
+.spectrum-Table-row,
+tbody.spectrum-Table-body .spectrum-Table-row:last-child .spectrum-Table-cell {
+  border-bottom: 1px solid rgb(213, 213, 213);
+}
+
+.spectrum-Table-row {
+  background-color: transparent;
+}
+
+.spectrum-Table-row:hover {
+  background-color: rgba(0,0,0,0.06);
+}
+
+.spectrum-Table-row:active {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.spectrum-Table-cell {
+  background-color: transparent;
+  color: rgb(75, 75, 75);
+}
