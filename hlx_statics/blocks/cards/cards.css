@@ -24,7 +24,7 @@ main div.cards {
 main div.cards > div {
     text-align: center;
     display: table-cell;
-    padding: var(--spectrum-global-dimension-size-1000) 0;
+    padding: 0 0 var(--spectrum-global-dimension-size-1000) 0;
 } 
 
 main div.cards > div.three-cards {

@@ -4,14 +4,14 @@ main div.mini-resource-card .card-container {
     column-gap: 10px;
     row-gap: 10px;
     margin-top: auto;
-    margin: auto!important;
+    margin: auto auto 60px auto !important;
     width: 1280px !important;
 }
 
 main div.mini-resource-card .mini-card {
     display: flex;
     flex-direction: row;
-    text-decoration: none!important;
+    text-decoration: none !important;
 
     padding: 0;
     justify-self: center;
@@ -21,16 +21,16 @@ main div.mini-resource-card .mini-card {
     grid-row-start: auto;
     grid-row-end: auto;
     border: none !important;
-    margin: 0!important;
+    margin: 0 !important;
     width: 420px !important;
     height: 100px !important;
     box-shadow: 0 9px 15px 5px #e6e6e6;
 }
 
 main div.mini-resource-card .mini-resource-card-image-container {
-    margin: 0!important;
+    margin: 0 !important;
     height: 100px !important;
-    width: 100px!important;
+    width: 100px !important;
 }
 
 main div.mini-resource-card .image-mini {
@@ -44,14 +44,14 @@ main div.mini-resource-card .mini-resource-card-body {
     flex-direction: column;
     justify-content: center;
 
-    border: none!important;
+    border: none !important;
     height: 100px !important;
     width: 320px !important;
-    padding: 0 0 0 4%!important
+    padding: 0 0 0 4% !important
 }
 
 main div.mini-resource-card-container .section-title {
-    margin: var(--spectrum-global-dimension-size-600) 0 var(--spectrum-global-dimension-size-400) 0;
+    margin: var(--spectrum-global-dimension-size-600) 0 var(--spectrum-global-dimension-size-800) 0;
 }
 
 @media screen and (max-width: 1280px) {
@@ -60,7 +60,7 @@ main div.mini-resource-card-container .section-title {
         width: 90% !important;
         column-gap: 10px;
         row-gap: 10px;
-        margin: auto!important;
+        margin: auto !important;
     }
 
     main div.mini-resource-card .mini-card {
@@ -75,12 +75,11 @@ main div.mini-resource-card-container .section-title {
 }
 
 @media screen and (max-width: 768px) {
-    main div.mini-resource-card .card-container {  
-        grid-template-columns: repeat(1, 1fr);     
-        margin: auto !important;
-        margin-top: auto;
-
-        width: 80% !important;
+    main div.mini-resource-card .card-container {
+        grid-template-columns: repeat(1, 1fr);
+        margin: auto auto 50px auto !important;
+        width: 95% !important;
+        grid-row-gap: 20px;
     }
 
     main div.mini-resource-card .mini-card {
@@ -93,6 +92,3 @@ main div.mini-resource-card-container .section-title {
         width: auto !important;
     }
 }
-
-
-

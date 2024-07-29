@@ -1,4 +1,4 @@
-import { decorateButtons, applyWidthOverride, applyBkgColorOverride, applySectionTitle, applyAnalyticHeaderOverride} from '../../scripts/lib-adobeio.js';
+import { decorateButtons, applyWidthOverride, applyBkgColorOverride, applySectionTitle, applyAnalyticHeaderOverride } from '../../scripts/lib-adobeio.js';
 import { createOptimizedPicture, decorateLightOrDark } from '../../scripts/lib-helix.js';
 
 /**
@@ -22,7 +22,14 @@ function processImages(block) {
 export default async function decorate(block) {
   // by default, we will use all links as button.  When the section metadata added a linkstyle to be link, it'll change that section's button to be link.
   const isLink = block.parentElement.parentElement.getAttribute('data-link-class');
-  if(isLink !== "link") {
+  const fontColor = block.parentElement.parentElement.getAttribute('data-fontColor');
+  const padding = block?.parentElement?.parentElement?.getAttribute('data-padding');
+  if (padding) {
+    block.querySelectorAll('.cards > div').forEach((div) => {
+      div.style.padding = padding;
+    })
+  }
+  if (isLink !== "link") {
     decorateButtons(block);
   }
   block.setAttribute('daa-lh', 'card');
@@ -38,7 +45,7 @@ export default async function decorate(block) {
       p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
     });
 
-    if(isLink === "link") {
+    if (isLink === "link") {
       card.querySelectorAll('p > a').forEach((a) => {
         a.classList.add('spectrum-Link', 'spectrum-Button--secondary');
       });
@@ -49,12 +56,23 @@ export default async function decorate(block) {
       });
     }
 
+    card.querySelectorAll('a').forEach((a) => {
+      if (fontColor) {
+        a.style.color = fontColor
+      }
+    });
 
     if (array.length === 3) {
       card.classList.add('three-card');
     } else if (array.length === 4) {
       card.classList.add('four-card');
     }
+
+    card.querySelectorAll('.three-card > div').forEach((font, index) => {
+      if (index === 1) {
+        font.style.setProperty('font-size', 'var(--spectrum-global-dimension-font-size-200)');
+      }
+    });
   });
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {

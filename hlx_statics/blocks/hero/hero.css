@@ -1,6 +1,6 @@
 main div.hero {
     background: var(--spectrum-global-color-gray-50);
-    height: calc(var(--spectrum-global-dimension-size-6000) + var(--spectrum-global-dimension-size-250));
+    /* height: calc(var(--spectrum-global-dimension-size-6000) + var(--spectrum-global-dimension-size-250)); */
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -8,6 +8,15 @@ main div.hero {
   
   main div.hero-container {
     padding: 0;
+  }
+
+  @media screen and (max-width: 1024px) {
+    main div.hero {
+      flex-direction: column;
+    }
+    main div.hero > div:first-child {
+      width: 100% !important;
+    }
   }
 
   @media screen and (max-width: 768px) {
@@ -40,7 +49,7 @@ main div.hero {
   
   @media screen and (max-width: 768px) {
     main div.hero div:nth-child(2) {
-      display: none;
+      /* display: none; */
     }
   }
   
@@ -109,7 +118,7 @@ main div.hero {
     }
 
     main .hero picture {
-      display: none;
+      /* display: none; */
     }
   }
 
@@ -126,3 +135,18 @@ main div.hero {
       height: 100%;
     }
   }
+  @media screen and (max-width: 768px) {
+    main div.hero {
+      flex-direction: column;
+    }
+    main div.hero div:nth-child(2) > div img {
+      width: 100% !important;
+      min-width: 320px !important;
+    }
+  }
+  main div.hero>div:first-child>div {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  

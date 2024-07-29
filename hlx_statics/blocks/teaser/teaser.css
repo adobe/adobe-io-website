@@ -29,3 +29,8 @@ main div.teaser-container>div.teaser-wrapper>div.block>div {
   }
 
 }
+@media only screen and (max-width: 425px){
+  main div.teaser-container .teaser-button-container{
+    flex-direction: column !important;
+  }
+}
