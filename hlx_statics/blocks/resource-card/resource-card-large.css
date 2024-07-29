@@ -1,17 +1,17 @@
 main a.resource-card-large-container-inner {
-    height: calc(var(--spectrum-global-dimension-size-4600) - var(--spectrum-global-dimension-size-100));
-    margin: var(--spectrum-global-dimension-size-300);
+    height: calc(368px - 80px);
+    margin: 24px;
   }
   
   @media screen and (max-width: 1280px) {
     main a.resource-card-large-container-inner {
-      width: calc(100vw - var(--spectrum-global-dimension-size-300)*2);
-      margin: var(--spectrum-global-dimension-size-300);
+      width: calc(100vw - (24px)*2);
+      margin: 24px;
     }
   }
   
   main div.resource-card-large-preview {
-    height: var(--spectrum-global-dimension-size-3000);
+    height: 240px;
     width: 100%;
     padding: 0 !important;
   }
@@ -32,7 +32,7 @@ main a.resource-card-large-container-inner {
   
   main div.resource-card-large-body {
     flex: 1;
-    padding: var(--spectrum-global-dimension-size-300) !important;
+    padding: 24px !important;
     justify-content: flex-start !important;
     overflow: hidden;
   }
@@ -54,7 +54,7 @@ main a.resource-card-large-container-inner {
   
   main div.resource-card-large p {
     text-align: left;
-    color: var(--spectrum-global-color-gray-700);
+    color: rgb(110, 110, 110);
     margin-top: 0;
   }
   

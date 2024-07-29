@@ -51,7 +51,7 @@ main div.mini-resource-card .mini-resource-card-body {
 }
 
 main div.mini-resource-card-container .section-title {
-    margin: var(--spectrum-global-dimension-size-600) 0 var(--spectrum-global-dimension-size-400) 0;
+    margin: 48px 0 32px 0;
 }
 
 @media screen and (max-width: 1280px) {
@@ -93,6 +93,3 @@ main div.mini-resource-card-container .section-title {
         width: auto !important;
     }
 }
-
-
-
