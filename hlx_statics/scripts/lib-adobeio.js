@@ -154,14 +154,20 @@ export function removeEmptyPTags(element) {
  * Decorates the a tags of a block as Spectrum Buttons
  * @param {*} block The block to inspect
  */
-export function decorateButtons(block) {
+export function decorateButtons(block, secondaryButtonColor, secondaryButtonBorderColor) {
   block.querySelectorAll('a').forEach((a) => {
-    a.innerHTML = `<span class="spectrum-Button-label">${a.innerHTML}</span>`;
+    a.innerHTML = `<span class="spectrum-Button-label" >${a.innerHTML}</span>`;
     const up = a.parentElement;
     const twoup = a.parentElement.parentElement;
     a.tabindex = 0;
     if (up.childNodes.length === 1 && up.tagName === 'P') {
       a.className = 'spectrum-Button spectrum-Button--outline spectrum-Button--secondary spectrum-Button--sizeM';
+      if (secondaryButtonBorderColor) {
+        const innerHTML = a.querySelector('span');
+        console.log('innerHTML', innerHTML)
+        a.style.borderColor = secondaryButtonBorderColor;
+        innerHTML.style.color = secondaryButtonColor;
+      }
     }
 
     checkExternalLink(a);
@@ -541,7 +547,7 @@ export function createAnchorLink(id) {
  * @param {Element} header The header element to add an anchor link.
  */
 export function decorateAnchorLink(header) {
-//  block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+  //  block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
   header.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
   const anchorLink = createAnchorLink(header.id);
   header.appendChild(anchorLink);
