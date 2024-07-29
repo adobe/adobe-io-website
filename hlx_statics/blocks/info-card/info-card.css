@@ -33,7 +33,7 @@ main div.info-card .cards-card-body > *:first-child {
 }
 
 main div.info-card > ul > li img {
-  width: 100%;
+  width: 400px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
