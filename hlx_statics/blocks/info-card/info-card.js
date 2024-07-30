@@ -18,19 +18,20 @@ export default async function decorate(block) {
     const a = document.createElement('a');
     while (row.firstElementChild) a.append(row.firstElementChild);
     [...a.children].forEach((div) => {
-      let a_tag, h3_tag, p_tag;
+      let a_tag, p_tag;
       if (div.children.length === 1 && div.querySelector('picture')) 
         div.className = 'cards-card-image';
       else {// make body class and find link + text
         // find link
-        a_tag = div.firstElementChild.firstElementChild.firstElementChild.firstElementChild.firstElementChild;
+        a_tag = div.querySelector('a');
         a.href = a_tag.href;
 
         // change text font and size and color
-        h3_tag = div.firstElementChild.firstElementChild.firstElementChild.firstElementChild;
-        h3_tag.classList.add("spectrum-Heading", "spectrum-Heading--sizeM");
-        h3_tag.textContent = a_tag.textContent;
-        p_tag = div.children[1];
+        div.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+          h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM');
+          h.textContent = a_tag.textContent;
+        });
+        p_tag = div.querySelector('p');
         p_tag.style.color = 'rgb(110, 110, 110)';
         div.className = 'cards-card-body';
       }
