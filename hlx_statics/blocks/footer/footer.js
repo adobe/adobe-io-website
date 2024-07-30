@@ -40,7 +40,7 @@ export default async function decorate(block) {
   block.setAttribute('daa-lh', 'footer');
   const cfg = readBlockConfig(block);
   block.textContent = '';
-  const footerPath = cfg.footer || setExpectedOrigin(window.location.origin, '/franklin_assets/footer');
+  const footerPath = cfg.footer || 'https://main--adobe-io-website--adobe.hlx.live/franklin_assets/footer';
   const resp = await fetch(`${footerPath}.plain.html`);
   const html = await resp.text();
   block.classList.add('footer-links-container');

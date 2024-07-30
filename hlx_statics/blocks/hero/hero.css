@@ -1,30 +1,47 @@
 main div.hero {
-    background: var(--spectrum-global-color-gray-50);
-    height: calc(var(--spectrum-global-dimension-size-6000) + var(--spectrum-global-dimension-size-250));
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-  }
-  
-  main div.hero-container {
-    padding: 0;
-  }
+  background: rgb(255, 255, 255);
+  height: fit-content;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
 
-  @media screen and (max-width: 768px) {
-    main div.hero {
-      height: auto;
-      padding: var(--spectrum-global-dimension-size-400);
-    }
-  }
-  
-  main div.hero > div:first-child {
-    display: flex;
+main div.hero-container {
+  padding: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  main div.hero {
     flex-direction: column;
-    justify-content: center;
-    width: calc(5 * 100% / 12);
-  
-    margin-left: var(--spectrum-global-dimension-size-800);
-    margin-right: var(--spectrum-global-dimension-size-400);
+  }
+  main div.hero > div:first-child {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  main div.hero {
+    height: auto;
+    padding: 32px;
+
+  }
+}
+
+main div.hero > div:first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(5 * 100% / 12);
+
+  margin-left: 64px;
+  margin-right: 32px;
+}
+
+@media screen and (max-width: 768px) {
+  main div.hero > div:first-child {
+    margin-left: 64px;
+    margin-right: 32px;
   }
 
   @media screen and (max-width: 768px) {
@@ -40,7 +57,7 @@ main div.hero {
   
   @media screen and (max-width: 768px) {
     main div.hero div:nth-child(2) {
-      display: none;
+      /* display: none; */
     }
   }
   
@@ -54,65 +71,116 @@ main div.hero {
   
   main div.hero div:nth-child(2) > div img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 0;
-    min-height: 500px;
+    margin: 0;
   }
-  
-  main .hero .icon-container {
-    height: var(--spectrum-global-dimension-size-600);
-    width: var(--spectrum-global-dimension-size-600);
-    margin-top: 0 !important;
-    margin-bottom: var(--spectrum-global-dimension-size-300) !important;
-  }
+}
 
-  main .hero span.icon {
+main div.hero div:nth-child(2) {
+  flex: 1;
+}
+
+@media screen and (max-width: 768px) {
+  main div.hero div:nth-child(2) {
     display: none;
   }
-  
-  main .hero .icon {
+}
+
+main div.hero div:nth-child(2) > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-top: 0;
+}
+
+main div.hero div:nth-child(2) > div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  min-height: 500px;
+}
+
+main .hero .icon-container {
+  height: 48px;
+  width: 48px;
+  margin-top: 0 !important;
+  margin-bottom: 24px !important;
+}
+
+main .hero span.icon {
+  display: none;
+}
+
+main .hero .icon {
+  height: 100%;
+  object-fit: contain;
+}
+
+main .hero h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+main .hero p.spectrum-Body--sizeL {
+  margin-top: 0 !important;
+  font-size: 18px;
+  color: rgb(34, 34, 34) !important;
+}
+
+main .hero h1 + p.last-of-type {
+  margin-bottom: 0 !important;
+}
+
+main .hero .hero-button-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  margin-top: 24px;
+  gap: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  main div.hero {
+    overflow: auto;
+    height: 100vh;
+  }
+  main div.hero .spectrum-Heading--sizeXXL {
+    font-size: 36px;
+  }
+
+  main .hero picture {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  main div.hero > div:first-child {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  main div.hero {
     height: 100%;
-    object-fit: contain;
   }
   
   main .hero h3 {
     margin-top: 0;
-    margin-bottom: var(--spectrum-global-dimension-size-200);
-  }
-  
-  main .hero p.spectrum-Body--sizeL {
-    margin-top: 0 !important;
-    font-size: var(--spectrum-global-dimension-size-225);
-    color: var(--spectrum-global-color-gray-800) !important;
+    margin-bottom: 16px;
   }
   
   main .hero h1 + p.last-of-type {
     margin-bottom: 0 !important;
   }
   
-  main .hero .hero-button-container {
-    display: flex;
-    flex-wrap: wrap;
-  
-    margin-top: var(--spectrum-global-dimension-size-300);
-    gap: var(--spectrum-global-dimension-size-200);
-  }
-
   @media screen and (max-width: 768px) {
     main div.hero {
       overflow: auto;
       height: 100vh;
     }
-    main div.hero .spectrum-Heading--sizeXXL {
-      font-size: var(--spectrum-alias-heading-xl-text-size);
-    }
-
-    main .hero picture {
-      display: none;
-    }
   }
-
 
   @media screen and (max-width: 768px) {
     main div.hero > div:first-child {
@@ -126,3 +194,18 @@ main div.hero {
       height: 100%;
     }
   }
+  @media screen and (max-width: 768px) {
+    main div.hero {
+      flex-direction: column;
+    }
+    main div.hero div:nth-child(2) > div img {
+      width: 100% !important;
+      min-width: 320px !important;
+    }
+  }
+  main div.hero>div:first-child>div {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}

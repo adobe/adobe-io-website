@@ -1,5 +1,5 @@
 main div.summary-container {
-  background: #ffffff;
+  background: rgb(255, 255, 255);
   background-position: center;
   background-size: cover;
   padding: 0;
@@ -11,7 +11,7 @@ main div.summary {
 }
 
 @media screen and (max-width: 768px) {
-  main div picture {
+  main div.summary picture {
     height: 350px;
     width: 100%;
   }
@@ -49,12 +49,12 @@ main div.summary h2 {
 
 main div.summary p {
   margin-bottom: 24px !important;
-  color: #ffffff;
+  color: rgb(255, 255, 255);
   margin-top: 0;
 }
 
 main div.summary p a:hover {
-  color: #545454;
+  color: rgb(84, 84, 84);
 }
 
 main div.summary img {
