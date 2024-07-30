@@ -40,13 +40,8 @@ main div.hero > div:first-child {
 
 @media screen and (max-width: 768px) {
   main div.hero > div:first-child {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: calc(5 * 100% / 12);
-  
-    margin-left: var(--spectrum-global-dimension-size-800);
-    margin-right: var(--spectrum-global-dimension-size-400);
+    margin-left: 64px;
+    margin-right: 32px;
   }
 
   @media screen and (max-width: 768px) {
@@ -173,41 +168,19 @@ main .hero .hero-button-container {
   
   main .hero h3 {
     margin-top: 0;
-    margin-bottom: var(--spectrum-global-dimension-size-200);
-  }
-  
-  main .hero p.spectrum-Body--sizeL {
-    margin-top: 0 !important;
-    font-size: var(--spectrum-global-dimension-size-225);
-    color: var(--spectrum-global-color-gray-800) !important;
+    margin-bottom: 16px;
   }
   
   main .hero h1 + p.last-of-type {
     margin-bottom: 0 !important;
   }
   
-  main .hero .hero-button-container {
-    display: flex;
-    flex-wrap: wrap;
-  
-    margin-top: var(--spectrum-global-dimension-size-300);
-    gap: var(--spectrum-global-dimension-size-200);
-  }
-
   @media screen and (max-width: 768px) {
     main div.hero {
       overflow: auto;
       height: 100vh;
     }
-    main div.hero .spectrum-Heading--sizeXXL {
-      font-size: var(--spectrum-alias-heading-xl-text-size);
-    }
-
-    main .hero picture {
-      /* display: none; */
-    }
   }
-
 
   @media screen and (max-width: 768px) {
     main div.hero > div:first-child {
