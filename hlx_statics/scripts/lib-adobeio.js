@@ -154,7 +154,7 @@ export function removeEmptyPTags(element) {
  * Decorates the a tags of a block as Spectrum Buttons
  * @param {*} block The block to inspect
  */
-export function decorateButtons(block, secondaryButtonColor, secondaryButtonBorderColor) {
+export function decorateButtons(block, secondaryButtonBorderColor,secondaryButtonColor) {
   block.querySelectorAll('a').forEach((a) => {
     a.innerHTML = `<span class="spectrum-Button-label" >${a.innerHTML}</span>`;
     const up = a.parentElement;
@@ -162,12 +162,14 @@ export function decorateButtons(block, secondaryButtonColor, secondaryButtonBord
     a.tabindex = 0;
     if (up.childNodes.length === 1 && up.tagName === 'P') {
       a.className = 'spectrum-Button spectrum-Button--outline spectrum-Button--secondary spectrum-Button--sizeM';
+      const innerHTML = a.querySelector('span');
+
       if (secondaryButtonBorderColor) {
-        const innerHTML = a.querySelector('span');
-        console.log('innerHTML', innerHTML)
         a.style.borderColor = secondaryButtonBorderColor;
-        innerHTML.style.color = secondaryButtonColor;
       }
+      if(secondaryButtonColor){
+        innerHTML.style.color = secondaryButtonColor;
+      } 
     }
 
     checkExternalLink(a);

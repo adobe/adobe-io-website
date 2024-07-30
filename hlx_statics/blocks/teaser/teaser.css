@@ -1,3 +1,4 @@
+
 main .teaser-button-container {
   display: flex;
   gap: 20px;
@@ -7,13 +8,13 @@ main .teaser-wrapper > .block > div > div {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 1000px;
+  width: fit-content;
 }
 
 main .teaser-wrapper > .block > div {
   display: flex;
   margin-left: 5%;
-}
+} 
 
 @media screen and (max-width: 1024px) {
   main .teaser-wrapper > .block > div {

@@ -67,9 +67,15 @@ export default async function decorate(block) {
     if (innerElement && position === "center") {
       innerElement.style.alignItems = position;
     }
+    
+    if (innerElement && position === "end") {
+      Object.assign(teaserElement.style, {
+        marginRight: "5%"
+      });
+    }
   }
 
-  decorateButtons(block, secondaryButtonColor, secondaryButtonBorderColor);
+  decorateButtons(block, secondaryButtonBorderColor, secondaryButtonColor);
   removeEmptyPTags(block);
   rearrangeLinks(block);
   setBackgroundImage(block);
