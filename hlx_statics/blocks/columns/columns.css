@@ -90,7 +90,7 @@ main div.columns div.first-column {
     align-items: center;
     justify-content: center;
     width: 50%;
-    max-height: calc(368px - 18px);
+    max-height: 350px;
     box-sizing: border-box;
     padding: 0 8px;
     margin-top: 0;
