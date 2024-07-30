@@ -60,7 +60,25 @@ main div.columns-container.section[data-list-class="checkmark"] ul > li:before{
     content: "\2714\0020";
 }
 
-main div.columns-container
+@media screen and (max-width: 1280px) {
+    main div.columns div.second-column {
+        width: 100%;
+        text-align: center;
+    }
+}
+@media screen and (max-width: 1280px) {
+    main div.second-column div.product-link-container, main div.columns div.second-column div.button-group-container {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    main div.columns div.first-column img {
+        width: 100vw;
+        height: auto;
+    }
+}
+
 @media screen and (max-width: 1280px) {
     main div.columns > div {
         flex-direction: column;
@@ -72,7 +90,7 @@ main div.columns div.first-column {
     align-items: center;
     justify-content: center;
     width: 50%;
-    height: calc(368px - 18px);
+    max-height: calc(368px - 18px);
     box-sizing: border-box;
     padding: 0 8px;
     margin-top: 0;
