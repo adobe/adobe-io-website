@@ -1,5 +1,5 @@
 .product-card {
-    max-width: calc(calc(12* var(--spectrum-global-dimension-static-grid-fixed-max-width) / var(--spectrum-global-dimension-static-grid-columns)));
+    max-width: 1280px;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
