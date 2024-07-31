@@ -1,3 +1,8 @@
+main .tab-container {
+    background-color: #323232;
+    padding: 3%;
+}
+
 main .tab {
     display: flex;
     justify-content: center;
@@ -22,7 +27,6 @@ main .vertical-tab .innerTab>div:first-child {
 }
 
 main .horizontal-tab .innerTab>div:first-child {
-    /* justify-content: center; */
     gap: 16px;
 }
 
@@ -38,7 +42,7 @@ main .innerTab>div:first-child>div {
     width: 260px;
 }
 
-main .innerTab>div:first-child>div:hover {
+main .navy>div:first-child>div:hover {
     background-color: #2e3c6a;
 }
 
@@ -46,8 +50,8 @@ main .innerTab>div:first-child>div:hover>p {
     color: white !important;
 }
 
-main .activeTab {
-    background-color: #2e3c6a;
+main .navyTab {
+    background-color:#2e3c6a;
 }
 
 main .activeTab>p {
