@@ -5,8 +5,11 @@ import { applyBkgColorOverride,applyWidthOverride,decorateButtons} from '../../s
  * @param {Element} block The title block element {Parameter Type} Name of the Parameter
  */
 export default async function decorate(block) {
-  const fontcolor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
   decorateButtons(block);
+  applyBkgColorOverride(block);
+  applyWidthOverride(block);
+
+  const fontcolor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
   block.setAttribute('daa-lh', 'profile-card');
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'title-heading');
@@ -16,11 +19,7 @@ export default async function decorate(block) {
     p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
     p.style.color = fontcolor;
   });
-  applyBkgColorOverride(block);
-  applyWidthOverride(block);
 
-
-  
   Array.from(block.children).forEach((div)=>{
     const newDiv=document.createElement('div');
     newDiv.classList.add('all-button-container')
@@ -31,4 +30,4 @@ export default async function decorate(block) {
     
     div.lastElementChild.append(newDiv)
   })
-}
+} 
