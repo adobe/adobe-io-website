@@ -34,6 +34,7 @@ export default async function decorate(block) {
     // don't attach to icon container or if p tag contains links
     if (!p.classList.contains('icon-container')) {
       p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
+      button_div.parentElement.querySelector('.spectrum-Heading').after(p);
     }
     if (p.classList.contains('button-container')){
       button_div.append(p);

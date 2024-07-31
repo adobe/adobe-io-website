@@ -1,31 +1,39 @@
-main div.teaser-container .teaser-button-container {
-  display: flex !important;
-  gap: 20px !important;
+
+main .teaser-button-container {
+  display: flex;
+  gap: 20px;
 }
 
-main div.teaser-container>div.teaser-wrapper>div.block>div>div {
+main .teaser-wrapper > .block > div > div {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 1000px;
+  width: fit-content;
 }
 
-main div.teaser-container {
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-main div.teaser-container>div.teaser-wrapper>div.block>div {
+main .teaser-wrapper > .block > div {
   display: flex;
-  justify-content: end;
   margin-left: 5%;
-}
+} 
 
-@media screen and (min-width : 320px) and (max-width : 1024px) {
-
-  main div.teaser-container>div.teaser-wrapper>div.block>div {
-    margin: 0 5%;
+@media screen and (max-width: 1024px) {
+  main .teaser-wrapper > .block > div {
+    margin: 0;
   }
 
+  main .teaser-container .teaser > div > div {
+    text-align: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  main .teaser-container .teaser-button-container {
+    flex-direction: column;
+  }
+
+  main .teaser-container .teaser {
+    margin: 5%;
+    text-align: center;
+  }
 }

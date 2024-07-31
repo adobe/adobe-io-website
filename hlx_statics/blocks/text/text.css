@@ -35,7 +35,7 @@ main .link-list-container>p>picture>img {
     border-radius: 50%;
 }
 
-main picture {
+main .text picture {
     display: flex;
 }
 
@@ -82,11 +82,18 @@ main .headIconContainer .spliterDiv{
     background-color: #4a4a4a;
     border-radius: 2px;
 }
+main .textContentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
 
 @media only screen and (max-width: 1024px) {
     main div.text>div {
-        flex-direction: column;
+        flex-direction: column !important;
         gap: 50px;
+        margin: 0% !important;
     }
 
     main div.text>div>div {
@@ -96,7 +103,7 @@ main .headIconContainer .spliterDiv{
 
 @media only screen and (max-width: 425px){
     main .link-list-container{
-        flex-direction: column;
+        flex-direction: column !important;
         align-items: start;
         gap: 30px;
     }

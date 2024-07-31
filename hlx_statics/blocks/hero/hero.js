@@ -23,6 +23,7 @@ function rearrangeLinks(block) {
  * @param {Element} block The hero block element
  */
 export default async function decorate(block) {
+
   block.setAttribute('daa-lh', 'hero');
   // Block decoration
   decorateLightOrDark(block, true);
@@ -56,5 +57,32 @@ export default async function decorate(block) {
       p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
     }
   });
+
+  const image = block?.parentElement?.parentElement?.getAttribute('data-bgImage');
+  const fontColor = block?.parentElement?.parentElement?.getAttribute('data-fontColor');
+  const blockImageWidth = block?.parentElement?.parentElement?.getAttribute('data-blockImageWidth');
+
+  if (image) {
+    block.style.backgroundImage = `url(${image})`;
+    block.style.backgroundRepeat = "no-repeat";
+    block.style.backgroundSize = "cover";
+    block.style.padding = "0% 11%"
+
+    block.querySelectorAll('h1, p, a, span').forEach((font) => {
+      font.style.setProperty('color', fontColor, 'important');
+    })
+  }
+  block.querySelectorAll('img').forEach((img) => {
+    if (blockImageWidth) {
+      img.style.width = blockImageWidth;
+      img.style.objectFit = 'contain';
+    }
+    else {
+      img.style.width = '600px';
+      img.style.height = '400px';
+      img.style.objectFit = 'contain';
+    }
+  })
+
   applyAnalyticHeaderOverride(block);
 }

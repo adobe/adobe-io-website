@@ -1,5 +1,5 @@
-import {createTag, removeEmptyPTags, applyBkgColorOverride, applySectionTitle, applyAnalyticHeaderOverride} from '../../scripts/lib-adobeio.js';
-  
+import { createTag, removeEmptyPTags, applyBkgColorOverride, applySectionTitle, applyAnalyticHeaderOverride } from '../../scripts/lib-adobeio.js';
+
 /**
  * Returns the HTML for a mini resource card
  * @param {*} linkHref The link to the resource
@@ -8,7 +8,7 @@ import {createTag, removeEmptyPTags, applyBkgColorOverride, applySectionTitle, a
  * @returns The resource card HTML
  */
 function getMiniResourceCard(linkHref, heading, text) {
-    if(text === undefined){ //no body just heading
+    if (text === undefined) { //no body just heading
         return `
             <a class="mini-card" href=${linkHref}>
                 <div class="mini-resource-card-image-container ">
@@ -19,7 +19,7 @@ function getMiniResourceCard(linkHref, heading, text) {
                     ${heading}
                 </h3>
             </div>`;
-    }else{
+    } else {
         return `
             <a class="mini-card" href=${linkHref}>
                 <div class="mini-resource-card-image-container ">
@@ -41,8 +41,9 @@ function getMiniResourceCard(linkHref, heading, text) {
  * @param {Element} block The mini-resource-card block element
  */
 export default async function decorate(block) {
+
     block.setAttribute('daa-lh', 'mini resource card');
-    const grid_div = createTag('div', {class: 'card-container'});
+    const grid_div = createTag('div', { class: 'card-container' });
     block.querySelectorAll('.mini-resource-card > div').forEach((resource) => {
         removeEmptyPTags(resource);
         grid_div.appendChild(resource);
@@ -64,4 +65,14 @@ export default async function decorate(block) {
     applyBkgColorOverride(block);
     applySectionTitle(block);
     applyAnalyticHeaderOverride(block);
+
+    const boxShadow = block?.parentElement?.parentElement?.getAttribute('data-boxshadow');
+    if (boxShadow) {
+        block.querySelectorAll('.mini-resource-card  .mini-card').forEach((card) => {
+            card.style.setProperty('box-shadow', boxShadow, 'important');
+        })
+        block.querySelectorAll('.mini-resource-card  .mini-card img').forEach((card) => {
+            card.style.borderRadius = "25px";
+        })
+    }
 }

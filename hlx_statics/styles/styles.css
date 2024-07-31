@@ -567,3 +567,32 @@ main .heading6 h6 {
 .spectrum-Code--sizeXL {
   color: rgb(75, 75, 75);
 }
+
+
+.spectrum-Button {
+  box-sizing: border-box;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  text-transform: none;
+  cursor: pointer;
+  text-decoration: none;
+  border: 3px solid;
+  border-radius: 20px;
+}
+
+.spectrum-Button--sizeM {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.spectrum-Button.spectrum-Button--fill:disabled,
+.spectrum-Button.spectrum-Button--fill:not(:disabled) {
+  border-color: transparent;
+}
+
+.spectrum-Button.spectrum-Button--fill.spectrum-Button--accent:not(.spectrum-Button--staticWhite):not(.spectrum-Button--staticBlack):not(:disabled) {
+  background-color: rgb(4, 105, 227);
+}
