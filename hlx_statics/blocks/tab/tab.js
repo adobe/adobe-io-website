@@ -12,7 +12,6 @@ export default async function decorate(block) {
     fontcolor = fontcolor ? fontcolor : "rgb(209, 209, 209)";
     const orientation = block?.parentElement?.parentElement?.getAttribute('data-orientation');
     const backgroundColor = block?.parentElement?.parentElement?.getAttribute('data-backgroundcolor');
-    console.log('backgroundColor', `${backgroundColor}Tab`)
     block.classList.add(`${orientation}-tab`);
     block.querySelectorAll('p').forEach((p) => {
         p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
