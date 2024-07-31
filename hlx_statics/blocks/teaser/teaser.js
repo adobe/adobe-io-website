@@ -48,38 +48,14 @@ export default async function decorate(block) {
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'teaser-heading');
     h.style.color = fontcolor;
+    h.style.wordBreak = "break-all";
+    h.style.whiteSpace = "normal";
   });
   block.querySelectorAll('p').forEach((p) => {
     p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
     p.style.color = fontcolor;
-    if(alignitems){
-      p.style.color = '#e2caf1';
-    }
-  });
-  block.querySelectorAll('a').forEach((a) => {
-    if (a.title === "Learn more" || "Explore more") {
-      a.className = "spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM"
-
-      block.querySelectorAll('.teaser > div').forEach((div) => {
-        div.style.justifyContent = 'center';
-        div.style.marginLeft = '0px';
-      })
-      block.querySelectorAll('.teaser > div > div').forEach((div) => {
-        div.style.width = 'auto';
-        if (alignitems) {
-          div.style.alignItems = alignitems;
-          div.style.gap = '20px';
-        }
-      })
-    }
-    if (a.title === "Try an add-on") {
-      a.className = "spectrum-Button spectrum-Button--sizeM spectrum-Button--outline spectrum-Button--secondary"
-      block.querySelectorAll('a > .spectrum-Button-label').forEach((div) => {
-        if (div.textContent === 'Try an add-on') {
-          div.style.color = 'white'
-        }
-      })
-    }
+    p.style.wordBreak = "break-all";
+    p.style.whiteSpace = "normal";
   });
 
   if (position) {
@@ -94,11 +70,12 @@ export default async function decorate(block) {
     if (innerElement && position === "center") {
       innerElement.style.alignItems = position;
     }
-    
+
     if (innerElement && position === "end") {
       Object.assign(teaserElement.style, {
         marginRight: "5%"
       });
+      innerElement.style.width = "750px"
     }
   }
 
