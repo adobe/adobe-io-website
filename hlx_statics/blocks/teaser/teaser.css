@@ -8,7 +8,7 @@ main .teaser-wrapper > .block > div > div {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: fit-content;
+  width: 95%;
 }
 
 main .teaser-wrapper > .block > div {
