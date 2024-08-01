@@ -39,11 +39,10 @@ main div.list-container>div.list-wrapper>div {
   main div.list-container>div.list-wrapper>div {
     width: fit-content !important;
   }
-
 }
 
 @media screen and (min-width : 320px) and (max-width : 1024px) {
   main div.list-container {
-    padding: var(--spectrum-global-dimension-size-400) var(--spectrum-global-dimension-size-200) !important;
+    padding: 40px 20px !important;
   }
 }
