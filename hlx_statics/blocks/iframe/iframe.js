@@ -90,12 +90,13 @@ export default async function decorate(block) {
     const penpalScript = addExtraScriptWithReturn(document.body, 'https://unpkg.com/penpal@^6/dist/penpal.min.js');
     const iframeSrc = block.querySelector('a');
     const iframeContainer = block.parentElement;
-    const iframe = createTag('iframe', { class: 'iframe-container', 'src': iframeSrc.href, 'id': 'penpalIframe' });
+    const title = block?.parentElement?.parentElement?.attributes.getNamedItem('data-title')?.value;
+    console.log('title: ', title);
+    const iframe = createTag('iframe', { 'title': title, class: 'iframe-container', 'src': iframeSrc.href, 'id': 'penpalIframe' });
     penpalScript.onload = () => {
         iframeContainer.append(iframe);
         penpalOnLoad();
     }
     block.remove();
-    //lil comment
 }
 

@@ -20,7 +20,7 @@ const loadScript = (url, callback, type) => {
 
 const getDefaultEmbed = (url, loop, controls, vidTitle) => {
   const embedHTML = `<div style="left: 0; width: 55vw; height: 45vh; max-height: fit-content; position: relative; padding-bottom: 56.25%;">
-    <iframe src="autoplay=0&mute=0&${url.href}?${loop ? `loop=1&` : ``}${controls ? `controls=1`: ``}" 
+    <iframe src="${url.href}?${loop ? `loop=1&` : ``}${controls ? `controls=1`: ``}autoplay=0&mute=0&" 
     style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
       scrolling="no" allow="encrypted-media" title=${vidTitle ? vidTitle : `Content from ${url.hostname}`} loading="lazy">
     </iframe>
