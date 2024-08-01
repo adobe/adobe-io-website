@@ -91,7 +91,6 @@ export default async function decorate(block) {
     const iframeSrc = block.querySelector('a');
     const iframeContainer = block.parentElement;
     const title = block?.parentElement?.parentElement?.attributes.getNamedItem('data-title')?.value;
-    console.log('title: ', title);
     const iframe = createTag('iframe', { 'title': title, class: 'iframe-container', 'src': iframeSrc.href, 'id': 'penpalIframe' });
     penpalScript.onload = () => {
         iframeContainer.append(iframe);
