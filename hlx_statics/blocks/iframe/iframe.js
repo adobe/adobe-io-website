@@ -96,5 +96,6 @@ export default async function decorate(block) {
         penpalOnLoad();
     }
     block.remove();
+    //lil comment
 }
 
