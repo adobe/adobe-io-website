@@ -76,6 +76,8 @@ export default async function decorate(block) {
   block.querySelectorAll('div.text > div').forEach((division) => {
     if (position === "right")
       division.style.flexDirection = "row-reverse";
+    if (position === "left")
+      division.style.flexDirection = "row";
   })
   let isImageTextBlock = true
   Array.from(block.firstElementChild.children).forEach((div) => {
