@@ -40,5 +40,5 @@ export default async function decorate(block) {
   applyBkgColorOverride(block);
   applyWidthOverride(block);
   applyAnalyticHeaderOverride(block);
-  rearrangeLinks(block)
+  rearrangeLinks(block);
 }
