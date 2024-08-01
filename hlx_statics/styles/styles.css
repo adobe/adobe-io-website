@@ -596,3 +596,8 @@ main .heading6 h6 {
 .spectrum-Button.spectrum-Button--fill.spectrum-Button--accent:not(.spectrum-Button--staticWhite):not(.spectrum-Button--staticBlack):not(:disabled) {
   background-color: rgb(4, 105, 227);
 }
+
+.spectrum-Button.spectrum-Button--outline.spectrum-Button--secondary:not(.spectrum-Button--staticWhite):not(.spectrum-Button--staticBlack):not(:disabled) {
+  background-color: transparent;
+  border-color: rgb(213,213,213);
+}

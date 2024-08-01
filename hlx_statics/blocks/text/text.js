@@ -5,11 +5,8 @@ import {
 
 function rearrangeLinks(block) {
   const contentDiv = block.firstElementChild.querySelectorAll(`div:has(p)`);
-  const position = block?.parentElement?.parentElement?.getAttribute('data-position');
   const textLinkContainer = document.createElement('div');
-  if (!position) {
-    textLinkContainer.classList.add('link-list-container');
-  }
+  textLinkContainer.classList.add('link-list-container');
   const contentContainer = document.createElement('div');
   contentContainer.classList.add('contentContainer');
   contentDiv.forEach((div) => {
@@ -51,9 +48,10 @@ function rearrangeButtons(block) {
 export default async function decorate(block) {
   block.setAttribute('daa-lh', 'text');
   const fontcolor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
+  const secondaryButtonBorderColor = block?.parentElement?.parentElement?.getAttribute('data-secondarybuttonbordercolor');
+  const secondaryButtonColor = block?.parentElement?.parentElement?.getAttribute('data-secondarybuttoncolor');
+  const primaryButtonBorderColor = block?.parentElement?.parentElement?.getAttribute('data-primarybuttonbordercolor');
   const position = block?.parentElement?.parentElement?.getAttribute('data-position');
-  const margin = block?.parentElement?.parentElement?.getAttribute('data-margin');
-
 
   applyBkgColorOverride(block);
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
@@ -67,41 +65,28 @@ export default async function decorate(block) {
   block.querySelectorAll('p a').forEach((p) => {
     p.classList.add('text-block-link');
   });
+  block.querySelectorAll('p a:first-child').forEach((p) => {
+    if (primaryButtonBorderColor)
+      p.style.borderColor = primaryButtonBorderColor;
+    p.style.borderWidth = "2px"
+  });
   block.querySelectorAll('img').forEach((img) => {
     img.classList.add('textImg');
   });
-  block.querySelectorAll('.text > div').forEach((block) => {
-    if (position === 'right') {
-      block.style.flexDirection = "row-reverse";
-    }
-    if (position) {
-      block.querySelectorAll('a').forEach((a) => {
-        if (a.title === "Learn more") {
-          a.className = "spectrum-Button spectrum-Button--sizeM spectrum-Button--outline spectrum-Button--secondary";
-        }
-      });
-    }
-  });
-  block.querySelectorAll('.text > div').forEach((block) => {
-    block.style.margin = margin;
+  block.querySelectorAll('div.text > div').forEach((division) => {
+    if (position === "right")
+      division.style.flexDirection = "row-reverse";
   })
-
   let isImageTextBlock = true
   Array.from(block.firstElementChild.children).forEach((div) => {
     if (div.classList.contains("button-container")) {
       videoConverter(div);
-      decorateButtons(block);
+      decorateButtons(block, secondaryButtonBorderColor, secondaryButtonColor);
       isImageTextBlock = false;
     }
   });
   if (isImageTextBlock) {
-    if (!position) {
-      rearrangeLinks(block);
-    } else {
-      block.querySelectorAll('div > div:nth-child(2)').forEach((div) => {
-        div.classList.add('textContentContainer');
-      });
-    }
+    rearrangeLinks(block);
   }
   else {
     rearrangeButtons(block);
