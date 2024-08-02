@@ -5,6 +5,61 @@ main div.iframe-wrapper {
 
   main iframe.iframe-container {
     width: 100%;
-    height: calc(100vh - var(--spectrum-global-dimension-size-800));
+    height: 85vh;
     border: none;
+  }
+
+  main div.iframe-container {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgb(248, 248, 248);
+  }
+  
+  main div.iframe-container > div{
+    max-width: 640px;
+    padding: 80px 32px;
+    margin: auto;
+  }
+  
+  main div.iframe-container p {
+    margin-top: 0;
+    margin-bottom: 0!important;
+  }
+  
+  main div.iframe {
+    margin-top: 32px;
+    max-width: 640px;
+    display: flex;
+    justify-content: center;
+  }
+
+  main div.iframe iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  @media screen and (max-width: 700px) {
+    main div.iframe-container div.iframe-wrapper {
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      /* width: 100vw; */
+      margin-left: 0px;
+      margin-right: 0px;
+      max-width: 100%;
+    }
+    main div.iframe-wrapper iframe.iframe-container {
+      width: 80vw !important;
+    }
+  }
+
+  main div.iframe-container .iframe-custom-width{
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
