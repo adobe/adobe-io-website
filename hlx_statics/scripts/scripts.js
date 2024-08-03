@@ -18,6 +18,7 @@ import {
 } from './lib-helix.js';
 
 import {
+  buildCodes,
   buildEmbeds,
   buildHeadings,
   toggleScale,
@@ -80,6 +81,7 @@ function loadFooter(footer) {
 
 function buildAutoBlocks(main) {
   try {
+    buildCodes(main);
     buildEmbeds(main);
     buildHeadings(main);
   } catch (error) {

@@ -200,6 +200,21 @@ export function decorateInlineCodes(element) {
 }
 
 /**
+ * Builds all code blocks inside a container
+ * @param {*} container The container to inspect
+ */
+export function buildCodes(container) {
+  const codes = [...container.querySelectorAll('main > div > pre > code')];
+  codes.forEach((code) => {
+    const block = buildBlock('code', code.outerHTML);
+    block.classList.add('block');
+    const parentContainer = code.parentElement.parentElement;
+    const pre = parentContainer.querySelector('pre');
+    pre.replaceWith(block);
+  });
+}
+
+/**
  * Builds all embed blocks inside a container
  * @param {*} container The container to inspect
  */
