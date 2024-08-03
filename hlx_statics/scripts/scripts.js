@@ -75,6 +75,20 @@ function loadFooter(footer) {
 }
 
 /**
+ * Loads prism for syntax highlighting
+ * @param {Document} document
+ */
+function loadPrism(document) {
+  const highlightable = document.querySelector(
+    'code[class*="language-"], [class*="language-"] code',
+  );
+  // load prism only if there's something to highlight
+  if (highlightable) {
+    import('./prism.js');
+  }
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
@@ -163,6 +177,8 @@ async function loadLazy(doc) {
     // eslint-disable-next-line import/no-cycle
     import('../../tools/preview/experimentation-preview.js');
   }
+
+  loadPrism(doc);
 }
 
 /**

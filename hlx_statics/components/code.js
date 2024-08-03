@@ -13,6 +13,4 @@ export default function decorateCode(block) {
 
   code.parentElement.replaceChild(pre, code);
   pre.appendChild(code);
-
-  window.Prism.highlightAll();
 }
