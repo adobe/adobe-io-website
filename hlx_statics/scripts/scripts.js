@@ -157,8 +157,15 @@ async function loadEager(doc) {
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {
+  const isDoc = doc.querySelector('[name~=template]')?.content === 'documentation';
   const main = doc.querySelector('main');
   await loadBlocks(main);
+
+  if(isDoc) {
+    main.style.display = 'grid';
+    main.style.gridTemplateAreas = '"sidenav main"';
+  }
+
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
