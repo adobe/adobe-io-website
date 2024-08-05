@@ -157,11 +157,10 @@ async function loadEager(doc) {
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {
-  const isDoc = doc.querySelector('[name~=template]')?.content === 'documentation';
   const main = doc.querySelector('main');
   await loadBlocks(main);
 
-  if(isDoc) {
+  if (document.body.classList.contains('documentation')) {
     main.style.display = 'grid';
     main.style.gridTemplateAreas = '"sidenav main"';
   }
