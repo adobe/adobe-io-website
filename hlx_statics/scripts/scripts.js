@@ -159,6 +159,12 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadBlocks(main);
+
+  if (document.body.classList.contains('documentation')) {
+    main.style.display = 'grid';
+    main.style.gridTemplateAreas = '"sidenav main"';
+  }
+
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
