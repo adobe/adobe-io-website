@@ -72,6 +72,13 @@ main div.columns-container.section[data-list-class="checkmark"] ul > li:before{
     }
 }
 
+main div.columns  div.second-column div.button-group-container {
+    gap: 2rem;
+    display: flex;
+    text-align: center;
+    margin-top: 1rem;
+}
+
 @media screen and (max-width: 620px) {
     main div.columns div.first-column img {
         width: 100vw;
@@ -143,14 +150,6 @@ main div.columns h3.column-header + p {
     margin-top: 0!important;
 }
 
-main div.columns p + p {
-    margin-top: 24px;
-}
-
-main div.columns div.product-link-container p {
-    margin-top: 24px;
-}
-
 main div.columns div.listing.second-column[data-align="right"]{
     text-align: right;
     width: auto;
@@ -160,29 +159,26 @@ main div.columns div.listing ul {
     text-align: left;
 }
 
-@media screen and (min-width:768px) {
-    main div.columns div.product-link-container p + p {
-        margin-left: 24px;
-    }
-}
-
 main div.second-column div.product-link-container {
     display: flex;
     flex-direction: row;
+    gap: 1rem;
 }
 
 @media screen and (max-width:768px) {
     main div.second-column div.product-link-container {
         flex-wrap: wrap;
+        justify-content: center;
     }
     main div.columns div.product-link-container p {
-        width: 150px;
+        max-width: 150px;
     }
 }
 
 main div.second-column div.product-link-container p.icon-container {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
 }
 
 main div.second-column div.product-link-container img {
@@ -195,10 +191,6 @@ main div.second-column div.product-link-container svg {
     height: 32px;
     width: 32px;
     object-fit: contain;
-}
-
-main div.second-column div.product-link-container a {
-    margin-left: 8px;
 }
 
 /* metadata: style: center */
