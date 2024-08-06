@@ -1,12 +1,16 @@
 main div.calendar .iframe-container {
-  width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
-  height: calc(100vh - var(--spectrum-global-dimension-size-800));
-  border: none;  
+  /* width: var(--spectrum-global-dimension-static-grid-fixed-max-width);
+  height: calc(100vh - var(--spectrum-global-dimension-size-800)); */
+  width: 100%;
+  height: 85vh;
+  border: none; 
 }
 
 main div.calendar .calendar-block {
+  max-width: 1280px;
+  margin: auto;
   display: flex;
   flex-direction: row ;
-  justify-content: center;
-  position: relative;
+  /* justify-content: center;
+  position: relative; */
 }
