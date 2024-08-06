@@ -172,6 +172,12 @@ async function loadLazy(doc) {
     main.style.display = 'grid';
     main.style.gridTemplateAreas = '"sidenav main" "sidenav footer"';
 
+    let sidenav = main.querySelector('.side-nav-container');
+    if(sidenav) {
+      // set whatever is the next section next to sidenav to be the documentation main content area
+      sidenav.nextElementSibling.style.gridArea = 'main';
+    }
+
     // rearrange footer and append to main when in doc mode
     const footer = doc.querySelector('footer');
     main.append(footer);
