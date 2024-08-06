@@ -160,11 +160,6 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadBlocks(main);
 
-  if (document.body.classList.contains('documentation')) {
-    main.style.display = 'grid';
-    main.style.gridTemplateAreas = '"sidenav main"';
-  }
-
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
@@ -172,6 +167,16 @@ async function loadLazy(doc) {
   loadHeader(doc.querySelector('header'));
   decorateIcons(main);
   loadFooter(doc.querySelector('footer'));
+
+  if (document.body.classList.contains('documentation')) {
+    main.style.display = 'grid';
+    main.style.gridTemplateAreas = '"sidenav main" "sidenav footer"';
+
+    // rearrange footer and append to main when in doc mode
+    const footer = doc.querySelector('footer');
+    main.append(footer);
+  }
+
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon('/hlx_statics/icons/adobe.svg');
