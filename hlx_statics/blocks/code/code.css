@@ -1,1 +1,5 @@
 @import url('../../styles/prism.css');
+
+pre[class*=language-] {
+    border-radius: 4px;
+}
