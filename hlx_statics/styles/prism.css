@@ -25,7 +25,7 @@ pre[class*=language-] {
     padding: 1em;
     margin: 0;
     overflow: auto;
-    background: rgb(50, 50, 50);
+    background: rgb(15, 15, 15);
 }
 
 .token.comment,
