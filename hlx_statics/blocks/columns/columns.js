@@ -114,6 +114,11 @@ export default async function decorate(block) {
   });
   block.querySelectorAll('.columns > div > div:nth-child(2)').forEach((column) => {
     column.classList.add('second-column');
+    const p_text = createTag('p');
+    p_text.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
+    p_text.innerHTML = column.innerHTML;
+    column.innerHTML = "";
+    column.append(p_text);
   });
 
   block.querySelectorAll('div > div.second-column').forEach((secondColumn) => {
