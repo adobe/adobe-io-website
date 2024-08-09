@@ -1,0 +1,18 @@
+.onthispage-container{
+    display: block !important;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+p{
+    text-decoration: none;
+    font-size: 16px;
+    color: rgb(0,84,182);
+}
+p:hover{
+    text-decoration: underline;
+}
+.onthispage-container p.active {
+    color: black;
+    font-weight: bold; 
+  }
