@@ -45,12 +45,9 @@ export default async function decorate(block) {
     // Function to handle scrolling and activating paragraph
     const handleParagraphClick = (paragraph) => {
         const targetText = normalizeText(paragraph.textContent);
-        console.log('targetText:', targetText);
         const targetElement = headings.find(el => normalizeText(el.textContent) === targetText);
-        console.log('targetElement: ', normalizeText(targetElement.textContent));
-
         if (targetElement) {
-            const parentElement = targetElement.parentElement;
+            const parentElement = targetElement.parentElement;  
             parentElement.scrollIntoView({ behavior: 'smooth' });
             paragraphs.forEach(p => p.classList.remove('active'));
             paragraph.classList.add('active');
@@ -64,7 +61,6 @@ export default async function decorate(block) {
 
     // Initially scroll to and activate the first paragraph
     if (paragraphs.length > 0) {
-        console.log('paragraphs.length: ', paragraphs.length);
         handleParagraphClick(paragraphs[0]);
     }
 }
