@@ -91,13 +91,17 @@ main .textContentContainer {
 
 @media only screen and (max-width: 1024px) {
     main div.text>div {
-        flex-direction: column !important;
         gap: 50px;
         margin: 0% !important;
     }
 
     main div.text>div>div {
         width: 100%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    main div.text>div {
+        flex-direction: column !important;
     }
 }
 

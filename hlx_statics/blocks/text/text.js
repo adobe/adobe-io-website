@@ -51,7 +51,9 @@ export default async function decorate(block) {
   const secondaryButtonBorderColor = block?.parentElement?.parentElement?.getAttribute('data-secondarybuttonbordercolor');
   const secondaryButtonColor = block?.parentElement?.parentElement?.getAttribute('data-secondarybuttoncolor');
   const primaryButtonBorderColor = block?.parentElement?.parentElement?.getAttribute('data-primarybuttonbordercolor');
+  const arrangeButtons = block?.parentElement?.parentElement?.getAttribute('data-ArrangeButtons');
   const position = block?.parentElement?.parentElement?.getAttribute('data-position');
+  const width = block?.parentElement?.parentElement?.getAttribute('data-Width');
 
   applyBkgColorOverride(block);
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
@@ -79,6 +81,11 @@ export default async function decorate(block) {
     if (position === "left")
       division.style.flexDirection = "row";
   })
+  if(width){
+    block.querySelectorAll('.text > div').forEach((parentDiv) => {
+      parentDiv.style.width = width;
+    })
+  }
   let isImageTextBlock = true
   Array.from(block.firstElementChild.children).forEach((div) => {
     if (div.classList.contains("button-container")) {
@@ -88,7 +95,20 @@ export default async function decorate(block) {
     }
   });
   if (isImageTextBlock) {
-    rearrangeLinks(block);
+    if (arrangeButtons !== "false") {
+      rearrangeLinks(block);
+    }
+    else {
+      block.querySelectorAll('.text > div').forEach((parentDiv) => {
+        const contentDiv = parentDiv.querySelector('div:nth-child(2)');
+        Object.assign(contentDiv.style, {
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          gap: "10px"
+        })
+      });
+    }
   }
   else {
     rearrangeButtons(block);
@@ -114,4 +134,5 @@ export default async function decorate(block) {
       }
     })
   }
+  decorateButtons(block, secondaryButtonBorderColor, secondaryButtonColor);
 }

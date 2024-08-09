@@ -58,31 +58,58 @@ export default async function decorate(block) {
     }
   });
 
-  const image = block?.parentElement?.parentElement?.getAttribute('data-bgImage');
+  const backgroundImage = block?.parentElement?.parentElement?.getAttribute('data-BackgroundImage');
   const fontColor = block?.parentElement?.parentElement?.getAttribute('data-fontColor');
-  const blockImageWidth = block?.parentElement?.parentElement?.getAttribute('data-blockImageWidth');
+  const blockImageWidth = block?.parentElement?.parentElement?.getAttribute('data-BlockImageWidth');
+  const blockImage = block?.parentElement?.parentElement?.getAttribute('data-BlockImage');
+  const heroWrapper = block?.parentElement?.parentElement;
 
-  if (image) {
-    block.style.backgroundImage = `url(${image})`;
-    block.style.backgroundRepeat = "no-repeat";
-    block.style.backgroundSize = "cover";
-    block.style.padding = "0% 11%"
-
+  if (backgroundImage) {
+    heroWrapper.querySelectorAll('.hero-container > div').forEach((herowrapper) => {
+      Object.assign(herowrapper.style, {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      });
+    })
+    heroWrapper.querySelectorAll('.hero-container > div > div').forEach((herowrapper) => {
+      Object.assign(herowrapper.style, {
+        backgroundColor: 'transparent',
+        width: '80%',
+        margin: 'auto'
+      });
+    })
+  }
+  if (fontColor) {
     block.querySelectorAll('h1, p, a, span').forEach((font) => {
       font.style.setProperty('color', fontColor, 'important');
     })
   }
   block.querySelectorAll('img').forEach((img) => {
     if (blockImageWidth) {
-      img.style.width = blockImageWidth;
-      img.style.objectFit = 'contain';
+      Object.assign(img.style, {
+        width: blockImageWidth,
+        objectFit: 'contain'
+      })
     }
     else {
-      img.style.width = '600px';
-      img.style.height = '400px';
-      img.style.objectFit = 'contain';
+      Object.assign(img.style, {
+        width: '600px',
+        height: '400px',
+        objectFit: 'contain'
+      })
     }
   })
+
+  if (blockImage.toLocaleLowerCase() === "visible") {
+    heroWrapper.querySelectorAll('picture').forEach((picture) => {
+      picture.style.setProperty('display', "block", 'important');
+    });
+    heroWrapper.querySelectorAll('main div.hero div:nth-child(2)').forEach((picture) => {
+      picture.style.setProperty('display', "block", 'important');
+    })
+  }
+
 
   applyAnalyticHeaderOverride(block);
 }

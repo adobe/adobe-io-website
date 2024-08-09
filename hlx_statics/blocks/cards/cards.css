@@ -88,3 +88,12 @@ main div.cards a.card-button {
     margin-top: 12px;
     margin-bottom: 12px;
 }
+
+@media screen and (max-width: 1024px) {
+    main div.cards {
+        flex-direction: column;
+    }
+    main div.cards>* {
+        flex: 1 1 300px
+    }
+}

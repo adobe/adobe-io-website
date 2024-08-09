@@ -66,11 +66,14 @@ export default async function decorate(block) {
     applySectionTitle(block);
     applyAnalyticHeaderOverride(block);
 
-    const boxShadow = block?.parentElement?.parentElement?.getAttribute('data-boxshadow');
+    const boxShadow = block?.parentElement?.parentElement?.getAttribute('data-BoxShadow');
+    const imageBorderRadius = block?.parentElement?.parentElement?.getAttribute('data-ImageBorderRadius');
     if (boxShadow) {
         block.querySelectorAll('.mini-resource-card  .mini-card').forEach((card) => {
             card.style.setProperty('box-shadow', boxShadow, 'important');
         })
+    }
+    if (imageBorderRadius) {
         block.querySelectorAll('.mini-resource-card  .mini-card img').forEach((card) => {
             card.style.borderRadius = "25px";
         })

@@ -73,12 +73,17 @@ main div.mini-resource-card-container .section-title {
         width: auto !important;
     }
 }
-
+@media screen and (max-width: 1280px) {
+    main div.mini-resource-card .card-container {
+        grid-template-columns: repeat(1, 1fr);
+        width: 50% !important;
+    }
+}
 @media screen and (max-width: 768px) {
     main div.mini-resource-card .card-container {
         grid-template-columns: repeat(1, 1fr);
         margin: auto auto 50px auto !important;
-        width: 95% !important;
+        width: 50% !important;
         grid-row-gap: 20px;
     }
 
@@ -90,5 +95,10 @@ main div.mini-resource-card-container .section-title {
     main div.mini-resource-card .mini-resource-card-body {
         height: 100px !important;
         width: auto !important;
+    }
+}
+@media screen and (max-width: 425px) {
+    main div.mini-resource-card .card-container {
+        width: 97% !important;
     }
 }
