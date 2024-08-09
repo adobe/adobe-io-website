@@ -12,6 +12,9 @@ export default async function decorate(block) {
     const onThisPage = document.querySelector('.onthispage-container');
 
     // Create the new wrapper divs
+  const onthispageParentContainer = document.createElement('div');
+  onthispageParentContainer.classList.add('onthispageParentContainer');
+
     const parentContainer = document.createElement('div');
     parentContainer.className = 'parent-container';
 
@@ -34,8 +37,15 @@ export default async function decorate(block) {
     // Append onThisPage to parentContainer after innerContainer
     parentContainer.appendChild(onThisPage);
 
+    onthispageParentContainer.appendChild(sideNav);
+    onthispageParentContainer.appendChild(parentContainer);
+
+    main.appendChild(onthispageParentContainer);
+
     // Insert parentContainer into main
-    main.insertBefore(parentContainer, footer);
+    // main.insertBefore(parentContainer);
+
+
 
     const paragraphs = document.querySelectorAll('.onthispage-container p');
     const headings = Array.from(document.querySelectorAll('main h1, main h2, main h3, main h4, main h5, main h6'));

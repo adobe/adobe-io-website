@@ -2,7 +2,7 @@
     display: block !important;
     position: sticky;
     top: 0;
-    width: 100%;
+    width: 350px;
 }
 p{
     text-decoration: none;
@@ -16,3 +16,10 @@ p:hover{
     color: black;
     font-weight: bold; 
   }
+.onthispageParentContainer{
+    display: flex;
+}
+.side-nav-container{
+    width: 350px;
+}
+ 
