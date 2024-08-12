@@ -1,26 +1,31 @@
 /**
- * decorates the contributers
- * @param {Element} block The contributers block element
+ * Decorates the contributors block
+ * @param {Element} block The contributors block element
  */
- export default async function decorate(block) {
-  const modal = document.createElement("div");
-  modal.classList.add("modal");
-  modal.innerHTML = `
-    <div>
-      <div data-testid="underlay" class="spectrum-Underlay spectrum-overlay is-open spectrum-overlay--open" aria-hidden="true" style="overflow: hidden;"></div>
-      <div class="model-comp" >
-        <div class="spectrum-Modal is-open show-model" data-testid="modal" >
-          <section style="justify-content : center" class="spectrum-Dialog spectrum-Dialog--medium spectrum-Dialog--confirmation" role="alertdialog" tabIndex="-1" aria-modal="true">
+export default async function decorate(block) {
+
+  const isBorder = block?.parentElement?.parentElement?.getAttribute("data-isborder");
+
+  if (isBorder) {
+    block?.parentElement?.parentElement?.classList.add("wrapper-border")
+  }
+
+  const modalHTML = `
+    <div class="modal">
+      <div class="spectrum-Underlay spectrum-overlay is-open" aria-hidden="true"></div>
+      <div class="model-comp">
+        <div class="spectrum-Modal is-open show-model">
+          <section class="spectrum-Dialog spectrum-Dialog--medium spectrum-Dialog--confirmation" role="alertdialog" aria-modal="true">
             <div class="wrapper-model">
-              <h1 class="spectrum-Dialog-heading spectrum-Dialog-heading--noHeader">Thank you for your feedback</h1>
+              <h1 class="spectrum-Dialog-heading">Thank you for your feedback</h1>
               <hr />
-              <p class="spectrum-Body spectrum-Body--sizeM" > Thank you for helping improve Adobe's documentation. </p>
+              <p class="spectrum-Body">Thank you for helping improve Adobe's documentation.</p>
               <section class="spectrum-Dialog-content">
                 <div class="content-wrapper">
-                    <div class="button-wrapper">
-                      <button class="spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM close-button">
-                        <span class="spectrum-Button-label">Close</span>
-                      </button>
+                  <div class="button-wrapper">
+                    <button class="spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM close-button">
+                      <span class="spectrum-Button-label">Close</span>
+                    </button>
                   </div>
                 </div>
               </section>
@@ -30,49 +35,44 @@
       </div>
     </div>
   `;
-
+  const modal = document.createElement('div');
+  modal.innerHTML = modalHTML;
   document.body.appendChild(modal);
 
-  const style = document.createElement('style');
-  style.innerHTML = `
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-  `;
-  document.head.appendChild(style);
+  const imgListData = [
+    "https://github.com/hollyschinsky.png",
+    "https://github.com/vamshich13.png",
+    "https://github.com/nimithajalal.png"
+  ];
 
-  const firstDiv = block.firstElementChild.lastElementChild;
+  const firstDiv = block.querySelector('div');
   firstDiv.classList.add("contibutors-wrapper-comp");
-  block.querySelectorAll('p').forEach((p) => {
-    p.remove();
+  block.querySelectorAll('p').forEach(p => p.remove());
+
+  block.querySelectorAll('div').forEach((d) => {
+    if (!d.hasChildNodes())
+      d.remove();
   });
 
   const lastUpdate = document.createElement("div");
   lastUpdate.classList.add("lastUpdateDetails");
-
   const lastUpdateWrapper = document.createElement("a");
-  lastUpdate.append(lastUpdateWrapper);
-  lastUpdateWrapper.setAttribute("href", "");
-  lastUpdateWrapper.setAttribute("target", "_blank");
+  lastUpdateWrapper.href = "https://github.com/AdobeDocs/express-add-ons-docs/commits/main/src/pages/references/index.md";
+  lastUpdateWrapper.target = "_blank";
+  lastUpdate.appendChild(lastUpdateWrapper);
 
   const imageList = document.createElement("div");
   imageList.classList.add("imageList");
+  imgListData.forEach(src => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.classList.add("image-contributor");
+    const span = document.createElement('span');
+    span.classList.add('span-Image-contributor');
+    span.appendChild(img);
+    imageList.appendChild(span);
+  });
   lastUpdateWrapper.appendChild(imageList);
-
-  const img = document.createElement("img");
-  img.src = "https://github.com/hollyschinsky.png";
-
-  const imageWrapper = document.createElement("div");
-  imageList.appendChild(imageWrapper);
-  imageList.appendChild(img);
 
   const imageTextWrapper = document.createElement("span");
   imageTextWrapper.innerText = "Last updated 2/21/2024";
@@ -80,58 +80,39 @@
 
   const feedback = document.createElement("div");
   feedback.classList.add("feedback");
-
   const feedbackWrapper = document.createElement("div");
-  feedback.appendChild(feedbackWrapper);
   feedbackWrapper.classList.add("feedbackWrapper");
+  feedback.appendChild(feedbackWrapper);
 
   const helpfulText = document.createElement("span");
   helpfulText.innerText = "Was this helpful?";
   feedbackWrapper.appendChild(helpfulText);
 
   const buttonWrapper = document.createElement("div");
-  feedbackWrapper.appendChild(buttonWrapper);
   buttonWrapper.classList.add("buttonWrapper");
+  feedbackWrapper.appendChild(buttonWrapper);
 
   const yesButton = document.createElement("button");
-  yesButton.setAttribute("daa-ll", "Feedback-Yes");
-  yesButton.innerHTML = "Yes";
+  yesButton.classList.add("spectrum-Button", "spectrum-Button--sizeM", "spectrum-Button--outline", "spectrum-Button--primary");
+  yesButton.setAttribute("daa-ll", "Feedback-Yes")
+  yesButton.innerText = "Yes";
 
   const noButton = document.createElement("button");
-  noButton.setAttribute("daa-ll", "Feedback-No");
-  noButton.innerHTML = "No";
+  noButton.classList.add("spectrum-Button", "spectrum-Button--sizeM", "spectrum-Button--outline", "spectrum-Button--primary");
+  noButton.setAttribute("daa-ll", "Feedback-No")
+  noButton.innerText = "No";
 
-  buttonWrapper.appendChild(yesButton);
-  buttonWrapper.appendChild(noButton);
+  buttonWrapper.append(yesButton, noButton);
 
-  firstDiv.appendChild(lastUpdate);
-  firstDiv.appendChild(feedback);
+  firstDiv.append(lastUpdate, feedback);
 
-  block.querySelectorAll("button").forEach((btn) => {
-    btn.classList.add("spectrum-Button", "spectrum-Button--sizeM", "spectrum-Button--outline", "spectrum-Button--primary");
-  });
+  const showModal = () => modal.querySelector('.modal').style.display = 'block';
+  const closeModal = () => modal.querySelector('.modal').style.display = 'none';
 
-  const showModal = () => {
-    modal.style.display = 'block';
-  };
-
-  const closeModal = () => {
-    modal.style.display = 'none';
-  };
-
-  yesButton.addEventListener('click', () => {
-    showModal();
-  });
-
-  noButton.addEventListener('click', () => {
-    showModal();
-  });
-
+  yesButton.addEventListener('click', showModal);
+  noButton.addEventListener('click', showModal);
   modal.querySelector('.close-button').addEventListener('click', closeModal);
-
   window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-      closeModal();
-    }
+    if (event.target === modal) closeModal();
   });
 }
