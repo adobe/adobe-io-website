@@ -81,7 +81,7 @@ export default async function decorate(block) {
     if (position === "left")
       division.style.flexDirection = "row";
   })
-  if(width){
+  if (width) {
     block.querySelectorAll('.text > div').forEach((parentDiv) => {
       parentDiv.style.width = width;
     })
