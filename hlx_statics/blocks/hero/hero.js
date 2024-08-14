@@ -30,9 +30,13 @@ export default async function decorate(block) {
   // H1 decoration
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     const fontFamily = block?.parentElement?.parentElement?.getAttribute('data-font-family');
+    const headerFontSize = block?.parentElement?.parentElement?.getAttribute('data-HeaderFontSize');
     if (fontFamily) {
       h.style.fontFamily = fontFamily;
       h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL');
+    } else if (headerFontSize) {
+      h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL');
+      h.style.fontSize = headerFontSize;
     } else {
       h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
     }
@@ -75,7 +79,7 @@ export default async function decorate(block) {
     heroWrapper.querySelectorAll('.hero-container > div > div').forEach((herowrapper) => {
       Object.assign(herowrapper.style, {
         backgroundColor: 'transparent',
-        width: '80%',
+        width: '75%',
         margin: 'auto'
       });
     })

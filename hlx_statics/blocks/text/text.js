@@ -105,7 +105,7 @@ export default async function decorate(block) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          gap: "10px"
+          gap: "18px"
         })
       });
     }

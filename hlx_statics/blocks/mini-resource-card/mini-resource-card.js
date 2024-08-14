@@ -41,7 +41,6 @@ function getMiniResourceCard(linkHref, heading, text) {
  * @param {Element} block The mini-resource-card block element
  */
 export default async function decorate(block) {
-
     block.setAttribute('daa-lh', 'mini resource card');
     const grid_div = createTag('div', { class: 'card-container' });
     block.querySelectorAll('.mini-resource-card > div').forEach((resource) => {
@@ -68,14 +67,21 @@ export default async function decorate(block) {
 
     const boxShadow = block?.parentElement?.parentElement?.getAttribute('data-BoxShadow');
     const imageBorderRadius = block?.parentElement?.parentElement?.getAttribute('data-ImageBorderRadius');
-    if (boxShadow) {
-        block.querySelectorAll('.mini-resource-card  .mini-card').forEach((card) => {
+    const headerFontSize = block?.parentElement?.parentElement?.getAttribute('data-HeaderFontSize');
+
+    block.querySelectorAll('.mini-resource-card  .mini-card').forEach((card) => {
+        if (boxShadow) {
             card.style.setProperty('box-shadow', boxShadow, 'important');
-        })
-    }
+        }
+    })
     if (imageBorderRadius) {
         block.querySelectorAll('.mini-resource-card  .mini-card img').forEach((card) => {
             card.style.borderRadius = "25px";
         })
     }
+    block?.parentElement?.parentElement?.querySelectorAll('h2').forEach((h) => {
+        if (headerFontSize) {
+            h.style.fontSize = headerFontSize;
+        }
+    })
 }
