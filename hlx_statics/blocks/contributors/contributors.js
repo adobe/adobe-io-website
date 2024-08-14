@@ -107,8 +107,20 @@ export default async function decorate(block) {
 
   firstDiv.append(lastUpdate, feedback);
 
-  const showModal = () => modal.querySelector('.modal').style.display = 'block';
-  const closeModal = () => modal.querySelector('.modal').style.display = 'none';
+  const showModal = () => {
+    const modal = document.querySelector('.modal');
+    modal.style.display = 'block';
+      setTimeout(() => {
+            modal.classList.add('show'); 
+      }, 0); 
+  };
+  const closeModal = () => {
+    const modal = document.querySelector('.modal');
+    modal.classList.remove('show');
+      setTimeout(() => {
+            modal.style.display = 'none'; 
+      }, 10); 
+  }
 
   yesButton.addEventListener('click', showModal);
   noButton.addEventListener('click', showModal);

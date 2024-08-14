@@ -147,11 +147,15 @@ hr {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: transform 0.2s cubic-bezier(0, 0, .4, 1), opacity 0s cubic-bezier(0, 0, .4, 1);
 }
 
-.spectrum-Modal {
-    transform: translateY(-30px);
-}
+.modal.show {
+    opacity: 1;
+    transform: translateY(0);
+ }
 
 @media screen and (min-width : 320px) and (max-width : 767px) {
     .contibutors-wrapper-comp {
