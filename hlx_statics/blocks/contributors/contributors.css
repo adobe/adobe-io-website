@@ -4,9 +4,9 @@
     justify-content: space-between;
 }
 
-.wrapper-border{
-    border:1px solid rgb(75, 75, 75);
-    border-radius: 2px;
+.wrapper-border {
+    border: 1px solid lightgray;
+    border-radius: 4px;
 }
 
 main .contributors-container {
@@ -44,11 +44,11 @@ a {
 }
 
 .model-comp {
-    align-items: center;
     display: flex;
     justify-content: center;
-    left: 0;
+    align-items: center;
     position: fixed;
+    left: 0;
     top: 0;
     transition: visibility 0s linear 130ms;
     visibility: hidden;
@@ -147,6 +147,10 @@ hr {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
+}
+
+.spectrum-Modal {
+    transform: translateY(-30px);
 }
 
 @media screen and (min-width : 320px) and (max-width : 767px) {

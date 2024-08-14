@@ -35,6 +35,7 @@ export default async function decorate(block) {
       </div>
     </div>
   `;
+
   const modal = document.createElement('div');
   modal.innerHTML = modalHTML;
   document.body.appendChild(modal);
@@ -113,6 +114,6 @@ export default async function decorate(block) {
   noButton.addEventListener('click', showModal);
   modal.querySelector('.close-button').addEventListener('click', closeModal);
   window.addEventListener('click', (event) => {
-    if (event.target === modal) closeModal();
+    if (event.target === modal.querySelector('.spectrum-Underlay')) closeModal();
   });
 }

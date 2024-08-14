@@ -616,7 +616,7 @@ main .heading6 h6 {
 }
 
 .spectrum-Dialog--medium {
-  width: 480px;
+  width: 450px;
 }
 
 .spectrum-Underlay {
@@ -625,9 +625,9 @@ main .heading6 h6 {
 
 .spectrum-Underlay.is-open{
   transition: opacity 300ms cubic-bezier(0,0,1,1) 0ms;
-    opacity: 0.1;
-    position: fixed;
-    overflow: hidden;
+  opacity: 0.1;
+  position: fixed;
+  overflow: hidden;
 }
 
 .spectrum-Modal{
