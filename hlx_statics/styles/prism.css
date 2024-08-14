@@ -25,84 +25,92 @@ pre[class*=language-] {
     padding: 1em;
     margin: 0;
     overflow: auto;
-    border-radius: 4px;
-    background: #2d2d2d
+    background: rgb(15, 15, 15);
 }
 
-.token.block-comment,
-.token.cdata,
 .token.comment,
+.token.block-comment,
+.token.prolog,
 .token.doctype,
-.token.prolog {
-    color: #999
+.token.cdata {
+  color: rgb(185, 185, 185) !important;
 }
 
 .token.punctuation {
-    color: #ccc
+  color: rgb(227, 227, 227) !important;
 }
 
-.token.attr-name,
-.token.deleted,
+.token.tag,
 .token.namespace,
-.token.tag {
-    color: #e2777a
-}
-
-.token.function-name {
-    color: #6196cc
+.token.deleted {
+  color: rgb(245, 107, 183) !important;
 }
 
 .token.boolean,
+.token.number,
+.token.attr-name,
 .token.function,
-.token.number {
-    color: #f08d49
+.token.function-name {
+  color: rgb(75, 156, 245) !important;
 }
 
+.token.attr-name {
+  color: rgb(144, 144, 250) !important;
+}
+
+.token.property,
+.token.property.string,
 .token.class-name,
 .token.constant,
-.token.property,
 .token.symbol {
-    color: #f8c555
+  color: rgb(180, 131, 240) !important;
 }
 
-.token.atrule,
-.token.builtin,
+.token.class-name {
+  color: rgb(35, 178, 184) !important;
+}
+
+.token.selector,
 .token.important,
+.token.atrule,
 .token.keyword,
-.token.selector {
-    color: #cc99cd
+.token.builtin {
+  color: rgb(227, 102, 239) !important;
 }
 
-.token.attr-value,
-.token.char,
-.token.regex,
 .token.string,
+.token.char,
+.token.attr-value,
+.token.regex {
+  color: rgb(57, 185, 144) !important;
+}
+
 .token.variable {
-    color: #7ec699
+  color: rgb(236, 90, 170) !important;
 }
 
-.token.entity,
 .token.operator,
+.token.entity,
 .token.url {
-    color: #67cdcc
+  color: rgb(75, 156, 245) !important;
 }
 
-.token.bold,
-.token.important {
-    font-weight: 700
+.token.important,
+.token.bold {
+  font-weight: bold !important;
 }
-
 .token.italic {
-    font-style: italic
+  font-style: italic !important;
 }
 
 .token.entity {
-    cursor: help
+  cursor: help !important;
 }
 
 .token.inserted {
-    color: green
+  color: rgb(57, 185, 144) !important;
 }
+
 pre[class*=language-].line-numbers {
     position: relative;
     padding-left: 3.8em;
@@ -138,7 +146,7 @@ pre[class*=language-].line-numbers>code {
 
 .line-numbers-rows>span:before {
     content: counter(linenumber);
-    color: #999;
+    color: rgb(144, 144, 144);
     display: block;
     padding-right: .8em;
     text-align: right
