@@ -2,10 +2,12 @@ import {
   removeEmptyPTags,
   applySectionTitle,
   applyAnalyticHeaderOverride,
+  createTag,
 } from '../../scripts/lib-adobeio.js';
 
 import {
   createOptimizedPicture,
+  decorateIcons,
 } from '../../scripts/lib-helix.js';
 
 /**
@@ -40,6 +42,8 @@ function getResourceCard(linkHref, heading, text) {
             <p className="spectrum-Body spectrum-Body-S">
               ${text}
             </p>
+            <div class="bottom-container">
+            </div>
           </div>
         </div>
       </div>
@@ -59,9 +63,21 @@ export default async function decorate(block) {
     const linkHref = resource.querySelector('a')?.href;
     const heading = resource.querySelector('a')?.innerText;
     const imgSrc = resource.querySelector('img')?.src;
-    const text = resource.querySelector('p')?.innerText;
+    const text = resource.querySelector('p').innerHTML;
+    const bottomText = [...resource.querySelectorAll('p')].slice(1).reduce((acc, curr) => {
+        const placeholder = createTag('p', {})
+        placeholder.innerHTML = curr.innerHTML;
+        const placeholderParent =  createTag('p', {});
+        placeholderParent.appendChild(placeholder);
+        acc += placeholderParent.innerHTML;
+        return acc;
+    }, '');
+    console.log(bottomText);
     const altText = resource.querySelector('img')?.alt;
     resource.innerHTML = getResourceCard(linkHref, heading, text);
+    const container = resource.querySelector('div.bottom-container');
+    container.innerHTML = bottomText;
+    console.log(resource);
     const picture = createOptimizedPicture(imgSrc, altText);
     const pictureContainer = resource.querySelector('.resource-card-image-container');
     pictureContainer.append(picture);
