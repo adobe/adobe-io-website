@@ -36,6 +36,29 @@ async function fetchProfileAvatar(userId) {
   }
 }
 
+function windowParams(client_id, scope, environment, logsEnabled) {
+  window.adobeid = {
+    client_id: client_id,
+    scope: scope, 
+    locale: 'en_US',
+    environment: environment,
+    useLocalStorage: true,
+    logsEnabled: logsEnabled,
+    redirect_uri: window.location.href,
+    isSignedIn: false,
+    onError: (error) => {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    },
+    onReady: () => {
+      if (window.adobeIMSMethods.isSignedIn()) {
+        window.dispatchEvent(imsSignIn);
+        window.adobeIMSMethods.getProfile();
+      }
+    },
+  };
+}
+
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
 
@@ -61,29 +84,17 @@ setAnalyticsAttributes();
 
 const imsSignIn = new Event('imsSignIn');
 
+
+
 // should refactor this if we get more ims clients coming
 if (isHlxPath(window.location.host)) {
-  window.adobeid = {
-    client_id: 'helix_adobeio',
-    scope:
-      'AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk',
-    locale: 'en_US',
-    environment: 'stg1',
-    useLocalStorage: true,
-    logsEnabled: true,
-    redirect_uri: window.location.href,
-    isSignedIn: false,
-    onError: (error) => {
-      // eslint-disable-next-line no-console
-      console.log(error);
-    },
-    onReady: () => {
-      if (window.adobeIMSMethods.isSignedIn()) {
-        window.dispatchEvent(imsSignIn);
-        window.adobeIMSMethods.getProfile();
-      }
-    },
-  };
+  let client_id = 'helix_adobeio';
+  let scope = 'AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
+  let environment = 'stg1';
+  let logsEnabled = true;
+  
+  windowParams(client_id, scope, environment, logsEnabled);
+   
   window.marketingtech = {
     adobe: {
       launch: {
@@ -98,49 +109,22 @@ if (isHlxPath(window.location.host)) {
 } else if (!isHlxPath(window.location.host) && isStageEnvironment(window.location.host)) {
 
   if (window.location.pathname.includes('/photoshop/api')) {
-    window.adobeid = {
-      client_id: 'cis_easybake',
-      scope:
-        'AdobeID,openid,creative_sdk,creative_cloud,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye',
-      locale: 'en_US',
-      environment: 'stg1',
-      useLocalStorage: true,
-      logsEnabled: true,
-      redirect_uri: window.location.href,
-      isSignedIn: false,
-      onError: (error) => {
-        // eslint-disable-next-line no-console
-        console.log(error);
-      },
-      onReady: () => {
-        if (window.adobeIMSMethods.isSignedIn()) {
-          window.dispatchEvent(imsSignIn);
-          window.adobeIMSMethods.getProfile();
-        }
-      },
-    };
+    let client_id = 'cis_easybake';
+    let scope = 'AdobeID,openid,creative_sdk,creative_cloud,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye';
+    let environment = 'stg1';
+    let logsEnabled = true;
+  
+    windowParams(client_id, scope, environment, logsEnabled);
+
+    
   } else {
-    window.adobeid = {
-      client_id: 'stage_adobe_io',
-      scope:
-        'AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk',
-      locale: 'en_US',
-      environment: 'stg1',
-      useLocalStorage: true,
-      logsEnabled: true,
-      redirect_uri: window.location.href,
-      isSignedIn: false,
-      onError: (error) => {
-        // eslint-disable-next-line no-console
-        console.log(error);
-      },
-      onReady: () => {
-        if (window.adobeIMSMethods.isSignedIn()) {
-          window.dispatchEvent(imsSignIn);
-          window.adobeIMSMethods.getProfile();
-        }
-      },
-    };
+    let client_id = 'stage_adobe_io';
+    let scope = 'AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
+    let environment = 'stg1';
+    let logsEnabled = true;
+  
+    windowParams(client_id, scope, environment, logsEnabled);
+
   }
   
   window.marketingtech = {
@@ -156,49 +140,20 @@ if (isHlxPath(window.location.host)) {
   };
 } else if (!isHlxPath(window.location.host) && !isStageEnvironment(window.location.host)) {
   if (window.location.pathname.includes('/photoshop/api')) {
-    window.adobeid = {
-      client_id: 'cis_easybake',
-      scope:
-        'AdobeID,openid,creative_sdk,creative_cloud,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye',
-      locale: 'en_US',
-      environment: 'prod',
-      useLocalStorage: true,
-      logsEnabled: false,
-      redirect_uri: window.location.href,
-      isSignedIn: false,
-      onError: (error) => {
-        // eslint-disable-next-line no-console
-        console.log(error);
-      },
-      onReady: () => {
-        if (window.adobeIMSMethods.isSignedIn()) {
-          window.dispatchEvent(imsSignIn);
-          window.adobeIMSMethods.getProfile();
-        }
-      },
-    };
+    let client_id = 'cis_easybake';
+    let scope = 'AdobeID,openid,creative_sdk,creative_cloud,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye';
+    let environment = 'prod';
+    let logsEnabled = false;
+  
+    windowParams(client_id, scope, environment, logsEnabled);
+
   } else {
-    window.adobeid = {
-      client_id: 'adobe_io',
-      scope:
-        'AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk',
-      locale: 'en_US',
-      environment: 'prod',
-      useLocalStorage: true,
-      logsEnabled: false,
-      redirect_uri: window.location.href,
-      isSignedIn: false,
-      onError: (error) => {
-        // eslint-disable-next-line no-console
-        console.log(error);
-      },
-      onReady: () => {
-        if (window.adobeIMSMethods.isSignedIn()) {
-          window.dispatchEvent(imsSignIn);
-          window.adobeIMSMethods.getProfile();
-        }
-      },
-    };
+    let client_id = 'adobe_io';
+    let scope = 'AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
+    let environment = 'prod';
+    let logsEnabled = false;
+  
+    windowParams(client_id, scope, environment, logsEnabled);
   }
   
   window.marketingtech = {
