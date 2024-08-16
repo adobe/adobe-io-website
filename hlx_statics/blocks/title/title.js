@@ -8,7 +8,9 @@ export default async function decorate(block) {
   const fontcolor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
   const headerFontSize = block?.parentElement?.parentElement?.getAttribute('data-HeaderFontSize');
   const padding = block?.parentElement?.parentElement?.getAttribute('data-Padding');
-
+  const contentAlign = block?.parentElement?.parentElement?.getAttribute('data-ContentAlign');
+  
+  
   decorateButtons(block);
   removeEmptyPTags(block);
   block.setAttribute('daa-lh', 'title');
@@ -24,6 +26,9 @@ export default async function decorate(block) {
   });
   if (padding) {
     block?.parentElement?.parentElement.style.setProperty("padding", padding, "important");
+  }
+  if (contentAlign) {
+    block?.parentElement?.parentElement.style.setProperty("text-align", contentAlign, "important");
   }
   block.querySelectorAll('p').forEach((p) => {
     p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
