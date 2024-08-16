@@ -30,9 +30,13 @@ export default async function decorate(block) {
   // H1 decoration
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     const fontFamily = block?.parentElement?.parentElement?.getAttribute('data-font-family');
+    const headerFontSize = block?.parentElement?.parentElement?.getAttribute('data-HeaderFontSize');
     if (fontFamily) {
       h.style.fontFamily = fontFamily;
       h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL');
+    } else if (headerFontSize) {
+      h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL');
+      h.style.fontSize = headerFontSize;
     } else {
       h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
     }
@@ -58,31 +62,58 @@ export default async function decorate(block) {
     }
   });
 
-  const image = block?.parentElement?.parentElement?.getAttribute('data-bgImage');
+  const backgroundImage = block?.parentElement?.parentElement?.getAttribute('data-BackgroundImage');
   const fontColor = block?.parentElement?.parentElement?.getAttribute('data-fontColor');
-  const blockImageWidth = block?.parentElement?.parentElement?.getAttribute('data-blockImageWidth');
+  const blockImageWidth = block?.parentElement?.parentElement?.getAttribute('data-BlockImageWidth');
+  const blockImage = block?.parentElement?.parentElement?.getAttribute('data-BlockImage');
+  const heroWrapper = block?.parentElement?.parentElement;
 
-  if (image) {
-    block.style.backgroundImage = `url(${image})`;
-    block.style.backgroundRepeat = "no-repeat";
-    block.style.backgroundSize = "cover";
-    block.style.padding = "0% 11%"
-
+  if (backgroundImage) {
+    heroWrapper.querySelectorAll('.hero-container > div').forEach((herowrapper) => {
+      Object.assign(herowrapper.style, {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      });
+    })
+    heroWrapper.querySelectorAll('.hero-container > div > div').forEach((herowrapper) => {
+      Object.assign(herowrapper.style, {
+        backgroundColor: 'transparent',
+        width: '75%',
+        margin: 'auto'
+      });
+    })
+  }
+  if (fontColor) {
     block.querySelectorAll('h1, p, a, span').forEach((font) => {
       font.style.setProperty('color', fontColor, 'important');
     })
   }
   block.querySelectorAll('img').forEach((img) => {
     if (blockImageWidth) {
-      img.style.width = blockImageWidth;
-      img.style.objectFit = 'contain';
+      Object.assign(img.style, {
+        width: blockImageWidth,
+        objectFit: 'contain'
+      })
     }
     else {
-      img.style.width = '600px';
-      img.style.height = '400px';
-      img.style.objectFit = 'contain';
+      Object.assign(img.style, {
+        width: '600px',
+        height: '400px',
+        objectFit: 'contain'
+      })
     }
   })
+
+  if (blockImage.toLocaleLowerCase() === "visible") {
+    heroWrapper.querySelectorAll('picture').forEach((picture) => {
+      picture.style.setProperty('display', "block", 'important');
+    });
+    heroWrapper.querySelectorAll('main div.hero div:nth-child(2)').forEach((picture) => {
+      picture.style.setProperty('display', "block", 'important');
+    })
+  }
+
 
   applyAnalyticHeaderOverride(block);
 }
