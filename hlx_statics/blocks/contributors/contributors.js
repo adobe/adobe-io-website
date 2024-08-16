@@ -40,11 +40,13 @@ export default async function decorate(block) {
   modal.innerHTML = modalHTML;
   document.body.appendChild(modal);
 
-  const imgListData = [
+  const github_user_profile_pic = [
     "https://github.com/hollyschinsky.png",
     "https://github.com/vamshich13.png",
     "https://github.com/nimithajalal.png"
   ];
+
+  const contribution_date = "2/21/2024";
 
   const firstDiv = block.querySelector('div');
   firstDiv.classList.add("contibutors-wrapper-comp");
@@ -64,7 +66,7 @@ export default async function decorate(block) {
 
   const imageList = document.createElement("div");
   imageList.classList.add("imageList");
-  imgListData.forEach(src => {
+  github_user_profile_pic.forEach(src => {
     const img = document.createElement('img');
     img.src = src;
     img.classList.add("image-contributor");
@@ -76,7 +78,7 @@ export default async function decorate(block) {
   lastUpdateWrapper.appendChild(imageList);
 
   const imageTextWrapper = document.createElement("span");
-  imageTextWrapper.innerText = "Last updated 2/21/2024";
+  imageTextWrapper.innerText = `Last updated ${contribution_date}`;
   lastUpdateWrapper.appendChild(imageTextWrapper);
 
   const feedback = document.createElement("div");
@@ -110,16 +112,16 @@ export default async function decorate(block) {
   const showModal = () => {
     const modal = document.querySelector('.modal');
     modal.style.display = 'block';
-      setTimeout(() => {
-            modal.classList.add('show'); 
-      }, 0); 
+    setTimeout(() => {
+      modal.classList.add('show');
+    }, 0);
   };
   const closeModal = () => {
     const modal = document.querySelector('.modal');
     modal.classList.remove('show');
-      setTimeout(() => {
-            modal.style.display = 'none'; 
-      }, 10); 
+    setTimeout(() => {
+      modal.style.display = 'none';
+    }, 10);
   }
 
   yesButton.addEventListener('click', showModal);
