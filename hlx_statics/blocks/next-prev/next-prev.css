@@ -1,0 +1,77 @@
+.spectrum-Body {
+  color: rgb(34, 34, 34);
+  font-family: adobe-clean, "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Trebuchet MS", "Lucida Grande", sans-serif;
+}
+
+.spectrum-Body--sizeM {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.main-one-innerDiv {
+  display: flex;
+  margin-bottom: 64px;
+  margin-top: 64px;
+}
+
+.spectrum-Link {
+  color: rgb(0, 84, 182);
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  text-decoration: underline;
+}
+
+.spectrum-Link--quiet {
+  text-decoration: none;
+}
+
+.spectrum-Icon {
+  fill: currentColor;
+  color: inherit;
+  display: inline-block;
+  pointer-events: none;
+}
+
+.spectrum-Icon--sizeM {
+  height: 18px;
+  width: 18px;
+}
+
+.spectrum-Icon:not(:root) {
+  overflow: hidden;
+}
+
+.anchor-inside-div,
+.anchor_inside_divTwo {
+  display: flex;
+  align-items: center;
+}
+
+.divTwo_div {
+  margin-right: 4px;
+}
+
+.icon-div,
+.anger_inside_divTwo>svg {
+  margin-left: 4px;
+}
+
+.inner-emptyDiv-two {
+  margin-left: auto;
+  padding-left: 16px;
+}
+
+.nextPage {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.previous-page {
+  display: flex;
+  align-items: center;
+}
