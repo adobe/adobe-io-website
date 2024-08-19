@@ -1,110 +1,116 @@
-main div.text{
-    display: flex;
-    justify-content: center;
+main div.text {
+  display: flex;
+  justify-content: center;
 }
 
-main div.text>div {
-    display: flex;
-    width: 85%;
-    gap: 75px;
+main div.text > div {
+  display: flex;
+  width: 85%;
+  gap: 75px;
 }
 
-main div.text>div>div {
-    width: 50%;
+main div.text > div > div {
+  width: 50%;
 }
 
 main .textImg {
-    width: 100%;
+  width: 100%;
 }
 
 main .link-list-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-main .link-list-container>p {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+main .link-list-container > p {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-main .link-list-container>p>picture>img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+main .link-list-container > p > picture > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
 main .text picture {
-    display: flex;
+  display: flex;
 }
 
-main .contentContainer{
-    display: flex;
-    align-items: center;
+main .contentContainer {
+  display: flex;
+  align-items: center;
 }
 
-main .contentContainer>div {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+main .contentContainer > div {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 main .text-block-link {
-    text-decoration: none;
-    color: #2980e8;
+  text-decoration: none;
+  color: #2980e8;
 }
 
-main .videoIFrame{
-    width: 100%;
-    height: 425px;
-    border: none;
+main .videoIFrame {
+  width: 100%;
+  height: 425px;
+  border: none;
 }
 
-main .text-button-container{
-    display: flex;
-    gap: 20px;
+main .text-button-container {
+  display: flex;
+  gap: 20px;
 }
 
-main .headIconContainer{
-    display: flex;
-    gap: 20px;
+main .headIconContainer {
+  display: flex;
+  gap: 20px;
 }
 
-main .headIconContainer>p{
-    width: 50px;
-    border-radius: 5px;
-    overflow: hidden;
+main .headIconContainer > p {
+  width: 50px;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-main .headIconContainer .spliterDiv{
-    width: 2px;
-    background-color: #4a4a4a;
-    border-radius: 2px;
+main .headIconContainer .spliterDiv {
+  width: 2px;
+  background-color: #4a4a4a;
+  border-radius: 2px;
 }
 main .textContentContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
 }
 
 @media only screen and (max-width: 1024px) {
-    main div.text>div {
-        flex-direction: column !important;
-        gap: 50px;
-        margin: 0% !important;
-    }
+  main div.text > div {
+    gap: 50px;
+    margin: 0% !important;
+    width: 80% !important;
+  }
 
-    main div.text>div>div {
-        width: 100%;
-    }
+  main div.text > div > div {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  main div.text > div {
+    flex-direction: column !important;
+    width: 80% !important;
+  }
 }
 
-@media only screen and (max-width: 425px){
-    main .link-list-container{
-        flex-direction: column !important;
-        align-items: start;
-        gap: 30px;
-    }
+@media only screen and (max-width: 425px) {
+  main .link-list-container {
+    flex-direction: column !important;
+    align-items: start;
+    gap: 30px;
+  }
 }
