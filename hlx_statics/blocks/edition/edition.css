@@ -5,6 +5,9 @@
   padding: 5px 8px;
   width: fit-content;
   margin-bottom: 10px;
+  background-color: rgb(187 2 2);
+  color: white;
+  font-size: 12px;
 }
 p {
   margin: 0 !important;
