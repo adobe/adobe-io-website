@@ -116,6 +116,7 @@ export default async function decorate(block) {
       modal.classList.add('show');
     }, 0);
   };
+  
   const closeModal = () => {
     const modal = document.querySelector('.modal');
     modal.classList.remove('show');

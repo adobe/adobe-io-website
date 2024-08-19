@@ -4,6 +4,10 @@
     justify-content: space-between;
 }
 
+main .contributors-wrapper{
+    width: 100%;
+}
+
 .wrapper-border {
     border: 1px solid lightgray;
     border-radius: 4px;
@@ -155,7 +159,22 @@ hr {
 .modal.show {
     opacity: 1;
     transform: translateY(0);
- }
+}
+
+.contributors-container {
+    position: sticky;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    bottom: 3px;
+    background: white;
+    border: 1px solid;
+    border-color: lightgray;
+    border-radius: 4px;
+    padding: .75rem;
+}
 
 @media screen and (min-width : 320px) and (max-width : 767px) {
     .contibutors-wrapper-comp {
