@@ -161,7 +161,7 @@ hr {
     transform: translateY(0);
 }
 
-.contributors-container {
+main .contributors-container {
     position: sticky;
     display: flex;
     flex-wrap: wrap;
@@ -170,9 +170,6 @@ hr {
     margin-bottom: 16px;
     bottom: 3px;
     background: white;
-    border: 1px solid;
-    border-color: lightgray;
-    border-radius: 4px;
     padding: .75rem;
 }
 
