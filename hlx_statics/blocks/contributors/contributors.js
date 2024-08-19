@@ -11,18 +11,18 @@ export default async function decorate(block) {
   }
 
   const modalHTML = `
-    <div class="modal">
+    <div class="contributor-modal">
       <div class="spectrum-Underlay spectrum-overlay is-open" aria-hidden="true"></div>
-      <div class="model-comp">
-        <div class="spectrum-Modal is-open show-model">
+      <div class="model-comp-contributors">
+        <div class="spectrum-Modal is-open show-model-contributors">
           <section class="spectrum-Dialog spectrum-Dialog--medium spectrum-Dialog--confirmation" role="alertdialog" aria-modal="true">
             <div class="wrapper-model">
               <h1 class="spectrum-Dialog-heading">Thank you for your feedback</h1>
               <hr />
               <p class="spectrum-Body">Thank you for helping improve Adobe's documentation.</p>
               <section class="spectrum-Dialog-content">
-                <div class="content-wrapper">
-                  <div class="button-wrapper">
+                <div class="content-wrapper-contributors">
+                  <div class="button-wrapper-contributor">
                     <button class="spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM close-button">
                       <span class="spectrum-Button-label">Close</span>
                     </button>
@@ -110,7 +110,7 @@ export default async function decorate(block) {
   firstDiv.append(lastUpdate, feedback);
 
   const showModal = () => {
-    const modal = document.querySelector('.modal');
+    const modal = document.querySelector('.contributor-modal');
     modal.style.display = 'block';
     setTimeout(() => {
       modal.classList.add('show');
@@ -118,7 +118,7 @@ export default async function decorate(block) {
   };
   
   const closeModal = () => {
-    const modal = document.querySelector('.modal');
+    const modal = document.querySelector('.contributor-modal');
     modal.classList.remove('show');
     setTimeout(() => {
       modal.style.display = 'none';
