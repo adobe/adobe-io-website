@@ -1,15 +1,11 @@
 .edition > div > div {
-    display: flex;
-    column-gap: 3px;
     border-radius: 4px;
     padding: 5px 8px;
     width: fit-content;
     margin-bottom: 10px;
   }
-  p {
-    margin: 0 !important;
-  }
   a {
+    margin-left: 3px;
     color: white;
   }
   .edition > div > div:hover {
