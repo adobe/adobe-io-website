@@ -13,33 +13,29 @@ export default async function decorate(block) {
     parentContainer.appendChild(onThisPageWrapper);
 
     const anchors = document.querySelectorAll('.onthispage-wrapper a');
-    const correspondingAnchor = Array.from(anchors).find(anchor => anchor.getAttribute('href') === window?.location?.hash);
-
-    if (correspondingAnchor) {
-        anchors.forEach(anchor => anchor.classList.remove('active'));
-        correspondingAnchor.classList.add('active');
-    } else {
-        anchors.forEach((anchor, index) => {
-            if (index === 0) {
-                anchor.classList.add('active');
-            }
-        });
-    }
+    anchors.forEach((anchor, index) => {
+        if (index === 0) {
+            anchor.classList.add('active');
+        }
+    });
 
     const sections = Array.from(document.querySelectorAll('main h1[id], main h2[id], main h3[id], main h4[id], main h5[id], main h6[id]'));
-    const handleScroll = () => {
+    const observer = new IntersectionObserver((entries) => {
         let maxVisibleSection = null;
         let maxVisibleHeight = 0;
 
-        for (const section of sections) {
-            const rect = section.getBoundingClientRect();
-            const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const { target } = entry;
+                const rect = target.getBoundingClientRect();
+                const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
 
-            if (visibleHeight > maxVisibleHeight) {
-                maxVisibleHeight = visibleHeight;
-                maxVisibleSection = section;
+                if (visibleHeight > maxVisibleHeight) {
+                    maxVisibleHeight = visibleHeight;
+                    maxVisibleSection = target;
+                }
             }
-        }
+        });
 
         if (maxVisibleSection) {
             const id = maxVisibleSection.getAttribute('id');
@@ -50,8 +46,12 @@ export default async function decorate(block) {
                 correspondingAnchor.classList.add('active');
             }
         }
-    };
-    window.addEventListener('scroll', handleScroll);
+    }, {
+        threshold: [0.3],
+        rootMargin: '-20% 0px -20% 0px'
+    });
+
+    sections.forEach(section => observer.observe(section));
 
     const handleAnchorClick = (event) => {
         anchors.forEach(anchor => anchor.classList.remove('active'));
