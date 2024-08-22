@@ -25,7 +25,8 @@ import {
   decorateAnchorLink,
   decorateInlineCodes,
   isHlxPath,
-  addExtraScriptWithLoad,
+  decorateProfile,
+  isStageEnvironment,
   addExtraScript,
 } from './lib-adobeio.js';
 
@@ -142,6 +143,8 @@ async function loadEager(doc) {
   }
 }
 
+const imsSignIn = new Event('imsSignIn');
+
 function setIMSParams(client_id, scope, environment, logsEnabled, resolve, reject, timeout) {
   window.adobeid = {
     client_id: client_id,
@@ -163,6 +166,32 @@ function setIMSParams(client_id, scope, environment, logsEnabled, resolve, rejec
     },
     onError: reject,
   };
+}
+
+async function fetchProfileAvatar(userId) {
+  try {
+    const req = await fetch(`https://cc-api-behance.adobe.io/v2/users/${userId}?api_key=SUSI2`);
+    if (req) {
+      const res = await req.json();
+      const avatarUrl = res?.user?.images?.['138'] ?? '/hlx_statics/icons/avatar.svg';
+      if (document.querySelector('#nav-profile-popover-avatar-img')) {
+        document.querySelector('#nav-profile-popover-avatar-img').src = avatarUrl;
+      }
+
+      const profileButton = document.querySelector('#nav-profile-dropdown-button');
+      if (profileButton.querySelector('svg')) {
+        profileButton.querySelector('svg').remove();
+      }
+      profileButton.innerHTML = `
+        <div class="nav-profile-popover-avatar-button">
+          <img alt="Avatar" src=${avatarUrl} alt="Profile avatar" />
+        </div>
+      `;
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn(e);
+  }
 }
 
 //is this the right place to add the IMS Methods?
@@ -278,6 +307,14 @@ export async function loadIms() {
       }
     });
   return window.imsLoaded;
+}
+
+if (window.adobeImsFactory && window.adobeImsFactory.createIMSLib) {
+  window.adobeImsFactory.createIMSLib(window.adobeid);
+}
+
+if (window.adobeIMS && window.adobeIMS.initialize) {
+  window.adobeIMS.initialize();
 }
 
 /**
