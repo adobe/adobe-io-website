@@ -36,37 +36,37 @@ async function fetchProfileAvatar(userId) {
   }
 }
 
-function windowParams(client_id, scope, environment, logsEnabled) {
-  window.adobeid = {
-    client_id: client_id,
-    scope: scope, 
-    locale: 'en_US',
-    environment: environment,
-    useLocalStorage: true,
-    logsEnabled: logsEnabled,
-    redirect_uri: window.location.href,
-    isSignedIn: false,
-    onError: (error) => {
-      // eslint-disable-next-line no-console
-      console.log(error);
-    },
-    onReady: () => {
-      if (window.adobeIMSMethods.isSignedIn()) {
-        window.dispatchEvent(imsSignIn);
-        window.adobeIMSMethods.getProfile();
-      }
-    },
-  };
-}
+// function setIMSParams(client_id, scope, environment, logsEnabled) {
+//   window.adobeid = {
+//     client_id: client_id,
+//     scope: scope, 
+//     locale: 'en_US',
+//     environment: environment,
+//     useLocalStorage: true,
+//     logsEnabled: logsEnabled,
+//     redirect_uri: window.location.href,
+//     isSignedIn: false,
+//     onError: (error) => {
+//       // eslint-disable-next-line no-console
+//       console.log(error);
+//     },
+//     onReady: () => {
+//       if (window.adobeIMSMethods.isSignedIn()) {
+//         window.dispatchEvent(imsSignIn);
+//         window.adobeIMSMethods.getProfile();
+//       }
+//     },
+//   };
+// }
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
 
-if (isHlxPath(window.location.host) || isStageEnvironment(window.location.host)) {
-  addExtraScript(document.body, 'https://auth-stg1.services.adobe.com/imslib/imslib.js');
-} else {
-  addExtraScript(document.body, 'https://auth.services.adobe.com/imslib/imslib.min.js');
-}
+// if (isHlxPath(window.location.host) || isStageEnvironment(window.location.host)) {
+//   addExtraScript(document.body, 'https://auth-stg1.services.adobe.com/imslib/imslib.js');
+// } else {
+//   addExtraScript(document.body, 'https://auth.services.adobe.com/imslib/imslib.min.js');
+// }
 
 addExtraScript(document.body, 'https://www.adobe.com/marketingtech/main.min.js');
 addExtraScript(document.body, 'https://wwwimages2.adobe.com/etc/beagle/public/globalnav/adobe-privacy/latest/privacy.min.js');
@@ -86,88 +86,88 @@ const imsSignIn = new Event('imsSignIn');
 
 
 
-// should refactor this if we get more ims clients coming
-if (isHlxPath(window.location.host)) {
-  let client_id = 'helix_adobeio';
-  let scope = 'AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
-  let environment = 'stg1';
-  let logsEnabled = true;
+// // should refactor this if we get more ims clients coming
+// if (isHlxPath(window.location.host)) {
+//   const client_id = 'helix_adobeio';
+//   const scope = 'AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
+//   const environment = 'stg1';
+//   const logsEnabled = true;
   
-  windowParams(client_id, scope, environment, logsEnabled);
+//   setIMSParams(client_id, scope, environment, logsEnabled);
    
-  window.marketingtech = {
-    adobe: {
-      launch: {
-        property: 'global',
-        environment: 'dev',
-      },
-      analytics: {
-        additionalAccounts: 'pgeo1xxpnwadobeio-qa',
-      },
-    },
-  };
-} else if (!isHlxPath(window.location.host) && isStageEnvironment(window.location.host)) {
+//   window.marketingtech = {
+//     adobe: {
+//       launch: {
+//         property: 'global',
+//         environment: 'dev',
+//       },
+//       analytics: {
+//         additionalAccounts: 'pgeo1xxpnwadobeio-qa',
+//       },
+//     },
+//   };
+// } else if (!isHlxPath(window.location.host) && isStageEnvironment(window.location.host)) {
 
-  if (window.location.pathname.includes('/photoshop/api')) {
-    let client_id = 'cis_easybake';
-    let scope = 'AdobeID,openid,creative_sdk,creative_cloud,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye';
-    let environment = 'stg1';
-    let logsEnabled = true;
+//   if (window.location.pathname.includes('/photoshop/api')) {
+//     const client_id = 'cis_easybake';
+//     const scope = 'AdobeID,openid,creative_sdk,creative_cloud,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye';
+//     const environment = 'stg1';
+//     const logsEnabled = true;
   
-    windowParams(client_id, scope, environment, logsEnabled);
+//     setIMSParams(client_id, scope, environment, logsEnabled);
 
     
-  } else {
-    let client_id = 'stage_adobe_io';
-    let scope = 'AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
-    let environment = 'stg1';
-    let logsEnabled = true;
+//   } else {
+//     const client_id = 'stage_adobe_io';
+//     const scope = 'AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
+//     const environment = 'stg1';
+//     const logsEnabled = true;
   
-    windowParams(client_id, scope, environment, logsEnabled);
+//     setIMSParams(client_id, scope, environment, logsEnabled);
 
-  }
+//   }
   
-  window.marketingtech = {
-    adobe: {
-      launch: {
-        property: 'global',
-        environment: 'dev',
-      },
-      analytics: {
-        additionalAccounts: 'pgeo1xxpnwadobeio-qa',
-      },
-    },
-  };
-} else if (!isHlxPath(window.location.host) && !isStageEnvironment(window.location.host)) {
-  if (window.location.pathname.includes('/photoshop/api')) {
-    let client_id = 'cis_easybake';
-    let scope = 'AdobeID,openid,creative_sdk,creative_cloud,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye';
-    let environment = 'prod';
-    let logsEnabled = false;
+//   window.marketingtech = {
+//     adobe: {
+//       launch: {
+//         property: 'global',
+//         environment: 'dev',
+//       },
+//       analytics: {
+//         additionalAccounts: 'pgeo1xxpnwadobeio-qa',
+//       },
+//     },
+//   };
+// } else if (!isHlxPath(window.location.host) && !isStageEnvironment(window.location.host)) {
+//   if (window.location.pathname.includes('/photoshop/api')) {
+//     const client_id = 'cis_easybake';
+//     const scope = 'AdobeID,openid,creative_sdk,creative_cloud,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye';
+//     const environment = 'prod';
+//     const logsEnabled = false;
   
-    windowParams(client_id, scope, environment, logsEnabled);
+//     setIMSParams(client_id, scope, environment, logsEnabled);
 
-  } else {
-    let client_id = 'adobe_io';
-    let scope = 'AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
-    let environment = 'prod';
-    let logsEnabled = false;
+//   } else {
+//     const client_id = 'adobe_io';
+//     const scope = 'AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
+//     const environment = 'prod';
+//     const logsEnabled = false;
   
-    windowParams(client_id, scope, environment, logsEnabled);
-  }
+//     setIMSParams(client_id, scope, environment, logsEnabled);
+//   }
   
-  window.marketingtech = {
-    adobe: {
-      launch: {
-        property: 'global',
-        environment: 'production',
-      },
-      analytics: {
-        additionalAccounts: 'pgeo1xxpnwadobeio-prod',
-      },
-    },
-  };
-}
+//   window.marketingtech = {
+//     adobe: {
+//       launch: {
+//         property: 'global',
+//         environment: 'production',
+//       },
+//       analytics: {
+//         additionalAccounts: 'pgeo1xxpnwadobeio-prod',
+//       },
+//     },
+//   };
+// }
 
 window.adobeIMSMethods = {
   isSignedIn: () => window.adobeIMS.isSignedInUser(),

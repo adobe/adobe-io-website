@@ -24,6 +24,9 @@ import {
   toggleScale,
   decorateAnchorLink,
   decorateInlineCodes,
+  isHlxPath,
+  addExtraScriptWithLoad,
+  addExtraScript,
 } from './lib-adobeio.js';
 
 export {
@@ -163,11 +166,223 @@ async function loadEager(doc) {
   }
 }
 
+function setIMSParams(client_id, scope, environment, logsEnabled) {
+  window.adobeid = {
+    client_id: client_id,
+    scope: scope, 
+    locale: 'en_US',
+    environment: environment,
+    useLocalStorage: true,
+    logsEnabled: logsEnabled,
+    redirect_uri: window.location.href,
+    isSignedIn: false,
+    onError: (error) => {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    },
+    onReady: () => {
+      if (window.adobeIMSMethods.isSignedIn()) {
+        window.dispatchEvent(imsSignIn);
+        window.adobeIMSMethods.getProfile();
+      }
+      //not sure if the resolve should be here or the onError
+      console.log('Adobe IMS Ready!');
+      resolve(); // resolve the promise, consumers can now use window.adobeIMS
+      clearTimeout(timeout);
+    },
+    onError: reject,
+  };
+}
+
+window.adobeIMSMethods = {
+  isSignedIn: () => window.adobeIMS.isSignedInUser(),
+  signIn: () => {
+    window.adobeIMS.signIn();
+  },
+  signOut() {
+    window.adobeIMS.signOut({});
+  },
+  getProfile() {
+    window.adobeIMS.getProfile().then((profile) => {
+      window.adobeid.profile = profile;
+      window.adobeid.profile.avatarUrl = '/hlx_statics/icons/avatar.svg';
+      decorateProfile(window.adobeid.profile);
+      fetchProfileAvatar(window.adobeid.profile.userId);
+    })
+      .catch((ex) => {
+        window.adobeid.profile = ex;
+      });
+  },
+};
+
+export async function loadIms() {
+  window.imsLoaded =
+    window.imsLoaded ||
+    new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => reject(new Error('IMS timeout')), 5000);
+      
+      // different IMS clients
+      if (isHlxPath(window.location.host)) {
+        const client_id = 'helix_adobeio';
+        const scope = 'AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
+        const environment = 'stg1';
+        const logsEnabled = true;
+        
+        setIMSParams(client_id, scope, environment, logsEnabled);
+        
+        window.marketingtech = {
+          adobe: {
+            launch: {
+              property: 'global',
+              environment: 'dev',
+            },
+            analytics: {
+              additionalAccounts: 'pgeo1xxpnwadobeio-qa',
+            },
+          },
+        };
+      } else if (!isHlxPath(window.location.host) && isStageEnvironment(window.location.host)) {
+
+        if (window.location.pathname.includes('/photoshop/api')) {
+          const client_id = 'cis_easybake';
+          const scope = 'AdobeID,openid,creative_sdk,creative_cloud,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye';
+          const environment = 'stg1';
+          const logsEnabled = true;
+        
+          setIMSParams(client_id, scope, environment, logsEnabled);
+          window.adobeid = {
+            onReady: () => {
+              if (window.adobeIMSMethods.isSignedIn()) {
+                window.dispatchEvent(imsSignIn);
+                window.adobeIMSMethods.getProfile();
+              }
+              //not sure if the resolve should be here or the onError
+              console.log('Adobe IMS Ready!');
+              resolve(); // resolve the promise, consumers can now use window.adobeIMS
+              clearTimeout(timeout);
+            },
+            onError: reject,
+          }
+          
+        } else {
+          const client_id = 'stage_adobe_io';
+          const scope = 'AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
+          const environment = 'stg1';
+          const logsEnabled = true;
+        
+          setIMSParams(client_id, scope, environment, logsEnabled);
+          window.adobeid = {
+            onReady: () => {
+              if (window.adobeIMSMethods.isSignedIn()) {
+                window.dispatchEvent(imsSignIn);
+                window.adobeIMSMethods.getProfile();
+              }
+              //not sure if the resolve should be here or the onError
+              console.log('Adobe IMS Ready!');
+              resolve(); // resolve the promise, consumers can now use window.adobeIMS
+              clearTimeout(timeout);
+            },
+            onError: reject,
+          }
+        }
+        
+        window.marketingtech = {
+          adobe: {
+            launch: {
+              property: 'global',
+              environment: 'dev',
+            },
+            analytics: {
+              additionalAccounts: 'pgeo1xxpnwadobeio-qa',
+            },
+          },
+        };
+      } else if (!isHlxPath(window.location.host) && !isStageEnvironment(window.location.host)) {
+        if (window.location.pathname.includes('/photoshop/api')) {
+          const client_id = 'cis_easybake';
+          const scope = 'AdobeID,openid,creative_sdk,creative_cloud,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye';
+          const environment = 'prod';
+          const logsEnabled = false;
+        
+          setIMSParams(client_id, scope, environment, logsEnabled);
+          window.adobeid = {
+            onReady: () => {
+              if (window.adobeIMSMethods.isSignedIn()) {
+                window.dispatchEvent(imsSignIn);
+                window.adobeIMSMethods.getProfile();
+              }
+              //not sure if the resolve should be here or the onError
+              console.log('Adobe IMS Ready!');
+              resolve(); // resolve the promise, consumers can now use window.adobeIMS
+              clearTimeout(timeout);
+            },
+            onError: reject,
+          }
+        } else {
+          const client_id = 'adobe_io';
+          const scope = 'AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
+          const environment = 'prod';
+          const logsEnabled = false;
+        
+          setIMSParams(client_id, scope, environment, logsEnabled);
+          window.adobeid = {
+            onReady: () => {
+              if (window.adobeIMSMethods.isSignedIn()) {
+                window.dispatchEvent(imsSignIn);
+                window.adobeIMSMethods.getProfile();
+              }
+              //not sure if the resolve should be here or the onError
+              console.log('Adobe IMS Ready!');
+              resolve(); // resolve the promise, consumers can now use window.adobeIMS
+              clearTimeout(timeout);
+            },
+            onError: reject,
+          }
+        }
+        
+        window.marketingtech = {
+          adobe: {
+            launch: {
+              property: 'global',
+              environment: 'production',
+            },
+            analytics: {
+              additionalAccounts: 'pgeo1xxpnwadobeio-prod',
+            },
+          },
+        };
+      }
+      // window.adobeid = {
+      //   scope:
+      //     'AdobeID,additional_info.company,additional_info.ownerOrg,avatar,openid,read_organizations,read_pc,session,account_cluster.read,pps.read',
+      //   locale: locales.get(document.querySelector('html').lang) || locales.get('en'),
+      //   ...ims,
+      //   onReady: () => {
+      //     // eslint-disable-next-line no-console
+      //     console.log('Adobe IMS Ready!');
+      //     resolve(); // resolve the promise, consumers can now use window.adobeIMS
+      //     clearTimeout(timeout);
+      //   },
+      //   onError: reject,
+      // };
+      // loadScript('https://auth.services.adobe.com/imslib/imslib.min.js');
+
+      //load scripts like above
+      if (isHlxPath(window.location.host) || isStageEnvironment(window.location.host)) {
+        addExtraScript(document.body, 'https://auth-stg1.services.adobe.com/imslib/imslib.js');
+      } else {
+        addExtraScript(document.body, 'https://auth.services.adobe.com/imslib/imslib.min.js');
+      }
+    });
+  return window.imsLoaded;
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
+  loadIms();
   await loadBlocks(main);
 
   const { hash } = window.location;
