@@ -36,6 +36,32 @@ async function fetchProfileAvatar(userId) {
   }
 }
 
+/**
+ * Loads prism for syntax highlighting
+ * @param {Document} document
+ */
+function loadPrism(document) {
+  const highlightable = document.querySelector(
+    'code[class*="language-"], [class*="language-"] code',
+  );
+  if (!highlightable) return; // exit, no need to load prism if nothing to highlight
+
+  // see: https://prismjs.com/docs/Prism.html#.manual
+  window.Prism = window.Prism || {};
+  window.Prism.manual = true;
+  import('./prism.js')
+    .then(() => {
+      // see: https://prismjs.com/plugins/autoloader/
+      window.Prism.plugins.autoloader.languages_path = '/hlx_statics/scripts/prism-grammars/';
+      // run prism in async mode; uses webworker.
+      window.Prism.highlightAll(true);
+    })
+  // eslint-disable-next-line no-console
+    .catch((err) => console.error(err));
+}
+
+loadPrism(document);
+
 // function setIMSParams(client_id, scope, environment, logsEnabled) {
 //   window.adobeid = {
 //     client_id: client_id,
@@ -83,8 +109,6 @@ focusRing();
 setAnalyticsAttributes();
 
 const imsSignIn = new Event('imsSignIn');
-
-
 
 // // should refactor this if we get more ims clients coming
 // if (isHlxPath(window.location.host)) {
@@ -169,26 +193,26 @@ const imsSignIn = new Event('imsSignIn');
 //   };
 // }
 
-window.adobeIMSMethods = {
-  isSignedIn: () => window.adobeIMS.isSignedInUser(),
-  signIn: () => {
-    window.adobeIMS.signIn();
-  },
-  signOut() {
-    window.adobeIMS.signOut({});
-  },
-  getProfile() {
-    window.adobeIMS.getProfile().then((profile) => {
-      window.adobeid.profile = profile;
-      window.adobeid.profile.avatarUrl = '/hlx_statics/icons/avatar.svg';
-      decorateProfile(window.adobeid.profile);
-      fetchProfileAvatar(window.adobeid.profile.userId);
-    })
-      .catch((ex) => {
-        window.adobeid.profile = ex;
-      });
-  },
-};
+// window.adobeIMSMethods = {
+//   isSignedIn: () => window.adobeIMS.isSignedInUser(),
+//   signIn: () => {
+//     window.adobeIMS.signIn();
+//   },
+//   signOut() {
+//     window.adobeIMS.signOut({});
+//   },
+//   getProfile() {
+//     window.adobeIMS.getProfile().then((profile) => {
+//       window.adobeid.profile = profile;
+//       window.adobeid.profile.avatarUrl = '/hlx_statics/icons/avatar.svg';
+//       decorateProfile(window.adobeid.profile);
+//       fetchProfileAvatar(window.adobeid.profile.userId);
+//     })
+//       .catch((ex) => {
+//         window.adobeid.profile = ex;
+//       });
+//   },
+// };
 
 // cookie preference
 window.fedsConfig = {

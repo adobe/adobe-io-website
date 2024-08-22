@@ -78,30 +78,6 @@ function loadFooter(footer) {
 }
 
 /**
- * Loads prism for syntax highlighting
- * @param {Document} document
- */
-function loadPrism(document) {
-  const highlightable = document.querySelector(
-    'code[class*="language-"], [class*="language-"] code',
-  );
-  if (!highlightable) return; // exit, no need to load prism if nothing to highlight
-
-  // see: https://prismjs.com/docs/Prism.html#.manual
-  window.Prism = window.Prism || {};
-  window.Prism.manual = true;
-  import('./prism.js')
-    .then(() => {
-      // see: https://prismjs.com/plugins/autoloader/
-      window.Prism.plugins.autoloader.languages_path = '/hlx_statics/scripts/prism-grammars/';
-      // run prism in async mode; uses webworker.
-      window.Prism.highlightAll(true);
-    })
-  // eslint-disable-next-line no-console
-    .catch((err) => console.error(err));
-}
-
-/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
@@ -166,7 +142,7 @@ async function loadEager(doc) {
   }
 }
 
-function setIMSParams(client_id, scope, environment, logsEnabled) {
+function setIMSParams(client_id, scope, environment, logsEnabled, resolve, reject, timeout) {
   window.adobeid = {
     client_id: client_id,
     scope: scope, 
@@ -176,16 +152,11 @@ function setIMSParams(client_id, scope, environment, logsEnabled) {
     logsEnabled: logsEnabled,
     redirect_uri: window.location.href,
     isSignedIn: false,
-    onError: (error) => {
-      // eslint-disable-next-line no-console
-      console.log(error);
-    },
     onReady: () => {
       if (window.adobeIMSMethods.isSignedIn()) {
         window.dispatchEvent(imsSignIn);
         window.adobeIMSMethods.getProfile();
       }
-      //not sure if the resolve should be here or the onError
       console.log('Adobe IMS Ready!');
       resolve(); // resolve the promise, consumers can now use window.adobeIMS
       clearTimeout(timeout);
@@ -194,6 +165,7 @@ function setIMSParams(client_id, scope, environment, logsEnabled) {
   };
 }
 
+//is this the right place to add the IMS Methods?
 window.adobeIMSMethods = {
   isSignedIn: () => window.adobeIMS.isSignedInUser(),
   signIn: () => {
@@ -228,8 +200,7 @@ export async function loadIms() {
         const environment = 'stg1';
         const logsEnabled = true;
         
-        setIMSParams(client_id, scope, environment, logsEnabled);
-        
+        setIMSParams(client_id, scope, environment, logsEnabled, resolve, reject, timeout); 
         window.marketingtech = {
           adobe: {
             launch: {
@@ -249,41 +220,14 @@ export async function loadIms() {
           const environment = 'stg1';
           const logsEnabled = true;
         
-          setIMSParams(client_id, scope, environment, logsEnabled);
-          window.adobeid = {
-            onReady: () => {
-              if (window.adobeIMSMethods.isSignedIn()) {
-                window.dispatchEvent(imsSignIn);
-                window.adobeIMSMethods.getProfile();
-              }
-              //not sure if the resolve should be here or the onError
-              console.log('Adobe IMS Ready!');
-              resolve(); // resolve the promise, consumers can now use window.adobeIMS
-              clearTimeout(timeout);
-            },
-            onError: reject,
-          }
-          
+          setIMSParams(client_id, scope, environment, logsEnabled, resolve, reject, timeout); 
         } else {
           const client_id = 'stage_adobe_io';
           const scope = 'AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
           const environment = 'stg1';
           const logsEnabled = true;
         
-          setIMSParams(client_id, scope, environment, logsEnabled);
-          window.adobeid = {
-            onReady: () => {
-              if (window.adobeIMSMethods.isSignedIn()) {
-                window.dispatchEvent(imsSignIn);
-                window.adobeIMSMethods.getProfile();
-              }
-              //not sure if the resolve should be here or the onError
-              console.log('Adobe IMS Ready!');
-              resolve(); // resolve the promise, consumers can now use window.adobeIMS
-              clearTimeout(timeout);
-            },
-            onError: reject,
-          }
+          setIMSParams(client_id, scope, environment, logsEnabled, resolve, reject, timeout); 
         }
         
         window.marketingtech = {
@@ -304,42 +248,16 @@ export async function loadIms() {
           const environment = 'prod';
           const logsEnabled = false;
         
-          setIMSParams(client_id, scope, environment, logsEnabled);
-          window.adobeid = {
-            onReady: () => {
-              if (window.adobeIMSMethods.isSignedIn()) {
-                window.dispatchEvent(imsSignIn);
-                window.adobeIMSMethods.getProfile();
-              }
-              //not sure if the resolve should be here or the onError
-              console.log('Adobe IMS Ready!');
-              resolve(); // resolve the promise, consumers can now use window.adobeIMS
-              clearTimeout(timeout);
-            },
-            onError: reject,
-          }
+          setIMSParams(client_id, scope, environment, logsEnabled, resolve, reject, timeout); 
         } else {
           const client_id = 'adobe_io';
           const scope = 'AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
           const environment = 'prod';
           const logsEnabled = false;
         
-          setIMSParams(client_id, scope, environment, logsEnabled);
-          window.adobeid = {
-            onReady: () => {
-              if (window.adobeIMSMethods.isSignedIn()) {
-                window.dispatchEvent(imsSignIn);
-                window.adobeIMSMethods.getProfile();
-              }
-              //not sure if the resolve should be here or the onError
-              console.log('Adobe IMS Ready!');
-              resolve(); // resolve the promise, consumers can now use window.adobeIMS
-              clearTimeout(timeout);
-            },
-            onError: reject,
-          }
+          setIMSParams(client_id, scope, environment, logsEnabled, resolve, reject, timeout); 
         }
-        
+
         window.marketingtech = {
           adobe: {
             launch: {
@@ -352,22 +270,7 @@ export async function loadIms() {
           },
         };
       }
-      // window.adobeid = {
-      //   scope:
-      //     'AdobeID,additional_info.company,additional_info.ownerOrg,avatar,openid,read_organizations,read_pc,session,account_cluster.read,pps.read',
-      //   locale: locales.get(document.querySelector('html').lang) || locales.get('en'),
-      //   ...ims,
-      //   onReady: () => {
-      //     // eslint-disable-next-line no-console
-      //     console.log('Adobe IMS Ready!');
-      //     resolve(); // resolve the promise, consumers can now use window.adobeIMS
-      //     clearTimeout(timeout);
-      //   },
-      //   onError: reject,
-      // };
-      // loadScript('https://auth.services.adobe.com/imslib/imslib.min.js');
-
-      //load scripts like above
+  
       if (isHlxPath(window.location.host) || isStageEnvironment(window.location.host)) {
         addExtraScript(document.body, 'https://auth-stg1.services.adobe.com/imslib/imslib.js');
       } else {
@@ -419,7 +322,7 @@ async function loadLazy(doc) {
     import('../../tools/preview/experimentation-preview.js');
   }
 
-  loadPrism(doc);
+  // loadPrism(doc);
 }
 
 /**
@@ -428,7 +331,7 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 500);
+  window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
 }
 
