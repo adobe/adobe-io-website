@@ -3,9 +3,9 @@
  * @param {Element} block The title block element {Parameter Type} Name of the Parameter
  */
 export default async function decorate(block) {
-    const backgroundColor = block?.parentElement?.parentElement?.getAttribute('data-Backgroundcolor');
-    const fontColor = block?.parentElement?.parentElement?.getAttribute('data-FontColor');
-    const fontSize = block?.parentElement?.parentElement?.getAttribute('data-FontSize');
+    const backgroundColor = block?.parentElement?.parentElement?.getAttribute('data-backgroundcolor');
+    const fontColor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
+    const fontSize = block?.parentElement?.parentElement?.getAttribute('data-fontsize');
 
     block.querySelectorAll('.edition > div > div').forEach((div) => {
         Object.assign(div.style, {
