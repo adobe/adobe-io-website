@@ -1,3 +1,6 @@
+import decorateLink from "../../components/link.js";
+import { createAnchorLink } from "../../scripts/lib-adobeio.js";
+
 /**
  * decorates the next-prev
  * @param {Element} block The next-prev block element
@@ -5,18 +8,14 @@
  */
 export default async function decorate(block) {
 
-  function extractMenuData(element) {
+  const extractMenuData = (element) => {
     const data = [];
 
     element.querySelectorAll('li').forEach(li => {
       const link = li.querySelector('a');
       const href = link ? link.getAttribute('href') : '';
       const title = link ? link.getAttribute('title') : '';
-
-      data.push({
-        title: title,
-        href: href
-      });
+      data.push({ title, href });
     });
 
     return data;
@@ -26,7 +25,7 @@ export default async function decorate(block) {
   const menuData = extractMenuData(sideNavContainer.querySelector('ul'));
 
   const currentPath = window?.location?.pathname;
-  function getPathFromHref(href) {
+  const getPathFromHref = (href) => {
     return href.split('http://')[1] || '';
   }
 
@@ -36,13 +35,13 @@ export default async function decorate(block) {
   const previousPage = currentIndex > 0 ? menuData[currentIndex - 1] : null;
   const nextPage = currentIndex < menuData.length - 1 ? menuData[currentIndex + 1] : null;
 
-  const Prev = block.querySelector('.next-prev>div>div');
-  Prev.classList.add("spectrum-Body", "spectrum-Body--sizeM");
-  block.appendChild(Prev);
+  const prev = block.querySelector('.next-prev>div>div');
+  prev.classList.add("spectrum-Body", "spectrum-Body--sizeM");
+  block.appendChild(prev);
 
   const Prev_one = document.createElement('div');
   Prev_one.classList.add('main-one-innerDiv');
-  Prev.appendChild(Prev_one);
+  prev.appendChild(Prev_one);
 
   const createIconSvg = (direction) => {
     const path = direction === 'left'
@@ -55,19 +54,19 @@ export default async function decorate(block) {
     const container = document.createElement('div');
     container.classList.add(direction === 'left' ? 'anchor-inside-div' : 'anchor_inside_divTwo');
 
-    const link = document.createElement('a');
-    link.classList.add(classname)
-    link.href = href;
-    link.classList.add('spectrum-Link', 'spectrum-Link--quiet');
+    const a = createAnchorLink(href);
+    a.classList.add(classname);
 
     const textDiv = document.createElement('div');
     textDiv.classList.add(direction === 'left' ? 'icon-div' : 'divTwo_div');
     textDiv.textContent = title;
 
-    link.innerHTML = createIconSvg(direction);
-    link.appendChild(textDiv);
+    a.innerHTML = createIconSvg(direction);
+    a.appendChild(textDiv);
 
-    container.appendChild(link);
+    decorateLink({ link: a });
+
+    container.appendChild(a);
     return container;
   }
 
@@ -84,6 +83,5 @@ export default async function decorate(block) {
     Prev_one.appendChild(rightDiv);
     rightDiv.appendChild(createLink(nextPage.href, nextPage.title, 'right', 'nextPage'));
   }
-
 
 }
