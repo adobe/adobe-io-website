@@ -1,7 +1,10 @@
-
 main .teaser-button-container {
   display: flex;
   gap: 20px;
+}
+
+main .teaser-container {
+  padding: 3% 0;
 }
 
 main .teaser-wrapper > .block > div > div {
@@ -14,7 +17,7 @@ main .teaser-wrapper > .block > div > div {
 main .teaser-wrapper > .block > div {
   display: flex;
   margin-left: 5%;
-} 
+}
 
 @media screen and (max-width: 1024px) {
   main .teaser-wrapper > .block > div {
@@ -35,5 +38,8 @@ main .teaser-wrapper > .block > div {
   main .teaser-container .teaser {
     margin: 5%;
     text-align: center;
+  }
+  main .teaser-container {
+    padding: 4% 0;
   }
 }
