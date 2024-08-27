@@ -309,20 +309,21 @@ export async function loadIms() {
   return window.imsLoaded;
 }
 
-if (window.adobeImsFactory && window.adobeImsFactory.createIMSLib) {
-  window.adobeImsFactory.createIMSLib(window.adobeid);
-}
-
-if (window.adobeIMS && window.adobeIMS.initialize) {
-  window.adobeIMS.initialize();
-}
-
 /**
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
+  
   loadIms();
+  if (window.adobeImsFactory && window.adobeImsFactory.createIMSLib) {
+    window.adobeImsFactory.createIMSLib(window.adobeid);
+  }
+  
+  if (window.adobeIMS && window.adobeIMS.initialize) {
+    window.adobeIMS.initialize();
+  }
+
   await loadBlocks(main);
 
   const { hash } = window.location;
@@ -359,6 +360,14 @@ async function loadLazy(doc) {
     import('../../tools/preview/experimentation-preview.js');
   }
 
+  // cookie preference
+  window.fedsConfig = {
+    privacy: {
+      // TODO config from adobe.com
+      otDomainId: '7a5eb705-95ed-4cc4-a11d-0cc5760e93db',
+      footerLinkSelector: '#openPrivacy',
+    },
+  };
   // loadPrism(doc);
 }
 

@@ -215,13 +215,13 @@ setAnalyticsAttributes();
 // };
 
 // cookie preference
-window.fedsConfig = {
-  privacy: {
-    // TODO config from adobe.com
-    otDomainId: '7a5eb705-95ed-4cc4-a11d-0cc5760e93db',
-    footerLinkSelector: '#openPrivacy',
-  },
-};
+// window.fedsConfig = {
+//   privacy: {
+//     // TODO config from adobe.com
+//     otDomainId: '7a5eb705-95ed-4cc4-a11d-0cc5760e93db',
+//     footerLinkSelector: '#openPrivacy',
+//   },
+// };
 
 // if (window.adobeImsFactory && window.adobeImsFactory.createIMSLib) {
 //   window.adobeImsFactory.createIMSLib(window.adobeid);
