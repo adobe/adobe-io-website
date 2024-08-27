@@ -648,10 +648,12 @@ main .heading6 h6 {
   justify-content: center;
   background-color: white;
   cursor: pointer;
+  color: black;
 }
 
 .spectrum-ActionButton:hover {
   background-color: rgb(230, 230, 230);
+  color: black;
 }
 
 .spectrum-ActionButton--sizeXS {
@@ -751,4 +753,45 @@ main .heading6 h6 {
 
 .spectrum-ActionButton--staticBlack .spectrum-ActionButton-label {
   color: rgb(0, 0, 0);
+}
+
+.spectrum-Icon {
+  display: inline-block;
+  block-size: 18px;
+  fill: currentColor;
+}
+
+.spectrum-Icon--sizeXS,
+.spectrum-Icon--sizeXS img,
+.spectrum-Icon--sizeXS svg {
+  height: 14px;
+  width: 14px;
+}
+
+.spectrum-Icon--sizeS,
+.spectrum-Icon--sizeS img,
+.spectrum-Icon--sizeS svg {
+  height: 16px;
+  width: 16px;
+}
+
+.spectrum-Icon--sizeM,
+.spectrum-Icon--sizeM img,
+.spectrum-Icon--sizeM svg {
+  height: 18px;
+  width: 18px;
+}
+
+.spectrum-Icon--sizeL,
+.spectrum-Icon--sizeL img,
+.spectrum-Icon--sizeL svg {
+  height: 20px;
+  width: 20px;
+}
+
+.spectrum-Icon--sizeXL,
+.spectrum-Icon--sizeXL img,
+.spectrum-Icon--sizeXL svg {
+  height: 22px;
+  width: 22px;
 }
