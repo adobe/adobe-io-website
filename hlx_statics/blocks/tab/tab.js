@@ -1,5 +1,5 @@
+import decoratePreformattedCode, { getLanguageDecorateCode } from "../../components/code.js";
 import { applyBkgColorOverride } from "../../scripts/lib-adobeio.js";
-import { toClassName } from "../../scripts/lib-helix.js";
 
 /**
  * decorates the text
@@ -71,19 +71,16 @@ export default async function decorate(block) {
           codeContentContainer.classList.add('code-content');
           codeContentContainer.style.backgroundColor = codeBackgroundColor;
 
+          //get the code from the content
           const code = contents[index].querySelector('code');
-          const i = code.innerHTML.indexOf('\n');
-          const language = code.innerHTML.substring(0, i);
-          const codeTag = document.createElement('code');
-          codeTag.innerHTML = code.innerHTML.substring(i + 1, code.innerHTML.length);
+          codeContentContainer.appendChild(code);
+          tabContent.appendChild(codeContentContainer);
 
-          codeContentContainer.classList.add('line-numbers');
-          codeTag.classList.add(`language-${toClassName(language)}`);
-          codeTag.setAttribute('data-prismjs-copy', 'Copy');
-          codeTag.setAttribute('data-prismjs-copy-success', 'Copied to your clipboard');
-          codeTag.setAttribute('data-prismjs-copy-timeout', '3000');
-          codeContentContainer.appendChild(codeTag);
-          tabContent.appendChild(codeContentContainer)
+          //get language and align the code
+          const language = getLanguageDecorateCode({ code });
+
+          //formatted the code with number 
+          decoratePreformattedCode({ block: tabContent, language });
 
           if (index !== 0) {
             tabContent.style.display = 'none';
