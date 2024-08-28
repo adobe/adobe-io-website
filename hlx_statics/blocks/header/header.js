@@ -93,10 +93,10 @@ function globalNavLinkItemDropdown(id, name, links) {
     `;
 }
 
-function globalNavLinkItemDropdownItem(url, name) {
+function globalNavLinkItemDropdownItem(id, url, name) {
   return `
       <li class="spectrum-Menu-item">
-        <span class="spectrum-Menu-itemLabel"><a href="${url}" class="nav-dropdown-links">${name}</a></span>
+       <span class="spectrum-Menu-itemLabel"><a href="${url}" class="nav-dropdown-links">${name}</a></span>
       </li>
     `;
 }
@@ -289,6 +289,17 @@ export default async function decorate(block) {
       dropDownList.parentElement.innerHTML = dropdownLinkDropdownHTML;
     });
 
+    ul.querySelectorAll('li').forEach((item) => {
+      item.addEventListener('click', function (event) {
+        if (event.target.tagName !== 'A') {
+          const link = this.querySelector('a');
+          if (link) {
+            link.click();
+          }
+        }
+      });
+    });
+
     let buttonDiv;
     if (window.location.pathname.includes('/developer-distribution')) {
       buttonDiv = createTag('div');
@@ -357,7 +368,7 @@ export default async function decorate(block) {
     setActiveTab();
     focusRing(header);
   } else if (resp.status == 404) {
-    const resp404 = await fetch('https://main--adobe-io-website--adobe.hlx.live/franklin_assets/nav.plain.html');
+    const resp404 = await fetch('https://developer.adobe.com/franklin_assets/nav.plain.html');
     if (resp404.ok) {
       const html = await resp404.text();
       block.innerHTML = html;
@@ -398,9 +409,9 @@ export default async function decorate(block) {
         let dropdownLinkDropdownHTML = '';
         let dropdownLinksHTML = '';
 
-        dropDownList.querySelectorAll('ul > li > a').forEach((dropdownLinks) => {
+        dropDownList.querySelectorAll('ul > li > a').forEach((dropdownLinks, index) => {
           dropdownLinksHTML
-              += globalNavLinkItemDropdownItem(dropdownLinks.href, dropdownLinks.innerText);
+            += globalNavLinkItemDropdownItem(index, dropdownLinks.href, dropdownLinks.innerText);
         });
 
         dropdownLinkDropdownHTML = globalNavLinkItemDropdown(
@@ -409,6 +420,48 @@ export default async function decorate(block) {
           dropdownLinksHTML,
         );
         dropDownList.parentElement.innerHTML = dropdownLinkDropdownHTML;
+      });
+
+      // To add svg for version switcher
+      const menuItems = document.querySelectorAll('.spectrum-Menu-item');
+      const svgMarkup = `
+     <svg role="img" class="spectrum-Menu-checkmark spectrum-Menu-itemIcon css-1k96gx8-Item spectrum-Icon spectrum-UIIcon-Checkmark100 svgDisplay">
+        <path d="M5.125 12.625a1.25 1.25 0 01-.96-.45L1.04 8.425a1.25 1.25 0 011.92-1.6l2.136 2.563 5.922-7.536a1.25 1.25 0 111.964 1.545l-6.874 8.75a1.25 1.25 0 01-.965.478z" class="spectrum-UIIcon--large"></path>
+        <path d="M3.5 9.5a.999.999 0 01-.774-.368l-2.45-3a1 1 0 111.548-1.264l1.657 2.028 4.68-6.01A1 1 0 019.74 2.114l-5.45 7a1 1 0 01-.777.386z" class="spectrum-UIIcon--medium"></path>
+     </svg>`;
+
+      function addCheckmark(item) {
+        menuItems.forEach((el) => {
+          const existingSvg = el.querySelector('.spectrum-Menu-checkmark');
+          if (existingSvg) {
+            existingSvg.remove();
+          }
+          const spanElement = el.querySelector('.spectrum-Menu-itemLabel');
+          if (el !== item && (el.textContent.trim() === "v1.4" || el.textContent.trim() === "v2.0")) {
+            spanElement.style.flexDirection = 'row-reverse';
+          } else {
+            spanElement.style.flexDirection = '';
+          }
+        });
+        const spanElement = item.querySelector('.spectrum-Menu-itemLabel');
+        spanElement.insertAdjacentHTML('afterbegin', svgMarkup);
+        spanElement.style.flexDirection = '';
+      }
+      const index = Array.from(menuItems).findIndex(item => item.textContent.trim() === "v2.0");
+      if (index !== -1) {
+        addCheckmark(menuItems[index]);
+      }
+
+      menuItems.forEach((item) => {
+        item.addEventListener('click', function (event) {
+          if (event.target.tagName !== 'A') {
+            const link = this.querySelector('a');
+            if (link) {
+              link.click();
+            }
+          }
+          addCheckmark(this);
+        });
       });
 
       let buttonDiv;
