@@ -368,7 +368,6 @@ async function loadLazy(doc) {
       footerLinkSelector: '#openPrivacy',
     },
   };
-  // loadPrism(doc);
 }
 
 /**
