@@ -639,3 +639,11 @@ main .heading6 h6 {
   transform: translateY(0);
   opacity: 1;
 }
+.spectrum-Menu-checkmark{
+  padding-left: 8px !important;
+  margin-top: 6px !important;
+}
+.spectrum-UIIcon-Checkmark100{
+  height: 10px !important;
+  width: 10px !important;
+}
