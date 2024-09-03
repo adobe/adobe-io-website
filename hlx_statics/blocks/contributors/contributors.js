@@ -116,7 +116,7 @@ export default async function decorate(block) {
       modal.classList.add('show');
     }, 0);
   };
-  
+
   const closeModal = () => {
     const modal = document.querySelector('.contributor-modal');
     modal.classList.remove('show');
@@ -129,6 +129,6 @@ export default async function decorate(block) {
   noButton.addEventListener('click', showModal);
   modal.querySelector('.close-button').addEventListener('click', closeModal);
   window.addEventListener('click', (event) => {
-    if (event.target === modal.querySelector('.spectrum-Underlay')) closeModal();
+    if (event.target === document.querySelector('.model-comp-contributors')) closeModal();
   });
 }
