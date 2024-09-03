@@ -1,36 +1,38 @@
+@import url('../../styles/prism.css');
+
 main .tab-container {
     background-color: #323232;
     padding: 3%;
 }
 
-main .tab {
+main .tab-container .tab {
     display: flex;
     justify-content: center;
 }
 
-main .vertical-tab .innerTab {
+main .tab-container .vertical-tab .innerTab {
     display: flex;
 }
 
-main .innerTab {
+main .tab-container .innerTab {
     width: 75%;
-    gap: 100px;
+    gap: 50px;
 }
 
-main .innerTab>div:first-child {
+main .tab-container .innerTab>div:first-child {
     display: flex;
 }
 
-main .vertical-tab .innerTab>div:first-child {
+main .tab-container .vertical-tab .innerTab>div:first-child {
     flex-direction: column;
     align-items: center;
 }
 
-main .horizontal-tab .innerTab>div:first-child {
+main .tab-container .horizontal-tab .innerTab>div:first-child {
     gap: 16px;
 }
 
-main .innerTab>div:first-child>div {
+main .tab-container .innerTab>div:first-child>div {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -42,48 +44,118 @@ main .innerTab>div:first-child>div {
     width: 260px;
 }
 
-main .navy>div:first-child>div:hover {
+main .tab-container .navy>div:first-child>div:hover,
+main .tab-container .navy .activeTab {
     background-color: #2e3c6a;
 }
 
-main .innerTab>div:first-child>div:hover>p {
+main .tab-container .innerTab>div:first-child>div:hover>p {
     color: white !important;
 }
 
-main .navyTab {
-    background-color:#2e3c6a;
+main .tab-container .navyTab {
+    background-color: #2e3c6a;
 }
 
-main .activeTab>p {
+main .tab-container .activeTab>p {
     color: white !important;
 }
 
-main .innerTab>div:first-child>div>p:first-child>picture {
+main .tab-container .innerTab>div:first-child>div>p:first-child>picture {
     display: flex;
 }
 
-main .innerTab>div:first-child>div>p:first-child>picture>img {
+main .tab-container .innerTab>div:first-child>div>p:first-child>picture>img {
     width: 40px;
     height: 32px;
     margin: 0px 6px;
 }
 
-main .innerTab>div:not(:first-child) {
+main .tab-container .innerTab>div:not(:first-child) {
     width: 100%;
     display: none;
     color: white;
 }
 
-main .activeTabContent {
+main .tab-container .activeTabContent {
     display: block !important;
 }
 
+main .tab-container .custom-tab-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+main .tab-container .custom-tab-headers {
+    display: flex;
+    border-bottom: 2px solid #1d2643 !important;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .tab-container .custom-tab-header {
+    cursor: pointer;
+    border-bottom: none;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 48px;
+    color: rgb(209, 209, 209);
+    margin-left: 24px;
+    white-space: nowrap;
+}
+
+main .tab-container .custom-tab-header:hover {
+    color: white;
+}
+
+main .tab-container .custom-tab-header.active-tab {
+    color: white;
+    border-bottom: 2px solid white;
+    font-weight: bold;
+}
+
+main .tab-container pre.code-content {
+    word-wrap: break-word;
+    overflow-x: hidden !important;
+    white-space: pre-wrap;
+    word-break: break-word !important;
+    padding-top: 40px !important;
+    margin: 0;
+    line-height: 24px;
+}
+
+main .tab-container div.code-toolbar>.toolbar {
+    top: -45px;
+}
+
+main .tab-container div.code-toolbar>.toolbar>.toolbar-item>button {
+    padding: 12px;
+    height: 32px;
+    background: transparent;
+    color: white;
+    text-align: center;
+    right: 24px;
+    position: relative;
+    border-color: rgb(112, 112, 112);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-width: 2px;
+    border-radius: 0;
+}
+
+main .tab-container .line-numbers-rows>span {
+    height: 24px !important;
+}
+
 @media only screen and (max-width: 767px) {
-    main .innerTab {
+    main .tab-container .innerTab {
         display: block !important;
     }
 
-    main .innerTab>div:first-child {
+    main .tab-container .innerTab>div:first-child {
         flex-direction: column;
         align-items: center;
     }

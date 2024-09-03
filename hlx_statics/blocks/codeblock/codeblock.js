@@ -1,5 +1,5 @@
 import { toClassName } from '../../scripts/lib-helix.js';
-import decoratePreformattedCode from '../../components/code.js';
+import decoratePreformattedCode, { getLanguageDecorateCode } from '../../components/code.js';
 
 // copied from https://github.com/adobe/aem-block-collection/blob/main/blocks/tabs/tabs.js
 function decorateTabs(block) {
@@ -52,11 +52,9 @@ export default function decorate(block) {
 
   block.querySelectorAll('[role=tabpanel]').forEach((panel) => {
     const code = panel.querySelector('code');
-
-    const index = code.innerHTML.indexOf('\n');
-    const language = code.innerHTML.substring(0, index);
-    code.innerHTML = code.innerHTML.substring(index + 1, code.innerHTML.length);
-
+    //get language and align the code
+    const language = getLanguageDecorateCode({ code });
+    //formatted the code with number 
     decoratePreformattedCode({ block: panel, language });
   });
 }

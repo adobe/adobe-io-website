@@ -13,3 +13,10 @@ export default function decoratePreformattedCode({ block, language }) {
   code.setAttribute('data-prismjs-copy-success', 'Copied to your clipboard');
   code.setAttribute('data-prismjs-copy-timeout', '3000');
 }
+
+export function getLanguageDecorateCode({ code }) {
+  const index = code.innerHTML.indexOf('\n');
+  const language = code.innerHTML.substring(0, index);
+  code.innerHTML = code.innerHTML.substring(index + 1, code.innerHTML.length);
+  return language;
+}

@@ -51,7 +51,6 @@ main .contributors-container .imageList {
     left: 0;
     top: 0;
     transition: visibility 0s linear 130ms;
-    visibility: hidden;
     width: 100vw;
     z-index: 2;
     height: 100vh;
