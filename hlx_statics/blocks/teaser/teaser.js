@@ -1,15 +1,19 @@
-import { decorateButtons, removeEmptyPTags } from '../../scripts/lib-adobeio.js';
+
+import { decorateActionButton } from '../../components/actionButton.js';
+import { decorateButtons, removeEmptyPTags, applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
 
 /** 
  * @param {Element} block
  */
-function rearrangeLinks(block) {
+function rearrangeLinks(block, isActionButton) {
   const leftDiv = block.firstElementChild.firstElementChild;
   const teaserblockButton = document.createElement('div');
   teaserblockButton.classList.add('teaser-button-container');
 
   const buttons = leftDiv.querySelectorAll('p.button-container');
   buttons.forEach((p) => {
+    if (isActionButton)
+      decorateActionButton({ actionButton: p, size: 'M' })
     teaserblockButton.append(p);
   });
   leftDiv.append(teaserblockButton);
@@ -43,6 +47,8 @@ export default async function decorate(block) {
   const secondaryButtonBorderColor = parent?.getAttribute('data-secondarybuttonbordercolor');
   const secondaryButtonColor = parent?.getAttribute('data-secondarybuttoncolor');
   let position = parent?.getAttribute('data-position') || "center";
+  const button = parent?.getAttribute('data-Button');
+  const isActionButton = parent?.getAttribute('data-isactionbutton');
 
   block.setAttribute('daa-lh', 'teaser');
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
@@ -78,9 +84,17 @@ export default async function decorate(block) {
       innerElement.style.width = "750px"
     }
   }
+  if (button === "PrimaryButton") {
+    block.querySelectorAll('a').forEach((a) => {
+      a.className = "spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM";
+    });
+  }
 
-  decorateButtons(block, secondaryButtonBorderColor, secondaryButtonColor);
+  if (!isActionButton) {
+    decorateButtons(block, secondaryButtonBorderColor, secondaryButtonColor);
+  }
   removeEmptyPTags(block);
-  rearrangeLinks(block);
+  rearrangeLinks(block, isActionButton);
   setBackgroundImage(block);
+  applyBkgColorOverride(block);
 }

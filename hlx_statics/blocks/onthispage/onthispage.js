@@ -1,5 +1,5 @@
 /**
- * decorates the title
+ * decorates the onthispage
  * @param {Element} block The title block element {Parameter Type} Name of the Parameter
  */
 export default async function decorate(block) {
@@ -72,5 +72,5 @@ export default async function decorate(block) {
     // Initially scroll to and activate the first paragraph
     if (paragraphs.length > 0) {
         handleParagraphClick(paragraphs[0]);
-    }
+    } 
 }
