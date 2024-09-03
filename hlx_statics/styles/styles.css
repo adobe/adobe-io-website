@@ -640,6 +640,14 @@ main .heading6 h6 {
   opacity: 1;
 }
 
+.spectrum-Menu-checkmark{
+  padding-left: 8px !important;
+  margin-top: 6px !important;
+}
+.spectrum-UIIcon-Checkmark100{
+  height: 10px !important;
+  width: 10px !important;
+}
 .spectrum-ActionButton {
   border-radius: 4px;
   border: 1px solid rgb(177, 177, 177);

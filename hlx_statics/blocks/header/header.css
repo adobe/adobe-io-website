@@ -672,3 +672,11 @@ header .menu-btn {
     overflow-x: hidden;
   }
 }
+.svgDisplay {
+  display: block;
+  color: #0265dc;
+}
+.spectrum-Menu-itemLabel {
+  display: flex;
+  gap: 5px;
+}
