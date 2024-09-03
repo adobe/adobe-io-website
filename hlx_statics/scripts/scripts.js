@@ -24,6 +24,10 @@ import {
   toggleScale,
   decorateAnchorLink,
   decorateInlineCodes,
+  isHlxPath,
+  decorateProfile,
+  isStageEnvironment,
+  addExtraScript,
 } from './lib-adobeio.js';
 
 export {
@@ -72,30 +76,6 @@ function loadFooter(footer) {
   footer.append(footerBlock);
   decorateBlock(footerBlock);
   loadBlock(footerBlock);
-}
-
-/**
- * Loads prism for syntax highlighting
- * @param {Document} document
- */
-function loadPrism(document) {
-  const highlightable = document.querySelector(
-    'code[class*="language-"], [class*="language-"] code',
-  );
-  if (!highlightable) return; // exit, no need to load prism if nothing to highlight
-
-  // see: https://prismjs.com/docs/Prism.html#.manual
-  window.Prism = window.Prism || {};
-  window.Prism.manual = true;
-  import('./prism.js')
-    .then(() => {
-      // see: https://prismjs.com/plugins/autoloader/
-      window.Prism.plugins.autoloader.languages_path = '/hlx_statics/scripts/prism-grammars/';
-      // run prism in async mode; uses webworker.
-      window.Prism.highlightAll(true);
-    })
-  // eslint-disable-next-line no-console
-    .catch((err) => console.error(err));
 }
 
 /**
@@ -163,11 +143,187 @@ async function loadEager(doc) {
   }
 }
 
+const imsSignIn = new Event('imsSignIn');
+
+function setIMSParams(client_id, scope, environment, logsEnabled, resolve, reject, timeout) {
+  window.adobeid = {
+    client_id: client_id,
+    scope: scope, 
+    locale: 'en_US',
+    environment: environment,
+    useLocalStorage: true,
+    logsEnabled: logsEnabled,
+    redirect_uri: window.location.href,
+    isSignedIn: false,
+    onReady: () => {
+      if (window.adobeIMSMethods.isSignedIn()) {
+        window.dispatchEvent(imsSignIn);
+        window.adobeIMSMethods.getProfile();
+      }
+      console.log('Adobe IMS Ready!');
+      resolve(); // resolve the promise, consumers can now use window.adobeIMS
+      clearTimeout(timeout);
+    },
+    onError: reject,
+  };
+}
+
+async function fetchProfileAvatar(userId) {
+  try {
+    const req = await fetch(`https://cc-api-behance.adobe.io/v2/users/${userId}?api_key=SUSI2`);
+    if (req) {
+      const res = await req.json();
+      const avatarUrl = res?.user?.images?.['138'] ?? '/hlx_statics/icons/avatar.svg';
+      if (document.querySelector('#nav-profile-popover-avatar-img')) {
+        document.querySelector('#nav-profile-popover-avatar-img').src = avatarUrl;
+      }
+
+      const profileButton = document.querySelector('#nav-profile-dropdown-button');
+      if (profileButton.querySelector('svg')) {
+        profileButton.querySelector('svg').remove();
+      }
+      profileButton.innerHTML = `
+        <div class="nav-profile-popover-avatar-button">
+          <img alt="Avatar" src=${avatarUrl} alt="Profile avatar" />
+        </div>
+      `;
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn(e);
+  }
+}
+
+//is this the right place to add the IMS Methods?
+window.adobeIMSMethods = {
+  isSignedIn: () => window.adobeIMS.isSignedInUser(),
+  signIn: () => {
+    window.adobeIMS.signIn();
+  },
+  signOut() {
+    window.adobeIMS.signOut({});
+  },
+  getProfile() {
+    window.adobeIMS.getProfile().then((profile) => {
+      window.adobeid.profile = profile;
+      window.adobeid.profile.avatarUrl = '/hlx_statics/icons/avatar.svg';
+      decorateProfile(window.adobeid.profile);
+      fetchProfileAvatar(window.adobeid.profile.userId);
+    })
+      .catch((ex) => {
+        window.adobeid.profile = ex;
+      });
+  },
+};
+
+export async function loadIms() {
+  window.imsLoaded =
+    window.imsLoaded ||
+    new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => reject(new Error('IMS timeout')), 5000);
+      
+      // different IMS clients
+      if (isHlxPath(window.location.host)) {
+        const client_id = 'helix_adobeio';
+        const scope = 'AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
+        const environment = 'stg1';
+        const logsEnabled = true;
+        
+        setIMSParams(client_id, scope, environment, logsEnabled, resolve, reject, timeout); 
+        window.marketingtech = {
+          adobe: {
+            launch: {
+              property: 'global',
+              environment: 'dev',
+            },
+            analytics: {
+              additionalAccounts: 'pgeo1xxpnwadobeio-qa',
+            },
+          },
+        };
+      } else if (!isHlxPath(window.location.host) && isStageEnvironment(window.location.host)) {
+
+        if (window.location.pathname.includes('/photoshop/api')) {
+          const client_id = 'cis_easybake';
+          const scope = 'AdobeID,openid,creative_sdk,creative_cloud,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye';
+          const environment = 'stg1';
+          const logsEnabled = true;
+        
+          setIMSParams(client_id, scope, environment, logsEnabled, resolve, reject, timeout); 
+        } else {
+          const client_id = 'stage_adobe_io';
+          const scope = 'AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
+          const environment = 'stg1';
+          const logsEnabled = true;
+        
+          setIMSParams(client_id, scope, environment, logsEnabled, resolve, reject, timeout); 
+        }
+        
+        window.marketingtech = {
+          adobe: {
+            launch: {
+              property: 'global',
+              environment: 'dev',
+            },
+            analytics: {
+              additionalAccounts: 'pgeo1xxpnwadobeio-qa',
+            },
+          },
+        };
+      } else if (!isHlxPath(window.location.host) && !isStageEnvironment(window.location.host)) {
+        if (window.location.pathname.includes('/photoshop/api')) {
+          const client_id = 'cis_easybake';
+          const scope = 'AdobeID,openid,creative_sdk,creative_cloud,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye';
+          const environment = 'prod';
+          const logsEnabled = false;
+        
+          setIMSParams(client_id, scope, environment, logsEnabled, resolve, reject, timeout); 
+        } else {
+          const client_id = 'adobe_io';
+          const scope = 'AdobeID,openid,unified_dev_portal,read_organizations,additional_info.projectedProductContext,additional_info.roles,gnav,read_pc.dma_bullseye,creative_sdk';
+          const environment = 'prod';
+          const logsEnabled = false;
+        
+          setIMSParams(client_id, scope, environment, logsEnabled, resolve, reject, timeout); 
+        }
+
+        window.marketingtech = {
+          adobe: {
+            launch: {
+              property: 'global',
+              environment: 'production',
+            },
+            analytics: {
+              additionalAccounts: 'pgeo1xxpnwadobeio-prod',
+            },
+          },
+        };
+      }
+  
+      if (isHlxPath(window.location.host) || isStageEnvironment(window.location.host)) {
+        addExtraScript(document.body, 'https://auth-stg1.services.adobe.com/imslib/imslib.js');
+      } else {
+        addExtraScript(document.body, 'https://auth.services.adobe.com/imslib/imslib.min.js');
+      }
+    });
+  return window.imsLoaded;
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
+  
+  loadIms();
+  if (window.adobeImsFactory && window.adobeImsFactory.createIMSLib) {
+    window.adobeImsFactory.createIMSLib(window.adobeid);
+  }
+  
+  if (window.adobeIMS && window.adobeIMS.initialize) {
+    window.adobeIMS.initialize();
+  }
+
   await loadBlocks(main);
 
   const { hash } = window.location;
@@ -204,7 +360,14 @@ async function loadLazy(doc) {
     import('../../tools/preview/experimentation-preview.js');
   }
 
-  loadPrism(doc);
+  // cookie preference
+  window.fedsConfig = {
+    privacy: {
+      // TODO config from adobe.com
+      otDomainId: '7a5eb705-95ed-4cc4-a11d-0cc5760e93db',
+      footerLinkSelector: '#openPrivacy',
+    },
+  };
 }
 
 /**
@@ -213,7 +376,7 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 500);
+  window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
 }
 
