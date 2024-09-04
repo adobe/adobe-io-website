@@ -640,7 +640,152 @@ main .heading6 h6 {
   opacity: 1;
 }
 
-.spectrum-Icon--sizeM {
+.spectrum-Menu-checkmark{
+  padding-left: 8px !important;
+  margin-top: 6px !important;
+}
+.spectrum-UIIcon-Checkmark100{
+  height: 10px !important;
+  width: 10px !important;
+}
+.spectrum-ActionButton {
+  border-radius: 4px;
+  border: 1px solid rgb(177, 177, 177);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  cursor: pointer;
+  color: black;
+}
+
+.spectrum-ActionButton:hover {
+  background-color: rgb(230, 230, 230);
+  color: black;
+}
+
+.spectrum-ActionButton--sizeXS {
+  block-size: 20px;
+  padding: 1px 7px;
+  font-size: 13.3333px;
+}
+
+.spectrum-ActionButton--sizeS {
+  block-size: 24px;
+  padding: 1px 8px;
+}
+
+.spectrum-ActionButton--sizeM {
+  block-size: 32px;
+  padding: 1px 11px;
+}
+
+.spectrum-ActionButton--sizeL {
+  block-size: 40px;
+  padding: 1px 14px;
+}
+
+.spectrum-ActionButton--sizeXL {
+  block-size: 48px;
+  padding: 1px 17px;
+}
+
+.spectrum-ActionButton--sizeXS .spectrum-ActionButton-label {
+  font-size: 11px;
+  line-height: 14.3px;
+}
+
+.spectrum-ActionButton--sizeS .spectrum-ActionButton-label {
+  font-size: 12px;
+  line-height: 15.6px;
+}
+
+.spectrum-ActionButton--sizeM .spectrum-ActionButton-label {
+  font-size: 14px;
+  line-height: 18.2px;
+}
+
+.spectrum-ActionButton--sizeL .spectrum-ActionButton-label {
+  font-size: 16px;
+  line-height: 20.8px;
+}
+
+.spectrum-ActionButton--sizeXL .spectrum-ActionButton-label {
+  font-size: 18px;
+  line-height: 23.4px;
+}
+
+.spectrum-ActionButton-label {
+  font-size: 14px;
+}
+
+.spectrum-ActionButton:disabled,
+.spectrum-ActionButton[disabled=true] {
+  color: rgb(177, 177, 177);
+  border-color: rgb(213, 213, 213);
+  cursor: default;
+}
+
+.spectrum-ActionButton:disabled:hover {
+  background-color: transparent;
+}
+
+.spectrum-ActionButton--quiet {
+  border-color: rgba(0, 0, 0, 0) !important;
+  background-color: rgb(230, 230, 230);
+}
+
+.spectrum-ActionButton--staticWhite {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+}
+
+.spectrum-ActionButton--staticWhite:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.spectrum-ActionButton--staticWhite .spectrum-ActionButton-label {
+  color: rgb(255, 255, 255);
+}
+
+.spectrum-ActionButton--staticBlack {
+  border-color: rgba(0, 0, 0, 0.55);
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+}
+
+.spectrum-ActionButton--staticBlack:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.spectrum-ActionButton--staticBlack .spectrum-ActionButton-label {
+  color: rgb(0, 0, 0);
+}
+
+.spectrum-Icon {
+  display: inline-block;
+  block-size: 18px;
+  fill: currentColor;
+}
+
+.spectrum-Icon--sizeXS,
+.spectrum-Icon--sizeXS img,
+.spectrum-Icon--sizeXS svg {
+  height: 14px;
+  width: 14px;
+}
+
+.spectrum-Icon--sizeS,
+.spectrum-Icon--sizeS img,
+.spectrum-Icon--sizeS svg {
+  height: 16px;
+  width: 16px;
+}
+
+.spectrum-Icon--sizeM,
+.spectrum-Icon--sizeM img,
+.spectrum-Icon--sizeM svg {
   height: 18px;
   width: 18px;
 }
@@ -658,4 +803,39 @@ main .heading6 h6 {
 
 .spectrum-Link--quiet {
   text-decoration: none;
+}
+
+.spectrum-Icon--sizeL,
+.spectrum-Icon--sizeL img,
+.spectrum-Icon--sizeL svg {
+  height: 20px;
+  width: 20px;
+}
+
+.spectrum-Icon--sizeXL,
+.spectrum-Icon--sizeXL img,
+.spectrum-Icon--sizeXL svg {
+  height: 22px;
+  width: 22px;
+}
+.spectrum-Link--quiet {
+  text-decoration: none !important;
+}
+.spectrum-Link {
+  background-color: transparent;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  text-decoration: underline;
+  transition: color .13s ease-in-out;
+  color: rgb(0, 84, 182) !important;
+}
+.spectrum-Link--quiet:hover {
+  text-decoration: underline !important;
+}
+.spectrum-Link--primary{
+  color: rgb(0, 84, 182) !important;
+}
+.spectrum-Link--secondary{
+  color: inherit !important;
 }
