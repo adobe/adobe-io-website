@@ -803,3 +803,24 @@ main .heading6 h6 {
   height: 22px;
   width: 22px;
 }
+.spectrum-Link--quiet {
+  text-decoration: none !important;
+}
+.spectrum-Link {
+  background-color: transparent;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  text-decoration: underline;
+  transition: color .13s ease-in-out;
+  color: rgb(0, 84, 182) !important;
+}
+.spectrum-Link--quiet:hover {
+  text-decoration: underline !important;
+}
+.spectrum-Link--primary{
+  color: rgb(0, 84, 182) !important;
+}
+.spectrum-Link--secondary{
+  color: inherit !important;
+}
