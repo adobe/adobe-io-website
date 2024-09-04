@@ -188,41 +188,117 @@ function decorateSearchIframeContainer(header) {
 }
 
 function handleButtons(header) {
+  const closeAllDropdowns = () => {
+    header.querySelectorAll('button.navigation-dropdown').forEach((button) => {
+      button.classList.remove('is-open');
+      const dropdownPopover = header.querySelector(`#nav-dropdown-popover_${button.id.split('_')[1]}`);
+      const dropdownMobilePopover = header.querySelector(`#nav-dropdown-mobile-popover_${button.id.split('_')[1]}`);
+
+      if (dropdownPopover) {
+        dropdownPopover.classList.remove('is-open');
+        dropdownPopover.ariaHidden = 'true';
+      }
+      if (dropdownMobilePopover) {
+        dropdownMobilePopover.classList.remove('is-open');
+        dropdownMobilePopover.ariaHidden = 'true';
+      }
+    });
+  };
+
   header.querySelectorAll('button.navigation-dropdown').forEach((button) => {
     if (button.id.indexOf('nav-dropdown-button') >= 0) {
-      const index = button.id.split('_')[1];
-      const dropdownPopover = header.querySelector(`div#nav-dropdown-popover_${index}`);
-      const dropdownMobilePopover = header.querySelector(`div#nav-dropdown-mobile-popover_${index}`);
-
       button.addEventListener('click', (evt) => {
-        if (!evt.currentTarget.classList.contains('is-open')) {
+        const index = button.id.split('_')[1];
+        const dropdownPopover = header.querySelector(`#nav-dropdown-popover_${index}`);
+        const dropdownMobilePopover = header.querySelector(`#nav-dropdown-mobile-popover_${index}`);
+
+        if (!button.classList.contains('is-open')) {
+          closeAllDropdowns();
           button.classList.add('is-open');
-          dropdownPopover.classList.add('is-open');
-          dropdownMobilePopover.classList.add('is-open');
-          dropdownPopover.ariaHidden = false;
-          dropdownMobilePopover.ariaHidden = false;
+          if (dropdownPopover) {
+            dropdownPopover.classList.add('is-open');
+            dropdownPopover.ariaHidden = 'false';
+          }
+          if (dropdownMobilePopover) {
+            dropdownMobilePopover.classList.add('is-open');
+            dropdownMobilePopover.ariaHidden = 'false';
+          }
         } else {
           button.classList.remove('is-open');
-          dropdownPopover.classList.remove('is-open');
-          dropdownMobilePopover.classList.remove('is-open');
-          dropdownPopover.ariaHidden = false;
-          dropdownMobilePopover.ariaHidden = false;
+          if (dropdownPopover) {
+            dropdownPopover.classList.remove('is-open');
+            dropdownPopover.ariaHidden = 'true';
+          }
+          if (dropdownMobilePopover) {
+            dropdownMobilePopover.classList.remove('is-open');
+            dropdownMobilePopover.ariaHidden = 'true';
+          }
         }
       });
     } else if (button.id.indexOf('nav-profile-dropdown-button') >= 0) {
       const profileDropdownPopover = header.querySelector('div#nav-profile-dropdown-popover');
       button.addEventListener('click', (evt) => {
-        if (!evt.currentTarget.classList.contains('is-open')) {
+        if (!button.classList.contains('is-open')) {
+          closeAllDropdowns();
           button.classList.add('is-open');
           profileDropdownPopover.classList.add('is-open');
-          profileDropdownPopover.ariaHidden = false;
+          profileDropdownPopover.ariaHidden = 'false';
         } else {
           button.classList.remove('is-open');
           profileDropdownPopover.classList.remove('is-open');
-          profileDropdownPopover.ariaHidden = false;
+          profileDropdownPopover.ariaHidden = 'true';
         }
       });
     }
+  });
+}
+
+// To add svg for version switcher
+function addCheckmarkSvg(ul) {
+  const menuItems = ul.querySelectorAll('.spectrum-Menu-item');
+  const svgMarkup = `
+        <svg role="img" class="spectrum-Menu-checkmark spectrum-Menu-itemIcon css-1k96gx8-Item spectrum-Icon spectrum-UIIcon-Checkmark100 svgDisplay">
+           <path d="M5.125 12.625a1.25 1.25 0 01-.96-.45L1.04 8.425a1.25 1.25 0 011.92-1.6l2.136 2.563 5.922-7.536a1.25 1.25 0 111.964 1.545l-6.874 8.75a1.25 1.25 0 01-.965.478z" class="spectrum-UIIcon--large"></path>
+           <path d="M3.5 9.5a.999.999 0 01-.774-.368l-2.45-3a1 1 0 111.548-1.264l1.657 2.028 4.68-6.01A1 1 0 019.74 2.114l-5.45 7a1 1 0 01-.777.386z" class="spectrum-UIIcon--medium"></path>
+        </svg>`;
+
+  function addCheckmark(item) {
+    menuItems.forEach((el) => {
+      const existingSvg = el.querySelector('.spectrum-Menu-checkmark');
+      if (existingSvg) {
+        existingSvg.remove();
+      }
+      const spanElement = el.querySelector('.spectrum-Menu-itemLabel');
+      if (el.textContent.trim() === "v1.4" || el.textContent.trim() === "v2.0") {
+        if (el !== item) {
+          spanElement.style.flexDirection = 'row-reverse';
+        } else {
+          spanElement.insertAdjacentHTML('afterbegin', svgMarkup);
+          spanElement.style.flexDirection = '';
+        }
+      } else {
+        spanElement.style.flexDirection = '';
+      }
+    });
+  }
+
+  const index = Array.from(menuItems).findIndex(item => item.textContent.trim() === "v2.0");
+  if (index !== -1) {
+    addCheckmark(menuItems[index]);
+  }
+
+  menuItems.forEach((item) => {
+    item.addEventListener('click', function (event) {
+      if (event.target.tagName !== 'A') {
+        const link = this.querySelector('a');
+        if (link) {
+          link.click();
+        }
+      }
+      if (item.textContent.trim() === "v1.4" || item.textContent.trim() === "v2.0") {
+        addCheckmark(this);
+      }
+    });
   });
 }
 
@@ -288,6 +364,8 @@ export default async function decorate(block) {
       );
       dropDownList.parentElement.innerHTML = dropdownLinkDropdownHTML;
     });
+
+    addCheckmarkSvg(ul);
 
     let buttonDiv;
     if (window.location.pathname.includes('/developer-distribution')) {
@@ -357,7 +435,7 @@ export default async function decorate(block) {
     setActiveTab();
     focusRing(header);
   } else if (resp.status == 404) {
-    const resp404 = await fetch('https://main--adobe-io-website--adobe.hlx.live/franklin_assets/nav.plain.html');
+    const resp404 = await fetch('https://main--adobe-io-website--adobe.hlx.page/franklin_assets/nav.plain.html');
     if (resp404.ok) {
       const html = await resp404.text();
       block.innerHTML = html;
@@ -393,14 +471,13 @@ export default async function decorate(block) {
         const productsLi = ul.querySelector('li:nth-child(1)');
         productsLi.className = 'navigation-products';
       }
-
       ul.querySelectorAll('li > ul').forEach((dropDownList, index) => {
         let dropdownLinkDropdownHTML = '';
         let dropdownLinksHTML = '';
 
         dropDownList.querySelectorAll('ul > li > a').forEach((dropdownLinks) => {
           dropdownLinksHTML
-              += globalNavLinkItemDropdownItem(dropdownLinks.href, dropdownLinks.innerText);
+            += globalNavLinkItemDropdownItem(dropdownLinks.href, dropdownLinks.innerText);
         });
 
         dropdownLinkDropdownHTML = globalNavLinkItemDropdown(
@@ -410,6 +487,8 @@ export default async function decorate(block) {
         );
         dropDownList.parentElement.innerHTML = dropdownLinkDropdownHTML;
       });
+
+      addCheckmarkSvg(ul);
 
       let buttonDiv;
       if (window.location.pathname.includes('/developer-distribution')) {
