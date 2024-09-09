@@ -1,4 +1,4 @@
-import { createTag } from "../../scripts/lib-adobeio.js";
+import { createTag, decorateAnchorLink } from "../../scripts/lib-adobeio.js";
 
 function addInfoSvg() {
     return `
@@ -67,10 +67,18 @@ export default async function decorate(block) {
     const variant = block?.parentElement?.parentElement?.getAttribute('data-variant');
     const iconPosition = block?.parentElement?.parentElement?.getAttribute('data-iconposition');
     const isNested = block?.parentElement?.parentElement?.getAttribute('data-isnested');
+    const isLinkDecorate = block?.parentElement?.parentElement?.getAttribute('data-islinkdecorate');
+    const header = block?.parentElement?.parentElement?.getAttribute('data-header');
+
 
     block.parentElement.parentElement.style.padding = "10px 0px";
     block.querySelectorAll('.inline-nested-alert > div').forEach((inlineNestedAlert) => {
-        inlineNestedAlert.classList.add('InLineNestedAlert');
+        if(header === "true"){
+            inlineNestedAlert.classList.add('InLineNestedAlert-Header');
+            block.parentElement.parentElement.style.padding = "0px";
+        }else{
+            inlineNestedAlert.classList.add('InLineNestedAlert');
+        }
         if (variant) {
             inlineNestedAlert.classList.add(`InLineNestedAlert-${variant}`);
         }
@@ -107,4 +115,15 @@ export default async function decorate(block) {
     block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
         h.style.margin = "0px"
     })
+    if(isLinkDecorate === 'true'){
+        block.querySelectorAll('a').forEach((a) => {
+            Object.assign(a.style, {
+                border:"1px solid rgb(213 207 207)",
+                backgroundColor:"rgb(243 242 242)",
+                padding:"2px 4px",
+                borderRadius:"3px",
+                color:"rgb(0,84,182)"
+            });
+        })
+    }
 }

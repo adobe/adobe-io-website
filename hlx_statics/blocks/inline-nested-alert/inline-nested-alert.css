@@ -4,6 +4,10 @@
   border-radius: 4px;
   min-height: 38px;
 }
+.InLineNestedAlert-Header{
+    width: fit-content;
+    font-size: 16px;
+}
 .InLineNestedAlert-error,
 .InLineNestedAlert-warning {
   border: 2px solid rgb(234, 56, 41);
@@ -32,8 +36,20 @@
   width: 18px;
   height: 18px;
 }
+.InLineNestedAlert a{
+    text-decoration: none !important;
+    font-size: 16px;
+    color: rgb(0,84,182);
+}
+.InLineNestedAlert p{
+    font-size: 16px;
+    margin: 4px 0px;
+}
+.InLineNestedAlert a:hover{
+    text-decoration: underline !important;
+}
 @media screen and (max-width: 768px) {
-  .InLineNestedAlert {
-    width: auto !important;
-  }
+    .InLineNestedAlert {
+        width: auto !important;
+    }
 }
