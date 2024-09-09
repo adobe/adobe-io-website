@@ -1,0 +1,34 @@
+.InLineNestedAlert {
+  padding: 20px;
+  width: 760px;
+  border-radius: 4px;
+  min-height: 38px;
+}
+.InLineNestedAlert-error,
+.InLineNestedAlert-warning {
+  border: 2px solid rgb(234, 56, 41);
+}
+.InLineNestedAlert-success {
+  border: 2px solid rgb(0, 143, 93);
+}
+.InLineNestedAlert-info,
+.InLineNestedAlert-help {
+  border: 2px solid rgb(20, 122, 243);
+}
+.InLineNestedAlert-default {
+  border: 2px solid rgb(110, 110, 110);
+}
+.info-NestedAlertIcon,
+.help-NestedAlertIcon {
+  color: rgb(20, 122, 243);
+}
+.alert-NestedAlertIcon {
+  color: rgb(234, 56, 41);
+}
+.success-NestedAlertIcon {
+  color: rgb(0, 143, 93);
+}
+.nested-svg{
+    width: 18px;
+    height: 18px;
+}
