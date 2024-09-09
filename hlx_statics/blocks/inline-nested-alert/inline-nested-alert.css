@@ -28,7 +28,12 @@
 .success-NestedAlertIcon {
   color: rgb(0, 143, 93);
 }
-.nested-svg{
-    width: 18px;
-    height: 18px;
+.nested-svg {
+  width: 18px;
+  height: 18px;
+}
+@media screen and (max-width: 768px) {
+  .InLineNestedAlert {
+    width: auto !important;
+  }
 }
