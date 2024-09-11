@@ -34,8 +34,6 @@ function loadPrism(document) {
     .catch((err) => console.error(err));
 }
 
-loadPrism(document);
-
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
 
