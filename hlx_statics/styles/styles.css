@@ -839,3 +839,18 @@ main .heading6 h6 {
 .spectrum-Link--secondary{
   color: inherit !important;
 }
+.info-icon{
+  color: rgb(20, 122, 243);
+}
+.help-icon{
+  color: rgb(0, 84, 182);
+}
+.success-icon{
+  color: rgb(0, 101, 62);
+}
+.error-icon{
+  color: rgb(203,93,0);
+}
+.warning-icon{
+  color: rgb(110, 110, 110);
+}

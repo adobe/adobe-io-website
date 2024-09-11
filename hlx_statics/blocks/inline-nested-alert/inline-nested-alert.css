@@ -8,9 +8,14 @@
     width: fit-content;
     font-size: 16px;
 }
-.InLineNestedAlert-error,
-.InLineNestedAlert-warning {
-  border: 2px solid rgb(234, 56, 41);
+.InLineNestedAlert-error {
+  border: 2px solid rgb(203,93,0);
+}
+.InLineNestedAlert-warning{
+  border: 2px solid rgb(110, 110, 110);
+}
+.InLineNestedAlert-neutral{
+  border: 2px solid rgb(110, 110, 110);
 }
 .InLineNestedAlert-success {
   border: 2px solid rgb(0, 143, 93);
@@ -22,19 +27,9 @@
 .InLineNestedAlert-default {
   border: 2px solid rgb(110, 110, 110);
 }
-.info-NestedAlertIcon,
-.help-NestedAlertIcon {
-  color: rgb(20, 122, 243);
-}
-.alert-NestedAlertIcon {
-  color: rgb(234, 56, 41);
-}
-.success-NestedAlertIcon {
-  color: rgb(0, 143, 93);
-}
-.nested-svg {
-  width: 18px;
-  height: 18px;
+.info-icon, .help-icon, .success-icon, .warning-icon, .error-icon{
+  width: 30px;
+  height: 30px;
 }
 .InLineNestedAlert a{
     text-decoration: none !important;

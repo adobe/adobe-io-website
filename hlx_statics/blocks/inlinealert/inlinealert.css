@@ -3,44 +3,18 @@
 }
 
 .spectrum-InLineAlert {
-    --spectrum-inlinealert-neutral-title-height: 38px;
-    --spectrum-inlinealert-neutral-corner-radius: 4px;
-    --spectrum-inlinealert-neutral-border-width: 2px;
-    --spectrum-inlinealert-neutral-min-width: 368px;
-    --spectrum-inlinealert-neutral-padding-y: 20px;
-    --spectrum-inlinealert-neutral-padding-x: 20px;
-    --spectrum-inlinealert-neutral-content-margin-top: 8px;
-    --spectrum-inlinealert-neutral-background-color: rgb(255, 255, 255);
-    --spectrum-inlinealert-neutral-text-color: rgb(110, 110, 110);
-    --spectrum-inlinealert-neutral-title-text-color: rgb(44, 44, 44);
-    --spectrum-inlinealert-info-border-color: rgb(20, 122, 243);
-    --spectrum-inlinealert-info-icon-color: rgb(0, 84, 182);
-    --spectrum-inlinealert-error-border-color: rgb(234, 56, 41);
-    --spectrum-inlinealert-error-icon-color: rgb(180, 0, 0);
-    --spectrum-inlinealert-success-border-color: rgb(0, 143, 93);
-    --spectrum-inlinealert-success-icon-color: rgb(0, 101, 62);
-    --spectrum-inlinealert-negative-border-color: rgb(246, 133, 17);
-    --spectrum-inlinealert-negative-icon-color: rgb(203, 93, 0);
-}
-
-.spectrum-InLineAlert {
     position: relative;
     display: inline-block;
     box-sizing: border-box;
-    min-width: var(--spectrum-inlinealert-neutral-min-width, var(--spectrum-global-dimension-static-size-4600));
-    min-height: var(--spectrum-inlinealert-neutral-title-height);
-    margin-top: 8px;
-    margin-bottom: 8px;
-    margin-left: 0;
-    margin-right: 0;
-    padding-top: var(--spectrum-inlinealert-neutral-padding-y, var(--spectrum-global-dimension-static-size-250));
-    padding-bottom: var(--spectrum-inlinealert-neutral-padding-y, var(--spectrum-global-dimension-static-size-250));
-    padding-left: var(--spectrum-inlinealert-neutral-padding-x, var(--spectrum-global-dimension-static-size-250));
-    padding-right: var(--spectrum-inlinealert-neutral-padding-x, var(--spectrum-global-dimension-static-size-250));
-
-    border-width: var(--spectrum-inlinealert-neutral-border-width);
+    min-width: 368px;
+    min-height: 38px;
+    margin: 8px 0;
+    padding: 20px;
+    border-width: 2px;
     border-style: solid;
-    border-radius: var(--spectrum-inlinealert-neutral-corner-radius);
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(110, 110, 110);
 }
 
 [dir="ltr"] .spectrum-InLineAlert-icon {
@@ -71,49 +45,38 @@
     min-height: 0;
     margin: 0;
     padding: 0;
-
     font-size: 14px;
     font-weight: 700;
     font-style: normal;
     line-height: 14px;
     text-transform: none;
+    color: rgb(44, 44, 44);
 }
 
 .spectrum-InLineAlert-content {
     display: block;
-    margin: var(--spectrum-inlinealert-neutral-content-margin-top, var(--spectrum-global-dimension-static-size-100)) 0 0 0;
+    margin: 8px 0 0 0;
     padding: 0;
-
     font-size: 14px;
     word-wrap: break-word;
+    color: rgb(110, 110, 110);
 }
 
 [dir="ltr"] .spectrum-InLineAlert-footer {
-
     text-align: right;
 }
 
 [dir="rtl"] .spectrum-InLineAlert-footer {
-
     text-align: left;
 }
 
 .spectrum-InLineAlert-footer {
     display: block;
-
     padding-top: 0.5rem;
 }
 
 .spectrum-InLineAlert-footer:empty {
     display: none;
-}
-
-[dir="ltr"] .spectrum-InLineAlert-footer .spectrum-Button {
-    margin-right: 0;
-}
-
-[dir="rtl"] .spectrum-InLineAlert-footer .spectrum-Button {
-    margin-left: 0;
 }
 
 [dir="ltr"] .spectrum-InLineAlert-footer .spectrum-Button {
@@ -124,55 +87,42 @@
     margin-right: 0.75rem;
 }
 
-.spectrum-InLineAlert {
-    background-color: var(--spectrum-inlinealert-neutral-background-color, var(--spectrum-global-color-gray-50));
-    color: var(--spectrum-inlinealert-neutral-text-color, var(--spectrum-global-color-gray-700));
-}
-
-.spectrum-InLineAlert-header {
-    color: var(--spectrum-inlinealert-neutral-title-text-color, var(--spectrum-global-color-gray-900));
-}
-
-.spectrum-InLineAlert-content {
-    color: var(--spectrum-inlinealert-neutral-text-color, var(--spectrum-global-color-gray-700));
-}
-
 .spectrum-InLineAlert--info {
-    border-color: var(--spectrum-inlinealert-info-border-color, var(--spectrum-semantic-informative-border-color));
+    border-color: rgb(20, 122, 243);
 }
 
 .spectrum-InLineAlert--info .spectrum-InLineAlert-icon {
-    color: var(--spectrum-inlinealert-info-icon-color, var(--spectrum-semantic-informative-icon-color));
+    color: rgb(0, 84, 182);
 }
 
 .spectrum-InLineAlert--help {
-    border-color: var(--spectrum-inlinealert-info-border-color, var(--spectrum-semantic-informative-border-color));
+    border-color: rgb(20, 122, 243);
 }
 
 .spectrum-InLineAlert--help .spectrum-InLineAlert-icon {
-    color: var(--spectrum-inlinealert-info-icon-color, var(--spectrum-semantic-informative-icon-color));
+    color: rgb(0, 84, 182);
 }
 
 .spectrum-InLineAlert--error {
-    border-color: var(--spectrum-inlinealert-error-border-color, var(--spectrum-semantic-negative-border-color));
+    border-color: rgb(234, 56, 41);
 }
 
 .spectrum-InLineAlert--error .spectrum-InLineAlert-icon {
-    color: var(--spectrum-inlinealert-error-icon-color, var(--spectrum-semantic-negative-icon-color));
+    color: rgb(180, 0, 0);
 }
 
 .spectrum-InLineAlert--success {
-    border-color: var(--spectrum-inlinealert-success-border-color, var(--spectrum-semantic-positive-border-color));
+    border-color: rgb(0, 143, 93);
 }
 
 .spectrum-InLineAlert--success .spectrum-InLineAlert-icon {
-    color: var(--spectrum-inlinealert-success-icon-color, var(--spectrum-semantic-positive-icon-color));
+    color: rgb(0, 101, 62);
 }
 
 .spectrum-InLineAlert--negative {
-    border-color: var(--spectrum-inlinealert-negative-border-color, var(--spectrum-semantic-notice-border-color));
+    border-color: rgb(246, 133, 17);
 }
 
 .spectrum-InLineAlert--negative .spectrum-InLineAlert-icon {
-    color: var(--spectrum-inlinealert-negative-icon-color, var(--spectrum-semantic-notice-icon-color));
+    color: rgb(203, 93, 0);
 }
