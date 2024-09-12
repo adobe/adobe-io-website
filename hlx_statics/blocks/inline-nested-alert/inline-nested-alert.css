@@ -1,0 +1,50 @@
+.InLineNestedAlert {
+  padding: 20px;
+  width: 760px;
+  border-radius: 4px;
+  min-height: 38px;
+}
+.InLineNestedAlert-Header{
+    width: fit-content;
+    font-size: 16px;
+}
+.InLineNestedAlert-error {
+  border: 2px solid rgb(203,93,0);
+}
+.InLineNestedAlert-warning{
+  border: 2px solid rgb(110, 110, 110);
+}
+.InLineNestedAlert-neutral{
+  border: 2px solid rgb(110, 110, 110);
+}
+.InLineNestedAlert-success {
+  border: 2px solid rgb(0, 143, 93);
+}
+.InLineNestedAlert-info,
+.InLineNestedAlert-help {
+  border: 2px solid rgb(20, 122, 243);
+}
+.InLineNestedAlert-default {
+  border: 2px solid rgb(110, 110, 110);
+}
+.info-icon, .help-icon, .success-icon, .warning-icon, .error-icon{
+  width: 30px;
+  height: 30px;
+}
+.InLineNestedAlert a{
+    text-decoration: none !important;
+    font-size: 16px;
+    color: rgb(0,84,182);
+}
+.InLineNestedAlert p{
+    font-size: 16px;
+    margin: 4px 0px;
+}
+.InLineNestedAlert a:hover{
+    text-decoration: underline !important;
+}
+@media screen and (max-width: 768px) {
+    .InLineNestedAlert {
+        width: auto !important;
+    }
+}
