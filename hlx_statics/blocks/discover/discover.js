@@ -1,4 +1,4 @@
-import { applyBkgColorOverride, applyWidthOverride } from '../../scripts/lib-adobeio.js';
+import { applyAnalyticHeaderOverride, applyBkgColorOverride, applyWidthOverride } from '../../scripts/lib-adobeio.js';
 
 /**
  * decorates the title
@@ -20,7 +20,8 @@ export default async function decorate(block) {
   //   discoverPosition.style.justifyContent = position;   
   // }
   applyBkgColorOverride(block);
-  applyWidthOverride(block);
+  applyAnalyticHeaderOverride(block);
+  // applyWidthOverride(block); //no longer needed
 
   Array.from(block.children).forEach(div => {
     const containsHeading = div.querySelector('h1, h2, h3, h4, h5, h6') !== null;
