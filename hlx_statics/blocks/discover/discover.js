@@ -21,7 +21,8 @@ export default async function decorate(block) {
   // }
   applyBkgColorOverride(block);
   applyAnalyticHeaderOverride(block);
-  // applyWidthOverride(block); //no longer needed
+
+  // applyWidthOverride(block); //no longer needed but still need to make the width 1280 in certain sizes
 
   Array.from(block.children).forEach(div => {
     const containsHeading = div.querySelector('h1, h2, h3, h4, h5, h6') !== null;
