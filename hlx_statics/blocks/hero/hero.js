@@ -102,7 +102,7 @@ export default async function decorate(block) {
     }
   });
 
-  if (blockImage.toLocaleLowerCase() === 'visible') {
+  if (blockImage?.toLocaleLowerCase() === 'visible') {
     heroWrapper.querySelectorAll('picture').forEach((picture) => {
       picture.style.setProperty('display', 'block', 'important');
     });
