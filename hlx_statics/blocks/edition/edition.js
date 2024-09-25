@@ -27,11 +27,15 @@ export default async function decorate(block) {
     contentElement.parentNode.replaceChild(spanElement, contentElement);
     const removeChildNode = document.querySelector('.edition > div > div > p');
 
-    if (removeChildNode) {
-        const anchorTag = removeChildNode.querySelector('a');
-        if (anchorTag) {
-            removeChildNode.parentNode.replaceChild(anchorTag, removeChildNode);
-            spanElement.appendChild(anchorTag);
-        }
+  if (removeChildNode) {
+    const anchorTag = removeChildNode.querySelector('a');
+    if (anchorTag) {
+      anchorTag.setAttribute('rel', 'noopener noreferrer');
+      anchorTag.setAttribute('target', '_blank');
+      anchorTag.removeAttribute('title');
+      anchorTag.setAttribute('aria-label', 'Visit external site XYZ');
+      removeChildNode.parentNode.replaceChild(anchorTag, removeChildNode);
+      spanElement.appendChild(anchorTag);
     }
+  }
 }
