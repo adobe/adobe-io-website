@@ -18,19 +18,6 @@ main div.table {
   width: 100%;
   max-width: 100%;
   border-collapse: collapse;
-  font-size: var(--body-font-size-xs);
-}
-
-@media (width >= 600px) {
-  .table table {
-    font-size: var(--body-font-size-s);
-  }
-}
-
-@media (width >= 900px) {
-  .table table {
-    font-size: var(--body-font-size-m);
-  }
 }
 
 .table table tbody tr {
@@ -53,9 +40,9 @@ main div.table {
 }
 
 /* striped variant */
-.table.striped tbody tr:nth-child(odd) {
+/* .table.striped tbody tr:nth-child(odd) {
   background-color: var(--overlay-background-color);
-}
+} */
 
 /* bordered variant */
 .table.bordered table th,
