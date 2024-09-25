@@ -23,7 +23,6 @@ function rearrangeLinks(block) {
  * @param {Element} block The hero block element
  */
 export default async function decorate(block) {
-
   block.setAttribute('daa-lh', 'hero');
   // Block decoration
   decorateLightOrDark(block, true);
@@ -40,7 +39,6 @@ export default async function decorate(block) {
     } else {
       h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
     }
-
   });
 
   block.querySelectorAll('picture source').forEach((picture) => {
@@ -72,48 +70,46 @@ export default async function decorate(block) {
     heroWrapper.querySelectorAll('.hero-container > div').forEach((herowrapper) => {
       Object.assign(herowrapper.style, {
         backgroundImage: `url(${backgroundImage})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
       });
-    })
+    });
     heroWrapper.querySelectorAll('.hero-container > div > div').forEach((herowrapper) => {
       Object.assign(herowrapper.style, {
         backgroundColor: 'transparent',
         width: '75%',
-        margin: 'auto'
+        margin: 'auto',
       });
-    })
+    });
   }
   if (fontColor) {
     block.querySelectorAll('h1, p, a, span').forEach((font) => {
       font.style.setProperty('color', fontColor, 'important');
-    })
+    });
   }
   block.querySelectorAll('img').forEach((img) => {
     if (blockImageWidth) {
       Object.assign(img.style, {
         width: blockImageWidth,
-        objectFit: 'contain'
-      })
-    }
-    else {
+        objectFit: 'contain',
+      });
+    } else {
       Object.assign(img.style, {
         width: '600px',
         height: '400px',
-        objectFit: 'contain'
-      })
+        objectFit: 'contain',
+      });
     }
-  })
+  });
 
-  if (blockImage.toLocaleLowerCase() === "visible") {
+  if (blockImage.toLocaleLowerCase() === 'visible') {
     heroWrapper.querySelectorAll('picture').forEach((picture) => {
-      picture.style.setProperty('display', "block", 'important');
+      picture.style.setProperty('display', 'block', 'important');
     });
     heroWrapper.querySelectorAll('main div.hero div:nth-child(2)').forEach((picture) => {
-      picture.style.setProperty('display', "block", 'important');
-    })
+      picture.style.setProperty('display', 'block', 'important');
+    });
   }
-
 
   applyAnalyticHeaderOverride(block);
 }
