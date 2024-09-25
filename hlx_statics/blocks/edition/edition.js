@@ -32,6 +32,7 @@ export default async function decorate(block) {
         if (anchorTag) {
             anchorTag.setAttribute('rel', 'noopener noreferrer');
             anchorTag.setAttribute('target', '_blank');
+            anchorTag.removeAttribute('title');
             removeChildNode.parentNode.replaceChild(anchorTag, removeChildNode);
             spanElement.appendChild(anchorTag);
         }
