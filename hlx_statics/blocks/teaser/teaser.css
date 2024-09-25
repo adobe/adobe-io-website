@@ -21,7 +21,8 @@ main .teaser-wrapper > .block > div {
 
 @media screen and (max-width: 1024px) {
   main .teaser-wrapper > .block > div {
-    margin: 0;
+    margin: 0 !important;
+    justify-content: center !important;
   }
 
   main .teaser-container .teaser > div > div {
