@@ -1,50 +1,59 @@
-.InLineNestedAlert {
+.inline-nested-alert-wrapper .InLineNestedAlert {
   padding: 20px;
   width: 760px;
   border-radius: 4px;
   min-height: 38px;
 }
-.InLineNestedAlert-Header{
-    width: fit-content;
-    font-size: 16px;
+
+.inline-nested-alert-wrapper .InLineNestedAlert-Header {
+  font-size: 16px;
 }
-.InLineNestedAlert-error {
-  border: 2px solid rgb(203,93,0);
+
+.inline-nested-alert-wrapper .InLineNestedAlert-error {
+  border: 2px solid rgb(203, 93, 0);
 }
-.InLineNestedAlert-warning{
+
+.inline-nested-alert-wrapper .InLineNestedAlert-warning,
+.inline-nested-alert-wrapper .InLineNestedAlert-neutral,
+.inline-nested-alert-wrapper .InLineNestedAlert-default {
   border: 2px solid rgb(110, 110, 110);
 }
-.InLineNestedAlert-neutral{
-  border: 2px solid rgb(110, 110, 110);
-}
-.InLineNestedAlert-success {
+
+.inline-nested-alert-wrapper .InLineNestedAlert-success {
   border: 2px solid rgb(0, 143, 93);
 }
-.InLineNestedAlert-info,
-.InLineNestedAlert-help {
+
+.inline-nested-alert-wrapper .InLineNestedAlert-info,
+.inline-nested-alert-wrapper .InLineNestedAlert-help {
   border: 2px solid rgb(20, 122, 243);
 }
-.InLineNestedAlert-default {
-  border: 2px solid rgb(110, 110, 110);
+
+.inline-nested-alert-wrapper .info-icon,
+.inline-nested-alert-wrapper .help-icon,
+.inline-nested-alert-wrapper .success-icon,
+.inline-nested-alert-wrapper .warning-icon,
+.inline-nested-alert-wrapper .error-icon {
+  width: 22px;
+  height: 22px;
 }
-.info-icon, .help-icon, .success-icon, .warning-icon, .error-icon{
-  width: 30px;
-  height: 30px;
+
+.inline-nested-alert-wrapper .InLineNestedAlert a {
+  text-decoration: none !important;
+  font-size: 16px;
+  color: rgb(0, 84, 182);
 }
-.InLineNestedAlert a{
-    text-decoration: none !important;
-    font-size: 16px;
-    color: rgb(0,84,182);
+
+.inline-nested-alert-wrapper .InLineNestedAlert p {
+  font-size: 16px;
+  margin: 4px 0;
 }
-.InLineNestedAlert p{
-    font-size: 16px;
-    margin: 4px 0px;
+
+.inline-nested-alert-wrapper .InLineNestedAlert a:hover {
+  text-decoration: underline !important;
 }
-.InLineNestedAlert a:hover{
-    text-decoration: underline !important;
-}
+
 @media screen and (max-width: 768px) {
-    .InLineNestedAlert {
-        width: auto !important;
-    }
+  .inline-nested-alert-wrapper .InLineNestedAlert {
+    width: auto;
+  }
 }
