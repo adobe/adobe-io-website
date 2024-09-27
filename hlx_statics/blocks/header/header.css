@@ -680,7 +680,7 @@ header .menu-btn {
   display: flex;
   gap: 5px;
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 768px) {
   .header-wrapper .spectrum-Menu-itemLabel{
     justify-content: space-between !important;
   }
