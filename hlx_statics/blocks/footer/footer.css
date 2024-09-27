@@ -179,15 +179,43 @@ footer .footer-legal p {
   }
 
   footer .footer-horizontal {
-    width: 75%;
+    width: 85%;
+  }
+
+  footer{
+    padding-left: 40px;
+    width: 85%;
+  }
+
+  footer h3{
+    font-size: 19px;
+  }
+
+  footer a{
+    font-size: 17px;
+  }
+
+  footer .footer-links-container-inner{
+    justify-content: unset;
   }
 
 }
 
 @media screen and (min-width : 768px) and (max-width : 1024px) {
+
+  footer{
+    padding-left: 40px;
+    width: 85%;
+  }
+  
   footer .footer-divider {
     display: none;
   }
+
+  footer .footer-links-container-inner{
+    justify-content: unset;
+  }
+
 }
 
 footer .footer-horizontal {
