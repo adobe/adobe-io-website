@@ -1,7 +1,6 @@
 import { readBlockConfig } from '../../scripts/lib-helix.js';
 import {
-  createTag,
-  setExpectedOrigin,
+  createTag
 } from '../../scripts/lib-adobeio.js';
 
 function buildFooter(html) {
