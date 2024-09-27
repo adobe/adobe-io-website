@@ -144,6 +144,10 @@ footer .footer-legal ul > li {
   margin-right: 32px;
 }
 
+footer .footer-divider {
+  display: block;
+}
+
 @media screen and (max-width: 768px) {
   footer .footer-legal {
     flex-direction: column;
@@ -207,7 +211,7 @@ footer .footer-legal p {
     padding-left: 40px;
     width: 85%;
   }
-  
+
   footer .footer-divider {
     display: none;
   }
