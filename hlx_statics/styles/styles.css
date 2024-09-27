@@ -854,3 +854,23 @@ main .heading6 h6 {
 .warning-icon{
   color: rgb(110, 110, 110);
 }
+
+.spectrum-Divider--sizeM {
+  --spectrum-divider-height: 2px;
+  --spectrum-divider-vertical-height: 2px;
+  --spectrum-divider-vertical-width: 2px;
+}
+
+.spectrum-Divider {
+  --spectrum-divider-vertical-height: 100%;
+  border: none;
+  border-radius: var(--spectrum-divider-height);
+  border-width: var(--spectrum-divider-height);
+  height: var(--spectrum-divider-height);
+  overflow: visible;
+  width: 100%;
+}
+
+.spectrum-Divider--sizeM{
+  background-color: rgb(213,213,213);
+}

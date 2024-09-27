@@ -162,6 +162,32 @@ footer .footer-legal p {
     display: block;
     margin-top: 16px;
   }
+
+  footer .footer-divider {
+    display: none;
+  }
+
+  footer .footer-links-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  footer .footer-legal ul {
+    flex-direction: column;
+  }
+
+  footer .footer-horizontal {
+    width: 75%;
+  }
+
+}
+
+@media screen and (min-width : 768px) and (max-width : 1024px) {
+  footer .footer-divider {
+    display: none;
+  }
 }
 
 footer .footer-horizontal {
