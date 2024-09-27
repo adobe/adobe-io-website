@@ -680,3 +680,12 @@ header .menu-btn {
   display: flex;
   gap: 5px;
 }
+@media screen and (max-width: 425px) {
+  .header-wrapper .spectrum-Menu-itemLabel{
+    justify-content: space-between !important;
+  }
+  .header-wrapper .spectrum-Menu-checkmark{
+     height: 20px !important;
+      width: 20px !important;
+  }
+}
