@@ -127,7 +127,7 @@ main .heading6 h6,
 main .heading6 h6 {
   & span a {
     opacity: 0;
-    transition: opacity var(--spectrum-global-animation-duration-100) ease-in-out;
+    transition: opacity 130ms ease-in-out;
 
     &:focus {
       opacity: 1;
@@ -142,12 +142,23 @@ main .heading6 h6 {
 main .heading4 h4,
 main .heading5 h5,
 main .heading6 h6 {
-  margin-top: var(--spectrum-global-dimension-size-400);
+  margin-top: 32px;
 
   &+ul,
   &+ol {
     margin-top: var(--spectrum-global-dimension-size-200);
   }
+}
+
+main .heading2 h2 > span {
+  margin-left : 8px !important;
+}
+
+main .heading3 h3 > span,
+main .heading4 h4 > span,
+main .heading5 h5 > span,
+main .heading6 h6 > span {
+  margin-left : 4px !important;
 }
 
 .spectrum-Heading--sizeXXL {
