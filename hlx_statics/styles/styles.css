@@ -868,7 +868,7 @@ main .heading6 h6 {
   border-width: var(--spectrum-divider-height);
   height: var(--spectrum-divider-height);
   overflow: visible;
-  width: 2px;
+  width: 2px !important;
 }
 
 .spectrum-Divider--sizeM{
