@@ -855,18 +855,11 @@ main .heading6 h6 {
   color: rgb(110, 110, 110);
 }
 
-.spectrum-Divider--sizeM {
-  --spectrum-divider-height: 2px;
-  --spectrum-divider-vertical-height: 2px;
-  --spectrum-divider-vertical-width: 2px;
-}
-
 .spectrum-Divider {
-  --spectrum-divider-vertical-height: 100%;
   border: none;
-  border-radius: var(--spectrum-divider-height);
-  border-width: var(--spectrum-divider-height);
-  height: var(--spectrum-divider-height);
+  border-radius: 2px;
+  border-width: 2px;
+  height: 2px;
   overflow: visible;
   width: 2px !important;
 }
