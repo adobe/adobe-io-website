@@ -1,4 +1,4 @@
-import { createTag, removeEmptyPTags } from '../../scripts/lib-adobeio.js';
+import { applyAnalyticHeaderOverride, applySectionTitle, createTag, removeEmptyPTags } from '../../scripts/lib-adobeio.js';
 import {
   createOptimizedPicture,
 } from '../../scripts/lib-helix.js';
@@ -42,4 +42,6 @@ export default async function decorate(block) {
   ul.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
   block.textContent = '';
   block.append(ul);
+  applyAnalyticHeaderOverride(block);
+  applySectionTitle(block);
 }
