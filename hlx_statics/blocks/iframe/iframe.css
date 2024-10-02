@@ -18,7 +18,7 @@ main div.iframe-wrapper {
   
   main div.iframe-container > div{
     max-width: 640px;
-    padding: 80px 32px;
+    padding-top: 16px;
     margin: auto;
   }
   
