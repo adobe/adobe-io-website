@@ -1,2 +1,4 @@
 mountpoints:
-  /: https://drive.google.com/drive/folders/1cV6zhxBY6zrAAqA_HalWeDAH4mPloY7T
+  /:
+    url: https://53444-842orangechinchilla.adobeioruntime.net/api/v1/web/md2markup/main/
+    type: markup
