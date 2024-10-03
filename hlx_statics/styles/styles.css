@@ -878,3 +878,9 @@ main .heading6 h6 > span {
 .spectrum-Divider--sizeM{
   background-color: rgb(213,213,213);
 }
+
+main .default-content-wrapper {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
