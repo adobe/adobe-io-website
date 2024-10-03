@@ -1,11 +1,12 @@
 main .heading3 h3 {
-    color: var(--spectrum-global-color-gray-800);
-    margin-top: var(--spectrum-global-dimension-size-350);
-    margin-bottom: calc(-1 * var(--spectrum-global-dimension-size-50));
-    
+    color: rgb(75, 75, 75);
+    margin-top: 28px;
+    margin-bottom: 4px;
+
     & + ul,
     & + ol {
-      margin-top: var(--spectrum-global-dimension-size-250);
+      margin-top: 20px;
     }
 }
+
 
