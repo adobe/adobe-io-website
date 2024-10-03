@@ -30,7 +30,7 @@ const getDefaultEmbed = (url, loop, controls, vidTitle) => {
 
 const embedIG = (url, loop, controls, vidTitle) => {
   const link = url.href.split('?')[0] + 'embed/captioned';
-  const embedHTML = `<div style="left: 0; width: 75vw; height: 45vh; max-height: fit-content; position: relative; padding-bottom: 56.25%;">
+  const embedHTML = `<div class="igReel">
   <iframe src="${link}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
     scrolling="no" allow="encrypted-media" title=${vidTitle ? vidTitle : `Content from ${url.hostname}`} loading="lazy">
   </iframe>

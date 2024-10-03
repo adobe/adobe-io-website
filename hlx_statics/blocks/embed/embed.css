@@ -7,8 +7,26 @@ main div.embed-container {
   
   main div.embed-container > div{
     max-width: 640px;
-    padding: 80px 32px;
+    padding: 0px 32px;
     margin: auto;
+  }
+
+  @media screen and (min-width: 700px) {
+  main div.embed-container .igReel {
+    left: 0; 
+    padding:0; 
+    width: 356px !important;
+    aspect-ratio: 9 / 13;
+    position: relative; 
+  }
+  }
+
+  main div.embed-container .igReel {
+    left: 0; 
+    padding:0; 
+    width: 432px;
+    aspect-ratio: 9 / 13;
+    position: relative; 
   }
   
   main div.embed-container p {
@@ -17,7 +35,7 @@ main div.embed-container {
   }
   
   main div.embed {
-    margin-top: 32px;
+    /* margin-top: 32px; */
     max-width: 640px;
     display: flex;
     justify-content: center;
