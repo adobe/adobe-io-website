@@ -865,3 +865,16 @@ main .heading6 h6 > span {
 .warning-icon{
   color: rgb(110, 110, 110);
 }
+
+.spectrum-Divider {
+  border: none;
+  border-radius: 2px;
+  border-width: 2px;
+  height: 2px;
+  overflow: visible;
+  width: 2px !important;
+}
+
+.spectrum-Divider--sizeM{
+  background-color: rgb(213,213,213);
+}
