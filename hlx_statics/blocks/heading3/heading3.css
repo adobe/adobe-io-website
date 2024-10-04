@@ -9,4 +9,7 @@ main .heading3 h3 {
     }
 }
 
-
+main div.heading3 > div {
+  max-width: 1280px;
+  margin: 0 auto;
+}

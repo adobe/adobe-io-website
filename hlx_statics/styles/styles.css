@@ -109,12 +109,12 @@ body.sidekick-library #onetrust-consent-sdk {
 main .inline-code {
   font-family: Courier, monospace;
   font-size: 0.98rem;
-  background-color: rgb(248,248,248);
+  background-color: rgb(248, 248, 248);
   padding: 0 2px;
   margin: 0;
   display: inline-block;
   min-width: auto;
-  border: 0.8px solid rgb(213,213,213);
+  border: 0.8px solid rgb(213, 213, 213);
   border-radius: 3px;
 }
 
@@ -142,7 +142,8 @@ main .heading6 h6 {
 main .heading4 h4,
 main .heading5 h5,
 main .heading6 h6 {
-  margin-top: 32px;
+  max-width: 1280px;
+  margin: 32px auto 0 auto;
 
   &+ul,
   &+ol {
@@ -150,15 +151,15 @@ main .heading6 h6 {
   }
 }
 
-main .heading2 h2 > span {
-  margin-left : 8px !important;
+main .heading2 h2>span {
+  margin-left: 8px !important;
 }
 
-main .heading3 h3 > span,
-main .heading4 h4 > span,
-main .heading5 h5 > span,
-main .heading6 h6 > span {
-  margin-left : 4px !important;
+main .heading3 h3>span,
+main .heading4 h4>span,
+main .heading5 h5>span,
+main .heading6 h6>span {
+  margin-left: 4px !important;
 }
 
 .spectrum-Heading--sizeXXL {
@@ -651,14 +652,16 @@ main .heading6 h6 > span {
   opacity: 1;
 }
 
-.spectrum-Menu-checkmark{
+.spectrum-Menu-checkmark {
   padding-left: 8px !important;
   margin-top: 6px !important;
 }
-.spectrum-UIIcon-Checkmark100{
+
+.spectrum-UIIcon-Checkmark100 {
   height: 10px !important;
   width: 10px !important;
 }
+
 .spectrum-ActionButton {
   border-radius: 4px;
   border: 1px solid rgb(177, 177, 177);
@@ -829,9 +832,11 @@ main .heading6 h6 > span {
   height: 22px;
   width: 22px;
 }
+
 .spectrum-Link--quiet {
   text-decoration: none !important;
 }
+
 .spectrum-Link {
   background-color: transparent;
   font-size: 14px;
@@ -841,28 +846,36 @@ main .heading6 h6 > span {
   transition: color .13s ease-in-out;
   color: rgb(0, 84, 182) !important;
 }
+
 .spectrum-Link--quiet:hover {
   text-decoration: underline !important;
 }
-.spectrum-Link--primary{
+
+.spectrum-Link--primary {
   color: rgb(0, 84, 182) !important;
 }
-.spectrum-Link--secondary{
+
+.spectrum-Link--secondary {
   color: inherit !important;
 }
-.info-icon{
+
+.info-icon {
   color: rgb(20, 122, 243);
 }
-.help-icon{
+
+.help-icon {
   color: rgb(0, 84, 182);
 }
-.success-icon{
+
+.success-icon {
   color: rgb(0, 101, 62);
 }
-.error-icon{
-  color: rgb(203,93,0);
+
+.error-icon {
+  color: rgb(203, 93, 0);
 }
-.warning-icon{
+
+.warning-icon {
   color: rgb(110, 110, 110);
 }
 
@@ -872,15 +885,21 @@ main .heading6 h6 > span {
   border-width: 2px;
   height: 2px;
   overflow: visible;
-  width: 2px !important;
+  width: 2px;
 }
 
-.spectrum-Divider--sizeM{
-  background-color: rgb(213,213,213);
+.spectrum-Divider--sizeM {
+  background-color: rgb(213, 213, 213);
 }
 
 main .default-content-wrapper {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
+  font-size: 16px;
+}
+
+main .default-content-wrapper a {
+  color: rgb(0, 84, 182);
+  text-decoration: unset;
 }

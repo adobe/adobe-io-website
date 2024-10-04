@@ -126,3 +126,17 @@
 .spectrum-InLineAlert--negative .spectrum-InLineAlert-icon {
     color: rgb(203, 93, 0);
 }
+main .inlinealert{
+    max-width: 1280px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+main .inlinealert>div{
+    width: 100%;
+}
+
+main .inlinealert a {
+    color: rgb(0, 84, 182);
+    text-decoration: unset;
+}
