@@ -1,8 +1,20 @@
 main .heading1 h1 {
-  & + p {
+  &+p {
     font-size: var(--spectrum-global-dimension-size-250);
     color: var(--spectrum-global-color-gray-600);
     margin-bottom: var(--spectrum-global-dimension-size-500);
     line-height: 2rem;
   }
+}
+
+main .heading1-wrapper {
+  max-width: 1280px;
+  margin: auto;
+}
+
+main .header-content {
+  font-size: 20px;
+  color: rgb(109, 109, 109);
+  margin-bottom: 40px;
+  line-height: 2rem;
 }
