@@ -70,7 +70,7 @@ export default async function decorate(block) {
 
     card.querySelectorAll('.three-card > div').forEach((font, index) => {
       if (index === 1) {
-        font.style.setProperty('font-size', 'var(--spectrum-global-dimension-font-size-200)');
+        font.style.setProperty('font-size', '16px');
       }
     });
   });
