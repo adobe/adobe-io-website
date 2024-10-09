@@ -190,8 +190,8 @@ export default async function decorate(block) {
 
   // handle swipe gestures
   function handleSwipe() {
-    const nextButton = block.querySelector(".slide-arrow-forward");
-    const prevButton = block.querySelector(".slide-arrow-previous");
+    const nextButton = block.querySelector(".video-slide-arrow-forward");
+    const prevButton = block.querySelector(".video-slide-arrow-previous");
 
     if (touchEndX < touchStartX) {
       // Swiped left, trigger next slide
