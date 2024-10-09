@@ -69,6 +69,7 @@ main div.columns-container.section[data-list-class="checkmark"] ul > li:before{
 @media screen and (max-width: 1280px) {
     main div.second-column div.product-link-container, main div.columns div.second-column div.button-group-container {
         justify-content: center;
+        align-items: center;
     }
 }
 
@@ -161,8 +162,12 @@ main div.columns div.listing ul {
 
 main div.second-column div.product-link-container {
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    /* gap:  1rem; */
+    padding:0;
+    margin: 0;
 }
 
 @media screen and (max-width:768px) {
@@ -179,6 +184,8 @@ main div.second-column div.product-link-container p.icon-container {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin-top: 16px;
+    margin-bottom: 0px;
 }
 
 main div.second-column div.product-link-container img {

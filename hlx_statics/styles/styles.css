@@ -600,6 +600,7 @@ main .heading6 h6 {
 
 .spectrum-Button.spectrum-Button--fill.spectrum-Button--accent:not(.spectrum-Button--staticWhite):not(.spectrum-Button--staticBlack):not(:disabled) {
   background-color: rgb(4, 105, 227);
+  color: white;
 }
 
 .spectrum-Button.spectrum-Button--outline.spectrum-Button--secondary:not(.spectrum-Button--staticWhite):not(.spectrum-Button--staticBlack):not(:disabled) {

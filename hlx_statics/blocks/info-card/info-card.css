@@ -41,6 +41,29 @@ main div.info-card > ul > li img {
   object-fit: cover;
 }
 
+main div.info-card div.icon-div p.icon-p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 16px;
+}
+
+main div.info-card p.icon-p img {
+  height: 32px;
+  width: 32px;
+  object-fit: contain;
+}
+
+main div.info-card p.icon-p svg {
+  height: 32px;
+  width: 32px;
+  object-fit: contain;
+}
+
+main div.info-card p {
+  color: rgb(110, 110, 110);
+}
+
 @media screen and (min-width : 350px) and (max-width : 400px) {
   main div.info-card > ul > li img {
     width: 100%;
