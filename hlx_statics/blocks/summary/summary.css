@@ -10,7 +10,27 @@ main div.summary {
   width: 100%;
 }
 
-@media screen and (max-width: 768px) {
+main div.summary > div {
+  box-sizing: border-box;
+  padding: 64px;
+  width: calc(7 * 100% / 12);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  /* left: 0;
+  display: flex; */
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+}
+
+@media screen and (max-width: 1280px) {
+  main div.summary > div {
+    padding: 32px;
+  } 
+}
+
+@media screen and (max-width: 1000px) {
   main div.summary picture {
     height: 350px;
     width: 100%;
@@ -21,24 +41,19 @@ main div.summary {
   }
 }
 
-main div.summary > div {
-  box-sizing: border-box;
-  padding: 64px;
-  width: calc(7 * 100% / 12);
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: left;
-  justify-content: center;
-  text-align: left;
-}
-
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 415px) {
   main div.summary > div {
-    width: auto;
+    box-sizing: border-box;
     padding: 32px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    /* left: 0;
+    display: flex; */
+    align-items: center;
+    justify-content: center;
+    text-align: left;
   }
 }
 
