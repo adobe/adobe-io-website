@@ -72,7 +72,7 @@ main div.video-carousel .right-container {
     text-align: center;
   }
 
-  main div.carousel .slide-arrow {
+  main div.video-carousel .video-slide-arrow {
     visibility: hidden;
   }
 }
