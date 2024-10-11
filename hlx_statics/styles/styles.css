@@ -29,11 +29,11 @@ body {
   --spectrum-card-body-padding-bottom: 20px;
   --spectrum-card-body-padding-top: 20px;
   --spectrum-card-subtitle-padding-right: 8px;
-  --spectrum-card-body-content-min-height: 14px;
+  --spectrum-card-body-content-min-height: 16px;
   --spectrum-card-body-content-margin-top: 6px;
   --spectrum-global-dimension-size-225: 22px;
   font-family: adobe-clean, "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Trebuchet MS", "Lucida Grande", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .spectrum,
@@ -727,7 +727,7 @@ main .heading6 h6 > span {
 }
 
 .spectrum-ActionButton-label {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .spectrum-ActionButton:disabled,
@@ -834,7 +834,7 @@ main .heading6 h6 > span {
 }
 .spectrum-Link {
   background-color: transparent;
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
   outline: none;
   text-decoration: underline;

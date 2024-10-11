@@ -1,4 +1,4 @@
-import { applyBkgColorOverride, applyWidthOverride } from '../../scripts/lib-adobeio.js';
+import { applyBkgColorOverride, applyWidthOverride, applyAnalyticHeaderOverride } from '../../scripts/lib-adobeio.js';
 
 /**
  * decorates the title
@@ -14,13 +14,10 @@ export default async function decorate(block) {
   });
   block.parentElement.style.display = 'flex';
   block.parentElement.style.justifyContent = 'center';
-  // const position = block?.parentElement?.parentElement?.getAttribute('data-position');
-  // if(position) {
-  //   const discoverPosition = document.querySelector('.discover-wrapper');
-  //   discoverPosition.style.justifyContent = position;   
-  // }
+
   applyBkgColorOverride(block);
   applyWidthOverride(block);
+  applyAnalyticHeaderOverride(block);
 
   Array.from(block.children).forEach(div => {
     const containsHeading = div.querySelector('h1, h2, h3, h4, h5, h6') !== null;
