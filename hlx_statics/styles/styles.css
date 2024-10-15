@@ -903,3 +903,11 @@ main .default-content-wrapper a {
   color: rgb(0, 84, 182);
   text-decoration: unset;
 }
+
+main .default-content-wrapper a:hover{
+  text-decoration: underline;
+}
+
+main .default-content-wrapper strong{
+  color: rgb(34,34,34);
+}
