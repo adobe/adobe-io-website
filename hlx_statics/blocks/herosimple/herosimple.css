@@ -29,7 +29,6 @@ main div.herosimple > div > p{
 main div.herosimple h1 {
   color: rgb(255, 255, 255);
   margin-top: 0;
-  margin-bottom: 16px;
   font-size: 36px !important;
 }
 
@@ -39,8 +38,16 @@ main div.herosimple-container {
 
 @media screen and (max-width: 1024px) {
   main div.herosimple {
-
+    height: auto;
     padding: 50px 0px;
+  }
+  main div.herosimple > div{
+    max-width: 800px;
+    margin: auto;
+    margin-left: 90px;
+  }
+  main div.herosimple > div > div, main div.herosimple > div > p{
+    width: calc(5* 100% / 6);
   }
 }
 
@@ -51,9 +58,7 @@ main div.herosimple-container {
   }
 }
 
-
 main .herosimple p.spectrum-Body--sizeL {
-  margin-top: -20px;
   font-size: 20px;
 }
 
