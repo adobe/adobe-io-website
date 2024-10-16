@@ -57,7 +57,7 @@ export default async function decorate(block) {
         let classVariant = getVariant(block.parentElement.parentElement.classList) ;
         if(classVariant) {
             const inlineClass = classVariant.class ? classVariant.class : 'spectrum-InLineAlert--info';
-            const inlineIcon = classVariant.class ? classVariant.icon : infoIcon;
+            const inlineIcon = classVariant.icon ? classVariant.icon : infoIcon;
             inlineAlert.classList.add(inlineClass);
             inlineAlert.insertAdjacentHTML("afterbegin", inlineIcon);
         }
