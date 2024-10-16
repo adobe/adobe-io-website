@@ -1,17 +1,19 @@
-.edition > div > div {
-    border-radius: 4px;
-    padding: 5px 8px;
-    width: fit-content;
-    margin-bottom: 10px;
-  }
-  a {
-    margin-left: 3px;
-    color: white;
-  }
-  .edition > div > div:hover {
-    filter: brightness(75%);
-  }
-  .edition > div > div:first-child {
-    cursor: default;
-  }
-  
+.edition>div>div {
+  border-radius: 4px;
+  padding: 5px 8px;
+  width: fit-content;
+  margin-bottom: 10px;
+}
+
+.edition-wrapper a {
+  margin-left: 3px;
+  color: white;
+}
+
+.edition>div>div:hover {
+  filter: brightness(75%);
+}
+
+.edition>div>div:first-child {
+  cursor: default;
+}

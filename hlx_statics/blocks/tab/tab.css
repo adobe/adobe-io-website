@@ -155,6 +155,16 @@ main .tab-container .line-numbers-rows>span {
         display: block !important;
     }
 
+    main .tab-container div.code-toolbar>.toolbar>.toolbar-item>button {
+        padding: 0;
+        height: 25px;
+        right: 0px;
+    }
+
+    main .tab-container .custom-tab-header{
+        font-size: 13px;
+    }
+
     main .tab-container .innerTab>div:first-child {
         flex-direction: column;
         align-items: center;

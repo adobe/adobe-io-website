@@ -21,6 +21,7 @@ import {
   buildCodes,
   buildEmbeds,
   buildHeadings,
+  createTag,
   toggleScale,
   decorateAnchorLink,
   decorateInlineCodes,
@@ -140,6 +141,17 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     await waitForLCP(LCP_BLOCKS);
+  }
+
+  if (getMetadata('template') === 'documentation') {
+    main.style.display = 'grid';
+    main.style.gridTemplateAreas = '"sidenav main" "sidenav footer"';
+    let sideNavDiv = createTag ('div', {class: 'section side-nav-container', style: 'grid-area: sidenav'});
+    let sideNavWrapper = createTag('div', {class: 'side-nav-wrapper'});
+    let sideNavBlock = createTag('div', {class: 'side-nav block', 'data-block-name': 'side-nav'});
+    sideNavWrapper.append(sideNavBlock);
+    sideNavDiv.append(sideNavWrapper);
+    main.prepend(sideNavDiv);
   }
 }
 
@@ -334,10 +346,7 @@ async function loadLazy(doc) {
   decorateIcons(main);
   loadFooter(doc.querySelector('footer'));
 
-  if (document.body.classList.contains('documentation')) {
-    main.style.display = 'grid';
-    main.style.gridTemplateAreas = '"sidenav main" "sidenav footer"';
-
+  if (getMetadata('template') === 'documentation') {
     const sidenav = main.querySelector('.side-nav-container');
     if (sidenav) {
       // set whatever is the next section next to sidenav to be the documentation main content area
