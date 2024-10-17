@@ -60,6 +60,7 @@ main div.summary > div {
 main div.summary h2 {
   margin-top: 0 !important;
   margin-bottom: 16px !important;
+  color: white;
 }
 
 main div.summary p {
@@ -74,4 +75,8 @@ main div.summary p a:hover {
 
 main div.summary img {
   object-fit: cover;
+}
+
+main div.summary .spectrum-Button {
+  border-color: white !important;
 }
