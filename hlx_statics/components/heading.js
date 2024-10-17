@@ -41,7 +41,7 @@ export default function decorateHeading({ level, block }) {
     }
 
     if (isHeading2) {
-      const divider = createDivider({ size: 'S', style: { 'margin-bottom': 'calc(-1 * var(--spectrum-global-dimension-size-75)' } });
+      const divider = createDivider({ size: 'S', style: { 'margin-bottom': 'calc(-1 * var(--spectrum-global-dimension-size-75)' , 'width' : '100%' } });
       heading.parentElement.insertBefore(divider, heading.nextSibling);
     }
   });

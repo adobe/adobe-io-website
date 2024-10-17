@@ -9,6 +9,8 @@ function NeutralMedium() {
         <svg class="spectrum-Icon"></svg>`
 }
 
+const infoIcon = `<svg class="spectrum-Icon spectrum-UIIcon-InfoMedium spectrum-InLineAlert-icon" focusable="false" aria-hidden="true" style="width: 22px; height: 22px;"><use href="/hlx_statics/icons/info.svg#icon-info"></use></svg>`
+
 function getVariant(classList) {
     // variants: neutral, info, help, success, warning, error
     let classVariant = {
@@ -21,7 +23,7 @@ function getVariant(classList) {
     }
     if(classList.contains('info')){
         classVariant.class = 'spectrum-InLineAlert--info';
-        classVariant.icon = `<svg class="spectrum-Icon spectrum-UIIcon-InfoMedium spectrum-InLineAlert-icon" focusable="false" aria-hidden="true" style="width: 22px; height: 22px;"><use href="/hlx_statics/icons/info.svg#icon-info"></use></svg>`;
+        classVariant.icon = infoIcon;
     }
     if(classList.contains('help')){
         classVariant.class = 'spectrum-InLineAlert--help';
@@ -53,10 +55,12 @@ export default async function decorate(block) {
         inlineAlert.classList.add('spectrum-InLineAlert'); 
         // figure out variant based on parent element or on the block itself
         // TODO: may need to refactor this logic
-        let classVariant = getVariant(block.parentElement.parentElement.classList) ;
+        let classVariant = getVariant(block.parentElement.parentElement.classList);
         if(classVariant) {
-            inlineAlert.classList.add(classVariant.class);
-            inlineAlert.insertAdjacentHTML("afterbegin", classVariant.icon);
+            const inlineClass = classVariant.class ? classVariant.class : 'spectrum-InLineAlert--info';
+            const inlineIcon = classVariant.class ? classVariant.icon : infoIcon;
+            inlineAlert.classList.add(inlineClass);
+            inlineAlert.insertAdjacentHTML("afterbegin", inlineIcon);
         }
 
         // need to wrap content into p

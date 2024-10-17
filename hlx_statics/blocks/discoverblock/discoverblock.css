@@ -1,0 +1,94 @@
+.discover {
+    display: flex;
+    flex-wrap: wrap;
+}
+.discoverblock{
+    width: 100%;
+}
+main .all-discoverblock .discover-nonheading-child-container  div.button-container {
+    padding-top: 23.4px;
+}
+
+main .all-discoverblock .discover-nonheading-child-container  div{
+    padding-top: 5px;
+}
+
+.discover-child-container {
+    /* width: 25%; */
+    /* padding-right: 30px; */
+    box-sizing: border-box;
+    /* margin-top: 28px; */
+}
+
+.discover-child-container a {
+    font-size: 16px;
+    text-decoration: none;
+    color: #0054b6;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+}
+
+.discover img {
+    width: 100px;
+    height: 100px;
+}
+
+.discover-child-inner-container {
+    display: flex;
+    gap: 30px;
+}
+
+.discover-img-child-container {
+    width: 50%;
+}
+
+main .all-discoverblock{
+    width: 1280px;
+    margin: auto;
+    font-size: 16px;
+}
+
+@media screen and (max-width : 1300px) {
+    .discover {
+        width: 768px !important;
+    }
+
+    .discover-child-container {
+        width: 33.3%;
+    }
+}
+
+@media screen and (max-width : 800px) {
+    .discover {
+        width: 600px !important;
+    }
+
+    .discover-child-container {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width : 650px) {
+    .discover {
+        width: 370px !important;
+    }
+
+    .discover-child-container {
+        width: 100%;
+    }
+}
+.all-discoverblock{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+ .discoverblock-wrapper{
+    max-width: 280px;
+ }
+ @media screen and (max-width : 1024px) {
+    .all-discoverblock {
+        grid-template-columns: 1fr;
+    }
+}
