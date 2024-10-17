@@ -1,66 +1,74 @@
 main div.herosimple-wrapper {
-    width: 100%;
-  }
+  width: 100%;
+}
+main div.herosimple {
+  background-color: rgb(29, 125, 238);
+  height: 272px;
+  overflow: hidden;
+  color: rgb(255, 255, 255);
+  position: relative;
+}
+
+main div.herosimple > div {
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+main div.herosimple > div > div{
+  width: calc(5* 100% / 12);
+}
+
+main div.herosimple > div > p{
+  width: calc(5* 100% / 12);
+  color: rgb(255, 255, 255);
+}
+
+main div.herosimple h1 {
+  color: rgb(255, 255, 255);
+  margin-top: 0;
+  font-size: 36px !important;
+}
+
+main div.herosimple-container {
+  padding: 0;
+}
+
+@media screen and (max-width: 1024px) {
   main div.herosimple {
-    background-color: rgb(29, 125, 238);
-    height: 272px;
-    overflow: hidden;
-    color: rgb(255, 255, 255);
-    position: relative;
+    height: auto;
+    padding: 50px 0px;
   }
-  
-  main div.herosimple > div {
-    max-width: 1280px;
-    margin: 0 auto;
-    margin-top: 40px;
+  main div.herosimple > div{
+    max-width: 800px;
+    margin: auto;
+    margin-left: 90px;
   }
-  
-  main div.herosimple > div > div{
-    width: calc(5* 100% / 12);
+  main div.herosimple > div > div, main div.herosimple > div > p{
+    width: calc(5* 100% / 6);
   }
-  
-  main div.herosimple > div > p{
-    width: calc(5* 100% / 12);
-    color: rgb(255, 255, 255);
+}
+
+@media screen and (max-width: 768px) {
+  main div.herosimple {
+    height: auto;
+    padding: 32px;
   }
-  
-  main div.herosimple h1 {
-    color: rgb(255, 255, 255);
-    margin-top: 0;
-    margin-bottom: 16px;
-  }
-  
-  main div.herosimple-container {
-    padding: 0;
-  }
-  
-  @media screen and (max-width: 1024px) {
-    main div.herosimple {
-  
-      padding: 50px 0px;
-    }
-  }
-  
-  @media screen and (max-width: 768px) {
-    main div.herosimple {
-      height: auto;
-      padding: 32px;
-    }
-  }
-  
-  
-  main .herosimple p.spectrum-Body--sizeL {
-    margin-top: -20px;
-    font-size: 20px;
-  }
-  
-  main .herosimple h1 + p.last-of-type {
-    margin-bottom: 0 !important;
-  }
-  
-  main .herosimple .herosimple-button-container {
-    display: flex;
-    margin-top: 24px;
-    gap: 16px;
-    margin-bottom: 10px;
-  }
+}
+
+main .herosimple p.spectrum-Body--sizeL {
+  font-size: 20px;
+}
+
+main .herosimple h1 + p.last-of-type {
+  margin-bottom: 0 !important;
+}
+
+main .herosimple .herosimple-button-container {
+  display: flex;
+  margin-top: 24px;
+  gap: 16px;
+  margin-bottom: 10px;
+}
