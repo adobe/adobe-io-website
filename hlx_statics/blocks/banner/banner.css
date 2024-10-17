@@ -2,14 +2,22 @@ main div.banner-container {
     background-color: rgb(9, 90, 186);
   }
   
-  main div.banner {
-    width: 90%;
-    text-align: left;
-    height: 210px;
-    margin: 0 auto;
-  }
+main div.banner {
+  width: 90%;
+  text-align: left;
+  height: 210px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+main div.banner > div > div {
+  display: flex;
+  align-items: center;
+  height: 210px;
+  width: 100%;
+}
   
-  main div.banner h1 {
-    line-height: 210px;
-    color: rgb(255, 255, 255);
-  }
+main div.banner h1 {
+  color: rgb(255, 255, 255);
+}
