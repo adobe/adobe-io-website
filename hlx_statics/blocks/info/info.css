@@ -21,12 +21,15 @@ main div.info {
     visibility: visible;
   }
 
-
-main div.info code {
+  main div.info code {
     display: inline-block;
     min-width: auto;
     background-color: rgb(248, 248, 248);
     padding: 0 4px;
     margin: 0;
   }
-  
+
+  main div.info .info-divider {
+    border-top: 4px solid rgb(75, 75, 75);
+    border-radius: 5px;
+  }

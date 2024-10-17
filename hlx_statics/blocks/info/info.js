@@ -19,7 +19,7 @@ export default async function decorate(block) {
   block.querySelectorAll('h2').forEach((h2) => {
     h2.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'info-header');
     decorateAnchorLink(h2);
-    const hr = createTag('hr', { class: 'spectrum-Divider spectrum-Divider--sizeL' });
+    const hr = createTag('hr', { class: 'info-divider' });
     h2.after(hr);
   });
   block.querySelectorAll('p').forEach((p) => {
