@@ -21,13 +21,14 @@ export default async function decorate(block) {
   const navigationLinksContainer = createTag('div');
   navigationLinks.append(navigationLinksContainer);
 
-  const navigationLinksUl = createTag('ul', {role: 'tree'});
+  const navigationLinksUl = createTag('ul', {role: 'tree', class: 'spectrum-SideNav spectrum-SideNav--multiLevel'});
   navigationLinksUl.setAttribute('aria-label', 'Table of contents');
   navigationLinksContainer.append(navigationLinksUl);
 
   const resp = await fetch(`${navPath}.plain.html`);
 
   // TODO can be smarter on when to grab the nav 
+  // should request once and save to local storage
   if (resp.ok) {
     const html = await resp.text();
 
@@ -50,4 +51,12 @@ export default async function decorate(block) {
     sideNavContainer.style.gridArea = 'sidenav';
   }
   block.append(navigationLinks);
+
+  block.querySelectorAll('li').forEach((li) =>{
+    li.classList.add('spectrum-SideNav-item');
+  });
+
+  block.querySelectorAll('a').forEach((a) =>{
+    a.classList.add('spectrum-SideNav-itemLink');
+  });
 }

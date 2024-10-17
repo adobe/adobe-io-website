@@ -1,3 +1,54 @@
 main div.side-nav {
     width: 256px;
 }
+
+.spectrum-SideNav {
+    --spectrum-sidenav-item-padding-y: 5px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.spectrum-SideNav-item {
+    list-style-type: none;
+    margin-bottom: 4px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 4px;
+}
+
+.spectrum-SideNav-itemLink {
+    background-color: transparent;
+    color: rgb(34, 34, 34);
+    align-items: center;
+    border-radius: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    hyphens: auto;
+    justify-content: left;
+    min-height: 32px;
+    padding: 5px var(--spectrum-sidenav-item-padding-x, 12px);
+    position: relative;
+    text-decoration: none;
+    transition: background-color 130ms, .13s ease-out, color 130ms, .13s ease-out;
+    width: 100%;
+    word-break: break-word;
+}
+
+.spectrum-SideNav-item.is-selected>.spectrum-SideNav-itemLink {
+    background-color: rgba(0,0,0,.06);
+    color: rgb(0, 0, 0)
+}
+
+.spectrum-SideNav--multiLevel .spectrum-SideNav-itemLink {
+    font-weight: 700;
+}
+
+.spectrum-SideNav--multiLevel .spectrum-SideNav {
+    margin: 0;
+    padding: 0;
+}
