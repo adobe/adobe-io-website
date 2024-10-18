@@ -15,6 +15,7 @@ import {
   getMetadata,
   toCamelCase,
   toClassName,
+  githubActionsBlock,
 } from './lib-helix.js';
 
 import {
@@ -393,6 +394,7 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed(document);
+  githubActionsBlock(document);
 }
 
 loadPage();
