@@ -23,6 +23,10 @@ div.carousel picture img {
     text-align: center;
   }
 
+  main div.carousel div.left-container {
+    z-index: -1;
+  }
+
   main div.carousel .slide-arrow {
     visibility: hidden;
   }
