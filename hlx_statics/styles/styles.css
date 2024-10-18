@@ -911,3 +911,27 @@ main .default-content-wrapper a:hover{
 main .default-content-wrapper strong{
   color: rgb(34,34,34);
 }
+
+main .github-actions-wrapper{
+  padding: 20px 20px 20px 0px;
+}
+
+main .github-actions-block{
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+main .action-buttons{
+  display: flex;
+  gap: 10px;
+  text-decoration: none;
+}
+
+main .action-buttons svg{
+  color: black !important;
+}
+
+main .action-buttons div{
+  color: black !important;
+}
