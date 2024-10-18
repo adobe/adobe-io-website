@@ -597,6 +597,7 @@ main .heading6 h6 > span {
   text-decoration: none;
   border: 3px solid;
   border-radius: 20px;
+  border-width: 2px;
 }
 
 .spectrum-Button--sizeM {
@@ -614,9 +615,35 @@ main .heading6 h6 > span {
   color: white;
 }
 
-.spectrum-Button.spectrum-Button--outline.spectrum-Button--secondary:not(.spectrum-Button--staticWhite):not(.spectrum-Button--staticBlack):not(:disabled) {
+.spectrum-Button--secondary {
   background-color: transparent;
-  border-color: rgb(213, 213, 213);
+  border-color: rgb(110, 110, 110);
+  color: rgb(110, 110, 110);
+}
+
+.spectrum-Button--secondary:hover {
+  background-color: rgb(110, 110, 110);
+  border-color: rgb(110, 110, 110);
+  color: rgb(255, 255, 255);
+}
+
+.spectrum-Button--secondary.focus-ring {
+  background-color: rgb(110, 110, 110);
+  border-color: rgb(110, 110, 110);
+  color: rgb(255, 255, 255);
+}
+
+.spectrum-Button--secondary:active {
+  background-color: rgb(75, 75, 75);
+  border-color: rgb(75, 75, 75);
+  color: rgb(255, 255, 255);
+}
+
+.spectrum-Button--secondary:disabled,
+.spectrum-Button--secondary.is-disabled {
+  background-color: rgb(234, 234, 234);
+  border-color: rgb(234, 234, 234);
+  color: rgb(179, 179, 179);
 }
 
 .spectrum-Dialog {
@@ -743,8 +770,9 @@ main .heading6 h6 > span {
 }
 
 .spectrum-ActionButton--quiet {
-  border-color: rgba(0, 0, 0, 0) !important;
-  background-color: rgb(230, 230, 230);
+  border-color: transparent;
+  background-color: transparent;
+  color: rgb(75, 75, 75);
 }
 
 .spectrum-ActionButton--staticWhite {

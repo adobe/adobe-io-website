@@ -9,22 +9,6 @@ main div.columns {
     margin: auto;
 }
 
-@media screen and (max-width: 1280px) {
-    main div.columns {
-        width: 100% !important;
-    }
-    main div.columns > div {
-      flex-direction: column !important;
-      padding: 0 0 !important;
-    }
-
-    main div.columns div.first-column img {
-        width: auto;
-        height: 350px !important;
-    }
-    
-}
-
 main div.columns > div {
     display: flex;
     justify-content: center;
@@ -68,19 +52,6 @@ main div.columns-container.section[data-list-class="checkmark"] ul > li:before{
     content: "\2714\0020";
 }
 
-@media screen and (max-width: 1280px) {
-    main div.columns div.second-column {
-        width: 100%;
-        text-align: center;
-    }
-}
-@media screen and (max-width: 1280px) {
-    main div.second-column div.product-link-container, main div.columns div.second-column div.button-group-container {
-        justify-content: center;
-        align-items: center;
-    }
-}
-
 main div.columns  div.second-column div.button-group-container {
     gap: 2rem;
     display: flex;
@@ -92,12 +63,6 @@ main div.columns  div.second-column div.button-group-container {
     main div.columns div.first-column img {
         width: 100vw;
         height: auto;
-    }
-}
-
-@media screen and (max-width: 1280px) {
-    main div.columns > div {
-        flex-direction: column;
     }
 }
 
@@ -113,15 +78,7 @@ main div.columns div.first-column {
 }
 
 main div.columns div.first-column img {
-    /* max-height: 350px; */
-    object-fit: cover;
     width: 100%;
-}
-
-@media screen and (max-width: 1280px) {
-    main div.columns div.first-column {
-        width: 100%;
-    }
 }
 
 main div.second-column {
@@ -144,18 +101,10 @@ main .column-header:hover .anchor-link{
     visibility: visible;
 }
 
-@media screen and (max-width: 1280px) {
-    main div.columns div.second-column {
-        width: 100%;
-        margin: 40px 0;
-    }
-  }
-
 main div.columns h3.column-header {
     margin-top: 0!important;
     margin-bottom: 16px!important;
     scroll-margin-top:100px;
-    padding-left: 18px;
 }
 
 main div.columns h3.column-header + p {
@@ -234,7 +183,27 @@ main .columns-container.center div.columns .button-container {
     margin-bottom: 0;
 }
 
+main div.columns div.first-column img {
+    height: 350px !important;
+}
+
 @media screen and (max-width: 1280px) {
+    main div.columns div.second-column {
+        width: 100%;
+        margin: 40px 0;
+        text-align: center;
+    }
+    main div.columns div.first-column {
+        width: 100%;
+    }
+    main div.columns {
+        width: 100% !important;
+    }
+    main div.columns > div {
+        flex-direction: column !important;
+        padding: 0 0 !important;
+    }
+
     main .columns-container.center div.columns > div > div {
         text-align: center;
         padding: 32px 32px;
@@ -243,4 +212,10 @@ main .columns-container.center div.columns .button-container {
     main .columns-container.center div.columns > div {
         align-items: center;
     }
+
+    main div.second-column div.product-link-container, main div.columns div.second-column div.button-group-container {
+        justify-content: center;
+        align-items: center;
+    }
+
 }

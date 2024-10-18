@@ -53,7 +53,10 @@ div.resource-cards-left > a.resource-card-large-container-inner {
 @media screen and (max-width: 768px) {
   main div.resource-card > div {
       min-width: 368px;
-  } 
+  }
+  main div.resource-card > div:first-child {
+    padding-left: 24px !important;
+  }
 }
 
 .resource-cards-right {

@@ -1,15 +1,10 @@
 main div.cards {
-  /* width: var(--spectrum-global-dimension-static-grid-fluid-width); */
-  max-width: 1280px;
+  width: 100%;
   background: rgb(248, 248, 248);
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-}
-
-main div.cards > * {
-  flex: 1 1 375px;
 }
 
 @media screen and (max-width: 320px) {
