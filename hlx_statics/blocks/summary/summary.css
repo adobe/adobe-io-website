@@ -17,20 +17,12 @@ main div.summary > div {
   height: 100%;
   position: absolute;
   top: 0;
-  /* left: 0;
-  display: flex; */
   align-items: center;
   justify-content: center;
   text-align: left;
 }
 
 @media screen and (max-width: 1280px) {
-  main div.summary > div {
-    padding: 32px;
-  } 
-}
-
-@media screen and (max-width: 1000px) {
   main div.summary picture {
     height: 350px;
     width: 100%;
@@ -39,6 +31,16 @@ main div.summary > div {
     height: 100%;
     width: 100%;
   }
+  main div.summary > div {
+    padding: 32px;
+  } 
+}
+
+@media screen and (max-width: 768px) {
+  main div.summary > div {
+    width: 100%;
+    padding: 32px;
+  } 
 }
 
 @media screen and (max-width: 415px) {
@@ -49,8 +51,6 @@ main div.summary > div {
     height: 100%;
     position: absolute;
     top: 0;
-    /* left: 0;
-    display: flex; */
     align-items: center;
     justify-content: center;
     text-align: left;
@@ -75,6 +75,7 @@ main div.summary p a:hover {
 
 main div.summary img {
   object-fit: cover;
+  height: 350px;
 }
 
 main div.summary .spectrum-Button {
