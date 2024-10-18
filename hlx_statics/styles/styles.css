@@ -83,9 +83,12 @@ img {
   font-family: "adobe-clean", sans-serif;
 }
 
+main {
+  background-color: rgb(245,245,245);
+}
+
 main .section {
   padding: var(--spectrum-global-dimension-size-400) 0;
-  background-color: rgb(245,245,245);
 }
 
 main .section .section-title {
