@@ -80,6 +80,42 @@ function loadFooter(footer) {
   loadBlock(footerBlock);
 }
 
+async function loadConfig() {
+  let navPath;
+  let pathPrefix;
+
+  if(getMetadata('source') === 'github') {
+    pathPrefix = getMetadata('pathprefix').replace('/', '');
+    navPath = `${window.location.origin}/${pathPrefix}/config`;
+    const resp = await fetch(`${navPath}.plain.html`);
+
+    if (resp.ok) {
+      const html = await resp.text();
+
+      const parser = new DOMParser();
+      const htmlDocument = parser.parseFromString(html, "text/html");
+      let topNavItems, sideNavItems;
+
+      // TODO: normalise paths
+      [...htmlDocument.querySelectorAll("p")].forEach((item) => {
+        if(item.innerText === 'pages:') {
+          topNavItems = item.parentElement.querySelector('ul');
+          topNavItems.innerHTML = topNavItems.innerHTML.replaceAll('<p>', '').replaceAll('</p>','');
+        }
+
+        if(item.innerText === 'subPages:') {
+          sideNavItems = item.parentElement.querySelector('ul');
+          sideNavItems.innerHTML = sideNavItems.innerHTML.replaceAll('<p>', '').replaceAll('</p>','');
+        }
+      });
+
+      sessionStorage.setItem('topNav', topNavItems.innerHTML);
+      sessionStorage.setItem('sideNav', sideNavItems.innerHTML);
+    } else {
+      // TODO: figure out what to do when config not present?
+    }
+  }
+}
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -154,6 +190,8 @@ async function loadEager(doc) {
     sideNavDiv.append(sideNavWrapper);
     main.prepend(sideNavDiv);
   }
+
+  loadConfig();
 }
 
 const imsSignIn = new Event('imsSignIn');
