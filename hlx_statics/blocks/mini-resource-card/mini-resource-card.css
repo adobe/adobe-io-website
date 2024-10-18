@@ -101,6 +101,13 @@ main div.mini-resource-card-container .section-title {
   main div.mini-resource-card .card-container {
     width: 80% !important;
   }
+  main div.mini-resource-card .mini-card {
+    width: auto !important;
+    height: 100% !important;
+  }
+  main div.mini-resource-card .mini-resource-card-body {
+    height: 100% !important;
+  }
   main .mini-resource-card-container {
     padding: 40px 0px 5px 0px;
   }
