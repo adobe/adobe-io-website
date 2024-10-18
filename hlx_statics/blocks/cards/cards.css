@@ -13,6 +13,10 @@ main div.cards {
   }
 }
 
+main div.cards > div.four-card {
+  flex: 1 1 375px;
+}
+
 @media screen and (max-width: 768px) {
   main div.cards {
     flex-wrap: wrap;
