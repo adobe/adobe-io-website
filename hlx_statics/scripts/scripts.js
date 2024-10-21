@@ -186,7 +186,7 @@ async function loadEager(doc) {
     let sideNavDiv = createTag ('div', {class: 'section side-nav-container', style: 'grid-area: sidenav'});
     let sideNavWrapper = createTag('div', {class: 'side-nav-wrapper'});
     let sideNavBlock = createTag('div', {class: 'side-nav block', 'data-block-name': 'side-nav'});
-    let asideWrapper = createTag('div', {class: 'onthispage block', 'data-block-name': 'onthispage'});
+    let asideWrapper = createTag('div', {class: 'onthispage-wrapper block', 'data-block-name': 'onthispage'});
     let aside = createTag('aside');
     asideWrapper.append(aside);
 
@@ -404,7 +404,7 @@ async function loadLazy(doc) {
 
     // turn off this page when in doc mode and there's no hero
     if(document.querySelector('.hero, .herosimple')) {
-      let onthispage = document.querySelector('.onthispage');
+      let onthispage = document.querySelector('.onthispage-wrapper');
       if(onthispage) {
         onthispage.style.display = 'none';
       }
