@@ -401,6 +401,14 @@ async function loadLazy(doc) {
     const footer = doc.querySelector('footer');
     footer.style.gridArea = 'footer';
     main.append(footer);
+
+    // turn off this page when in doc mode and there's no hero
+    if(document.querySelector('.hero, .herosimple')) {
+      let onthispage = document.querySelector('.onthispage');
+      if(onthispage) {
+        onthispage.style.display = 'none';
+      }
+    }
   }
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
