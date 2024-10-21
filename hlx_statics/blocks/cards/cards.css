@@ -4,17 +4,12 @@ main div.cards {
   display: flex;
   justify-content: center;
   flex-direction: row;
-  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 320px) {
   main div.cards {
     flex-direction: column;
   }
-}
-
-main div.cards > div.four-card {
-  flex: 1 1 375px;
 }
 
 @media screen and (max-width: 768px) {
@@ -92,8 +87,8 @@ main div.cards a.card-button {
   main div.cards {
     flex-direction: column;
   }
-  main div.cards > * {
-    flex: 1 1 300px;
+  main div.cards > div {
+    padding: 40px 0;
   }
 }
 
