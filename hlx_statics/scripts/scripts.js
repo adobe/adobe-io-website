@@ -182,13 +182,18 @@ async function loadEager(doc) {
 
   if (getMetadata('template') === 'documentation') {
     main.style.display = 'grid';
-    main.style.gridTemplateAreas = '"sidenav main" "sidenav footer"';
+    main.style.gridTemplateAreas = '"sidenav main aside" "sidenav footer aside"';
     let sideNavDiv = createTag ('div', {class: 'section side-nav-container', style: 'grid-area: sidenav'});
     let sideNavWrapper = createTag('div', {class: 'side-nav-wrapper'});
     let sideNavBlock = createTag('div', {class: 'side-nav block', 'data-block-name': 'side-nav'});
+    let asideWrapper = createTag('div', {class: 'onthispage block', 'data-block-name': 'onthispage'});
+    let aside = createTag('aside');
+    asideWrapper.append(aside);
+
     sideNavWrapper.append(sideNavBlock);
     sideNavDiv.append(sideNavWrapper);
     main.prepend(sideNavDiv);
+    main.append(asideWrapper);
   }
 
   loadConfig();
@@ -394,6 +399,7 @@ async function loadLazy(doc) {
 
     // rearrange footer and append to main when in doc mode
     const footer = doc.querySelector('footer');
+    footer.style.gridArea = 'footer';
     main.append(footer);
   }
 

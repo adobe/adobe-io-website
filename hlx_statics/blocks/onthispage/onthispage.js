@@ -5,6 +5,8 @@ import { applyAnalyticHeaderOverride } from "../../scripts/lib-adobeio.js";
  * @param {Element} block The onthispage block element.
  */
 export default async function decorate(block) {
+    
+    /*
     const section = document.querySelector('main > div:not(.side-nav-container):not(.footer-wrapper)');
     section.style.display = "block";
 
@@ -63,4 +65,5 @@ export default async function decorate(block) {
         });
     });
     applyAnalyticHeaderOverride(block);
+    */
 }
