@@ -85,3 +85,6 @@ main div.accordion .active {
     background-color: transparent;
 }
      
+main div.accordion .spectrum-Icon {
+    block-size: 10px;
+}
