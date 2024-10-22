@@ -17,12 +17,7 @@ export default async function decorate(block) {
   navigationLinksUl.setAttribute('aria-label', 'Table of contents');
   navigationLinksContainer.append(navigationLinksUl);
 
-  let sideNavContainer = document.querySelector('.side-nav-container');
-  if(sideNavContainer) {
-    sideNavContainer.style.gridArea = 'sidenav';
-  }
-
-  // TODO: have fall back when side nav not available in sessios
+  // TODO: have fall back when side nav not available in session
   navigationLinksUl.innerHTML = sessionStorage.getItem('sideNav');
 
   block.append(navigationLinks);
