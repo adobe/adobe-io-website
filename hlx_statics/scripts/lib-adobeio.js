@@ -254,6 +254,44 @@ export function buildHeadings(container) {
 }
 
 /**
+ * Builds the layout grid
+ * @param {*} main The grid container
+ */
+export function buildGrid(main) {
+  main.style.display = 'grid';
+  main.style.gridTemplateAreas = '"sidenav main aside" "sidenav footer aside"';
+
+  const gridAreaMain = main.querySelector(".section");
+  gridAreaMain.style.gridArea = 'main';
+}
+
+/**
+ * Builds the side nav
+ * @param {*} main The grid container
+ */
+export function buildSideNav(main) {
+  let sideNavDiv = createTag ('div', {class: 'section side-nav-container', style: 'grid-area: sidenav'});
+  let sideNavWrapper = createTag('div', {class: 'side-nav-wrapper'});
+  let sideNavBlock = createTag('div', {class: 'side-nav block', 'data-block-name': 'side-nav'});
+
+  sideNavWrapper.append(sideNavBlock);
+  sideNavDiv.append(sideNavWrapper);
+  main.prepend(sideNavDiv);
+}
+
+/**
+ * Builds the on this page wrapper
+ * @param {*} main The grid container
+ */
+export function buildOnThisPage(main) {
+  let asideWrapper = createTag('div', {class: 'onthispage-wrapper block', 'data-block-name': 'onthispage'});
+  let aside = createTag('aside');
+
+  asideWrapper.append(aside);
+  main.append(asideWrapper);
+}
+
+/**
  * Toggles the scale according to the client width
  */
 export function toggleScale() {
