@@ -19,6 +19,7 @@ import {
 } from './lib-helix.js';
 
 import {
+  buildBreadcrumbs,
   buildCodes,
   buildEmbeds,
   buildGrid,
@@ -187,6 +188,7 @@ async function loadEager(doc) {
     buildGrid(main);
     buildSideNav(main);
     buildOnThisPage(main);
+    buildBreadcrumbs(main);
   }
 
   loadConfig();
