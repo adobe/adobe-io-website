@@ -628,10 +628,8 @@ export function githubActionsBlock(doc) {
                       </a>
               </div>
       `;
-    const sectionContainers = doc.querySelectorAll('.section');
-    if (sectionContainers.length > 1) {
-      sectionContainers[1].prepend(newContent);
-    }
+    const contentHeader = doc.querySelector('.content-header');
+    contentHeader?.append(newContent);
   }
 };
 

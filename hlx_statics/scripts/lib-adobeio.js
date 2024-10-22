@@ -263,6 +263,9 @@ export function buildGrid(main) {
 
   const gridAreaMain = main.querySelector(".section");
   gridAreaMain.style.gridArea = 'main';
+
+  let contentHeader = createTag('div', {class: 'content-header'});
+  gridAreaMain.prepend(contentHeader)
 }
 
 /**
