@@ -20,10 +20,6 @@ export default async function decorate(block) {
   // TODO: have fall back when side nav not available in session
   navigationLinksUl.innerHTML = sessionStorage.getItem('sideNav');
 
-  let sideNavContainer = document.querySelector('.side-nav-container');
-  if(sideNavContainer) {
-    sideNavContainer.style.gridArea = 'sidenav';
-  }
   block.append(navigationLinks);
 
   block.querySelectorAll('li').forEach((li) =>{
