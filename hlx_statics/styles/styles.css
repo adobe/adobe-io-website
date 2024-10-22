@@ -912,6 +912,14 @@ main .default-content-wrapper strong{
   color: rgb(34,34,34);
 }
 
+main .content-header {
+  display:flex;
+}
+
+main .content-header .breadcrumbs-container {
+  flex: 1;
+}
+
 main .github-actions-wrapper{
   padding: 20px 20px 20px 0px;
 }
