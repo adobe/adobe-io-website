@@ -892,6 +892,10 @@ main .heading6 h6>span {
   background-color: rgb(213, 213, 213);
 }
 
+main .content-header {
+  display:flex;
+}
+
 main .default-content-wrapper {
   width: 100%;
   max-width: 1280px;
