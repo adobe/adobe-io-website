@@ -111,6 +111,10 @@ main div.columns h3.column-header + p {
     margin-top: 0!important;
 }
 
+main div.columns p + p {
+    margin-top: 24px;
+}
+
 main div.columns div.listing.second-column[data-align="right"]{
     text-align: right;
     width: auto;

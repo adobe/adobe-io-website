@@ -838,17 +838,6 @@ main .heading6 h6 > span {
   overflow: hidden;
 }
 
-.spectrum-Link {
-  background-color: transparent;
-  cursor: pointer;
-  outline: none;
-  text-decoration: underline;
-}
-
-.spectrum-Link--quiet {
-  text-decoration: none;
-}
-
 .spectrum-Icon--sizeL,
 .spectrum-Icon--sizeL img,
 .spectrum-Icon--sizeL svg {
