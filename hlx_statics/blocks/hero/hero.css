@@ -70,8 +70,7 @@ main .hero h3 {
 
 main .hero p.spectrum-Body--sizeL {
   margin-top: 0 !important;
-  font-size: 20px;
-  color: rgb(34, 34, 34) !important;
+  color: rgb(80, 80, 80) !important;
 }
 
 main .hero h1 + p.last-of-type {
