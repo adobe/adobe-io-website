@@ -85,34 +85,36 @@ async function loadConfig() {
   let pathPrefix;
 
   if(getMetadata('source') === 'github') {
-    pathPrefix = getMetadata('pathprefix').replace('/', '');
-    navPath = `${window.location.origin}/${pathPrefix}/config`;
-    const resp = await fetch(`${navPath}.plain.html`);
+    if(!sessionStorage.getItem('topNav') || !sessionStorage.getItem('sideNav')){
+      pathPrefix = getMetadata('pathprefix').replace('/', '');
+      navPath = `${window.location.origin}/${pathPrefix}/config`;
+      const resp = await fetch(`${navPath}.plain.html`);
 
-    if (resp.ok) {
-      const html = await resp.text();
+      if (resp.ok) {
+        const html = await resp.text();
+  
+        const parser = new DOMParser();
+        const htmlDocument = parser.parseFromString(html, "text/html");
+        let topNavItems, sideNavItems;
 
-      const parser = new DOMParser();
-      const htmlDocument = parser.parseFromString(html, "text/html");
-      let topNavItems, sideNavItems;
+        // TODO: normalise paths
+        [...htmlDocument.querySelectorAll("p")].forEach((item) => {
+          if(item.innerText === 'pages:') {
+            topNavItems = item.parentElement.querySelector('ul');
+            topNavItems.innerHTML = topNavItems.innerHTML.replaceAll('<p>', '').replaceAll('</p>','');
+          }
 
-      // TODO: normalise paths
-      [...htmlDocument.querySelectorAll("p")].forEach((item) => {
-        if(item.innerText === 'pages:') {
-          topNavItems = item.parentElement.querySelector('ul');
-          topNavItems.innerHTML = topNavItems.innerHTML.replaceAll('<p>', '').replaceAll('</p>','');
-        }
-
-        if(item.innerText === 'subPages:') {
-          sideNavItems = item.parentElement.querySelector('ul');
-          sideNavItems.innerHTML = sideNavItems.innerHTML.replaceAll('<p>', '').replaceAll('</p>','');
-        }
-      });
-
-      sessionStorage.setItem('topNav', topNavItems.innerHTML);
-      sessionStorage.setItem('sideNav', sideNavItems.innerHTML);
+          if(item.innerText === 'subPages:') {
+            sideNavItems = item.parentElement.querySelector('ul');
+            sideNavItems.innerHTML = sideNavItems.innerHTML.replaceAll('<p>', '').replaceAll('</p>','');
+          }
+        });
+        sessionStorage.setItem('topNav', topNavItems.innerHTML);
+        sessionStorage.setItem('sideNav', sideNavItems.innerHTML);
+      }
     } else {
       // TODO: figure out what to do when config not present?
+
     }
   }
 }
@@ -196,7 +198,7 @@ async function loadEager(doc) {
     main.append(asideWrapper);
   }
 
-  loadConfig();
+  await loadConfig();
 }
 
 const imsSignIn = new Event('imsSignIn');

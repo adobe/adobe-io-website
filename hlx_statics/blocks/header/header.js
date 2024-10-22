@@ -351,7 +351,10 @@ export default async function decorate(block) {
 
   // TODO: have fall back when top nav not available in session
   // default to bottom logic? 
-  navigationLinks.innerHTML += sessionStorage.getItem('topNav');
+  if(sessionStorage.getItem('topNav')) {
+    navigationLinks.innerHTML += sessionStorage.getItem('topNav');
+  }
+
   navigationLinks.querySelectorAll('li > ul').forEach((dropDownList, index) => {
     let dropdownLinkDropdownHTML = '';
     let dropdownLinksHTML = '';
