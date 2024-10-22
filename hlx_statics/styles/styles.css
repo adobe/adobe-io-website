@@ -892,10 +892,6 @@ main .heading6 h6>span {
   background-color: rgb(213, 213, 213);
 }
 
-main .content-header {
-  display:flex;
-}
-
 main .default-content-wrapper {
   width: 100%;
   max-width: 1280px;
@@ -914,6 +910,14 @@ main .default-content-wrapper a:hover{
 
 main .default-content-wrapper strong{
   color: rgb(34,34,34);
+}
+
+main .content-header {
+  display:flex;
+}
+
+main .content-header .breadcrumbs-container {
+  flex: 1;
 }
 
 main .github-actions-wrapper{
