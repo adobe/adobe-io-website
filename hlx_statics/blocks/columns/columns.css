@@ -197,10 +197,10 @@ main div.columns div.first-column img {
         margin: 40px 0;
         text-align: center;
     }
-    main div.columns div.first-column {
-        width: 100%;
-    }
     
+    main div.columns {
+        width: 100% !important;
+    }
     main div.columns > div {
         flex-direction: column !important;
         padding: 0 0 !important;
