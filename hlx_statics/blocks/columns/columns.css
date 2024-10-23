@@ -142,6 +142,9 @@ main div.second-column div.product-link-container {
     main div.columns div.product-link-container p {
         max-width: 150px;
     }
+    main div.columns div.first-column {
+        width: 100%;
+    }
 }
 
 main div.second-column div.product-link-container p.icon-container {
@@ -197,7 +200,7 @@ main div.columns div.first-column img {
         margin: 40px 0;
         text-align: center;
     }
-    
+
     main div.columns {
         width: 100% !important;
     }
