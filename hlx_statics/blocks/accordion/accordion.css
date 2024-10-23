@@ -88,3 +88,9 @@ main div.accordion .active {
 main div.accordion .spectrum-Icon {
     block-size: 10px;
 }
+
+@media screen and (max-width: 480px) {
+    main div.accordion .spectrum-Icon {
+        block-size: 18px;
+    }
+}
