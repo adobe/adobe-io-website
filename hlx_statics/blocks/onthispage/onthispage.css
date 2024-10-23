@@ -1,12 +1,3 @@
-html {
-  scroll-padding-top: 60px;
-}
-
-.parent-container {
-  display: flex;
-  align-items: center;
-}
-
 .onthispage-wrapper {
   display: block !important;
   position: sticky;
@@ -19,22 +10,6 @@ html {
   overflow: auto;
   box-sizing: border-box;
   padding-bottom: 16px;
-}
-
-.onthispage-wrapper li {
-  list-style: none;
-}
-
-.onthispage-wrapper p {
-  margin: 5px 0;
-}
-
-.onthispage-wrapper ul {
-  display: flex;
-  flex-direction: column;
-  row-gap: 8px;
-  margin: 5px 0;
-  padding-left: 20px;
 }
 
 .onthispage-wrapper a {
@@ -50,6 +25,10 @@ html {
 .onthispage-wrapper .active {
   font-weight: bold;
   color: black !important;
+}
+
+.onthispage-wrapper .onthispage-header {
+  color: rgb(109, 109, 109);
 }
 
 @media screen and (max-width: 1024px) {
