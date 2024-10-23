@@ -1,3 +1,8 @@
+
+html {
+  scroll-padding-top: 60px;
+}
+
 .onthispage-wrapper {
   display: block !important;
   position: sticky;
