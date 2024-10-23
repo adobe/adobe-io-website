@@ -21,12 +21,6 @@ main div.hero > div:first-child {
   margin-right: 32px;
 }
 
-main div.hero > div:first-child > div {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
 main div.hero div:nth-child(2) {
   flex: 1;
 }
@@ -92,12 +86,6 @@ main .hero h3 {
 
 main .hero h1 + p.last-of-type {
   margin-bottom: 0 !important;
-}
-
-main div.hero > div:first-child > div {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
 }
 
 @media screen and (max-width: 768px) {
