@@ -10,6 +10,7 @@ import {
   getQueryString,
 } from '../../scripts/lib-adobeio.js';
 import { readBlockConfig, getMetadata } from '../../scripts/lib-helix.js';
+import { loadFragment } from '../fragment/fragment.js';
 
 function globalNavSearchButton() {
   const div = createTag('div', { class: 'nav-console-search-button' });
@@ -349,11 +350,27 @@ export default async function decorate(block) {
     navigationLinks.append(productLi);
   }
 
-  // TODO: have fall back when top nav not available in session
-  // default to bottom logic? 
-  if(sessionStorage.getItem('topNav')) {
-    navigationLinks.innerHTML += sessionStorage.getItem('topNav');
-  }
+  let pathPrefix = getMetadata('pathprefix').replace('/', '');;
+  let navPath = `${window.location.origin}/${pathPrefix}/config`;
+
+  const fragment = await loadFragment(navPath);
+  let topNavItems;
+
+  // TODO: normalise paths
+  [...fragment.querySelectorAll("p")].forEach((item) => {
+    if(item.innerText === 'pages:') {
+      topNavItems = item.parentElement.querySelector('ul');
+      // relace annoying p tags
+      topNavItems.querySelectorAll('li').forEach((liItems) => {
+        let p = liItems.querySelector('p');
+        if(p) {
+          p.replaceWith(p.firstChild);
+        }
+      });
+    }
+  });
+
+  navigationLinks.innerHTML += topNavItems.innerHTML;
 
   navigationLinks.querySelectorAll('li > ul').forEach((dropDownList, index) => {
     let dropdownLinkDropdownHTML = '';

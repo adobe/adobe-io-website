@@ -193,7 +193,6 @@ async function loadEager(doc) {
     buildBreadcrumbs(main);
   }
 
-  await loadConfig();
 }
 
 const imsSignIn = new Event('imsSignIn');
