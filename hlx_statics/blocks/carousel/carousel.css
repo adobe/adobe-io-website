@@ -30,6 +30,11 @@ div.carousel picture img {
   main div.carousel .slide-arrow {
     visibility: hidden;
   }
+
+  main div.carousel .carousel-circle {
+    width: 24px;
+    height: 24px;
+  }
 }
 main div.carousel p.image-container picture {
   left: 0;
