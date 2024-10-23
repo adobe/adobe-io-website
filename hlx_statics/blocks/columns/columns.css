@@ -155,6 +155,10 @@ main div.second-column div.product-link-container p.icon-container {
     margin-bottom: 0px;
 }
 
+main div.second-column p.button-container {
+    margin-top:0px;
+}
+
 main div.second-column div.product-link-container img {
     height: 32px;
     width: 32px;
