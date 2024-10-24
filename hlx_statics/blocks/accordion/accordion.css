@@ -8,7 +8,7 @@ main div.accordion .accordion-div {
 }
 
 main .accordion-whole {
-    padding: 48px 0;
+    padding: 32px 0;
 }
 
 main .accordion-whole .accordion-wrapper {
@@ -25,6 +25,10 @@ main div.accordion .accordion-title {
     color: black;
     width: 50% !important;
     margin: auto !important
+}
+
+main div.accordion .accordion-subtitle {
+    color: rgb(110, 110, 110);
 }
 
 main div.accordion .accordion-item {
@@ -81,3 +85,12 @@ main div.accordion .active {
     background-color: transparent;
 }
      
+main div.accordion .spectrum-Icon {
+    block-size: 10px;
+}
+
+@media screen and (max-width: 480px) {
+    main div.accordion .spectrum-Icon {
+        block-size: 18px;
+    }
+}

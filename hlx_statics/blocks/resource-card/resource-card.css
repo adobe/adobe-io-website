@@ -53,7 +53,10 @@ div.resource-cards-left > a.resource-card-large-container-inner {
 @media screen and (max-width: 768px) {
   main div.resource-card > div {
       min-width: 368px;
-  } 
+  }
+  main div.resource-card > div:first-child {
+    padding-left: 24px !important;
+  }
 }
 
 .resource-cards-right {
@@ -69,7 +72,7 @@ main div.resource-card-container {
 main div.resource-card {
   /* width: var(--spectrum-global-dimension-static-grid-fluid-width); */
   width: 100%;
-  background: rgb(248, 248, 248);
+  background: rgb(245, 245, 245);
   display: flex;
   justify-content: center;
   flex-direction: row;

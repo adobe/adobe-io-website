@@ -212,8 +212,10 @@ export default async function decorate(block) {
     // Selects all hyper linked images
     block.querySelectorAll("div.embed.block > div > div > a").forEach((a) => {
       const picture = a.firstElementChild.firstElementChild;
-      a.append(picture);
-      a.removeChild(a.firstElementChild);
+      if (picture) {
+        a.append(picture);
+        a.removeChild(a.firstElementChild);
+      }
       const paragraphWrapper = createTag("p", {});
       // Because of link, image is surrounded by numerous divs. Navigates back up to OG parent
       const newDivParent =

@@ -47,7 +47,7 @@ export default async function decorate(block) {
     link.parentElement.classList.add('announce-link');
   });
   applyBkgColorOverride(block);
-  applyWidthOverride(block);
+  // applyWidthOverride(block);
   calculateOverlapping(block);
   applyAnalyticHeaderOverride(block);
 }

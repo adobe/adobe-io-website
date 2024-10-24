@@ -1,8 +1,8 @@
-import { applyBkgColorOverride, createTag} from '../../scripts/lib-adobeio.js';
+import { applyBkgColorOverride, createTag, applyAnalyticHeaderOverride} from '../../scripts/lib-adobeio.js';
 
 /**
- * decorates the title
- * @param {Element} block The title block element {Parameter Type} Name of the Parameter
+ * decorates the link block component
+ * @param {Element} block link block component
  */
 export default async function decorate(block) {
   const fontcolor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
@@ -26,4 +26,5 @@ export default async function decorate(block) {
     p.append(division);
   });
   applyBkgColorOverride(block);
+  applyAnalyticHeaderOverride(block);
 }

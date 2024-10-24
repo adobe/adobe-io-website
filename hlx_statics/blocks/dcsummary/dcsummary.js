@@ -1,4 +1,4 @@
-import { applyBkgColorOverride, decorateButtons, applyWidthOverride } from "../../scripts/lib-adobeio.js";
+import { applyBkgColorOverride, decorateButtons, applyWidthOverride, applyAnalyticHeaderOverride } from "../../scripts/lib-adobeio.js";
 
 function rearrangeLinks(block) {
   const leftDiv = block.firstElementChild.firstElementChild;
@@ -30,4 +30,5 @@ export default async function decorate(block) {
   rearrangeLinks(block);
   applyBkgColorOverride(block);
   applyWidthOverride(block);
+  applyAnalyticHeaderOverride(block);
 }
