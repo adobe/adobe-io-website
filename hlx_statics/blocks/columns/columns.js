@@ -128,9 +128,7 @@ export default async function decorate(block) {
     {
       const productLinkContainer = createTag('div', { class: 'product-link-container' });
       secondColumn.querySelectorAll('p.icon-container').forEach((innerSecond) => {
-        const icon_div = createTag('div');
-        icon_div.append(innerSecond)
-        productLinkContainer.append(icon_div);
+        productLinkContainer.append(innerSecond);
       });
       // Maintains order within column card
       prevElement.after(productLinkContainer);

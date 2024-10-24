@@ -126,10 +126,8 @@ main div.columns div.listing ul {
 
 main div.second-column div.product-link-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: left;
-    /* gap:  1rem; */
+    flex-direction: row;
+    gap:  1rem;
     padding:0;
     margin: 0;
 }
