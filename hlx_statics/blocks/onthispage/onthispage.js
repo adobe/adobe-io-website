@@ -1,9 +1,16 @@
+import {
+    applyAnalyticHeaderOverride,
+    createTag
+  } from '../../scripts/lib-adobeio.js';
 
 /**
  * Decorates the onthispage block.
  * @param {Element} block The onthispage block element.
  */
 export default async function decorate(block) {
+    // delete first div that gets inserted for some reason
+    block.querySelector('div').remove();
+    block.append(createTag('aside');
 
     const mainContainer = document.querySelector('main');
     const headings = mainContainer.querySelectorAll('h2, h3');

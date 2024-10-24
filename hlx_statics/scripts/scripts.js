@@ -84,43 +84,11 @@ function loadFooter(footer) {
   loadBlock(footerBlock);
 }
 
-async function loadConfig() {
-  let navPath;
-  let pathPrefix;
-
-  if(getMetadata('source') === 'github') {
-    if(!sessionStorage.getItem('topNav') || !sessionStorage.getItem('sideNav')){
-      pathPrefix = getMetadata('pathprefix').replace('/', '');
-      navPath = `${window.location.origin}/${pathPrefix}/config`;
-      const resp = await fetch(`${navPath}.plain.html`);
-
-      if (resp.ok) {
-        const html = await resp.text();
-  
-        const parser = new DOMParser();
-        const htmlDocument = parser.parseFromString(html, "text/html");
-        let topNavItems, sideNavItems;
-
-        // TODO: normalise paths
-        [...htmlDocument.querySelectorAll("p")].forEach((item) => {
-          if(item.innerText === 'pages:') {
-            topNavItems = item.parentElement.querySelector('ul');
-            topNavItems.innerHTML = topNavItems.innerHTML.replaceAll('<p>', '').replaceAll('</p>','');
-          }
-
-          if(item.innerText === 'subPages:') {
-            sideNavItems = item.parentElement.querySelector('ul');
-            sideNavItems.innerHTML = sideNavItems.innerHTML.replaceAll('<p>', '').replaceAll('</p>','');
-          }
-        });
-        sessionStorage.setItem('topNav', topNavItems.innerHTML);
-        sessionStorage.setItem('sideNav', sideNavItems.innerHTML);
-      }
-    } else {
-      // TODO: figure out what to do when config not present?
-
-    }
-  }
+function loadOnThisPage(onthispage) {
+  const onthispageBlock = buildBlock('onthispage', '');
+  onthispage.append(onthispageBlock);
+  decorateBlock(onthispageBlock);
+  loadBlock(onthispageBlock);
 }
 /**
  * Builds all synthetic blocks in a container element.
@@ -189,7 +157,6 @@ async function loadEager(doc) {
   if (getMetadata('template') === 'documentation') {
     buildGrid(main);
     buildSideNav(main);
-    buildOnThisPage(main);
     buildBreadcrumbs(main);
   }
 
@@ -393,11 +360,9 @@ async function loadLazy(doc) {
     main.append(footer);
 
     // turn off this page when in doc mode and there's no hero
-    if(document.querySelector('.hero, .herosimple')) {
-      let onthispage = document.querySelector('.onthispage-wrapper');
-      if(onthispage) {
-        onthispage.style.display = 'none';
-      }
+    if(!document.querySelector('.hero, .herosimple')) {
+      buildOnThisPage(main);
+      loadOnThisPage(doc.querySelector('.onthispage-wrapper'));
     }
   }
 

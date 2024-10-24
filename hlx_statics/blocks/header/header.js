@@ -350,27 +350,37 @@ export default async function decorate(block) {
     navigationLinks.append(productLi);
   }
 
-  let pathPrefix = getMetadata('pathprefix').replace('/', '');;
-  let navPath = `${window.location.origin}/${pathPrefix}/config`;
+  // check if there's a path prefix then retrieve it otherwise default back to google drive path
+  let navPath;
+  if(getMetadata('pathprefix')) {
+    let pathPrefix = getMetadata('pathprefix').replace('/', '');
+    navPath = `${window.location.origin}/${pathPrefix}/config`;
 
-  const fragment = await loadFragment(navPath);
-  let topNavItems;
+    const fragment = await loadFragment(navPath);
+    let topNavItems;
 
-  // TODO: normalise paths
-  [...fragment.querySelectorAll("p")].forEach((item) => {
-    if(item.innerText === 'pages:') {
-      topNavItems = item.parentElement.querySelector('ul');
-      // relace annoying p tags
-      topNavItems.querySelectorAll('li').forEach((liItems) => {
-        let p = liItems.querySelector('p');
-        if(p) {
-          p.replaceWith(p.firstChild);
-        }
-      });
-    }
-  });
+    // TODO: normalise paths
+    [...fragment.querySelectorAll("p")].forEach((item) => {
+      if(item.innerText === 'pages:') {
+        topNavItems = item.parentElement.querySelector('ul');
+        // relace annoying p tags
+        topNavItems.querySelectorAll('li').forEach((liItems) => {
+          let p = liItems.querySelector('p');
+          if(p) {
+            p.replaceWith(p.firstChild);
+          }
+        });
+      }
+    });
 
-  navigationLinks.innerHTML += topNavItems.innerHTML;
+    navigationLinks.innerHTML += topNavItems.innerHTML;
+  } else {
+    navPath = cfg.nav || getClosestFranklinSubfolder(window.location.origin, 'nav');
+    const fragment = await loadFragment(navPath);
+    block.innerHTML = fragment;
+  }
+
+
 
   navigationLinks.querySelectorAll('li > ul').forEach((dropDownList, index) => {
     let dropdownLinkDropdownHTML = '';

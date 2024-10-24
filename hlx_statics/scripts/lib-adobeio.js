@@ -288,9 +288,6 @@ export function buildSideNav(main) {
  */
 export function buildOnThisPage(main) {
   let asideWrapper = createTag('div', {class: 'onthispage-wrapper block', 'data-block-name': 'onthispage'});
-  let aside = createTag('aside');
-
-  asideWrapper.append(aside);
   main.append(asideWrapper);
 }
 

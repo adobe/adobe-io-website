@@ -1,4 +1,5 @@
 import {
+  applyAnalyticHeaderOverride,
   createTag
 } from '../../scripts/lib-adobeio.js';
 import {getMetadata } from '../../scripts/lib-helix.js';
@@ -50,4 +51,5 @@ export default async function decorate(block) {
   block.querySelectorAll('a').forEach((a) =>{
     a.classList.add('spectrum-SideNav-itemLink');
   });
+  applyAnalyticHeaderOverride(block);
 }
