@@ -10,11 +10,11 @@ import {
 export default async function decorate(block) {
     // delete first div that gets inserted for some reason
     block.querySelector('div').remove();
-    block.append(createTag('aside');
+    let aside = createTag('aside');
+    block.append(aside);
 
     const mainContainer = document.querySelector('main');
     const headings = mainContainer.querySelectorAll('h2, h3');
-    const aside = mainContainer.querySelector('.onthispage-wrapper > aside');
 
     Object.assign(aside.style, {
         display: 'flex',
