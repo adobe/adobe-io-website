@@ -40,15 +40,98 @@ main div.side-nav {
 }
 
 .spectrum-SideNav-item.is-selected>.spectrum-SideNav-itemLink {
-    background-color: rgba(0,0,0,.06);
+    background-color: rgba(0, 0, 0, .06);
     color: rgb(0, 0, 0)
-}
-
-.spectrum-SideNav--multiLevel .spectrum-SideNav-itemLink {
-    font-weight: 700;
 }
 
 .spectrum-SideNav--multiLevel .spectrum-SideNav {
     margin: 0;
     padding: 0;
+}
+
+.spectrum-SideNav {
+    padding-left: 0;
+    list-style-type: none;
+    font-size: 14px;
+    color: #333;
+}
+
+.spectrum-SideNav-item>a {
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.spectrum-SideNav-item>a:hover {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+.spectrum-SideNav-item ul {
+    padding-left: 0px;
+    margin: 0;
+    list-style: none;
+}
+
+.spectrum-SideNav-item.open>ul {
+    display: block;
+}
+
+.spectrum-SideNav-item.active>a {
+    background-color: #e6e6e6;
+    font-weight: bold;
+    color: #000;
+}
+
+.spectrum-SideNav-item.open>a::before {
+    content: url('./CheronIcon.svg');
+    margin-right: 8px;
+}
+
+.spectrum-SideNav-itemLink a>svg {
+    width: 10px !important;
+    height: 10px !important;
+}
+
+.active-link>a {
+    background-color: rgb(238, 238, 238);
+    color: #000;
+}
+
+main div.side-nav {
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    background-color: rgb(250, 250, 250);
+}
+
+.side-nav-container {
+    padding: 0 !important;
+}
+
+.spectrum-SideNav>.has-children>ul {
+    padding-left: 10px;
+}
+
+.side-nav>nav>div {
+    box-sizing: border-box;
+    padding: 32px;
+    overflow: auto;
+    height: calc(100vh - 64px);
+}
+
+main>div:nth-child(2) {
+    margin: 0 64px;
+    max-width: 1280px;
+}
+
+.spectrum-SideNav--multiLevel .has-children>a {
+    padding-left: 0;
+}
+
+.spectrum-SideNav > li.header > a {
+    font-weight: 700 !important;
 }

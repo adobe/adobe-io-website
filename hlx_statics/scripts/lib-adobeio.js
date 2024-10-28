@@ -276,7 +276,7 @@ export function buildSideNav(main) {
   let sideNavDiv = createTag ('div', {class: 'section side-nav-container', style: 'grid-area: sidenav'});
   let sideNavWrapper = createTag('div', {class: 'side-nav-wrapper'});
   let sideNavBlock = createTag('div', {class: 'side-nav block', 'data-block-name': 'side-nav'});
-
+  main.style.gridTemplateColumns = '256px auto';
   sideNavWrapper.append(sideNavBlock);
   sideNavDiv.append(sideNavWrapper);
   main.prepend(sideNavDiv);
