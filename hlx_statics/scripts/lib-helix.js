@@ -10,6 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
+import { loadFragment } from '../blocks/fragment/fragment.js';
+
 /**
  * log RUM if part of the sample.
  * @param {string} checkpoint identifies the checkpoint in funnel
@@ -103,6 +105,59 @@ export function getMetadata(name) {
   const attr = name && name.includes(':') ? 'property' : 'name';
   const meta = [...document.head.querySelectorAll(`meta[${attr}="${name}"]`)].map((m) => m.content).join(', ');
   return meta || null;
+}
+
+/**
+ * Retrieves the top nav from the config.
+ * @returns {string} The top nav HTML
+ */
+export async function fetchTopNavHtml() {
+  return fetchNavHtml('pages:');
+}
+
+/**
+ * Retrieves the side nav from the config.
+ * @returns {string} The side nav HTML
+ */
+export async function fetchSideNavHtml() {
+  return fetchNavHtml('subPages:');
+}
+
+/**
+ * Retrieves the nav with the specified name from the config.
+ * @param {string} name The nav name
+ * @returns {string} The nav HTML
+ */
+async function fetchNavHtml(name) {
+  let pathPrefix = getMetadata('pathprefix').replace('/', '');
+  let navPath = `${window.location.origin}/${pathPrefix}/config`;
+  const fragment = await loadFragment(navPath);
+
+  let navItems;
+  fragment.querySelectorAll("p").forEach((item) => {
+    if(item.innerText === name) {
+      navItems = item.parentElement.querySelector('ul');
+      // relace annoying p tags
+      navItems.querySelectorAll('li').forEach((liItems) => {
+        let p = liItems.querySelector('p');
+        if(p) {
+          p.replaceWith(p.firstChild);
+        }
+        let a = liItems.querySelector('a');
+        if (!a.getAttribute('href').startsWith(pathPrefix)) {
+          if (a.getAttribute('href').endsWith('index.md')) {
+            a.href = `/${pathPrefix}/${a.getAttribute('href').replaceAll('index.md', '')}`
+          } else if (a.getAttribute('href').endsWith('.md')) {
+            a.href = `/${pathPrefix}/${a.getAttribute('href').replaceAll('.md', '')}`
+          } else {
+            a.href = `/${pathPrefix}/${a.getAttribute('href')}`;
+          }
+        }
+      });
+    }
+  });
+
+  return navItems ? navItems.innerHTML : Promise.reject(navItems.innerHTML);
 }
 
 /**
