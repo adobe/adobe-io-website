@@ -914,6 +914,7 @@ main .default-content-wrapper strong{
 
 main .content-header {
   display:flex;
+  gap: 32px;
 }
 
 main .content-header .breadcrumbs-container {
