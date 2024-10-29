@@ -10,6 +10,8 @@ import {
   getQueryString,
 } from '../../scripts/lib-adobeio.js';
 import { readBlockConfig, getMetadata } from '../../scripts/lib-helix.js';
+import { loadFragment } from '../fragment/fragment.js';
+
 
 function globalNavSearchButton() {
   const div = createTag('div', { class: 'nav-console-search-button' });
@@ -309,291 +311,175 @@ function addCheckmarkSvg(ul) {
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   block.textContent = '';
-  // TODO: need to rethink how this loaded in documentation mode
-  // Might be better to hard code the default so we don't have
-  // to rely on a chain of failing 404's to finally get a nav
-  // strip out trailing slash if any
-  // 
-  // Also might want to think about setting meta data on existing google drive 
-  // to denote path prefix instead of trying to figure out where the nav is
 
-  let navPath;
-  let pathPrefix;
-  if(getMetadata('source') === 'github') {
-    pathPrefix = getMetadata('pathprefix').replace('/', '');
-    navPath = `${window.location.origin}/${pathPrefix}/config`;
+  const header = block.parentElement;
+
+  header.classList.add('main-header', 'global-nav-header');
+  header.setAttribute('daa-lh', 'header');
+
+  const mobileButton = createTag('input', { class: 'menu-btn', type: 'checkbox', id: 'menu-btn' });
+  header.appendChild(mobileButton);
+  const mobileMenu = createTag('label', { class: 'menu-icon', for: 'menu-btn' });
+  mobileMenu.innerHTML = '<span class="navicon"></span>';
+  header.appendChild(mobileMenu);
+  const iconContainer = createTag('p', { class: 'icon-adobe-container' });
+
+  const title = "Adobe Developer";
+  const siteLink = createTag('a', { class: 'na-console-adobeio-link', href: "https://developer.adobe.com/" });
+
+  const iconLink = createTag('a', { class: 'na-console-adobeio-link', href: siteLink.href });
+  iconLink.innerHTML = '<img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">';
+  iconContainer.appendChild(iconLink);
+  siteLink.className = 'nav-console-adobeio-link-text';
+  siteLink.innerHTML = `<strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">${title}</strong>`;
+  iconContainer.appendChild(siteLink);
+  header.append(iconContainer);
+
+  let navigationLinks = createTag('ul', { id: 'navigation-links', class: 'menu', style: 'list-style-type: none;'});
+
+  // create home and product links into the navigation links.
+  if (isTopLevelNav(window.location.pathname)) {
+    const homeLinkLi = createTag('li', {class: 'navigation-home'});
+    const homeLinkA = createTag('a', {href: 'https://developer.adobe.com', 'daa-ll': 'Home'});
+    homeLinkA.innerHTML = 'Products';
+    homeLinkLi.append(homeLinkA);
+    navigationLinks.append(homeLinkLi);
   } else {
-    navPath = getClosestFranklinSubfolder(window.location.origin, 'nav');
+    const productLi = createTag('li', {class: 'navigation-products'});
+    const productA = createTag('a', {href: 'https://developer.adobe.com/apis', 'daa-ll': 'Products'});
+    productA.innerHTML = 'Products';
+    productLi.append(productA);
+    navigationLinks.append(productLi);
   }
-  
-  const resp = await fetch(`${navPath}.plain.html`);
 
-  // TODO can be smarter on when to grab the nav 
-  if (resp.ok) {
-    const html = await resp.text();
-    // block.innerHTML = html;
-    const header = block.parentElement;
 
-    header.classList.add('main-header', 'global-nav-header');
-    header.setAttribute('daa-lh', 'header');
+  // check if there's a path prefix then retrieve it otherwise default back to google drive path
+  let navPath;
+  if(getMetadata('pathprefix')) {
+    let pathPrefix = getMetadata('pathprefix').replace('/', '');
+    navPath = `${window.location.origin}/${pathPrefix}/config`;
 
-    const mobileButton = createTag('input', { class: 'menu-btn', type: 'checkbox', id: 'menu-btn' });
-    header.appendChild(mobileButton);
-    const mobileMenu = createTag('label', { class: 'menu-icon', for: 'menu-btn' });
-    mobileMenu.innerHTML = '<span class="navicon"></span>';
-    header.appendChild(mobileMenu);
-    const iconContainer = createTag('p', { class: 'icon-adobe-container' });
+    const fragment = await loadFragment(navPath);
+    let topNavItems;
 
-    // const title = block.querySelector('p:nth-child(1)');
-
-    const title = "Adobe Developer";
-    const siteLink = createTag('a', { class: 'na-console-adobeio-link', href: "https://developer.adobe.com/" });
-
-    const iconLink = createTag('a', { class: 'na-console-adobeio-link', href: siteLink.href });
-    iconLink.innerHTML = '<img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">';
-    iconContainer.appendChild(iconLink);
-    siteLink.className = 'nav-console-adobeio-link-text';
-    siteLink.innerHTML = `<strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">${title}</strong>`;
-    iconContainer.appendChild(siteLink);
-    header.append(iconContainer);
-
-    const navigationLinks = createTag('ul', { id: 'navigation-links', class: 'menu', style: 'list-style-type: none;'});
-
-    if (isTopLevelNav(window.location.pathname)) {
-      const homeLink = ul.querySelector('li:nth-child(1)');
-      homeLink.className = 'navigation-home';
-    } else {
-      const productLi = createTag('li', {class: 'navigation-products'});
-      const productA = createTag('a', {href: 'https://developer.adobe.com/apis', 'daa-ll': 'Products'});
-      productA.innerHTML = 'Products';
-      productLi.append(productA);
-      navigationLinks.append(productLi);
-    }
-
-      // get all the top level links
-      // TODO get versions selector working
-      const parser = new DOMParser();
-      const htmlDocument = parser.parseFromString(html, "text/html");
-
-      [...htmlDocument.querySelectorAll("p")].forEach((item) => {
-        if(item.innerText === 'pages:') {
-          let topMenuItems = item.parentElement.querySelector('ul');
-          // most annoying issue - can't select just the first level of li's? wtf
-          // have to strip out all the p's
-          navigationLinks.innerHTML += topMenuItems.innerHTML.replaceAll('<p>', '').replaceAll('</p>','');
-        }
-      });
-    
-      navigationLinks.querySelectorAll('li > ul').forEach((dropDownList, index) => {
-        let dropdownLinkDropdownHTML = '';
-        let dropdownLinksHTML = '';
-
-        dropDownList.querySelectorAll('ul > li > a').forEach((dropdownLinks) => {
-          dropdownLinksHTML
-            += globalNavLinkItemDropdownItem(dropdownLinks.href, dropdownLinks.innerText);
-        });
-
-        dropdownLinkDropdownHTML = globalNavLinkItemDropdown(
-          index,
-          dropDownList.parentElement.firstChild.textContent.trim(),
-          dropdownLinksHTML,
-        );
-        dropDownList.parentElement.innerHTML = dropdownLinkDropdownHTML;
-      });
-
-      addCheckmarkSvg(navigationLinks);
-
-    let buttonDiv;
-    if (window.location.pathname.includes('/developer-distribution')) {
-      buttonDiv = createTag('div');
-      ul.appendChild(buttonDiv);
-      buttonDiv.appendChild(globalMobileDistributeButton());
-    } else {
-      buttonDiv = createTag('div', { class: 'button-container' });
-      navigationLinks.appendChild(buttonDiv);
-    }
-    buttonDiv.appendChild(globalMobileConsoleButton());
-    navigationLinks.querySelectorAll('a').forEach((a) => {
-      if (a.parentElement.tagName === 'STRONG') {
-        a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
-        const span = createTag('span', { class: 'spectrum-Button-label' });
-        span.innerHTML = a.innerHTML;
-        a.innerHTML = '';
-        a.appendChild(span);
-        const li = a.parentElement.parentElement;
-        const div = createTag('div', { class: 'nav-view-docs-button' });
-        div.appendChild(a);
-        ul.removeChild(li);
-        ul.appendChild(div);
-      }
-    });
-
-    window.search_path_name_check = '';
-
-    window.addEventListener('message', (evt) => {
-      const expectedOrigin = setSearchFrameOrigin(window.location.host);
-      if (evt.origin !== expectedOrigin) return;
-      try {
-        const message = typeof evt.data === 'string' ? JSON.parse(evt.data) : evt.data;
-        if (message.query) {
-          setQueryStringParameter('query', message.query);
-          setQueryStringParameter('keywords', message.keywords);
-          setQueryStringParameter('index', message.index);
-        } else if (message.received) {
-          window.search_path_name_check = message.received;
-        }
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e);
-      }
-    });
-
-    header.append(navigationLinks);
-    const rightContainer = createTag('div', { class: 'nav-console-right-container' });
-    rightContainer.appendChild(globalNavSearchButton());
-    if (window.location.pathname.includes('/developer-distribution')) {
-      rightContainer.appendChild(globalDistributeButton());
-    }
-    rightContainer.appendChild(globalConsoleButton());
-    rightContainer.appendChild(globalSignIn());
-    header.append(rightContainer);
-    header.append(globalNavSearchDropDown());
-    decorateSearchIframeContainer(header);
-    block.remove();
-
-    handleButtons(header);
-
-    const signIn = header.querySelector('#signIn');
-    signIn?.addEventListener('click', () => {
-      window.adobeIMSMethods?.signIn();
-    });
-
-    setActiveTab();
-    focusRing(header);
-    // TODO: retthink about 404
-  } else if (resp.status == 404) {
-    const resp404 = await fetch('https://main--adobe-io-website--adobe.hlx.page/franklin_assets/nav.plain.html');
-    if (resp404.ok) {
-      const html = await resp404.text();
-      block.innerHTML = html;
-      const header = block.parentElement;
-      header.classList.add('main-header', 'global-nav-header');
-      header.setAttribute('daa-lh', 'header');
-
-      const mobileButton = createTag('input', { class: 'menu-btn', type: 'checkbox', id: 'menu-btn' });
-      header.appendChild(mobileButton);
-      const mobileMenu = createTag('label', { class: 'menu-icon', for: 'menu-btn' });
-      mobileMenu.innerHTML = '<span class="navicon"></span>';
-      header.appendChild(mobileMenu);
-      const iconContainer = createTag('p', { class: 'icon-adobe-container' });
-      const title = block.querySelector('p:nth-child(1)');
-      const siteLink = title.querySelector('strong > a');
-      const iconLink = createTag('a', { class: 'na-console-adobeio-link', href: siteLink.href });
-      iconLink.innerHTML = '<img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">';
-      iconContainer.appendChild(iconLink);
-      siteLink.className = 'nav-console-adobeio-link-text';
-      siteLink.innerHTML = `<strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">${siteLink.innerText}</strong>`;
-      iconContainer.appendChild(siteLink);
-      header.append(iconContainer);
-
-      const ul = block.querySelector('ul');
-      ul.setAttribute('id', 'navigation-links');
-      ul.setAttribute('class', 'menu');
-      ul.style.listStyleType = 'none';
-
-      if (isTopLevelNav(window.location.pathname)) {
-        const homeLink = ul.querySelector('li:nth-child(1)');
-        homeLink.className = 'navigation-home';
-      } else {
-        const productsLi = ul.querySelector('li:nth-child(1)');
-        productsLi.className = 'navigation-products';
-      }
-      ul.querySelectorAll('li > ul').forEach((dropDownList, index) => {
-        let dropdownLinkDropdownHTML = '';
-        let dropdownLinksHTML = '';
-
-        dropDownList.querySelectorAll('ul > li > a').forEach((dropdownLinks) => {
-          dropdownLinksHTML
-            += globalNavLinkItemDropdownItem(dropdownLinks.href, dropdownLinks.innerText);
-        });
-
-        dropdownLinkDropdownHTML = globalNavLinkItemDropdown(
-          index,
-          dropDownList.parentElement.firstChild.textContent.trim(),
-          dropdownLinksHTML,
-        );
-        dropDownList.parentElement.innerHTML = dropdownLinkDropdownHTML;
-      });
-
-      addCheckmarkSvg(ul);
-
-      let buttonDiv;
-      if (window.location.pathname.includes('/developer-distribution')) {
-        buttonDiv = createTag('div');
-        ul.appendChild(buttonDiv);
-        buttonDiv.appendChild(globalMobileDistributeButton());
-      } else {
-        buttonDiv = createTag('div', { class: 'button-container' });
-        ul.appendChild(buttonDiv);
-      }
-      buttonDiv.appendChild(globalMobileConsoleButton());
-      ul.querySelectorAll('a').forEach((a) => {
-        if (a.parentElement.tagName === 'STRONG') {
-          a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
-          const span = createTag('span', { class: 'spectrum-Button-label' });
-          span.innerHTML = a.innerHTML;
-          a.innerHTML = '';
-          a.appendChild(span);
-          const li = a.parentElement.parentElement;
-          const div = createTag('div', { class: 'nav-view-docs-button' });
-          div.appendChild(a);
-          ul.removeChild(li);
-          ul.appendChild(div);
-        }
-      });
-
-      window.search_path_name_check = '';
-
-      window.addEventListener('message', (evt) => {
-        const expectedOrigin = setSearchFrameOrigin(window.location.host);
-        if (evt.origin !== expectedOrigin) return;
-        try {
-          const message = typeof evt.data === 'string' ? JSON.parse(evt.data) : evt.data;
-          if (message.query) {
-            setQueryStringParameter('query', message.query);
-            setQueryStringParameter('keywords', message.keywords);
-            setQueryStringParameter('index', message.index);
-          } else if (message.received) {
-            window.search_path_name_check = message.received;
+    // TODO: normalise paths
+    [...fragment.querySelectorAll("p")].forEach((item) => {
+      if(item.innerText === 'pages:') {
+        topNavItems = item.parentElement.querySelector('ul');
+        // relace annoying p tags
+        topNavItems.querySelectorAll('li').forEach((liItems) => {
+          let p = liItems.querySelector('p');
+          if(p) {
+            p.replaceWith(p.firstChild);
           }
-        } catch (e) {
-          // eslint-disable-next-line no-console
-          console.error(e);
-        }
-      });
-
-      header.append(ul);
-      const rightContainer = createTag('div', { class: 'nav-console-right-container' });
-      rightContainer.appendChild(globalNavSearchButton());
-      if (window.location.pathname.includes('/developer-distribution')) {
-        rightContainer.appendChild(globalDistributeButton());
+        });
       }
-      rightContainer.appendChild(globalConsoleButton());
-      rightContainer.appendChild(globalSignIn());
-      header.append(rightContainer);
-      header.append(globalNavSearchDropDown());
-      decorateSearchIframeContainer(header);
-      block.remove();
+    });
 
-      handleButtons(header);
-
-      const signIn = header.querySelector('#signIn');
-      signIn?.addEventListener('click', () => {
-        window.adobeIMSMethods?.signIn();
-      });
-
-      setActiveTab();
-      focusRing(header);
-    }
+    navigationLinks.innerHTML += topNavItems.innerHTML;
+  } else {
+    navPath = cfg.nav || getClosestFranklinSubfolder(window.location.origin, 'nav');
+    const fragment = await loadFragment(navPath);
+    const ul = fragment.querySelector("ul");
+    ul.classList.add("menu");
+    ul.setAttribute("id", "navigation-links");
+    fragment.querySelectorAll("li").forEach((li, index) => {
+      if (index == 0) {
+        if (isTopLevelNav(window.location.pathname)) {
+          const homeLink = ul.querySelector('li:nth-child(1)');
+          homeLink.className = 'navigation-home';
+        } else {
+          li.classList.add("navigation-products");
+        }
+      }
+    });
+    navigationLinks = ul;
   }
+
+  navigationLinks.querySelectorAll('li > ul').forEach((dropDownList, index) => {
+    let dropdownLinkDropdownHTML = '';
+    let dropdownLinksHTML = '';
+
+    dropDownList.querySelectorAll('ul > li > a').forEach((dropdownLinks) => {
+      dropdownLinksHTML
+        += globalNavLinkItemDropdownItem(dropdownLinks.href, dropdownLinks.innerText);
+    });
+
+    dropdownLinkDropdownHTML = globalNavLinkItemDropdown(
+      index,
+      dropDownList.parentElement.firstChild.textContent.trim(),
+      dropdownLinksHTML,
+    );
+    dropDownList.parentElement.innerHTML = dropdownLinkDropdownHTML;
+  });
+
+  addCheckmarkSvg(navigationLinks);
+
+  let buttonDiv;
+  if (window.location.pathname.includes('/developer-distribution')) {
+    buttonDiv = createTag('div');
+    navigationLinks.appendChild(buttonDiv);
+    buttonDiv.appendChild(globalMobileDistributeButton());
+  } else {
+    buttonDiv = createTag('div', { class: 'button-container' });
+    navigationLinks.appendChild(buttonDiv);
+  }
+  buttonDiv.appendChild(globalMobileConsoleButton());
+  navigationLinks.querySelectorAll('a').forEach((a) => {
+    if (a.parentElement.tagName === 'STRONG') {
+      a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
+      const span = createTag('span', { class: 'spectrum-Button-label' });
+      span.innerHTML = a.innerHTML;
+      a.innerHTML = '';
+      a.appendChild(span);
+      const li = a.parentElement.parentElement;
+      const div = createTag('div', { class: 'nav-view-docs-button' });
+      div.appendChild(a);
+      navigationLinks.removeChild(li);
+      navigationLinks.appendChild(div);
+    }
+  });
+
+  window.search_path_name_check = '';
+
+  window.addEventListener('message', (evt) => {
+    const expectedOrigin = setSearchFrameOrigin(window.location.host);
+    if (evt.origin !== expectedOrigin) return;
+    try {
+      const message = typeof evt.data === 'string' ? JSON.parse(evt.data) : evt.data;
+      if (message.query) {
+        setQueryStringParameter('query', message.query);
+        setQueryStringParameter('keywords', message.keywords);
+        setQueryStringParameter('index', message.index);
+      } else if (message.received) {
+        window.search_path_name_check = message.received;
+      }
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
+    }
+  });
+
+  header.append(navigationLinks);
+  const rightContainer = createTag('div', { class: 'nav-console-right-container' });
+  rightContainer.appendChild(globalNavSearchButton());
+  if (window.location.pathname.includes('/developer-distribution')) {
+    rightContainer.appendChild(globalDistributeButton());
+  }
+  rightContainer.appendChild(globalConsoleButton());
+  rightContainer.appendChild(globalSignIn());
+  header.append(rightContainer);
+  header.append(globalNavSearchDropDown());
+  decorateSearchIframeContainer(header);
+  block.remove();
+
+  handleButtons(header);
+
+  const signIn = header.querySelector('#signIn');
+  signIn?.addEventListener('click', () => {
+    window.adobeIMSMethods?.signIn();
+  });
+
+  setActiveTab();
+  focusRing(header);
 }

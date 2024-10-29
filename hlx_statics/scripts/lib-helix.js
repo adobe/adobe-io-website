@@ -601,4 +601,37 @@ export function initHlx() {
   }
 }
 
+/**
+ * Loads all blocks in a section.
+ * @param {Element} section The section element
+ */
+export async function loadSection(section, loadCallback) {
+  const status = section.dataset.sectionStatus;
+  if (!status || status === 'initialized') {
+    section.dataset.sectionStatus = 'loading';
+    const blocks = [...section.querySelectorAll('div.block')];
+    for (let i = 0; i < blocks.length; i += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      await loadBlock(blocks[i]);
+    }
+    if (loadCallback) await loadCallback(section);
+    section.dataset.sectionStatus = 'loaded';
+    section.style.display = null;
+  }
+}
+/**
+ * Loads all sections.
+ * @param {Element} element The parent element of sections to load
+ */
+export async function loadSections(element) {
+  const sections = [...element.querySelectorAll('div.section')];
+  for (let i = 0; i < sections.length; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    await loadSection(sections[i]);
+    if (i === 0 && sampleRUM.enhance) {
+      sampleRUM.enhance();
+    }
+  }
+}
+
 initHlx();
