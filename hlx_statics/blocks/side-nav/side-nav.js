@@ -3,7 +3,7 @@ import {
   createTag
 } from '../../scripts/lib-adobeio.js';
 import { getMetadata } from '../../scripts/lib-helix.js';
-// import { loadFragment } from '../fragment/fragment.js';
+import { loadFragment } from '../fragment/fragment.js';
 
 /**
  * Decorates the side-nav
@@ -35,35 +35,30 @@ export default async function decorate(block) {
     <path class="fill" d="M4,7.01a1,1,0,0,1,1.7055-.7055l3.289,3.286,3.289-3.286a1,1,0,0,1,1.437,1.3865l-.0245.0245L9.7,11.7075a1,1,0,0,1-1.4125,0L4.293,7.716A.9945.9945,0,0,1,4,7.01Z" />
   </svg>`;
 
-  // const fragment = await loadFragment(navPath);
+  const fragment = await loadFragment(navPath);
 
-  const resp = await fetch(`${navPath}.plain.html`);
-  if (resp.ok) {
-    const html = await resp.text();
-
-    const updatedData = html.replace(/href="([^"]+)"/g, (match, url) => {
-      if (!url.startsWith(pathPrefix)) {
-        if (url.endsWith('index.md')) {
-          return `href="/${pathPrefix}/${url.replaceAll('index.md', '')}"`;
-        } else if (url.endsWith('.md')) {
-          return `href="/${pathPrefix}/${url.replaceAll('.md', '')}"`;
-        } else {
-          return `href="/${pathPrefix}/${url}"`;
+  fragment.querySelectorAll("p").forEach((item) => {
+    if(item.innerText === 'subPages:') {
+      sideNavItems = item.parentElement.querySelector('ul');
+      // relace annoying p tags
+      sideNavItems.querySelectorAll('li').forEach((liItems) => {
+        let p = liItems.querySelector('p');
+        if(p) {
+          p.replaceWith(p.firstChild);
         }
-      }
-      return match;
-    });
-
-    const parser = new DOMParser();
-    const htmlDocument = parser.parseFromString(updatedData, "text/html");
-
-    [...htmlDocument.querySelectorAll("p")].forEach((item) => {
-      if (item.innerText === 'subPages:') {
-        sideNavItems = item.parentElement.querySelector('ul');
-        sideNavItems.innerHTML = sideNavItems.innerHTML.replaceAll('<p>', '').replaceAll('</p>', '');
-      }
-    });
-  }
+        let a = liItems.querySelector('a');
+        if (!a.getAttribute('href').startsWith(pathPrefix)) {
+          if (a.getAttribute('href').endsWith('index.md')) {
+            a.href = `/${pathPrefix}/${a.getAttribute('href').replaceAll('index.md', '')}`
+          } else if (a.getAttribute('href').endsWith('.md')) {
+            a.href = `/${pathPrefix}/${a.getAttribute('href').replaceAll('.md', '')}`
+          } else {
+            a.href = `/${pathPrefix}/${a.getAttribute('href')}`;
+          }
+        }
+      });
+    }
+  });
 
   if (sideNavItems) {
     navigationLinksUl.innerHTML = sideNavItems.innerHTML;
