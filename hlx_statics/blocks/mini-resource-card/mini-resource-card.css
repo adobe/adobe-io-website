@@ -72,13 +72,8 @@ main div.mini-resource-card-container .section-title {
     width: auto !important;
   }
 }
-@media screen and (max-width: 1024px) {
-  main div.mini-resource-card .card-container {
-    grid-template-columns: repeat(1, 1fr);
-    width: 60% !important;
-  }
-}
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 1280px) {
   main div.mini-resource-card .card-container {
     grid-template-columns: repeat(1, 1fr);
     margin: auto auto 50px auto !important;
