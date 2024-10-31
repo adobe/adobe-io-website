@@ -1,7 +1,6 @@
 import {
-    applyAnalyticHeaderOverride,
     createTag
-  } from '../../scripts/lib-adobeio.js';
+} from '../../scripts/lib-adobeio.js';
 
 /**
  * Decorates the onthispage block.
@@ -14,7 +13,7 @@ export default async function decorate(block) {
     block.append(aside);
 
     const mainContainer = document.querySelector('main');
-    const headings = mainContainer.querySelectorAll('h2, h3');
+    const headings = mainContainer.querySelectorAll('h2:not(.side-nav h2):not(footer h2), h3:not(.side-nav h3):not(footer h3)');
 
     Object.assign(aside.style, {
         display: 'flex',
