@@ -144,20 +144,42 @@ async function fetchNavHtml(name) {
           p.replaceWith(p.firstChild);
         }
         let a = liItems.querySelector('a');
-        if (!a.getAttribute('href').startsWith(pathPrefix)) {
-          if (a.getAttribute('href').endsWith('index.md')) {
-            a.href = `/${pathPrefix}/${a.getAttribute('href').replaceAll('index.md', '')}`
-          } else if (a.getAttribute('href').endsWith('.md')) {
-            a.href = `/${pathPrefix}/${a.getAttribute('href').replaceAll('.md', '')}`
-          } else {
-            a.href = `/${pathPrefix}/${a.getAttribute('href')}`;
-          }
-        }
+        a = normalizePaths(a, pathPrefix);
+        // if (!a.getAttribute('href').startsWith(pathPrefix)) {
+        //   if (a.getAttribute('href').endsWith('index.md')) {
+        //     a.href = `/${pathPrefix}/${a.getAttribute('href').replaceAll('index.md', '')}`
+        //   } else if (a.getAttribute('href').endsWith('.md')) {
+        //     a.href = `/${pathPrefix}/${a.getAttribute('href').replaceAll('.md', '')}`
+        //   } else {
+        //     a.href = `/${pathPrefix}/${a.getAttribute('href')}`;
+        //   }
+        // }
       });
     }
   });
 
   return navItems ? navItems.innerHTML : Promise.reject(navItems.innerHTML);
+}
+
+/**
+ * Normalizes passed in anchor element's href so relative links point to 
+ * the right url
+ * @param {object} anchorElem The anchor element 
+ * @param {string} pathPrefix The the path prefix
+ */
+function normalizePaths(anchorElem, pathPrefix) {
+  if (!anchorElem.getAttribute('href').startsWith(pathPrefix)) {
+    if (anchorElem.getAttribute('href').endsWith('index.md')) {
+      anchorElem.href = `/${pathPrefix}/${anchorElem.getAttribute('href').replaceAll('index.md', '')}`
+    } else if (anchorElem.getAttribute('href').endsWith('.md')) {
+      anchorElem.href = `/${pathPrefix}/${anchorElem.getAttribute('href').replaceAll('.md', '')}`
+    } else if (anchorElem.getAttribute('href') === '/src/pages') {
+      anchorElem.href = `/${pathPrefix}/`;
+    } else {
+      anchorElem.href = `/${pathPrefix}/${anchorElem.getAttribute('href')}`;
+    }
+  }
+  return anchorElem;
 }
 
 /**

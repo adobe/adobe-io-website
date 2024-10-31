@@ -9,7 +9,7 @@ import {
   setQueryStringParameter,
   getQueryString,
 } from '../../scripts/lib-adobeio.js';
-import { readBlockConfig, getMetadata } from '../../scripts/lib-helix.js';
+import { readBlockConfig, getMetadata, fetchTopNavHtml } from '../../scripts/lib-helix.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 function globalNavSearchButton() {
@@ -353,34 +353,15 @@ export default async function decorate(block) {
   // check if there's a path prefix then retrieve it otherwise default back to google drive path
   let navPath;
   if(getMetadata('pathprefix')) {
-    let pathPrefix = getMetadata('pathprefix').replace('/', '');
-    navPath = `${window.location.origin}/${pathPrefix}/config`;
-
-    const fragment = await loadFragment(navPath);
-    let topNavItems;
-
-    // TODO: normalise paths
-    [...fragment.querySelectorAll("p")].forEach((item) => {
-      if(item.innerText === 'pages:') {
-        topNavItems = item.parentElement.querySelector('ul');
-        // relace annoying p tags
-        topNavItems.querySelectorAll('li').forEach((liItems) => {
-          let p = liItems.querySelector('p');
-          if(p) {
-            p.replaceWith(p.firstChild);
-          }
-        });
-      }
-    });
-
-    navigationLinks.innerHTML += topNavItems.innerHTML;
+    const topNavHtml = await fetchTopNavHtml();
+    if (topNavHtml) {
+      navigationLinks.innerHTML += topNavHtml;
+    }
   } else {
     navPath = cfg.nav || getClosestFranklinSubfolder(window.location.origin, 'nav');
     const fragment = await loadFragment(navPath);
     block.innerHTML = fragment;
   }
-
-
 
   navigationLinks.querySelectorAll('li > ul').forEach((dropDownList, index) => {
     let dropdownLinkDropdownHTML = '';
