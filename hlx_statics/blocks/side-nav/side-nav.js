@@ -2,8 +2,7 @@ import {
   applyAnalyticHeaderOverride,
   createTag
 } from '../../scripts/lib-adobeio.js';
-import { getMetadata } from '../../scripts/lib-helix.js';
-import { loadFragment } from '../fragment/fragment.js';
+import { fetchSideNavHtml } from '../../scripts/lib-helix.js';
 
 /**
  * Decorates the side-nav
@@ -20,11 +19,6 @@ export default async function decorate(block) {
   navigationLinksUl.setAttribute('aria-label', 'Table of contents');
   navigationLinksContainer.append(navigationLinksUl);
 
-  let pathPrefix = getMetadata('pathprefix').replace('/', '');
-  let navPath = `${window.location.origin}/${pathPrefix}/config`;
-
-  let sideNavItems;
-
   const rightIcon = `<svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 18 18" width="18">
     <rect id="Canvas" fill="#ff13dc" opacity="0" width="18" height="18" />
     <path class="fill" d="M12,9a.994.994,0,0,1-.2925.7045l-3.9915,3.99a1,1,0,1,1-1.4355-1.386l.0245-.0245L9.5905,9,6.3045,5.715A1,1,0,0,1,7.691,4.28l.0245.0245,3.9915,3.99A.994.994,0,0,1,12,9Z" />
@@ -35,33 +29,9 @@ export default async function decorate(block) {
     <path class="fill" d="M4,7.01a1,1,0,0,1,1.7055-.7055l3.289,3.286,3.289-3.286a1,1,0,0,1,1.437,1.3865l-.0245.0245L9.7,11.7075a1,1,0,0,1-1.4125,0L4.293,7.716A.9945.9945,0,0,1,4,7.01Z" />
   </svg>`;
 
-  const fragment = await loadFragment(navPath);
-
-  fragment.querySelectorAll("p").forEach((item) => {
-    if(item.innerText === 'subPages:') {
-      sideNavItems = item.parentElement.querySelector('ul');
-      // relace annoying p tags
-      sideNavItems.querySelectorAll('li').forEach((liItems) => {
-        let p = liItems.querySelector('p');
-        if(p) {
-          p.replaceWith(p.firstChild);
-        }
-        let a = liItems.querySelector('a');
-        if (!a.getAttribute('href').startsWith(pathPrefix)) {
-          if (a.getAttribute('href').endsWith('index.md')) {
-            a.href = `/${pathPrefix}/${a.getAttribute('href').replaceAll('index.md', '')}`
-          } else if (a.getAttribute('href').endsWith('.md')) {
-            a.href = `/${pathPrefix}/${a.getAttribute('href').replaceAll('.md', '')}`
-          } else {
-            a.href = `/${pathPrefix}/${a.getAttribute('href')}`;
-          }
-        }
-      });
-    }
-  });
-
-  if (sideNavItems) {
-    navigationLinksUl.innerHTML = sideNavItems.innerHTML;
+  const sideNavHtml = await fetchSideNavHtml();
+  if (sideNavHtml) {
+    navigationLinksUl.innerHTML = sideNavHtml;
   }
 
   block.append(navigationLinks);

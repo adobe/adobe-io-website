@@ -914,6 +914,7 @@ main .default-content-wrapper strong{
 
 main .content-header {
   display:flex;
+  gap: 32px;
 }
 
 main .content-header .breadcrumbs-container {
@@ -921,7 +922,7 @@ main .content-header .breadcrumbs-container {
 }
 
 main .github-actions-wrapper{
-  padding: 20px 20px 20px 0px;
+  padding: 40px 20px 20px 0px;
 }
 
 main .github-actions-block{
