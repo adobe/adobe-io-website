@@ -923,11 +923,13 @@ main .content-header .breadcrumbs-container {
 
 main .github-actions-wrapper{
   padding: 40px 20px 20px 0px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 main .github-actions-block{
   display: flex;
-  justify-content: flex-end;
   gap: 20px;
 }
 

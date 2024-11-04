@@ -49,7 +49,9 @@ async function buildBreadcrumbs() {
 }
 
 export default async function decorate(block) {
-  const showBreadcrumbs = getMetadata('hideBreadcrumbNav') !== 'true'; // TODO
+  const hasHero = Boolean(document.querySelector('.herosimple-container') || document.querySelector('.hero-container'));
+  const showBreadcrumbsConfig = getMetadata('hidebreadcrumbnav') !== 'true';
+  const showBreadcrumbs = !hasHero && showBreadcrumbsConfig;
   if(showBreadcrumbs) {
     const nav = document.createElement('nav');
     nav.ariaLabel = "Breadcrumb";
@@ -76,6 +78,8 @@ export default async function decorate(block) {
     })
     
     ol.append(...lis);
+  } else{
+    block.parentElement?.parentElement?.remove();
   }
 }
   
