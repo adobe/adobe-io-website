@@ -395,11 +395,11 @@ export const setSearchFrameOrigin = (host, suffix = '') => {
  * @param {*} suffix A suffix to append
  * @returns The first subfolder in the franklin dir - for special urls like apis will return the franklin_assets folder
  */
-export const getClosestFranklinSubfolder = (host, suffix = '') => {
+export const getClosestFranklinSubfolder = (host, suffix = '', defaultNav = false) => {
   let subfolderPath = window.location.pathname.split('/')[1];
 
   // make sure top level paths point to the same nav if on these paths
-  if (subfolderPath === '' || subfolderPath === 'apis' || subfolderPath === 'open' || subfolderPath === 'developer-support') {
+  if (subfolderPath === '' || subfolderPath === 'apis' || subfolderPath === 'open' || subfolderPath === 'developer-support' || defaultNav) {
     subfolderPath = 'franklin_assets';
   } else {
     subfolderPath = window.location.pathname;
