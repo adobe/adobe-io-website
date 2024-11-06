@@ -378,8 +378,12 @@ export default async function decorate(block) {
 
     navigationLinks.innerHTML += topNavItems.innerHTML;
   } else {
-    navPath = cfg.nav || getClosestFranklinSubfolder(window.location.origin, 'nav');
-    const fragment = await loadFragment(navPath);
+    navPath = cfg.nav || getClosestFranklinSubfolder(window.location.origin,'nav');
+    let fragment = await loadFragment(navPath);
+    if (fragment == null) {
+      // load the default nav in franklin_assets folder nav
+      fragment = await loadFragment(getClosestFranklinSubfolder(window.location.origin, 'nav', true));
+    }
     const ul = fragment.querySelector("ul");
     ul.classList.add("menu");
     ul.setAttribute("id", "navigation-links");
