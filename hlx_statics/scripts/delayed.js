@@ -49,5 +49,4 @@ document.querySelectorAll('.embed').forEach((embed) => {
 });
 
 focusRing();
-setAnalyticsAttributes();
 loadPrism(document);

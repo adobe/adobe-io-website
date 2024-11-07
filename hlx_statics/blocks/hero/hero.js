@@ -1,6 +1,6 @@
 import {
   decorateButtons,
-  applyAnalyticHeaderOverride,
+  applyCustomAnalytic,
 } from '../../scripts/lib-adobeio.js';
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
@@ -111,5 +111,5 @@ export default async function decorate(block) {
     });
   }
 
-  applyAnalyticHeaderOverride(block);
+  applyCustomAnalytic(block);
 }

@@ -49,17 +49,6 @@ export function createTag(name, attrs) {
   }
   return el;
 }
-/**
- * Sets-up Adobe Analytics attributes for click tracking
- * @param {*} domObj The DOM object to inspect, the whole document by default
- */
-export function setAnalyticsAttributes(domObj = document) {
-  domObj.querySelectorAll('a').forEach((a) => {
-    if (a.innerText.length > 0) {
-      a.setAttribute('daa-ll', a.innerText);
-    }
-  });
-}
 
 /**
  * Sets-up event listeners to handle focus and blur for the elements of a DOM object
@@ -614,13 +603,42 @@ export function applySectionTitle(block) {
   }
 }
 
+export async function loadAnalytic(block, path) {
+  if (path) {
+    const resp = await fetch(`${path}.json`);
+    if (resp.ok) {
+      const analyticInfo = await resp.json();
+      const analyticData = analyticInfo.data[0];
+      if (analyticData) {
+        const pageUrl = analyticData.pageUrl;
+        const className = analyticData.class;
+        const href = analyticData.href;
+        const daalh = analyticData["daa-lh"];
+        const daall = analyticData["daa-ll"];
+        block.querySelectorAll('a').forEach((a) => {
+          if (a.href === href) {
+            a.setAttribute('daa-ll', daall);
+            block.classList.add(className);
+            block.setAttribute('daa-lh', daalh);
+          } else  {
+            a.setAttribute('daa-ll', a.innerText);
+          }
+        });
+      }
+    } else {
+      domObj.querySelectorAll('a').forEach((a) => {
+        if (a.innerText.length > 0) {
+          a.setAttribute('daa-ll', a.innerText);
+        }
+      });
+    }
+  }
+}
 /**
- * Set the analytic header of a block from Section Metadata.
+ * Read the analytic file to find the analytic information
  * @param {Element} The element to set the analytic heading attribute.
  */
-export function applyAnalyticHeaderOverride(block) {
-  const heading = block?.parentElement?.parentElement?.getAttribute('data-analytic-heading');
-  if (heading) {
-    block.setAttribute('daa-lh', heading);
-  }
+export async function applyCustomAnalytic(block) {
+  let analyticPath = getClosestFranklinSubfolder(window.location.origin, 'analytic');
+  const analytic = await loadAnalytic(block, analyticPath);
 }
