@@ -688,7 +688,7 @@ export function githubActionsBlock(doc) {
   const githubIssueUrl = baseUrl.replace('blob', 'issues/new?title=Issue%20in%20');
   if (!doc.querySelector('.herosimple-container') && !doc.querySelector('.hero-container')) {
     const newContent = doc.createElement('div');
-    newContent.classList.add('github-actions-wrapper');
+    newContent.classList.add('section', 'github-actions-wrapper');
     newContent.innerHTML = `
               <div class="github-actions-block">
                       <a class="action-buttons" target="_blank" rel="noopener noreferrer nofollow" href=${githubEditUrl} role="button">
