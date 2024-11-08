@@ -620,8 +620,6 @@ export async function loadCustomAnalytic(domObj, path) {
             sectionElement.classList.add(className);
             sectionElement.querySelector('.block')?.setAttribute('daa-lh', daalh);
           }
-        } else  {
-          a.setAttribute('daa-ll', a.innerText);
         }
       });
     })
@@ -632,14 +630,13 @@ export async function loadCustomAnalytic(domObj, path) {
  * @param {Element} The element to set the analytic heading attribute.
  */
 export async function applyAnalytic(domObj = document) {
+  domObj.querySelectorAll('a').forEach((a) => {
+    if (a.innerText.length > 0) {
+      a.setAttribute('daa-ll', a.innerText);
+    }
+  });
   let analyticPath = getClosestFranklinSubfolder(window.location.origin, 'analytic');
   if (analyticPath) {
     const analytic = await loadCustomAnalytic(domObj, analyticPath);
-  } else {
-    domObj.querySelectorAll('a').forEach((a) => {
-      if (a.innerText.length > 0) {
-        a.setAttribute('daa-ll', a.innerText);
-      }
-    });
   }
 }
