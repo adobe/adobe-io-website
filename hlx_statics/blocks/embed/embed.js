@@ -4,7 +4,7 @@
  * https://www.hlx.live/developer/block-collection/embed
  */
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
-import { applyBkgColorOverride, applyAnalyticHeaderOverride } from '../../scripts/lib-adobeio.js';
+import { applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
 
 const loadScript = (url, callback, type) => {
   const head = document.querySelector('head');
@@ -211,7 +211,6 @@ const addImage = (placeholder, block, link) => {
 };
 export default function decorate(block) {
   block.setAttribute('daa-lh', 'embed');
-  applyAnalyticHeaderOverride(block);
   const placeholder = block.querySelector('picture');
   const link = block.querySelector('a').href;
   block.textContent = '';

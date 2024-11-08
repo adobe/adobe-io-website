@@ -1,4 +1,4 @@
-import { createTag, removeEmptyPTags, applyBkgColorOverride, applySectionTitle, applyAnalyticHeaderOverride } from '../../scripts/lib-adobeio.js';
+import { createTag, removeEmptyPTags, applyBkgColorOverride, applySectionTitle} from '../../scripts/lib-adobeio.js';
 
 /**
  * Returns the HTML for a mini resource card
@@ -63,7 +63,6 @@ export default async function decorate(block) {
     block.appendChild(grid_div);
     applyBkgColorOverride(block);
     applySectionTitle(block);
-    applyAnalyticHeaderOverride(block);
 
     const boxShadow = block?.parentElement?.parentElement?.getAttribute('data-BoxShadow');
     const imageBorderRadius = block?.parentElement?.parentElement?.getAttribute('data-ImageBorderRadius');

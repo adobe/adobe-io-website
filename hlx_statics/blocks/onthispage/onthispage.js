@@ -1,5 +1,3 @@
-import { applyAnalyticHeaderOverride } from "../../scripts/lib-adobeio.js";
-
 /**
  * Decorates the onthispage block.
  * @param {Element} block The onthispage block element.
@@ -62,5 +60,4 @@ export default async function decorate(block) {
             event.target.classList.add('active');
         });
     });
-    applyAnalyticHeaderOverride(block);
 }

@@ -1,4 +1,4 @@
-import { applyBkgColorOverride, applyWidthOverride, applyAnalyticHeaderOverride, decorateButtons} from '../../scripts/lib-adobeio.js';
+import { applyBkgColorOverride, applyWidthOverride, decorateButtons} from '../../scripts/lib-adobeio.js';
 
 /**
  * decorates the title
@@ -8,7 +8,6 @@ export default async function decorate(block) {
   decorateButtons(block);
   applyBkgColorOverride(block);
   applyWidthOverride(block);
-  applyAnalyticHeaderOverride(block);
 
   const fontcolor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
   block.setAttribute('daa-lh', 'profile-card');

@@ -1,4 +1,4 @@
-import { decorateButtons, applyWidthOverride, applyBkgColorOverride, applyAnalyticHeaderOverride } from '../../scripts/lib-adobeio.js';
+import { decorateButtons, applyWidthOverride, applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
 
 /**
  * Rearranges the links into a image-text-button-container div
@@ -39,6 +39,5 @@ export default async function decorate(block) {
   });
   applyBkgColorOverride(block);
   applyWidthOverride(block);
-  applyAnalyticHeaderOverride(block);
   rearrangeLinks(block);
 }

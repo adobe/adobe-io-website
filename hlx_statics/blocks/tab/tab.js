@@ -1,5 +1,5 @@
 import decoratePreformattedCode, { getLanguageDecorateCode } from "../../components/code.js";
-import { applyAnalyticHeaderOverride, applyBkgColorOverride } from "../../scripts/lib-adobeio.js";
+import { applyBkgColorOverride } from "../../scripts/lib-adobeio.js";
 
 /**
  * decorates the text
@@ -9,7 +9,6 @@ import { applyAnalyticHeaderOverride, applyBkgColorOverride } from "../../script
 export default async function decorate(block) {
   block.setAttribute('daa-lh', 'tab');
   applyBkgColorOverride(block);
-  applyAnalyticHeaderOverride(block);
   let fontcolor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
   fontcolor = fontcolor ? fontcolor : "rgb(209, 209, 209)";
   const orientation = block?.parentElement?.parentElement?.getAttribute('data-orientation');

@@ -2,7 +2,6 @@ import {
   removeEmptyPTags,
   decorateButtons,
   createTag,
-  applyAnalyticHeaderOverride,
 } from '../../scripts/lib-adobeio.js';
 
 /**
@@ -49,5 +48,4 @@ export default async function decorate(block) {
     hero_img.removeAttribute('style');
     hero_img.setAttribute('class', 'xl-img');
   }
-  applyAnalyticHeaderOverride(block);
 }

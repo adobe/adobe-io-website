@@ -1,6 +1,5 @@
 import {
   decorateButtons,
-  applyCustomAnalytic,
 } from '../../scripts/lib-adobeio.js';
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
@@ -110,6 +109,4 @@ export default async function decorate(block) {
       picture.style.setProperty('display', 'block', 'important');
     });
   }
-
-  applyCustomAnalytic(block);
 }

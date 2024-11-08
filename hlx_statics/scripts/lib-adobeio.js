@@ -603,42 +603,43 @@ export function applySectionTitle(block) {
   }
 }
 
-export async function loadAnalytic(block, path) {
-  if (path) {
-    const resp = await fetch(`${path}.json`);
-    if (resp.ok) {
-      const analyticInfo = await resp.json();
-      const analyticData = analyticInfo.data[0];
-      if (analyticData) {
-        const pageUrl = analyticData.pageUrl;
-        const className = analyticData.class;
-        const href = analyticData.href;
-        const daalh = analyticData["daa-lh"];
-        const daall = analyticData["daa-ll"];
-        block.querySelectorAll('a').forEach((a) => {
-          if (a.href === href) {
-            a.setAttribute('daa-ll', daall);
-            block.classList.add(className);
-            block.setAttribute('daa-lh', daalh);
-          } else  {
-            a.setAttribute('daa-ll', a.innerText);
-          }
-        });
-      }
-    } else {
+export async function loadCustomAnalytic(domObj, path) {
+  const resp = await fetch(`${path}.json`);
+  if (resp.ok) {
+    const analyticInfo = await resp.json();
+    analyticInfo?.data.forEach(item => {
+      const className = item.class;
+      const href = item.href;
+      const daalh = item["daa-lh"];
+      const daall = item["daa-ll"];
       domObj.querySelectorAll('a').forEach((a) => {
-        if (a.innerText.length > 0) {
+        if (a.href === href) {
+          a.setAttribute('daa-ll', daall);
+          const sectionElement = a.closest('.section');
+          if(sectionElement) {
+            sectionElement.classList.add(className);
+            sectionElement.querySelector('.block')?.setAttribute('daa-lh', daalh);
+          }
+        } else  {
           a.setAttribute('daa-ll', a.innerText);
         }
       });
-    }
+    })
   }
 }
 /**
- * Read the analytic file to find the analytic information
+ * Add analytics to the page.  Check if an 'analytic' file exists, then read the custom analytic tracking data from the file.
  * @param {Element} The element to set the analytic heading attribute.
  */
-export async function applyCustomAnalytic(block) {
+export async function applyAnalytic(domObj = document) {
   let analyticPath = getClosestFranklinSubfolder(window.location.origin, 'analytic');
-  const analytic = await loadAnalytic(block, analyticPath);
+  if (analyticPath) {
+    const analytic = await loadCustomAnalytic(domObj, analyticPath);
+  } else {
+    domObj.querySelectorAll('a').forEach((a) => {
+      if (a.innerText.length > 0) {
+        a.setAttribute('daa-ll', a.innerText);
+      }
+    });
+  }
 }
