@@ -1,10 +1,6 @@
 import {
     createTag,
-    decorateButtons,
-    applyAnalyticHeaderOverride,
   } from '../../scripts/lib-adobeio.js';
-  import { decorateLightOrDark } from '../../scripts/lib-helix.js';
-  
   
   /**
    * decorates the hero
@@ -50,11 +46,4 @@ import {
         p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
       }
     });
-  
-  
-   
-  
-  
-  
-    applyAnalyticHeaderOverride(block);
   }
