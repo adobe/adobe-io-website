@@ -2,7 +2,6 @@ import {
   decorateButtons,
   removeEmptyPTags,
   rearrangeHeroPicture,
-  applyAnalyticHeaderOverride,
 } from '../../scripts/lib-adobeio.js';
 
 /**
@@ -32,5 +31,4 @@ export default async function decorate(block) {
   });
   const overlayStyle = 'position: absolute; display: flex; left: 0%; z-index: 1000;';
   rearrangeHeroPicture(block, overlayStyle);
-  applyAnalyticHeaderOverride(block);
 }

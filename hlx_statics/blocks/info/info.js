@@ -3,7 +3,6 @@ import {
   decorateAnchorLink,
   applyBkgColorOverride,
   applyWidthOverride,
-  applyAnalyticHeaderOverride,
 } from '../../scripts/lib-adobeio.js';
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
@@ -33,5 +32,4 @@ export default async function decorate(block) {
   });
   applyBkgColorOverride(block);
   applyWidthOverride(block);
-  applyAnalyticHeaderOverride(block);
 }

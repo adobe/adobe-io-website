@@ -1,4 +1,4 @@
-import { applyBkgColorOverride, applyWidthOverride, applyAnalyticHeaderOverride } from '../../scripts/lib-adobeio.js';
+import { applyBkgColorOverride, applyWidthOverride } from '../../scripts/lib-adobeio.js';
 
 /**
  * decorates the title
@@ -16,7 +16,6 @@ export default async function decorate(block) {
   block.parentElement.style.justifyContent = 'center';
 
   applyBkgColorOverride(block);
-  applyAnalyticHeaderOverride(block);
 
   // applyWidthOverride(block); //no longer needed but still need to make the width 1280 in certain sizes
 

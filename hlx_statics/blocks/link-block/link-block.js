@@ -1,4 +1,4 @@
-import { applyBkgColorOverride, createTag, applyAnalyticHeaderOverride} from '../../scripts/lib-adobeio.js';
+import { applyBkgColorOverride, createTag} from '../../scripts/lib-adobeio.js';
 
 /**
  * decorates the link block component
@@ -26,5 +26,4 @@ export default async function decorate(block) {
     p.append(division);
   });
   applyBkgColorOverride(block);
-  applyAnalyticHeaderOverride(block);
 }

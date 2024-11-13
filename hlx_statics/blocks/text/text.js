@@ -1,6 +1,5 @@
 import {
   applyBkgColorOverride,
-  applyAnalyticHeaderOverride,
   decorateButtons
 } from '../../scripts/lib-adobeio.js';
 
@@ -57,7 +56,6 @@ export default async function decorate(block) {
   const width = block?.parentElement?.parentElement?.getAttribute('data-Width');
 
   applyBkgColorOverride(block);
-  applyAnalyticHeaderOverride(block);
   
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL');
