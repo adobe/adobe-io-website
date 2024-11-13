@@ -1,4 +1,4 @@
-import { applyBkgColorOverride,applyWidthOverride,decorateButtons} from '../../scripts/lib-adobeio.js';
+import { applyBkgColorOverride, applyWidthOverride, decorateButtons} from '../../scripts/lib-adobeio.js';
 
 /**
  * decorates the title
