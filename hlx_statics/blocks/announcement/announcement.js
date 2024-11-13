@@ -1,4 +1,4 @@
-import { decorateButtons, removeEmptyPTags, applyWidthOverride, applyBkgColorOverride, applyAnalyticHeaderOverride } from '../../scripts/lib-adobeio.js';
+import { decorateButtons, removeEmptyPTags, applyWidthOverride, applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
 
 function calculateOverlapping(block) {
   var myImg = block.querySelector('picture img');
@@ -47,8 +47,7 @@ export default async function decorate(block) {
     link.parentElement.classList.add('announce-link');
   });
   applyBkgColorOverride(block);
-  applyWidthOverride(block);
+  // applyWidthOverride(block);
   calculateOverlapping(block);
-  applyAnalyticHeaderOverride(block);
 }
 
