@@ -1,4 +1,4 @@
-import { createTag, removeEmptyPTags } from '../../scripts/lib-adobeio.js';
+import { applySectionTitle, createTag, removeEmptyPTags } from '../../scripts/lib-adobeio.js';
 import {
   createOptimizedPicture,
 } from '../../scripts/lib-helix.js';
@@ -42,4 +42,14 @@ export default async function decorate(block) {
   ul.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
   block.textContent = '';
   block.append(ul);
+
+  block.querySelectorAll('.icon').forEach((s) => {
+    const p_parent = s.parentElement;
+    const div_parent = createTag('div', {class: 'icon-div'});
+    p_parent.classList.add('icon-p');
+    p_parent.parentElement.append(div_parent);
+    div_parent.append(p_parent)
+  });
+  
+  applySectionTitle(block);
 }
