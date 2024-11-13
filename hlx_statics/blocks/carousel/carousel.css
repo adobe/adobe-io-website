@@ -1,93 +1,103 @@
 div.carousel picture {
     width: 100%;
-}
-
-div.carousel picture img {
+  }
+  
+  div.carousel picture img {
     object-fit: cover;
     height: auto;
     width: 100%;
-}
-
-@media screen and (max-width: 700px) {
+  }
+  
+  @media screen and (max-width: 700px) {
     main div.carousel div.carousel-container {
-        flex-direction: column-reverse;
-        align-items: center;
-        justify-content: center;
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
     }
-
-    main div.carousel div.left-container,  main div.carousel div.right-container{
-        width: 100% !important;
-        max-width: 100%;
-        text-align: center;
+  
+    main div.carousel div.left-container,
+    main div.carousel div.right-container {
+      width: 100% !important;
+      max-width: 100%;
+      padding: 16px;
+      text-align: center;
     }
-}
-main div.carousel p.image-container picture{
+  
+    main div.carousel div.left-container {
+      z-index: -1;
+    }
+  
+    main div.carousel .slide-arrow {
+      visibility: hidden;
+    }
+  }
+  main div.carousel p.image-container picture {
     left: 0;
     width: 100%;
     height: 0;
     position: relative;
     padding-bottom: 56.25%;
-}
-
-main div.carousel {
+  }
+  
+  main div.carousel {
     max-width: 1280px;
     margin: auto;
-}
-
-main div.carousel .block-container {
+  }
+  
+  main div.carousel .block-container {
     display: flex;
-    flex-direction: row ;
+    flex-direction: row;
     justify-content: center;
     align-content: space-between;
     position: relative;
-}
-
-main div.carousel .carousel-heading {
-    margin-top: 1 !important;
-    margin-bottom:  8px !important;
   }
-
-main div.carousel .carousel-container {
+  
+  main div.carousel .carousel-heading {
+    margin-top: 1 !important;
+    margin-bottom: 8px !important;
+  }
+  
+  main div.carousel .carousel-container {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
     align-content: space-between;
-}
-
-main div.carousel .left-container {
+  }
+  
+  main div.carousel .left-container {
     flex: 0 1 50%;
     min-height: 100%;
     max-width: 50%;
-    padding: 0  8px;
-}
-
-main div.carousel .right-container {
+    padding: 0 8px;
+  }
+  
+  main div.carousel .right-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    line-height: 1.6;
     flex: 0 1 50%;
     min-height: 100%;
     max-width: 50%;
     padding: 0 32px;
-}
-
-main div.carousel .carousel-button-container {
+  }
+  
+  main div.carousel .carousel-button-container {
     display: flex;
     flex-direction: row !important;
-    margin-top:  8px;
+    margin-top: 8px;
     gap: 16px;
-}
-
-main div.carousel .slider-wrapper {
+  }
+  
+  main div.carousel .slider-wrapper {
     position: relative;
     overflow: hidden;
     transition-property: transform;
     box-sizing: content-box;
     align-items: center;
-}
-
-
-main div.carousel .slides-container {
+  }
+  
+  main div.carousel .slides-container {
     width: 100%;
     display: flex;
     list-style: none;
@@ -97,57 +107,58 @@ main div.carousel .slides-container {
     margin-top: 1;
     overflow: hidden;
     scroll-behavior: smooth;
-}
-
-main div.carousel .slide {
+  }
+  
+  main div.carousel .slide {
     width: 100%;
     height: 100%;
     flex: 1 0 100%;
-}
-
-main div.carousel .slide-arrow {
+  }
+  
+  main div.carousel .slide-arrow {
     margin: auto;
-    background-color: transparent; 
+    background-color: transparent;
     border: none;
     font-size: 5rem;
-    color: #b3cef7;
+    color: #005bb5;
     cursor: pointer;
-}
-
-main .carousel .slide-arrow:hover,
-main .carousel .slide-arrow:focus {
-    color: #007aff;
-}
-
-main div.carousel .slides-container {
+  }
+  
+  main .carousel .slide-arrow:hover,
+  main .carousel .slide-arrow:focus {
+    color: #003e7a;
+  }
+  
+  main div.carousel .slides-container {
     scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-}
-
-/* WebKit */
-main div.carousel .slides-container::-webkit-scrollbar { 
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+  }
+  
+  /* WebKit */
+  main div.carousel .slides-container::-webkit-scrollbar {
     width: 0;
     height: 0;
-}
-
-main div.carousel .carousel-circle-div {
+  }
+  
+  main div.carousel .carousel-circle-div {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 8px;
-}
-
-main div.carousel .carousel-circle {
+  }
+  
+  main div.carousel .carousel-circle {
     background-color: #c6c6c6;
     border: none;
     border-radius: 100%;
-    width: 24px;
-    height: 24px;
+    width: 12px;
+    height: 12px;
     margin: 4px 2px;
     cursor: pointer;
-}
-
-main div.carousel .carousel-circle-selected {
+  }
+  
+  main div.carousel .carousel-circle-selected {
     background-color: #007aff !important;
-}
+  }
+  
