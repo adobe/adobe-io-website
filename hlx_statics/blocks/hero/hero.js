@@ -1,6 +1,5 @@
 import {
   decorateButtons,
-  applyAnalyticHeaderOverride,
 } from '../../scripts/lib-adobeio.js';
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
@@ -62,7 +61,7 @@ export default async function decorate(block) {
 
   const backgroundImage = block?.parentElement?.parentElement?.getAttribute('data-BackgroundImage');
   const fontColor = block?.parentElement?.parentElement?.getAttribute('data-fontColor');
-  const blockImageWidth = block?.parentElement?.parentElement?.getAttribute('data-BlockImageWidth');
+  // const blockImageWidth = block?.parentElement?.parentElement?.getAttribute('data-BlockImageWidth');
   const blockImage = block?.parentElement?.parentElement?.getAttribute('data-BlockImage');
   const heroWrapper = block?.parentElement?.parentElement;
 
@@ -87,20 +86,6 @@ export default async function decorate(block) {
       font.style.setProperty('color', fontColor, 'important');
     });
   }
-  block.querySelectorAll('img').forEach((img) => {
-    if (blockImageWidth) {
-      Object.assign(img.style, {
-        width: blockImageWidth,
-        objectFit: 'contain',
-      });
-    } else {
-      Object.assign(img.style, {
-        width: '600px',
-        height: '400px',
-        objectFit: 'contain',
-      });
-    }
-  });
 
   if (blockImage?.toLocaleLowerCase() === 'visible') {
     heroWrapper.querySelectorAll('picture').forEach((picture) => {
@@ -110,6 +95,4 @@ export default async function decorate(block) {
       picture.style.setProperty('display', 'block', 'important');
     });
   }
-
-  applyAnalyticHeaderOverride(block);
 }
