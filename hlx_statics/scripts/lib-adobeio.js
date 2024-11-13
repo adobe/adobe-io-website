@@ -449,11 +449,11 @@ export const setSearchFrameOrigin = (host, suffix = '') => {
  * @param {*} suffix A suffix to append
  * @returns The first subfolder in the franklin dir - for special urls like apis will return the franklin_assets folder
  */
-export const getClosestFranklinSubfolder = (host, suffix = '') => {
+export const getClosestFranklinSubfolder = (host, suffix = '', defaultNav = false) => {
   let subfolderPath = window.location.pathname.split('/')[1];
 
   // make sure top level paths point to the same nav if on these paths
-  if (subfolderPath === '' || subfolderPath === 'apis' || subfolderPath === 'open' || subfolderPath === 'developer-support') {
+  if (subfolderPath === '' || subfolderPath === 'apis' || subfolderPath === 'open' || subfolderPath === 'developer-support' || defaultNav) {
     subfolderPath = 'franklin_assets';
   } else {
     subfolderPath = window.location.pathname;
@@ -668,13 +668,42 @@ export function applySectionTitle(block) {
   }
 }
 
+
+export async function loadCustomAnalytic(domObj, path) {
+  const resp = await fetch(`${path}.json`);
+  if (resp.ok) {
+    const analyticInfo = await resp.json();
+    analyticInfo?.data.forEach(item => {
+      const className = item.class;
+      const href = item.href;
+      const daalh = item["daa-lh"];
+      const daall = item["daa-ll"];
+      domObj.querySelectorAll('a').forEach((a) => {
+        if (a.href === href) {
+          a.setAttribute('daa-ll', daall);
+          const sectionElement = a.closest('.section');
+          if(sectionElement) {
+            sectionElement.classList.add(className);
+            sectionElement.querySelector('.block')?.setAttribute('daa-lh', daalh);
+          }
+        }
+      });
+    })
+  }
+}
+
 /**
- * Set the analytic header of a block from Section Metadata.
+ * Add analytics to the page.  Check if an 'analytic' file exists, then read the custom analytic tracking data from the file.
  * @param {Element} The element to set the analytic heading attribute.
  */
-export function applyAnalyticHeaderOverride(block) {
-  const heading = block?.parentElement?.parentElement?.getAttribute('data-analytic-heading');
-  if (heading) {
-    block.setAttribute('daa-lh', heading);
+export async function applyAnalytic(domObj = document) {
+  domObj.querySelectorAll('a').forEach((a) => {
+    if (a.innerText.length > 0) {
+      a.setAttribute('daa-ll', a.innerText);
+    }
+  });
+  let analyticPath = getClosestFranklinSubfolder(window.location.origin, 'analytic');
+  if (analyticPath) {
+    const analytic = await loadCustomAnalytic(domObj, analyticPath);
   }
 }
