@@ -1,4 +1,4 @@
-import { decorateButtons, applyWidthOverride, applyBkgColorOverride, applySectionTitle, applyAnalyticHeaderOverride } from '../../scripts/lib-adobeio.js';
+import { decorateButtons, applyWidthOverride, applyBkgColorOverride, applySectionTitle } from '../../scripts/lib-adobeio.js';
 import { createOptimizedPicture, decorateLightOrDark } from '../../scripts/lib-helix.js';
 
 /**
@@ -70,7 +70,7 @@ export default async function decorate(block) {
 
     card.querySelectorAll('.three-card > div').forEach((font, index) => {
       if (index === 1) {
-        font.style.setProperty('font-size', 'var(--spectrum-global-dimension-font-size-200)');
+        font.style.setProperty('font-size', '16px');
       }
     });
   });
@@ -84,5 +84,4 @@ export default async function decorate(block) {
   applyBkgColorOverride(block);
   applyWidthOverride(block);
   applySectionTitle(block);
-  applyAnalyticHeaderOverride(block);
 }
