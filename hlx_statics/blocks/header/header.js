@@ -324,8 +324,6 @@ export default async function decorate(block) {
   header.appendChild(mobileMenu);
   const iconContainer = createTag('p', { class: 'icon-adobe-container' });
 
-  // const title = block.querySelector('p:nth-child(1)');
-
   const title = "Adobe Developer";
   const siteLink = createTag('a', { class: 'na-console-adobeio-link', href: "https://developer.adobe.com/" });
 
@@ -340,8 +338,11 @@ export default async function decorate(block) {
   const navigationLinks = createTag('ul', { id: 'navigation-links', class: 'menu', style: 'list-style-type: none;'});
 
   if (isTopLevelNav(window.location.pathname)) {
-    const homeLink = ul.querySelector('li:nth-child(1)');
-    homeLink.className = 'navigation-home';
+    const homeLinkLi = createTag('li', {class: 'navigation-home'});
+    const homeLinkA = createTag('a', {href: 'https://developer.adobe.com', 'daa-ll': 'Home'});
+    homeLinkA.innerHTML = 'Products';
+    homeLinkLi.append(homeLinkA);
+    navigationLinks.append(homeLinkLi);
   } else {
     const productLi = createTag('li', {class: 'navigation-products'});
     const productA = createTag('a', {href: 'https://developer.adobe.com/apis', 'daa-ll': 'Products'});
@@ -358,9 +359,26 @@ export default async function decorate(block) {
       navigationLinks.innerHTML += topNavHtml;
     }
   } else {
-    navPath = cfg.nav || getClosestFranklinSubfolder(window.location.origin, 'nav');
-    const fragment = await loadFragment(navPath);
-    block.innerHTML = fragment;
+    navPath = cfg.nav || getClosestFranklinSubfolder(window.location.origin,'nav');
+    let fragment = await loadFragment(navPath);
+    if (fragment == null) {
+      // load the default nav in franklin_assets folder nav
+      fragment = await loadFragment(getClosestFranklinSubfolder(window.location.origin, 'nav', true));
+    }
+    const ul = fragment.querySelector("ul");
+    ul.classList.add("menu");
+    ul.setAttribute("id", "navigation-links");
+    fragment.querySelectorAll("li").forEach((li, index) => {
+      if (index == 0) {
+        if (isTopLevelNav(window.location.pathname)) {
+          const homeLink = ul.querySelector('li:nth-child(1)');
+          homeLink.className = 'navigation-home';
+        } else {
+          li.classList.add("navigation-products");
+        }
+      }
+    });
+    navigationLinks = ul;
   }
 
   navigationLinks.querySelectorAll('li > ul').forEach((dropDownList, index) => {
@@ -449,130 +467,4 @@ export default async function decorate(block) {
 
   setActiveTab();
   focusRing(header);
-  //   // TODO: retthink about 404
-  // } else if (resp.status == 404) {
-  //   const resp404 = await fetch('https://main--adobe-io-website--adobe.hlx.page/franklin_assets/nav.plain.html');
-  //   if (resp404.ok) {
-  //     const html = await resp404.text();
-  //     block.innerHTML = html;
-  //     const header = block.parentElement;
-  //     header.classList.add('main-header', 'global-nav-header');
-  //     header.setAttribute('daa-lh', 'header');
-
-  //     const mobileButton = createTag('input', { class: 'menu-btn', type: 'checkbox', id: 'menu-btn' });
-  //     header.appendChild(mobileButton);
-  //     const mobileMenu = createTag('label', { class: 'menu-icon', for: 'menu-btn' });
-  //     mobileMenu.innerHTML = '<span class="navicon"></span>';
-  //     header.appendChild(mobileMenu);
-  //     const iconContainer = createTag('p', { class: 'icon-adobe-container' });
-  //     const title = block.querySelector('p:nth-child(1)');
-  //     const siteLink = title.querySelector('strong > a');
-  //     const iconLink = createTag('a', { class: 'na-console-adobeio-link', href: siteLink.href });
-  //     iconLink.innerHTML = '<img class="icon icon-adobe" src="/hlx_statics/icons/adobe.svg" alt="adobe icon">';
-  //     iconContainer.appendChild(iconLink);
-  //     siteLink.className = 'nav-console-adobeio-link-text';
-  //     siteLink.innerHTML = `<strong class="spectrum-Heading spectrum-Heading--sizeS icon-adobe-label">${siteLink.innerText}</strong>`;
-  //     iconContainer.appendChild(siteLink);
-  //     header.append(iconContainer);
-
-  //     const ul = block.querySelector('ul');
-  //     ul.setAttribute('id', 'navigation-links');
-  //     ul.setAttribute('class', 'menu');
-  //     ul.style.listStyleType = 'none';
-
-  //     if (isTopLevelNav(window.location.pathname)) {
-  //       const homeLink = ul.querySelector('li:nth-child(1)');
-  //       homeLink.className = 'navigation-home';
-  //     } else {
-  //       const productsLi = ul.querySelector('li:nth-child(1)');
-  //       productsLi.className = 'navigation-products';
-  //     }
-  //     ul.querySelectorAll('li > ul').forEach((dropDownList, index) => {
-  //       let dropdownLinkDropdownHTML = '';
-  //       let dropdownLinksHTML = '';
-
-  //       dropDownList.querySelectorAll('ul > li > a').forEach((dropdownLinks) => {
-  //         dropdownLinksHTML
-  //           += globalNavLinkItemDropdownItem(dropdownLinks.href, dropdownLinks.innerText);
-  //       });
-
-  //       dropdownLinkDropdownHTML = globalNavLinkItemDropdown(
-  //         index,
-  //         dropDownList.parentElement.firstChild.textContent.trim(),
-  //         dropdownLinksHTML,
-  //       );
-  //       dropDownList.parentElement.innerHTML = dropdownLinkDropdownHTML;
-  //     });
-
-  //     addCheckmarkSvg(ul);
-
-  //     let buttonDiv;
-  //     if (window.location.pathname.includes('/developer-distribution')) {
-  //       buttonDiv = createTag('div');
-  //       ul.appendChild(buttonDiv);
-  //       buttonDiv.appendChild(globalMobileDistributeButton());
-  //     } else {
-  //       buttonDiv = createTag('div', { class: 'button-container' });
-  //       ul.appendChild(buttonDiv);
-  //     }
-  //     buttonDiv.appendChild(globalMobileConsoleButton());
-  //     ul.querySelectorAll('a').forEach((a) => {
-  //       if (a.parentElement.tagName === 'STRONG') {
-  //         a.className = 'spectrum-Button spectrum-Button--secondary  spectrum-Button--sizeM';
-  //         const span = createTag('span', { class: 'spectrum-Button-label' });
-  //         span.innerHTML = a.innerHTML;
-  //         a.innerHTML = '';
-  //         a.appendChild(span);
-  //         const li = a.parentElement.parentElement;
-  //         const div = createTag('div', { class: 'nav-view-docs-button' });
-  //         div.appendChild(a);
-  //         ul.removeChild(li);
-  //         ul.appendChild(div);
-  //       }
-  //     });
-
-  //     window.search_path_name_check = '';
-
-  //     window.addEventListener('message', (evt) => {
-  //       const expectedOrigin = setSearchFrameOrigin(window.location.host);
-  //       if (evt.origin !== expectedOrigin) return;
-  //       try {
-  //         const message = typeof evt.data === 'string' ? JSON.parse(evt.data) : evt.data;
-  //         if (message.query) {
-  //           setQueryStringParameter('query', message.query);
-  //           setQueryStringParameter('keywords', message.keywords);
-  //           setQueryStringParameter('index', message.index);
-  //         } else if (message.received) {
-  //           window.search_path_name_check = message.received;
-  //         }
-  //       } catch (e) {
-  //         // eslint-disable-next-line no-console
-  //         console.error(e);
-  //       }
-  //     });
-
-  //     header.append(ul);
-  //     const rightContainer = createTag('div', { class: 'nav-console-right-container' });
-  //     rightContainer.appendChild(globalNavSearchButton());
-  //     if (window.location.pathname.includes('/developer-distribution')) {
-  //       rightContainer.appendChild(globalDistributeButton());
-  //     }
-  //     rightContainer.appendChild(globalConsoleButton());
-  //     rightContainer.appendChild(globalSignIn());
-  //     header.append(rightContainer);
-  //     header.append(globalNavSearchDropDown());
-  //     decorateSearchIframeContainer(header);
-  //     block.remove();
-
-  //     handleButtons(header);
-
-  //     const signIn = header.querySelector('#signIn');
-  //     signIn?.addEventListener('click', () => {
-  //       window.adobeIMSMethods?.signIn();
-  //     });
-
-  //     setActiveTab();
-  //     focusRing(header);
-  //   }
-  // }
 }
