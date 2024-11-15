@@ -3,7 +3,6 @@ main div.table-wrapper {
 } 
 
 main div.table-container {
-  width: 100%;
   background: rgb(245, 245, 245);
   overflow-x: auto;
 }
