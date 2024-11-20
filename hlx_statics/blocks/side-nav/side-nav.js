@@ -48,12 +48,13 @@ export default async function decorate(block) {
 
     for (let i = 0; i < listItems.length; i++) {
       const li = listItems[i];
-      if (layer === 1) {
-        li.classList.add('header');
-      }
 
       const getAnchorTag = li.querySelector('a');
       const childUl = li.querySelector('ul');
+
+      if (layer === 1 && childUl) {
+        li.classList.add('header');
+      }
 
       li.setAttribute("role", "treeitem");
       li.setAttribute("aria-level", layer);
