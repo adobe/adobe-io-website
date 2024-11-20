@@ -12,11 +12,32 @@ main .teaser-wrapper > .block > div > div {
   flex-direction: column;
   gap: 15px;
   width: 95%;
+  align-items: center;
 }
 
 main .teaser-wrapper > .block > div {
   display: flex;
   margin-left: 5%;
+}
+
+main .teaser-wrapper .teaser.start > div {
+  justify-content: start;
+  margin-left: 5%;
+}
+main .teaser-wrapper .teaser.start > div > div {
+  align-items: normal;
+}
+main .teaser-wrapper .teaser > div{
+  justify-content: center;
+  margin: 0;
+}
+
+main .teaser-wrapper .teaser.end > div {
+  justify-content: end;
+  margin-right: 5%;
+}
+main .teaser-wrapper .teaser.end > div > div {
+  width: 750px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -27,7 +48,7 @@ main .teaser-wrapper > .block > div {
 
   main .teaser-container .teaser > div > div {
     text-align: center;
-    align-items: center;
+    align-items: center !important;
   }
 }
 
