@@ -10,7 +10,7 @@ main .tab-container .tab {
     justify-content: center;
 }
 
-main .tab-container .vertical-tab .innerTab {
+main .tab-container .vertical .innerTab {
     display: flex;
 }
 
@@ -23,12 +23,12 @@ main .tab-container .innerTab>div:first-child {
     display: flex;
 }
 
-main .tab-container .vertical-tab .innerTab>div:first-child {
+main .tab-container .vertical .innerTab>div:first-child {
     flex-direction: column;
     align-items: center;
 }
 
-main .tab-container .horizontal-tab .innerTab>div:first-child {
+main .tab-container .innerTab>div:first-child {
     gap: 16px;
 }
 

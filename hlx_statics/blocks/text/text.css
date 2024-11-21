@@ -39,6 +39,10 @@ main .text picture {
   display: flex;
 }
 
+main .text.right > div {
+  flex-direction: row-reverse;
+}
+
 main .contentContainer {
   display: flex;
   align-items: center;

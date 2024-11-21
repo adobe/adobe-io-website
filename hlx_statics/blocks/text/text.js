@@ -75,12 +75,6 @@ export default async function decorate(block) {
   block.querySelectorAll('img').forEach((img) => {
     img.classList.add('textImg');
   });
-  block.querySelectorAll('div.text > div').forEach((division) => {
-    if (position === "right")
-      division.style.flexDirection = "row-reverse";
-    if (position === "left")
-      division.style.flexDirection = "row";
-  })
   if (width) {
     block.querySelectorAll('.text > div').forEach((parentDiv) => {
       parentDiv.style.width = width;

@@ -1,4 +1,4 @@
-import { decorateButtons, applyWidthOverride, applyBkgColorOverride, applySectionTitle } from '../../scripts/lib-adobeio.js';
+import { decorateButtons, applyWidthOverride, applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
 import { createOptimizedPicture, decorateLightOrDark } from '../../scripts/lib-helix.js';
 
 /**
@@ -21,15 +21,9 @@ function processImages(block) {
  */
 export default async function decorate(block) {
   // by default, we will use all links as button.  When the section metadata added a linkstyle to be link, it'll change that section's button to be link.
-  const isLink = block.parentElement.parentElement.getAttribute('data-link-class');
   const fontColor = block.parentElement.parentElement.getAttribute('data-fontColor');
-  const padding = block?.parentElement?.parentElement?.getAttribute('data-padding');
-  if (padding) {
-    block.querySelectorAll('.cards > div').forEach((div) => {
-      div.style.padding = padding;
-    })
-  }
-  if (isLink !== "link") {
+  const isLink = block.classList.contains("links");
+  if (!isLink) {
     decorateButtons(block);
   }
   block.setAttribute('daa-lh', 'card');
@@ -45,7 +39,7 @@ export default async function decorate(block) {
       p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
     });
 
-    if (isLink === "link") {
+    if (isLink) {
       card.querySelectorAll('p > a').forEach((a) => {
         a.classList.add('spectrum-Link', 'spectrum-Button--secondary');
       });
@@ -83,5 +77,4 @@ export default async function decorate(block) {
   observer.observe(block);
   applyBkgColorOverride(block);
   applyWidthOverride(block);
-  applySectionTitle(block);
 }

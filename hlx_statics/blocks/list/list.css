@@ -1,28 +1,80 @@
-main div.list-container>div.list-wrapper>div>div {
-  display: flex !important;
-}
-
 main div.list-container li {
   margin: 10px 0;
+  position: relative;
 }
 
-main div.list-container li {
-  position: relative
+main div.list-container div.list {
+  width: auto;
+}
+
+main div.list {
+  box-sizing: border-box;
+  margin: auto;
+}
+
+main div.list-container{
+  width: 100%;
+}
+main div.list > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0;
+}
+
+main div.list-container div.list > div {
+  align-items: start;
+}
+
+main div.list-container div.list > div > div {
+  flex-direction: column;
+  flex-basis:100%;
+  text-align: start;
+  padding: 0 32px;
 }
 
 main div.list-container>div.list-wrapper>div {
   margin: auto;
 }
 
-.checkmark-list {
+.checkmark {
   list-style-type: none;
-  padding-left: 20px;
 }
 
-.checkmark-list li {
+.checkmark ol {
+  list-style: none;
+}
+
+.checkmark li {
   position: relative;
-  padding-left: 30px;
   margin-bottom: 8px;
+}
+
+.checkmark li:before {
+  color: #096;
+  content: "\2714\0020";
+}
+
+main .list .anchor-link{
+  /* padding-left: 10px; */
+  visibility: hidden;
+}
+
+main .list:hover .anchor-link{
+  /* padding-left: 10px; */
+  visibility: visible;
+}
+
+main div.list h3 {
+  margin-top: 0!important;
+  margin-bottom: 16px!important;
+  scroll-margin-top:100px;
+  text-align: center;
+}
+
+main div.list h3 + p {
+  text-align: center;
+  margin-top: 0!important;
 }
 
 @media screen and (min-width : 768px) and (max-width : 1440px) {
