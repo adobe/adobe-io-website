@@ -190,6 +190,7 @@ export function decorateButtons(block, secondaryButtonBorderColor, secondaryButt
     if (preElement) {
       const wrapperDiv = document.createElement('div');
       wrapperDiv.classList.add('code-block');
+      wrapperDiv.style.margin = "1em 0";
       preElement.parentNode.insertBefore(wrapperDiv, preElement);
       wrapperDiv.appendChild(preElement);
       decoratePreformattedCode({ block: wrapperDiv });
