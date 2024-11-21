@@ -1,7 +1,6 @@
 import {
   applyWidthOverride,
   applyBkgColorOverride,
-  applyAnalyticHeaderOverride,
 } from '../../scripts/lib-adobeio.js';
 
 /*
@@ -66,5 +65,4 @@ export default async function decorate(block) {
   block.append(table);
   applyBkgColorOverride(block);
   applyWidthOverride(block);
-  applyAnalyticHeaderOverride(block);
 }

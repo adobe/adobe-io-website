@@ -231,3 +231,7 @@ footer .footer-horizontal {
   margin-top: 56px;
   width: 100% !important;
 }
+
+footer .spectrum-Link {
+  font-size: 14px;
+}

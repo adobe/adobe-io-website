@@ -2,7 +2,6 @@ import {
   removeEmptyPTags,
   decorateButtons,
   createTag,
-  applyAnalyticHeaderOverride,
 } from '../../scripts/lib-adobeio.js';
 
 /**
@@ -22,8 +21,10 @@ export default async function decorate(block) {
     if (fontFamily) {
       h.style.fontFamily = fontFamily;
       h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL');
+      h.style.color = "white";
     } else {
       h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
+      h.style.color = "white";
     }
     h.parentElement.classList.add('site-hero-content');
     h.parentElement.append(button_div);
@@ -34,6 +35,7 @@ export default async function decorate(block) {
     // don't attach to icon container or if p tag contains links
     if (!p.classList.contains('icon-container')) {
       p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
+      p.style.color = "white";
       button_div.parentElement.querySelector('.spectrum-Heading').after(p);
     }
     if (p.classList.contains('button-container')){
@@ -46,5 +48,4 @@ export default async function decorate(block) {
     hero_img.removeAttribute('style');
     hero_img.setAttribute('class', 'xl-img');
   }
-  applyAnalyticHeaderOverride(block);
 }

@@ -1,10 +1,10 @@
 header.main-header {
   grid-area: header;
   position: fixed;
-  height: var(--spectrum-global-dimension-size-800);
+  height: 64px;
   left: 0;
   right: 0;
-  background-color: var(--spectrum-global-color-gray-50);
+  background-color: rgb(255, 255, 255);
   z-index: 2;
 }
 
@@ -21,8 +21,8 @@ header div.header-link-container {
 @media screen and (max-width: 1280px) {
   header div.header-link-container {
     justify-content: flex-end;
-    margin-left: var(--spectrum-global-dimension-size-1600);
-    width: calc(100vw - var(--spectrum-global-dimension-size-1600));
+    margin-left: 160px;
+    width: calc(100vw - 160px);
     white-space: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
@@ -55,7 +55,7 @@ header a.header-main-link {
   text-decoration: none;
   z-index: 1;
   outline: none;
-  width: var(--spectrum-global-dimension-size-1600);
+  width: 160px;
 }
 
 header a.header-main-link:hover, a.header-main-link:focus {
@@ -111,7 +111,7 @@ header.global-nav-header img.icon {
 }
 
 header.global-nav-header p {
-  color: var(--spectrum-global-color-gray-700);
+  color: rgb(70, 70, 70);
   display: flex;
   align-items: center;
   margin: 0;
@@ -174,8 +174,8 @@ header.global-nav-header {
   text-decoration: none;
   background-color: #fff;
   z-index: 1001;
-  padding-left: var(--spectrum-global-dimension-size-100);
-  padding-right: var(--spectrum-global-dimension-size-400);
+  padding-left: 8px;
+  padding-right: 32px;
 }
 
 header.global-nav-header img.icon {
@@ -185,7 +185,7 @@ header.global-nav-header img.icon {
 }
 
 header.global-nav-header p {
-  color: var(--spectrum-global-color-gray-700);
+  color: rgb(70, 70, 70);
   display: flex;
   align-items: center;
   margin: 0;
@@ -226,7 +226,7 @@ header.global-nav-header > ul#navigation-links > li > button.is-open .spectrum-P
   header.global-nav-header div.nav-link-active {
     height: 2px;
     position: absolute;
-    background-color: var(--spectrum-global-color-gray-900);
+    background-color: rgb(44, 44, 44);
   }
 
   header.global-nav-header > ul#navigation-links {
@@ -274,19 +274,19 @@ header.global-nav-header > ul#navigation-links > li > button.is-open .spectrum-P
     display: block;
     padding: 0 12px;
     text-decoration: none;
-    color: var(--spectrum-global-color-gray-700);
+    color: rgb(70,70,70);
   }
 
   header.global-nav-header > ul#navigation-links > li > button {
     height: 64px;
     padding: 0 12px;
-    color: var(--spectrum-global-color-gray-700);
+    color: rgb(70,70,70);
   }
 
   header.global-nav-header > ul#navigation-links > li > a:hover,
   header.global-nav-header > ul#navigation-links > li > button:hover {
-    background-color: var(--spectrum-global-color-gray-75);
-    color: var(--spectrum-global-color-gray-900);
+    background-color: rgb(253, 253, 253);
+    color: rgb(44, 44, 44);
   }
 
   header.global-nav-header > ul#navigation-links > li.navigation-products a {
@@ -301,8 +301,8 @@ header.global-nav-header > ul#navigation-links > li > button.is-open .spectrum-P
   }
 
   header.global-nav-header > ul > li a:hover {
-    background-color: var(--spectrum-global-color-gray-75);
-    color: var(--spectrum-global-color-gray-900);
+    background-color: rgb(253, 253, 253);
+    color: rgb(44, 44, 44);
   }
 
   header.global-nav-header div.nav-dropdown-popover {
@@ -329,11 +329,11 @@ header.global-nav-header > ul#navigation-links > li {
 
 header.global-nav-header a.nav-dropdown-links {
   text-decoration: none;
-  color: var(--spectrum-global-color-gray-700);
+  color: rgb(70, 70, 70);
 }
 
 header.global-nav-header a.nav-dropdown-links:visited {
-  color: var(--spectrum-global-color-gray-700);
+  color: rgb(70, 70, 70);
 }
 
 header.global-nav-header div.nav-console-right-container {
@@ -350,12 +350,12 @@ header.global-nav-header div.nav-console-search-button {
 header.global-nav-header button.nav-dropdown-search {
   border: none;
   background-color: #fff;
-  color: var(--spectrum-actionbutton-m-quiet-text-color,var(--spectrum-alias-text-color));
+  color: rgb(110, 110, 110);
 }
 
 header.global-nav-header button.nav-dropdown-search:hover {
   cursor: pointer;
-  color: var(--spectrum-actionbutton-m-quiet-text-color-hover,var(--spectrum-alias-text-color-hover));
+  color: rgb(44, 44, 44);
 }
 
 header.global-nav-header div.nav-console-button {
@@ -375,8 +375,8 @@ header.global-nav-header div.nav-profile {
 }
 
 header.global-nav-header div#nav-profile-dropdown-popover {
-  width: var(--spectrum-global-dimension-size-3400);
-  max-height: var(--spectrum-global-dimension-size-4600);
+  width: 340px;
+  max-height: 460px;
   right: 0;
   top: calc(64px - var(--spectrum-overlay-animation-distance) + 1px);
   z-index: 100;
@@ -399,10 +399,10 @@ header.global-nav-header div.nav-profile-popover-avatar {
   width: 75px;
   height: 75px;
   border-radius: var(--spectrum-global-dimension-static-percent-50);
-  background: var(--spectrum-global-color-gray-50);
+  background: rgb(255, 255, 255);
   overflow: hidden;
-  margin-top: var(--spectrum-global-dimension-size-200);
-  margin-bottom: var(--spectrum-global-dimension-size-300);
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 header.global-nav-header div.nav-profile-popover-avatar > img{
@@ -411,27 +411,27 @@ header.global-nav-header div.nav-profile-popover-avatar > img{
 }
 
 header.global-nav-header div.nav-profile-popover-name {
-  padding: 0 var(--spectrum-global-dimension-size-200);
+  padding: 0 20px;
   text-align: center;
-  color: var(--spectrum-global-color-gray-800);
-  margin-bottom: var(--spectrum-global-dimension-size-300);
+  color: 80px;
+  margin-bottom: 30px;
 }
 
 header.global-nav-header div.nav-profile-popover-divider {
-  margin-bottom: var(--spectrum-global-dimension-size-250);
-  padding: 0 var(--spectrum-global-dimension-size-250);
+  margin-bottom: 25px;
+  padding: 0 25px;
   box-sizing: border-box;
   width: 100%;
-  color: var(--spectrum-global-color-gray-300);
+  color: rgb(213, 213, 213);
 }
 
 header.global-nav-header a.nav-profile-popover-edit {
-  margin-bottom: var(--spectrum-global-dimension-size-250);
+  margin-bottom: 25px;
 }
 
 header.global-nav-header a.nav-profile-popover-sign-out {
-  padding: 0 var(--spectrum-global-dimension-size-300);
-  margin-bottom: var(--spectrum-global-dimension-size-300);
+  padding: 0 30px;
+  margin-bottom: 30px;
 }
 
 header iframe {
@@ -442,7 +442,7 @@ header iframe {
 
 header div.nav-console-search-frame {
   position: fixed;
-  top: var(--spectrum-global-dimension-size-800);
+  top: 80px;
   left: 0px;
   right: 0px;
   bottom: 0px;
@@ -522,7 +522,7 @@ header .menu-btn {
 
   header ul {
     position: absolute;
-    top: var(--spectrum-global-dimension-size-800);
+    top: 80px;
     left: 0px;
     margin: 0;
     padding: 0;
@@ -620,7 +620,7 @@ header .menu-btn {
   header .menu .nav-dropdown-mobile-popover .nav-sub-menu{
     transform: none !important;
     position: absolute;
-    top: var(--spectrum-global-dimension-size-800);
+    top: 80px;
     left: 0px;
     margin: 0;
     padding: 0;

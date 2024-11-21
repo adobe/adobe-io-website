@@ -1,6 +1,6 @@
 main div.columns-container {
     width: 100%;
-    background: rgb( 248,248,248 );
+    background: rgb( 245,245,245 );
 }
 
 main div.columns {
@@ -9,17 +9,9 @@ main div.columns {
     margin: auto;
 }
 
-@media screen and (max-width: 1280px) {
-    main div.columns {
-        width: 100%;
-    }
-    main div.columns > div {
-      flex-direction: column !important;
-    }
-}
-
 main div.columns > div {
     display: flex;
+    justify-content: center;
     align-items: center;
     padding: 80px 0;
 }
@@ -60,18 +52,6 @@ main div.columns-container.section[data-list-class="checkmark"] ul > li:before{
     content: "\2714\0020";
 }
 
-@media screen and (max-width: 1280px) {
-    main div.columns div.second-column {
-        width: 100%;
-        text-align: center;
-    }
-}
-@media screen and (max-width: 1280px) {
-    main div.second-column div.product-link-container, main div.columns div.second-column div.button-group-container {
-        justify-content: center;
-    }
-}
-
 main div.columns  div.second-column div.button-group-container {
     gap: 2rem;
     display: flex;
@@ -86,31 +66,19 @@ main div.columns  div.second-column div.button-group-container {
     }
 }
 
-@media screen and (max-width: 1280px) {
-    main div.columns > div {
-        flex-direction: column;
-    }
-}
-
 main div.columns div.first-column {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 50%;
-    max-height: 350px;
+    max-height: 350px !important;
     box-sizing: border-box;
     padding: 0 8px;
     margin-top: 0;
 }
 
 main div.columns div.first-column img {
-    max-height: 350px;
-}
-
-@media screen and (max-width: 1280px) {
-    main div.columns div.first-column {
-        width: 100%;
-    }
+    width: 100%;
 }
 
 main div.second-column {
@@ -124,21 +92,14 @@ main div.second-column {
 }
 
 main .column-header .anchor-link{
-    padding-left: 10px;
+    /* padding-left: 10px; */
     visibility: hidden;
 }
 
 main .column-header:hover .anchor-link{
-    padding-left: 10px;
+    /* padding-left: 10px; */
     visibility: visible;
 }
-
-@media screen and (max-width: 1280px) {
-    main div.columns div.second-column {
-        width: 100%;
-        margin: 40px 0;
-    }
-  }
 
 main div.columns h3.column-header {
     margin-top: 0!important;
@@ -148,6 +109,10 @@ main div.columns h3.column-header {
 
 main div.columns h3.column-header + p {
     margin-top: 0!important;
+}
+
+main div.columns p + p {
+    margin-top: 24px;
 }
 
 main div.columns div.listing.second-column[data-align="right"]{
@@ -162,7 +127,9 @@ main div.columns div.listing ul {
 main div.second-column div.product-link-container {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap:  1rem;
+    padding:0;
+    margin: 0;
 }
 
 @media screen and (max-width:768px) {
@@ -173,12 +140,21 @@ main div.second-column div.product-link-container {
     main div.columns div.product-link-container p {
         max-width: 150px;
     }
+    main div.columns div.first-column {
+        width: 100%;
+    }
 }
 
 main div.second-column div.product-link-container p.icon-container {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin-top: 16px;
+    margin-bottom: 0px;
+}
+
+main div.second-column p.button-container {
+    margin-top:0px;
 }
 
 main div.second-column div.product-link-container img {
@@ -216,13 +192,37 @@ main .columns-container.center div.columns .button-container {
     margin-bottom: 0;
 }
 
+main div.columns div.first-column img {
+    height: 350px !important;
+}
+
 @media screen and (max-width: 1280px) {
+    main div.columns div.second-column {
+        width: 100%;
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    main div.columns {
+        width: 100% !important;
+    }
+    main div.columns > div {
+        flex-direction: column !important;
+        padding: 0 0 !important;
+    }
+
     main .columns-container.center div.columns > div > div {
         text-align: center;
-        padding: 80px 32px;
+        padding: 32px 32px;
     }
 
     main .columns-container.center div.columns > div {
         align-items: center;
     }
+
+    main div.second-column div.product-link-container, main div.columns div.second-column div.button-group-container {
+        justify-content: center;
+        align-items: center;
+    }
+
 }

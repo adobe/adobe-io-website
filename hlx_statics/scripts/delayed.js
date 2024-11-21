@@ -7,7 +7,7 @@ import {
   decorateProfile,
   addExtraScript,
   addExtraScriptWithLoad,
-  setAnalyticsAttributes
+  applyAnalytic
 } from './lib-adobeio.js';
 
 /**
@@ -49,5 +49,5 @@ document.querySelectorAll('.embed').forEach((embed) => {
 });
 
 focusRing();
-setAnalyticsAttributes();
+applyAnalytic();
 loadPrism(document);
