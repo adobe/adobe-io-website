@@ -4,7 +4,6 @@ html {
 }
 
 .onthispage-wrapper {
-  display: block !important;
   position: sticky;
   top: 128px;
   bottom: 0;
