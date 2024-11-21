@@ -3,3 +3,7 @@
 pre[class*=language-] {
     border-radius: 4px;
 }
+
+main .code-wrapper {
+    margin: 1em 0px;
+}
