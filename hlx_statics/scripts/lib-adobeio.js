@@ -204,7 +204,6 @@ export function buildCodes(container) {
 
     if (code) {
       const wrapperDiv = document.createElement('div');
-      wrapperDiv.classList.add('code-block');
       wrapperDiv.style.margin = "1em 0";
       code.style.whiteSpace = "pre-wrap";
 
@@ -213,8 +212,21 @@ export function buildCodes(container) {
       decoratePreformattedCode({ block: wrapperDiv });
 
       block.replaceWith(wrapperDiv);
-      console.log('pre', wrapperDiv);
+      // console.log('pre', wrapperDiv);
     }
+  });
+}
+
+/**
+ * Builds all hr blocks inside a container
+ * @param {*} container The container to inspect
+ */
+export function decorateHR(container) {
+  const hrWrappers = container.querySelectorAll('main div.hr-wrapper');
+
+  hrWrappers.forEach(hrWrapper => {
+    const hr = document.createElement('hr');
+    hrWrapper.insertBefore(hr, hrWrapper.firstChild);
   });
 }
 
@@ -326,6 +338,7 @@ export function toggleScale() {
  * @param {*} block The block containing the picture to rearrange
  */
 export function rearrangeHeroPicture(block, overlayStyle) {
+  console.log('block', block)
   const picture = block.querySelector('picture');
   const emptyDiv = picture.parentElement.parentElement;
   block.prepend(picture);
