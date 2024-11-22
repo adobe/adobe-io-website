@@ -11,9 +11,7 @@ export default async function decorate(block) {
   applyBkgColorOverride(block);
   let fontcolor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
   fontcolor = fontcolor ? fontcolor : "rgb(209, 209, 209)";
-  const orientation = block?.parentElement?.parentElement?.getAttribute('data-orientation');
   const backgroundColor = block?.parentElement?.parentElement?.getAttribute('data-backgroundcolor');
-  block.classList.add(`${orientation}-tab`);
   let codeBackgroundColor = block?.parentElement?.parentElement?.getAttribute('data-codebackgroundcolor');
   codeBackgroundColor = codeBackgroundColor ? codeBackgroundColor : "rgb(0,0,0)"
 

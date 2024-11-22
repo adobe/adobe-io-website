@@ -24,18 +24,6 @@ main div.columns-container.background-color-white {
     background-color: white;
 }
 
-main div.columns-container.section[data-class="photoshoppricing"] .columns > div > div{
-    flex-basis:auto;
-    flex-grow: 1;
-    flex-shrink: 1;
-    text-align: left;
-    padding: 0 64px;
-}
-
-main div.columns-container.section[data-class="photoshoppricing"] .columns .button-container{
-    margin-left:0px;
-}
-
 main div.columns-container.section[data-list-class="checkmark"] ul {
     list-style: none;
     font-size: 16px;
@@ -169,6 +157,7 @@ main div.second-column div.product-link-container svg {
     object-fit: contain;
 }
 
+
 /* metadata: style: center */
 
 main .columns-container.center div.columns {
@@ -210,7 +199,6 @@ main div.columns div.first-column img {
         flex-direction: column !important;
         padding: 0 0 !important;
     }
-
     main .columns-container.center div.columns > div > div {
         text-align: center;
         padding: 32px 32px;
@@ -224,5 +212,6 @@ main div.columns div.first-column img {
         justify-content: center;
         align-items: center;
     }
+
 
 }

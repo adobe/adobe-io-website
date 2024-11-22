@@ -37,9 +37,6 @@ export default async function decorate(block) {
     removeEmptyPTags(block);
     block.parentElement.parentElement.classList.add('accordion-whole');
 
-    //check if subtitle is included
-    const subtitle = block?.parentElement?.parentElement?.getAttribute('data-subtitle');
-
     const accordion_div = createTag('div', {class: 'accordion-div'});
     block.querySelectorAll('.accordion > div').forEach((item) => {
         const text = item.querySelector('p');
@@ -47,12 +44,6 @@ export default async function decorate(block) {
             const title = item.querySelector('h1, h2');
             title.setAttribute('class', 'spectrum-Heading spectrum-Heading--sizeM');
             title.parentElement.setAttribute('class', 'accordion-title');
-            if(subtitle){
-                const subtitleElement = document.createElement('p');
-                subtitleElement.innerHTML = subtitle;
-                subtitleElement.setAttribute('class', 'accordion-subtitle');
-                title.parentElement.append(subtitleElement);
-            }
         }else{ //accordion item
             item.setAttribute("class", "accordion-item");
             const heading = item.querySelector('h3, h4, h5, h6')?.innerText;
