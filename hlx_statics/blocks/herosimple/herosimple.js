@@ -64,20 +64,18 @@ export default async function decorate(block) {
     });
   }
 
-  const sections = document.querySelectorAll('.section');
-  sections.forEach((section) => {
+  const section = block?.parentElement?.parentElement;
     if (section.classList.contains('herosimple-container')) {
       section.style.margin = '0px';
       section.style.maxWidth = 'none';
-      const subParent = document.createElement('div');
-      subParent.classList.add('sub-parent');
+      const subParent = createTag('div',{class:'sub-parent'});
       const children = Array.from(section.children);
       children.forEach(child => {
         if (!child.classList.contains('herosimple-wrapper')) {
           subParent.appendChild(child);
         }
       });
-      const herosimpleWrapper = section.querySelector('.herosimple-wrapper');
+      const herosimpleWrapper = block?.parentElement;
       if (herosimpleWrapper) {
         section.insertBefore(subParent, herosimpleWrapper.nextSibling);
       } else {
@@ -86,6 +84,4 @@ export default async function decorate(block) {
       subParent.style.margin = '0 164px';
       subParent.style.maxWidth = '1280px';
     }
-  });
-
 }
