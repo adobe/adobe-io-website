@@ -179,38 +179,42 @@ export function decorateButtons(block, secondaryButtonBorderColor, secondaryButt
 /**
  * Decorates all inline codes in a container element.
  * @param {Element} element container element
- */
- export function decorateInlineCodes(element) {
+//  */
+export function decorateInlineCodes(element) {
   element.querySelectorAll('code').forEach((code) => {
     const up = code.parentElement;
-    const preElement = code.closest('pre');
+
     if (up.tagName !== 'PRE') {
       code.classList.add('inline-code');
     }
-    if (preElement) {
-      const wrapperDiv = document.createElement('div');
-      wrapperDiv.classList.add('code-block');
-      wrapperDiv.style.margin = "1em 0";
-      preElement.style.textWrap = "auto";
-      preElement.parentNode.insertBefore(wrapperDiv, preElement);
-      wrapperDiv.appendChild(preElement);
-      decoratePreformattedCode({ block: wrapperDiv });
-    }
   });
 }
+
 
 /**
  * Builds all code blocks inside a container
  * @param {*} container The container to inspect
  */
 export function buildCodes(container) {
-  const codes = [...container.querySelectorAll('main > div > pre > code')];
+  const codes = [...container.querySelectorAll('main > div pre')];
+
   codes.forEach((code) => {
     const block = buildBlock('code', code.outerHTML);
     block.classList.add('block');
-    const parentContainer = code.parentElement.parentElement;
-    const pre = parentContainer.querySelector('pre');
-    pre.replaceWith(block);
+
+    if (code) {
+      const wrapperDiv = document.createElement('div');
+      wrapperDiv.classList.add('code-block');
+      wrapperDiv.style.margin = "1em 0";
+      code.style.whiteSpace = "pre-wrap";
+
+      code.parentNode.insertBefore(wrapperDiv, code);
+      wrapperDiv.appendChild(code);
+      decoratePreformattedCode({ block: wrapperDiv });
+
+      block.replaceWith(wrapperDiv);
+      console.log('pre', wrapperDiv);
+    }
   });
 }
 
@@ -264,7 +268,7 @@ export function buildGrid(main) {
   const gridAreaMain = main.querySelector(".section");
   gridAreaMain.style.gridArea = 'main';
 
-  let contentHeader = createTag('div', {class: 'content-header'});
+  let contentHeader = createTag('div', { class: 'content-header' });
   gridAreaMain.prepend(contentHeader)
 }
 
@@ -273,9 +277,9 @@ export function buildGrid(main) {
  * @param {*} main The grid container
  */
 export function buildSideNav(main) {
-  let sideNavDiv = createTag ('div', {class: 'section side-nav-container', style: 'grid-area: sidenav'});
-  let sideNavWrapper = createTag('div', {class: 'side-nav-wrapper'});
-  let sideNavBlock = createTag('div', {class: 'side-nav block', 'data-block-name': 'side-nav'});
+  let sideNavDiv = createTag('div', { class: 'section side-nav-container', style: 'grid-area: sidenav' });
+  let sideNavWrapper = createTag('div', { class: 'side-nav-wrapper' });
+  let sideNavBlock = createTag('div', { class: 'side-nav block', 'data-block-name': 'side-nav' });
   main.style.gridTemplateColumns = '256px auto';
   sideNavWrapper.append(sideNavBlock);
   sideNavDiv.append(sideNavWrapper);
@@ -287,7 +291,7 @@ export function buildSideNav(main) {
  * @param {*} main The grid container
  */
 export function buildOnThisPage(main) {
-  let asideWrapper = createTag('div', {class: 'onthispage-wrapper block', 'data-block-name': 'onthispage'});
+  let asideWrapper = createTag('div', { class: 'onthispage-wrapper block', 'data-block-name': 'onthispage' });
   main.append(asideWrapper);
 }
 
@@ -296,13 +300,13 @@ export function buildOnThisPage(main) {
  * @param {*} main The grid container
  */
 export function buildBreadcrumbs(main) {
-  let breadcrumbsDiv = createTag ('div', {class: 'section breadcrumbs-container'});
-  let breadcrumbsWrapper = createTag('div', {class: 'breadcrumbs-wrapper'});
-  let breadcrumbsBlock = createTag('div', {class: 'breadcrumbs block', 'data-block-name': 'breadcrumbs'});
-  
+  let breadcrumbsDiv = createTag('div', { class: 'section breadcrumbs-container' });
+  let breadcrumbsWrapper = createTag('div', { class: 'breadcrumbs-wrapper' });
+  let breadcrumbsBlock = createTag('div', { class: 'breadcrumbs block', 'data-block-name': 'breadcrumbs' });
+
   breadcrumbsWrapper.append(breadcrumbsBlock);
   breadcrumbsDiv.append(breadcrumbsWrapper);
-  
+
   const contentHeader = main.querySelector('.content-header');
   contentHeader?.append(breadcrumbsDiv);
 }
@@ -682,7 +686,7 @@ export async function loadCustomAnalytic(domObj, path) {
         if (a.href === href) {
           a.setAttribute('daa-ll', daall);
           const sectionElement = a.closest('.section');
-          if(sectionElement) {
+          if (sectionElement) {
             sectionElement.classList.add(className);
             sectionElement.querySelector('.block')?.setAttribute('daa-lh', daalh);
           }
