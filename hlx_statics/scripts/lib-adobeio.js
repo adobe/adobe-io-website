@@ -395,6 +395,9 @@ export function isHlxPath(host) {
   return host.indexOf('hlx.page') >= 0
     || host.indexOf('hlx.live') >= 0
     || host.indexOf('localhost') >= 0;
+    || host.indexOf('localhost') >= 0
+    || host.indexOf('aem.page') >= 0
+    || host.indexOf('aem.live') >= 0;
 }
 
 /**
