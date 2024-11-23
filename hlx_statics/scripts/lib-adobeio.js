@@ -288,10 +288,10 @@ export function buildBreadcrumbs(main) {
   let breadcrumbsDiv = createTag ('div', {class: 'section breadcrumbs-container'});
   let breadcrumbsWrapper = createTag('div', {class: 'breadcrumbs-wrapper'});
   let breadcrumbsBlock = createTag('div', {class: 'breadcrumbs block', 'data-block-name': 'breadcrumbs'});
-  
+
   breadcrumbsWrapper.append(breadcrumbsBlock);
   breadcrumbsDiv.append(breadcrumbsWrapper);
-  
+
   const contentHeader = main.querySelector('.content-header');
   contentHeader?.append(breadcrumbsDiv);
 }
@@ -394,7 +394,9 @@ export function isStageEnvironment(host) {
 export function isHlxPath(host) {
   return host.indexOf('hlx.page') >= 0
     || host.indexOf('hlx.live') >= 0
-    || host.indexOf('localhost') >= 0;
+    || host.indexOf('localhost') >= 0
+    || host.indexOf('aem.page') >= 0
+    || host.indexOf('aem.live') >= 0;
 }
 
 /**
