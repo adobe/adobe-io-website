@@ -11,7 +11,6 @@
  */
 
 @import url('./spectrum/spectrum.min.css');
-@import url('./prism.css');
 
 html,
 body {

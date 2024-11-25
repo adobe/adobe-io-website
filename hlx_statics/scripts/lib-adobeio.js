@@ -1,7 +1,7 @@
 import {
   buildBlock,
 } from './lib-helix.js';
-import decoratePreformattedCode from "../components/code.js"
+import decorate from '../blocks/code/code.js';
 
 /**
  * Breakpoints
@@ -179,7 +179,7 @@ export function decorateButtons(block, secondaryButtonBorderColor, secondaryButt
 /**
  * Decorates all inline codes in a container element.
  * @param {Element} element container element
-//  */
+ */
 export function decorateInlineCodes(element) {
   element.querySelectorAll('code').forEach((code) => {
     const up = code.parentElement;
@@ -189,7 +189,6 @@ export function decorateInlineCodes(element) {
     }
   });
 }
-
 
 /**
  * Builds all code blocks inside a container
@@ -206,13 +205,13 @@ export function buildCodes(container) {
       const wrapperDiv = document.createElement('div');
       wrapperDiv.style.margin = "1em 0";
       code.style.whiteSpace = "pre-wrap";
+      code.classList.add('testClass')
 
       code.parentNode.insertBefore(wrapperDiv, code);
       wrapperDiv.appendChild(code);
-      decoratePreformattedCode({ block: wrapperDiv });
+      decorate(wrapperDiv)
 
       block.replaceWith(wrapperDiv);
-      // console.log('pre', wrapperDiv);
     }
   });
 }
