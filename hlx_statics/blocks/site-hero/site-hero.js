@@ -42,10 +42,4 @@ export default async function decorate(block) {
       button_div.append(p);
     }
   });
-
-  if(document.querySelectorAll('.xl img').length === 1){
-    const hero_img = document.querySelectorAll('.xl img')[0];
-    hero_img.removeAttribute('style');
-    hero_img.setAttribute('class', 'xl-img');
-  }
 }

@@ -430,7 +430,9 @@ export function isStageEnvironment(host) {
 export function isHlxPath(host) {
   return host.indexOf('hlx.page') >= 0
     || host.indexOf('hlx.live') >= 0
-    || host.indexOf('localhost') >= 0;
+    || host.indexOf('localhost') >= 0
+    || host.indexOf('aem.page') >= 0
+    || host.indexOf('aem.live') >= 0;
 }
 
 /**
@@ -678,21 +680,6 @@ export function applyBkgColorOverride(block) {
     block.parentElement.parentElement.style.backgroundColor = 'white';
   }
 }
-
-/**
- * Set the title of a block from Section Metadata.
- * @param {Element} The element to add the title to.
- */
-export function applySectionTitle(block) {
-  const title = block?.parentElement?.parentElement?.getAttribute('data-title');
-  if (title) {
-    const titleElement = document.createElement('h2');
-    titleElement.innerHTML = title;
-    titleElement.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'section-title');
-    block?.parentElement?.parentElement?.prepend(titleElement);
-  }
-}
-
 
 export async function loadCustomAnalytic(domObj, path) {
   const resp = await fetch(`${path}.json`);

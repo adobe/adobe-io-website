@@ -1,4 +1,0 @@
-mountpoints:
-  /:
-    url: https://53444-842orangechinchilla.adobeioruntime.net/api/v1/web/md2markup/main/
-    type: markup

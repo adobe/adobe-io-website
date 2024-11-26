@@ -63,27 +63,7 @@ export default async function decorate(block) {
     p.style.wordBreak = "break-all";
     p.style.whiteSpace = "normal";
   });
-
-  if (position) {
-    const teaserElement = block.querySelector('div');
-    const innerElement = teaserElement.querySelector('div');
-
-    Object.assign(teaserElement.style, {
-      justifyContent: position,
-      margin: position === "center" ? 0 : ''
-    });
-
-    if (innerElement && position === "center") {
-      innerElement.style.alignItems = position;
-    }
-
-    if (innerElement && position === "end") {
-      Object.assign(teaserElement.style, {
-        marginRight: "5%"
-      });
-      innerElement.style.width = "750px"
-    }
-  }
+  
   if (button === "PrimaryButton") {
     block.querySelectorAll('a').forEach((a) => {
       a.className = "spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM";

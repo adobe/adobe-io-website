@@ -1,4 +1,4 @@
-import { applySectionTitle, createTag, removeEmptyPTags } from '../../scripts/lib-adobeio.js';
+import { createTag, removeEmptyPTags } from '../../scripts/lib-adobeio.js';
 import {
   createOptimizedPicture,
 } from '../../scripts/lib-helix.js';
@@ -50,6 +50,4 @@ export default async function decorate(block) {
     p_parent.parentElement.append(div_parent);
     div_parent.append(p_parent)
   });
-  
-  applySectionTitle(block);
 }
