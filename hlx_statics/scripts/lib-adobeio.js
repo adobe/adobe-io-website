@@ -1,5 +1,5 @@
 import {
-  buildBlock, decorateBlock,
+  buildBlock, decorateBlock, getMetadata,
 } from './lib-helix.js';
 
 /**
@@ -431,6 +431,49 @@ export function isHlxPath(host) {
     || host.indexOf('localhost') >= 0
     || host.indexOf('aem.page') >= 0
     || host.indexOf('aem.live') >= 0;
+}
+
+/**
+ * Returns the absolute URL for a resource.
+ * @param {*} path The resource path. Either absolute or relative within root/static folder.
+ * @returns path if absolute. The calculated raw git URL, otherwise.
+ */
+export function getResourceUrl(path) {
+  const isAbsolute = path.indexOf("://") > 0 || path.indexOf("//") === 0;
+  if(isAbsolute) {
+    return path;
+  }
+
+  const blobPath = getMetadata('githubblobpath');
+  const pathPrefix = getMetadata('pathprefix');
+  const githubPath ='https://github.com';
+  const blobStr = '/blob/';
+  const srcPagesStr = '/src/pages/';
+  const blobIndex = blobPath.indexOf(blobStr);
+  const srcPagesIndex = blobPath.indexOf(srcPagesStr)
+
+  // check pre-conditions
+
+  const isValidRelativePath = 
+    blobPath.startsWith(githubPath)
+    && blobIndex < srcPagesIndex
+    && path.startsWith(pathPrefix); 
+
+  if(!isValidRelativePath) {
+    // eslint-disable-next-line no-console
+    console.error(`Invalid relative path "${path}" for "${blobPath}"`);
+  }
+
+  // build raw git URL
+  
+  const basePath = blobPath
+    .substring(0, blobIndex)
+    .replace(githubPath, 'https://raw.githubusercontent.com');
+
+  const ref = blobPath.substring(blobIndex + blobStr.length, srcPagesIndex);
+  const relativePath = path.replace(pathPrefix, '');
+
+  return `${basePath}/${ref}/static${relativePath}`;
 }
 
 /**
