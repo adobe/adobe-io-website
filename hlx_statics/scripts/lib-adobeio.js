@@ -1,5 +1,5 @@
 import {
-  buildBlock,
+  buildBlock, decorateBlock,
 } from './lib-helix.js';
 import decorate from '../blocks/code/code.js';
 
@@ -198,18 +198,27 @@ export function buildCodes(container) {
   const codes = [...container.querySelectorAll('main > div pre')];
 
   codes.forEach((code) => {
+
+    const parentDiv = code.closest('div');
+    parentDiv.classList.add('code-container', 'codeblock-container');
     const block = buildBlock('code', code.outerHTML);
-    block.classList.add('block');
 
     if (code) {
       const wrapperDiv = document.createElement('div');
+      const blockDiv = document.createElement('div');
+
       wrapperDiv.style.margin = "1em 0";
       code.style.whiteSpace = "pre-wrap";
-      code.classList.add('testClass')
 
       code.parentNode.insertBefore(wrapperDiv, code);
-      wrapperDiv.appendChild(code);
-      decorate(wrapperDiv)
+
+      wrapperDiv.classList.add('code-wrapper')
+      blockDiv.classList.add('code', 'block');
+
+      blockDiv.appendChild(code);
+      wrapperDiv.appendChild(blockDiv);
+
+      [decorateBlock, decorate].forEach(fn => fn(blockDiv));
 
       block.replaceWith(wrapperDiv);
     }
