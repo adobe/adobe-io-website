@@ -87,7 +87,7 @@ export default function decorate(block) {
     });  
 
   const console = createTag('script', {
-      src: 'https://cdn.redoc.ly/reference-docs/latest/redocly-reference-docs.min.js',
+      src: 'https://cdn.redoc.ly/reference-docs/latest/console.redocly-reference-docs.min.js',
       async: true
     });
 
