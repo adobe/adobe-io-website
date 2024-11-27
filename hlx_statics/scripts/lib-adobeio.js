@@ -1,7 +1,6 @@
 import {
   buildBlock, decorateBlock,
 } from './lib-helix.js';
-import decorate from '../blocks/code/code.js';
 
 /**
  * Breakpoints
@@ -200,7 +199,7 @@ export function buildCodes(container) {
   codes.forEach((code) => {
 
     const parentDiv = code.closest('div');
-    parentDiv.classList.add('code-container', 'codeblock-container');
+    parentDiv.classList.add('code-container');
     const block = buildBlock('code', code.outerHTML);
 
     if (code) {
@@ -218,8 +217,7 @@ export function buildCodes(container) {
       blockDiv.appendChild(code);
       wrapperDiv.appendChild(blockDiv);
 
-      [decorateBlock, decorate].forEach(fn => fn(blockDiv));
-
+      decorateBlock(blockDiv);
       block.replaceWith(wrapperDiv);
     }
   });
