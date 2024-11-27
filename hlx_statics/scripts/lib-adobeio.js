@@ -1,5 +1,5 @@
 import {
-  buildBlock,
+  buildBlock, decorateBlock,
 } from './lib-helix.js';
 
 /**
@@ -182,6 +182,7 @@ export function decorateButtons(block, secondaryButtonBorderColor, secondaryButt
 export function decorateInlineCodes(element) {
   element.querySelectorAll('code').forEach((code) => {
     const up = code.parentElement;
+
     if (up.tagName !== 'PRE') {
       code.classList.add('inline-code');
     }
@@ -193,13 +194,45 @@ export function decorateInlineCodes(element) {
  * @param {*} container The container to inspect
  */
 export function buildCodes(container) {
-  const codes = [...container.querySelectorAll('main > div > pre > code')];
+  const codes = [...container.querySelectorAll('main > div pre')];
+
   codes.forEach((code) => {
+
+    const parentDiv = code.closest('div');
+    parentDiv.classList.add('code-container');
     const block = buildBlock('code', code.outerHTML);
-    block.classList.add('block');
-    const parentContainer = code.parentElement.parentElement;
-    const pre = parentContainer.querySelector('pre');
-    pre.replaceWith(block);
+
+    if (code) {
+      const wrapperDiv = document.createElement('div');
+      const blockDiv = document.createElement('div');
+
+      wrapperDiv.style.margin = "1em 0";
+      code.style.whiteSpace = "pre-wrap";
+
+      code.parentNode.insertBefore(wrapperDiv, code);
+
+      wrapperDiv.classList.add('code-wrapper')
+      blockDiv.classList.add('code', 'block');
+
+      blockDiv.appendChild(code);
+      wrapperDiv.appendChild(blockDiv);
+
+      decorateBlock(blockDiv);
+      block.replaceWith(wrapperDiv);
+    }
+  });
+}
+
+/**
+ * Builds all hr blocks inside a container
+ * @param {*} container The container to inspect
+ */
+export function decorateHR(container) {
+  const hrWrappers = container.querySelectorAll('main div.hr-wrapper');
+
+  hrWrappers.forEach(hrWrapper => {
+    const hr = document.createElement('hr');
+    hrWrapper.insertBefore(hr, hrWrapper.firstChild);
   });
 }
 
@@ -253,7 +286,7 @@ export function buildGrid(main) {
   const gridAreaMain = main.querySelector(".section");
   gridAreaMain.style.gridArea = 'main';
 
-  let contentHeader = createTag('div', {class: 'content-header'});
+  let contentHeader = createTag('div', { class: 'content-header' });
   gridAreaMain.prepend(contentHeader)
 }
 
@@ -262,9 +295,9 @@ export function buildGrid(main) {
  * @param {*} main The grid container
  */
 export function buildSideNav(main) {
-  let sideNavDiv = createTag ('div', {class: 'section side-nav-container', style: 'grid-area: sidenav'});
-  let sideNavWrapper = createTag('div', {class: 'side-nav-wrapper'});
-  let sideNavBlock = createTag('div', {class: 'side-nav block', 'data-block-name': 'side-nav'});
+  let sideNavDiv = createTag('div', { class: 'section side-nav-container', style: 'grid-area: sidenav' });
+  let sideNavWrapper = createTag('div', { class: 'side-nav-wrapper' });
+  let sideNavBlock = createTag('div', { class: 'side-nav block', 'data-block-name': 'side-nav' });
   main.style.gridTemplateColumns = '256px auto';
   sideNavWrapper.append(sideNavBlock);
   sideNavDiv.append(sideNavWrapper);
@@ -276,7 +309,7 @@ export function buildSideNav(main) {
  * @param {*} main The grid container
  */
 export function buildOnThisPage(main) {
-  let asideWrapper = createTag('div', {class: 'onthispage-wrapper block', 'data-block-name': 'onthispage'});
+  let asideWrapper = createTag('div', { class: 'onthispage-wrapper block', 'data-block-name': 'onthispage' });
   main.append(asideWrapper);
 }
 
@@ -285,9 +318,9 @@ export function buildOnThisPage(main) {
  * @param {*} main The grid container
  */
 export function buildBreadcrumbs(main) {
-  let breadcrumbsDiv = createTag ('div', {class: 'section breadcrumbs-container'});
-  let breadcrumbsWrapper = createTag('div', {class: 'breadcrumbs-wrapper'});
-  let breadcrumbsBlock = createTag('div', {class: 'breadcrumbs block', 'data-block-name': 'breadcrumbs'});
+  let breadcrumbsDiv = createTag('div', { class: 'section breadcrumbs-container' });
+  let breadcrumbsWrapper = createTag('div', { class: 'breadcrumbs-wrapper' });
+  let breadcrumbsBlock = createTag('div', { class: 'breadcrumbs block', 'data-block-name': 'breadcrumbs' });
 
   breadcrumbsWrapper.append(breadcrumbsBlock);
   breadcrumbsDiv.append(breadcrumbsWrapper);
@@ -311,6 +344,7 @@ export function toggleScale() {
  * @param {*} block The block containing the picture to rearrange
  */
 export function rearrangeHeroPicture(block, overlayStyle) {
+  console.log('block', block)
   const picture = block.querySelector('picture');
   const emptyDiv = picture.parentElement.parentElement;
   block.prepend(picture);
@@ -658,7 +692,7 @@ export async function loadCustomAnalytic(domObj, path) {
         if (a.href === href) {
           a.setAttribute('daa-ll', daall);
           const sectionElement = a.closest('.section');
-          if(sectionElement) {
+          if (sectionElement) {
             sectionElement.classList.add(className);
             sectionElement.querySelector('.block')?.setAttribute('daa-lh', daalh);
           }
