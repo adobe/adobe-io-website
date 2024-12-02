@@ -1,4 +1,4 @@
-import { decorateButtons, removeEmptyPTags, applyWidthOverride, applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
+import { decorateButtons, removeEmptyPTags, applyWidthOverride } from '../../scripts/lib-adobeio.js';
 
 function calculateOverlapping(block) {
   var myImg = block.querySelector('picture img');
@@ -32,6 +32,7 @@ function calculateOverlapping(block) {
 export default async function decorate(block) {
   decorateButtons(block);
   removeEmptyPTags(block);
+ 
   block.setAttribute('daa-lh', 'announcement');
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'announce-heading');
@@ -46,7 +47,6 @@ export default async function decorate(block) {
   block.querySelectorAll('p a').forEach((link) => {
     link.parentElement.classList.add('announce-link');
   });
-  applyBkgColorOverride(block);
   // applyWidthOverride(block);
   calculateOverlapping(block);
 }
