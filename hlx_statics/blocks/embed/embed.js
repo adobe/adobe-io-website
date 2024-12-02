@@ -210,9 +210,19 @@ const addImage = (placeholder, block, link) => {
     block.append(wrapper);
 };
 export default function decorate(block) {
+  const getParent = block.parentElement;
   block.setAttribute('daa-lh', 'embed');
   const placeholder = block.querySelector('picture');
-  const link = block.querySelector('a').href;
+  let link
+  if (block.querySelector('a')?.href) {
+    link = block.querySelector('a')?.href
+  }
+  else {
+    link = block.querySelector('.embed > div > div').innerText;
+    getParent.parentElement.classList.remove("embed-container");
+    block.style.maxWidth = "800px";
+  }
+
   block.textContent = '';
   if (placeholder) {
     if (!(placeholder.alt)) placeholder.alt = "Content thumbnail";

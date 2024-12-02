@@ -8,7 +8,7 @@ main div.table-container {
 }
 
 main div.table {
-  width: 1280px;
+  max-width: 1280px;
   box-sizing: border-box;
   margin: auto;
 }
