@@ -1,7 +1,3 @@
-main div.accordion-container:has(.accordion.background-color-white) {
-    background-color: white;
-}
-
 main div.accordion .accordion-div {
     display: flex !important;
     flex-direction: column;

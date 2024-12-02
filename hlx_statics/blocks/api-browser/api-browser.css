@@ -1,7 +1,3 @@
-main div.api-browser-container:has(.api-browser.background-color-white) {
-  background-color: white;
-}
-
 main .api-browser-container {
   background-color: #fff;
   padding-top: 32px;

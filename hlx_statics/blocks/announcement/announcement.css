@@ -1,7 +1,3 @@
-main div.announcement-container:has(.announcement.background-color-white) {
-  background-color: white;
-}
-
 main div.announcement-container {
   width: 100%;
   background: rgb(245, 245, 245);
