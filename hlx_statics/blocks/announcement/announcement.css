@@ -7,6 +7,26 @@ main .announcement-container {
   padding: 3% 0;
 }
 
+main div.announcement.block {
+  margin: auto;
+  max-width: 1280px;
+}
+
+main div.announcement-container:has(.announcement.background-color-white), main div.announcement.background-color-white {
+  background-color: white;
+}
+main div.announcement-container:has(.announcement.background-color-navy), main div.announcement.background-color-navy {
+  background-color: rgb(15, 55, 95);
+}
+
+main div.announcement-container:has(.announcement.background-color-dark-gray), main div.announcement.background-color-dark-gray {
+  background-color: #323232;
+}
+
+main div.announcement.background-color-dark-gray .announcement-heading, main div.announcement.background-color-dark-gray p,
+main div.announcement.background-color-navy .announcement-heading, main div.announcement.background-color-navy p{
+  color:white;
+}
 main .announcement-wrapper > .block > div > div {
   display: flex;
   flex-direction: column;
