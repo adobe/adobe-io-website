@@ -1,3 +1,15 @@
+main div.title-container:has(.title.background-color-white) {
+    background-color: white;
+}
+
+main div.title-container:has(.title.background-color-navy) {
+    background-color: rgb(15, 55, 95);
+}
+
+main div.title.background-color-navy .title-heading, main div.title.background-color-navy p{
+    color:white;
+}
+
 main div.title-container {
     width: 100%;
     text-align: center;

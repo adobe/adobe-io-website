@@ -1,7 +1,6 @@
 import {
     createTag,
     addExtraScriptWithReturn,
-    applyBkgColorOverride
   } from '../../scripts/lib-adobeio.js';
 
 function penpalOnLoad() {
@@ -88,7 +87,6 @@ function penpalOnLoad() {
  * @param {Element} block The hero block element
  */
 export default async function decorate(block) {
-    applyBkgColorOverride(block);
     const penpalScript = addExtraScriptWithReturn(document.body, 'https://unpkg.com/penpal@^6/dist/penpal.min.js');
     const iframeSrc = block.querySelector('a');
     const iframeContainer = block.parentElement;

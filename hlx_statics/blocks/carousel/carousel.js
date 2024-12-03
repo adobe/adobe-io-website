@@ -3,7 +3,6 @@ import {
   decorateButtons,
   removeEmptyPTags,
   
-  applyBkgColorOverride,
 } from "../../scripts/lib-adobeio.js";
 /**
  * decorates the carousel
@@ -302,6 +301,5 @@ export default async function decorate(block) {
 
   const timer = setTimeout(slideTimer, timeout);
   timer;
-  applyBkgColorOverride(block);
   
 }

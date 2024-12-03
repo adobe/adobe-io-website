@@ -8,8 +8,6 @@ import {
   getBlockSectionContainer,
   createTag,
   focusRing,
-  
-  applyBkgColorOverride,
 } from '../../scripts/lib-adobeio.js';
 
 // The list of current API filters
@@ -351,7 +349,5 @@ export default async function decorate(block) {
       });
     });
     focusRing(block);
-  }
-  applyBkgColorOverride(block);
-  
+  }  
 }

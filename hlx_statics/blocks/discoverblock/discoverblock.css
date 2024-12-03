@@ -1,3 +1,7 @@
+main div.discover-container:has(.discover.background-color-white) {
+    background-color: white !important;
+}
+
 .discover {
     display: flex;
     flex-wrap: wrap;

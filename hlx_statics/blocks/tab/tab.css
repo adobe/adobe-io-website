@@ -1,5 +1,9 @@
 @import url('../../styles/prism.css');
 
+main div.tab-container:has(.tab.background-color-navy) {
+    background-color: rgb(15, 55, 95);
+}
+
 main .tab-container {
     background-color: #323232;
     padding: 3%;

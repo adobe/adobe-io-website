@@ -1,3 +1,7 @@
+main div.list-container:has(.list.background-color-white) {
+  background-color: white;
+}
+
 main div.list-container li {
   margin: 10px 0;
   position: relative;

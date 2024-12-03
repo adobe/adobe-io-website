@@ -1,3 +1,12 @@
+main div.table-container:has(.table.background-color-white) {
+  background-color: white !important;
+  overflow-x: auto;
+}
+
+main div.table-wrapper {
+  padding: 80px 32px;
+} 
+
 main div.table-container {
   background: rgb(245, 245, 245);
   overflow-x: auto;

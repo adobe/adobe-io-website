@@ -1,5 +1,4 @@
 import {
-  applyBkgColorOverride,
   decorateButtons
 } from '../../scripts/lib-adobeio.js';
 
@@ -55,7 +54,6 @@ export default async function decorate(block) {
   const position = block?.parentElement?.parentElement?.getAttribute('data-position');
   const width = block?.parentElement?.parentElement?.getAttribute('data-Width');
 
-  applyBkgColorOverride(block);
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL');
     h.style.color = fontcolor;

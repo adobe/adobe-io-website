@@ -4,9 +4,7 @@ import {
   decorateButtons,
   removeEmptyPTags,
   getBlockSectionContainer,
-  decorateAnchorLink,
-  applyBkgColorOverride,
-  
+  decorateAnchorLink,  
 } from '../../scripts/lib-adobeio.js';
 
 import {
@@ -138,7 +136,5 @@ export default async function decorate(block) {
       processImages(block);
     }
   });
-  observer.observe(block);
-  applyBkgColorOverride(block);
-  
+  observer.observe(block);  
 }

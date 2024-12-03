@@ -1,5 +1,9 @@
-main div.info-wrapper {
-  background: rgb(245, 245, 245);
+main div.info-container:has(.info.background-color-white) {
+  background-color: white;
+}
+
+main div.info.background-color-white {
+  background-color: white !important;
 }
 
 main div.info {
