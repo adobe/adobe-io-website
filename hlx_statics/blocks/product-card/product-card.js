@@ -1,4 +1,4 @@
-import { applyBkgColorOverride, decorateButtons } from '../../scripts/lib-adobeio.js';
+import { decorateButtons } from '../../scripts/lib-adobeio.js';
 
 /**
  * decorates the title
@@ -7,7 +7,6 @@ import { applyBkgColorOverride, decorateButtons } from '../../scripts/lib-adobei
 export default async function decorate(block) {
     block.setAttribute('daa-lh', 'product-card');
     decorateButtons(block);
-    applyBkgColorOverride(block);
     block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
         h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeS', 'title-heading');
     });

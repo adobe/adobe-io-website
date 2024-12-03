@@ -1,3 +1,7 @@
+main div.table-container:has(.table.background-color-white) {
+  background-color: white !important;
+}
+
 main div.table-wrapper {
   padding: 80px 32px;
 } 

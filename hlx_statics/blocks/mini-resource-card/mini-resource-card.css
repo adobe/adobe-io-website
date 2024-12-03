@@ -1,3 +1,7 @@
+main div.mini-resource-card-container:has(.mini-resource-card.background-color-white) {
+  background-color: white;
+}
+
 main div.mini-resource-card .card-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

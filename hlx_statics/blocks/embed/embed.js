@@ -4,7 +4,6 @@
  * https://www.hlx.live/developer/block-collection/embed
  */
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
-import { applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
 
 const loadScript = (url, callback, type) => {
   const head = document.querySelector('head');
@@ -191,7 +190,6 @@ const loadEmbed = (block, link) => {
     block.removeEventListener('mouseover', videoListener);
   };
   block.addEventListener('mouseover', videoListener);
-  applyBkgColorOverride(block);
   const wid = block?.parentElement?.parentElement?.getAttribute('data-width');
   if (wid) {
     block.classList.add('embed-custom-width');

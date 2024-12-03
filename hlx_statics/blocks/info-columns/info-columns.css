@@ -1,3 +1,7 @@
+main div.info-columns-container:has(.info-columns.background-color-white) {
+  background-color: white !important;
+}
+
 main div.info-columns-container {
   width: 100%;
   background: rgb(245, 245, 245);

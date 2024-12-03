@@ -1,3 +1,7 @@
+main div.link-block-container:has(.link-block.background-color-white) {
+    background-color: white !important;
+}
+
 h1 {
     font-size: 18px !important;
     padding-bottom: 9px;  

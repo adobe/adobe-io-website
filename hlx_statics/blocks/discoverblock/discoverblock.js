@@ -1,4 +1,4 @@
-import { applyBkgColorOverride, applyWidthOverride } from '../../scripts/lib-adobeio.js';
+import { applyWidthOverride } from '../../scripts/lib-adobeio.js';
 
 /**
  * decorates the title
@@ -42,7 +42,6 @@ export default async function decorate(block) {
       block.remove();
     }
   });
-  applyBkgColorOverride(block);
   applyWidthOverride(block);
 
   Array.from(block.children).forEach(div => {

@@ -1,3 +1,11 @@
+main div.info-container:has(.info.background-color-white) {
+  background-color: white;
+}
+
+main div.info.background-color-white {
+  background-color: white !important;
+}
+
 main div.info {
   width: 90%;
   margin: 0 auto;

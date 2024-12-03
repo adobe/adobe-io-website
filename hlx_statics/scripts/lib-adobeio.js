@@ -664,6 +664,10 @@ export function applyWidthOverride(block) {
 
 /**
  * set the background color of a block from Section Metadata
+ * 
+ * 
+ * Dec 3rd 2024: Removed from all blocks and will refactor in the future if there's demand.
+ *   
  * @param {Element} The element to add the background color style to.
  */
 export function applyBkgColorOverride(block) {

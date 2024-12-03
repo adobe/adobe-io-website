@@ -2,7 +2,6 @@ import {
   createTag,
   checkExternalLink,
   removeEmptyPTags,
-  applyBkgColorOverride,
   applyWidthOverride,
 } from '../../scripts/lib-adobeio.js';
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
@@ -48,6 +47,5 @@ export default async function decorate(block) {
       infoColumn.append(productLinkContainer);
     });
   });
-  applyBkgColorOverride(block);
   applyWidthOverride(block);
 }

@@ -1,4 +1,4 @@
-import { applyBkgColorOverride, createTag} from '../../scripts/lib-adobeio.js';
+import { createTag} from '../../scripts/lib-adobeio.js';
 
 /**
  * decorates the link block component
@@ -25,5 +25,4 @@ export default async function decorate(block) {
     division.innerHTML=icon;
     p.append(division);
   });
-  applyBkgColorOverride(block);
 }

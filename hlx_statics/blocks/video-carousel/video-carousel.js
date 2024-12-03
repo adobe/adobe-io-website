@@ -3,7 +3,6 @@ import {
   decorateButtons,
   removeEmptyPTags,
   applyWidthOverride,
-  applyBkgColorOverride,
 } from "../../scripts/lib-adobeio.js";
 
 /**
@@ -328,6 +327,5 @@ export default async function decorate(block) {
 
   const timer = setTimeout(slideTimer, time);
   timer;
-  applyBkgColorOverride(block);
   applyWidthOverride(block);
 }

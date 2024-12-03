@@ -1,3 +1,7 @@
+main div.embed-container:has(.embed.background-color-white) {
+  background-color: white;
+}
+
 main div.embed-container {
   align-items: center;
   justify-content: center;

@@ -1,3 +1,7 @@
+main div.columns-container:has(.columns.background-color-white) {
+    background-color: white !important;
+}
+
 main div.columns-container {
     width: 100%;
     background: rgb( 245,245,245 );
@@ -18,10 +22,6 @@ main div.columns > div {
 
 main div.columns > div:nth-child(even) {
     flex-direction: row-reverse;
-}
-
-main div.columns-container.background-color-white {
-    background-color: white;
 }
 
 main div.columns-container.section[data-list-class="checkmark"] ul {
@@ -212,6 +212,5 @@ main div.columns div.first-column img {
         justify-content: center;
         align-items: center;
     }
-
 
 }

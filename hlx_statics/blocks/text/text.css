@@ -1,3 +1,7 @@
+main div.text-container:has(.text.background-color-white) {
+  background-color: white;
+}
+
 main div.text {
   display: flex;
   justify-content: center;
