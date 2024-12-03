@@ -6,6 +6,10 @@ main div.cards.background-color-white {
   background-color: white !important;
 }
 
+main div.cards-wrapper:has(.cards.background-color-white) {  
+  background-color: white !important;
+}
+
 main div.cards {
   width: 100%;
   max-width: 1280px;
