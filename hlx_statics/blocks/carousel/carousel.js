@@ -2,7 +2,7 @@ import {
   createTag,
   decorateButtons,
   removeEmptyPTags,
-  applyWidthOverride,
+  
 } from "../../scripts/lib-adobeio.js";
 /**
  * decorates the carousel
@@ -301,5 +301,5 @@ export default async function decorate(block) {
 
   const timer = setTimeout(slideTimer, timeout);
   timer;
-  applyWidthOverride(block);
+  
 }

@@ -8,7 +8,8 @@ main div.info-columns-container {
 }
 
 main div.info-columns {
-  width: 1280px;
+  width: 90%;
+  max-width: 1280px;
   box-sizing: border-box;
   margin: auto;
 }

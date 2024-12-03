@@ -39,6 +39,7 @@ main div.list-container div.list > div > div {
 
 main div.list-container>div.list-wrapper>div {
   margin: auto;
+  max-width: 1280px;
 }
 
 .checkmark {

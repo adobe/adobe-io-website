@@ -4,8 +4,7 @@ import {
   decorateButtons,
   removeEmptyPTags,
   getBlockSectionContainer,
-  decorateAnchorLink,
-  applyWidthOverride,
+  decorateAnchorLink,  
 } from '../../scripts/lib-adobeio.js';
 
 import {
@@ -137,6 +136,5 @@ export default async function decorate(block) {
       processImages(block);
     }
   });
-  observer.observe(block);
-  applyWidthOverride(block);
+  observer.observe(block);  
 }

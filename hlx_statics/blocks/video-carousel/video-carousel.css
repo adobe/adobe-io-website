@@ -16,7 +16,7 @@ div.video-carousel picture {
   }
   
   main div.video-carousel {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: auto;
   }
   
@@ -57,7 +57,7 @@ div.video-carousel picture {
     max-width: 50%;
     padding: 0 32px;
   }
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 900px) {
     main div.video-carousel div.video-container {
       flex-direction: column;
       align-items: center;

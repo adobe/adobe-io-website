@@ -1,4 +1,4 @@
-import { applyWidthOverride, decorateAnchorLink } from '../../scripts/lib-adobeio.js';
+import { decorateAnchorLink } from '../../scripts/lib-adobeio.js';
 
 /**
  * decorates the list
@@ -23,5 +23,4 @@ export default async function decorate(block) {
     unorder.style.color = fontcolor;
     unorder.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
   });
-  applyWidthOverride(block);
 }

@@ -2,7 +2,7 @@ import {
   createTag,
   checkExternalLink,
   removeEmptyPTags,
-  applyWidthOverride,
+  
 } from '../../scripts/lib-adobeio.js';
 import { decorateLightOrDark } from '../../scripts/lib-helix.js';
 
@@ -46,6 +46,5 @@ export default async function decorate(block) {
       });
       infoColumn.append(productLinkContainer);
     });
-  });
-  applyWidthOverride(block);
+  });  
 }

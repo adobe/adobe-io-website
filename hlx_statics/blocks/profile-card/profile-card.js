@@ -1,12 +1,11 @@
-import { applyWidthOverride, decorateButtons} from '../../scripts/lib-adobeio.js';
+import { decorateButtons} from '../../scripts/lib-adobeio.js';
 
 /**
  * decorates the title
  * @param {Element} block The title block element {Parameter Type} Name of the Parameter
  */
 export default async function decorate(block) {
-  decorateButtons(block);
-  applyWidthOverride(block);
+  decorateButtons(block);  
 
   const fontcolor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
   block.setAttribute('daa-lh', 'profile-card');

@@ -1,4 +1,4 @@
-import {removeEmptyPTags, createTag, applyWidthOverride} from '../../scripts/lib-adobeio.js';
+import {removeEmptyPTags, createTag} from '../../scripts/lib-adobeio.js';
 
 /**
  * Returns the HTML for an accordion item
@@ -71,6 +71,5 @@ export default async function decorate(block) {
             heading.querySelector('.spectrum-UIIcon-ChevronDown100').style.display = 'none';
         };
     });
-  });
-  applyWidthOverride(block);
+  });  
 }
