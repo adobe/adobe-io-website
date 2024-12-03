@@ -2,7 +2,7 @@ import {
   createTag,
   decorateButtons,
   removeEmptyPTags,
-  applyWidthOverride,
+  
   applyBkgColorOverride,
 } from "../../scripts/lib-adobeio.js";
 
@@ -167,7 +167,7 @@ export default async function decorate(block) {
 
   // Function to check if mobile screen (matching css width)
   function isMobileScreen() {
-    return window.innerWidth <= 700;
+    return window.innerWidth <= 1280;
   }
 
   // Swipe detection for mobile screens
@@ -329,5 +329,5 @@ export default async function decorate(block) {
   const timer = setTimeout(slideTimer, time);
   timer;
   applyBkgColorOverride(block);
-  applyWidthOverride(block);
+  
 }

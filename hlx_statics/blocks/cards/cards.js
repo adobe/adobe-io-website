@@ -1,4 +1,4 @@
-import { decorateButtons, applyWidthOverride, applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
+import { decorateButtons, applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
 import { createOptimizedPicture, decorateLightOrDark } from '../../scripts/lib-helix.js';
 
 /**
@@ -76,5 +76,4 @@ export default async function decorate(block) {
   });
   observer.observe(block);
   applyBkgColorOverride(block);
-  applyWidthOverride(block);
 }

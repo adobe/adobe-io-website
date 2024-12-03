@@ -1,5 +1,5 @@
 import {
-  applyWidthOverride,
+  
   applyBkgColorOverride,
 } from '../../scripts/lib-adobeio.js';
 
@@ -64,5 +64,5 @@ export default async function decorate(block) {
   block.innerHTML = '';
   block.append(table);
   applyBkgColorOverride(block);
-  applyWidthOverride(block);
+  
 }

@@ -1,6 +1,6 @@
 main div.cards {
   width: 100%;
-  background: rgb(245, 245, 245);
+  max-width: 1280px;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -40,6 +40,7 @@ main div.cards-container.background-color-white {
 }
 
 main div.cards-container .cards-wrapper {
+  background: rgb(245, 245, 245);
   display: flex;
   align-items: center;
   justify-content: center;

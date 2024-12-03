@@ -1,4 +1,4 @@
-import { decorateButtons, removeEmptyPTags, applyWidthOverride, applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
+import { decorateButtons, removeEmptyPTags,  applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
 
 /**
  * decorates the title
@@ -35,5 +35,5 @@ export default async function decorate(block) {
     p.style.color = fontcolor;
   });
   applyBkgColorOverride(block);
-  applyWidthOverride(block);
+  
 }

@@ -1,14 +1,12 @@
-main div.table-wrapper {
-  padding: 80px 32px;
-} 
-
 main div.table-container {
   background: rgb(245, 245, 245);
   overflow-x: auto;
 }
 
 main div.table {
+  width: 100vw;
   max-width: 1280px;
+  padding: 80px 32px;
   box-sizing: border-box;
   margin: auto;
 }

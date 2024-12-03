@@ -8,7 +8,7 @@ import {
   getBlockSectionContainer,
   createTag,
   focusRing,
-  applyWidthOverride,
+  
   applyBkgColorOverride,
 } from '../../scripts/lib-adobeio.js';
 
@@ -353,5 +353,5 @@ export default async function decorate(block) {
     focusRing(block);
   }
   applyBkgColorOverride(block);
-  applyWidthOverride(block);
+  
 }

@@ -652,6 +652,9 @@ export function decorateAnchorLink(header) {
 
 /**
  * Set the width of a block from Section Metadata.
+ * 
+ * Nov 15th 2024: Removed from all blocks and will refactor in the future if there's demand.
+ *   
  * @param {Element} The element to add the width style to.
  */
 export function applyWidthOverride(block) {

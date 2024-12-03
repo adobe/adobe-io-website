@@ -17,7 +17,7 @@ main div.iframe-container {
 }
 
 main div.iframe-container > div{
-  max-width: 640px;
+  max-width: 1280px;
   padding-top: 16px;
   margin: auto;
 }
@@ -29,7 +29,7 @@ main div.iframe-container p {
 
 main div.iframe {
   margin-top: 32px;
-  max-width: 640px;
+  max-width: 1280px;
   display: flex;
   justify-content: center;
 }
@@ -43,7 +43,7 @@ main div.iframe iframe {
   border: 0;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1280px) {
   main div.iframe-container div.iframe-wrapper {
     padding: 0;
     display: flex;
@@ -54,7 +54,7 @@ main div.iframe iframe {
     max-width: 100%;
   }
   main div.iframe-wrapper iframe.iframe-container {
-    width: 80vw !important;
+    width: 90vw !important;
   }
 }
 

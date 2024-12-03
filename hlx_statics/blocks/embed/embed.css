@@ -6,7 +6,7 @@ main div.embed-container {
 }
 
 main div.embed-container > div{
-  max-width: 640px;
+  max-width: 1280px;
   padding: 0px 32px;
   margin: auto;
 }
@@ -36,7 +36,7 @@ main div.embed-container p {
 
 main div.embed {
   /* margin-top: 32px; */
-  max-width: 640px;
+  max-width: 1280px;
   display: flex;
   justify-content: center;
 }
@@ -75,7 +75,7 @@ inset: 0;
 width: 100%;
 height: 100%;
 /* object-fit: cover; */
-max-width: 640px;
+max-width: 1280px;
 }
 
 .embed .embed-placeholder-play button {

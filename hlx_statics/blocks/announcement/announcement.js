@@ -1,14 +1,14 @@
-import { decorateButtons, removeEmptyPTags, applyWidthOverride, applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
+import { decorateButtons, removeEmptyPTags,  applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
 
 function calculateOverlapping(block) {
-  var myImg = block.querySelector('picture img');
+  const myImg = block.querySelector('picture img');
   if (myImg !== null) {
     let marginToAdd = myImg.height - 200;
     const firstDivAfterVideo = block.parentElement.parentElement.nextElementSibling;
 
     const ro = new ResizeObserver(entries => {
       for (let entry of entries) {
-        var actualWidth = window.innerWidth;
+        const actualWidth = window.innerWidth;
         if (actualWidth < 1280)
           marginToAdd = 0;
         else
@@ -18,7 +18,7 @@ function calculateOverlapping(block) {
     });
     ro.observe(firstDivAfterVideo);
 
-    var actualWidth = window.innerWidth;
+    const actualWidth = window.innerWidth;
     if (actualWidth < 1280)
       marginToAdd = 0;
     firstDivAfterVideo.style.margin = marginToAdd + "px 0 0"
@@ -47,7 +47,6 @@ export default async function decorate(block) {
     link.parentElement.classList.add('announce-link');
   });
   applyBkgColorOverride(block);
-  // applyWidthOverride(block);
   calculateOverlapping(block);
 }
 
