@@ -68,16 +68,15 @@ main .announcement p {
   color: rgb(44, 44, 44);
 }
 
-main .announcement.font-white .announcement-heading {
+main .announcement.font-white .announcement-heading, main .announcement.font-white p{
   color: white;
 }
 
-main .announcement.font-white p {
+main .announcement.secondary-font-white .spectrum-Button--secondary,
+main div.announcement.background-color-dark-gray .spectrum-Button--secondary,
+main div.announcement.background-color-navy .spectrum-Button--secondary{
   color: white;
-}
-
-main .announcement.secondary-font-white .spectrum-Button--secondary{
-  color: white;
+  border-color: white;
 }
 
 main .announcement.secondary-border-white .spectrum-Button--secondary{
