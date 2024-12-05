@@ -1,5 +1,5 @@
 import {
-  buildBlock, decorateBlock, getMetadata,
+  buildBlock, getMetadata,
 } from './lib-helix.js';
 
 /**
