@@ -162,9 +162,9 @@ async function fetchNavHtml(name) {
 }
 
 /**
- * Normalizes passed in anchor element's href so relative links point to 
+ * Normalizes passed in anchor element's href so relative links point to
  * the right url
- * @param {object} anchorElem The anchor element 
+ * @param {object} anchorElem The anchor element
  * @param {string} pathPrefix The the path prefix
  */
 function normalizePaths(anchorElem, pathPrefix) {
@@ -683,7 +683,8 @@ export function initHlx() {
  */
 
 export function githubActionsBlock(doc) {
-  let baseUrl = getMetadata('githubblobpath')
+  let baseUrl = getMetadata('githubblobpath');
+  if (!baseUrl) return;
   const githubEditUrl = baseUrl.replace('blob', 'edit');
   const githubIssueUrl = baseUrl.replace('blob', 'issues/new?title=Issue%20in%20');
   if (!doc.querySelector('.herosimple-container') && !doc.querySelector('.hero-container')) {

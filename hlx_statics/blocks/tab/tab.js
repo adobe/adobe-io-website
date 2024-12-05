@@ -7,15 +7,12 @@ import decoratePreformattedCode, { getLanguageDecorateCode } from "../../compone
 
 export default async function decorate(block) {
   block.setAttribute('daa-lh', 'tab');
-  let fontcolor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
-  fontcolor = fontcolor ? fontcolor : "rgb(209, 209, 209)";
   const backgroundColor = block?.parentElement?.parentElement?.getAttribute('data-backgroundcolor');
   let codeBackgroundColor = block?.parentElement?.parentElement?.getAttribute('data-codebackgroundcolor');
   codeBackgroundColor = codeBackgroundColor ? codeBackgroundColor : "rgb(0,0,0)"
 
   block.querySelectorAll('p').forEach((p) => {
     p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
-    p.style.color = fontcolor;
   });
 
   const innerTab = document.createElement('div');
@@ -75,7 +72,7 @@ export default async function decorate(block) {
           //get language and align the code
           const language = getLanguageDecorateCode({ code });
 
-          //formatted the code with number 
+          //formatted the code with number
           decoratePreformattedCode({ block: tabContent, language });
 
           if (index !== 0) {

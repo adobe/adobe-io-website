@@ -37,47 +37,47 @@ main div.list-container div.list > div > div {
   padding: 0 32px;
 }
 
-main div.list-container>div.list-wrapper>div {
+main div.list-container > div.list-wrapper >div {
   margin: auto;
   max-width: 1280px;
 }
 
-.checkmark {
+main div.list-container .checkmark {
   list-style-type: none;
 }
 
-.checkmark ol {
+main div.list-container .checkmark ol {
   list-style: none;
 }
 
-.checkmark li {
+main div.list-container .checkmark li {
   position: relative;
   margin-bottom: 8px;
 }
 
-.checkmark li:before {
+main div.list-container .checkmark li:before {
   color: #096;
   content: "\2714\0020";
 }
 
-main .list .anchor-link{
+main main div.list-container .list .anchor-link{
   /* padding-left: 10px; */
   visibility: hidden;
 }
 
-main .list:hover .anchor-link{
+main main div.list-container .list:hover .anchor-link{
   /* padding-left: 10px; */
   visibility: visible;
 }
 
-main div.list h3 {
+main main div.list-container div.list h3 {
   margin-top: 0!important;
   margin-bottom: 16px!important;
   scroll-margin-top:100px;
   text-align: center;
 }
 
-main div.list h3 + p {
+main main div.list-container div.list h3 + p {
   text-align: center;
   margin-top: 0!important;
 }

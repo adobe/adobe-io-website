@@ -21,7 +21,6 @@ function processImages(block) {
  */
 export default async function decorate(block) {
   // by default, we will use all links as button.  When the section metadata added a linkstyle to be link, it'll change that section's button to be link.
-  const fontColor = block.parentElement.parentElement.getAttribute('data-fontColor');
   const isLink = block.classList.contains("links");
   if (!isLink) {
     decorateButtons(block);
@@ -49,12 +48,6 @@ export default async function decorate(block) {
         a.classList.add('spectrum-Button--accent', 'spectrum-Button--fill', 'spectrum-Button', 'card-button');
       });
     }
-
-    card.querySelectorAll('a').forEach((a) => {
-      if (fontColor) {
-        a.style.color = fontColor
-      }
-    });
 
     if (array.length === 3) {
       card.classList.add('three-card');
