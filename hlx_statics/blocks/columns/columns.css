@@ -157,25 +157,22 @@ main div.second-column div.product-link-container svg {
     object-fit: contain;
 }
 
-
-/* metadata: style: center */
-
-main .columns-container.center div.columns {
+main .columns-container div.columns.center {
     width: auto;
 }
 
-main .columns-container.center div.columns > div {
+main .columns-container div.columns.center > div {
     align-items: start;
 }
 
-main .columns-container.center div.columns > div > div {
+main .columns-container div.columns.center > div > div {
     display: flex;
     flex-direction: column;
     text-align: center;
     padding: 0 32px;
 }
 
-main .columns-container.center div.columns .button-container {
+main .columns-container div.columns.center .button-container {
     display: inline-flex;
     margin: 16px 8px;
     margin-bottom: 0;
