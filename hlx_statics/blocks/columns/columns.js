@@ -4,7 +4,7 @@ import {
   decorateButtons,
   removeEmptyPTags,
   getBlockSectionContainer,
-  decorateAnchorLink,  
+  decorateAnchorLink,
 } from '../../scripts/lib-adobeio.js';
 
 import {
@@ -101,7 +101,7 @@ export default async function decorate(block) {
   });
 
   /* Stop here when metadata is `style: center` */
-  if (container.classList.contains('center')) {
+  if (block.classList.contains('center')) {
     return;
   }
 
@@ -136,5 +136,5 @@ export default async function decorate(block) {
       processImages(block);
     }
   });
-  observer.observe(block);  
+  observer.observe(block);
 }

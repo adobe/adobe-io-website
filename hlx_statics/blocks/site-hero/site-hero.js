@@ -14,18 +14,11 @@ export default async function decorate(block) {
   decorateButtons(block);
 
   const button_div = createTag('div', {class: 'hero-button-container'});
- 
+
   block.classList.add('spectrum--dark');
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
-    const fontFamily = block?.parentElement?.parentElement?.getAttribute('data-font-family');
-    if (fontFamily) {
-      h.style.fontFamily = fontFamily;
-      h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL');
-      h.style.color = "white";
-    } else {
-      h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL', 'spectrum-Heading--serif');
-      h.style.color = "white";
-    }
+    h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeXXL');
+    h.style.color = "white";
     h.parentElement.classList.add('site-hero-content');
     h.parentElement.append(button_div);
   });
