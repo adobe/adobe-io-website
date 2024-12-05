@@ -1,62 +1,110 @@
-main div.announcement-container {
-  width: 100%;
-  background: rgb(245, 245, 245);
-  box-sizing: border-box;
-  text-align: center;
-  padding: 32px;
+main .announcement-button-container {
+  display: flex;
+  gap: 20px;
 }
 
-main div.section.video-enabled.announcement-container{
-  height: calc(160px + 10px);  
-}
-
-@media screen and (max-width: 1280px) {
-  main div.announcement-container {
-    height: auto;
-  }
-}
-
-
-main .section.video-enabled + .columns-container > .columns-wrapper > div.columns.block > div > div:first-of-type + div {
-  display:flex;
-  margin-top: 100px;
-}
-
-main div.announcement-container > div {
-  width: 100%;
-}
-
-main div.announcement .announce-heading {
-  margin-top: 0 !important;
-  margin-bottom: 8px !important;
+main .announcement-container {
+  padding: 3% 0;
 }
 
 main div.announcement.block {
   margin: auto;
-  max-width: 900px;
+  max-width: 1280px;
 }
 
-main div.announcement p {
-  margin-top: 0;
-  margin-left: 20%;
-  margin-right: 20%;
+main div.announcement-container:has(.announcement.background-color-white), main div.announcement.background-color-white {
+  background-color: white;
+}
+main div.announcement-container:has(.announcement.background-color-navy), main div.announcement.background-color-navy {
+  background-color: rgb(15, 55, 95);
 }
 
-@media screen and (max-width: 768px) {
-  main div.announcement p {
-    margin-left: 0%;
-    margin-right: 0%;
+main div.announcement-container:has(.announcement.background-color-dark-gray), main div.announcement.background-color-dark-gray {
+  background-color: #323232;
+}
+
+main div.announcement.background-color-dark-gray .announcement-heading, main div.announcement.background-color-dark-gray p,
+main div.announcement.background-color-navy .announcement-heading, main div.announcement.background-color-navy p{
+  color:white;
+}
+main .announcement-wrapper > .block > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 95%;
+  align-items: center;
+}
+
+main .announcement-wrapper > .block > div {
+  display: flex;
+  margin-left: 5%;
+}
+
+main .announcement-wrapper .announcement.start > div {
+  justify-content: start;
+  margin-left: 5%;
+}
+main .announcement-wrapper .announcement.start > div > div {
+  align-items: normal;
+}
+main .announcement-wrapper .announcement > div{
+  justify-content: center;
+  margin: 0;
+}
+
+main .announcement-wrapper .announcement.end > div {
+  justify-content: end;
+  margin-right: 5%;
+}
+main .announcement-wrapper .announcement.end > div > div {
+  width: 750px;
+}
+
+main .announcement .announcement-heading {
+  color: rgb(44, 44, 44);
+}
+
+main .announcement p {
+  color: rgb(44, 44, 44);
+}
+
+main .announcement.font-white .announcement-heading, main .announcement.font-white p{
+  color: white;
+}
+
+main .announcement.secondary-font-white .spectrum-Button--secondary,
+main div.announcement.background-color-dark-gray .spectrum-Button--secondary,
+main div.announcement.background-color-navy .spectrum-Button--secondary{
+  color: white;
+  border-color: white;
+}
+
+main .announcement.secondary-border-white .spectrum-Button--secondary{
+  border-color: white;
+}
+
+@media screen and (max-width: 1024px) {
+  main .announcement-wrapper > .block > div {
+    margin: 0 !important;
+    justify-content: center !important;
+  }
+
+  main .announcement-container .announcement > div > div {
+    text-align: center;
+    align-items: center !important;
   }
 }
 
-main div.announcement p.announce-link {
-  margin-top: 16px;
-}
+@media screen and (max-width: 425px) {
+  main .announcement-container .announcement-button-container {
+    flex-direction: column;
+  }
 
-main div.announcement p:last-child {
-  margin-bottom: 0;
-}
-
-main div.announcement-container > div {
-  width: 100%;
+  main .announcement-container .announcement {
+    margin: 5%;
+    text-align: center;
+  }
+  main .announcement-container {
+    padding: 4% 0;
+  }
 }

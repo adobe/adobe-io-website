@@ -1,3 +1,7 @@
+main div.columns-container:has(.columns.background-color-white) {
+    background-color: white !important;
+}
+
 main div.columns-container {
     width: 100%;
     background: rgb( 245,245,245 );
@@ -18,10 +22,6 @@ main div.columns > div {
 
 main div.columns > div:nth-child(even) {
     flex-direction: row-reverse;
-}
-
-main div.columns-container.background-color-white {
-    background-color: white;
 }
 
 main div.columns-container.section[data-list-class="checkmark"] ul {
@@ -157,25 +157,22 @@ main div.second-column div.product-link-container svg {
     object-fit: contain;
 }
 
-
-/* metadata: style: center */
-
-main .columns-container.center div.columns {
+main .columns-container div.columns.center {
     width: auto;
 }
 
-main .columns-container.center div.columns > div {
+main .columns-container div.columns.center > div {
     align-items: start;
 }
 
-main .columns-container.center div.columns > div > div {
+main .columns-container div.columns.center > div > div {
     display: flex;
     flex-direction: column;
     text-align: center;
     padding: 0 32px;
 }
 
-main .columns-container.center div.columns .button-container {
+main .columns-container div.columns.center .button-container {
     display: inline-flex;
     margin: 16px 8px;
     margin-bottom: 0;
@@ -212,6 +209,5 @@ main div.columns div.first-column img {
         justify-content: center;
         align-items: center;
     }
-
 
 }

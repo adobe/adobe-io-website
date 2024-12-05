@@ -1,4 +1,4 @@
-import { decorateButtons, applyWidthOverride, applyBkgColorOverride } from '../../scripts/lib-adobeio.js';
+import { decorateButtons } from '../../scripts/lib-adobeio.js';
 import { createOptimizedPicture, decorateLightOrDark } from '../../scripts/lib-helix.js';
 
 /**
@@ -21,7 +21,6 @@ function processImages(block) {
  */
 export default async function decorate(block) {
   // by default, we will use all links as button.  When the section metadata added a linkstyle to be link, it'll change that section's button to be link.
-  const fontColor = block.parentElement.parentElement.getAttribute('data-fontColor');
   const isLink = block.classList.contains("links");
   if (!isLink) {
     decorateButtons(block);
@@ -50,12 +49,6 @@ export default async function decorate(block) {
       });
     }
 
-    card.querySelectorAll('a').forEach((a) => {
-      if (fontColor) {
-        a.style.color = fontColor
-      }
-    });
-
     if (array.length === 3) {
       card.classList.add('three-card');
     } else if (array.length === 4) {
@@ -75,6 +68,4 @@ export default async function decorate(block) {
     }
   });
   observer.observe(block);
-  applyBkgColorOverride(block);
-  applyWidthOverride(block);
 }

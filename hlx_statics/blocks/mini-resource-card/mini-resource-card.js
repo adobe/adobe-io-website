@@ -1,4 +1,4 @@
-import { createTag, removeEmptyPTags, applyBkgColorOverride} from '../../scripts/lib-adobeio.js';
+import { createTag, removeEmptyPTags} from '../../scripts/lib-adobeio.js';
 
 /**
  * Returns the HTML for a mini resource card
@@ -61,7 +61,6 @@ export default async function decorate(block) {
 
     });
     block.appendChild(grid_div);
-    applyBkgColorOverride(block);
 
     const boxShadow = block?.parentElement?.parentElement?.getAttribute('data-BoxShadow');
     const imageBorderRadius = block?.parentElement?.parentElement?.getAttribute('data-ImageBorderRadius');

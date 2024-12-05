@@ -7,6 +7,16 @@ main div.hero {
   justify-content: center;
 }
 
+main div.hero.full-width-background img {
+  width: 100% !important;
+  height: 350px !important;
+  object-fit: cover !important;
+}
+
+main div.hero.font-white h1,main div.hero.font-white h2, main div.hero.font-white h3, main div.hero.font-white p {
+  color: white !important;
+}
+
 main div.hero-container {
   padding: 0;
 }
@@ -41,6 +51,9 @@ main div.hero div:nth-child(2) > div img {
   min-height: 500px !important;
 }
 
+main div.hero-container:has(.full-width-background) div:nth-child(2) > div img {
+  display:none;
+}
 main .hero .icon-container {
   height: 48px;
   width: 48px;
@@ -101,7 +114,7 @@ main .hero h1 + p.last-of-type {
     width: 100%;
     margin: 0;
   }
-  
+
   main div.hero div:nth-child(2) {
     display: none;
   }
@@ -129,6 +142,6 @@ main .hero h1 + p.last-of-type {
 
 @media screen and (max-width: 425px) {
   main div.hero div:nth-child(2) > div img {
-    min-height: 0px;  
+    min-height: 0px;
   }
 }

@@ -1,5 +1,3 @@
-import { applyBkgColorOverride, applyWidthOverride } from '../../scripts/lib-adobeio.js';
-
 /**
  * decorates the title
  * @param {Element} block The title block element {Parameter Type} Name of the Parameter
@@ -41,9 +39,7 @@ export default async function decorate(block) {
     if (index > 0) {
       block.remove();
     }
-  });
-  applyBkgColorOverride(block);
-  applyWidthOverride(block);
+  });  
 
   Array.from(block.children).forEach(div => {
     const containsHeading = div.querySelector('h1, h2, h3, h4, h5, h6') !== null;

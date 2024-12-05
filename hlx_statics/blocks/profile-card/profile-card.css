@@ -1,4 +1,9 @@
-.profile-card {
+main div.profile-card-container:has(.profile-card.background-color-white),
+main div.profile-card-container:has(.profile-card.background-color-white) .profile-card > div {
+  background-color: white;
+}
+
+main div.profile-card-container .profile-card {
   max-width: 1280px;
   margin: auto;
   display: grid;
@@ -7,7 +12,7 @@
   margin: auto;
 }
 
-.profile-card > div {
+main div.profile-card-container .profile-card > div {
   background: #f1f3f4;
   border-radius: 4px;
   position: relative;
@@ -16,28 +21,28 @@
   margin-top: 30px;
 }
 
-.profile-card > div > div:first-child {
+main div.profile-card-container  .profile-card > div > div:first-child {
   position: absolute;
   top: -30px;
 }
 
-.profile-card > div > div:first-child > picture > img {
+main div.profile-card-container  .profile-card > div > div:first-child > picture > img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
 }
 
-.profile-card > div > div:last-child {
+main div.profile-card-container .profile-card > div > div:last-child {
   padding: 100px 24px 24px;
   text-decoration: none !important;
   text-align: center;
 }
 
-.profile-card > div > div:last-child > h2 {
+main div.profile-card-container .profile-card > div > div:last-child > h2 {
   font-size: 21px;
 }
 
-.profile-card > div > div:last-child > p {
+main div.profile-card-container .profile-card > div > div:last-child > p {
   font-size: 16px;
   margin-top: 12px;
   max-width: 300px;
@@ -48,29 +53,29 @@
   overflow: hidden;
 }
 
-.profile-card > div > div:last-child > h2,
-.profile-card > div > div:last-child > p {
+main div.profile-card-container .profile-card > div > div:last-child > h2,
+main div.profile-card-container .profile-card > div > div:last-child > p {
   color: black;
 }
 
-.button-container {
+main div.profile-card-container .button-container {
   margin-top: 56px !important;
   padding-bottom: 0px !important;
   height: auto;
 }
 
-.all-button-container {
+main div.profile-card-container .all-button-container {
   display: flex;
   justify-content: center;
   gap: 10px;
 }
 
 @media screen and (max-width: 1024px) {
-  .profile-card {
+  main div.profile-card-container .profile-card {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .profile-card > div > div:last-child > p {
+  main div.profile-card-container .profile-card > div > div:last-child > p {
     max-width: 260px;
   }
 }

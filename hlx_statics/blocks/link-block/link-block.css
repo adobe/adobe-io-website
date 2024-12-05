@@ -1,33 +1,37 @@
-h1 {
-    font-size: 18px !important;
-    padding-bottom: 9px;  
+main div.link-block-container:has(.link-block.background-color-white) {
+    background-color: white !important;
 }
 
-p {
+main div.link-block-container h1 {
+    font-size: 18px !important;
+    padding-bottom: 9px;
+}
+
+main div.link-block-container p {
     font-size: 16px !important;
     display: flex;
     gap: 4px;
 }
 
-p>a {
+main div.link-block-container p>a {
     text-decoration: none !important;
     font-weight:500;
     line-height: 38px;
-} 
+}
 
-p>div {
+main div.link-block-container p>div {
     margin-top: 0.7% !important;
 }
 
-a { 
+main div.link-block-container a {
     color: #0054b6;
 }
 
-a:hover {
+main div.link-block-container a:hover {
     text-decoration: underline !important;
     cursor: pointer;
 }
 
-.link-block-wrapper {
+main div.link-block-container .link-block-wrapper {
     margin: 3%;
-} 
+}

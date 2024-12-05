@@ -5,8 +5,6 @@ import {
   removeEmptyPTags,
   getBlockSectionContainer,
   decorateAnchorLink,
-  applyBkgColorOverride,
-  applyWidthOverride,
 } from '../../scripts/lib-adobeio.js';
 
 import {
@@ -103,7 +101,7 @@ export default async function decorate(block) {
   });
 
   /* Stop here when metadata is `style: center` */
-  if (container.classList.contains('center')) {
+  if (block.classList.contains('center')) {
     return;
   }
 
@@ -139,6 +137,4 @@ export default async function decorate(block) {
     }
   });
   observer.observe(block);
-  applyBkgColorOverride(block);
-  applyWidthOverride(block);
 }
