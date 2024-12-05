@@ -395,13 +395,15 @@ function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
+  if (getMetadata('template') === 'documentation') {
+    githubActionsBlock(document);
+  }
 }
 
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed(document);
-  githubActionsBlock(document);
 }
 
 loadPage();
