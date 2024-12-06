@@ -1,3 +1,7 @@
+main div.combined-carousel-container:has(.combined-carousel.background-color-white) {
+  background-color: white !important;
+}
+
 div.combined-carousel picture {
   width: 100%;
 }

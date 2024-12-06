@@ -68,7 +68,7 @@ export default async function decorate(block) {
     //add everything but image to the text div
     const flex_div = createTag("div", { id: "text-flex-div-" + h.id });
     h.parentElement.append(flex_div);
-    flex_div.append(h);
+    flex_div.append(h);    
 
     const button_div = createTag("div", { id: "button-div-" + h.id });
     h.parentElement.append(button_div);
@@ -100,7 +100,6 @@ export default async function decorate(block) {
       let flex_div = createTag("div", {
         id: "media-flex-div-" + img.parentElement.parentElement.parentElement.id,
       });
-      console.log(img.parentElement.parentElement.parentElement)
       img.parentElement.parentElement.parentElement.prepend(flex_div);
       flex_div.append(img.parentElement.parentElement);
       flex_div.classList.add("media-container");
@@ -112,9 +111,11 @@ export default async function decorate(block) {
     //add image to left div
     vid.id = "media-flex-div-" + vid.parentElement.parentElement.id;
     vid.classList.add("media-container");
+    
+    //these next two lines were needed in the old repo but made the video element not work in the one-repo so i commented them out
     //remove p tag from video element 
-    const pTag = vid.parentElement; 
-    pTag.parentNode.replaceChild(vid, pTag); 
+    // const pTag = vid.parentElement;
+    // pTag.parentNode.replaceChild(vid, pTag); 
   });
 
   block.querySelectorAll("p").forEach(function (p) {
