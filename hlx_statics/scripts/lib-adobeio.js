@@ -344,7 +344,6 @@ export function toggleScale() {
  * @param {*} block The block containing the picture to rearrange
  */
 export function rearrangeHeroPicture(block, overlayStyle) {
-  console.log('block', block)
   const picture = block.querySelector('picture');
   const emptyDiv = picture.parentElement.parentElement;
   block.prepend(picture);
