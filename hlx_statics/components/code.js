@@ -6,7 +6,6 @@ export default function decoratePreformattedCode({ block, language }) {
   pre.classList.add('line-numbers');
 
   const code = block.querySelector('code');
-  code.textContent = code.textContent.trim();
   // see https://prismjs.com/#basic-usage
   code.classList.add(`language-${toClassName(language)}`);
   // see https://prismjs.com/plugins/copy-to-clipboard/#settings
