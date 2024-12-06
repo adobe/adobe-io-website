@@ -197,7 +197,6 @@ export function buildCodes(container) {
   const codes = [...container.querySelectorAll('main > div > pre > code')];
   codes.forEach((code) => {
     const block = buildBlock('code', code.outerHTML);
-    block.classList.add('block');
     const parentContainer = code.parentElement.parentElement;
     const pre = parentContainer.querySelector('pre');
     pre.replaceWith(block);
