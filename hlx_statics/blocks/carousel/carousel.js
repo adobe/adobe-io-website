@@ -1,8 +1,6 @@
 import {
   createTag,
-  decorateButtons,
   removeEmptyPTags,
-  
 } from "../../scripts/lib-adobeio.js";
 /**
  * decorates the carousel
@@ -11,7 +9,6 @@ import {
 export default async function decorate(block) {
   block.setAttribute("daa-lh", "carousel");
   removeEmptyPTags(block);
-  decorateButtons(block);
   reformatHyperlinkImages(block);
 
   const carousel_block_child = createTag("div", { class: "block-container" });
@@ -39,7 +36,14 @@ export default async function decorate(block) {
   //add a count to keep track of which slide is showing
   let count = 1;
 
+  //load the video link.
+  const a = block.querySelectorAll("a");
+  for (let i = 0; i < a.length; i++) {
+    loadVideoURL(block, a[i]);
+  }
+
   block.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((h) => {
+    // one for each slide
     h.parentElement.classList.add("carousel-container");
     h.parentElement.parentElement.replaceWith(carousel_block_child);
     h.classList.add(
@@ -61,10 +65,10 @@ export default async function decorate(block) {
     carousel_ul.append(carousel_li);
     carousel_li.append(h.parentElement);
 
-    //add everything but image to the left div
-    const flex_div = createTag("div", { id: "right-flex-div-" + h.id });
+    //add everything but image to the text div
+    const flex_div = createTag("div", { id: "text-flex-div-" + h.id });
     h.parentElement.append(flex_div);
-    flex_div.append(h);
+    flex_div.append(h);    
 
     const button_div = createTag("div", { id: "button-div-" + h.id });
     h.parentElement.append(button_div);
@@ -82,24 +86,36 @@ export default async function decorate(block) {
       //add image to left div
       let flex_div = createTag("div", {
         id:
-          "left-flex-div-" +
+          "media-flex-div-" +
           img.parentElement.parentElement.parentElement.parentElement.id,
       });
       img.parentElement.parentElement.parentElement.parentElement.append(
         flex_div
       );
       flex_div.append(img.parentElement.parentElement.parentElement);
-      flex_div.classList.add("left-container");
+      flex_div.classList.add("media-container");
     } else {
       img.parentElement.parentElement.classList.add("IMAGE");
       //add image to left div
       let flex_div = createTag("div", {
-        id: "left-flex-div-" + img.parentElement.parentElement.parentElement.id,
+        id: "media-flex-div-" + img.parentElement.parentElement.parentElement.id,
       });
-      img.parentElement.parentElement.parentElement.append(flex_div);
+      img.parentElement.parentElement.parentElement.prepend(flex_div);
       flex_div.append(img.parentElement.parentElement);
-      flex_div.classList.add("left-container");
+      flex_div.classList.add("media-container");
     }
+  });
+
+  //add id to image and add image to left div
+  block.querySelectorAll(".video-element").forEach((vid) => {
+    //add image to left div
+    vid.id = "media-flex-div-" + vid.parentElement.parentElement.id;
+    vid.classList.add("media-container");
+    
+    //these next two lines were needed in the old repo but made the video element not work in the one-repo so i commented them out
+    //remove p tag from video element 
+    // const pTag = vid.parentElement;
+    // pTag.parentNode.replaceChild(vid, pTag); 
   });
 
   block.querySelectorAll("p").forEach(function (p) {
@@ -115,9 +131,9 @@ export default async function decorate(block) {
         button_div.append(p);
       } else {
         let flex_div = block.querySelector(
-          "[id=right-flex-div-" + p.parentElement.id + "]"
+          "[id=text-flex-div-" + p.parentElement.id + "]"
         );
-        flex_div.setAttribute("class", "right-container");
+        flex_div.setAttribute("class", "text-container");
         p.classList.add("spectrum-Body", "spectrum-Body--sizeM");
         flex_div.insertBefore(p, button_div);
       }
@@ -248,6 +264,63 @@ export default async function decorate(block) {
     });
   });
 
+
+  // load the video url and append to the video element.
+  function loadVideoURL(block, a) {
+    block.className = "carousel";
+    const link = a.href;
+    const url = new URL(link);
+    a.insertAdjacentHTML("afterend", loadUrl(url));
+    const videoElement = createTag("div", { class: "video-element" });
+    videoElement.innerHTML = a.parentElement.innerHTML;
+    a.parentElement.parentElement.append(videoElement);
+    
+    a.parentElement.remove();
+    videoElement.querySelector("a").remove();
+    videoElement.parentElement.classList.remove("button-container")
+  }
+
+  function loadUrl(url) {
+    let html;
+    const embed = url.pathname;
+    // Check if the URL is a youtube link.
+    const usp = new URLSearchParams(url.search);
+    let vid = encodeURIComponent(usp.get("v"));
+    const youtubeRegex =
+      /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/)|youtu\.be\/)/;
+    if (url.origin.includes("youtu.be")) {
+      vid = url.pathname.split("/")[1];
+    }
+    // allow autoplay to be specified in the section metadata.
+    const autoPlay = block.classList.contains("autoplay");
+
+    if (youtubeRegex.test(url)) {
+      let dataSource = "https://www.youtube.com";
+      dataSource += vid ? "/embed/" + vid + "?rel=0&v=" + vid : embed;
+      // if autoplay is true, append autoplay to the datasource.
+      dataSource =
+        autoPlay ? dataSource + "&autoplay=1&mute=1" : dataSource;
+      // Render the youtube link through iframe within right container of one of the video carousel slide.
+      html = `<div style="left: 0; width: 560px; height: 320px; position: relative; ">
+      <img loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+        src="https://i.ytimg.com/vi_webp/${vid}/maxresdefault.webp">
+          <iframe data-src="${dataSource}" allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" scrolling="no" title="Content from Youtube" loading="lazy"></iframe>
+      </img>
+     </div>`;
+    } else {
+      // Render the url link through video tag within right container of one of the video carousel slide.
+      // if autoplay is true, add autoplay attribute to the video tag.
+      html = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+        <video controls loading="lazy" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" ${
+          autoPlay ? `autoplay="true"` : ""
+        } preload="metadata" playsinline muted>
+          <source src="${url}" />
+        </video>
+      </div>`;
+    }
+    return html;
+  }
+
   //automatic scrolling
   function advanceSlide() {
     let slide_selected = block.querySelector(".carousel-circle-selected");
@@ -276,14 +349,6 @@ export default async function decorate(block) {
     }
   }
 
-  if (
-    block.parentElement.parentElement.classList.contains(
-      "background-color-white"
-    )
-  ) {
-    block.parentElement.parentElement.style.backgroundColor = "white";
-  }
-
   const timeout = 9000;
   function slideTimer() {
     if (!isPaused) {
@@ -301,5 +366,4 @@ export default async function decorate(block) {
 
   const timer = setTimeout(slideTimer, timeout);
   timer;
-  
 }
