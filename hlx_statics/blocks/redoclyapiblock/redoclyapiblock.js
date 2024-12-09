@@ -35,7 +35,7 @@ function parseOptions(block) {
       value = value.trim();
 
       // JSX shorthand for passing true
-      if(value === 'undefined') {
+      if(value === '') {
         value = true;
       }
       
