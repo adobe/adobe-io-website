@@ -267,7 +267,7 @@ export default async function decorate(block) {
 
   // load the video url and append to the video element.
   function loadVideoURL(block, a) {
-    block.className = "carousel";
+    // block.className = "carousel";
     const link = a.href;
     const url = new URL(link);
     a.insertAdjacentHTML("afterend", loadUrl(url));
