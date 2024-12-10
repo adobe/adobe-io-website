@@ -10,9 +10,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:title" content="Page not found">
   <script src="/hlx_statics/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
+  <script src="/hlx_statics/scripts/lib-adobeio.js" type="module" crossorigin="use-credentials"></script>
   <script type="module">
     import { sampleRUM } from '/hlx_statics/scripts/lib-helix.js';
-
+    import { decorateButtons } from '/hlx_statics/scripts/lib-adobeio.js';
     window.addEventListener('load', () => {
       if (document.referrer) {
         const { origin, pathname } = new URL(document.referrer);
@@ -26,15 +27,25 @@
           btnContainer.append(backBtn);
         }
       }
+
+      decorateButtons(document);
       sampleRUM('404', { source: document.referrer, target: window.location.href });
     });
   </script>
   <link rel="stylesheet" href="/hlx_statics/styles/styles.css">
   <style>
     main.error {
-      min-height: calc(100vh - var(--nav-height));
+      padding: 0 238px;
+      margin-top: 100px;
+      margin-bottom: 100px;
       display: flex;
       align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .heading2 .spectrum-Divider {
+      display: none;
     }
 
     main.error .error-number {
@@ -44,6 +55,12 @@
     main.error .error-number text {
       font-family: var(--fixed-font-family);
     }
+
+   .error span.spectrum-Button-label {
+      color: white;
+    }
+
+
   </style>
   <link rel="stylesheet" href="/hlx_statics/styles/lazy-styles.css">
 </head>
@@ -52,12 +69,11 @@
   <header></header>
   <main class="error">
     <div class="section">
-      <svg viewBox="1 0 38 18" class="error-number">
-        <text x="0" y="17">404</text>
-      </svg>
-      <h2 class="error-message">Page Not Found</h2>
-      <p class="button-container">
-        <a href="/" class="button secondary error-button-home">Go home</a>
+      <h1 class="error-message spectrum-Heading--sizeXXL spectrum-Heading--serif">Error 404: Page not found</h2>
+      <p class="button-container spectrum-Body spectrum-Body--sizeL">
+        <a href="https://developer.adobe.com" class="spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM">
+          <span class="spectrum-Button-label">Go to homepage</span>
+        </a>
       </p>
     </div>
   </main>
