@@ -168,17 +168,25 @@ async function fetchNavHtml(name) {
  * @param {string} pathPrefix The the path prefix
  */
 function normalizePaths(anchorElem, pathPrefix) {
-  if (!anchorElem.getAttribute('href').startsWith(pathPrefix)) {
-    if (anchorElem.getAttribute('href').endsWith('index.md')) {
-      anchorElem.href = `/${pathPrefix}/${anchorElem.getAttribute('href').replaceAll('index.md', '')}`
-    } else if (anchorElem.getAttribute('href').endsWith('.md')) {
-      anchorElem.href = `/${pathPrefix}/${anchorElem.getAttribute('href').replaceAll('.md', '')}`
-    } else if (anchorElem.getAttribute('href') === '/src/pages') {
-      anchorElem.href = `/${pathPrefix}/`;
-    } else {
-      anchorElem.href = `/${pathPrefix}/${anchorElem.getAttribute('href')}`;
+  const href = anchorElem.getAttribute('href');
+
+  if (href && (href.startsWith('http://') || href.startsWith('https://'))) { // check external link
+    anchorElem.target = '_blank';
+    anchorElem.href = href;
+  } else {
+    if (!href.startsWith(pathPrefix)) {
+      if (href.endsWith('index.md')) {
+        anchorElem.href = `/${pathPrefix}/${href.replaceAll('index.md', '')}`;
+      } else if (href.endsWith('.md')) {
+        anchorElem.href = `/${pathPrefix}/${href.replaceAll('.md', '')}`;
+      } else if (href === '/src/pages') {
+        anchorElem.href = `/${pathPrefix}/`;
+      } else {
+        anchorElem.href = `/${pathPrefix}/${href}`;
+      }
     }
   }
+
   return anchorElem;
 }
 
