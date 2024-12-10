@@ -207,6 +207,7 @@ export function buildCodes(container) {
       const blockDiv = document.createElement('div');
 
       wrapperDiv.style.margin = "1em 0";
+      wrapperDiv.style.maxWidth = "1155px"
       code.style.whiteSpace = "pre-wrap";
 
       code.parentNode.insertBefore(wrapperDiv, code);
