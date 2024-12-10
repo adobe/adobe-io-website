@@ -1,5 +1,4 @@
 // eslint-disable-next-line import/no-cycle
-import { sampleRUM } from './lib-helix.js';
 import {
   focusRing,
   isHlxPath,
@@ -35,9 +34,6 @@ async function fetchProfileAvatar(userId) {
     console.warn(e);
   }
 }
-
-// Core Web Vitals RUM collection
-sampleRUM('cwv');
 
 if (isHlxPath(window.location.host) || isStageEnvironment(window.location.host)) {
   addExtraScript(document.body, 'https://auth-stg1.services.adobe.com/imslib/imslib.js');
