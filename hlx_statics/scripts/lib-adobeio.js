@@ -1,5 +1,5 @@
 import {
-  buildBlock, decorateBlock,
+  buildBlock, decorateBlock, getMetadata,
 } from './lib-helix.js';
 
 /**
@@ -194,32 +194,12 @@ export function decorateInlineCodes(element) {
  * @param {*} container The container to inspect
  */
 export function buildCodes(container) {
-  const codes = [...container.querySelectorAll('main > div pre')];
-
+  const codes = [...container.querySelectorAll('main > div > pre > code')];
   codes.forEach((code) => {
-
-    const parentDiv = code.closest('div');
-    parentDiv.classList.add('code-container');
     const block = buildBlock('code', code.outerHTML);
-
-    if (code) {
-      const wrapperDiv = document.createElement('div');
-      const blockDiv = document.createElement('div');
-
-      wrapperDiv.style.margin = "1em 0";
-      code.style.whiteSpace = "pre-wrap";
-
-      code.parentNode.insertBefore(wrapperDiv, code);
-
-      wrapperDiv.classList.add('code-wrapper')
-      blockDiv.classList.add('code', 'block');
-
-      blockDiv.appendChild(code);
-      wrapperDiv.appendChild(blockDiv);
-
-      decorateBlock(blockDiv);
-      block.replaceWith(wrapperDiv);
-    }
+    const parentContainer = code.parentElement.parentElement;
+    const pre = parentContainer.querySelector('pre');
+    pre.replaceWith(block);
   });
 }
 
@@ -344,7 +324,6 @@ export function toggleScale() {
  * @param {*} block The block containing the picture to rearrange
  */
 export function rearrangeHeroPicture(block, overlayStyle) {
-  console.log('block', block)
   const picture = block.querySelector('picture');
   const emptyDiv = picture.parentElement.parentElement;
   block.prepend(picture);
@@ -431,6 +410,49 @@ export function isHlxPath(host) {
     || host.indexOf('localhost') >= 0
     || host.indexOf('aem.page') >= 0
     || host.indexOf('aem.live') >= 0;
+}
+
+/**
+ * Returns the absolute URL for a resource.
+ * @param {*} path The resource path. Either absolute or relative within root/static folder.
+ * @returns path if absolute. The calculated raw git URL, otherwise.
+ */
+export function getResourceUrl(path) {
+  const isAbsolute = path.indexOf("://") > 0 || path.indexOf("//") === 0;
+  if(isAbsolute) {
+    return path;
+  }
+
+  const blobPath = getMetadata('githubblobpath');
+  const pathPrefix = getMetadata('pathprefix');
+  const githubPath ='https://github.com';
+  const blobStr = '/blob/';
+  const srcPagesStr = '/src/pages/';
+  const blobIndex = blobPath.indexOf(blobStr);
+  const srcPagesIndex = blobPath.indexOf(srcPagesStr)
+
+  // check pre-conditions
+
+  const isValidRelativePath = 
+    blobPath.startsWith(githubPath)
+    && blobIndex < srcPagesIndex
+    && path.startsWith(pathPrefix); 
+
+  if(!isValidRelativePath) {
+    // eslint-disable-next-line no-console
+    console.error(`Invalid relative path "${path}" for "${blobPath}"`);
+  }
+
+  // build raw git URL
+  
+  const basePath = blobPath
+    .substring(0, blobIndex)
+    .replace(githubPath, 'https://raw.githubusercontent.com');
+
+  const ref = blobPath.substring(blobIndex + blobStr.length, srcPagesIndex);
+  const relativePath = path.replace(pathPrefix, '');
+
+  return `${basePath}/${ref}/static${relativePath}`;
 }
 
 /**
