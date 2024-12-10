@@ -43,18 +43,6 @@ window.adobeid = window.adobeid || {};
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
-sampleRUM('top');
-
-window.addEventListener('load', () => sampleRUM('load'));
-
-window.addEventListener('unhandledrejection', (event) => {
-  sampleRUM('error', { source: event.reason.sourceURL, target: event.reason.line });
-});
-
-window.addEventListener('error', (event) => {
-  sampleRUM('error', { source: event.filename, target: event.lineno });
-});
-
 window.addEventListener('resize', toggleScale);
 
 function loadHeader(header) {
@@ -149,9 +137,6 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`/hlx_statics/icons/adobe.svg`);
-  sampleRUM('lazy');
-  sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
-  sampleRUM.observe(main.querySelectorAll('picture > img'));
 
   if (window.location.hostname.endsWith('hlx.page') || window.location.hostname === ('localhost')) {
     // eslint-disable-next-line import/no-cycle
