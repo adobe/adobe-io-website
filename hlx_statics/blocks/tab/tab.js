@@ -1,4 +1,4 @@
-import decoratePreformattedCode, { getLanguageDecorateCode } from "../../components/code.js";
+import decoratePreformattedCode from "../../components/code.js";
 
 /**
  * decorates the text
@@ -69,11 +69,8 @@ export default async function decorate(block) {
           codeContentContainer.appendChild(code);
           tabContent.appendChild(codeContentContainer);
 
-          //get language and align the code
-          const language = getLanguageDecorateCode({ code });
-
           //formatted the code with number
-          decoratePreformattedCode({ block: tabContent, language });
+          decoratePreformattedCode(tabContent);
 
           if (index !== 0) {
             tabContent.style.display = 'none';
