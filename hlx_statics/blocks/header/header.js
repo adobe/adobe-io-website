@@ -335,7 +335,7 @@ export default async function decorate(block) {
   iconContainer.appendChild(siteLink);
   header.append(iconContainer);
 
-  const navigationLinks = createTag('ul', { id: 'navigation-links', class: 'menu', style: 'list-style-type: none;'});
+  let navigationLinks = createTag('ul', { id: 'navigation-links', class: 'menu', style: 'list-style-type: none;'});
 
   if (isTopLevelNav(window.location.pathname)) {
     const homeLinkLi = createTag('li', {class: 'navigation-home'});
@@ -420,8 +420,8 @@ export default async function decorate(block) {
       const li = a.parentElement.parentElement;
       const div = createTag('div', { class: 'nav-view-docs-button' });
       div.appendChild(a);
-      ul.removeChild(li);
-      ul.appendChild(div);
+      navigationLinks.removeChild(li);
+      navigationLinks.appendChild(div);
     }
   });
 
