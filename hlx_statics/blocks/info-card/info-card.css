@@ -1,6 +1,9 @@
 main div.info-card > ul {
   list-style: none;
-  margin: 0 auto;
+  margin-top: 24px;
+  margin-bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
   display: grid;
   max-width: 1280px;
   justify-content: center;
@@ -36,6 +39,36 @@ main div.info-card > ul > li img {
   width: 400px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+main div.info-card div.icon-div p.icon-p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 16px;
+}
+
+main div.info-card p.icon-p img {
+  height: 32px;
+  width: 32px;
+  object-fit: contain;
+}
+
+main div.info-card p.icon-p svg {
+  height: 32px;
+  width: 32px;
+  object-fit: contain;
+}
+
+main div.info-card p {
+  color: rgb(110, 110, 110);
+}
+
+@media screen and (min-width : 350px) and (max-width : 400px) {
+  main div.info-card > ul > li img {
+    width: 100%;
+    object-fit: cover;
+  }
 }
 
 a:-webkit-any-link {

@@ -1,15 +1,21 @@
+main div.cards-container:has(.cards.background-color-white) {
+  background-color: white;
+}
+
+main div.cards.background-color-white {
+  background-color: white !important;
+}
+
+main div.cards-wrapper:has(.cards.background-color-white) {  
+  background-color: white !important;
+}
+
 main div.cards {
-  /* width: var(--spectrum-global-dimension-static-grid-fluid-width); */
+  width: 100%;
   max-width: 1280px;
-  background: rgb(248, 248, 248);
   display: flex;
   justify-content: center;
   flex-direction: row;
-  flex-wrap: wrap;
-}
-
-main div.cards > * {
-  flex: 1 1 375px;
 }
 
 @media screen and (max-width: 320px) {
@@ -41,18 +47,15 @@ main div.cards > div.four-cards {
   width: 25vw;
 }
 
-main div.cards-container.background-color-white {
-  background-color: white;
-}
+/* main div.cards-container.background-color-white {
+  background-color: white !important;
+} */
 
 main div.cards-container .cards-wrapper {
+  background: rgb(245, 245, 245);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-main div.cards-container.background-color-white div.cards {
-  background-color: white;
 }
 
 @media screen and (max-width: 320px) {
@@ -93,8 +96,8 @@ main div.cards a.card-button {
   main div.cards {
     flex-direction: column;
   }
-  main div.cards > * {
-    flex: 1 1 300px;
+  main div.cards > div {
+    padding: 40px 0;
   }
 }
 

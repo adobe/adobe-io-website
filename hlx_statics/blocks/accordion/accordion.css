@@ -1,14 +1,18 @@
+main div.accordion-container:has(.accordion.background-color-white) {
+    background-color: white;
+}
+
 main div.accordion .accordion-div {
     display: flex !important;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50% !important;
+    width: 1280px !important;
     margin: auto !important;
 }
 
 main .accordion-whole {
-    padding: 48px 0;
+    padding: 32px 0;
 }
 
 main .accordion-whole .accordion-wrapper {
@@ -23,8 +27,12 @@ main div.accordion .accordion-title {
     justify-content: center;
     text-align: left;
     color: black;
-    width: 50% !important;
+    width: 1280px !important;
     margin: auto !important
+}
+
+main div.accordion .accordion-subtitle {
+    color: rgb(110, 110, 110);
 }
 
 main div.accordion .accordion-item {
@@ -81,3 +89,22 @@ main div.accordion .active {
     background-color: transparent;
 }
      
+main div.accordion .spectrum-Icon {
+    block-size: 10px;
+}
+
+@media screen and (max-width: 1280px) {
+    main div.accordion .accordion-div {
+        width: 98vw !important;
+    }
+
+    main div.accordion .accordion-title {
+        width: 98vw !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    main div.accordion .spectrum-Icon {
+        block-size: 18px;
+    }
+}

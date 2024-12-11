@@ -1,3 +1,7 @@
+main div.mini-resource-card-container:has(.mini-resource-card.background-color-white) {
+  background-color: white;
+}
+
 main div.mini-resource-card .card-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -22,7 +26,6 @@ main div.mini-resource-card .mini-card {
   grid-row-end: auto;
   border: none !important;
   margin: 0 !important;
-  width: 420px !important;
   height: 100px !important;
   box-shadow: 0 9px 15px 5px #e6e6e6;
 }
@@ -64,7 +67,7 @@ main div.mini-resource-card-container .section-title {
   }
 
   main div.mini-resource-card .mini-card {
-    width: auto !important;
+    width: 100%;
     height: 100px !important;
   }
 
@@ -73,13 +76,8 @@ main div.mini-resource-card-container .section-title {
     width: auto !important;
   }
 }
-@media screen and (max-width: 1024px) {
-  main div.mini-resource-card .card-container {
-    grid-template-columns: repeat(1, 1fr);
-    width: 60% !important;
-  }
-}
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 1280px) {
   main div.mini-resource-card .card-container {
     grid-template-columns: repeat(1, 1fr);
     margin: auto auto 50px auto !important;
@@ -88,7 +86,6 @@ main div.mini-resource-card-container .section-title {
   }
 
   main div.mini-resource-card .mini-card {
-    width: auto !important;
     height: 100px !important;
   }
 
@@ -100,6 +97,12 @@ main div.mini-resource-card-container .section-title {
 @media screen and (max-width: 425px) {
   main div.mini-resource-card .card-container {
     width: 80% !important;
+  }
+  main div.mini-resource-card .mini-card {
+    height: 100% !important;
+  }
+  main div.mini-resource-card .mini-resource-card-body {
+    height: 100% !important;
   }
   main .mini-resource-card-container {
     padding: 40px 0px 5px 0px;

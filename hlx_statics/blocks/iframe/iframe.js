@@ -1,6 +1,6 @@
 import {
     createTag,
-    addExtraScriptWithReturn
+    addExtraScriptWithReturn,
   } from '../../scripts/lib-adobeio.js';
 
 function penpalOnLoad() {

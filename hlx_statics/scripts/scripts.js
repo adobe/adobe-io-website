@@ -34,6 +34,7 @@ import {
   decorateProfile,
   isStageEnvironment,
   addExtraScript,
+  decorateHR
 } from './lib-adobeio.js';
 
 export {
@@ -118,6 +119,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateHR(main);
 }
 
 /**

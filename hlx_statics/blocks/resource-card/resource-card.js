@@ -1,7 +1,5 @@
 import {
   removeEmptyPTags,
-  applySectionTitle,
-  applyAnalyticHeaderOverride,
 } from '../../scripts/lib-adobeio.js';
 
 import {
@@ -66,6 +64,4 @@ export default async function decorate(block) {
     const pictureContainer = resource.querySelector('.resource-card-image-container');
     pictureContainer.append(picture);
   });
-  applySectionTitle(block);
-  applyAnalyticHeaderOverride(block);
 }

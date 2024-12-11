@@ -1,5 +1,4 @@
 import {
-  applyBkgColorOverride,
   decorateButtons
 } from '../../scripts/lib-adobeio.js';
 
@@ -47,7 +46,6 @@ function rearrangeButtons(block) {
  */
 export default async function decorate(block) {
   block.setAttribute('daa-lh', 'text');
-  const fontcolor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
   const secondaryButtonBorderColor = block?.parentElement?.parentElement?.getAttribute('data-secondarybuttonbordercolor');
   const secondaryButtonColor = block?.parentElement?.parentElement?.getAttribute('data-secondarybuttoncolor');
   const primaryButtonBorderColor = block?.parentElement?.parentElement?.getAttribute('data-primarybuttonbordercolor');
@@ -55,14 +53,11 @@ export default async function decorate(block) {
   const position = block?.parentElement?.parentElement?.getAttribute('data-position');
   const width = block?.parentElement?.parentElement?.getAttribute('data-Width');
 
-  applyBkgColorOverride(block);
   block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
     h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL');
-    h.style.color = fontcolor;
   });
   block.querySelectorAll('p').forEach((p) => {
     p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
-    p.style.color = fontcolor;
   });
   block.querySelectorAll('p a').forEach((p) => {
     p.classList.add('text-block-link');
@@ -75,12 +70,6 @@ export default async function decorate(block) {
   block.querySelectorAll('img').forEach((img) => {
     img.classList.add('textImg');
   });
-  block.querySelectorAll('div.text > div').forEach((division) => {
-    if (position === "right")
-      division.style.flexDirection = "row-reverse";
-    if (position === "left")
-      division.style.flexDirection = "row";
-  })
   if (width) {
     block.querySelectorAll('.text > div').forEach((parentDiv) => {
       parentDiv.style.width = width;

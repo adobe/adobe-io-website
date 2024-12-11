@@ -1,5 +1,9 @@
 @import url('../../styles/prism.css');
 
+main div.tab-container:has(.tab.background-color-navy) {
+    background-color: rgb(15, 55, 95);
+}
+
 main .tab-container {
     background-color: #323232;
     padding: 3%;
@@ -10,7 +14,7 @@ main .tab-container .tab {
     justify-content: center;
 }
 
-main .tab-container .vertical-tab .innerTab {
+main .tab-container .vertical .innerTab {
     display: flex;
 }
 
@@ -23,12 +27,12 @@ main .tab-container .innerTab>div:first-child {
     display: flex;
 }
 
-main .tab-container .vertical-tab .innerTab>div:first-child {
+main .tab-container .vertical .innerTab>div:first-child {
     flex-direction: column;
     align-items: center;
 }
 
-main .tab-container .horizontal-tab .innerTab>div:first-child {
+main .tab-container .innerTab>div:first-child {
     gap: 16px;
 }
 
@@ -67,7 +71,7 @@ main .tab-container .innerTab>div:first-child>div>p:first-child>picture {
 
 main .tab-container .innerTab>div:first-child>div>p:first-child>picture>img {
     width: 40px;
-    height: 32px;
+    height: 40px;
     margin: 0px 6px;
 }
 
@@ -150,7 +154,7 @@ main .tab-container .line-numbers-rows>span {
     height: 24px !important;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 860px) {
     main .tab-container .innerTab {
         display: block !important;
     }

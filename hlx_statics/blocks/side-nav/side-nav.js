@@ -1,5 +1,4 @@
 import {
-  applyAnalyticHeaderOverride,
   createTag
 } from '../../scripts/lib-adobeio.js';
 import { fetchSideNavHtml } from '../../scripts/lib-helix.js';
@@ -44,19 +43,18 @@ export default async function decorate(block) {
     a.classList.add('spectrum-SideNav-itemLink');
   });
 
-  applyAnalyticHeaderOverride(block);
-
   function assignLayerNumbers(ul, layer = 1) {
     const listItems = ul.children;
 
     for (let i = 0; i < listItems.length; i++) {
       const li = listItems[i];
-      if (layer === 1) {
-        li.classList.add('header');
-      }
 
       const getAnchorTag = li.querySelector('a');
       const childUl = li.querySelector('ul');
+
+      if (layer === 1 && childUl) {
+        li.classList.add('header');
+      }
 
       li.setAttribute("role", "treeitem");
       li.setAttribute("aria-level", layer);

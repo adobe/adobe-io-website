@@ -1,32 +1,43 @@
+main div.info-container:has(.info.background-color-white) {
+  background-color: white;
+}
+
+main div.info.background-color-white {
+  background-color: white !important;
+}
+
 main div.info {
-    width: 90%;
-    margin: 0 auto;
-    background: rgb(248, 248, 248);
-    justify-content: center;
-    margin-bottom: 64px;
-  }
-  
-  main div.info h2 {
-    margin-top: 64px;
-    scroll-margin-top: 100px;
-  }
+  width: 90%;
+  max-width: 1280px;
+  margin: 0 auto;
+  justify-content: center;
+  margin-bottom: 64px;
+}
 
-  main div.info .info-header .anchor-link{
-    padding-left: 10px;
-    visibility: hidden;
-  }
+main div.info h2 {
+  margin-top: 64px;
+  scroll-margin-top: 100px;
+}
 
-  main div.info .info-header:hover .anchor-link{
-    display: inline-block;
-    visibility: visible;
-  }
+main div.info .info-header .anchor-link {
+  padding-left: 10px;
+  visibility: hidden;
+}
 
+main div.info .info-header:hover .anchor-link {
+  display: inline-block;
+  visibility: visible;
+}
 
 main div.info code {
-    display: inline-block;
-    min-width: auto;
-    background-color: rgb(248, 248, 248);
-    padding: 0 4px;
-    margin: 0;
-  }
-  
+  display: inline-block;
+  min-width: auto;
+  background-color: rgb(248, 248, 248);
+  padding: 0 4px;
+  margin: 0;
+}
+
+main div.info .info-divider {
+  border-top: 4px solid rgb(75, 75, 75);
+  border-radius: 5px;
+}

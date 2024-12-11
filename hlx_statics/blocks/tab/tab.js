@@ -1,5 +1,4 @@
 import decoratePreformattedCode, { getLanguageDecorateCode } from "../../components/code.js";
-import { applyBkgColorOverride } from "../../scripts/lib-adobeio.js";
 
 /**
  * decorates the text
@@ -8,25 +7,19 @@ import { applyBkgColorOverride } from "../../scripts/lib-adobeio.js";
 
 export default async function decorate(block) {
   block.setAttribute('daa-lh', 'tab');
-  applyBkgColorOverride(block);
-  let fontcolor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
-  fontcolor = fontcolor ? fontcolor : "rgb(209, 209, 209)";
-  const orientation = block?.parentElement?.parentElement?.getAttribute('data-orientation');
   const backgroundColor = block?.parentElement?.parentElement?.getAttribute('data-backgroundcolor');
-  block.classList.add(`${orientation}-tab`);
   let codeBackgroundColor = block?.parentElement?.parentElement?.getAttribute('data-codebackgroundcolor');
   codeBackgroundColor = codeBackgroundColor ? codeBackgroundColor : "rgb(0,0,0)"
 
   block.querySelectorAll('p').forEach((p) => {
     p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
-    p.style.color = fontcolor;
   });
 
   const innerTab = document.createElement('div');
 
-  if (backgroundColor === "navy") {
-    innerTab.classList.add('navy');
-  }
+  // if (backgroundColor === "navy") { removed this to add highlight to normal grey background
+  innerTab.classList.add('navy');
+  // }
 
   innerTab.classList.add('innerTab');
 
@@ -79,7 +72,7 @@ export default async function decorate(block) {
           //get language and align the code
           const language = getLanguageDecorateCode({ code });
 
-          //formatted the code with number 
+          //formatted the code with number
           decoratePreformattedCode({ block: tabContent, language });
 
           if (index !== 0) {

@@ -1,5 +1,5 @@
 import {
-  buildBlock,
+  buildBlock, decorateBlock, getMetadata,
 } from './lib-helix.js';
 
 /**
@@ -48,17 +48,6 @@ export function createTag(name, attrs) {
     });
   }
   return el;
-}
-/**
- * Sets-up Adobe Analytics attributes for click tracking
- * @param {*} domObj The DOM object to inspect, the whole document by default
- */
-export function setAnalyticsAttributes(domObj = document) {
-  domObj.querySelectorAll('a').forEach((a) => {
-    if (a.innerText.length > 0) {
-      a.setAttribute('daa-ll', a.innerText);
-    }
-  });
 }
 
 /**
@@ -193,6 +182,7 @@ export function decorateButtons(block, secondaryButtonBorderColor, secondaryButt
 export function decorateInlineCodes(element) {
   element.querySelectorAll('code').forEach((code) => {
     const up = code.parentElement;
+
     if (up.tagName !== 'PRE') {
       code.classList.add('inline-code');
     }
@@ -207,10 +197,22 @@ export function buildCodes(container) {
   const codes = [...container.querySelectorAll('main > div > pre > code')];
   codes.forEach((code) => {
     const block = buildBlock('code', code.outerHTML);
-    block.classList.add('block');
     const parentContainer = code.parentElement.parentElement;
     const pre = parentContainer.querySelector('pre');
     pre.replaceWith(block);
+  });
+}
+
+/**
+ * Builds all hr blocks inside a container
+ * @param {*} container The container to inspect
+ */
+export function decorateHR(container) {
+  const hrWrappers = container.querySelectorAll('main div.hr-wrapper');
+
+  hrWrappers.forEach(hrWrapper => {
+    const hr = document.createElement('hr');
+    hrWrapper.insertBefore(hr, hrWrapper.firstChild);
   });
 }
 
@@ -264,7 +266,7 @@ export function buildGrid(main) {
   const gridAreaMain = main.querySelector(".section");
   gridAreaMain.style.gridArea = 'main';
 
-  let contentHeader = createTag('div', {class: 'content-header'});
+  let contentHeader = createTag('div', { class: 'content-header' });
   gridAreaMain.prepend(contentHeader)
 }
 
@@ -273,9 +275,9 @@ export function buildGrid(main) {
  * @param {*} main The grid container
  */
 export function buildSideNav(main) {
-  let sideNavDiv = createTag ('div', {class: 'section side-nav-container', style: 'grid-area: sidenav'});
-  let sideNavWrapper = createTag('div', {class: 'side-nav-wrapper'});
-  let sideNavBlock = createTag('div', {class: 'side-nav block', 'data-block-name': 'side-nav'});
+  let sideNavDiv = createTag('div', { class: 'section side-nav-container', style: 'grid-area: sidenav' });
+  let sideNavWrapper = createTag('div', { class: 'side-nav-wrapper' });
+  let sideNavBlock = createTag('div', { class: 'side-nav block', 'data-block-name': 'side-nav' });
   main.style.gridTemplateColumns = '256px auto';
   sideNavWrapper.append(sideNavBlock);
   sideNavDiv.append(sideNavWrapper);
@@ -287,7 +289,7 @@ export function buildSideNav(main) {
  * @param {*} main The grid container
  */
 export function buildOnThisPage(main) {
-  let asideWrapper = createTag('div', {class: 'onthispage-wrapper block', 'data-block-name': 'onthispage'});
+  let asideWrapper = createTag('div', { class: 'onthispage-wrapper block', 'data-block-name': 'onthispage' });
   main.append(asideWrapper);
 }
 
@@ -296,13 +298,13 @@ export function buildOnThisPage(main) {
  * @param {*} main The grid container
  */
 export function buildBreadcrumbs(main) {
-  let breadcrumbsDiv = createTag ('div', {class: 'section breadcrumbs-container'});
-  let breadcrumbsWrapper = createTag('div', {class: 'breadcrumbs-wrapper'});
-  let breadcrumbsBlock = createTag('div', {class: 'breadcrumbs block', 'data-block-name': 'breadcrumbs'});
-  
+  let breadcrumbsDiv = createTag('div', { class: 'section breadcrumbs-container' });
+  let breadcrumbsWrapper = createTag('div', { class: 'breadcrumbs-wrapper' });
+  let breadcrumbsBlock = createTag('div', { class: 'breadcrumbs block', 'data-block-name': 'breadcrumbs' });
+
   breadcrumbsWrapper.append(breadcrumbsBlock);
   breadcrumbsDiv.append(breadcrumbsWrapper);
-  
+
   const contentHeader = main.querySelector('.content-header');
   contentHeader?.append(breadcrumbsDiv);
 }
@@ -405,7 +407,52 @@ export function isStageEnvironment(host) {
 export function isHlxPath(host) {
   return host.indexOf('hlx.page') >= 0
     || host.indexOf('hlx.live') >= 0
-    || host.indexOf('localhost') >= 0;
+    || host.indexOf('localhost') >= 0
+    || host.indexOf('aem.page') >= 0
+    || host.indexOf('aem.live') >= 0;
+}
+
+/**
+ * Returns the absolute URL for a resource.
+ * @param {*} path The resource path. Either absolute or relative within root/static folder.
+ * @returns path if absolute. The calculated raw git URL, otherwise.
+ */
+export function getResourceUrl(path) {
+  const isAbsolute = path.indexOf("://") > 0 || path.indexOf("//") === 0;
+  if(isAbsolute) {
+    return path;
+  }
+
+  const blobPath = getMetadata('githubblobpath');
+  const pathPrefix = getMetadata('pathprefix');
+  const githubPath ='https://github.com';
+  const blobStr = '/blob/';
+  const srcPagesStr = '/src/pages/';
+  const blobIndex = blobPath.indexOf(blobStr);
+  const srcPagesIndex = blobPath.indexOf(srcPagesStr)
+
+  // check pre-conditions
+
+  const isValidRelativePath = 
+    blobPath.startsWith(githubPath)
+    && blobIndex < srcPagesIndex
+    && path.startsWith(pathPrefix); 
+
+  if(!isValidRelativePath) {
+    // eslint-disable-next-line no-console
+    console.error(`Invalid relative path "${path}" for "${blobPath}"`);
+  }
+
+  // build raw git URL
+  
+  const basePath = blobPath
+    .substring(0, blobIndex)
+    .replace(githubPath, 'https://raw.githubusercontent.com');
+
+  const ref = blobPath.substring(blobIndex + blobStr.length, srcPagesIndex);
+  const relativePath = path.replace(pathPrefix, '');
+
+  return `${basePath}/${ref}/static${relativePath}`;
 }
 
 /**
@@ -449,11 +496,11 @@ export const setSearchFrameOrigin = (host, suffix = '') => {
  * @param {*} suffix A suffix to append
  * @returns The first subfolder in the franklin dir - for special urls like apis will return the franklin_assets folder
  */
-export const getClosestFranklinSubfolder = (host, suffix = '') => {
+export const getClosestFranklinSubfolder = (host, suffix = '', defaultNav = false) => {
   let subfolderPath = window.location.pathname.split('/')[1];
 
   // make sure top level paths point to the same nav if on these paths
-  if (subfolderPath === '' || subfolderPath === 'apis' || subfolderPath === 'open' || subfolderPath === 'developer-support') {
+  if (subfolderPath === '' || subfolderPath === 'apis' || subfolderPath === 'open' || subfolderPath === 'developer-support' || defaultNav) {
     subfolderPath = 'franklin_assets';
   } else {
     subfolderPath = window.location.pathname;
@@ -627,6 +674,9 @@ export function decorateAnchorLink(header) {
 
 /**
  * Set the width of a block from Section Metadata.
+ * 
+ * Nov 15th 2024: Removed from all blocks and will refactor in the future if there's demand.
+ *   
  * @param {Element} The element to add the width style to.
  */
 export function applyWidthOverride(block) {
@@ -639,6 +689,10 @@ export function applyWidthOverride(block) {
 
 /**
  * set the background color of a block from Section Metadata
+ * 
+ * 
+ * Dec 3rd 2024: Removed from all blocks and will refactor in the future if there's demand.
+ *   
  * @param {Element} The element to add the background color style to.
  */
 export function applyBkgColorOverride(block) {
@@ -654,27 +708,41 @@ export function applyBkgColorOverride(block) {
   }
 }
 
-/**
- * Set the title of a block from Section Metadata.
- * @param {Element} The element to add the title to.
- */
-export function applySectionTitle(block) {
-  const title = block?.parentElement?.parentElement?.getAttribute('data-title');
-  if (title) {
-    const titleElement = document.createElement('h2');
-    titleElement.innerHTML = title;
-    titleElement.classList.add('spectrum-Heading', 'spectrum-Heading--sizeL', 'section-title');
-    block?.parentElement?.parentElement?.prepend(titleElement);
+export async function loadCustomAnalytic(domObj, path) {
+  const resp = await fetch(`${path}.json`);
+  if (resp.ok) {
+    const analyticInfo = await resp.json();
+    analyticInfo?.data.forEach(item => {
+      const className = item.class;
+      const href = item.href;
+      const daalh = item["daa-lh"];
+      const daall = item["daa-ll"];
+      domObj.querySelectorAll('a').forEach((a) => {
+        if (a.href === href) {
+          a.setAttribute('daa-ll', daall);
+          const sectionElement = a.closest('.section');
+          if (sectionElement) {
+            sectionElement.classList.add(className);
+            sectionElement.querySelector('.block')?.setAttribute('daa-lh', daalh);
+          }
+        }
+      });
+    })
   }
 }
 
 /**
- * Set the analytic header of a block from Section Metadata.
+ * Add analytics to the page.  Check if an 'analytic' file exists, then read the custom analytic tracking data from the file.
  * @param {Element} The element to set the analytic heading attribute.
  */
-export function applyAnalyticHeaderOverride(block) {
-  const heading = block?.parentElement?.parentElement?.getAttribute('data-analytic-heading');
-  if (heading) {
-    block.setAttribute('daa-lh', heading);
+export async function applyAnalytic(domObj = document) {
+  domObj.querySelectorAll('a').forEach((a) => {
+    if (a.innerText.length > 0) {
+      a.setAttribute('daa-ll', a.innerText);
+    }
+  });
+  let analyticPath = getClosestFranklinSubfolder(window.location.origin, 'analytic');
+  if (analyticPath) {
+    const analytic = await loadCustomAnalytic(domObj, analyticPath);
   }
 }

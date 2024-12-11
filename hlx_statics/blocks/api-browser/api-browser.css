@@ -1,3 +1,7 @@
+main div.api-browser-container:has(.api-browser.background-color-white) {
+  background-color: white !important;
+}
+
 main .api-browser-container {
   background-color: #fff;
   padding-top: 32px;
@@ -60,7 +64,7 @@ main .api-card {
   align-items: center;
   width: 100%;
 
-  background: rgb(248, 248, 248);
+  background: rgb(245, 245, 245);
 }
 
 @media screen and (max-width: 320px) {

@@ -1,37 +1,23 @@
-import { applyWidthOverride, applyBkgColorOverride, applyAnalyticHeaderOverride } from '../../scripts/lib-adobeio.js';
+import { decorateAnchorLink } from '../../scripts/lib-adobeio.js';
 
 /**
  * decorates the list
  * @param {Element} block The list block element
  */
 export default async function decorate(block) {
-  const fontcolor = block?.parentElement?.parentElement?.getAttribute('data-fontcolor');
-  const icon = block?.parentElement?.parentElement?.getAttribute('data-icon');
-  const iconColor = block?.parentElement?.parentElement?.getAttribute('data-iconcolor');
   block.setAttribute('daa-lh', 'list');
+  block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+    h.classList.add('spectrum-Heading', 'spectrum-Heading--sizeM', 'column-header');
+    decorateAnchorLink(h);
+  });
+  block.querySelectorAll('p').forEach((p) => {
+      p.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
+  });
   block.querySelectorAll('li').forEach((list) => {
     list.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
-    list.style.color = fontcolor;
-    if (icon) {
-      list.classList.add("checkmark");
-      const checkmarkSpan = document.createElement('span');
-      checkmarkSpan.textContent = '\u2713';
-      checkmarkSpan.style.position = 'absolute';
-      checkmarkSpan.style.left = '0';
-      checkmarkSpan.style.top = '0';
-      checkmarkSpan.style.color = iconColor;
-      list.insertBefore(checkmarkSpan, list.firstChild);
-    }
   });
 
   block.querySelectorAll('ul, ol').forEach((unorder) => {
-    unorder.style.color = fontcolor;
-    if (icon) {
-      unorder.classList.add("checkmark-list");
-    }
+    unorder.classList.add('spectrum-Body', 'spectrum-Body--sizeM');
   });
-  applyBkgColorOverride(block);
-  applyBkgColorOverride(block);
-  applyWidthOverride(block);
-  applyAnalyticHeaderOverride(block);
 }
