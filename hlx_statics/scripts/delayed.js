@@ -1,5 +1,8 @@
 // eslint-disable-next-line import/no-cycle
-import { sampleRUM } from './lib-helix.js';
+import { 
+  sampleRUM, 
+  loadCSS 
+} from './lib-helix.js';
 import {
   focusRing,
   isHlxPath,
@@ -23,6 +26,7 @@ function loadPrism(document) {
   // see: https://prismjs.com/docs/Prism.html#.manual
   window.Prism = window.Prism || {};
   window.Prism.manual = true;
+  loadCSS(`${window.hlx.codeBasePath}/styles/prism.css`);
   import('./prism.js')
     .then(() => {
       // see: https://prismjs.com/plugins/autoloader/
