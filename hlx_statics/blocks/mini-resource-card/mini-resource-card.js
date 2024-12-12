@@ -1,4 +1,4 @@
-import { createTag, removeEmptyPTags} from '../../scripts/lib-adobeio.js';
+import { createTag, removeEmptyPTags, decorateButtons} from '../../scripts/lib-adobeio.js';
 
 /**
  * Returns the HTML for a mini resource card
@@ -41,9 +41,25 @@ function getMiniResourceCard(linkHref, heading, text) {
  * @param {Element} block The mini-resource-card block element
  */
 export default async function decorate(block) {
+    let containerParent;
     block.setAttribute('daa-lh', 'mini resource card');
+    if (block.classList.contains('primarybutton')) {
+        const primaryButton = block.querySelectorAll('a')[0];
+        const up = primaryButton.parentElement;
+        const container = createTag('p', {class: 'button-container'});
+        containerParent = primaryButton.parentElement.parentElement.parentElement;
+        containerParent.appendChild(container);
+        container.appendChild(up);
+        if (!primaryButton.querySelector('img')) {
+            if (up.childNodes.length === 1 && up.tagName === 'STRONG'){
+                primaryButton.className = 'button primary';
+            }
+        }
+        decorateButtons(containerParent);
+    }
     const grid_div = createTag('div', { class: 'card-container' });
     block.querySelectorAll('.mini-resource-card > div').forEach((resource) => {
+        if (resource.querySelector(".button-container")) return;
         removeEmptyPTags(resource);
         grid_div.appendChild(resource);
 
@@ -53,7 +69,9 @@ export default async function decorate(block) {
         const text = resource.querySelector('p')?.innerText;
         const picture = resource.querySelector('picture');
         const img = resource.querySelector('img');
-        img.setAttribute('class', 'image-mini');
+        if (img) {
+            img.setAttribute('class', 'image-mini');
+        }
 
         resource.innerHTML = getMiniResourceCard(linkHref, heading, text);
         const pictureContainer = resource.querySelector('.mini-resource-card-image-container');
@@ -61,24 +79,7 @@ export default async function decorate(block) {
 
     });
     block.appendChild(grid_div);
-
-    const boxShadow = block?.parentElement?.parentElement?.getAttribute('data-BoxShadow');
-    const imageBorderRadius = block?.parentElement?.parentElement?.getAttribute('data-ImageBorderRadius');
-    const headerFontSize = block?.parentElement?.parentElement?.getAttribute('data-HeaderFontSize');
-
-    block.querySelectorAll('.mini-resource-card  .mini-card').forEach((card) => {
-        if (boxShadow) {
-            card.style.setProperty('box-shadow', boxShadow, 'important');
-        }
-    })
-    if (imageBorderRadius) {
-        block.querySelectorAll('.mini-resource-card  .mini-card img').forEach((card) => {
-            card.style.borderRadius = "25px";
-        })
+    if (block.classList.contains('primarybutton')) {
+        block.appendChild(containerParent);
     }
-    block?.parentElement?.parentElement?.querySelectorAll('h2').forEach((h) => {
-        if (headerFontSize) {
-            h.style.fontSize = headerFontSize;
-        }
-    })
 }
