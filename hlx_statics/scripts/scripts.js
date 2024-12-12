@@ -30,6 +30,7 @@ import {
   toggleScale,
   decorateAnchorLink,
   decorateInlineCodes,
+  decorateNestedCodes,
   isHlxPath,
   decorateProfile,
   isStageEnvironment,
@@ -119,6 +120,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateNestedCodes(main);
   decorateHR(main);
 }
 

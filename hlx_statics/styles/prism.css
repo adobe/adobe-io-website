@@ -136,7 +136,8 @@ pre[class*=language-].line-numbers>code {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    border-right: none;
 }
 
 .line-numbers-rows>span {

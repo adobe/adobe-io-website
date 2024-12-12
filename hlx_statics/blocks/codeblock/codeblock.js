@@ -1,5 +1,5 @@
 import { toClassName } from '../../scripts/lib-helix.js';
-import decoratePreformattedCode, { getLanguageDecorateCode } from '../../components/code.js';
+import decoratePreformattedCode from '../../components/code.js';
 
 // Function to create a button element for tabs
 function createTabButton(tab, id, isSelected, onClick) {
@@ -60,8 +60,6 @@ export default function decorate(block) {
   decorateTabs(block);
 
   block.querySelectorAll('[role=tabpanel]').forEach(panel => {
-    const code = panel.querySelector('code');
-    const language = getLanguageDecorateCode({ code });
-    decoratePreformattedCode({ block: panel, language });
+    decoratePreformattedCode(panel);
   });
 }

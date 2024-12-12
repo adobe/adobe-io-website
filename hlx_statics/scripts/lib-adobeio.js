@@ -1,6 +1,5 @@
-import {
-  buildBlock, decorateBlock, getMetadata,
-} from './lib-helix.js';
+import { buildBlock, getMetadata, loadCSS } from './lib-helix.js';
+import decoratePreformattedCode from '../components/code.js';
 
 /**
  * Breakpoints
@@ -187,6 +186,19 @@ export function decorateInlineCodes(element) {
       code.classList.add('inline-code');
     }
   });
+}
+
+/**
+ * Decorates all nested codes in a container element.
+ * @param {Element} element container element
+ */
+export function decorateNestedCodes(element) {
+  element.querySelectorAll('div.default-content-wrapper pre > code').forEach((code) => {
+    loadCSS(`${window.hlx.codeBasePath}/blocks/code/code.css`);
+    const container = code.parentElement.parentElement;
+    decoratePreformattedCode(container);
+  });
+  
 }
 
 /**
