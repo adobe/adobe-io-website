@@ -3,7 +3,7 @@ main div.tab-container:has(.tab.background-color-navy) {
 }
 
 main .tab-container {
-    background-color: #323232;
+    background-color: rgb(245, 245, 245);
     padding: 3%;
 }
 
@@ -46,17 +46,30 @@ main .tab-container .innerTab>div:first-child>div {
     width: 260px;
 }
 
-main .tab-container .navy>div:first-child>div:hover,
-main .tab-container .navy .activeTab {
+main .tab-container .background-hover>div:first-child>div:hover,
+main .tab-container .background-hover .activeTab {
     background-color: #2e3c6a;
+}
+
+main div.tab.background-color-navy .background-hover>div:first-child>div:hover,
+main div.tab.background-color-navy .activeTab {
+    background-color: rgb(245, 245, 245) !important;
+}
+
+main div.tab.background-color-navy .innerTab>div:first-child>div:hover>p {
+    color: rgb(75, 75, 75) !important;
 }
 
 main .tab-container .innerTab>div:first-child>div:hover>p {
     color: white !important;
 }
 
-main .tab-container .navyTab {
-    background-color: #2e3c6a;
+main div.tab.background-color-navy .innerTab>div:first-child>div>p {
+    color: white;
+}
+
+main div.tab.background-color-navy .activeTab>p {
+    color: rgb(75, 75, 75) !important;
 }
 
 main .tab-container .activeTab>p {

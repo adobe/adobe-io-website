@@ -18,7 +18,7 @@ export default async function decorate(block) {
   const innerTab = document.createElement('div');
 
   // if (backgroundColor === "navy") { removed this to add highlight to normal grey background
-  innerTab.classList.add('navy');
+  innerTab.classList.add('background-hover');
   // }
 
   innerTab.classList.add('innerTab');
