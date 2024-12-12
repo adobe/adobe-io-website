@@ -20,6 +20,10 @@ main div.table {
   margin: auto;
 }
 
+body.documentation main div.table , body.documentation main div.table-wrapper {
+  padding: 0 !important;
+}
+
 .table table {
   width: 100%;
   max-width: 100%;
