@@ -209,26 +209,9 @@ export function buildCodes(container) {
   const codes = [...container.querySelectorAll('main > div > pre > code')];
   codes.forEach((code) => {
     const block = buildBlock('code', code.outerHTML);
-
-    if (code) {
-      const wrapperDiv = document.createElement('div');
-      const blockDiv = document.createElement('div');
-
-      wrapperDiv.style.margin = "1em 0";
-      wrapperDiv.style.maxWidth = "1155px"
-      code.style.whiteSpace = "pre-wrap";
-
-      code.parentNode.insertBefore(wrapperDiv, code);
-
-      wrapperDiv.classList.add('code-wrapper')
-      blockDiv.classList.add('code', 'block');
-
-      blockDiv.appendChild(code);
-      wrapperDiv.appendChild(blockDiv);
-
-      decorateBlock(blockDiv);
-      block.replaceWith(wrapperDiv);
-    }
+    const parentContainer = code.parentElement.parentElement;
+    const pre = parentContainer.querySelector('pre');
+    pre.replaceWith(block);
   });
 }
 
