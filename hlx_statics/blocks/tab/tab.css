@@ -86,10 +86,16 @@ main .tab-container .innerTab>div:first-child>div>p:first-child>picture>img {
     margin: 0px 6px;
 }
 
-main .tab-container .innerTab>div:not(:first-child) {
+main div.tab.background-color-navy .innerTab>div:not(:first-child) {
     width: 100%;
     display: none;
     color: white;
+}
+
+main .tab-container .innerTab>div:not(:first-child) {
+    width: 100%;
+    display: none;
+    color: rgb(75,75,75);
 }
 
 main .tab-container .activeTabContent {
