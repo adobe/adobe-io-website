@@ -12,6 +12,10 @@ main div.info-card > ul {
   padding: 0;
 }
 
+main div.info-card.background-color-white {
+  background-color: white;
+}
+
 main div.info-card .button-container {
   text-align: center;
 }
