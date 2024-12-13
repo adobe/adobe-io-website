@@ -12,6 +12,10 @@ main div.mini-resource-card .card-container {
   width: 1280px !important;
 }
 
+main div.mini-resource-card .button-container {
+  text-align: center;
+}
+
 main div.mini-resource-card .mini-card {
   display: flex;
   flex-direction: row;

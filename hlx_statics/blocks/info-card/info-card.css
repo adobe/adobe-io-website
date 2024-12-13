@@ -12,6 +12,10 @@ main div.info-card > ul {
   padding: 0;
 }
 
+main div.info-card .button-container {
+  text-align: center;
+}
+
 main div.info-card > ul > li {
   max-width: 400px;
   border: 1px solid transparent;
