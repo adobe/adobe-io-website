@@ -763,10 +763,8 @@ export async function applyAnalytic(domObj = document) {
  * @returns Fetches the devsitepath spreadsheet file on the google drive
  */
 export async function getdevsitepathFile() {
-  // TODO: the fetched url will change when we make the adp-devsite repo the 
-  // main repo in actual stage/prod
-  // For now it points to the adobe-io-website url 
-  let devsitepathUrl = 'https://main--adobe-io-website--adobe.aem.live/devsitepaths.json';
+  // Should this be the right place to fetch?
+  let devsitepathUrl = 'https://developer.adobe.com/franklin_assets/devsitepaths.json';
 
   const resp = await fetch(devsitepathUrl);
   if (resp.ok) {
