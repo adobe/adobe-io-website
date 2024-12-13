@@ -7,9 +7,7 @@ import decoratePreformattedCode from "../../components/code.js";
 
 export default async function decorate(block) {
   block.setAttribute('daa-lh', 'tab');
-  const backgroundColor = block?.parentElement?.parentElement?.getAttribute('data-backgroundcolor');
-  let codeBackgroundColor = block?.parentElement?.parentElement?.getAttribute('data-codebackgroundcolor');
-  codeBackgroundColor = codeBackgroundColor ? codeBackgroundColor : "rgb(0,0,0)"
+  const codeBackgroundColor =  "rgb(0,0,0)"
 
   block.querySelectorAll('p').forEach((p) => {
     p.classList.add('spectrum-Body', 'spectrum-Body--sizeL');
@@ -17,10 +15,7 @@ export default async function decorate(block) {
 
   const innerTab = document.createElement('div');
 
-  // if (backgroundColor === "navy") { removed this to add highlight to normal grey background
   innerTab.classList.add('background-hover');
-  // }
-
   innerTab.classList.add('innerTab');
 
   Array.from(block.children).forEach((div, index) => {
@@ -99,6 +94,7 @@ export default async function decorate(block) {
     innerTab.append(div);
   })
 
+  let backgroundColor;
   block.append(innerTab);
   block.firstElementChild.firstElementChild.firstElementChild.classList.add('activeTab', `${backgroundColor}Tab`);
   block.querySelectorAll('#tabView0')[0].classList.add('activeTabContent');
