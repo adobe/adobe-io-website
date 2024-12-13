@@ -760,17 +760,69 @@ export async function applyAnalytic(domObj = document) {
 }
 
 /**
- * @returns Fetches the devsitepath spreadsheet file on the google drive
+ * @returns Fetches the devsitepath.json file
  */
 export async function getdevsitepathFile() {
-  // Should this be the right place to fetch?
   let devsitepathUrl = 'https://developer.adobe.com/franklin_assets/devsitepaths.json';
 
   const resp = await fetch(devsitepathUrl);
   if (resp.ok) {
     const devsitepath = await resp.json();
-    devsitepath?.data.forEach(item => {
-      console.log(item);
-    })
+    return devsitepath;
+  } else {
+    return null;
   }
 };
+
+/**
+ * @returns Fetches and redirects page based on redirects.json
+ */
+export async function getPathPrefix() {
+  let pathPrefix = getMetadata('pathprefix') || getdevsitepathFile();
+
+  console.log(`fetching path prefix: ${pathPrefix}`);
+
+  // const suffixSplit = ctx.pathInfo.suffix.split('/');
+  // let suffixSplitRest = suffixSplit.slice(1);
+
+  // let devsitePathMatch;
+  // let devsitePathMatchFlag = false;
+
+  // console.log(`extension ${extension}`);
+
+  // // find match based on level 3, 2, or 1 transclusion rule
+  // // if match found in higher level don't do lower level
+  // if (suffixSplit.length > 2) {
+  //   devsitePathMatch = devsitePaths.find((element) => element.pathPrefix === `/${suffixSplit[1]}/${suffixSplit[2]}/${suffixSplit[3]}`);
+  //   devsitePathMatchFlag = !!devsitePathMatch;
+  //   if (devsitePathMatchFlag) {
+  //     console.log('rest 3');
+  //     suffixSplitRest = suffixSplit.slice(4);
+  //   }
+  // }
+  // if (suffixSplit.length > 1 && !devsitePathMatchFlag) {
+  //   devsitePathMatch = devsitePaths.find((element) => element.pathPrefix === `/${suffixSplit[1]}/${suffixSplit[2]}`);
+  //   devsitePathMatchFlag = !!devsitePathMatch;
+  //   if (devsitePathMatchFlag) {
+  //     console.log('rest 2');
+  //     suffixSplitRest = suffixSplit.slice(3);
+  //   }
+  // }
+  // if (suffixSplit.length > 0 && !devsitePathMatchFlag) {
+  //   devsitePathMatch = devsitePaths.find((element) => element.pathPrefix === `/${suffixSplit[1]}`);
+  //   devsitePathMatchFlag = !!devsitePathMatch;
+  //   if (devsitePathMatchFlag) {
+  //     console.log('rest 1');
+  //     suffixSplitRest = suffixSplit.slice(2);
+  //   }
+  // }
+
+  // if (devsitePathMatch) {
+  //   ctx.attributes.content.owner = devsitePathMatch.owner;
+  //   ctx.attributes.content.repo = devsitePathMatch.repo;
+  //   ctx.attributes.content.pathprefix = devsitePathMatch.pathPrefix;
+  //   ctx.attributes.content.branch = devsitePathMatch.branch ? devsitePathMatch.branch : 'main';
+
+  //   console.log(`ctx.attributes.content.branch: ${ctx.attributes.content.branch}`);
+  // }
+}
