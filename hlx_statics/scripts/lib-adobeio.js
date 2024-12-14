@@ -779,7 +779,7 @@ export async function getdevsitePathFile() {
  */
 export async function redirect() {
 
-  let devsitePaths = getdevsitePathFile();
+  let devsitePaths = await getdevsitePathFile();
   console.log(`fetching path prefix: ${devsitePaths}`);
 
   if(devsitePaths) {
