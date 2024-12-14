@@ -780,7 +780,6 @@ export async function getdevsitePathFile() {
 export async function redirect() {
 
   let devsitePaths = await getdevsitePathFile();
-  console.log(`fetching path prefix: ${devsitePaths}`);
 
   if(devsitePaths) {
     const suffixSplit = window.location.pathname.split('/');
@@ -818,6 +817,15 @@ export async function redirect() {
 
     if (devsitePathMatch) {
       console.log(`Matched pathPrefix: ${devsitePathMatch.pathPrefix}`);
+
+      let redirectPath = `https://${window.location.hostname}${devsitePathMatch.pathPrefix}/redirects.json`;
+      console.log(`redirectPath ${redirectPath}`)
+      const resp = await fetch(redirectPath);
+      if (resp.ok) {
+        const redirectList = await resp.json();
+        // apply redirect
+        console.log(redirectList)
+      }
     }
   }
 }
