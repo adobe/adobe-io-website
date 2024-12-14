@@ -760,15 +760,15 @@ export async function applyAnalytic(domObj = document) {
 }
 
 /**
- * @returns Fetches the devsitepath.json file
+ * @returns Fetches the devsitePath.json file
  */
-export async function getdevsitepathFile() {
-  let devsitepathUrl = 'https://developer.adobe.com/franklin_assets/devsitepaths.json';
+export async function getdevsitePathFile() {
+  let devsitePathUrl = 'https://developer.adobe.com/franklin_assets/devsitepaths.json';
 
-  const resp = await fetch(devsitepathUrl);
+  const resp = await fetch(devsitePathUrl);
   if (resp.ok) {
-    const devsitepath = await resp.json();
-    return devsitepath;
+    const devsitePath = await resp.json();
+    return devsitePath;
   } else {
     return null;
   }
@@ -779,10 +779,10 @@ export async function getdevsitepathFile() {
  */
 export async function redirect() {
 
-  let devsitepaths = getdevsitepathFile();
-  console.log(`fetching path prefix: ${devsitepaths}`);
+  let devsitePaths = getdevsitePathFile();
+  console.log(`fetching path prefix: ${devsitePaths}`);
 
-  if(devsitepaths) {
+  if(devsitePaths) {
     const suffixSplit = window.location.pathname.split('/');
     let suffixSplitRest = suffixSplit.slice(1);
 
