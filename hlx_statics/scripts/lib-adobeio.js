@@ -780,7 +780,7 @@ export async function getdevsitepathFile() {
 export async function redirect() {
 
   let devsitepaths = getdevsitepathFile();
-  console.log(`fetching path prefix: ${devsitepath}`);
+  console.log(`fetching path prefix: ${devsitepaths}`);
 
   if(devsitepaths) {
     const suffixSplit = window.location.pathname.split('/');
