@@ -777,52 +777,47 @@ export async function getdevsitepathFile() {
 /**
  * @returns Fetches and redirects page based on redirects.json
  */
-export async function getPathPrefix() {
-  let pathPrefix = getMetadata('pathprefix') || getdevsitepathFile();
+export async function redirect() {
 
-  console.log(`fetching path prefix: ${pathPrefix}`);
+  let devsitepaths = getdevsitepathFile();
+  console.log(`fetching path prefix: ${devsitepath}`);
 
-  // const suffixSplit = ctx.pathInfo.suffix.split('/');
-  // let suffixSplitRest = suffixSplit.slice(1);
+  if(devsitepaths) {
+    const suffixSplit = window.location.pathname.split('/');
+    let suffixSplitRest = suffixSplit.slice(1);
 
-  // let devsitePathMatch;
-  // let devsitePathMatchFlag = false;
+    let devsitePathMatch;
+    let devsitePathMatchFlag = false;
 
-  // console.log(`extension ${extension}`);
+    // find match based on level 3, 2, or 1 transclusion rule
+    // if match found in higher level don't do lower level
+    if (suffixSplit.length > 2) {
+      devsitePathMatch = devsitePaths.data.find((element) => element.pathPrefix === `/${suffixSplit[1]}/${suffixSplit[2]}/${suffixSplit[3]}`);
+      devsitePathMatchFlag = !!devsitePathMatch;
+      if (devsitePathMatchFlag) {
+        console.log('rest 3');
+        suffixSplitRest = suffixSplit.slice(4);
+      }
+    }
+    if (suffixSplit.length > 1 && !devsitePathMatchFlag) {
+      devsitePathMatch = devsitePaths.data.find((element) => element.pathPrefix === `/${suffixSplit[1]}/${suffixSplit[2]}`);
+      devsitePathMatchFlag = !!devsitePathMatch;
+      if (devsitePathMatchFlag) {
+        console.log('rest 2');
+        suffixSplitRest = suffixSplit.slice(3);
+      }
+    }
+    if (suffixSplit.length > 0 && !devsitePathMatchFlag) {
+      devsitePathMatch = devsitePaths.data.find((element) => element.pathPrefix === `/${suffixSplit[1]}`);
+      devsitePathMatchFlag = !!devsitePathMatch;
+      if (devsitePathMatchFlag) {
+        console.log('rest 1');
+        suffixSplitRest = suffixSplit.slice(2);
+      }
+    }
 
-  // // find match based on level 3, 2, or 1 transclusion rule
-  // // if match found in higher level don't do lower level
-  // if (suffixSplit.length > 2) {
-  //   devsitePathMatch = devsitePaths.find((element) => element.pathPrefix === `/${suffixSplit[1]}/${suffixSplit[2]}/${suffixSplit[3]}`);
-  //   devsitePathMatchFlag = !!devsitePathMatch;
-  //   if (devsitePathMatchFlag) {
-  //     console.log('rest 3');
-  //     suffixSplitRest = suffixSplit.slice(4);
-  //   }
-  // }
-  // if (suffixSplit.length > 1 && !devsitePathMatchFlag) {
-  //   devsitePathMatch = devsitePaths.find((element) => element.pathPrefix === `/${suffixSplit[1]}/${suffixSplit[2]}`);
-  //   devsitePathMatchFlag = !!devsitePathMatch;
-  //   if (devsitePathMatchFlag) {
-  //     console.log('rest 2');
-  //     suffixSplitRest = suffixSplit.slice(3);
-  //   }
-  // }
-  // if (suffixSplit.length > 0 && !devsitePathMatchFlag) {
-  //   devsitePathMatch = devsitePaths.find((element) => element.pathPrefix === `/${suffixSplit[1]}`);
-  //   devsitePathMatchFlag = !!devsitePathMatch;
-  //   if (devsitePathMatchFlag) {
-  //     console.log('rest 1');
-  //     suffixSplitRest = suffixSplit.slice(2);
-  //   }
-  // }
-
-  // if (devsitePathMatch) {
-  //   ctx.attributes.content.owner = devsitePathMatch.owner;
-  //   ctx.attributes.content.repo = devsitePathMatch.repo;
-  //   ctx.attributes.content.pathprefix = devsitePathMatch.pathPrefix;
-  //   ctx.attributes.content.branch = devsitePathMatch.branch ? devsitePathMatch.branch : 'main';
-
-  //   console.log(`ctx.attributes.content.branch: ${ctx.attributes.content.branch}`);
-  // }
+    if (devsitePathMatch) {
+      console.log(`Matched pathPrefix: ${devsitePathMatch.pathPrefix}`);
+    }
+  }
 }

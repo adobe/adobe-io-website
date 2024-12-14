@@ -13,7 +13,7 @@
   <script src="/hlx_statics/scripts/lib-adobeio.js" type="module" crossorigin="use-credentials"></script>
   <script type="module">
     import { sampleRUM } from '/hlx_statics/scripts/lib-helix.js';
-    import { getPathPrefix, decorateButtons } from '/hlx_statics/scripts/lib-adobeio.js';
+    import { redirect, decorateButtons } from '/hlx_statics/scripts/lib-adobeio.js';
     window.addEventListener('load', () => {
       if (document.referrer) {
         const { origin, pathname } = new URL(document.referrer);
@@ -31,7 +31,7 @@
       decorateButtons(document);
       sampleRUM('404', { source: document.referrer, target: window.location.href });
     });
-    getPathPrefix();
+    redirect();
   </script>
   <link rel="stylesheet" href="/hlx_statics/styles/styles.css">
   <style>
