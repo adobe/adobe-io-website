@@ -819,15 +819,11 @@ export async function redirect() {
       console.log(`redirectPath ${redirectPath}`)
       const resp = await fetch(redirectPath);
       if (resp.ok) {
-        console.log('got redirect')
         const redirectList = await resp.json();
         // apply redirect
-        console.log(redirectList)
         redirectList.data.forEach((redirect) => {
-          console.log(`redirect ${redirect}`)
           if(window.location.pathname === redirect?.Source) {
-            console.log(redirect?.Destination)
-            //window.location.pathname = redirect?.Destination
+            window.location.pathname = redirect?.Destination
           }
         });
       } else {
