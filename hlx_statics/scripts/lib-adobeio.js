@@ -794,7 +794,6 @@ export async function redirect() {
       devsitePathMatch = devsitePaths.data.find((element) => element.pathPrefix === `/${suffixSplit[1]}/${suffixSplit[2]}/${suffixSplit[3]}`);
       devsitePathMatchFlag = !!devsitePathMatch;
       if (devsitePathMatchFlag) {
-        console.log('rest 3');
         suffixSplitRest = suffixSplit.slice(4);
       }
     }
@@ -802,7 +801,6 @@ export async function redirect() {
       devsitePathMatch = devsitePaths.data.find((element) => element.pathPrefix === `/${suffixSplit[1]}/${suffixSplit[2]}`);
       devsitePathMatchFlag = !!devsitePathMatch;
       if (devsitePathMatchFlag) {
-        console.log('rest 2');
         suffixSplitRest = suffixSplit.slice(3);
       }
     }
@@ -810,7 +808,6 @@ export async function redirect() {
       devsitePathMatch = devsitePaths.data.find((element) => element.pathPrefix === `/${suffixSplit[1]}`);
       devsitePathMatchFlag = !!devsitePathMatch;
       if (devsitePathMatchFlag) {
-        console.log('rest 1');
         suffixSplitRest = suffixSplit.slice(2);
       }
     }
@@ -824,7 +821,11 @@ export async function redirect() {
       if (resp.ok) {
         const redirectList = await resp.json();
         // apply redirect
-        console.log(redirectList)
+        redirectList.data.forEach((redirect) => {
+          if(window.location.pathname === redirect?.Source) {
+            window.location.pathname = redirect?.Destination
+          }
+        });
       }
     }
   }
