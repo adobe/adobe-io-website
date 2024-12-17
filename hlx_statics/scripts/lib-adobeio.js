@@ -819,6 +819,7 @@ export async function redirect() {
       console.log(`redirectPath ${redirectPath}`)
       const resp = await fetch(redirectPath);
       if (resp.ok) {
+        console.log('got redirect')
         const redirectList = await resp.json();
         // apply redirect
         console.log(redirectList)
@@ -829,6 +830,8 @@ export async function redirect() {
             //window.location.pathname = redirect?.Destination
           }
         });
+      } else {
+        return null;
       }
     }
   }
