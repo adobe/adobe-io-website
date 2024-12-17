@@ -821,7 +821,9 @@ export async function redirect() {
       if (resp.ok) {
         const redirectList = await resp.json();
         // apply redirect
+        console.log(redirectList)
         redirectList.data.forEach((redirect) => {
+          console.log(`redirect ${redirect}`)
           if(window.location.pathname === redirect?.Source) {
             console.log(redirect?.Destination)
             //window.location.pathname = redirect?.Destination
