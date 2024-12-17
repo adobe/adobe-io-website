@@ -823,7 +823,8 @@ export async function redirect() {
         // apply redirect
         redirectList.data.forEach((redirect) => {
           if(window.location.pathname === redirect?.Source) {
-            window.location.pathname = redirect?.Destination
+            console.log(redirect?.Destination)
+            //window.location.pathname = redirect?.Destination
           }
         });
       }
