@@ -8,7 +8,6 @@ main div.inlinealert-wrapper .spectrum-InLineAlert {
     box-sizing: border-box;
     min-width: 368px;
     min-height: 38px;
-    margin: 8px 0;
     padding: 20px;
     border-width: 2px;
     border-style: solid;
@@ -159,10 +158,6 @@ main .inlinealert img {
 main .inlinealert-wrapper .inlinealert.warning{
     border-color: rgb(246,133,17);
     color: rgb(203, 93, 0);
-}
-
-main .inlinealert-wrapper{
-    margin: 20px 0px;
 }
 
 main div.inlinealert > p.spectrum-InLineAlert-content{

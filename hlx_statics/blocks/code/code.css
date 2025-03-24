@@ -1,8 +1,3 @@
 pre[class*=language-] {
     border-radius: 4px;
 }
-
-main div.nested-code-wrapper {
-    margin-top:  20px;
-    margin-bottom:  20px;
-}

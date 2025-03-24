@@ -95,8 +95,44 @@ main.no-sidenav{
   grid-template-columns: 100% 100% !important;
 }
 
-main .section {
-  padding: 20px 0;
+main div.accordion-wrapper,
+main div.announcement-wrapper,
+main div.api-browser-wrapper,
+main div.banner-wrapper,
+main div.breadcrumbs-wrapper,
+main div.calendar-wrapper,
+main div.cards-wrapper,
+main div.carousel-wrapper,
+main div.code-wrapper,
+main div.nested-code-wrapper,
+main div.codeblock-wrapper,
+main div.columns-wrapper,
+main div.contributors-wrapper,
+main div.detailsblock-wrapper,
+main div.discoverblock-wrapper,
+main div.edition-wrapper,
+main div.embed-wrapper,
+main div.github-actions-wrapper,
+main div.hr-wrapper,
+main div.image-text-wrapper,
+main div.info-wrapper,
+main div.info-card-wrapper,
+main div.info-columns-wrapper,
+main div.inline-nested-alert-wrapper,
+main div.inlinealert-wrapper,
+main div.link-wrapper,
+main div.link-block-wrapper,
+main div.list-wrapper,
+main div.mini-resource-card-wrapper,
+main div.product-card-wrapper,
+main div.profile-card-wrapper,
+main div.summary-wrapper,
+main div.tab-wrapper,
+main div.table-wrapper,
+main div.text-wrapper,
+main div.title-wrapper {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 main .section .section-title {
@@ -981,7 +1017,6 @@ main li h3{
 
 main .code-wrapper, main .nested-code-wrapper{
   max-width: 60vw;
-  margin: 10px 0px;
 }
 main:not(:has(.onthispage-wrapper)) .code-wrapper {
   max-width: none;

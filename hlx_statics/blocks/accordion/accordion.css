@@ -11,10 +11,6 @@ main div.accordion-wrapper div.accordion .accordion-div {
     margin: auto !important;
 }
 
-main div.accordion-container.accordion-whole {
-    padding: 32px 0;
-}
-
 main div.accordion-container.accordion-whole .accordion-wrapper {
     display: flex;
     align-items: center;

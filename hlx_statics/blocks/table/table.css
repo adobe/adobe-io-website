@@ -4,7 +4,8 @@ main div.table-container:has(.table.background-color-white) {
 }
 
 main div.table-wrapper {
-  padding: 0px 32px;
+  padding-left: 32px;
+  padding-right: 32px;
 }
 
 main div.table-container {
