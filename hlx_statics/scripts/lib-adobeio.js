@@ -16,7 +16,7 @@ export function checkExternalLink(a) {
   const url = a.href;
   const [_, queryString] = url.split('?');
   const searchParams = new URLSearchParams(queryString);
-  const internalDomains = ['developer.adobe.com', 'hlx.page', 'hlx.live'];
+  const internalDomains = ['developer.adobe.com', 'developer-stage.adobe.com', 'developer-dev.adobe.com', 'hlx.page', 'hlx.live'];
   const isExternal = !internalDomains.some(domain => url.includes(domain)) || searchParams.has('aio_external');
   if (isExternal) {
     a.target = '_blank';
