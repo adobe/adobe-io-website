@@ -6,7 +6,6 @@ export default function decorate(block) {
   const pre = document.createElement('pre');
   code.parentElement.replaceChild(pre, code);
   pre.appendChild(code);
-  code.classList.forEach(cls => pre.classList.add(cls));
   if (language) {
     applyLanguageDirectives(pre, code, language);
   }
