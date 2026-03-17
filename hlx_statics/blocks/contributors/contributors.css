@@ -16,6 +16,7 @@ main div.contributors-wrapper div.contributors-content > div.feedbackWrapper {
     flex: 0 1 auto;
 }
 
+/* TODO */
 main div.contributors-wrapper div.feedbackWrapper {
     display: flex;
     gap: 20px;

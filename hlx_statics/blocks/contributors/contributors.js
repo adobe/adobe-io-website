@@ -109,6 +109,7 @@ export default async function decorate(block) {
   lastUpdatedText.innerText = lastUpdated ? `Last updated ${lastUpdated}` : '';
   lastUpdatedWrapper.appendChild(lastUpdatedText);
 
+  // TODO
   const feedback = document.createElement("div");
   feedback.classList.add("feedback");
   const feedbackWrapper = document.createElement("div");
