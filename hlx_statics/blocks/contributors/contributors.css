@@ -16,11 +16,22 @@ main div.contributors-wrapper div.contributors-content > div.feedbackWrapper {
     flex: 0 1 auto;
 }
 
-/* TODO */
 main div.contributors-wrapper div.feedbackWrapper {
     display: flex;
     gap: 20px;
     align-items: center;
+}
+
+main div.contributors-wrapper div.feedbackWrapper.feedback-submitted button {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+main div.contributors-wrapper div.feedbackWrapper.feedback-submitted button.selected {
+    opacity: 1;
+    /* highlight the selected answer — tweak to match your design system */
+    border-color: var(--spectrum-global-color-blue-500, #1473e6) !important;
+    color: var(--spectrum-global-color-blue-500, #1473e6);
 }
 
 main div.contributors-wrapper div.buttonWrapper {

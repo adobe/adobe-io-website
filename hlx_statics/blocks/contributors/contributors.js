@@ -109,7 +109,6 @@ export default async function decorate(block) {
   lastUpdatedText.innerText = lastUpdated ? `Last updated ${lastUpdated}` : '';
   lastUpdatedWrapper.appendChild(lastUpdatedText);
 
-  // TODO
   const feedback = document.createElement("div");
   feedback.classList.add("feedback");
   const feedbackWrapper = document.createElement("div");
@@ -154,8 +153,14 @@ export default async function decorate(block) {
     }, 10);
   }
 
-  yesButton.addEventListener('click', showModal);
-  noButton.addEventListener('click', showModal);
+  const handleFeedback = (selectedButton) => {
+    feedbackWrapper.classList.add('feedback-submitted');
+    selectedButton.classList.add('selected');
+    showModal();
+  };
+
+  yesButton.addEventListener('click', () => handleFeedback(yesButton));
+  noButton.addEventListener('click', () => handleFeedback(noButton));
   modal.querySelector('.close-button').addEventListener('click', closeModal);
   window.addEventListener('click', (event) => {
     if (event.target === document.querySelector('.model-comp-contributors')) closeModal();
