@@ -177,8 +177,10 @@ export function fetchSiteMetadata() {
  */
 export async function fetchSiteWideBanner() {
   const metadata = await fetchSiteMetadata();
-  const metadataPath = metadata?.get('site-wide-banner');
-  if (metadata && !metadataPath) return undefined;
+  if (!metadata) return undefined;
+
+  const metadataPath = metadata.get('site-wide-banner');
+  if (metadataPath === undefined) return undefined;
 
   let pathPrefix = getMetadata('pathprefix')?.replace(/^\/|\/$/g, '');
   let siteWideBannerFile = metadataPath
@@ -206,9 +208,11 @@ export async function fetchSiteWideBanner() {
 export async function fetchDiscoveryInterface() {
   const metadata = await fetchSiteMetadata();
   console.log("metadata", metadata);
-  const metadataPath = metadata?.get('discovery-interface');
+  if (!metadata) return undefined;
+
+  const metadataPath = metadata.get('discovery-interface');
   console.log("metadataPath", metadataPath);
-  if (metadata && !metadataPath) return undefined;
+  if (metadataPath === undefined) return undefined;
 
   let pathPrefix = getMetadata('pathprefix')?.replace(/^\/|\/$/g, '');
   let discoveryInterface = metadataPath
@@ -271,8 +275,10 @@ export async function fetchRedirectJson() {
 
 export async function getContributorsJsonPath() {
   const metadata = await fetchSiteMetadata();
-  const metadataPath = metadata?.get('contributors');
-  if (metadata && !metadataPath) return null;
+  if (!metadata) return null;
+
+  const metadataPath = metadata.get('contributors');
+  if (metadataPath === undefined) return null;
 
   const pathPrefix = getMetadata('pathprefix').replace(/^\/|\/$/g, '');
   return metadataPath
@@ -290,8 +296,10 @@ export async function hasContributorsJson() {
 
 export async function getCodePlaygroundJsonPath() {
   const metadata = await fetchSiteMetadata();
-  const metadataPath = metadata?.get('code-playground');
-  if (metadata && !metadataPath) return null;
+  if (!metadata) return null;
+
+  const metadataPath = metadata.get('code-playground');
+  if (metadataPath === undefined) return null;
 
   const pathPrefix = getMetadata('pathprefix').replace(/^\/|\/$/g, '');
   return metadataPath
